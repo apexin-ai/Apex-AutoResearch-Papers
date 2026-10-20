@@ -1,0 +1,296 @@
+{
+  "schema_version": "1.0",
+  "id": "08cbf1cd1f2402d4e910",
+  "project": "cross_representation_disagreement_diagno",
+  "kind": "conversation",
+  "title": "Reviewer coordination",
+  "task_key": "feishu_group_oc_47783d9ed84e58a10c2248ea3563b140_reviewer",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/feishu_group_oc_47783d9ed84e58a10c2248ea3563b140_reviewer.jsonl",
+    "occurrence": 1,
+    "bytes": 526936,
+    "sha256": "ca33a0b9019bafeec604a7f97d84b76a3729f3bcc2df8e8597a697ada8052764"
+  },
+  "statistics": {
+    "messages": 574,
+    "user_turns": 23,
+    "tool_calls": 264,
+    "roles": {
+      "user": 23,
+      "tool_call": 264,
+      "tool_result": 264,
+      "assistant": 23
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 29,
+      "chunks": [
+        {
+          "path": "08cbf1cd1f2402d4e910-part-0001.json",
+          "message_count": 29
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 40,
+      "chunks": [
+        {
+          "path": "08cbf1cd1f2402d4e910-part-0001.json",
+          "message_count": 40
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "08cbf1cd1f2402d4e910-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 75,
+      "chunks": [
+        {
+          "path": "08cbf1cd1f2402d4e910-part-0001.json",
+          "message_count": 75
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 38,
+      "chunks": [
+        {
+          "path": "08cbf1cd1f2402d4e910-part-0001.json",
+          "message_count": 34
+        },
+        {
+          "path": "08cbf1cd1f2402d4e910-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 4,
+      "chunks": [
+        {
+          "path": "08cbf1cd1f2402d4e910-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 18,
+      "chunks": [
+        {
+          "path": "08cbf1cd1f2402d4e910-part-0002.json",
+          "message_count": 18
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 30,
+      "chunks": [
+        {
+          "path": "08cbf1cd1f2402d4e910-part-0002.json",
+          "message_count": 30
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 26,
+      "chunks": [
+        {
+          "path": "08cbf1cd1f2402d4e910-part-0002.json",
+          "message_count": 26
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 12,
+      "chunks": [
+        {
+          "path": "08cbf1cd1f2402d4e910-part-0002.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 8,
+      "chunks": [
+        {
+          "path": "08cbf1cd1f2402d4e910-part-0002.json",
+          "message_count": 8
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "boundary": "recorded_user_message",
+      "message_count": 26,
+      "chunks": [
+        {
+          "path": "08cbf1cd1f2402d4e910-part-0002.json",
+          "message_count": 26
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "boundary": "recorded_user_message",
+      "message_count": 50,
+      "chunks": [
+        {
+          "path": "08cbf1cd1f2402d4e910-part-0002.json",
+          "message_count": 50
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "boundary": "recorded_user_message",
+      "message_count": 30,
+      "chunks": [
+        {
+          "path": "08cbf1cd1f2402d4e910-part-0002.json",
+          "message_count": 2
+        },
+        {
+          "path": "08cbf1cd1f2402d4e910-part-0003.json",
+          "message_count": 28
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "boundary": "recorded_user_message",
+      "message_count": 16,
+      "chunks": [
+        {
+          "path": "08cbf1cd1f2402d4e910-part-0003.json",
+          "message_count": 16
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "boundary": "recorded_user_message",
+      "message_count": 28,
+      "chunks": [
+        {
+          "path": "08cbf1cd1f2402d4e910-part-0003.json",
+          "message_count": 28
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "boundary": "recorded_user_message",
+      "message_count": 20,
+      "chunks": [
+        {
+          "path": "08cbf1cd1f2402d4e910-part-0003.json",
+          "message_count": 20
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "boundary": "recorded_user_message",
+      "message_count": 24,
+      "chunks": [
+        {
+          "path": "08cbf1cd1f2402d4e910-part-0003.json",
+          "message_count": 24
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "boundary": "recorded_user_message",
+      "message_count": 12,
+      "chunks": [
+        {
+          "path": "08cbf1cd1f2402d4e910-part-0003.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "boundary": "recorded_user_message",
+      "message_count": 18,
+      "chunks": [
+        {
+          "path": "08cbf1cd1f2402d4e910-part-0003.json",
+          "message_count": 18
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "boundary": "recorded_user_message",
+      "message_count": 38,
+      "chunks": [
+        {
+          "path": "08cbf1cd1f2402d4e910-part-0003.json",
+          "message_count": 34
+        },
+        {
+          "path": "08cbf1cd1f2402d4e910-part-0004.json",
+          "message_count": 4
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "boundary": "recorded_user_message",
+      "message_count": 12,
+      "chunks": [
+        {
+          "path": "08cbf1cd1f2402d4e910-part-0004.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "boundary": "recorded_user_message",
+      "message_count": 18,
+      "chunks": [
+        {
+          "path": "08cbf1cd1f2402d4e910-part-0004.json",
+          "message_count": 18
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/reviewer-coordination.md"
+}

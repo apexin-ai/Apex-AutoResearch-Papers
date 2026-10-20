@@ -1,0 +1,554 @@
+{
+  "problem": {
+    "id": "folio_70",
+    "problem": "Given the following premises:\nBadults is a British Sitcom series, starring members of Pappy's. Badults piloted in July 2013 on BBC Three. The Working title \"The Secret Dude Society\" was used for Badults. Andrew Collins was the script editor for Badults\n\nDetermine whether the following conclusion is true, false, or uncertain:\nNo members of Pappy's have starred for a show piloting on BBC Two or BBC Three.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "\u2203x (MemberOf(x, pappys) \u2227 BritishSitcom(badults) \u2227 Series(badults) \u2227 Starring(badults, x))",
+      "PilotedIn(badults, july2013) \u2227 PilotedOn(badults, bbcthree)",
+      "WorkingTitle(thesecretdudesociety, badults)",
+      "ScriptEditor(andrewcollins) \u2227 ScriptEditorFor(andrewcollins, badults)"
+    ],
+    "conclusion_fol": "\u2200x \u2200y (MemberOf(x, pappys) \u2227 Starring(y, x) \u2192 \u00ac(PilotedOn(y, bbctwo) \u2228 PilotedOn(y, bbcthree)))",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 34.0,
+      "Unknown": 39.5
+    },
+    "answer_counts": {
+      "Unknown": 6,
+      "False": 5
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises.\n\nPremise 1: Badults is a British Sitcom series, starring members of Pappy's.\nThis premise tells us that members of Pappy's are involved in the show Badults.\n\nPremise 2: Badults piloted in July 2013 on BBC Three.\nThis premise provides information about the show Badults, specifically that it piloted on BBC Three.\n\nPremise 3: The Working title \"The Secret Dude Society\" was used for Badults.\nThis premise provides an alternative title for the show Badults.\n\nPremise 4: Andrew Collins was the script editor for Badults\nThis premise gives us more information about the show Badults, specifically the role of Andrew Collins.\n\nNow, let's analyze the conclusion:\n\nConclusion: No members of Pappy's have starred for a show piloting on BBC Two or BBC Three.\n\nThe conclusion is making a claim about two specific channels (BBC Two and BBC Three). We need to determine if the premises provide any information that supports or contradicts this conclusion.\n\nFrom Premise 1, we know that members of Pappy's are involved in the show Badults. Premise 2 tells us that Badults piloted on BBC Three, which is one of the channels mentioned in the conclusion.\n\nHowever, we don't have any information about whether members of Pappy's have starred in a show piloting on BBC Two. Therefore, we cannot conclude anything about BBC Two based on the premises.\n\nSince we have information about a show piloting on BBC Three (Badults), but no information about BBC Two, we cannot definitively say that no members of Pappy's have starred for a show piloting on BBC Two or BBC Three.\n\nTherefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Badults is a British Sitcom series, starring members of Pappy's. \nThis premise states that Badults features members of Pappy's as its stars.\n\nPremise 2: Badults piloted in July 2013 on BBC Three. \nThis premise provides information about the channel where Badults piloted.\n\nPremise 3: The Working title \"The Secret Dude Society\" was used for Badults. \nThis premise is not directly relevant to our conclusion.\n\nPremise 4: Andrew Collins was the script editor for Badults \nThis premise is also not directly relevant to our conclusion.\n\nNow, let's analyze the conclusion: \"No members of Pappy's have starred for a show piloting on BBC Two or BBC Three.\"\n\nBased on the given premises, we can conclude that Badults piloted on BBC Three, and members of Pappy's starred in it. However, we have no information about any shows piloting on BBC Two.\n\nTherefore, we can only say that no members of Pappy's have starred in a show piloting on BBC Two. The conclusion is uncertain about shows piloting on BBC Three, as Badults is a counterexample.\n\nSo, the conclusion is uncertain because we can't conclude that no members of Pappy's have starred in a show piloting on BBC Three (Badults is a counterexample), but we can conclude that no members of Pappy's have starred in a show piloting on BBC Two.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine the truth of the given conclusion, let's break down the information provided and analyze it step by step:\n\n1. The show in question is \"Badults,\" a British sitcom series.\n2. \"Badults\" is stated to be starring members of Pappy's.\n3. The show \"Badults\" piloted in July 2013 on BBC Three.\n\nNow, let's analyze the conclusion: \"No members of Pappy's have starred for a show piloting on BBC Two or BBC Three.\"\n\nGiven that the conclusion is making a general statement about all members of Pappy's, we need to consider if the information provided is sufficient to support this conclusion.\n\nFrom the given information:\n- We know that members of Pappy's starred in \"Badults,\" which piloted on BBC Three.\n- There is no information about any shows piloting on BBC Two starring members of Pappy's.\n\nHowever, we cannot make a definitive conclusion that no members of Pappy's have starred in a show piloting on BBC Two. We only have information about BBC Three. Therefore, the conclusion cannot be definitively labeled as true or false based on the given premises.\n\nGiven the lack of information about BBC Two, we can only say that the statement \"No members of Pappy's have starred for a show piloting on BBC Two or BBC Three\" is uncertain, as it cannot be confirmed or denied based on the provided premises.\n\nTherefore, the final answer is: \n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Badults is a British Sitcom series, starring members of Pappy's.\nPremise 2: Badults piloted in July 2013 on BBC Three.\nPremise 3: The Working title \"The Secret Dude Society\" was used for Badults.\nPremise 4: Andrew Collins was the script editor for Badults.\n\nWe can ignore Premise 3 and Premise 4 as they don't provide any relevant information to the conclusion.\n\nFrom Premise 1 and Premise 2, we know that members of Pappy's starred in a show that piloted on BBC Three. \n\nHowever, the conclusion states that \"No members of Pappy's have starred for a show piloting on BBC Two or BBC Three.\" Since we know that members of Pappy's starred in a show piloting on BBC Three, the conclusion is false.\n\nWe can't conclude that members of Pappy's have never starred in a show piloting on BBC Two, as there is no information about that.\n\nTherefore, the conclusion is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Badults is a British Sitcom series, starring members of Pappy's. \nThis premise tells us that Pappy's members have starred in a show called Badults.\n\nPremise 2: Badults piloted in July 2013 on BBC Three.\nThis premise tells us that the show Badults piloted on BBC Three.\n\nPremise 3: The Working title \"The Secret Dude Society\" was used for Badults.\nThis premise gives us another name for the show Badults, but it's not relevant to determining whether the conclusion is true or false.\n\nPremise 4: Andrew Collins was the script editor for Badults\nThis premise is also not relevant to determining whether the conclusion is true or false.\n\nConclusion: No members of Pappy's have starred for a show piloting on BBC Two or BBC Three.\n\nFrom Premise 1, we know that members of Pappy's have starred in a show called Badults, and from Premise 2, we know that Badults piloted on BBC Three. \n\nSince we have evidence that Pappy's members starred in a show that piloted on BBC Three, we can conclude that the statement \"No members of Pappy's have starred for a show piloting on BBC Two or BBC Three\" is false.\n\nTherefore, the conclusion is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we will evaluate the premises and apply logical reasoning.\n\nPremise 1: Badults is a British Sitcom series, starring members of Pappy's.\nPremise 2: Badults piloted in July 2013 on BBC Three.\nPremise 3: The Working title \"The Secret Dude Society\" was used for Badults.\nPremise 4: Andrew Collins was the script editor for Badults.\n\nWe are trying to evaluate the conclusion: No members of Pappy's have starred for a show piloting on BBC Two or BBC Three.\n\nFrom Premise 1, we know that Badults starred members of Pappy's. \nFrom Premise 2, we know that Badults piloted on BBC Three. \n\nNow, let's look at the conclusion. It claims that no members of Pappy's have starred in a show that piloted on BBC Two or BBC Three. However, we have evidence that contradicts this statement: Badults piloted on BBC Three, and it starred members of Pappy's.\n\nBased on the information provided, the conclusion is false because we have a specific example (Badults) that contradicts the statement.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises step by step:\n\n1. Badults is a British Sitcom series.\n2. Badults stars members of Pappy's.\n3. Badults piloted in July 2013 on BBC Three.\n4. The Working title \"The Secret Dude Society\" was used for Badults.\n5. Andrew Collins was the script editor for Badults.\n\nNow, let's consider the conclusion:\n\n\"No members of Pappy's have starred for a show piloting on BBC Two or BBC Three.\"\n\nFrom the given premises, we know that:\n\n- Badults piloted on BBC Three (Premise 3).\n- Badults stars members of Pappy's (Premise 2).\n\nSince Badults piloted on BBC Three, and it stars members of Pappy's, we can conclude that at least one member of Pappy's has starred in a show that piloted on BBC Three.\n\nHowever, we do not have any information about the members of Pappy's starring in a show that piloted on BBC Two.\n\nTherefore, we can only conclude that at least one member of Pappy's has starred in a show that piloted on BBC Three, but we cannot conclude anything about BBC Two.\n\nBased on the given premises, the conclusion is uncertain because we do not have enough information to confirm or deny the statement for BBC Two.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to evaluate the given premises and see if they support the conclusion.\n\nPremise 1: Badults is a British Sitcom series, starring members of Pappy's.\nThis premise tells us that members of Pappy's are associated with the sitcom series Badults.\n\nPremise 2: Badults piloted in July 2013 on BBC Three.\nThis premise tells us that Badults piloted on BBC Three in July 2013.\n\nPremise 3: The Working title \"The Secret Dude Society\" was used for Badults.\nThis premise is additional information, but it does not affect the conclusion.\n\nPremise 4: Andrew Collins was the script editor for Badults\nThis premise also does not affect the conclusion.\n\nConclusion: No members of Pappy's have starred for a show piloting on BBC Two or BBC Three.\n\nTo evaluate the conclusion, let's analyze the given information. We know that members of Pappy's starred in the show Badults, which piloted on BBC Three. This directly contradicts the conclusion, which states that no members of Pappy's have starred in a show piloting on BBC Three.\n\nTherefore, based on the given premises, the conclusion is FALSE.",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the given premises.\n\nPremise 1: Badults is a British Sitcom series, starring members of Pappy's.\n\nThis premise tells us that the members of Pappy's have starred in the show Badults.\n\nPremise 2: Badults piloted in July 2013 on BBC Three.\n\nThis premise tells us that Badults was a show that piloted on BBC Three.\n\nPremise 3: The Working title \"The Secret Dude Society\" was used for Badults.\n\nThis premise is not directly relevant to the conclusion, but it provides additional information about the show.\n\nPremise 4: Andrew Collins was the script editor for Badults.\n\nThis premise is also not directly relevant to the conclusion, but it provides more information about the show.\n\nNow, let's analyze the conclusion: No members of Pappy's have starred for a show piloting on BBC Two or BBC Three.\n\nThe conclusion states that no members of Pappy's have starred in a show that piloted on BBC Two or BBC Three. From Premise 1, we know that members of Pappy's starred in the show Badults, which piloted on BBC Three (Premise 2). This directly contradicts the conclusion.\n\nTherefore, the conclusion is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the given premises.\n\nPremise 1: Badults is a British Sitcom series, starring members of Pappy's.\nThis premise tells us that members of Pappy's have starred in the show Badults.\n\nPremise 2: Badults piloted in July 2013 on BBC Three.\nThis premise tells us that the show Badults piloted on BBC Three, which is one of the networks mentioned in the conclusion.\n\nPremise 3: The Working title \"The Secret Dude Society\" was used for Badults.\nThis premise is additional information about the show Badults but does not affect the conclusion directly.\n\nPremise 4: Andrew Collins was the script editor for Badults\nThis premise provides additional information about the show Badults but does not affect the conclusion directly.\n\nNow, let's analyze the conclusion: \"No members of Pappy's have starred for a show piloting on BBC Two or BBC Three.\"\n\nFrom Premise 1, we know that members of Pappy's have starred in the show Badults. From Premise 2, we know that Badults piloted on BBC Three.\n\nHowever, the conclusion specifically states \"BBC Two or BBC Three,\" which is a disjunction (OR). To determine if the conclusion is true, we need to consider both parts of the disjunction.\n\nWe have evidence that Badults piloted on BBC Three, which satisfies one part of the disjunction. However, we do not have any information about members of Pappy's starring in a show that piloted on BBC Two.\n\nTherefore, since we have evidence for one part of the disjunction (BBC Three), but not the other part (BBC Two), the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Badults is a British Sitcom series, starring members of Pappy's.\n\nThis premise directly links Pappy's to the show Badults.\n\nPremise 2: Badults piloted in July 2013 on BBC Three.\n\nThis premise tells us the channel on which the show piloted, but it doesn't directly relate to the conclusion.\n\nPremise 3: The Working title \"The Secret Dude Society\" was used for Badults.\n\nThis premise is not directly relevant to the conclusion.\n\nPremise 4: Andrew Collins was the script editor for Badults.\n\nThis premise is also not directly relevant to the conclusion.\n\nNow, let's analyze the conclusion: \"No members of Pappy's have starred for a show piloting on BBC Two or BBC Three.\"\n\nWe have information about a show (Badults) that piloted on BBC Three (Premise 2), and it stars members of Pappy's (Premise 1). \n\nHowever, there is no information about a show piloting on BBC Two. \n\nConsidering the information given, we can conclude that it is true that no members of Pappy's have starred for a show piloting on BBC Two, but we cannot conclude anything about BBC Three.\n\nHowever, the problem doesn't explicitly mention whether there are any other shows piloting on BBC Three that star members of Pappy's. \n\nSince we don't have enough information about other shows on BBC Three, we should classify the conclusion as uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine the truth of the conclusion, let's analyze the premises.\n\nPremise 1: Badults is a British Sitcom series, starring members of Pappy's.\nPremise 2: Badults piloted in July 2013 on BBC Three.\nPremise 3: The Working title \"The Secret Dude Society\" was used for Badults.\nPremise 4: Andrew Collins was the script editor for Badults.\n\nConclusion: No members of Pappy's have starred for a show piloting on BBC Two or BBC Three.\n\nFrom the premises, we know that:\n- Badults is a sitcom series starring members of Pappy's and it piloted on BBC Three.\n- This means that at least one member of Pappy's has starred in a show that piloted on BBC Three (Badults).\n\nHowever, there is no information about whether Pappy's members have starred in a show piloting on BBC Two. The conclusion makes a claim about both BBC Two and BBC Three, but the premises only provide information about BBC Three.\n\nGiven the information from the premises, we can conclude that it is uncertain whether no members of Pappy's have starred for a show piloting on BBC Two, but we can say for certain that at least one member of Pappy's has starred in a show piloting on BBC Three (Badults).\n\nHowever, because the problem states BBC Two or BBC Three, we can use the information from the premises to find that Badults is a show that piloted on BBC Three, so we know that the members of Pappy's starred in a show that piloted on BBC Three. \n\nThere is no information about BBC Two so we cannot make any conclusions about it.\n\nTherefore, we can say that the conclusion is uncertain for BBC Two but we can say the conclusion is false for BBC Three because it is known that members of Pappy's have starred in a show that piloted on BBC Three.\n\nSo because the problem states BBC Two or BBC Three, we can say that the conclusion is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "badults_is_british_sitcom",
+          "z3_formula": "badults_is_british_sitcom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "members_of_pappys_involved_in_badults",
+          "z3_formula": "members_of_pappys_involved_in_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "badults_piloted_on_bbc_three",
+          "z3_formula": "badults_piloted_on_bbc_three == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "working_title_secret_dude_society",
+          "z3_formula": "working_title_secret_dude_society == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "andrew_collins_script_editor_for_badults",
+          "z3_formula": "andrew_collins_script_editor_for_badults == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "no_members_of_pappys_starred_on_bbc_two_or_three",
+          "z3_formula": "Not(Or(members_of_pappys_starred_on_bbc_two, members_of_pappys_starred_on_bbc_three))",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "is_british_sitcom_series(badults)",
+          "z3_formula": "is_british_sitcom_series_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "stars_members_of_pappys(badults)",
+          "z3_formula": "stars_members_of_pappys_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "piloted_on_bbc_three(badults, 2013, 7)",
+          "z3_formula": "piloted_on_bbc_three_badults_2013_7 == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "stars_members_of_pappys(X) & piloted_on_bbc_two_or_three(X, _, _) -> not stars_members_of_pappys(X)",
+          "z3_formula": "Implies(And(stars_members_of_pappys_badults, piloted_on_bbc_two_or_three_badults, _), Not(stars_members_of_pappys_badults))",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not stars_members_of_pappys(badults) & stars_members_of_pappys(badults)",
+          "z3_formula": "And(Not(stars_members_of_pappys_badults), stars_members_of_pappys_badults)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "starring_members_of_pappys_in_badults",
+          "z3_formula": "starring_members_of_pappys_in_badults == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "badults_piloted_on_bbc_three",
+          "z3_formula": "badults_piloted_on_bbc_three == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "starring_members_of_pappys_in_show -> show_piloted_on_bbc_two_or_three",
+          "z3_formula": "Implies(starring_members_of_pappys_in_show, show_piloted_on_bbc_two_or_three)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(starring_members_of_pappys_in_show_on_bbc_two)",
+          "z3_formula": "Not(starring_members_of_pappys_in_show_on_bbc_two)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(starring_members_of_pappys_in_show_on_bbc_two_or_three)",
+          "z3_formula": "Not(And(starring_members_of_pappys_in_show_on_bbc_two, starring_members_of_pappys_in_show_on_bbc_three))",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "badults_is_british_sitcom",
+          "z3_formula": "badults_is_british_sitcom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "badults_piloted_on_bbc_three",
+          "z3_formula": "badults_piloted_on_bbc_three == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "badults_is_british_sitcom & badults_piloted_on_bbc_three -> members_of_pappys_starred_on_bbc_three",
+          "z3_formula": "Implies(And(badults_is_british_sitcom, badults_piloted_on_bbc_three), members_of_pappys_starred_on_bbc_three)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "members_of_pappys_starred_on_bbc_three",
+          "z3_formula": "members_of_pappys_starred_on_bbc_three == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "no_members_of_pappys_starred_on_bbc_two_or_three",
+          "z3_formula": "no_members_of_pappys_starred_on_bbc_two_or_three == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "members_of_pappys_starred_in_badults",
+          "z3_formula": "members_of_pappys_starred_in_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "badults_piloted_on_bbc_three",
+          "z3_formula": "badults_piloted_on_bbc_three == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "members_of_pappys_starred_in_badults & badults_piloted_on_bbc_three -> conclusion_false",
+          "z3_formula": "Implies(And(members_of_pappys_starred_in_badults, badults_piloted_on_bbc_three), conclusion_false)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "conclusion_false",
+          "z3_formula": "conclusion_false == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "badults_starred_members_of_pappys",
+          "z3_formula": "badults_starred_members_of_pappys == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "badults_piloted_on_bbc_three",
+          "z3_formula": "badults_piloted_on_bbc_three == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "badults_working_title_was_secret_dude_society",
+          "z3_formula": "badults_working_title_was_secret_dude_society == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "andrew_collins_was_script_editor_for_badults",
+          "z3_formula": "andrew_collins_was_script_editor_for_badults == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "no_members_of_pappys_starred_in_show_piloting_on_bbc_two_or_three",
+          "z3_formula": "Not(Or(badults_starred_members_of_pappys & badults_piloted_on_bbc_three, badults_starred_members_of_pappys & badults_piloted_on_bbc_two)) == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "british_sitcom(badults)",
+          "z3_formula": "british_sitcom_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "stars_members_of_pappys(badults)",
+          "z3_formula": "stars_members_of_pappys_badults == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "piloted_on_bbc_three(badults, 2013, 7)",
+          "z3_formula": "piloted_on_bbc_three_badults_2013_7 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "working_title(badults, \"the_secret_dude_society\")",
+          "z3_formula": "working_title_badults_the_secret_dude_society == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "script_editor(badults, andrew_collins)",
+          "z3_formula": "script_editor_badults_andrew_collins == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "stars_members_of_pappys(X) & piloted_on_bbc_three(X, Y, Z) -> stars_members_of_pappys_on_bbc_three(X)",
+          "z3_formula": "Implies(And(stars_members_of_pappys_badults, piloted_on_bbc_three_badults_2013_7), stars_members_of_pappys_on_bbc_three_badults)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "stars_members_of_pappys_on_bbc_three(badults)",
+          "z3_formula": "stars_members_of_pappys_on_bbc_three_badults == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "members_of_pappys_associated_with_badults",
+          "z3_formula": "members_of_pappys_associated_with_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "badults_piloted_on_bbc_three_in_july_2013",
+          "z3_formula": "badults_piloted_on_bbc_three_in_july_2013 == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "no_members_of_pappys_starred_in_show_piloting_on_bbc_three",
+          "z3_formula": "Not(badults_piloted_on_bbc_three_in_july_2013 == True)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "members_of_pappys_associated_with_badults -> no_members_of_pappys_starred_in_show_piloting_on_bbc_three",
+          "z3_formula": "Implies(members_of_pappys_associated_with_badults, no_members_of_pappys_starred_in_show_piloting_on_bbc_three)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "members_of_pappys_starred_in_badults",
+          "z3_formula": "members_of_pappys_starred_in_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "badults_piloted_on_bbc_three",
+          "z3_formula": "badults_piloted_on_bbc_three == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "badults_piloted_in_july_2013",
+          "z3_formula": "badults_piloted_in_july_2013 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "working_title_was_secret_dude_society",
+          "z3_formula": "working_title_was_secret_dude_society == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "andrew_collins_was_script_editor",
+          "z3_formula": "andrew_collins_was_script_editor == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "members_of_pappys_starred_in_badults & badults_piloted_on_bbc_three -> conclusion",
+          "z3_formula": "Implies(And(members_of_pappys_starred_in_badults, badults_piloted_on_bbc_three), Not(conclusion))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "conclusion",
+          "z3_formula": "Not(conclusion) == False",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "members_of_pappys_starred_in_badults",
+          "z3_formula": "members_of_pappys_starred_in_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "badults_piloted_on_bbc_three",
+          "z3_formula": "badults_piloted_on_bbc_three == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "members_of_pappys_starred_in_badults & badults_piloted_on_bbc_two_or_three -> conclusion",
+          "z3_formula": "Implies(And(members_of_pappys_starred_in_badults, Or(badults_piloted_on_bbc_two, badults_piloted_on_bbc_three)), conclusion == True)",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "badults_is_british_sitcom",
+          "z3_formula": "badults_is_british_sitcom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pappys_members_starred_badults",
+          "z3_formula": "pappys_members_starred_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "badults_piloted_july_2013",
+          "z3_formula": "badults_piloted_july_2013 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "working_title_secret_dude_society",
+          "z3_formula": "working_title_secret_dude_society == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "andrew_collins_script_editor",
+          "z3_formula": "andrew_collins_script_editor == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "no_members_of_pappys_starred_on_bbc_two",
+          "z3_formula": "no_members_of_pappys_starred_on_bbc_two == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "no_members_of_pappys_starred_on_bbc_three",
+          "z3_formula": "no_members_of_pappys_starred_on_bbc_three == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "british_sitcom(badults)",
+          "z3_formula": "british_sitcom_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "piloted_on(badults, bbc_three, 2013)",
+          "z3_formula": "piloted_on_badults_bbc_three_2013 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "working_title(badults, the_secret_dude_society)",
+          "z3_formula": "working_title_badults_the_secret_dude_society == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "script_editor(badults, andrew_collins)",
+          "z3_formula": "script_editor_badults_andrew_collins == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "british_sitcom(X) & piloted_on(X, Y, 2013) & working_title(X, Z) & script_editor(X, W) -> starred_in(X, Y, W)",
+          "z3_formula": "Implies(And(british_sitcom_badults, piloted_on_badults_bbc_three_2013, working_title_badults_the_secret_dude_society, script_editor_badults_andrew_collins), starred_in_badults_bbc_three_andrew_collins)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "starred_in(badults, bbc_three, andrew_collins)",
+          "z3_formula": "starred_in_badults_bbc_three_andrew_collins == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "starred_in(X, Y, W) -> not(starred_in(X, Z, W))",
+          "z3_formula": "Implies(starred_in_badults_bbc_three_andrew_collins, Not(starred_in_badults_bbc_two_andrew_collins))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(starred_in(badults, bbc_two, andrew_collins))",
+          "z3_formula": "Not(starred_in_badults_bbc_two_andrew_collins) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "not(starred_in(X, Y, W)) -> not(starred_in(X, Z, W))",
+          "z3_formula": "Implies(Not(starred_in_badults_bbc_two_andrew_collins), Not(starred_in_badults_bbc_three_andrew_collins))",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not(starred_in(badults, bbc_three, andrew_collins))",
+          "z3_formula": "Not(starred_in_badults_bbc_three_andrew_collins) == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "not(starred_in(X, Y, W)) -> false",
+          "z3_formula": "Implies(Not(starred_in_badults_bbc_three_andrew_collins), False)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "false",
+          "z3_formula": "False == True",
+          "source_step": 12
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 70,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 52
+    },
+    "maxsat_stats": {
+      "satisfied": 45,
+      "excluded": 7,
+      "total_weight": 62,
+      "solve_time_ms": 1.8054880201816559
+    },
+    "timing": {
+      "trace_gen_s": 5.012,
+      "extraction_s": 20.811,
+      "dedup_s": 0.903,
+      "maxsat_s": 0.005,
+      "total_s": 26.731
+    }
+  }
+}

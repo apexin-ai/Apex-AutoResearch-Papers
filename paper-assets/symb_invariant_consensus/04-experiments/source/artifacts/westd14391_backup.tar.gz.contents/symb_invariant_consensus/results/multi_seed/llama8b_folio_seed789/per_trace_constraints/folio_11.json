@@ -1,0 +1,492 @@
+{
+  "pid": "folio_11",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "wild_turkey(tom)",
+          "z3_formula": "wild_turkey_tom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not eastern_wild_turkey(tom)",
+          "z3_formula": "Not(eastern_wild_turkey_tom) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not osceola_wild_turkey(tom)",
+          "z3_formula": "Not(osceola_wild_turkey_tom) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not goulds_wild_turkey(tom) & not merriams_wild_turkey(tom) & not rio_grande_wild_turkey(tom)",
+          "z3_formula": "And(Not(goulds_wild_turkey_tom), Not(merriams_wild_turkey_tom), Not(rio_grande_wild_turkey_tom)) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "ocellated_wild_turkey(tom)",
+          "z3_formula": "ocellated_wild_turkey_tom == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "wild_turkey(tom)",
+          "z3_formula": "wild_turkey_tom == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not eastern_wild_turkey(tom)",
+          "z3_formula": "Not(eastern_wild_turkey_tom) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not osceola_wild_turkey(tom)",
+          "z3_formula": "Not(osceola_wild_turkey_tom) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not (goulds_wild_turkey(tom) | merriam_wild_turkey(tom) | rio_grande_wild_turkey(tom))",
+          "z3_formula": "Not(Or(goulds_wild_turkey_tom, merriam_wild_turkey_tom, rio_grande_wild_turkey_tom)) == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "ocellated_wild_turkey(tom)",
+          "z3_formula": "ocellated_wild_turkey_tom == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "wild_turkey(joey)",
+          "z3_formula": "wild_turkey_joey == Unknown",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "wild_turkey(joey)",
+          "z3_formula": "wild_turkey_joey == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "wild_turkey(joey)",
+          "z3_formula": "wild_turkey_joey == True",
+          "source_step": 1
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "wild_turkey(joey)",
+          "z3_formula": "wild_turkey_joey == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "wild_turkey(tom)",
+          "z3_formula": "wild_turkey_tom == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not eastern_wild_turkey(tom)",
+          "z3_formula": "Not(eastern_wild_turkey_tom) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not osceola_wild_turkey(tom)",
+          "z3_formula": "Not(osceola_wild_turkey_tom) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not (goulds_wild_turkey(tom) | merriams_wild_turkey(tom) | rio_grande_wild_turkey(tom))",
+          "z3_formula": "Not(Or(goulds_wild_turkey_tom, merriams_wild_turkey_tom, rio_grande_wild_turkey_tom)) == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "ocellated_wild_turkey(tom)",
+          "z3_formula": "ocellated_wild_turkey_tom == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "wild_turkey(X) -> (eastern_wild_turkey(X) | osceola_wild_turkey(X) | goulds_wild_turkey(X) | merriams_wild_turkey(X) | rio_grande_wild_turkey(X) | ocellated_wild_turkey(X))",
+          "z3_formula": "Implies(wild_turkey_joey, Or(eastern_wild_turkey_joey, osceola_wild_turkey_joey, goulds_wild_turkey_joey, merriams_wild_turkey_joey, rio_grande_wild_turkey_joey, ocellated_wild_turkey_joey))",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "wild_turkey(joey)",
+          "z3_formula": "wild_turkey_joey == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not eastern_wild_turkey(tom)",
+          "z3_formula": "not eastern_wild_turkey_tom == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not osceola_wild_turkey(tom)",
+          "z3_formula": "not osceola_wild_turkey_tom == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not goulds_wild_turkey(tom)",
+          "z3_formula": "not goulds_wild_turkey_tom == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not merriams_wild_turkey(tom)",
+          "z3_formula": "not merriams_wild_turkey_tom == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not rio_grande_wild_turkey(tom)",
+          "z3_formula": "not rio_grande_wild_turkey_tom == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "wild_turkey(tom)",
+          "z3_formula": "wild_turkey_tom == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "wild_turkey(X) -> (eastern_wild_turkey(X) | osceola_wild_turkey(X) | goulds_wild_turkey(X) | merriams_wild_turkey(X) | rio_grande_wild_turkey(X) | ocellated_wild_turkey(X))",
+          "z3_formula": "Implies(wild_turkey_tom, Or(eastern_wild_turkey_tom, osceola_wild_turkey_tom, goulds_wild_turkey_tom, merriams_wild_turkey_tom, rio_grande_wild_turkey_tom, ocellated_wild_turkey_tom))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not (eastern_wild_turkey(joey) | osceola_wild_turkey(joey) | goulds_wild_turkey(joey) | merriams_wild_turkey(joey) | rio_grande_wild_turkey(joey) | ocellated_wild_turkey(joey))",
+          "z3_formula": "Not(Or(eastern_wild_turkey_joey, osceola_wild_turkey_joey, goulds_wild_turkey_joey, merriams_wild_turkey_joey, rio_grande_wild_turkey_joey, ocellated_wild_turkey_joey))",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "wild_turkey(joey)",
+          "z3_formula": "wild_turkey_joey == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not eastern_wild_turkey(tom)",
+          "z3_formula": "not eastern_wild_turkey_tom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not osceola_wild_turkey(tom)",
+          "z3_formula": "not osceola_wild_turkey_tom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not goulds_wild_turkey(tom)",
+          "z3_formula": "not goulds_wild_turkey_tom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not merriams_wild_turkey(tom)",
+          "z3_formula": "not merriams_wild_turkey_tom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not rio_grande_wild_turkey(tom)",
+          "z3_formula": "not rio_grande_wild_turkey_tom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "wild_turkey(tom)",
+          "z3_formula": "wild_turkey_tom == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "ocellated_wild_turkey(tom)",
+          "z3_formula": "ocellated_wild_turkey_tom == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "wild_turkey(X) -> ocellated_wild_turkey(X)",
+          "z3_formula": "Implies(wild_turkey_tom, ocellated_wild_turkey_tom)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "wild_turkey(X) -> eastern_wild_turkey(X) | osceola_wild_turkey(X) | goulds_wild_turkey(X) | merriams_wild_turkey(X) | rio_grande_wild_turkey(X)",
+          "z3_formula": "Implies(wild_turkey_joey, Or(eastern_wild_turkey_joey, osceola_wild_turkey_joey, goulds_wild_turkey_joey, merriams_wild_turkey_joey, rio_grande_wild_turkey_joey))",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(joey)",
+          "z3_formula": "unknown_joey == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "wild_turkey(tom)",
+          "z3_formula": "wild_turkey_tom == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not eastern_wild_turkey(tom)",
+          "z3_formula": "Not(eastern_wild_turkey_tom) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not osceola_wild_turkey(tom)",
+          "z3_formula": "Not(osceola_wild_turkey_tom) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not (goulds_wild_turkey(tom) | merriams_wild_turkey(tom) | rio_grande_wild_turkey(tom))",
+          "z3_formula": "Not(Or(goulds_wild_turkey_tom, merriams_wild_turkey_tom, rio_grande_wild_turkey_tom)) == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "ocellated_wild_turkey(tom)",
+          "z3_formula": "ocellated_wild_turkey_tom == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "wild_turkey(joey)",
+          "z3_formula": "wild_turkey_joey == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "wild_turkey(tom)",
+          "z3_formula": "wild_turkey_tom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not eastern_wild_turkey(tom)",
+          "z3_formula": "Not(eastern_wild_turkey_tom) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not osceola_wild_turkey(tom)",
+          "z3_formula": "Not(osceola_wild_turkey_tom) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not (goulds_wild_turkey(tom) | merriams_wild_turkey(tom) | rio_grande_wild_turkey(tom))",
+          "z3_formula": "Not(Or(goulds_wild_turkey_tom, merriams_wild_turkey_tom, rio_grande_wild_turkey_tom)) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "ocellated_wild_turkey(tom)",
+          "z3_formula": "ocellated_wild_turkey_tom == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "wild_turkey(joey)",
+          "z3_formula": "wild_turkey_joey == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not eastern_wild_turkey(tom)",
+          "z3_formula": "not eastern_wild_turkey_tom == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not osceola_wild_turkey(tom)",
+          "z3_formula": "not osceola_wild_turkey_tom == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not (goulds_wild_turkey(tom) | merriams_wild_turkey(tom) | rio_grande_wild_turkey(tom))",
+          "z3_formula": "not (goulds_wild_turkey_tom | merriams_wild_turkey_tom | rio_grande_wild_turkey_tom) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "wild_turkey(tom)",
+          "z3_formula": "wild_turkey_tom == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "ocellated_wild_turkey(tom)",
+          "z3_formula": "ocellated_wild_turkey_tom == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not known(joey)",
+          "z3_formula": "not known_joey == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(joey)",
+          "z3_formula": "uncertain_joey == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "wild_turkey(joey)",
+          "z3_formula": "wild_turkey_joey == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not eastern_wild_turkey(tom)",
+          "z3_formula": "not eastern_wild_turkey_tom == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not osceola_wild_turkey(tom)",
+          "z3_formula": "not osceola_wild_turkey_tom == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not (goulds_wild_turkey(tom) or merriams_wild_turkey(tom) or rio_grande_wild_turkey(tom))",
+          "z3_formula": "not (goulds_wild_turkey_tom or merriams_wild_turkey_tom or rio_grande_wild_turkey_tom) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "wild_turkey(tom)",
+          "z3_formula": "wild_turkey_tom == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "ocellated_wild_turkey(tom)",
+          "z3_formula": "ocellated_wild_turkey_tom == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "wild_turkey(joey)",
+          "z3_formula": "wild_turkey_joey == Unknown",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 3
+        }
+      ]
+    }
+  ]
+}

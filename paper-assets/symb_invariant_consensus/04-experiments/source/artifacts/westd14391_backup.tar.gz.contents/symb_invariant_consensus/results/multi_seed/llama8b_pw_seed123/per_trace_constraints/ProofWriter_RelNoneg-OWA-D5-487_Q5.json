@@ -1,0 +1,1115 @@
+{
+  "pid": "ProofWriter_RelNoneg-OWA-D5-487_Q5",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "needs(cat, lion)",
+          "z3_formula": "needs_cat_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, lion)",
+          "z3_formula": "chases_rabbit_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cat)",
+          "z3_formula": "needs_rabbit_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, dog)",
+          "z3_formula": "chases_rabbit_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> round(X)",
+          "z3_formula": "Implies(chases_rabbit_lion, round_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & chases(X, dog) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(needs_rabbit_cat, chases_rabbit_dog), likes_rabbit_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & needs(X, cat) -> chases(X, dog)",
+          "z3_formula": "Implies(And(round_rabbit, needs_rabbit_cat), chases_rabbit_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(chases_lion_lion, blue_lion), round_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> rough(X)",
+          "z3_formula": "Implies(chases_lion_rabbit, rough_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & likes(X, rabbit) -> young(X)",
+          "z3_formula": "Implies(And(rough_rabbit, likes_rabbit_rabbit), young_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & needs(X, lion) -> young(X)",
+          "z3_formula": "Implies(And(chases_rabbit_cat, needs_rabbit_lion), young_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "needs(cat, lion)",
+          "z3_formula": "needs_cat_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, rabbit)",
+          "z3_formula": "needs_cat_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & chases(X, dog) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(needs_cat_lion, chases_cat_dog), likes_cat_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> round(X)",
+          "z3_formula": "Implies(chases_cat_lion, round_cat)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & needs(X, cat) -> chases(X, dog)",
+          "z3_formula": "Implies(And(round_cat, needs_cat_lion), chases_cat_dog)",
+          "source_step": 35
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & chases(X, dog) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(needs_cat_rabbit, chases_cat_dog), likes_cat_rabbit)",
+          "source_step": 36
+        },
+        {
+          "type": "derived",
+          "expression": "likes(cat, rabbit)",
+          "z3_formula": "likes_cat_rabbit == True",
+          "source_step": 37
+        },
+        {
+          "type": "derived",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 37
+        },
+        {
+          "type": "derived",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 37
+        },
+        {
+          "type": "derived",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 37
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "needs(cat, lion)",
+          "z3_formula": "needs_cat_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, rabbit)",
+          "z3_formula": "needs_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> round(X)",
+          "z3_formula": "Implies(chases_cat_lion, round_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & needs(X, cat) -> chases(X, dog)",
+          "z3_formula": "Implies(And(round_cat, needs_cat_cat), chases_cat_dog)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(cat, lion)",
+          "z3_formula": "chases_cat_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & chases(X, lion) -> needs(X, cat)",
+          "z3_formula": "Implies(And(round_cat, chases_cat_lion), needs_cat_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cat, cat)",
+          "z3_formula": "needs_cat_cat == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "needs(cat, lion)",
+          "z3_formula": "needs_cat_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, rabbit)",
+          "z3_formula": "needs_cat_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & chases(X, dog) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(needs_cat_X, chases_cat_dog), likes_X_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(rabbit, lion) & blue(rabbit) & rough(rabbit) -> rough(lion)",
+          "z3_formula": "Implies(And(chases_rabbit_lion, blue_rabbit, rough_rabbit), rough_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(lion) & blue(lion) -> round(lion)",
+          "z3_formula": "Implies(And(rough_lion, blue_lion), round_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & needs(X, lion) -> chases(X, dog)",
+          "z3_formula": "Implies(And(round_X, needs_X_lion), chases_X_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & likes(X, rabbit) -> young(X)",
+          "z3_formula": "Implies(And(rough_X, likes_X_rabbit), young_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(rabbit, cat) & needs(cat, lion) -> young(rabbit)",
+          "z3_formula": "Implies(And(chases_rabbit_cat, needs_cat_lion), young_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & needs(X, cat) -> chases(X, dog)",
+          "z3_formula": "Implies(And(round_X, needs_X_cat), chases_X_dog)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, cat)",
+          "z3_formula": "likes_dog_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(lion, rabbit) & chases(rabbit, dog) -> likes(lion, dog)",
+          "z3_formula": "Implies(And(needs_lion_rabbit, chases_rabbit_dog), likes_lion_dog)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, lion)",
+          "z3_formula": "likes_cat_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cat, cat)",
+          "z3_formula": "needs_cat_cat == Unknown",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "needs(cat, lion)",
+          "z3_formula": "needs_cat_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, rabbit)",
+          "z3_formula": "needs_cat_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & chases(X, dog) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(needs_cat_cat, chases_cat_dog), likes_cat_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, lion)",
+          "z3_formula": "chases_cat_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> round(X)",
+          "z3_formula": "Implies(chases_cat_lion, round_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & blue(lion) -> round(lion)",
+          "z3_formula": "Implies(And(chases_cat_lion, blue_lion), round_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, cat)",
+          "z3_formula": "likes_dog_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "blue(rabbit)",
+          "z3_formula": "blue_rabbit == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "blue(rabbit)",
+          "z3_formula": "blue_rabbit == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 23
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 24
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, dog)",
+          "z3_formula": "needs_rabbit_dog == True",
+          "source_step": 25
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 26
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 27
+        },
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 28
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 29
+        },
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 30
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, lion)",
+          "z3_formula": "needs_cat_lion == True",
+          "source_step": 31
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, rabbit)",
+          "z3_formula": "needs_cat_rabbit == True",
+          "source_step": 32
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 33
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 34
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 35
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 36
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 37
+        },
+        {
+          "type": "fact",
+          "expression": "blue(rabbit)",
+          "z3_formula": "blue_rabbit == True",
+          "source_step": 38
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 39
+        },
+        {
+          "type": "fact",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 40
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "needs(cat, lion)",
+          "z3_formula": "needs_cat_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, rabbit)",
+          "z3_formula": "needs_cat_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> round(X)",
+          "z3_formula": "Implies(chases_cat_lion, round_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & blue(lion) -> round(lion)",
+          "z3_formula": "Implies(And(chases_cat_lion, blue_lion), round_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & needs(X, cat) -> chases(X, dog)",
+          "z3_formula": "Implies(And(round_cat, needs_cat_cat), chases_cat_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & chases(X, dog) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(needs_cat_cat, chases_cat_dog), likes_cat_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & likes(X, rabbit) -> young(rabbit)",
+          "z3_formula": "Implies(And(rough_cat, likes_cat_rabbit), young_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(cat, cat)",
+          "z3_formula": "Not(needs_cat_cat) == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(cat, lion)",
+          "z3_formula": "chases_cat_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, lion)",
+          "z3_formula": "needs_cat_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, rabbit)",
+          "z3_formula": "needs_cat_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & chases(X, dog) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(needs_cat_cat, chases_cat_dog), likes_cat_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & likes(X, rabbit) -> young(rabbit)",
+          "z3_formula": "Implies(And(rough_cat, likes_cat_rabbit), young_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(rabbit, cat) & needs(cat, lion) -> young(rabbit)",
+          "z3_formula": "Implies(And(chases_rabbit_cat, needs_cat_lion), young_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, lion)",
+          "z3_formula": "chases_rabbit_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(rabbit)",
+          "z3_formula": "blue_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, dog)",
+          "z3_formula": "needs_rabbit_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, cat)",
+          "z3_formula": "likes_dog_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> rough(X)",
+          "z3_formula": "Implies(chases_cat_rabbit, rough_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> blue(X)",
+          "z3_formula": "Implies(young_rabbit, blue_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & needs(X, cat) -> chases(X, dog)",
+          "z3_formula": "Implies(And(round_cat, needs_cat_cat), chases_cat_dog)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, cat)",
+          "z3_formula": "needs_cat_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "likes(cat, rabbit)",
+          "z3_formula": "likes_cat_rabbit == Unknown",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(cat, lion)",
+          "z3_formula": "chases_cat_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, lion)",
+          "z3_formula": "needs_cat_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, rabbit)",
+          "z3_formula": "needs_cat_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, cat)",
+          "z3_formula": "likes_dog_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, lion)",
+          "z3_formula": "chases_rabbit_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "blue(rabbit)",
+          "z3_formula": "blue_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, dog)",
+          "z3_formula": "needs_rabbit_dog == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> round(X)",
+          "z3_formula": "Implies(chases_X_lion, round_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & lion(X, blue) -> round(X)",
+          "z3_formula": "Implies(And(chases_X_lion, lion_X_blue), round_X)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "round(lion)",
+          "z3_formula": "lion_round == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "round(cat)",
+          "z3_formula": "cat_round == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cat, cat)",
+          "z3_formula": "needs_cat_cat == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & needs(X, cat) -> chases(X, dog)",
+          "z3_formula": "Implies(And(round_X, needs_X_cat), chases_X_dog)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, dog)",
+          "z3_formula": "chases_cat_dog == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, lion)",
+          "z3_formula": "chases_cat_lion == True",
+          "source_step": 27
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "needs(cat, lion)",
+          "z3_formula": "needs_cat_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, lion)",
+          "z3_formula": "chases_cat_lion == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & chases(X, lion) -> needs(X, cat)",
+          "z3_formula": "Implies(And(round_lion, chases_cat_lion), needs_cat == True)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cat, cat)",
+          "z3_formula": "needs_cat_cat == True",
+          "source_step": 30
+        },
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, rabbit)",
+          "z3_formula": "likes_cat_rabbit == True",
+          "source_step": 26
+        },
+        {
+          "type": "fact",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 29
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, dog)",
+          "z3_formula": "needs_rabbit_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, cat)",
+          "z3_formula": "likes_dog_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cat, cat)",
+          "z3_formula": "needs_cat_cat == Unknown",
+          "source_step": 31
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "needs(cat, lion)",
+          "z3_formula": "needs_cat_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, lion)",
+          "z3_formula": "chases_rabbit_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> round(X)",
+          "z3_formula": "Implies(chases_rabbit_lion, round_rabbit)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & chases(X, lion) -> needs(X, cat)",
+          "z3_formula": "Implies(And(round_rabbit, chases_rabbit_lion), needs_rabbit_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, cat)",
+          "z3_formula": "needs_rabbit_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, dog)",
+          "z3_formula": "chases_rabbit_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & chases(X, dog) -> likes(X, dog)",
+          "z3_formula": "Implies(And(needs_rabbit_cat, chases_rabbit_dog), likes_rabbit_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 12
+        }
+      ]
+    }
+  ]
+}

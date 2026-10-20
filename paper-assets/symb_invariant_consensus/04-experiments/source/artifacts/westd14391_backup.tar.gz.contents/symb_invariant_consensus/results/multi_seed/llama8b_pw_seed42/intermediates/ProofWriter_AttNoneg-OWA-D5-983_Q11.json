@@ -1,0 +1,1402 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-983_Q11",
+    "problem": "Charlie is blue. Charlie is quiet. Dave is blue. Dave is cold. Dave is young. Erin is blue. Erin is quiet. Erin is white. Erin is young. Gary is cold. Gary is quiet. Gary is young. All quiet things are furry. If Charlie is cold then Charlie is young. White things are cold. All young things are nice. If Gary is nice then Gary is young. If something is young then it is nice. If something is furry and blue then it is white. If something is young and furry then it is nice.\n\nDetermine whether the following statement is true, false, or unknown:\nCharlie is nice.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nQuiet($x, bool) ::: Is x quiet?\nCold($x, bool) ::: Is x cold?\nYoung($x, bool) ::: Is x young?\nWhite($x, bool) ::: Is x white?\nFurry($x, bool) ::: Is x furry?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nBlue(Charlie, True) ::: Charlie is blue.\nQuiet(Charlie, True) ::: Charlie is quiet.\nBlue(Dave, True) ::: Dave is blue.\nCold(Dave, True) ::: Dave is cold.\nYoung(Dave, True) ::: Dave is young.\nBlue(Erin, True) ::: Erin is blue.\nQuiet(Erin, True) ::: Erin is quiet.\nWhite(Erin, True) ::: Erin is white.\nYoung(Erin, True) ::: Erin is young.\nCold(Gary, True) ::: Gary is cold.\nQuiet(Gary, True) ::: Gary is quiet.\nYoung(Gary, True) ::: Gary is young.\n\nRules:\nQuiet($x, True) >>> Furry($x, True) ::: All quiet things are furry.\nCold(Charlie, True) >>> Young(Charlie, True) ::: If Charlie is cold then Charlie is young.\nWhite($x, True) >>> Cold($x, True) ::: White things are cold.\nYoung($x, True) >>> Nice($x, True) ::: All young things are nice.\nNice(Gary, True) >>> Young(Gary, True) ::: If Gary is nice then Gary is young.\nYoung($x, True) >>> Nice($x, True) ::: If something is young then it is nice.\nFurry($x, True) && Blue($x, True) >>> White($x, True) ::: If something is furry and blue then it is white.\nYoung($x, True) && Furry($x, True) >>> Nice($x, True) ::: If something is young and furry then it is nice.\n\nQuery:\nNice(Charlie, True) ::: Charlie is nice."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 207.0,
+      "Unknown": 128.0
+    },
+    "answer_counts": {
+      "True": 10,
+      "Unknown": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Charlie is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is blue. \n2. Charlie is quiet. \n3. Since Charlie is quiet, we can conclude that Charlie is furry (from the given information: All quiet things are furry).\n4. Since Charlie is blue and furry, we can conclude that Charlie is white (from the given information: If something is furry and blue then it is white).\n\nNow, we have the following information about Charlie:\n- Charlie is blue\n- Charlie is quiet\n- Charlie is furry\n- Charlie is white\n\n5. Since Charlie is white, we can conclude that Charlie is cold (from the given information: White things are cold).\n\n6. Since Charlie is cold, we can conclude that Charlie is young (from the given information: If Charlie is cold then Charlie is young).\n\nNow, we have the following information about Charlie:\n- Charlie is blue\n- Charlie is quiet\n- Charlie is furry\n- Charlie is white\n- Charlie is cold\n- Charlie is young\n\n7. Since Charlie is young, we can conclude that Charlie is nice (from the given information: All young things are nice).\n\nTherefore, the statement \"Charlie is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is nice\" is true, false, or unknown, we need to use the given information and the rules provided.\n\nStep 1: Given information:\n- Charlie is blue.\n- Charlie is quiet.\n- Charlie is cold.\n- If Charlie is cold then Charlie is young.\n\nStep 2: Use the given information to determine if Charlie is young:\n- Charlie is cold, so according to the rule \"If Charlie is cold then Charlie is young,\" Charlie is young.\n\nStep 3: Now we need to determine if Charlie is nice:\n- Charlie is young.\n\nStep 4: Use the given information to determine if young things are nice:\n- All young things are nice.\n\nStep 5: Now we can conclude that Charlie is nice because Charlie is young and all young things are nice.\n\nTherefore, the statement \"Charlie is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement 'Charlie is nice' is true, false, or unknown, we need to analyze the given information and apply logical reasoning step by step.\n\nGiven information:\n\n1. Charlie is blue.\n2. Charlie is quiet.\n3. If Charlie is cold then Charlie is young.\n4. All quiet things are furry.\n5. If something is young and furry then it is nice.\n6. If something is furry and blue then it is white.\n7. White things are cold.\n\nFrom (4), since Charlie is quiet, Charlie is furry.\n\nFrom (1) and (6), since Charlie is furry and blue, Charlie is white.\n\nFrom (7), since Charlie is white, Charlie is cold.\n\nFrom (3), since Charlie is cold, Charlie is young.\n\nFrom (5), since Charlie is young and furry, Charlie is nice.\n\nTherefore, based on the given information, the statement 'Charlie is nice' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is blue. (Given)\n2. Charlie is quiet. (Given)\n3. All quiet things are furry. (Given)\n   From (2) and (3), we can conclude that Charlie is furry.\n\n4. Charlie is cold. (Premise, but we don't know if it's true or false yet)\n   If Charlie is cold then Charlie is young. (Given)\n   So, if Charlie is cold, then Charlie is young.\n\n5. Charlie is blue. (Given)\n   Charlie is furry. (From step 3)\n   If something is furry and blue then it is white. (Given)\n   So, Charlie is white.\n\n6. Charlie is white. (From step 5)\n   White things are cold. (Given)\n   So, Charlie is cold.\n\n7. Charlie is cold. (From step 6)\n   Charlie is young. (From step 4)\n   All young things are nice. (Given)\n   So, Charlie is nice.\n\nHowever, we initially thought that Charlie is cold. Let's verify it by analyzing other information.\n\n8. Dave is blue. (Given)\n   Dave is cold. (Given)\n   Dave is young. (Given)\n   Since we have multiple instances of Dave being cold, we can't conclude anything about Charlie being cold from this information.\n\n9. Erin is blue. (Given)\n   Erin is quiet. (Given)\n   Erin is white. (Given)\n   Erin is young. (Given)\n   Since Erin is white, we can conclude that Erin is cold (From step 6).\n\n10. Erin is cold. (From step 9)\n    Erin is young. (From step 9)\n    All young things are nice. (Given)\n    So, Erin is nice.\n\n11. Gary is cold. (Given)\n    Gary is quiet. (Given)\n    Gary is young. (Given)\n    Since Gary is young, we can conclude that Gary is nice (From step 7).\n\n12. Gary is nice. (From step 11)\n    Gary is young. (From step 11)\n    If Gary is nice then Gary is young. (Given)\n    This statement is redundant and doesn't provide any new information.\n\nSince we have multiple instances of the statement \"All young things are nice,\" we can conclude that Charlie is indeed nice, regardless of Charlie being cold or not.\n\nSo, the statement \"Charlie is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the information given, we have:\n   - Charlie is blue.\n   - Charlie is quiet.\n\n2. Since Charlie is quiet, and all quiet things are furry, we can conclude that Charlie is furry.\n\n3. Now we need to find a connection between Charlie's characteristics and the fact that something is nice. We are given that:\n   - All young things are nice.\n\n4. To determine if Charlie is young, we look for a connection between Charlie's characteristics and the fact that something is young. We are given that:\n   - If Charlie is cold then Charlie is young.\n   - Charlie is blue.\n   - Erin is blue and Erin is white.\n   - White things are cold.\n\n5. Since Erin is blue and white, and white things are cold, we can conclude that Erin is cold. However, this does not directly tell us if Charlie is cold or not.\n\n6. However, we can use the fact that something is furry and blue then it is white, and since Charlie is blue and furry, we can conclude that Charlie is white.\n\n7. Since Charlie is white, and white things are cold, we can conclude that Charlie is cold.\n\n8. Now that we know Charlie is cold, we can conclude that Charlie is young, based on the information that if Charlie is cold then Charlie is young.\n\n9. Since Charlie is young, and all young things are nice, we can conclude that Charlie is nice.\n\nTherefore, the statement \"Charlie is nice\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is nice\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Charlie is blue. (Given)\n2. Charlie is quiet. (Given)\n3. If Charlie is cold then Charlie is young. (Given)\n4. Charlie is cold. (Implicit, because we know Charlie is blue and if Charlie is blue then Charlie could be cold because Gary is cold and Gary is also blue. But this isn't explicitly stated, so we can't assume this, however we can make an assumption that if Charlie is blue and is quiet, then Charlie could be cold or young. Given the information, we can't make a definitive conclusion that Charlie is cold, but we can conclude Charlie is young if Charlie is cold.)\n5. If something is young then it is nice. (Given)\n6. If something is young and furry then it is nice. (Given)\n7. All quiet things are furry. (Given)\n\nWe cannot conclude Charlie is young directly from the given information. However, we can make the following deductions:\n\n1. Charlie is blue. (Given)\n2. Charlie is quiet. (Given)\n3. All quiet things are furry. (Given)\n4. Therefore, Charlie is furry. (Logical deduction)\n\nNow we have:\n1. Charlie is blue.\n2. Charlie is furry.\n\nFrom the given information:\n8. If something is furry and blue then it is white. (Given)\n9. Erin is blue. (Given)\n10. Erin is white. (Given)\n11. White things are cold. (Given)\n12. If something is young and furry then it is nice. (Given)\n\nWe can conclude:\n1. Charlie is furry and blue.\n2. Therefore, Charlie is white. (Logical deduction)\n3. Charlie is white. (Given)\n4. White things are cold. (Given)\n5. Therefore, Charlie is cold. (Logical deduction)\n6. If Charlie is cold then Charlie is young. (Given)\n7. Therefore, Charlie is young. (Logical deduction)\n\nNow we know:\n1. Charlie is young.\n\nFrom the given information:\n13. If something is young then it is nice. (Given)\n\nWe can conclude:\n1. Charlie is young.\n2. Therefore, Charlie is nice. (Logical deduction)\n\nSo, the statement \"Charlie is nice\" is true.",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is blue.\n2. Charlie is quiet.\n3. Since Charlie is quiet, Charlie is furry (All quiet things are furry).\n4. Since Charlie is furry and blue, Charlie is white (If something is furry and blue then it is white).\n5. Since Charlie is white, Charlie is cold (White things are cold).\n6. Since Charlie is cold, Charlie is young (If Charlie is cold then Charlie is young).\n7. Since Charlie is young, Charlie is nice (All young things are nice).\n\nTherefore, based on the given information, we can conclude that Charlie is indeed nice.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\nGiven information:\n\n1. Charlie is blue.\n2. Charlie is quiet.\n3. Dave is blue.\n4. Dave is cold.\n5. Dave is young.\n6. Erin is blue.\n7. Erin is quiet.\n8. Erin is white.\n9. Erin is young.\n10. Gary is cold.\n11. Gary is quiet.\n12. Gary is young.\n13. All quiet things are furry.\n14. If Charlie is cold then Charlie is young.\n15. White things are cold.\n16. All young things are nice.\n17. If Gary is nice then Gary is young.\n18. If something is young then it is nice.\n19. If something is furry and blue then it is white.\n20. If something is young and furry then it is nice.\n\nNow, let's break down the statement \"Charlie is nice\" into smaller parts to see if we can derive a conclusion from the given information.\n\nTo determine if Charlie is nice, we need to know if Charlie is young because all young things are nice (statement 16).\n\nFrom statements 1 and 2, we know Charlie is blue and quiet. \n\nSince Charlie is quiet, we can infer that Charlie is furry (statement 13).\n\nNow, let's consider the two possibilities: \n\n1. Charlie is cold, and\n2. Charlie is not cold.\n\nIf Charlie is cold, then Charlie is young (statement 14). We can also infer that Charlie is white because all young things are nice (statement 16), and if Charlie is furry and blue, then it is white (statement 19).\n\nHowever, we already know that Erin is white (statement 8) and Charlie is blue (statement 1). Since Charlie is blue and Erin is white, it implies that Charlie is not white.\n\nThis means our assumption that Charlie is cold is incorrect. Therefore, we cannot conclude that Charlie is young.\n\nSince we cannot conclude that Charlie is young, we cannot conclude that Charlie is nice.\n\nThe given information does not provide enough evidence to determine whether Charlie is nice. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether Charlie is nice, we need to analyze the given statements and apply the rules of logic.\n\n1. Charlie is blue.\n2. Charlie is quiet.\n3. Dave is blue.\n4. Dave is cold.\n5. Dave is young.\n6. Erin is blue.\n7. Erin is quiet.\n8. Erin is white.\n9. Erin is young.\n10. Gary is cold.\n11. Gary is quiet.\n12. Gary is young.\n13. All quiet things are furry.\n14. If Charlie is cold then Charlie is young.\n15. White things are cold.\n16. All young things are nice.\n17. If Gary is nice then Gary is young.\n18. If something is young then it is nice.\n19. If something is furry and blue then it is white.\n20. If something is young and furry then it is nice.\n\nFrom statement 2, we know Charlie is quiet. According to statement 13, all quiet things are furry. So, Charlie is furry.\n\nFrom statement 1, we know Charlie is blue. Now, we know Charlie is furry (from above) and blue. According to statement 19, if something is furry and blue then it is white. So, Charlie is white.\n\nFrom statement 15, we know white things are cold. So, Charlie is cold.\n\nNow, we have two possibilities:\n\na. Charlie is young (from statement 14) or\nb. Charlie is not young.\n\nIf Charlie is young, then from statement 16, all young things are nice. So, Charlie is nice.\n\nIf Charlie is not young, then we cannot determine whether Charlie is nice or not because there is no information available about Charlie being nice or not if he is not young.\n\nHowever, let's check if we can conclude Charlie is young or not.\n\nWe have a statement that if Charlie is cold then Charlie is young (statement 14). We know Charlie is cold (from above). So, Charlie must be young.\n\nTherefore, Charlie is young. From statement 18, if something is young then it is nice. So, Charlie is nice.\n\nThe final answer is \\boxed{True}.",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine if Charlie is nice, we need to analyze the given statements and their implications. \n\n1. Charlie is blue. \n2. Charlie is quiet. \n3. Charlie is blue. \n4. Dave is blue. \n5. Dave is cold. \n6. Dave is young. \n7. Erin is blue. \n8. Erin is quiet. \n9. Erin is white. \n10. Erin is young. \n11. Gary is cold. \n12. Gary is quiet. \n13. Gary is young. \n14. All quiet things are furry. \n15. If Charlie is cold then Charlie is young. \n16. White things are cold. \n17. All young things are nice. \n18. If Gary is nice then Gary is young. \n19. If something is young then it is nice. \n20. If something is furry and blue then it is white. \n21. If something is young and furry then it is nice.\n\nFrom statement 2, we know Charlie is quiet. \nFrom statement 14, we know that all quiet things are furry, so Charlie is furry.\n\nFrom statement 1, we know Charlie is blue. \nFrom statement 20, we know that if something is furry and blue then it is white. \nHowever, statement 9 says Erin is white, but Erin is not Charlie, and we cannot directly conclude that Charlie is white from this information alone. \n\nHowever, we can conclude that Charlie is young from statement 15, since we cannot directly conclude that Charlie is cold. \n\nFrom statement 17, we know that all young things are nice. \nTherefore, Charlie is young and nice. \n\nSince Charlie is young and nice, we can conclude that Charlie is nice. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we will use the given statements and apply logical reasoning. We'll break it down into steps.\n\n1. Given statements:\n   - Charlie is blue.\n   - Charlie is quiet.\n   - Dave is blue.\n   - Dave is cold.\n   - Dave is young.\n   - Erin is blue.\n   - Erin is quiet.\n   - Erin is white.\n   - Erin is young.\n   - Gary is cold.\n   - Gary is quiet.\n   - Gary is young.\n   - All quiet things are furry.\n   - If Charlie is cold then Charlie is young.\n   - White things are cold.\n   - All young things are nice.\n   - If Gary is nice then Gary is young.\n   - If something is young then it is nice.\n   - If something is furry and blue then it is white.\n   - If something is young and furry then it is nice.\n\n2. Analyzing the given statements, we can deduce the following:\n   - From \"All quiet things are furry\" and \"Charlie is quiet,\" we can infer that Charlie is furry.\n   - From \"Charlie is blue\" and \"If something is furry and blue then it is white,\" we can infer that Charlie is white.\n   - Since Charlie is white, we can use the statement \"White things are cold\" to infer that Charlie is cold.\n   - Using the statement \"If Charlie is cold then Charlie is young,\" we can conclude that Charlie is young.\n   - From \"All young things are nice,\" we can infer that Charlie is nice.\n\n3. Conclusion:\n   Since we've deduced that Charlie is young and, based on the statement \"All young things are nice,\" we can conclude that Charlie is nice.\n\nTherefore, the statement \"Charlie is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is nice\" is true, false, or unknown, we need to analyze the given information and the provided rules.\n\n1. Charlie is blue.\n2. Charlie is quiet.\n3. Dave is blue.\n4. Dave is cold.\n5. Dave is young.\n6. Erin is blue.\n7. Erin is quiet.\n8. Erin is white.\n9. Erin is young.\n10. Gary is cold.\n11. Gary is quiet.\n12. Gary is young.\n13. All quiet things are furry.\n14. If Charlie is cold then Charlie is young.\n15. White things are cold.\n16. All young things are nice.\n17. If Gary is nice then Gary is young.\n18. If something is young then it is nice.\n19. If something is furry and blue then it is white.\n20. If something is young and furry then it is nice.\n\nLet's analyze the statement \"Charlie is nice\" based on the given information.\n\nTo determine whether Charlie is nice, we need to establish whether Charlie is young. \n\nFrom rule 14, we know that if Charlie is cold then Charlie is young. However, we do not have any information that Charlie is cold. We can only establish a relationship between Charlie's being cold and young, not the actual state of Charlie being cold.\n\nWe can establish Charlie being young if we prove Charlie being cold (using rule 14) or use rule 18, which states that if something is young then it is nice. However, we cannot use rule 18 directly because we don't have any information that Charlie is young yet.\n\nNow let's try to prove Charlie being cold. \n\nFrom rule 13, we know that all quiet things are furry. Since Charlie is quiet (rule 2), Charlie is furry. However, we still cannot establish whether Charlie is white or not.\n\nFrom rule 19, we know that if something is furry and blue then it is white. But since we do not know whether Charlie is white, we cannot use this rule.\n\nNow let's analyze rule 15, which states that white things are cold. However, we don't have any information that Charlie is white.\n\nFrom rule 9, we know that Erin is white. Since Erin is white (rule 9), Erin is cold (rule 15). However, we still cannot establish whether Charlie is cold.\n\nHowever, we can use rule 20, which states that if something is young and furry then it is nice. Since Charlie is furry (from rule 13), we need to establish whether Charlie is young to use this rule.\n\nFrom rule 18, we know that if something is young then it is nice. However, we still cannot use this rule directly because we don't have any information that Charlie is young.\n\nNow let's analyze rule 4, which states that Dave is cold. Since Dave is cold (rule 4), Dave is young (rule 5). However, we still cannot establish whether Charlie is cold or young.\n\nNow let's analyze rule 18, which states that if something is young then it is nice. However, we still cannot use this rule directly because we don't have any information that Charlie is young.\n\nNow let's analyze rule 16, which states that all young things are nice. However, we still cannot use this rule directly because we don't have any information that Charlie is young.\n\nHowever, we can analyze rule 17, which states that if Gary is nice then Gary is young. Since Gary is young (rule 12), Gary is nice (rule 17). However, we still cannot establish whether Charlie is young or nice.\n\nNow let's analyze rule 21, which is not given, but is actually, a part of the information, rule 18. If something is young then it is nice. Since Charlie is young, then Charlie is nice.\n\nHowever, we still cannot establish whether Charlie is young.\n\nNow let's analyze the final rule. If something is young and furry then it is nice. Since Charlie is furry, Charlie is young. Since Charlie is young, Charlie is nice.\n\nFrom rule 21, we can now establish that Charlie is young. Since Charlie is young, Charlie is nice (rule 18).\n\nSince Charlie is young and nice, the statement \"Charlie is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> furry(X)",
+          "z3_formula": "Implies(quiet_charlie, furry_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_charlie, blue_charlie), white_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_charlie, cold_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_charlie, young_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_charlie, nice_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_charlie, young_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_charlie, nice_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_charlie, young_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> furry(X)",
+          "z3_formula": "Implies(quiet_charlie, furry_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_charlie, furry_charlie), nice_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_charlie, blue_charlie), white_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_charlie, cold_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> furry(X)",
+          "z3_formula": "Implies(quiet_charlie, furry_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_charlie, young_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_charlie, blue_charlie), white_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_charlie, cold_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_charlie, nice_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_dave, young_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_erin, cold_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_erin, nice_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_gary, nice_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> young(X)",
+          "z3_formula": "Implies(nice_gary, young_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> furry(X)",
+          "z3_formula": "Implies(quiet_charlie, furry_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_charlie, blue_charlie), white_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_charlie, cold_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_charlie, young_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_charlie, nice_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_charlie, young_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_charlie, nice_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_charlie, furry_charlie), nice_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> furry(X)",
+          "z3_formula": "Implies(quiet_charlie, furry_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_charlie, blue_charlie), white_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_erin, cold_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_charlie, furry_charlie), nice_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> furry(X)",
+          "z3_formula": "Implies(quiet_charlie, furry_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_charlie, blue_charlie), white_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_charlie, cold_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_charlie, young_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_charlie, nice_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> furry(X)",
+          "z3_formula": "Implies(quiet_charlie, furry_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_charlie, young_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_X, nice_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_X, furry_X), nice_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_X, blue_X), white_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_X, cold_X)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not white(charlie)",
+          "z3_formula": "Not(white_charlie) == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(charlie)",
+          "z3_formula": "Not(cold_charlie) == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not young(charlie)",
+          "z3_formula": "Not(young_charlie) == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(charlie)",
+          "z3_formula": "Not(nice_charlie) == True",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> furry(X)",
+          "z3_formula": "Implies(quiet_charlie, furry_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_charlie, young_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_charlie, cold_charlie)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_charlie, nice_charlie)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> young(X)",
+          "z3_formula": "Implies(nice_gary, young_gary)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_X, nice_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_charlie, blue_charlie), white_charlie)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & young(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_charlie, young_charlie), nice_charlie)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> furry(X)",
+          "z3_formula": "Implies(quiet_charlie, furry_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_charlie, young_charlie)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_erin, cold_erin)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_X, nice_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_X, furry_X), nice_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_X, blue_X), white_X)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> furry(X)",
+          "z3_formula": "Implies(quiet_charlie, furry_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_charlie, blue_charlie), white_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_charlie, cold_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_charlie, young_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_charlie, nice_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & young(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_charlie, young_charlie), nice_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> furry(X)",
+          "z3_formula": "Implies(quiet_charlie, furry_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_charlie, young_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_erin, cold_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_charlie, blue_charlie), white_charlie)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_charlie, nice_charlie)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_charlie, furry_charlie), nice_charlie)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_charlie, blue_charlie), white_charlie)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 21
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 212,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 39
+    },
+    "maxsat_stats": {
+      "satisfied": 35,
+      "excluded": 4,
+      "total_weight": 208,
+      "solve_time_ms": 1.2188246473670006
+    },
+    "timing": {
+      "trace_gen_s": 10.583,
+      "extraction_s": 31.931,
+      "dedup_s": 1.593,
+      "maxsat_s": 0.004,
+      "total_s": 44.112
+    }
+  }
+}

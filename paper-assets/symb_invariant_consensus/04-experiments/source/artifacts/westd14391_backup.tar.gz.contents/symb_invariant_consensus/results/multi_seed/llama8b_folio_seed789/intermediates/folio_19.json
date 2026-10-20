@@ -1,0 +1,712 @@
+{
+  "problem": {
+    "id": "folio_19",
+    "problem": "Given the following premises:\nAll rabbits are cute.  Some turtles exist.  An animal is either a rabbit or a squirrel. If something is skittish, then it is not still. All squirrels are skittish. Rock is still.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nIf Rock is not both a turtle and a squirrel, then Rock is either cute or skittish.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (Rabbit(x) \u2192 Cute(x))",
+      "\u2203x (Turtle(x))",
+      "\u2200x (Rabbit(x) \u2228 Squirrel(x))",
+      "\u2200x (Skittish(x) \u2192 \u00acStill(x))",
+      "\u2200x (Squirrel(x) \u2192 Skittish(x))",
+      "Still(rock)"
+    ],
+    "conclusion_fol": "\u00ac(Turtle(rock) \u2227 Squirrel(rock)) \u2192 Cute(rock) \u2295 Skittish(rock)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 88.0,
+      "Unknown": 70.0
+    },
+    "answer_counts": {
+      "True": 7,
+      "Unknown": 4
+    },
+    "traces": [
+      {
+        "trace": "To determine the validity of the given conclusion, we need to analyze the premises and the conclusion step by step.\n\n1. All rabbits are cute. (Premise)\n2. Some turtles exist. (Premise)\n3. An animal is either a rabbit or a squirrel. (Premise)\n4. If something is skittish, then it is not still. (Premise)\n5. All squirrels are skittish. (Premise)\n6. Rock is still. (Premise)\n\nThe conclusion is: If Rock is not both a turtle and a squirrel, then Rock is either cute or skittish.\n\nLet's analyze the given premises:\n\n- From premise 3, we know that Rock is either a rabbit or a squirrel, as it is an animal.\n- From premise 6, we know that Rock is still. \n- From premise 5, we know that all squirrels are skittish. \n- From premise 4, we can deduce that if Rock is skittish, then it is not still. However, from premise 6, we already know that Rock is still. This implies that Rock cannot be skittish.\n\nConsidering the given premises, we have the following facts about Rock:\n- Rock is either a rabbit or a squirrel (premise 3).\n- Rock is not a squirrel because it is not skittish, and all squirrels are skittish (deduced from premises 5 and 4).\n- Since Rock is not a squirrel, it must be a rabbit.\n\nFrom premise 1, we know that all rabbits are cute. Therefore, we can conclude that Rock is cute.\n\nNow, let's evaluate the given conclusion: If Rock is not both a turtle and a squirrel, then Rock is either cute or skittish.\n\nSince we have established the following facts about Rock:\n- Rock is a rabbit.\n- Rock is not a turtle (deduced from premise 2).\n- Rock is cute (deduced from premise 1).\n\nWe can conclude that the given conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine the validity of the given conclusion, we will analyze the premises step by step.\n\nPremise 1: All rabbits are cute.\nThis premise gives us information about rabbits, but it doesn't directly relate to Rock, turtles, or squirrels.\n\nPremise 2: Some turtles exist.\nThis premise tells us that turtles exist, but it doesn't provide any information about their characteristics or Rock.\n\nPremise 3: An animal is either a rabbit or a squirrel.\nThis premise establishes a binary relationship between rabbits and squirrels. It doesn't provide any information about turtles or Rock.\n\nPremise 4: If something is skittish, then it is not still.\nThis premise provides a relationship between skittishness and stillness. Since Rock is described as still, we can infer that Rock is not skittish.\n\nPremise 5: All squirrels are skittish.\nThis premise gives us information about squirrels and their skittishness. Since Rock is not skittish (from Premise 4), Rock cannot be a squirrel.\n\nPremise 6: Rock is still.\nThis premise is already discussed in Premise 4.\n\nNow, let's examine the conclusion: If Rock is not both a turtle and a squirrel, then Rock is either cute or skittish.\n\nTo evaluate the conclusion, we need to analyze the possible characteristics of Rock. From the premises, we know:\n\n1. Rock is not a squirrel (Premise 5).\n2. Rock is not skittish (Premise 4).\n3. Rock is still (Premise 6).\n\nSince Rock is not a squirrel, it can be either a rabbit or a turtle (Premise 3). However, we don't have any direct information about Rock being cute.\n\nThe conclusion states that if Rock is not both a turtle and a squirrel, then Rock is either cute or skittish. Given that Rock is not a squirrel, we need to examine the case when Rock is not a turtle.\n\nIf Rock is not a turtle, then it must be a rabbit (Premise 3). Since all rabbits are cute (Premise 1), Rock would be cute.\n\nHowever, if Rock is a turtle, we still can't conclude that Rock is skittish, as turtles are not mentioned as skittish in any premise. But, since we established that Rock is not a squirrel, we can't determine if Rock is a turtle or not, based on the given premises. \n\nSo, if Rock is a turtle, then the conclusion might be uncertain because we can't directly conclude that Rock is skittish.\n\nTherefore, the final answer is: \n\\boxed{uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we need to break down the premises and analyze the conclusion step by step.\n\nPremise 1: All rabbits are cute.\nPremise 2: Some turtles exist.\nPremise 3: An animal is either a rabbit or a squirrel.\nPremise 4: If something is skittish, then it is not still.\nPremise 5: All squirrels are skittish.\nPremise 6: Rock is still.\n\nConclusion: If Rock is not both a turtle and a squirrel, then Rock is either cute or skittish.\n\nStep 1: Analyze Premise 3 - An animal is either a rabbit or a squirrel.\nThis premise implies that Rock is either a rabbit or a squirrel, but it does not exclude the possibility that Rock is neither a rabbit nor a squirrel. However, we will consider all possibilities in the following steps.\n\nStep 2: Analyze Premise 5 - All squirrels are skittish.\nThis premise implies that if Rock is a squirrel, then it is skittish.\n\nStep 3: Analyze Premise 6 - Rock is still.\nThis premise implies that Rock is not skittish, as per Premise 4 - If something is skittish, then it is not still. \n\nHowever, we can't conclude that Rock is not cute from this information alone, as the Premise 1 only mentions that all rabbits are cute, and there is no information about squirrels being cute or not.\n\nStep 4: Consider the case where Rock is not a squirrel.\nIf Rock is not a squirrel, it does not necessarily mean it is a rabbit. As per Premise 3, it could also be a turtle (though Premise 2 only mentions some turtles exist, it does not give information about Rock being a turtle).\n\nHowever, the conclusion is focused on whether Rock is cute or skittish, given the condition that Rock is not both a turtle and a squirrel.\n\nStep 5: Analyze the condition in the conclusion - If Rock is not both a turtle and a squirrel.\nThis condition is true if Rock is either a rabbit or neither a turtle nor a squirrel.\n\nStep 6: Analyze the conclusion - If Rock is not both a turtle and a squirrel, then Rock is either cute or skittish.\nGiven the information from previous steps:\n\n- If Rock is a squirrel, then it is skittish (from Premise 5).\n- If Rock is a rabbit, then it is cute (from Premise 1).\n- If Rock is a turtle, the conclusion is uncertain because Premise 2 only mentions some turtles exist and does not provide information about turtles being cute or skittish.\n\nHowever, the condition in the conclusion - If Rock is not both a turtle and a squirrel - makes the turtle scenario irrelevant because Rock cannot be both a turtle and not a turtle at the same time.\n\nSo, considering the premises and analyzing the conclusion step by step, we can see that the conclusion is true if Rock is a rabbit (as it would be cute) or if Rock is a squirrel (as it would be skittish). \n\nTherefore, the final answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply them to the conclusion.\n\nPremise 1: All rabbits are cute.\nPremise 2: Some turtles exist.\nPremise 3: An animal is either a rabbit or a squirrel.\nPremise 4: If something is skittish, then it is not still.\nPremise 5: All squirrels are skittish.\nPremise 6: Rock is still.\n\nFrom Premise 3, we can infer that Rock is either a rabbit or a squirrel, but not both.\n\nFrom Premise 6, we know that Rock is still. Since all squirrels are skittish (Premise 5) and if something is skittish, then it is not still (Premise 4), we can conclude that Rock is not a squirrel. If Rock were a squirrel, it would be skittish, which contradicts Premise 4.\n\nSince Rock is not a squirrel, it must be a rabbit (from Premise 3). And since all rabbits are cute (Premise 1), we can conclude that Rock is cute.\n\nNow, let's examine the conclusion: \"If Rock is not both a turtle and a squirrel, then Rock is either cute or skittish.\"\n\nWe have already established that Rock is not a squirrel. Since Rock is a rabbit (from Premise 3) and not a squirrel, it is not both a turtle and a squirrel. This is because turtles and squirrels are mutually exclusive with rabbits (from Premise 3).\n\nTherefore, the conclusion states that \"If Rock is not both a turtle and a squirrel, then Rock is either cute or skittish.\" Since we have established that Rock is a rabbit (which means it is cute, from Premise 1), the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine the validity of the given conclusion, we need to analyze the premises and the conclusion step by step.\n\nPremises:\n1. All rabbits are cute.\n2. Some turtles exist.\n3. An animal is either a rabbit or a squirrel.\n4. If something is skittish, then it is not still.\n5. All squirrels are skittish.\n6. Rock is still.\n\nConclusion:\nIf Rock is not both a turtle and a squirrel, then Rock is either cute or skittish.\n\nStep 1: Analyze the properties of Rock\nFrom premise 6, we know that Rock is still.\n\nStep 2: Determine the relationship between stillness and skittishness\nFrom premise 4, we know that if something is skittish, then it is not still. Since Rock is still, we can conclude that Rock is not skittish.\n\nStep 3: Determine the relationship between rabbits and squirrels\nFrom premise 3, we know that an animal is either a rabbit or a squirrel. We need to find out if Rock is a rabbit, a squirrel, or neither.\n\nStep 4: Analyze the properties of squirrels\nFrom premise 5, we know that all squirrels are skittish. Since we concluded in step 2 that Rock is not skittish, we can conclude that Rock is not a squirrel.\n\nStep 5: Determine the relationship between Rock and turtles\nFrom premise 2, we know that some turtles exist. We need to find out if Rock is a turtle. The conclusion says \"not both a turtle and a squirrel.\" Since we concluded in step 4 that Rock is not a squirrel, we can say that Rock is not a turtle and a squirrel. The statement is asking if Rock is not both a turtle and a squirrel, we can say this is true since Rock is not a squirrel. But we still need to find out if Rock is a turtle or not.\n\nStep 6: Analyze the properties of rabbits\nFrom premise 1, we know that all rabbits are cute. We need to find out if Rock is a rabbit. We cannot directly conclude that Rock is a rabbit or not from the given premises.\n\nStep 7: Analyze the conclusion\nThe conclusion states that if Rock is not both a turtle and a squirrel, then Rock is either cute or skittish. We concluded in step 4 that Rock is not a squirrel. We also concluded in step 5 that Rock is not both a turtle and a squirrel. Since we cannot conclude that Rock is a rabbit or a turtle from the premises, we cannot determine if Rock is cute or not.\n\nTherefore, the conclusion is uncertain because we cannot determine if Rock is cute or not.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to use logical deductions based on the given premises. We will analyze each premise and conclusion step by step.\n\nPremises:\n\n1. All rabbits are cute.\n2. Some turtles exist.\n3. An animal is either a rabbit or a squirrel.\n4. If something is skittish, then it is not still.\n5. All squirrels are skittish.\n6. Rock is still.\n\nConclusion: If Rock is not both a turtle and a squirrel, then Rock is either cute or skittish.\n\nStep 1: Analyze premise 3, which states that an animal is either a rabbit or a squirrel. This implies that if Rock is not a rabbit, then it must be a squirrel, and vice versa.\n\nStep 2: Examine premise 6, which states that Rock is still. We also have premise 4, which states that if something is skittish, then it is not still. From these two premises, we can conclude that Rock is not skittish because being skittish and still are mutually exclusive.\n\nStep 3: Now we can analyze the conclusion, which states that if Rock is not both a turtle and a squirrel, then Rock is either cute or skittish. We need to consider two cases:\n\nCase 1: Rock is not a turtle. We already know that Rock is not skittish (from Step 2), so it must be cute (or neither cute nor skittish, but we cannot conclude this from the given premises).\n\nCase 2: Rock is a squirrel. We know that all squirrels are skittish (from premise 5), but we also know that Rock is not skittish (from Step 2), which is a contradiction. Therefore, we cannot conclude that Rock is a squirrel.\n\nHowever, since we know that Rock is either a rabbit or a squirrel (from premise 3), and we have concluded that Rock is not a squirrel, it must be a rabbit. Since all rabbits are cute (from premise 1), we can conclude that Rock is cute.\n\nNow we can see that if Rock is not both a turtle and a squirrel, then Rock is indeed cute.\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given premises and apply the rules of logic to determine the validity of the conclusion.\n\nPremise 1: All rabbits are cute.\nPremise 2: Some turtles exist.\nPremise 3: An animal is either a rabbit or a squirrel.\nPremise 4: If something is skittish, then it is not still.\nPremise 5: All squirrels are skittish.\nPremise 6: Rock is still.\n\nFrom Premise 3, we can infer two possible categories for an animal: rabbit or squirrel. \n\nNow, let's analyze the conclusion: \"If Rock is not both a turtle and a squirrel, then Rock is either cute or skittish.\"\n\nWe need to evaluate the truth of the conclusion based on the given premises.\n\nCase 1: If Rock is not a squirrel, then we cannot conclude that Rock is cute, because we do not have any information about Rock being a rabbit. However, since Rock is still (Premise 6), and all squirrels are skittish (Premise 5), we can conclude that Rock is not a squirrel. Therefore, we can only say that the conclusion is uncertain for this case.\n\nCase 2: If Rock is a squirrel, then Rock is skittish (Premise 5). In this case, the conclusion is true because Rock is indeed skittish.\n\nHowever, we have another condition in the conclusion: \"not both a turtle and a squirrel.\" We cannot conclude that Rock is not a turtle, but we can conclude that if Rock is a turtle, the conclusion is uncertain.",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the given premises and their implications.\n\n1. All rabbits are cute. \nThis premise tells us about rabbits, but we don't know anything about turtles, squirrels, or Rock yet.\n\n2. Some turtles exist. \nThis premise also tells us about turtles, but we still don't know anything about Rock.\n\n3. An animal is either a rabbit or a squirrel. \nThis premise tells us that an animal can be either a rabbit or a squirrel, but not both. However, it doesn't include turtles or Rock.\n\n4. If something is skittish, then it is not still. \nThis premise tells us that if something is skittish, it moves, and if it moves, it is not still.\n\n5. All squirrels are skittish. \nThis premise tells us that squirrels are skittish, which means they move. We also know that Rock is still from the next premise.\n\n6. Rock is still. \nThis premise tells us that Rock does not move, which means Rock is not skittish.\n\nNow, let's analyze the conclusion: If Rock is not both a turtle and a squirrel, then Rock is either cute or skittish.\n\nWe know that Rock is still, which means Rock is not skittish. We also know that Rock is not a squirrel because squirrels are skittish and Rock is still.\n\nNow, let's consider the possible cases for Rock:\n\n- If Rock is a rabbit, then Rock is cute because all rabbits are cute.\n- If Rock is a turtle, then we don't know anything about Rock's cuteness or skittishness, but we know Rock is not a squirrel.\n\nWe know that Rock is not both a turtle and a squirrel. If Rock is a turtle, then we don't know whether Rock is cute or skittish. However, if Rock is a rabbit, then Rock is cute. Therefore, the conclusion is true because there is a possible case (Rock being a rabbit) where the conclusion holds.\n\nSo, the final answer is: \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we will analyze the premises and the conclusion step by step.\n\n1. Premise 1: All rabbits are cute. \nThis tells us that rabbits are cute, but we don't know anything about other animals.\n\n2. Premise 2: Some turtles exist.\nThis premise only tells us that turtles exist, but it does not provide any information about their characteristics.\n\n3. Premise 3: An animal is either a rabbit or a squirrel.\nThis premise creates a dichotomy between rabbits and squirrels. It implies that if an animal is not a rabbit, it must be a squirrel, and vice versa.\n\n4. Premise 4: If something is skittish, then it is not still.\nThis premise establishes a relationship between skittishness and stillness.\n\n5. Premise 5: All squirrels are skittish.\nThis premise tells us that squirrels are skittish, which implies that they are not still (from premise 4).\n\n6. Premise 6: Rock is still.\nThis premise tells us about Rock's state of motion (still).\n\nNow, let's analyze the conclusion:\n\nConclusion: If Rock is not both a turtle and a squirrel, then Rock is either cute or skittish.\n\nTo determine the validity of the conclusion, we need to consider the possible cases:\n\nCase 1: Rock is a turtle.\nFrom premise 3, we know that Rock cannot be a squirrel if it is a turtle. \n\nCase 2: Rock is a squirrel.\nFrom premise 5, we know that squirrels are skittish, which implies that Rock is skittish (if Rock is a squirrel).\n\nCase 3: Rock is neither a turtle nor a squirrel.\nFrom premise 3, we know that Rock must be a rabbit (since it is not a squirrel). From premise 1, we know that rabbits are cute.\n\nFrom the analysis, we can see that if Rock is a squirrel, it is skittish (Case 2). If Rock is a rabbit, it is cute (Case 3). However, we cannot conclude anything about Rock if it is a turtle.\n\nSince we cannot conclude that Rock is either cute or skittish in all cases (especially when Rock is a turtle), the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given premises and the conclusion to determine whether it is true, false, or uncertain.\n\nPremise 1: All rabbits are cute. \nPremise 2: Some turtles exist.\nPremise 3: An animal is either a rabbit or a squirrel.\nPremise 4: If something is skittish, then it is not still.\nPremise 5: All squirrels are skittish.\nPremise 6: Rock is still.\n\nNow, let's break down the conclusion:\n\nConclusion: If Rock is not both a turtle and a squirrel, then Rock is either cute or skittish.\n\nTo analyze this conclusion, we need to determine the possible characteristics of Rock based on the given premises.\n\nFrom Premise 3, we know that Rock is either a rabbit or a squirrel. \n\nFrom Premise 6, we know that Rock is still. \n\nNow, let's examine the possibilities:\n\n1. If Rock is a rabbit, then it is cute (from Premise 1). In this case, the conclusion is true because Rock is either cute or skittish.\n2. If Rock is a squirrel, then it is skittish (from Premise 5). In this case, the conclusion is true because Rock is either cute or skittish.\n3. If Rock is a turtle, then it does not necessarily have to be skittish or cute. However, this option is uncertain because Premise 2 only states that some turtles exist, not that Rock is a turtle.\n\nHowever, the conclusion also states that if Rock is not both a turtle and a squirrel. In this case, we can rule out option 3. The conclusion is then true because if Rock is not a turtle and a squirrel, then it must be either a rabbit (which is cute) or a squirrel (which is skittish).\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we'll analyze the premises step by step.\n\n1. All rabbits are cute.\n2. Some turtles exist.\n3. An animal is either a rabbit or a squirrel.\n4. If something is skittish, then it is not still.\n5. All squirrels are skittish.\n6. Rock is still.\n\nFrom premise 3, we can deduce that Rock is either a rabbit or a squirrel.\n\nNow, let's analyze the possible scenarios:\n\n- If Rock is a rabbit, then it is cute (from premise 1). In this case, the conclusion holds true.\n- If Rock is a squirrel, then it is skittish (from premise 5). In this case, the conclusion also holds true.\n\nHowever, we need to consider the possibility that Rock is a turtle. Premise 2 states that some turtles exist, but it doesn't say that Rock is a turtle. We also know that Rock is still (from premise 6). From premise 4, if Rock is skittish, then it is not still. Since Rock is still, it cannot be skittish. If Rock is not a squirrel (and therefore not skittish), and it's not a rabbit, then it must be a turtle.\n\nNow, we have a potential counterexample to the conclusion. If Rock is a turtle, then it doesn't satisfy the conclusion, which states that Rock is either cute or skittish.\n\nHowever, we need to be careful. Premise 3 states that an animal is either a rabbit or a squirrel. It doesn't explicitly say that Rock is a turtle, but we can infer that Rock is either a rabbit, a squirrel, or a turtle. Since we've already established that Rock can't be a rabbit or a squirrel (if it's a turtle), we can conclude that Rock is a turtle.\n\nNow, we need to consider premise 2, which states that some turtles exist. This premise doesn't provide any information about Rock's characteristics, such as cuteness or skittishness. Therefore, we can't determine whether Rock is cute or skittish if it's a turtle.\n\nSince we can't determine whether Rock is cute or skittish if it's a turtle, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to break down the given premises and analyze the conclusion step by step.\n\nPremise 1: All rabbits are cute.\nPremise 2: Some turtles exist.\nPremise 3: An animal is either a rabbit or a squirrel.\nPremise 4: If something is skittish, then it is not still.\nPremise 5: All squirrels are skittish.\nPremise 6: Rock is still.\n\nFrom Premise 3, we can infer that an animal is either a rabbit, a squirrel, or neither (since it's an exclusive or).\n\nFrom Premise 5, we know all squirrels are skittish, and from Premise 4, we know that if something is skittish, then it is not still. Therefore, we can conclude that all squirrels are not still.\n\nSince Rock is still (Premise 6), we can conclude that Rock is not a squirrel.\n\nNow, let's examine the conclusion: \"If Rock is not both a turtle and a squirrel, then Rock is either cute or skittish.\"\n\nTo determine whether this conclusion is true or false, we need to examine the possible scenarios:\n\n1. Rock is not a turtle and not a squirrel: In this case, Rock must be a rabbit (since it's an exclusive or). From Premise 1, we know that all rabbits are cute. Therefore, the conclusion is true in this scenario.\n\n2. Rock is not a turtle but is a squirrel: We've already concluded that Rock is not a squirrel, so this scenario is impossible.\n\n3. Rock is a turtle but not a squirrel: This scenario is also impossible since we've concluded that Rock is not a squirrel.\n\n4. Rock is both a turtle and a squirrel: This scenario is impossible since a turtle and a squirrel are mutually exclusive (by definition of the exclusive or).\n\nSince the conclusion is true in the only possible scenario where Rock is not a turtle and not a squirrel, we can conclude that the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "exists_turtle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal(rock)",
+          "z3_formula": "animal_rock == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> (rabbit(X) | squirrel(X))",
+          "z3_formula": "Implies(animal_rock, Or(rabbit_rock, squirrel_rock))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> Not(still(X))",
+          "z3_formula": "Implies(skittish_rock, Not(still_rock))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "skittish(squirrel)",
+          "z3_formula": "skittish_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(skittish(rock))",
+          "z3_formula": "Not(skittish_rock)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rabbit(rock)",
+          "z3_formula": "rabbit_rock == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "cute(rock)",
+          "z3_formula": "cute_rock == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "exists_turtle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rabbit(X) | squirrel(X)",
+          "z3_formula": "Or(rabbit_X, squirrel_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> not(still(X))",
+          "z3_formula": "Implies(skittish_X, Not(still_X))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "skittish(squirrel)",
+          "z3_formula": "skittish_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(squirrel(rock))",
+          "z3_formula": "Not(squirrel_rock)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not(squirrel(X)) & not(turtle(X)) -> cute(X) | skittish(X)",
+          "z3_formula": "Implies(And(Not(squirrel_rock), Not(turtle_rock)), Or(cute_rock, skittish_rock))",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "exists_turtle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rabbit(X) | squirrel(X)",
+          "z3_formula": "Or(rabbit_rock, squirrel_rock)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> not still(X)",
+          "z3_formula": "Implies(skittish_rock, not still_rock)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "skittish(squirrel)",
+          "z3_formula": "skittish_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "skittish(rock) | cute(rock)",
+          "z3_formula": "Or(skittish_rock, cute_rock)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "exists_turtle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rabbit(X) | squirrel(X)",
+          "z3_formula": "Or(rabbit_X, squirrel_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> not still(X)",
+          "z3_formula": "Implies(skittish_X, not still_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "skittish(squirrel)",
+          "z3_formula": "skittish_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not squirrel(rock)",
+          "z3_formula": "not squirrel_rock == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "rabbit(rock)",
+          "z3_formula": "rabbit_rock == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "cute(rock)",
+          "z3_formula": "cute_rock == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not (turtle(rock) & squirrel(rock))",
+          "z3_formula": "Not(And(turtle_rock, squirrel_rock))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "cute(rock) | skittish(rock)",
+          "z3_formula": "Or(cute_rock, skittish_rock)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "exists_turtle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rabbit(X) | squirrel(X)",
+          "z3_formula": "Or(rabbit_X, squirrel_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> not still(X)",
+          "z3_formula": "Implies(skittish_X, Not(still_X))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "skittish(squirrel)",
+          "z3_formula": "skittish_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not skittish(rock)",
+          "z3_formula": "Not(skittish_rock)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not squirrel(rock)",
+          "z3_formula": "Not(squirrel_rock)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not both turtle and squirrel(rock)",
+          "z3_formula": "Not(And(turtle_rock, squirrel_rock))",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "cute(rock) | skittish(rock)",
+          "z3_formula": "Or(cute_rock, skittish_rock)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "exists_turtle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rabbit(X) | squirrel(X)",
+          "z3_formula": "Or(rabbit_rock, squirrel_rock)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> not still(X)",
+          "z3_formula": "Implies(skittish_rock, not still_rock)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "skittish(squirrel)",
+          "z3_formula": "skittish_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not skittish(rock)",
+          "z3_formula": "Not(skittish_rock)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not turtle(X) -> squirrel(X)",
+          "z3_formula": "Implies(Not(turtle_rock), squirrel_rock)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "not turtle(X) -> rabbit(X)",
+          "z3_formula": "Implies(Not(turtle_rock), rabbit_rock)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "not both turtle(X) and squirrel(X) -> cute(X) | skittish(X)",
+          "z3_formula": "Implies(Or(Not(turtle_rock), Not(squirrel_rock)), Or(cute_rock, skittish_rock))",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "exists_turtle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rabbit_or_squirrel(animal)",
+          "z3_formula": "rabbit_or_squirrel_animal == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> not still(X)",
+          "z3_formula": "Implies(skittish_X, not still_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "skittish(squirrel)",
+          "z3_formula": "skittish_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "turtle_exists == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rabbit(X) | squirrel(X)",
+          "z3_formula": "Or(rabbit_X, squirrel_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> ~still(X)",
+          "z3_formula": "Implies(skittish_X, ~still_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "skittish(squirrel)",
+          "z3_formula": "skittish_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "exists_turtle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rabbit(X) | squirrel(X)",
+          "z3_formula": "Or(rabbit_X, squirrel_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> not still(X)",
+          "z3_formula": "Implies(skittish_X, not still_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "skittish(squirrel)",
+          "z3_formula": "skittish_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "exists_turtle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rabbit(X) | squirrel(X)",
+          "z3_formula": "rabbit_or_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> not(still(X))",
+          "z3_formula": "Implies(skittish, not_still)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "skittish(squirrel)",
+          "z3_formula": "skittish_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(turtle(rock) & squirrel(rock)) -> cute(rock) | skittish(rock)",
+          "z3_formula": "Implies(Not(And(turtle_rock, squirrel_rock)), Or(cute_rock, skittish_rock))",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "exists_turtle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rabbit(X) | squirrel(X)",
+          "z3_formula": "Or(rabbit_rock, squirrel_rock)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> not still(X)",
+          "z3_formula": "Implies(skittish_rock, not still_rock)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "skittish(squirrel)",
+          "z3_formula": "skittish_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "exists_turtle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rabbit(X) | squirrel(X) | neither(X)",
+          "z3_formula": "Or(rabbit_rock, squirrel_rock, Not(And(rabbit_rock, squirrel_rock)))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> Not(still(X))",
+          "z3_formula": "Implies(skittish_rock, Not(still_rock))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "skittish(squirrel)",
+          "z3_formula": "skittish_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "Not(still(squirrel))",
+          "z3_formula": "Not(still_squirrel) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(squirrel(rock))",
+          "z3_formula": "Not(squirrel_rock) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "Not(turtle(X) & squirrel(X)) -> cute(X) | skittish(X)",
+          "z3_formula": "Implies(Not(And(turtle_rock, squirrel_rock)), Or(cute_rock, skittish_rock))",
+          "source_step": 9
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 96,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 26
+    },
+    "maxsat_stats": {
+      "satisfied": 26,
+      "excluded": 0,
+      "total_weight": 90,
+      "solve_time_ms": 1.0183406993746758
+    },
+    "timing": {
+      "trace_gen_s": 7.893,
+      "extraction_s": 17.252,
+      "dedup_s": 0.484,
+      "maxsat_s": 0.003,
+      "total_s": 25.632
+    }
+  }
+}

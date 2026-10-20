@@ -1,0 +1,1062 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-401_Q4",
+    "problem": "Anne is cold. Anne is kind. Charlie is blue. Charlie is round. Dave is blue. Fiona is not green. Fiona is kind. If Charlie is cold then Charlie is quiet. If Charlie is big then Charlie is not green. If Anne is kind then Anne is big. All big people are blue. Blue people are quiet. If Dave is kind then Dave is cold. If someone is round then they are green. Quiet people are round. If someone is kind and not blue then they are round.\n\nDetermine whether the following statement is true, false, or unknown:\nCharlie is not green.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nKind($x, bool) ::: Is x kind?\nBlue($x, bool) ::: Is x blue?\nRound($x, bool) ::: Is x round?\nGreen($x, bool) ::: Is x green?\nQuiet($x, bool) ::: Is x quiet?\nBig($x, bool) ::: Is x big?\n\nFacts:\nCold(Anne, True) ::: Anne is cold.\nKind(Anne, True) ::: Anne is kind.\nBlue(Charlie, True) ::: Charlie is blue.\nRound(Charlie, True) ::: Charlie is round.\nBlue(Dave, True) ::: Dave is blue.\nGreen(Fiona, False) ::: Fiona is not green.\nKind(Fiona, True) ::: Fiona is kind.\n\nRules:\nCold(Charlie, True) >>> Quiet(Charlie, True) ::: If Charlie is cold then Charlie is quiet.\nBig(Charlie, True) >>> Green(Charlie, False) ::: If Charlie is big then Charlie is not green.\nKind(Anne, True) >>> Big(Anne, True) ::: If Anne is kind then Anne is big.\nBig($x, True) >>> Blue($x, True) ::: All big people are blue.\nBlue($x, True) >>> Quiet($x, True) ::: Blue people are quiet.\nKind(Dave, True) >>> Cold(Dave, True) ::: If Dave is kind then Dave is cold.\nRound($x, True) >>> Green($x, True) ::: If someone is round then they are green.\nQuiet($x, True) >>> Round($x, True) ::: Quiet people are round.\nKind($x, True) && Blue($x, False) >>> Round($x, True) ::: If someone is kind and not blue then they are round.\n\nQuery:\nGreen(Charlie, False) ::: Charlie is not green."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 93.0,
+      "True": 78.0,
+      "Unknown": 109.5
+    },
+    "answer_counts": {
+      "Unknown": 4,
+      "False": 3,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether \"Charlie is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Charlie is blue.\n   - Charlie is round.\n   - If Charlie is round then Charlie is green.\n   - Quiet people are round.\n   - Blue people are quiet.\n   - All big people are blue.\n   - If Charlie is big then Charlie is not green.\n\n2. From the given information, we know Charlie is blue and round. \n   - Since Charlie is blue, Charlie must be quiet because Blue people are quiet.\n   - Since Charlie is quiet, Charlie must be round because Quiet people are round.\n   - Since Charlie is round, Charlie must be green because If Charlie is round then Charlie is green.\n\nNow, we have a conflict between two statements:\n   - Charlie is blue.\n   - If Charlie is blue, then Charlie must be green (because Charlie is round and round people are green).\n\nHowever, we also have another statement:\n   - All big people are blue. \n\nWe do not know if Charlie is big, but we can analyze the situation if Charlie is big or not. \n\nIf Charlie is big:\n   - Charlie must be blue (because All big people are blue).\n   - Charlie must not be green (because If Charlie is big then Charlie is not green).\n\nIf Charlie is not big:\n   - We cannot conclude anything about Charlie's color from the given information.\n\nSince we do not know if Charlie is big or not, we cannot determine Charlie's color with certainty. Therefore, the statement \"Charlie is not green\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not green\" is true, false, or unknown, we need to use the given information and logical deductions.\n\nStep 1: From the given information, we know that Charlie is round. (Statement: Charlie is round.)\n\nStep 2: Since Charlie is round, we can deduce that Charlie is green, because \"If someone is round then they are green.\" (Statement: If someone is round then they are green.)\n\nHowever, there is a condition that might affect this conclusion: \"If Charlie is big then Charlie is not green.\" But we have no information that Charlie is big or not. We need to consider other information to determine the possibility of Charlie being big or not.\n\nStep 3: From the given information, we know that Charlie is blue. (Statement: Charlie is blue.)\n\nStep 4: Since Charlie is blue, we can deduce that Charlie is quiet, because \"Blue people are quiet.\" (Statement: Blue people are quiet.)\n\nStep 5: From the given information, we know that Charlie is cold. (Statement: Anne is cold is given information but there is a new rule that says \"If Charlie is cold then Charlie is quiet\" but we already know Charlie is quiet so this doesn't tell us anything new, but we also have another rule that says \"If Charlie is cold then Charlie is quiet\", but we already know Charlie is quiet, so we can say nothing more from this rule, however this rule \"If Charlie is cold then Charlie is quiet\" will not help us to solve this problem, however this rule \"If Charlie is cold then Charlie is quiet\" can be used to solve other problem not this problem, however there is a rule that says \"If Charlie is big then Charlie is not green\" and another rule that says \"If Charlie is blue then all of his other characteristics do not matter\")\n\nStep 6: We know that Charlie is blue, and we also know that all big people are blue, but there is a rule that says \"If Charlie is blue then all of his other characteristics do not matter\", so if Charlie is blue then he can be big or not big.\n\nHowever, there is a rule that says \"If Charlie is big then Charlie is not green\", if Charlie is blue then all of his other characteristics do not matter, however we can use another rule that says \"If Charlie is big then Charlie is not green\" to solve this problem and another rule that says \"If Charlie is blue then all of his other characteristics do not matter\".\n\nStep 7: From the given information, we know that Charlie is blue, and we also know that all big people are blue, we can use another rule that says \"If Charlie is blue then all of his other characteristics do not matter\", to solve this problem.\n\nSince Charlie is blue and all big people are blue, we can say that Charlie can be big or not big, however we can use another rule that says \"If Charlie is blue then all of his other characteristics do not matter\" to solve this problem.\n\nStep 8: From the given information, we know that Charlie is blue, and we also know that all big people are blue, and we can use another rule that says \"If Charlie is blue then all of his other characteristics do not matter\", to solve this problem.\n\nWe can use another rule that says \"If Charlie is big then Charlie is not green\" to solve this problem.\n\nSince Charlie is blue, we can say that Charlie can be big or not big, however we can use another rule that says \"If Charlie is blue then all of his other characteristics do not matter\" to solve this problem.\n\nHowever, we can use another rule that says \"If Charlie is blue then all of his other characteristics do not matter\" to solve this problem.\n\nStep 9: We can use another rule that says \"If Charlie is blue then all of his other characteristics do not matter\" to solve this problem.\n\nSince Charlie is blue, we can say that Charlie can be big or not big, however we can use another rule that says \"If Charlie is blue then all of his other characteristics do not matter\" to solve this problem.\n\nHowever, we can use another rule that says \"If Charlie is blue then all of his other characteristics do not matter\" to solve this problem.\n\nStep 10: From the given information, we know that Charlie is blue, and we also know that all big people are blue, we can use another rule that says \"If Charlie is blue then all of his other characteristics do not matter\", to solve this problem.\n\nHowever, we can use another rule that says \"If Charlie is big then Charlie is not green\" to solve this problem.\n\nSince Charlie is blue, we can say that Charlie can be big or not big, however we can use another rule that says \"If Charlie is blue then all of his other characteristics do not matter\" to solve this problem.\n\nHowever, we can use another rule that says \"If Charlie is blue then all of his other characteristics do not matter\" to solve this problem.\n\nStep 11: We can use another rule that says \"If Charlie is blue then all of his other characteristics do not matter\" to solve this problem.\n\nHowever, we can use another rule that says \"If Charlie is blue then all of his other characteristics do not matter\" to solve this problem.\n\nStep 12: From the given information, we know that Charlie is blue, and we also know that all big people are blue, we can use another rule that says \"If Charlie is blue then all of his other characteristics do not matter\", to solve this problem.\n\nSince Charlie is blue, we can say that Charlie can be big or not big.\n\nWe can use another rule that says \"If Charlie is blue then all of his other characteristics do not matter\" to solve this problem.\n\nHowever, we can use another rule that says \"If Charlie is big then Charlie is not green\" to solve this problem.\n\nStep 13: We can use another rule that says \"If Charlie is blue then all of his other characteristics do not matter\" to solve this problem.\n\nWe know that Charlie is blue, and we also know that all big people are blue, however we can use another rule that says \"If Charlie is blue then all of his other characteristics do not matter\" to solve this problem.\n\nHowever, we can use another rule that says \"If Charlie is big then Charlie is not green\" to solve this problem.\n\nSince Charlie is blue, we can say that Charlie can be big or not big.\n\nStep 14: We can use another rule that says \"If Charlie is blue then all of his other characteristics do not matter\" to solve this problem.\n\nHowever, we can use another rule that says \"If Charlie is big then Charlie is not green\" to solve this problem.\n\nSince Charlie is blue, we can say that Charlie can be big or not big.\n\nStep 15: We can use another rule that says \"If Charlie is blue then all of his other characteristics do not matter\" to solve this problem.\n\nWe know that Charlie is blue, and we also know that all big people are blue, however we can use another rule that says \"If Charlie is blue then all of his other characteristics do not matter\" to solve this problem.\n\nHowever, we can use another rule that says \"If Charlie is big then Charlie is not green\" to solve this problem.\n\nSince Charlie is blue, we can say that Charlie can be big or not big.\n\nStep 16: We can use another rule that says \"If Charlie is blue then all of his other characteristics do not matter\" to solve this problem.\n\nWe know that Charlie is blue, and we also know that all big people are blue, however we can use another rule that says \"If Charlie is blue then all of his other characteristics do not matter\" to solve this problem.\n\nHowever, we can use another rule that says \"If Charlie is big then Charlie is not green\" to solve this problem.\n\nSince Charlie is blue, we can say that Charlie can be big or not big.\n\nHowever, we can use another rule that says \"If Charlie is blue then all of his other characteristics do not matter\" to solve this problem.\n\nStep 17: We can use another rule that says \"If Charlie is blue then all of his other characteristics do not matter\" to solve this problem.\n\nSince Charlie is blue, we can say that Charlie can be big or not big.\n\nHowever, we can use another rule that says \"If Charlie is blue then all of his other characteristics do not matter\" to solve this problem.\n\nWe know that Charlie is blue, and we also know that all big people are blue, however we can use another rule that says \"If Charlie is blue then all of his other characteristics do not matter\" to solve this problem.\n\nHowever, we can use another rule that says \"If Charlie is big then Charlie is not green\" to solve this problem.\n\nStep 18: We can use another rule that says \"If Charlie is blue then all of his other characteristics do not matter\" to solve this problem.\n\nSince Charlie is blue, we can say that Charlie can be big or not big.\n\nHowever, we can use another rule that says \"If Charlie is blue then all of his other characteristics do not matter\" to solve this problem.\n\nWe know that Charlie is blue, and we also know that all big people are blue, however we can use another rule that says \"If Charlie is blue then all of his other characteristics do not matter\" to solve this problem.\n\nHowever, we can use another rule that says \"If Charlie is big then Charlie is not green\" to solve this problem.\n\nStep 19: We can use another rule that says \"If Charlie is blue then all of his other characteristics do not matter\" to solve this problem.\n\nSince Charlie is blue, we can say that Charlie can be big or not big.\n\nHowever, we can use another rule that says \"If Charlie is blue then all of his other characteristics do not matter\" to solve this problem.\n\nWe know that",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is blue. (Given)\n2. Blue people are quiet. (Given)\n3. If Charlie is cold then Charlie is quiet. (Given)\n   However, we cannot directly conclude that Charlie is cold from the given information. We can only say that if Charlie is cold, then Charlie is quiet.\n\n4. If Charlie is big then Charlie is not green. (Given)\n   However, we cannot directly conclude that Charlie is big or not from the given information.\n\n5. If someone is round then they are green. (Given)\n   However, we cannot directly conclude that Charlie is round or not from the given information.\n\n6. Quiet people are round. (Given)\n   Since Charlie is quiet (from step 2), we can conclude that Charlie is round (from step 6).\n\n7. If someone is round then they are green. (Given)\n   Since Charlie is round (from step 6), we can conclude that Charlie is green (from step 7).\n\nNow, let's combine the information from steps 1 and 7:\n\n- Charlie is blue (from step 1)\n- Charlie is green (from step 7)\n\nFrom the given information, we know that blue people are quiet (from step 2), but we cannot conclude that Charlie is quiet from this information alone. However, we know that Charlie is round (from step 6) and round people are quiet (from step 6). Therefore, Charlie is indeed quiet.\n\nNow, we have two contradictory statements about Charlie's color:\n- Charlie is blue (from step 1)\n- Charlie is green (from step 7)\n\nHowever, the statement \"Charlie is not green\" does not directly conflict with the information that Charlie is blue. The statement \"Charlie is not green\" is a direct contradiction to the information that Charlie is green (from step 7).\n\nSince we have a direct contradiction between the statements, we cannot conclude that \"Charlie is not green\" is true or false based solely on the given information about Charlie being blue. The statement is actually false based on the information that Charlie is green (from step 7), but we cannot directly use the information that Charlie is blue to conclude that Charlie is not green.\n\nHowever, the statement that Charlie is blue (from step 1) and that all big people are blue (from the given information) suggests that Charlie is big, but this is a separate conclusion that doesn't directly affect the conclusion about Charlie's color.\n\nThe correct conclusion based on the given information is that Charlie is indeed green, which directly contradicts the statement \"Charlie is not green\". However, this conclusion is based on the information that Charlie is round (from step 6) and that round people are green (from step 7).\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we'll use a process of elimination and deduction based on the given statements.\n\n1. Given Statements:\n   - Anne is cold.\n   - Anne is kind.\n   - Charlie is blue.\n   - Charlie is round.\n   - Dave is blue.\n   - Fiona is not green.\n   - Fiona is kind.\n   - If Charlie is cold then Charlie is quiet.\n   - If Charlie is big then Charlie is not green.\n   - If Anne is kind then Anne is big.\n   - All big people are blue.\n   - Blue people are quiet.\n   - If Dave is kind then Dave is cold.\n   - If someone is round then they are green.\n   - Quiet people are round.\n   - If someone is kind and not blue then they are round.\n\n2. Analyzing the statements:\n   - From statement 7, we know that if someone is kind and not blue, then they are round. Since Fiona is kind and not blue (Dave is blue), Fiona is round.\n   - Since Fiona is round, from statement 14, we know that Fiona is green.\n   - Now, we know that Fiona is green and Fiona is not green, which is a contradiction.\n   - However, before we conclude that the statement \"Charlie is not green\" is false, let's analyze the other information.\n\n3. Analyzing Charlie's characteristics:\n   - Charlie is blue (statement 3).\n   - Blue people are quiet (statement 9).\n   - If Charlie is cold, then Charlie is quiet (statement 2). However, this does not tell us anything about Charlie's color or roundness.\n   - Since Charlie is blue and all blue people are quiet, Charlie must be quiet.\n\n4. Analyzing Charlie's roundness and color:\n   - Charlie is round (statement 4).\n   - If someone is round then they are green (statement 13).\n   - However, this statement contradicts the fact that all blue people are quiet. To avoid contradiction, we must assume that Charlie is green.\n\n5. Conclusion:\n   - We have concluded that Charlie is green. However, this contradicts the initial statement that Fiona is not green.\n   - To resolve this contradiction, we must re-examine our deductions.\n   - Since Fiona is round and green, we must re-analyze Charlie's characteristics.\n   - We initially concluded that Charlie is green based on the fact that Charlie is round.\n   - However, this conclusion is based on statement 13, which is \"If someone is round then they are green.\"\n   - There is another statement that is relevant to Charlie's color: \"If Charlie is big then Charlie is not green.\" (statement 8)\n   - Since we don't know whether Charlie is big, we cannot conclude that Charlie is not green based on statement 8.\n   - However, if Charlie is not big, then we cannot conclude that Charlie is green based on statement 13.\n\n6. Final Analysis:\n   - We have a contradiction between the statements that Fiona is not green and that Fiona is green.\n   - We also have a contradiction between the statements that Charlie is round and Charlie is green.\n   - However, based on our analysis, we cannot conclude that Charlie is green or not green. We can only say that the statement \"Charlie is not green\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve the problem, we need to analyze the given statements and determine the truth value of the statement \"Charlie is not green.\"\n\n1. Charlie is blue. (Given)\n2. Charlie is round. (Given)\n3. If Charlie is cold then Charlie is quiet. (Conditional statement, we don't know if Charlie is cold yet)\n4. If Charlie is big then Charlie is not green. (Conditional statement, we don't know if Charlie is big yet)\n5. If Anne is kind then Anne is big. (Conditional statement, Anne is kind, so Anne is big)\n6. All big people are blue. (Conditional statement)\n7. Blue people are quiet. (Conditional statement)\n8. If Dave is kind then Dave is cold. (Conditional statement)\n9. If someone is round then they are green. (Conditional statement)\n10. Quiet people are round. (Conditional statement)\n11. If someone is kind and not blue then they are round. (Conditional statement)\n\nNow, we need to determine the truth value of \"Charlie is not green.\"\n\nFrom statement 2, we know Charlie is round. Using statement 9, we can conclude that Charlie is green, because if Charlie is round then Charlie is green.\n\nHowever, statement 1 says Charlie is blue, and statement 4 says if Charlie is big then Charlie is not green. We still need to determine if Charlie is big or not.\n\nFrom statement 5, we know Anne is big because Anne is kind. Using statement 6, we can conclude that Anne is blue, because all big people are blue.\n\nFrom statement 7, we know that blue people are quiet. But we don't have any information about Anne being quiet or not.\n\nNow, let's analyze the statement \"If someone is round then they are green\" and \"Quiet people are round.\" We can't determine if Charlie is quiet or not, but we can say that if Charlie is quiet, then Charlie is round (from statement 10), and then Charlie is green (from statement 9).\n\nHowever, statement 1 says Charlie is blue, and statement 4 says if Charlie is big then Charlie is not green. But we can't conclude if Charlie is big or not.\n\nLet's analyze the statement \"If someone is kind and not blue then they are round.\" We know Anne is kind and not blue, but we don't know if Anne is round or not.\n\nWe also know that Dave is kind (from statement 8), so Dave is cold. But we don't have any information about Dave being blue or not.\n\nNow, let's analyze the statement \"If Charlie is cold then Charlie is quiet.\" We don't know if Charlie is cold or not, but we can say that if Charlie is cold, then Charlie is quiet.\n\nTo determine the truth value of \"Charlie is not green,\" we need to analyze all the given statements and the information we have gathered so far.\n\nWe can conclude that Charlie is green, because if Charlie is round then Charlie is green (from statement 9).\n\nHowever, statement 1 says Charlie is blue, and we can't conclude if Charlie is green or not. So, we can't determine the truth value of \"Charlie is not green\" yet.\n\nBut we can conclude that the statement \"Charlie is not green\" is false, because Charlie is green (from statement 9).\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to use a process of elimination and logical deduction based on the given statements. We'll break down the information into steps:\n\n1. From the statement: If someone is round then they are green.\n   We can infer that: Charlie is round \u2192 Charlie is green.\n\n2. However, we need to consider all possible implications. If Charlie is big, then he is not green (from the statement: If Charlie is big then Charlie is not green.). But we don't know if Charlie is big. We need to find out if Charlie is big or not.\n\n3. From the statement: If Charlie is cold then Charlie is quiet.\n   We can infer that: Charlie is quiet \u2192 Charlie is cold (using logical negation).\n\n4. From the statement: Blue people are quiet.\n   We can infer that: Charlie is blue \u2192 Charlie is quiet.\n\n5. Combining steps 3 and 4: Charlie is blue and Charlie is quiet are equivalent statements.\n\n6. From the statement: All big people are blue.\n   We can infer that: Charlie is big \u2192 Charlie is blue.\n\n7. From the statement: If someone is round then they are green.\n   We can infer that: Charlie is round \u2192 Charlie is green (from step 1).\n\n8. Combining steps 6 and 7: Charlie is round and Charlie is green are equivalent statements.\n\n9. From the statement: Quiet people are round.\n   We can infer that: Charlie is quiet \u2192 Charlie is round.\n\n10. Combining steps 9 and 5: Charlie is blue and Charlie is quiet are equivalent to Charlie is round.\n\n11. From the statement: If Charlie is big then Charlie is not green.\n    We can infer that: Charlie is big \u2192 Charlie is not green.\n\n12. Combining steps 6 and 11: Charlie is big and Charlie is not green are equivalent statements.\n\n13. From the statement: If someone is round then they are green.\n    We can infer that: Charlie is round \u2192 Charlie is green (from step 1).\n\n14. Combining steps 8 and 13: Charlie is round and Charlie is green are equivalent statements.\n\n15. We have a contradiction between steps 10 and 12. If Charlie is blue (from step 5), then Charlie is round (from step 10), which means Charlie is green (from step 7). However, if Charlie is big (from step 6), then Charlie is not green (from step 11). Therefore, we can't conclude that Charlie is big or not. However, we can conclude that Charlie is either big or not big.\n\n16. From the statement: If Anne is kind then Anne is big.\n    We can infer that: Anne is kind \u2192 Anne is big.\n\n17. From the statement: If someone is kind and not blue then they are round.\n    We can infer that: Anne is kind and Anne is not blue \u2192 Anne is round.\n\n18. Combining steps 16 and 17: Anne is kind and Anne is not blue are equivalent to Anne is round.\n\n19. From the statement: If Charlie is cold then Charlie is quiet.\n    We can infer that: Charlie is quiet \u2192 Charlie is cold.\n\n20. From the statement: Blue people are quiet.\n    We can infer that: Charlie is blue \u2192 Charlie is quiet.\n\n21. From the statement: If Dave is kind then Dave is cold.\n    We can infer that: Dave is kind \u2192 Dave is cold.\n\n22. From the statement: If someone is round then they are green.\n    We can infer that: Anne is round \u2192 Anne is green.\n\n23. Combining steps 18 and 22: Anne is round and Anne is green are equivalent statements.\n\n24. From the statement: If someone is round then they are green.\n    We can infer that: Charlie is round \u2192 Charlie is green (from step 1).\n\n25. Combining steps 8 and 24: Charlie is round and Charlie is green are equivalent statements.\n\n26. We have a contradiction between steps 8 and 24. If Charlie is blue (from step 5), then Charlie is round (from step 10), which means Charlie is green (from step 7). However, Anne is also green (from step 23), but we don't know if Charlie is big or not. We need to resolve this.\n\n27. From the statement: Blue people are quiet.\n    We can infer that: Charlie is blue \u2192 Charlie is quiet.\n\n28. From the statement: Quiet people are round.\n    We can infer that: Charlie is quiet \u2192 Charlie is round.\n\n29. Combining steps 27 and 28: Charlie is blue and Charlie is quiet are equivalent to Charlie is round.\n\n30. From the statement: If someone is round then they are green.\n    We can infer that: Charlie is round \u2192 Charlie is green (from step 1).\n\n31. Combining steps 29 and 30: Charlie is blue and Charlie is quiet are equivalent to Charlie is round and Charlie is green.\n\n32. From the statement: All big people are blue.\n    We can infer that: Charlie is big \u2192 Charlie is blue.\n\n33. Combining steps 32 and 29: Charlie is big and Charlie is blue are equivalent to Charlie is round.\n\n34. Combining steps 33 and 31: Charlie is big and Charlie is blue are equivalent to Charlie is round and Charlie is green.\n\n35. From the statement: If Charlie is big then Charlie is not green.\n    We can infer that: Charlie is big \u2192 Charlie is not green.\n\n36. Combining steps 34 and 35: Charlie is big and Charlie is blue are equivalent to Charlie is round and Charlie is not green.\n\n37. We have a contradiction between steps 34 and 36. If Charlie is blue (from step 5), then Charlie is round (from step 10), which means Charlie is green (from step 7). However, we also have Charlie is round and Charlie is not green (from step 36). Therefore, we can't conclude that Charlie is big or not. However, we can conclude that Charlie is either big or not big.\n\n38. From the statement: If Charlie is cold then Charlie is quiet.\n    We can infer that: Charlie is quiet \u2192 Charlie is cold.\n\n39. From the statement: Blue people are quiet.\n    We can infer that: Charlie is blue \u2192 Charlie is quiet.\n\n40. From the statement: If Dave is kind then Dave is cold.\n    We can infer that: Dave is kind \u2192 Dave is cold.\n\n41. From the statement: If someone is round then they are green.\n    We can infer that: Anne is round \u2192 Anne is green.\n\n42. Combining steps 18 and 41: Anne is round and Anne is green are equivalent statements.\n\n43. From the statement: If someone is round then they are green.\n    We can infer that: Charlie is round \u2192 Charlie is green (from step 1).\n\n44. Combining steps 8 and 43: Charlie is round and Charlie is green are equivalent statements.\n\n45. We have a contradiction between steps 8 and 44. If Charlie is blue (from step 5), then Charlie is round (from step 10), which means Charlie is green (from step 7). However, Anne is also green (from step 23), but we don't know if Charlie is big or not. We need to resolve this.\n\n46. From the statement: If Charlie is cold then Charlie is quiet.\n    We can infer that: Charlie is quiet \u2192 Charlie is cold.\n\n47. From the statement: Blue people are quiet.\n    We can infer that: Charlie is blue \u2192 Charlie is quiet.\n\n48. From the statement: If Dave is kind then Dave is cold.\n    We can infer that: Dave is kind \u2192 Dave is cold.\n\n49. From the statement: If someone is round then they are green.\n    We can infer that: Anne is round \u2192 Anne is green.\n\n50. Combining steps 18 and 49: Anne is round and Anne is green are equivalent statements.\n\n51. From the statement: If someone is round then they are green.\n    We can infer that: Charlie is round \u2192 Charlie is green (from step 1).\n\n52. Combining steps 8 and 51: Charlie is round and Charlie is green are equivalent statements.\n\n53. We have a contradiction between steps 8 and 52. If Charlie is blue (from step 5), then Charlie is round (from step 10), which means Charlie is green (from step 7). However, Anne is also green (from step 23), but we don't know if Charlie is big or not. We need to resolve this.\n\n54. From the statement: Blue people are quiet.\n    We can infer that: Charlie is blue \u2192 Charlie is quiet.\n\n55. From the statement: Quiet people are round.\n    We can infer that: Charlie is quiet \u2192 Charlie is round.\n\n56. Combining steps 54 and 55: Charlie is blue and Charlie is quiet are equivalent to Charlie is round.\n\n57. From the statement: If someone is round then they are green.\n    We can infer that: Charlie is round \u2192 Charlie is green (from step 1).\n\n58. Combining steps 56 and 57: Charlie is blue and Charlie is quiet are equivalent to Charlie is round and Charlie is green.\n\n59. From the statement: All big people are blue.\n    We can infer that: Charlie is big \u2192 Charlie is blue.\n\n60. Combining steps 59 and 56: Charlie is big and Charlie is blue are equivalent to Charlie is round.\n\n61. Combining steps 60 and 58: Charlie is big and Charlie is blue are equivalent to Charlie is round and Charlie is green.\n\n62. From the statement: If Charlie is big then Charlie is not green.\n    We can infer that: Charlie is big \u2192 Charlie is not green.\n\n63. Combining steps",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know the following facts about Charlie:\n   - Charlie is blue.\n   - Charlie is round.\n\n2. From the given information, we have the following implications:\n   - If someone is round, then they are green.\n   - But we also know Charlie is blue, so we need to check if being blue affects being green.\n\n3. We have the following information about big people:\n   - If Charlie is big, then Charlie is not green.\n   - But we do not know if Charlie is big or not.\n\n4. We know the following facts about blue people:\n   - All big people are blue.\n   - Blue people are quiet.\n   - But we do not know if Charlie is big or not.\n\n5. From the given information, we have the following implications:\n   - If someone is blue, then they are quiet.\n   - If someone is quiet, then they are round.\n   - If someone is round, then they are green.\n\n6. Since Charlie is blue, and blue people are quiet, and quiet people are round, and round people are green, we can conclude that Charlie is green.\n\nHowever, we also know that if Charlie is big, then Charlie is not green. But we cannot conclude whether Charlie is big or not.\n\nSince we have two possibilities - Charlie is green or Charlie is not green - we cannot determine whether the statement \"Charlie is not green\" is true or false. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement 'Charlie is not green' is true, false, or unknown, we need to use the given information step by step.\n\n1. From the given information, we know:\n   - Charlie is blue. (Statement 3)\n   - Charlie is round. (Statement 4)\n   - If someone is round then they are green. (Statement 14)\n   - If Charlie is big then Charlie is not green. (Statement 8)\n\n   Since Charlie is blue, we also know:\n   - Blue people are quiet. (Statement 10)\n\n2. Let's find out if Charlie is big or not. If Charlie is big, then from Statement 8, Charlie is not green. But from Statement 9, All big people are blue. This means Charlie's being blue is true, but we are trying to find out if Charlie is big or not. If Charlie is not big, then we have no information about Charlie being green or not.\n\n3. Since Charlie is round, then from Statement 14, Charlie is green. This seems to be a contradiction, but we are looking for whether Charlie is not green. If Charlie is green, then the statement 'Charlie is not green' is false.\n\nHowever, we still have to consider other possible conclusions from the given information.\n\n4. If Charlie is not big (from Statement 8), then there's no direct information about Charlie being green or not, and we can't conclude if Charlie is not green or not.\n\n5. Since Charlie is round, we can also use Statement 13, which says 'If someone is kind and not blue then they are round.' This doesn't directly apply to Charlie, but we know Charlie is blue, so we can't use this statement to conclude anything about Charlie.\n\n6. From Statement 1, we know Anne is kind. And from Statement 5, we know Anne is big. Since Anne is big, we know from Statement 9 that all big people are blue. This is consistent with Statement 3, which says Charlie is blue. We still can't conclude anything about Charlie being green or not.\n\n7. From Statement 6, we know Charlie is cold. Since Charlie is blue, we know from Statement 10 that Charlie is quiet. We still can't conclude anything about Charlie being green or not.\n\n8. From Statement 7, we know Charlie is round. Since Charlie is round, we know from Statement 14 that Charlie is green. This seems to be a contradiction.\n\nHowever, from Statement 10, we know that blue people are quiet, and from Statement 6, we know Charlie is cold, which doesn't necessarily mean Charlie is quiet, but since Charlie is blue, Charlie is quiet.\n\n9. From Statement 9, we know all big people are blue. Since Anne is big and blue, and Charlie is blue, we still can't conclude anything about Charlie being green or not.\n\n10. From Statement 11, we know Dave is blue. Since Dave is blue, we know from Statement 10 that Dave is quiet. We still can't conclude anything about Charlie being green or not.\n\n11. From Statement 12, we know Fiona is kind. Since Fiona is kind, we know from Statement 13 that Fiona is round. We still can't conclude anything about Charlie being green or not.\n\n12. From Statement 13, we know if someone is kind and not blue then they are round. Since Charlie is blue, this statement doesn't apply to Charlie.\n\nHowever, from Statement 14, we know that if someone is round then they are green. Since Charlie is round, we know Charlie is green.\n\nSo, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given information into premises and conclusions, and then use the rules of logic to determine the truth of the statement \"Charlie is not green.\"\n\nPremises:\n\n1. Charlie is blue.\n2. Charlie is round.\n3. If Charlie is cold then Charlie is quiet.\n4. If Charlie is big then Charlie is not green.\n5. If Anne is kind then Anne is big.\n6. All big people are blue.\n7. Blue people are quiet.\n8. If Dave is kind then Dave is cold.\n9. If someone is round then they are green.\n10. Quiet people are round.\n11. If someone is kind and not blue then they are round.\n\nWe need to determine whether Charlie is green or not, so let's analyze the information step by step:\n\nFrom premise 2, we know that Charlie is round. From premise 9, if someone is round, then they are green. However, we also have premise 4, which states that if Charlie is big then Charlie is not green. But we don't have any information that Charlie is big. Therefore, we cannot conclude that Charlie is green based on the fact that he is round.\n\nFrom premise 1, we know that Charlie is blue. We have premise 7, which states that blue people are quiet. We also have premise 3, which states that if Charlie is cold then Charlie is quiet. But we don't have any information that Charlie is cold. Therefore, we cannot conclude that Charlie is quiet based on the fact that he is blue.\n\nNow, let's consider the statement \"Charlie is not green.\" We know that Charlie is blue (premise 1) and round (premise 2). We have premise 7, which states that blue people are quiet. We also have premise 10, which states that quiet people are round. This creates a loop: blue people are quiet (premise 7), quiet people are round (premise 10), and round people are green (premise 9). However, we also have premise 4, which states that if Charlie is big then Charlie is not green. But we don't have any information that Charlie is big.\n\nWe also know that if someone is kind and not blue then they are round (premise 11). Since we don't know if Anne is kind or not, we cannot conclude that she is round or not. But we do know that Anne is kind (premise 2) and big (premise 5). We also know that all big people are blue (premise 6). Therefore, Anne must be blue.\n\nWe also know that Dave is blue (premise 1) and kind (premise 8). Since we know that all big people are blue (premise 6), and we know that Dave is kind, we can conclude that Dave is big. But we know that if someone is kind and not blue then they are round (premise 11), and we also know that Dave is blue. Therefore, we cannot conclude that Dave is round.\n\nNow, let's consider the statement \"Charlie is not green.\" We know that Charlie is blue (premise 1) and round (premise 2). We have premise 9, which states that if someone is round then they are green. But we also have premise 4, which states that if Charlie is big then Charlie is not green. But we don't have any information that Charlie is big. However, we do know that all big people are blue (premise 6), and we know that Charlie is blue. Therefore, if Charlie is big, then he must be blue. But we also know that blue people are quiet (premise 7), and quiet people are round (premise 10). This creates a loop: blue people are quiet, quiet people are round, and round people are green.\n\nHowever, we also know that if someone is kind and not blue then they are round (premise 11). Since we don't know if Anne is kind or not, we cannot conclude that she is round or not. But we do know that Anne is kind (premise 2) and big (premise 5). We also know that all big people are blue (premise 6). Therefore, Anne must be blue.\n\nWe also know that Dave is blue (premise 1) and kind (premise 8). Since we know that all big people are blue (premise 6), and we know that Dave is kind, we can conclude that Dave is big. But we know that if someone is kind and not blue then they are round (premise 11), and we also know that Dave is blue. Therefore, we cannot conclude that Dave is round.\n\nNow, let's consider the statement \"Charlie is not green.\" We know that Charlie is blue (premise 1) and round (premise 2). We have premise 9, which states that if someone is round then they are green. However, we also have premise 4, which states that if Charlie is big then Charlie is not green. But we don't have any information that Charlie is big. However, we do know that all big people are blue (premise 6), and we know that Charlie is blue. Therefore, if Charlie is big, then he must be blue. But we also know that blue people are quiet (premise 7), and quiet people are round (premise 10). This creates a loop: blue people are quiet, quiet people are round, and round people are green.\n\nHowever, we also know that Charlie is blue (premise 1) and round (premise 2). We have premise 9, which states that if someone is round then they are green. However, we also have premise 4, which states that if Charlie is big then Charlie is not green. But we don't have any information that Charlie is big.\n\nFrom premise 11, if someone is kind and not blue then they are round. However, we know that Fiona is kind (premise 5) and not blue. Therefore, Fiona must be round.\n\nSince Fiona is round, then she must be green (premise 9).\n\nFrom premise 10, quiet people are round. Since Charlie is quiet (premise 3), then Charlie must be round.\n\nFrom premise 9, if someone is round then they are green. Therefore, Charlie must be green.\n\nBut we also know that Charlie is blue (premise 1). This is a contradiction.\n\nTherefore, the statement \"Charlie is not green\" cannot be concluded as true or false, and is therefore unknown.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to use logical deductions based on the given information. \n\nFirst, let's list down the given statements and their corresponding deductions:\n\n1. Anne is cold. \n2. Anne is kind. \n3. Charlie is blue. \n4. Charlie is round. \n5. Dave is blue. \n6. Fiona is not green. \n7. Fiona is kind. \n8. If Charlie is cold then Charlie is quiet. \n9. If Charlie is big then Charlie is not green. \n10. If Anne is kind then Anne is big. \n11. All big people are blue. \n12. Blue people are quiet. \n13. If Dave is kind then Dave is cold. \n14. If someone is round then they are green. \n15. Quiet people are round. \n16. If someone is kind and not blue then they are round.\n\nNow, let's examine the statement \"Charlie is not green.\"\n\nWe know that Charlie is round (statement 4). Using statement 14, we can deduce that since Charlie is round, Charlie is green. \n\nHowever, this directly contradicts the statement \"Charlie is not green.\" Therefore, the statement \"Charlie is not green\" is false.\n\nHowever, the given information also tells us that \"If Charlie is big then Charlie is not green.\" and \"All big people are blue.\" Given that Charlie is blue, it is possible that Charlie could be big. If Charlie is big, then it is true that Charlie is not green.\n\nBut the given information also tells us that \"If someone is round then they are green.\" and \"Quiet people are round.\" We know Charlie is round. If Charlie is quiet, then Charlie is round. And if Charlie is round, then Charlie is green.\n\nSo, Charlie can either be big and not green, or round and green. The statement \"Charlie is not green\" is false because Charlie is green. However, we can also say that \"Charlie is not green\" is unknown because we can't determine whether Charlie is big or round.\n\nBut we know that Charlie is blue. And \"Blue people are quiet.\" We also know that \"Quiet people are round.\" So Charlie is round. Since Charlie is round, we know that Charlie is green.\n\nBut \"All big people are blue.\" and \"If Charlie is big then Charlie is not green.\" So if Charlie is blue, Charlie is big. If Charlie is big, Charlie is not green.\n\nWe are left with two possibilities: Charlie is big and not green, or Charlie is round and green. The statement \"Charlie is not green\" is false because Charlie is green. However, we can also say that \"Charlie is not green\" is unknown because we can't determine whether Charlie is big or round.\n\nBut given that Charlie is blue, and \"Blue people are quiet.\" We also know that \"Quiet people are round.\" So Charlie is round. Since Charlie is round, we know that Charlie is green. And \"If Charlie is big then Charlie is not green.\" So if Charlie is big, then Charlie is not green. Since we can't determine whether Charlie is big or round, we can't determine whether Charlie is green or not green.\n\nSo, the final answer is that the statement \"Charlie is not green\" is unknown.",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\nGiven statements:\n1. Charlie is blue. \n2. Charlie is round.\n3. If Charlie is cold then Charlie is quiet. \n4. If Charlie is big then Charlie is not green. \n5. If Anne is kind then Anne is big. \n6. All big people are blue. \n7. Blue people are quiet. \n8. If Dave is kind then Dave is cold. \n9. If someone is round then they are green. \n10. Quiet people are round. \n11. If someone is kind and not blue then they are round.\n\nNow, let's evaluate the given statement \"Charlie is not green\" based on the given information.\n\nFrom statement 1, we know Charlie is blue.\nFrom statement 2, we know Charlie is round.\n\nNow, let's consider statement 9, \"If someone is round then they are green.\" This implies that since Charlie is round (statement 2), Charlie must be green (by statement 9).\n\nHowever, from statement 1, we already know that Charlie is blue. This creates a contradiction with the result we obtained from statement 9. \n\nNow, we need to find a way to resolve this contradiction.\n\nLet's analyze the conditions under which Charlie could be green.\n\nFrom statement 9, if someone is round then they are green. \nFrom statement 10, quiet people are round. \nFrom statement 7, blue people are quiet.\n\nSince Charlie is blue (statement 1), Charlie is quiet (by statement 7), and Charlie is round (statement 2). This implies that Charlie must be green (by statement 9).\n\nHowever, from statement 4, if Charlie is big then Charlie is not green. We need to determine if Charlie is big.\n\nFrom statement 6, all big people are blue. We already know Charlie is blue (statement 1), but we do not know if Charlie is big.\n\nFrom statement 5, if Anne is kind then Anne is big. We do not know if Anne is kind, but we do know that Fiona is kind (statement 5).\n\nHowever, since Charlie is blue (statement 1) and all big people are blue (statement 6), this implies that Charlie must be big.\n\nNow we have a problem. If Charlie is big, then Charlie is not green (statement 4). But from statement 9, if someone is round then they are green. Since Charlie is round (statement 2), this implies that Charlie must be green.\n\nHowever, we also have a condition that all big people are blue (statement 6), and if Charlie is big, Charlie is blue (by statement 6), and if Charlie is blue, Charlie is quiet (by statement 7), and if Charlie is quiet, Charlie is round (by statement 10).\n\nThis creates an infinite loop, and we cannot determine if Charlie is green or not. Therefore, we cannot conclude that Charlie is not green.\n\nThe final answer is \\boxed{Unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not green\" is true, false, or unknown, we'll use the given information and logical deductions.\n\n1. We are given the following premises:\n   - Charlie is blue.\n   - Charlie is round.\n   - If Charlie is round then Charlie is green.\n   - All big people are blue.\n   - Quiet people are round.\n   - If someone is round then they are green.\n   - Blue people are quiet.\n   - If someone is kind and not blue then they are round.\n\n2. We can start by analyzing the statement \"Charlie is not green.\" To do this, we'll consider the given premises that relate to Charlie.\n\n   - From the premises, we have: \n     - Charlie is blue (Premise 1).\n     - Charlie is round (Premise 2).\n     - If Charlie is round then Charlie is green (Premise 6).\n     - If Charlie is blue then Charlie is quiet (Premise 7).\n\n   - Now, let's analyze the statement \"Charlie is not green.\" We can use the premises to find a possible contradiction.\n\n   - If Charlie is round then Charlie is green (Premise 6). Since Charlie is round, this implies Charlie is green.\n   - However, we also have that Charlie is blue (Premise 1). Since blue people are quiet (Premise 7), we can conclude that Charlie is quiet.\n   - Given that quiet people are round (Premise 8), this also implies that Charlie is round, which we already know.\n\n   - At this point, we have a possible conflict between the statements \"Charlie is green\" and \"Charlie is blue.\" However, let's continue analyzing the premises to see if we can resolve this conflict.\n\n   - We are given that if Charlie is big then Charlie is not green (Premise 3). However, we do not have enough information to determine whether Charlie is big or not. This means we cannot conclude that Charlie is not green based on this premise alone.\n\n   - Now, let's analyze the statement \"Anne is kind\" and its relation to Charlie. We are given that if Anne is kind then Anne is big (Premise 4). We also know that all big people are blue (Premise 5). Since Charlie is blue (Premise 1), this implies that Charlie is big. Now we can use the premise that if Charlie is big then Charlie is not green (Premise 3).\n\n   - Since Charlie is big (from the previous deduction), we can conclude that Charlie is not green (Premise 3).\n\n3. Therefore, based on the given information and logical deductions, the statement \"Charlie is not green\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_charlie, green_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_charlie, round_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> quiet(X)",
+          "z3_formula": "Implies(blue_charlie, quiet_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_charlie, blue_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> Not(green(X))",
+          "z3_formula": "Implies(big_charlie, Not(green_charlie))",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "Not(green(charlie))",
+          "z3_formula": "Not(green_charlie) == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_charlie, green_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> not green(X)",
+          "z3_formula": "Implies(big_charlie, not green_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> all other characteristics do not matter",
+          "z3_formula": "blue_charlie == True -> big_charlie == True or big_charlie == False",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> quiet(X)",
+          "z3_formula": "Implies(blue_charlie, quiet_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> quiet(X)",
+          "z3_formula": "Implies(cold_charlie, quiet_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> not green(X)",
+          "z3_formula": "Implies(big_charlie, not green_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_charlie, green_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_charlie, round_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not green(charlie)",
+          "z3_formula": "not green_charlie == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not green(fiona)",
+          "z3_formula": "not green_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> quiet(X)",
+          "z3_formula": "Implies(cold_charlie, quiet_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> not green(X)",
+          "z3_formula": "Implies(big_charlie, not green_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_anne, big_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_X, blue_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> quiet(X)",
+          "z3_formula": "Implies(blue_X, quiet_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_X, green_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_X, round_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not blue(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_X, not blue_X), round_X)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> quiet(X)",
+          "z3_formula": "Implies(cold_charlie, quiet_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> not green(X)",
+          "z3_formula": "Implies(big_charlie, not green_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_anne, big_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_anne, blue_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> quiet(X)",
+          "z3_formula": "Implies(blue_anne, quiet_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_charlie, green_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_charlie, round_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not blue(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_anne, Not(blue_anne)), round_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> cold(X)",
+          "z3_formula": "Implies(kind_dave, cold_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_charlie, green_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> not green(X)",
+          "z3_formula": "Implies(big_charlie, Not(green_charlie))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> quiet(X)",
+          "z3_formula": "Implies(cold_charlie, quiet_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_charlie, cold_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> quiet(X)",
+          "z3_formula": "Implies(blue_charlie, quiet_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_charlie, blue_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & quiet(X)",
+          "z3_formula": "And(blue_charlie, quiet_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & quiet(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_charlie, quiet_charlie), round_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_charlie, green_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & green(X)",
+          "z3_formula": "And(round_charlie, green_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X)",
+          "z3_formula": "And(big_charlie, blue_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(big_charlie, blue_charlie), round_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> round(X) & green(X)",
+          "z3_formula": "Implies(And(big_charlie, blue_charlie), And(round_charlie, green_charlie))",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> not green(X)",
+          "z3_formula": "Implies(big_charlie, Not(green_charlie))",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> round(X) & not green(X)",
+          "z3_formula": "Implies(And(big_charlie, blue_charlie), And(round_charlie, Not(green_charlie)))",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "round(charlie) & green(charlie)",
+          "z3_formula": "And(round_charlie, green_charlie)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "big(charlie) or not big(charlie)",
+          "z3_formula": "Or(big_charlie, Not(big_charlie))",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_charlie, green_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> quiet(X)",
+          "z3_formula": "Implies(blue_charlie, quiet_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_charlie, round_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_charlie, green_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> not green(X)",
+          "z3_formula": "Implies(big_charlie, Not(green_charlie))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_charlie, big_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not green(charlie)",
+          "z3_formula": "Not(green_charlie) == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie) -> green(charlie)",
+          "z3_formula": "Implies(round_charlie, green_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) -> not green(X)",
+          "z3_formula": "Implies(big_charlie, not green_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_anne, big_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_anne, blue_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> cold(X)",
+          "z3_formula": "Implies(kind_dave, cold_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> not green(X)",
+          "z3_formula": "Implies(big_charlie, not green_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_charlie, green_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> quiet(X)",
+          "z3_formula": "Implies(blue_charlie, quiet_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_charlie, round_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not blue(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_fiona, not blue_fiona), round_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(fiona)",
+          "z3_formula": "not blue_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not green(charlie)",
+          "z3_formula": "not green_charlie == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not green(fiona)",
+          "z3_formula": "not green_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> quiet(X)",
+          "z3_formula": "Implies(cold_charlie, quiet_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> not green(X)",
+          "z3_formula": "Implies(big_charlie, not green_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_anne, big_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_X, blue_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> quiet(X)",
+          "z3_formula": "Implies(blue_X, quiet_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> cold(X)",
+          "z3_formula": "Implies(kind_dave, cold_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_X, green_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_X, round_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not blue(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_X, not blue_X), round_X)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not green(charlie)",
+          "z3_formula": "not green_charlie == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not green(charlie)",
+          "z3_formula": "not green_charlie == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "not green(charlie)",
+          "z3_formula": "not green_charlie == Unknown",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> quiet(X)",
+          "z3_formula": "Implies(cold_charlie, quiet_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> not green(X)",
+          "z3_formula": "Implies(big_charlie, not green_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_anne, big_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_charlie, blue_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> quiet(X)",
+          "z3_formula": "Implies(blue_charlie, quiet_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_charlie, round_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not blue(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_charlie, Not(blue_charlie)), round_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_charlie, green_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_anne, big_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_anne, blue_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> quiet(X)",
+          "z3_formula": "Implies(blue_anne, quiet_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_anne, round_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_anne, green_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_charlie, green_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> quiet(X)",
+          "z3_formula": "Implies(blue_charlie, quiet_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_charlie, round_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> not green(X)",
+          "z3_formula": "Implies(big_charlie, not green_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not green(charlie)",
+          "z3_formula": "not green_charlie == True",
+          "source_step": 13
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 155,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 42
+    },
+    "maxsat_stats": {
+      "satisfied": 38,
+      "excluded": 4,
+      "total_weight": 136,
+      "solve_time_ms": 2.164861187338829
+    },
+    "timing": {
+      "trace_gen_s": 24.89,
+      "extraction_s": 23.624,
+      "dedup_s": 1.0,
+      "maxsat_s": 0.005,
+      "total_s": 49.518
+    }
+  }
+}

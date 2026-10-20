@@ -1,0 +1,25 @@
+paper_key: "taubenfeld2025cisc"
+title: "Confidence Improves Self-Consistency in LLMs"
+venue: "ACL Findings 2025"
+full_text_available: false
+
+research:
+  baselines: ["standard self-consistency (unweighted majority voting)"]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "sample efficiency (paths needed)", direction: "lower_better"}
+  datasets:
+    - {name: "4 reasoning datasets (unspecified)", size: "N/A"}
+  ablation_dimensions: ["confidence scoring method", "number of sampled paths", "model choice"]
+  training_recipe: {info: "prompting-based, no training; confidence scores from model logits"}
+  method_family: "confidence-weighted self-consistency"
+
+positioning:
+  core_claim: "Weighted majority voting using model confidence scores (CISC) identifies correct answers with >40% fewer reasoning paths than standard self-consistency across 9 models and 4 datasets"
+  key_results: ">40% reduction in sampled paths on average; outperforms standard self-consistency across 9 models and 4 datasets"
+  limitations: ["N/A"]
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

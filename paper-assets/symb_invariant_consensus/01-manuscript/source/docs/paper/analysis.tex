@@ -1,0 +1,106 @@
+\section{Analysis}
+\label{sec:analysis}
+
+\subsection{Symbolic Confirmation Bias}
+\label{sec:confirmation-bias}
+
+\looseness=-1 Self-extracted constraints systematically align with the model's majority answer. On Mistral-7B FOLIO, when SICA errs, 83.3\% of constraints support the incorrect answer (bias ratio $4.97\times$; Table~\ref{tab:cross-model-bias}), and 94\% of errors overlap with SC. MAX-SAT produces answers identical to count-only aggregation on ${\geq}99\%$ of problems (Table~\ref{tab:alpha-ablation}); the formal verification layer is thus vacuous (Eq.~\ref{eq:degenerate}). A permutation test confirms BR reflects trace-count geometry, not extraction bias (Appendix~\ref{app:br-permutation}); controls rule out answer leakage (Appendix~\ref{app:per-trace-separation}).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Symbolic confirmation bias across nine models on FOLIO ($n{=}204$). BR: mean per-problem bias ratio. All models exhibit $\text{BR} > 1$. Ext.: $^a$self-extraction; $^b$cross-model (Mistral-7B extracts FOL from target traces). $^*$Interim ($n{=}95$). $^\dagger$$n{=}196$ (8 API failures excluded). $^\ddagger$$n{=}161$ (43 API failures excluded).}
+\label{tab:frontier-scb}
+\resizebox{\columnwidth}{!}{\begin{tabular}{@{}llrrrr@{}}
+\toprule
+Model & Ext. & SC (\%) & $n_\text{err}$ & BR & $\Delta$ (pp) \\
+\midrule
+Mistral-7B & $^a$ & 55.88 & 90 & 4.97 & 0.00 \\
+LLaMA-3.1-8B & $^a$ & --- & --- & 3.87 & --- \\
+Qwen2.5-14B & $^a$ & 75.98 & 49 & 3.93 & $-$0.49 \\
+\addlinespace
+R1-Distill-8B & $^b$ & 74.51 & 52 & 2.92 & $+$2.45 \\
+gpt-4o$^\ddagger$ & $^a$ & 73.91 & 42 & 2.94 & $-$1.86 \\
+gpt-4.1 & $^b$ & 82.84 & 35 & 2.70 & $-$1.47 \\
+gpt-5.5 & $^b$ & 84.31 & 32 & 3.48 & $+$0.49 \\
+o3$^\dagger$ & $^b$ & 82.65 & 34 & 1.66 & 0.00 \\
+Gemini-2.5-Pro$^*$ & $^b$ & 87.37 & 12 & 2.79 & $-$1.05 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\looseness=-1 The pattern generalizes beyond locally-run models. Table~\ref{tab:frontier-scb} reports SCB across nine models spanning 7B open-source to frontier closed-source, all exhibiting $\text{BR} > 1$. Open-source models use self-extraction; frontier models use cross-model extraction (Mistral-7B extracts FOL from target traces). The bias also holds across all cells of a $2{\times}2$ generator${\times}$extractor matrix (Appendix~\ref{app:2x2}).
+
+\smallskip\noindent
+\textbf{Observation 1} \textit{(Argmax Preservation).}\;%
+Let $t_1, \ldots, t_K \overset{\mathrm{i.i.d.}}{\sim} P_M(\cdot \mid q)$ with trace-determined answers $a_i = h(t_i)$ and $n_a = |\{i : a_i = a\}|$.
+Under (i)~the degeneration condition $|\mathcal{C}^{\setminus}| \approx 0$ (Eq.~\ref{eq:degenerate}), (ii)~source-attribution scoring where $\sigma(c,a) {=} 1$ iff $c$ originates from a trace producing $a$ (Eq.~\ref{eq:score}), and (iii)~approximately uniform constraint yield per trace, SICA reduces to majority vote: $\arg\max_a \operatorname{score}(a) = \arg\max_a n_a$.
+Put simply: the entire symbolic layer---Z3 solving, satisfiability checking, constraint weighting---adds no information beyond what a simple vote count already provides.
+
+\smallskip\noindent
+\textit{Empirical support.}\;%
+Z3 rejection rate $|\mathcal{C}^{\setminus}|/|\mathcal{C}| \approx 0.034$ confirms $|\mathcal{C}^{\setminus}| \approx 0$. Per-trace yield averages $5.6$--$6.0$ constraints across answer groups (CV${=}0.26$; Appendix~\ref{app:yield-cv}); weight is thus proportional to $n_a$. SICA and majority vote agree on 96.1\% of problems for Qwen2.5-14B ($n{=}804$; Table~\ref{tab:ablation}) and over 90\% across all conditions. Per-trace separation analysis confirms the extraction function is neutral (constraint density and quality are balanced across answer groups), and source-attribution scoring is the sole mechanism transmitting CoT correlation into verification (Appendix~\ref{app:per-trace-separation}).
+
+\looseness=-1 A representative discordant case illustrates the mechanism. On a ProofWriter chaining problem (White$\to$Round$\to$Young), SC correctly breaks a 6:6 vote tie to the gold label. SICA extracts 17 constraints; MAX-SAT excludes 2 that capture correct intermediate derivations present \emph{only} in correct-answer traces, penalizing the complete reasoning chain and selecting the wrong answer. Of 31 discordant problems ($n{=}804$), all occur at exact or near vote ties (entropy $\geq 0.92$), and constraint exclusion tips the balance in either direction with no systematic corrective tendency (Appendix~\ref{app:case-studies}).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\columnwidth]{figures/fig3_process_kappa_scatter.pdf}
+\caption{Answer agreement vs.\ CoT cosine similarity (Mistral-7B, FOLIO, $n{=}204$). Flat regression ($r = -0.06$, $p = 0.36$): process and answer independence are uncorrelated.}
+\label{fig:process-kappa}
+\end{figure}
+
+\label{sec:process-kappa}
+\looseness=-1 The $M{\to}T{\to}(A,C)$ generation structure provides empirical motivation \citep{cover2006elements}: under degeneration (Observation~1), constraints carry no more task-relevant information than answers alone, i.e., $I(C;\, Y) \leq I(A;\, Y)$ where $Y$ is the ground-truth label (Figure~\ref{fig:causal-dag}). Process-level overlap compounds the bottleneck: mean reasoning similarity reaches $0.69$, far exceeding answer-level $\kappa$ ($0.41$--$0.51$; Figure~\ref{fig:process-kappa}), and SICA gain decreases monotonically with process similarity ($\rho = -1.0$, $p = 0.0083$; Appendix~\ref{app:cil}).
+
+\subsection{Why Remediation Fails}
+\label{sec:remediation}
+\label{sec:interventions}
+
+\looseness=-1 All 27 training-free variants spanning four categories produce neutral-to-negative results (Figure~\ref{fig:kappa-accuracy}; Appendices~\ref{app:extraction}--\ref{app:entropy}); a persistent independence--accuracy trade-off emerges. Diversity-seeking strategies shift $K_\text{eff}$ by $< 0.5$; constraint-level interventions leave degeneration intact; debate ($\kappa = 0.15$, $\Delta = -18.63$\,pp) breaks correlation but collapses accuracy (Appendix~\ref{app:error-categorization}); cross-model extraction achieves the lowest non-destructive $\kappa$ (${\approx}0.40$--$0.47$) but remains above the independence threshold ($+0.49$\,pp, n.s.; Appendix~\ref{app:intervention-individual}).
+
+\looseness=-1 The root cause is \emph{variable isolation}: each trace generates constraints with its own variable names, so Z3 treats identically-intended propositions from different traces as unrelated symbols. Among cross-answer constraint pairs, 56.4\% share zero Z3 variables, making them trivially jointly satisfiable. Consequently, although 91.8\% of constraints are technically discriminative (producing different satisfiability outcomes for different candidate answers), this discrimination merely mirrors the model's answer distribution rather than providing independent corrective signal (Appendix~\ref{app:extraction}).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Cross-generator NLI escape with DeBERTa-large-mnli verifier (55.00\% standalone, ProofWriter $n{=}600$). Combo (SC + NLI ensemble) gain decreases monotonically with generator capability.}
+\label{tab:cross_generator_nli}
+\resizebox{\columnwidth}{!}{\begin{tabular}{@{}llcccc@{}}
+\toprule
+Generator & Family & SC & Gap & Combo $\Delta$ ($w{=}3$) & $p$ \\
+\midrule
+Mistral-7B & Mistral & 39.33\% & $+$15.67 & $+$6.67\,pp & $<$0.001 \\
+LLaMA-3.1-8B & LLaMA & 72.50\% & $-$17.50 & $+$0.83\,pp & 0.665 \\
+Qwen2.5-14B & Qwen & 74.00\% & $-$19.00 & $+$0.67\,pp & 0.503 \\
+Qwen3-14B & Qwen & 85.83\% & $-$30.83 & $+$0.50\,pp & 0.453 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\subsection{Diagnostic Framework}
+\label{sec:diagnostic-framework}
+\label{sec:diagnostics}
+
+\looseness=-1 Three lightweight diagnostics predict the outcome of any self-extraction-based aggregation from a $K{=}12$ pilot run: (1)~degenerate-regime indicator $C_0 < 5\%$ (SICA reduces to SC); (2)~diversity floor $K_\text{eff} \leq 1.30$ (insufficient vote diversity); (3)~bias ratio BR combined with SC regime. These boundaries correctly characterize failure modes across all 60 tested conditions within the self-extraction paradigm (Appendix~\ref{app:failure-modes}).
+
+\looseness=-1 Three distinct failure modes correspond to these regimes. \textbf{Type~A} (SC $\geq 60\%$): strong models produce consistent traces whose constraints mirror the answer distribution; MAX-SAT excludes few clauses ($|\mathcal{C}^{\setminus}| \approx 0$) and scoring degenerates to weighted vote counting (Eq.~\ref{eq:degenerate}). \textbf{Type~C} (SC $\leq 40\%$): the majority of traces reach incorrect answers; constraints extracted from wrong traces encode incorrect reasoning as formal rules, and Z3 preferentially satisfies these wrong constraints, amplifying errors ($-2.83$\,pp for Mistral-7B on ProofWriter). An intermediate band (40--60\% SC) contains the only positive trends, but none reach significance. Entropy decomposition confirms this structure: on low-entropy problems (majority count $\geq 9/12$), $\Delta \approx 0$\,pp uniformly---constraints carry no information beyond the majority vote. On high-entropy problems (majority $\leq 8$), the effect direction depends on the SC regime: intermediate-SC yields $\Delta$ up to $+12.8$\,pp, while Type~A and Type~C produce negative effects ($-8.2$ and $-4.9$\,pp; Appendix~\ref{app:entropy}).
+
+\looseness=-1 Decision boundaries were derived from Mistral-7B and Qwen2.5-14B and validated prospectively on held-out generators (LLaMA-3.1-8B, Qwen3-14B), correctly predicting Type~A bias ($\Delta = -4.41$\,pp) and non-significance ($\Delta \leq +1.47$\,pp). Conversely, when diagnostics detect sufficient capability gap (\S\ref{sec:cross-arch}), the framework correctly predicts positive gain ($+6.67$\,pp for Mistral-7B on ProofWriter). The three diagnostics thus enable practitioners to rule out self-extraction pipelines before full-scale deployment (Appendix~\ref{app:diagnostic-toolkit}).
+
+\subsection{Cross-Architecture Escape}
+\label{sec:cross-arch}
+
+\looseness=-1 No training-free self-extraction method escapes the distributional prior (\S\ref{sec:remediation}). We test whether a structurally independent verifier can break the bottleneck using DeBERTa-large \citep{he2021deberta} (406M, encoder-only), fine-tuned on MultiNLI \citep{williams2018mnli} for natural language inference (NLI). Each NLI-supporting vote counts $w$ times alongside SC's $K$ votes.
+
+\looseness=-1 DeBERTa alone achieves 49.51\% on FOLIO and 55.00\% on ProofWriter. Combo $w{=}3$ yields $+6.67$\,pp on ProofWriter for Mistral-7B ($p < 0.001$, significant after BH correction) and $+2.94$\,pp on FOLIO (n.s.); all generators with SC $\geq 72\%$ show no significant improvement ($\Delta \leq +1.47$\,pp). Same-model SICA \emph{degrades} ProofWriter ($-2.83$\,pp; Table~\ref{tab:main_results}); corrective signal must therefore originate outside the model's distribution. The escape generalizes across NLI architectures: three verifiers (DeBERTa, RoBERTa \citep{liu2019roberta}, BART \citep{lewis2020bart}, all fine-tuned on MultiNLI) produce significant gains at $w{=}3$ ($+6.67$, $+4.17$, $+5.17$\,pp; 10 of 15 verifier${\times}$weight conditions survive BH correction; Appendix~\ref{app:multi-nli}), confirming that structural independence, not model-specific properties, drives the effect.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\columnwidth]{figures/capability_gap_scatter}
+\caption{Combo gain vs.\ capability gap (verifier standalone $-$ generator SC) at $w{=}3$ across three NLI architectures. Significant gains occur only when the generator falls below the verifier's standalone accuracy. Stars: domain-adapted DeBERTa (Appendix~\ref{app:finetuned-nli}).}
+\label{fig:capability-gap}
+\end{figure}
+
+\looseness=-1 Across 108 conditions, gain decreases monotonically with generator accuracy (Table~\ref{tab:cross_generator_nli}; Figure~\ref{fig:capability-gap}), a preliminary \emph{capability-gap pattern} ($\rho = 1.0$, $p = 0.003$; exploratory, $n{=}6$). Fine-tuning extends gains to generators with SC up to ${\sim}$72\% (Appendix~\ref{app:finetuned-nli}). Cross-model LLM voting degrades strong generators while NLI never does; structural independence drives the escape (Appendices~\ref{app:cross-model-ablation},~\ref{app:drc}).
+

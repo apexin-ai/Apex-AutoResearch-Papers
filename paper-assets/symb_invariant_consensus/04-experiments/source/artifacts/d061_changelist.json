@@ -1,0 +1,407 @@
+{
+  "changes": [
+    {
+      "file": "appendix.tex",
+      "line": 718,
+      "current": "39.17",
+      "target": "39.33",
+      "context": "Mistral-7B & PW-D5 & 0.21 & 3.62 & 39.17 & $\\mathbf{-2.83}${*}",
+      "category": "D-39.17-cascade"
+    },
+    {
+      "file": "appendix.tex",
+      "line": 743,
+      "current": "39.17",
+      "target": "39.33",
+      "context": "Mistral-7B & PW-D5 & 0.21 & 3.62 & 39.17",
+      "category": "D-39.17-cascade"
+    },
+    {
+      "file": "appendix.tex",
+      "line": 875,
+      "current": "39.17\\%",
+      "target": "39.33\\%",
+      "context": "\\multirow{3}{*}{PW-D5} & SC only & 39.17\\% & 0/600 & 0\\% & ---",
+      "category": "D-39.17-cascade"
+    },
+    {
+      "file": "appendix.tex",
+      "line": 892,
+      "current": "SC $= 39.17\\%$",
+      "target": "SC $= 39.33\\%$",
+      "context": "caption: Cross-architecture NLI combo on ProofWriter depth-5 ($n{=}600$, Mistral-7B traces, SC $= 39.17\\%$)",
+      "category": "D-39.17-cascade"
+    },
+    {
+      "file": "appendix.tex",
+      "line": 948,
+      "current": "SC 39.17\\%",
+      "target": "SC 39.33\\%",
+      "context": "Significant gains are observed only for Mistral-7B (SC 39.17\\%, below the verifier)",
+      "category": "D-39.17-cascade"
+    },
+    {
+      "file": "appendix.tex",
+      "line": 965,
+      "current": "SC\\,39.17\\%, gap\\,$+$15.83",
+      "target": "SC\\,39.33\\%, gap\\,$+$15.67",
+      "context": "{\\scriptsize SC\\,39.17\\%, gap\\,$+$15.83} in Mistral-7B shortstack label",
+      "category": "D-39.17-cascade"
+    },
+    {
+      "file": "appendix.tex",
+      "line": 1001,
+      "current": "SC\\,39.17\\%",
+      "target": "SC\\,39.33\\%",
+      "context": "{\\scriptsize SC\\,39.17\\%} in Mistral-7B shortstack label (fine-tuned NLI table)",
+      "category": "D-39.17-cascade"
+    },
+    {
+      "file": "solutions.tex",
+      "line": 12,
+      "current": "SC 39.17\\%",
+      "target": "SC 39.33\\%",
+      "context": "only Mistral-7B (SC 39.17\\%, below the verifier) gains significantly",
+      "category": "D-39.17-cascade"
+    },
+    {
+      "file": "solutions.tex",
+      "line": 23,
+      "current": "39.17\\% & $+$15.83 & $+$7.00\\,pp",
+      "target": "39.33\\% & $+$15.67 & $+$6.67\\,pp",
+      "context": "Mistral-7B & Mistral & 39.17\\% & $+$15.83 & $+$7.00\\,pp & $<$0.001",
+      "category": "D-39.17-cascade"
+    },
+    {
+      "file": "appendix.tex",
+      "line": 898,
+      "current": "$+$1.17",
+      "target": "$+$0.83",
+      "context": "DeBERTa-MNLI & 55.00\\% & 1 & $+$1.17 & n.s.",
+      "category": "E-DeBERTa-delta"
+    },
+    {
+      "file": "appendix.tex",
+      "line": 899,
+      "current": "$+$7.00",
+      "target": "$+$6.67",
+      "context": " & & 3 & $+$7.00 & ${<}0.001${***}",
+      "category": "E-DeBERTa-delta"
+    },
+    {
+      "file": "appendix.tex",
+      "line": 900,
+      "current": "$+$11.17",
+      "target": "$+$11.00",
+      "context": " & & 5 & $+$11.17 & ${<}0.001${***}",
+      "category": "E-DeBERTa-delta"
+    },
+    {
+      "file": "appendix.tex",
+      "line": 966,
+      "current": "40.33 & $+$1.17",
+      "target": "40.17 & $+$0.83",
+      "context": "& 1 & 40.33 & $+$1.17 & .189 & .630 (BH combo table, Mistral w=1)",
+      "category": "E-DeBERTa-delta"
+    },
+    {
+      "file": "appendix.tex",
+      "line": 967,
+      "current": "46.17 & $+$7.00",
+      "target": "46.00 & $+$6.67",
+      "context": "& 3 & 46.17 & $+$7.00 & $5.0{\\times}10^{-6}$ (BH combo table, Mistral w=3)",
+      "category": "E-DeBERTa-delta"
+    },
+    {
+      "file": "appendix.tex",
+      "line": 968,
+      "current": "$+$11.17",
+      "target": "$+$11.00",
+      "context": "& 5 & 50.33 & $+$11.17 & $6.2{\\times}10^{-7}$ (BH combo table, Mistral w=5; combo stays 50.33)",
+      "category": "E-DeBERTa-delta"
+    },
+    {
+      "file": "solutions.tex",
+      "line": 9,
+      "current": "$+7.00$\\,pp",
+      "target": "$+6.67$\\,pp",
+      "context": "combo $w{=}3$ yields a significant gain only for Mistral-7B ($+7.00$\\,pp, $p < 0.001$)",
+      "category": "E-narrative-7.00"
+    },
+    {
+      "file": "solutions.tex",
+      "line": 12,
+      "current": "$+7.00$\\,pp",
+      "target": "$+6.67$\\,pp",
+      "context": "gains significantly ($+7.00$\\,pp, $p < 0.001$); all three generators",
+      "category": "E-narrative-7.00"
+    },
+    {
+      "file": "abstract.tex",
+      "line": 8,
+      "current": "$+7.00$\\,pp",
+      "target": "$+6.67$\\,pp",
+      "context": "Cross-architecture NLI verification escapes the bottleneck ($+7.00$\\,pp zero-shot on the weakest generator",
+      "category": "E-narrative-7.00"
+    },
+    {
+      "file": "introduction.tex",
+      "line": 28,
+      "current": "$+7.00$\\,pp",
+      "target": "$+6.67$\\,pp",
+      "context": "zero-shot DeBERTa NLI yields $+7.00$\\,pp on Mistral-7B ProofWriter ($p < 0.001$)",
+      "category": "E-narrative-7.00"
+    },
+    {
+      "file": "figures/gen_capability_gap_scatter.py",
+      "line": 35,
+      "current": "(15.83,  7.00, 'Mistral-7B\\n(ProofWriter)')",
+      "target": "(15.67,  6.67, 'Mistral-7B\\n(ProofWriter)')",
+      "context": "DeBERTa-MNLI primary data point for Mistral-7B PW-D5",
+      "category": "G-scatter-plot"
+    },
+    {
+      "file": "figures/gen_capability_gap_scatter.py",
+      "line": 134,
+      "current": "(15.83,  7.00, 'Mistral-7B\\nPW-D5', (-6, 5), 'right')",
+      "target": "(15.67,  6.67, 'Mistral-7B\\nPW-D5', (-6, 5), 'right')",
+      "context": "annotation config for Mistral-7B PW-D5 point",
+      "category": "G-scatter-plot"
+    }
+  ],
+  "potential_cascading_changes": [
+    {
+      "file": "appendix.tex",
+      "line": 902,
+      "current_value": "$-$0.17",
+      "reason": "RoBERTa w=1 Δ on Mistral PW-D5: SC baseline changed, combo accuracy may also change. Target value not specified.",
+      "category": "E-RoBERTa-BART-delta"
+    },
+    {
+      "file": "appendix.tex",
+      "line": 903,
+      "current_value": "$+$4.17",
+      "reason": "RoBERTa w=3 Δ on Mistral PW-D5: SC baseline changed. Target value not specified.",
+      "category": "E-RoBERTa-BART-delta"
+    },
+    {
+      "file": "appendix.tex",
+      "line": 904,
+      "current_value": "$+$4.33",
+      "reason": "RoBERTa w=5 Δ on Mistral PW-D5: SC baseline changed. Target value not specified.",
+      "category": "E-RoBERTa-BART-delta"
+    },
+    {
+      "file": "appendix.tex",
+      "line": 906,
+      "current_value": "0.00",
+      "reason": "BART w=1 Δ on Mistral PW-D5: SC baseline changed. Target value not specified.",
+      "category": "E-RoBERTa-BART-delta"
+    },
+    {
+      "file": "appendix.tex",
+      "line": 907,
+      "current_value": "$+$5.17",
+      "reason": "BART w=3 Δ on Mistral PW-D5: SC baseline changed. Target value not specified.",
+      "category": "E-RoBERTa-BART-delta"
+    },
+    {
+      "file": "appendix.tex",
+      "line": 908,
+      "current_value": "$+$6.33",
+      "reason": "BART w=5 Δ on Mistral PW-D5: SC baseline changed. Target value not specified.",
+      "category": "E-RoBERTa-BART-delta"
+    },
+    {
+      "file": "appendix.tex",
+      "line": 946,
+      "current_value": "combo $+5.17$\\,pp ... combo $+4.17$\\,pp",
+      "reason": "Narrative text references BART (+5.17) and RoBERTa (+4.17) combo gains for Mistral PW-D5. Target values not specified.",
+      "category": "E-RoBERTa-BART-delta"
+    },
+    {
+      "file": "appendix.tex",
+      "line": 876,
+      "current_value": "45.33\\%",
+      "reason": "DRC τ=0.7 combo accuracy: may change with D061 SC fix. Target not specified.",
+      "category": "D-DRC-cascade"
+    },
+    {
+      "file": "appendix.tex",
+      "line": 877,
+      "current_value": "46.00\\%",
+      "reason": "DRC full combo accuracy: may change with D061 SC fix. Target not specified.",
+      "category": "D-DRC-cascade"
+    },
+    {
+      "file": "appendix.tex",
+      "lines": [1002, 1003, 1004],
+      "current_values": ["+3.17 (combo 42.33)", "+13.00 (combo 52.17)", "+26.33 (combo 65.50)"],
+      "reason": "Fine-tuned DeBERTa Mistral-7B Δ values: SC baseline changed from 39.17→39.33. If combo accuracies stay the same, Δ decreases by ~0.17pp each. Target not specified.",
+      "category": "E-finetuned-delta"
+    },
+    {
+      "file": "solutions.tex",
+      "line": 32,
+      "current_value": "$+$13.00\\,pp",
+      "reason": "Fine-tuned Mistral-7B combo Δ in narrative text. If +13.00→~12.83, the '$14\\times$ amplification' calculation may also change.",
+      "category": "E-finetuned-delta"
+    },
+    {
+      "file": "figures/gen_capability_gap_scatter.py",
+      "line": 43,
+      "current_value": "(-1.50, 4.17, 'RoBERTa')",
+      "reason": "RoBERTa gap changes if SC 39.17→39.33: gap=-1.67. Gain (4.17) target unknown.",
+      "category": "G-scatter-cascading"
+    },
+    {
+      "file": "figures/gen_capability_gap_scatter.py",
+      "line": 44,
+      "current_value": "(7.00, 5.17, 'BART')",
+      "reason": "BART gap changes if SC 39.17→39.33: gap=6.83. Gain (5.17) target unknown.",
+      "category": "G-scatter-cascading"
+    },
+    {
+      "file": "figures/gen_capability_gap_scatter.py",
+      "line": 50,
+      "current_value": "(60.50, 13.00, 'Mistral-7B')",
+      "reason": "Fine-tuned DeBERTa gap changes if SC 39.17→39.33: gap=60.33. Gain (13.00) target unknown.",
+      "category": "G-scatter-cascading"
+    },
+    {
+      "file": "appendix.tex",
+      "lines": [966, 967, 968],
+      "current_values": ["p_raw .189", "p_raw 5.0e-6", "p_raw 6.2e-7"],
+      "reason": "BH table p-values for Mistral-7B DeBERTa combo may change with D061 (McNemar depends on discordant pairs). BH-adjusted p-values also cascade. Target values not specified.",
+      "category": "E-p-value-cascade"
+    },
+    {
+      "file": "abstract.tex",
+      "line": 8,
+      "current_value": "$+$13--26\\,pp",
+      "reason": "Domain-adapted range may shift if fine-tuned Mistral Δ changes from 13.00 to ~12.83 and w=5 from 26.33 to ~26.17. Would become ~13--26 or ~12.8--26.2.",
+      "category": "E-finetuned-delta"
+    },
+    {
+      "file": "introduction.tex",
+      "line": 28,
+      "current_value": "$+$13--26\\,pp",
+      "reason": "Same as abstract: domain-adapted range may shift.",
+      "category": "E-finetuned-delta"
+    }
+  ],
+  "verified_correct": [
+    {
+      "file": "diagnosis.tex",
+      "line": 30,
+      "value": "75.98 & 75.49",
+      "reason": "SC=75.98 already D061-corrected; 75.49 is SICA value (not SC), correct as-is"
+    },
+    {
+      "file": "diagnosis.tex",
+      "line": 31,
+      "value": "75.98 & 76.47",
+      "reason": "Qwen2.5-7B SC=75.98 already D061-corrected"
+    },
+    {
+      "file": "diagnosis.tex",
+      "line": 41,
+      "value": "75.98 & 89.71 & +13.73",
+      "reason": "Oracle row: SC=75.98 and Δ=+13.73 already D061-corrected"
+    },
+    {
+      "file": "diagnosis.tex",
+      "line": 16,
+      "value": "39.33",
+      "reason": "Mistral-7B PW-D5 SC already D061-corrected in main table"
+    },
+    {
+      "file": "experiments.tex",
+      "line": 46,
+      "value": "75.98 & 75.49",
+      "reason": "SC=75.98 already D061-corrected; 75.49 is SICA value, correct"
+    },
+    {
+      "file": "experiments.tex",
+      "line": 47,
+      "value": "75.98 & 76.47",
+      "reason": "Qwen2.5-7B SC=75.98 already D061-corrected"
+    },
+    {
+      "file": "experiments.tex",
+      "line": 31,
+      "value": "39.33",
+      "reason": "Mistral-7B PW-D5 SC already D061-corrected in main table"
+    },
+    {
+      "file": "experiments.tex",
+      "line": 60,
+      "value": "+29.90/+13.73pp FOLIO, +17.17pp ProofWriter",
+      "reason": "Oracle Δ values already D061-corrected"
+    },
+    {
+      "file": "abstract.tex",
+      "line": 3,
+      "value": "8+/7−, p = 1.00",
+      "reason": "Sign test already D061-corrected (was 5+/10−, p=0.30)"
+    },
+    {
+      "file": "abstract.tex",
+      "line": 7,
+      "value": "+13.73pp",
+      "reason": "Oracle Δ already D061-corrected (was +14.22)"
+    },
+    {
+      "file": "solutions.tex",
+      "line": 24,
+      "value": "LLaMA-3.1-8B $+$0.83pp p=0.665",
+      "reason": "LLaMA combo Δ already D061-corrected (was +3.33)"
+    },
+    {
+      "file": "appendix.tex",
+      "lines": [437, 683, 706, 707, 737, 738],
+      "value": "75.98",
+      "reason": "All Qwen2.5-14B/7B FOLIO SC values already 75.98 (D061-corrected)"
+    },
+    {
+      "file": "appendix.tex",
+      "line": 1103,
+      "value": "75.49",
+      "reason": "Multi-seed Qwen2.5-14B seed-42 SICA value, not SC — correct as-is"
+    },
+    {
+      "file": "appendix.tex",
+      "line": 364,
+      "value": "+13.73pp",
+      "reason": "Oracle appendix text already D061-corrected"
+    },
+    {
+      "file": "all files",
+      "value": "+14.22",
+      "reason": "No longer appears anywhere in the paper (replaced by +13.73)"
+    },
+    {
+      "file": "all files",
+      "value": "bridge case",
+      "reason": "Term does not appear in current paper — no narrative to update"
+    }
+  ],
+  "summary": {
+    "total_confirmed_changes": 21,
+    "total_potential_cascading": 17,
+    "total_verified_correct": 16,
+    "by_category": {
+      "D-39.17-cascade": 9,
+      "E-DeBERTa-delta": 6,
+      "E-narrative-7.00": 4,
+      "G-scatter-plot": 2
+    },
+    "notes": [
+      "Categories A (75.49→75.98), B (Oracle Δ), C (sign test) are already fully applied.",
+      "Category F (LLaMA bridge case) is already resolved — LLaMA Δ shows +0.83pp and no 'bridge case' text exists.",
+      "The 21 confirmed changes span 6 files: appendix.tex (15), solutions.tex (4), abstract.tex (1), introduction.tex (1).",
+      "17 potential cascading changes identified where D061 SC fix (39.17→39.33) propagates to combo Δ values, p-values, and gap computations for RoBERTa/BART/fine-tuned conditions. These require D061 recomputation output to determine exact target values.",
+      "BH table p-values (appendix.tex:966-968) may change since McNemar depends on discordant pairs; current values may still be valid if discordant pairs didn't change."
+    ]
+  }
+}

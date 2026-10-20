@@ -1,0 +1,1324 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1169_Q1",
+    "problem": "Anne is green. Anne is rough. Anne is young. Dave is cold. Dave is nice. Dave is rough. Fiona is kind. Harry is green. Harry is kind. Harry is quiet. Harry is young. Kind, quiet things are green. If Dave is kind then Dave is quiet. All kind things are young. All rough, kind things are quiet. If Anne is cold and Anne is kind then Anne is green. If something is young then it is rough. If something is green and quiet then it is cold.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is rough.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nRough($x, bool) ::: Is x rough?\nYoung($x, bool) ::: Is x young?\nCold($x, bool) ::: Is x cold?\nNice($x, bool) ::: Is x nice?\nKind($x, bool) ::: Is x kind?\nQuiet($x, bool) ::: Is x quiet?\n\nFacts:\nGreen(Anne, True) ::: Anne is green.\nRough(Anne, True) ::: Anne is rough.\nYoung(Anne, True) ::: Anne is young.\nCold(Dave, True) ::: Dave is cold.\nNice(Dave, True) ::: Dave is nice.\nRough(Dave, True) ::: Dave is rough.\nKind(Fiona, True) ::: Fiona is kind.\nGreen(Harry, True) ::: Harry is green.\nKind(Harry, True) ::: Harry is kind.\nQuiet(Harry, True) ::: Harry is quiet.\nYoung(Harry, True) ::: Harry is young.\n\nRules:\nKind($x, True) && Quiet($x, True) >>> Green($x, True) ::: Kind, quiet things are green.\nKind(Dave, True) >>> Quiet(Dave, True) ::: If Dave is kind then Dave is quiet.\nKind($x, True) >>> Young($x, True) ::: All kind things are young.\nRough($x, True) && Kind($x, True) >>> Quiet($x, True) ::: All rough, kind things are quiet.\nCold(Anne, True) && Kind(Anne, True) >>> Green(Anne, True) ::: If Anne is cold and Anne is kind then Anne is green.\nYoung($x, True) >>> Rough($x, True) ::: If something is young then it is rough.\nGreen($x, True) && Quiet($x, True) >>> Cold($x, True) ::: If something is green and quiet then it is cold.\n\nQuery:\nRough(Dave, True) ::: Dave is rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 171.0,
+      "Unknown": 186.0
+    },
+    "answer_counts": {
+      "Unknown": 5,
+      "True": 4
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Dave is rough\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\nFrom the given information:\n\n1. Dave is cold. \n2. Dave is nice. \n3. Dave is rough.\n\nWe know that:\n- If something is green and quiet then it is cold. (Rule 8)\n- All kind things are young. (Rule 5)\n- If Dave is kind then Dave is quiet. (Rule 6)\n- Kind, quiet things are green. (Rule 4)\n- If something is young then it is rough. (Rule 7)\n\nWe can deduce the following:\n\n- Since Dave is nice, Dave is kind (although \"nice\" is not explicitly defined as \"kind\", we can assume it is for this context).\n- If Dave is kind, then Dave is quiet (Rule 6).\n- Since Dave is quiet, Dave is green (Rule 4).\n- Since Dave is green and quiet, Dave is cold (Rule 8).\n\nNow, let's focus on the statement \"Dave is rough\". We have the following information:\n- Dave is rough (given statement)\n- If something is young then it is rough (Rule 7)\n- Since Dave is kind, Dave is young (Rule 5)\n- Therefore, Dave is rough (by transitive property)\n\nHowever, we have another possible conclusion:\n- Dave is cold (Rule 1)\n- Since Dave is green and quiet, Dave is cold (Rule 8)\n- If something is green and quiet then it is cold (Rule 8)\n- Since Dave is cold, and there is no other information that makes Dave cold, we cannot conclude anything about Dave being rough or not.\n\nConsidering the above analysis, we cannot determine whether the statement \"Dave is rough\" is true or false based on the given information. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is rough\" is true, false, or unknown, we need to analyze the given statements and use logical reasoning.\n\nGiven statements:\n1. Anne is green.\n2. Anne is rough.\n3. Anne is young.\n4. Dave is cold.\n5. Dave is nice.\n6. Dave is rough.\n7. Fiona is kind.\n8. Harry is green.\n9. Harry is kind.\n10. Harry is quiet.\n11. Harry is young.\n12. Kind, quiet things are green.\n13. If Dave is kind then Dave is quiet.\n14. All kind things are young.\n15. All rough, kind things are quiet.\n16. If Anne is cold and Anne is kind then Anne is green.\n17. If something is young then it is rough.\n18. If something is green and quiet then it is cold.\n\nWe can use these statements to deduce new information and ultimately determine whether Dave is rough.\n\nFrom statement 17, we know that if something is young, then it is rough. However, we don't have any information about Dave's age. So, we cannot directly conclude that Dave is rough based on this statement.\n\nNow, let's analyze statement 14, which says that all kind things are young. We don't have any information about Dave's kind nature. However, statement 5 says that Dave is nice, and statement 7 says that Fiona is kind. We cannot conclude that Dave is kind based on this information alone.\n\nHowever, statement 13 says that if Dave is kind then Dave is quiet. But we don't have any information about Dave's kind nature. Therefore, we cannot conclude that Dave is quiet.\n\nNow, let's analyze statement 6, which says that Dave is rough. However, we don't have any information that directly supports this statement.\n\nHowever, statement 15 says that all rough, kind things are quiet. We already know that Dave is rough from statement 6. But we don't know if Dave is kind or not.\n\nLet's analyze the statement 14 again, which says that all kind things are young. If Dave is kind, then Dave must be young. However, statement 17 says that if something is young then it is rough. Therefore, if Dave is kind, then Dave is young and rough.\n\nNow, let's analyze statement 6 again, which says that Dave is rough. We know that if Dave is kind, then Dave is young and rough. But we don't know if Dave is kind or not.\n\nHowever, statement 13 says that if Dave is kind then Dave is quiet. And statement 12 says that kind, quiet things are green. But we don't have any information about Dave's color.\n\nNow, let's analyze statement 18, which says that if something is green and quiet then it is cold. We already know that kind, quiet things are green from statement 12. But we don't know if Dave is kind, quiet, or green.\n\nNow, let's analyze statement 16, which says that if Anne is cold and Anne is kind then Anne is green. We know that Anne is green from statement 1, and Anne is cold from statement 4. But we don't have any information about Anne's kind nature.\n\nHowever, we know that Dave is cold from statement 4. If Dave is green, then Dave is cold from statement 18. But we don't know if Dave is green or not.\n\nHowever, statement 6 says that Dave is rough. And statement 17 says that if something is young then it is rough. If Dave is young, then Dave is rough. But we don't know if Dave is young or not.\n\nHowever, statement 11 says that Harry is young. And statement 17 says that if something is young then it is rough. But we don't have any information about Harry's rough nature.\n\nHowever, statement 12 says that kind, quiet things are green. And statement 13 says that if Dave is kind then Dave is quiet. But we don't have any information about Dave's kind nature.\n\nHowever, statement 14 says that all kind things are young. And statement 17 says that if something is young then it is rough. If Dave is kind, then Dave is young and rough. But we don't know if Dave is kind or not.\n\nHowever, statement 15 says that all rough, kind things are quiet. We already know that Dave is rough from statement 6. But we don't know if Dave is kind or not.\n\nNow, let's analyze statement 6 again, which says that Dave is rough. We know that if Dave is young, then Dave is rough from statement 17. But we don't know if Dave is young or not.\n\nHowever, statement 17 says that if something is young then it is rough. And statement 11 says that Harry is young. But we don't have any information about Harry's rough nature.\n\nHowever, statement 12 says that kind, quiet things are green. And statement 13 says that if Dave is kind then Dave is quiet. But we don't have any information about Dave's kind nature.\n\nHowever, statement 14 says that all kind things are young. And statement 17 says that if something is young then it is rough. If Dave is kind, then Dave is young and rough. But we don't know if Dave is kind or not.\n\nHowever, statement 6 says that Dave is rough. And statement 17 says that if something is young then it is rough. But we don't know if Dave is young or not.\n\nHowever, statement 17 says that if something is young then it is rough. And statement 11 says that Harry is young. But we don't have any information about Harry's rough nature.\n\nHowever, statement 15 says that all rough, kind things are quiet. We already know that Dave is rough from statement 6. But we don't know if Dave is kind or not.\n\nNow, let's analyze statement 5, which says that Dave is nice. We know that Harry is kind from statement 9. However, we don't have any information about Dave's kind nature.\n\nNow, let's analyze statement 12 again, which says that kind, quiet things are green. If Dave is kind, then Dave is quiet from statement 13. However, we don't know if Dave is kind or not.\n\nHowever, statement 13 says that if Dave is kind then Dave is quiet. And statement 12 says that kind, quiet things are green. But we don't have any information about Dave's kind nature.\n\nHowever, statement 9 says that Harry is kind. And statement 14 says that all kind things are young. And statement 17 says that if something is young then it is rough. But we don't have any information about Harry's rough nature.\n\nNow, let's analyze statement 5 again, which says that Dave is nice. We know that Fiona is kind from statement 7. However, we don't have any information about Dave's kind nature.\n\nHowever, statement 13 says that if Dave is kind then Dave is quiet. And statement 12 says that kind, quiet things are green. But we don't have any information about Dave's kind nature.\n\nHowever, statement 6 says that Dave is rough. And statement 17 says that if something is young then it is rough. But we don't know if Dave is young or not.\n\nHowever, statement 17 says that if something is young then it is rough. And statement 11 says that Harry is young. But we don't have any information about Harry's rough nature.\n\nHowever, statement 15 says that all rough, kind things are quiet. We already know that Dave is rough from statement 6. But we don't know if Dave is kind or not.\n\nHowever, statement 14 says that all kind things are young. And statement 17 says that if something is young then it is rough. If Dave is kind, then Dave is young and rough. But we don't know if Dave is kind or not.\n\nHowever, statement 13 says that if Dave is kind then Dave is quiet. And statement 12 says that kind, quiet things are green. But we don't have any information about Dave's kind nature.\n\nHowever, statement 9 says that Harry is kind. And statement 14 says that all kind things are young. And statement 17 says that if something is young then it is rough. But we don't have any information about Harry's rough nature.\n\nHowever, statement 12 says that kind, quiet things are green. And statement 13 says that if Dave is kind then Dave is quiet. But we don't have any information about Dave's kind nature.\n\nHowever, statement 17 says that if something is young then it is rough. And statement 11 says that Harry is young. But we don't have any information about Harry's rough nature.\n\nHowever, statement 15 says that all rough, kind things are quiet. We already know that Dave is rough from statement 6. But we don't know if Dave is kind or not.\n\nHowever, statement 6 says that Dave is rough. We know that Harry is rough from statement 10 and statement 11, but we don't have any information about Dave's rough nature.\n\nHowever, statement 6 says that Dave is rough. We know that if Dave is kind, then Dave is quiet from statement 13. However, we don't know if Dave is kind or not.\n\nHowever, statement 13 says that if Dave is kind then Dave is quiet. And statement 12 says that kind, quiet things are green. But we don't have any information about Dave's kind nature.\n\nHowever, statement 12 says that kind, quiet things are green. And statement 13 says that if Dave is kind then Dave is quiet. But we don't have any information about Dave's kind nature.\n\nHowever, statement 9 says that Harry is kind. And statement 14 says that",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement 'Dave is rough' is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. We know that Dave is cold.\n2. We know that Dave is nice.\n3. We know that Dave is rough.\n\nHowever, the information that 'Dave is rough' directly contradicts the statement we are trying to evaluate. \n\nTo resolve this, let's examine the other given information:\n\n- If Dave is kind, then Dave is quiet.\n- All kind things are young.\n\nWe can't determine if Dave is kind or not from the given information, but we can infer some information from other statements.\n\n- All rough, kind things are quiet. (This implies that if something is rough and kind, then it is quiet.)\n\nHowever, we don't have enough information to directly determine if Dave is rough or not. \n\nNow, let's analyze the information we have about the color green:\n\n- Anne is green.\n- Harry is green.\n- Kind, quiet things are green.\n\nWe also know that if something is young then it is rough. \n\nNow we know the following from the information given:\n\n- Harry is young.\n- Harry is kind.\n- Harry is quiet.\n- Harry is green.\n\nFrom the information given we can see that Harry is green because he is a quiet kind thing. Also, we know that if something is young, then it is rough, so Harry must be rough.\n\nHowever, we cannot directly determine if Dave is rough or not using the information provided.\n\nBut let's look at some other given information:\n\n- All rough, kind things are quiet.\n- If something is green and quiet then it is cold.\n\nFrom the information provided we can see that Dave is not a rough kind thing, because there's no evidence that Dave is kind. However, if Dave is cold then Dave must be quiet. \n\nAlso, we know that if something is young, then it is rough, so we cannot determine if Dave is rough or not.\n\nHowever, we can use another piece of information to help us:\n\n- Dave is cold.\n- If something is green and quiet then it is cold.\n\nWe cannot determine if Dave is green or not, but we can see that if Dave is cold and kind then Anne is green. However, we don't know if Dave is kind or not.\n\nNow let's analyze the information about Anne:\n\n- Anne is green.\n- Anne is rough.\n- Anne is young.\n\nFrom the information given we can see that Anne is green because she is rough and cold, however this is not a sufficient reason to conclude that all rough things are green.\n\nNow let's analyze the information about Fiona:\n\n- Fiona is kind.\n\nWe know that all kind things are young, so Fiona must be young.\n\nHowever, we still don't know if Dave is rough or not.\n\nNow let's analyze the information about Harry:\n\n- Harry is green.\n- Harry is kind.\n- Harry is quiet.\n- Harry is young.\n\nWe can see that Harry is a quiet kind thing, so he must be green.\n\nHowever, we still don't know if Dave is rough or not.\n\nNow let's look at the information given again:\n\n- All kind things are young.\n- All rough, kind things are quiet.\n\nWe can see that if something is young then it is rough, but we cannot determine if Dave is rough or not.\n\nHowever, we can use another piece of information to help us:\n\n- If something is green and quiet then it is cold.\n\nWe know that if something is young, then it is rough. We also know that Harry is young, so Harry must be rough.\n\nNow let's analyze the information about Anne:\n\n- Anne is green.\n- Anne is rough.\n- Anne is young.\n\nWe can see that Anne is green, but we cannot determine if all rough things are green.\n\nHowever, we can see that if Dave is cold then Dave must be quiet. We also know that if something is green and quiet then it is cold.\n\nNow let's look at the information given again:\n\n- Dave is cold.\n- If something is green and quiet then it is cold.\n\nWe cannot determine if Dave is green or not, but we can see that if Dave is quiet then Dave must be kind.\n\nNow let's analyze the information given:\n\n- All kind things are young.\n- All rough, kind things are quiet.\n\nWe can see that if something is young then it is rough, but we cannot determine if Dave is rough or not.\n\nHowever, we can use another piece of information to help us:\n\n- If something is green and quiet then it is cold.\n\nWe know that if something is young then it is rough. We also know that Harry is young, so Harry must be rough.\n\nNow let's analyze the information about Anne:\n\n- Anne is green.\n- Anne is rough.\n- Anne is young.\n\nWe can see that Anne is green, but we cannot determine if all rough things are green.\n\nHowever, we can see that if Dave is cold then Dave must be quiet. We also know that if something is green and quiet then it is cold.\n\nNow let's look at the information given again:\n\n- Dave is cold.\n- If something is green and quiet then it is cold.\n\nWe cannot determine if Dave is green or not, but we can see that if Dave is quiet then Dave must be kind.\n\nNow let's analyze the information given:\n\n- All kind things are young.\n- All rough, kind things are quiet.\n\nWe can see that if something is young then it is rough, but we cannot determine if Dave is rough or not.\n\nHowever, we can use another piece of information to help us:\n\n- If something is green and quiet then it is cold.\n\nWe know that if something is young then it is rough. We also know that Harry is young, so Harry must be rough.\n\nNow let's analyze the information about Anne:\n\n- Anne is green.\n- Anne is rough.\n- Anne is young.\n\nWe can see that Anne is green, but we cannot determine if all rough things are green.\n\nHowever, we can see that if Dave is cold then Dave must be quiet. We also know that if something is green and quiet then it is cold.\n\nNow let's look at the information given again:\n\n- Dave is cold.\n- If something is green and quiet then it is cold.\n\nWe cannot determine if Dave is green or not, but we can see that if Dave is quiet then Dave must be kind.\n\nNow let's analyze the information given:\n\n- All kind things are young.\n- All rough, kind things are quiet.\n\nWe can see that if something is young then it is rough, but we cannot determine if Dave is rough or not.\n\nHowever, we can use another piece of information to help us:\n\n- If something is green and quiet then it is cold.\n\nWe know that if something is young then it is rough. We also know that Harry is young, so Harry must be rough.\n\nNow let's analyze the information about Anne:\n\n- Anne is green.\n- Anne is rough.\n- Anne is young.\n\nWe can see that Anne is green, but we cannot determine if all rough things are green.\n\nHowever, we can see that if Dave is cold then Dave must be quiet. We also know that if something is green and quiet then it is cold.\n\nNow let's look at the information given again:\n\n- Dave is cold.\n- If something is green and quiet then it is cold.\n\nWe cannot determine if Dave is green or not, but we can see that if Dave is quiet then Dave must be kind.\n\nNow let's analyze the information given:\n\n- All kind things are young.\n- All rough, kind things are quiet.\n\nWe can see that if something is young then it is rough, but we cannot determine if Dave is rough or not.\n\nHowever, we can use another piece of information to help us:\n\n- If something is green and quiet then it is cold.\n\nWe know that if something is young then it is rough. We also know that Harry is young, so Harry must be rough.\n\nNow let's analyze the information about Anne:\n\n- Anne is green.\n- Anne is rough.\n- Anne is young.\n\nWe can see that Anne is green, but we cannot determine if all rough things are green.\n\nHowever, we can see that if Dave is cold then Dave must be quiet. We also know that if something is green and quiet then it is cold.\n\nNow let's look at the information given again:\n\n- Dave is cold.\n- If something is green and quiet then it is cold.\n\nWe cannot determine if Dave is green or not, but we can see that if Dave is quiet then Dave must be kind.\n\nNow let's analyze the information given:\n\n- All kind things are young.\n- All rough, kind things are quiet.\n\nWe can see that if something is young then it is rough, but we cannot determine if Dave is rough or not.\n\nHowever, we can use another piece of information to help us:\n\n- If something is green and quiet then it is cold.\n\nWe know that if something is young then it is rough. We also know that Harry is young, so Harry must be rough.\n\nNow let's analyze the information about Anne:\n\n- Anne is green.\n- Anne is rough.\n- Anne is young.\n\nWe can see that Anne is green, but we cannot determine if all rough things are green.\n\nHowever, we can see that if Dave is cold then Dave must be quiet. We also know that if something is green and quiet then it is cold.\n\nNow let's look at the information given again:\n\n- Dave is cold.\n- If something is green and quiet then it is cold.\n\nWe cannot determine if Dave is green or not, but we can see that if Dave is quiet then Dave must be kind.\n\nNow let's analyze the information given:\n\n- All kind things are young.\n- All rough, kind things are quiet.\n\nWe can see that if something is young then it is rough, but we cannot determine if Dave is rough or not.\n\nHowever, we can use another piece of information to",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and rules to determine the truth of the statement \"Dave is rough.\"\n\n1. Given statements:\n   - Anne is green\n   - Anne is rough\n   - Anne is young\n   - Dave is cold\n   - Dave is nice\n   - Dave is rough\n   - Fiona is kind\n   - Harry is green\n   - Harry is kind\n   - Harry is quiet\n   - Harry is young\n   - Kind, quiet things are green\n   - If Dave is kind then Dave is quiet\n   - All kind things are young\n   - All rough, kind things are quiet\n   - If Anne is cold and Anne is kind then Anne is green\n   - If something is young then it is rough\n   - If something is green and quiet then it is cold\n\n2. Given statement to be evaluated: Dave is rough\n\nTo determine whether the statement is true or false, let's analyze it using the given rules and statements:\n\nFrom the statement \"Dave is rough,\" we need to find evidence to support or reject it.\n\nGiven that Dave is rough, we can look for supporting or conflicting information from the given statements.\n\nFrom the statement \"All rough, kind things are quiet,\" we can infer that if something is rough, it might be kind. However, we cannot directly conclude whether Dave is kind or not, as there's no direct rule stating that all rough things are kind.\n\nHowever, from the statement \"Dave is rough\" and the rule \"If something is young then it is rough,\" we can infer that Dave is young.\n\nNow, we need to check whether this information conflicts with the existing statements about Dave.\n\nFrom the statement \"Dave is young,\" we can conclude that Dave is rough, which aligns with the initial statement.\n\nHowever, we also know that \"Dave is cold\" and \"Dave is nice.\" We need to check if there's any information about Dave being kind or quiet.\n\nFrom the rule \"If Dave is kind then Dave is quiet,\" we cannot directly conclude whether Dave is kind or quiet, as we don't have any information about Dave being kind.\n\nHowever, from the rule \"All kind things are young,\" we can infer that if Dave is kind, then Dave is young. Since we already know that Dave is young, we can conclude that Dave is kind.\n\nNow that we know that Dave is kind, we can apply the rule \"All rough, kind things are quiet,\" which implies that Dave is quiet.\n\nWe can now use the statement \"Dave is green and quiet\" to check if Dave is cold.\n\nFrom the rule \"If something is green and quiet then it is cold,\" we can infer that Dave is cold.\n\nNow, we need to check if there's any information that conflicts with the initial statement \"Dave is rough.\"\n\nWe can see that the information about Dave being rough, young, kind, quiet, and cold does not conflict with the initial statement.\n\nTherefore, we can conclude that the statement \"Dave is rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement we are trying to determine is: Dave is rough.\n2. We have the following statements:\n   - Dave is cold.\n   - Dave is nice.\n   - Dave is rough.\n   - We also have some additional information that might be relevant:\n     - If Dave is kind then Dave is quiet.\n     - All kind things are young.\n     - All rough, kind things are quiet.\n     - If something is young then it is rough.\n     - If something is green and quiet then it is cold.\n     - Anne is green.\n     - Anne is rough.\n     - Anne is young.\n     - Dave is nice.\n     - Fiona is kind.\n     - Harry is green.\n     - Harry is kind.\n     - Harry is quiet.\n     - Harry is young.\n\n3. Let's analyze the information we have:\n   - Dave is nice, but we don't have any information about Dave being kind or not.\n   - Since Dave is nice, but we don't have any information about Dave being kind or not, we can't directly apply the rule \"All kind things are young\" to Dave.\n\n4. Now, let's look at the rule \"If Dave is kind then Dave is quiet.\" Since we don't have any information about Dave being kind, we can't determine if Dave is quiet or not.\n\n5. Next, let's look at the statement \"Dave is rough.\" To determine if this is true or false, we need to see if we can derive it from the given information.\n\n6. We know that if something is young then it is rough, and we also know that all rough, kind things are quiet. However, we don't have any information about Dave being kind or young.\n\n7. We also know that Dave is cold, but that doesn't help us determine if Dave is rough or not.\n\n8. Since we can't derive the statement \"Dave is rough\" from the given information, we can conclude that the statement is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply them to determine the truth of the statement \"Dave is rough.\"\n\nGiven statements:\n1. Anne is green.\n2. Anne is rough.\n3. Anne is young.\n4. Dave is cold.\n5. Dave is nice.\n6. Dave is rough.\n7. Fiona is kind.\n8. Harry is green.\n9. Harry is kind.\n10. Harry is quiet.\n11. Harry is young.\n12. Kind, quiet things are green.\n13. If Dave is kind then Dave is quiet.\n14. All kind things are young.\n15. All rough, kind things are quiet.\n16. If Anne is cold and Anne is kind then Anne is green.\n17. If something is young then it is rough.\n18. If something is green and quiet then it is cold.\n\nNow, let's analyze the statement \"Dave is rough.\"\n\nWe have two statements about Dave being rough:\n- Statement 6: Dave is rough.\n- Statement 6 is a direct statement about Dave, but we need to verify its truth.\n\nFrom statement 6, we know Dave is rough. However, we also have statement 7: All rough, kind things are quiet. To determine the truth of statement 6, we need to analyze if Dave is kind or not.\n\nWe have two statements about Dave being kind:\n- Statement 5: Dave is nice. However, \"nice\" is not explicitly linked to \"kind\" in the given statements.\n- Statement 13: If Dave is kind then Dave is quiet.\n\nSince \"nice\" is not explicitly linked to \"kind,\" we cannot conclude that Dave is kind based on statement 5. However, statement 13 implies that if Dave is kind, then Dave is quiet.\n\nWe have statement 12: Kind, quiet things are green. This statement is relevant if we can conclude that Dave is kind and quiet.\n\nFrom statement 17: If something is young then it is rough. We know Harry is young (statement 11) and rough is not explicitly mentioned for Harry, but if we combine this with statement 15: All rough, kind things are quiet, we can't conclude that Harry is quiet based on rough alone. However, statement 15 is telling us that for something to be quiet and rough, it must also be kind.\n\nNow let's analyze Harry:\n- Statement 10: Harry is quiet.\n- Statement 8: Harry is green.\n- Statement 9: Harry is kind.\n- Statement 11: Harry is young.\n\nFrom statement 14: All kind things are young. Since Harry is kind (statement 9), we can conclude that Harry is young (statement 11).\n\nNow, let's go back to Dave. We know Dave is cold (statement 4) and Dave is nice (statement 5), but we cannot conclude that Dave is kind based on statement 5. However, if we combine statement 4 and statement 5 with statement 16: If Anne is cold and Anne is kind then Anne is green, we cannot conclude that Anne is kind.\n\nFrom statement 18: If something is green and quiet then it is cold. We know Harry is green (statement 8) and quiet (statement 10). However, this does not tell us if Dave is quiet.\n\nSince we cannot conclude that Dave is kind, we cannot conclude that Dave is quiet based on statement 13. If Dave is not quiet, then we cannot conclude that Dave is rough based on statement 15.\n\nHowever, we also have statement 6: Dave is rough. Since we cannot conclude that Dave is rough based on the other statements, the truth of statement 6 remains unknown.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we'll use a set of logical statements and rules to determine the truth value of the statement \"Dave is rough.\"\n\nGiven statements:\n1. Anne is green.\n2. Anne is rough.\n3. Anne is young.\n4. Dave is cold.\n5. Dave is nice.\n6. Dave is rough.\n7. Fiona is kind.\n8. Harry is green.\n9. Harry is kind.\n10. Harry is quiet.\n11. Harry is young.\n12. Kind, quiet things are green.\n13. If Dave is kind then Dave is quiet.\n14. All kind things are young.\n15. All rough, kind things are quiet.\n16. If Anne is cold and Anne is kind then Anne is green.\n17. If something is young then it is rough.\n18. If something is green and quiet then it is cold.\n\nThe statement we need to evaluate is: \"Dave is rough.\"\n\nTo evaluate this statement, we'll look at the given statements and rules. We see that statement 6 directly says \"Dave is rough.\" However, this statement alone might not be sufficient to determine the truth value of the statement. We need to verify the consistency of this statement with the given rules.\n\nLet's analyze the given rules and statements to see if we can derive a conclusion about Dave being rough.\n\nFrom statement 4, Dave is cold.\nFrom statement 5, Dave is nice.\nWe cannot directly determine if Dave is rough or not from these statements.\n\nHowever, we have a rule (statement 15) that says \"All rough, kind things are quiet.\" This rule implies that if Dave is rough and kind, then Dave is quiet. Since we know Dave is nice (which means kind), we can say that if Dave is rough, then Dave is quiet.\n\nNow, we need to find a way to relate \"Dave is quiet\" to \"Dave is rough.\" Unfortunately, we don't have a direct rule that says \"All quiet things are rough.\" However, we can use the given statements and rules to derive a conclusion.\n\nFrom statement 3, Anne is young, and statement 17 says \"If something is young then it is rough.\" This implies that Anne is rough. However, we cannot directly relate this to Dave being rough.\n\nHowever, statement 11 says \"Harry is young,\" and statement 17 implies that Harry is rough. This information is not helpful in determining Dave being rough.\n\nFrom statement 13, \"If Dave is kind then Dave is quiet.\" However, we don't know if Dave is kind or not from the given statements.\n\nFrom statement 14, \"All kind things are young.\" We know Dave is nice (kind), but we cannot directly determine if Dave is young or not from this statement.\n\nNow, let's look at statement 18, \"If something is green and quiet then it is cold.\" We know Harry is green and quiet (statements 8 and 10), so Harry is cold. However, this information is not helpful in determining Dave being rough.\n\nFrom statement 16, \"If Anne is cold and Anne is kind then Anne is green.\" However, we cannot determine if Anne is cold and kind from the given statements.\n\nHowever, we know that statement 12 says \"Kind, quiet things are green.\" If we can show that Dave is kind and quiet, then Dave must be green. From statement 18, if something is green and quiet then it is cold. If Dave is green and cold, then we can say that Dave is not rough.\n\nFrom statement 5, Dave is nice (kind). From statement 13, if Dave is kind then Dave is quiet. Therefore, Dave is quiet.\n\nNow, we know that Dave is quiet (from statement 13) and kind (from statement 5), so Dave is green (from statement 12). From statement 18, if something is green and quiet then it is cold. Therefore, Dave is cold.\n\nHowever, we cannot determine if Dave is rough or not from the given statements.\n\nTherefore, we can conclude that the truth value of the statement \"Dave is rough\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to use a technique called semantic tableaux or truth trees. \n\nStep 1: Analyze the given information\n- Anne is green (A1)\n- Anne is rough (A2)\n- Anne is young (A3)\n- Dave is cold (D1)\n- Dave is nice (D2)\n- Dave is rough (D3)\n- Fiona is kind (F1)\n- Harry is green (H1)\n- Harry is kind (H2)\n- Harry is quiet (H3)\n- Harry is young (H4)\n- All kind things are green (K1)\n- If Dave is kind then Dave is quiet (K2)\n- All kind things are young (K3)\n- All rough, kind things are quiet (K4)\n- If Anne is cold and Anne is kind then Anne is green (K5)\n- If something is young then it is rough (K6)\n- If something is green and quiet then it is cold (K7)\n\nStep 2: Determine the goal statement\nThe goal statement is:\nDave is rough (D3)\n\nStep 3: Create a semantic tableaux\nWe start by adding the goal statement and the premises to the tableaux.\n\n|  | A1 | A2 | A3 | D1 | D2 | D3 | F1 | H1 | H2 | H3 | H4 | K1 | K2 | K3 | K4 | K5 | K6 | K7 |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\n| 1 |  |  |  |  |  | D3 |  |  |  |  |  |  |  |  |  |  |  |  |\n\nStep 4: Apply the rules of inference\nWe can start by adding some conclusions based on the premises.\n\nFrom K6, if something is young then it is rough, and from A3, Anne is young, we can conclude that Anne is rough.\n\n|  | A1 | A2 | A3 | D1 | D2 | D3 | F1 | H1 | H2 | H3 | H4 | K1 | K2 | K3 | K4 | K5 | K6 | K7 |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\n| 1 |  | A2 | A3 |  |  | D3 |  |  |  |  |  |  |  |  |  |  |  |  |\n| 2 | A1 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |\n\nFrom K2, if Dave is kind then Dave is quiet, but we don't have any information about Dave being kind. We can add this as a separate branch.\n\n|  | A1 | A2 | A3 | D1 | D2 | D3 | F1 | H1 | H2 | H3 | H4 | K1 | K2 | K3 | K4 | K5 | K6 | K7 |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\n| 1 |  | A2 | A3 |  |  | D3 |  |  |  |  |  |  |  |  |  |  |  |  |\n| 2 | A1 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |\n| 3 |  |  |  |  |  |  |  |  |  |  |  |  | D2 |  |  |  |  |  |\n\nStep 5: Analyze the branches\nWe can see that branch 1 is inconsistent because Anne is both rough (A2) and not rough (A2) at the same time.\n\nWe can also see that branch 2 is inconsistent because Anne is green (A1) but we don't have any information about Anne being green.\n\nBranch 3 is consistent but it doesn't provide any information about Dave being rough.\n\nWe can also add that Dave is quiet from K2 and D2.\n\n|  | A1 | A2 | A3 | D1 | D2 | D3 | F1 | H1 | H2 | H3 | H4 | K1 | K2 | K3 | K4 | K5 | K6 | K7 |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\n| 1 |  | A2 | A3 |  |  | D3 |  |  |  |  |  |  |  |  |  |  |  |  |\n| 2 | A1 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |\n| 3 |  |  |  |  | D2 |  |  |  |  |  |  |  |  |  |  |  |  |  |\n\nWe can also add that Harry is quiet from H3 and H2.\n\n|  | A1 | A2 | A3 | D1 | D2 | D3 | F1 | H1 | H2 | H3 | H4 | K1 | K2 | K3 | K4 | K5 | K6 | K7 |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\n| 1 |  | A2 | A3 |  |  | D3 |  |  |  |  |  |  |  |  |  |  |  |  |\n| 2 | A1 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |\n| 3 |  |  |  |  | D2 |  |  |  |  | H3 |  |  |  |  |  |  |  |  |\n\nFrom K3, all kind things are young, and from D2, Dave is nice, we can conclude that Dave is young.\n\n|  | A1 | A2 | A3 | D1 | D2 | D3 | F1 | H1 | H2 | H3 | H4 | K1 | K2 | K3 | K4 | K5 | K6 | K7 |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\n| 1 |  | A2 | A3 |  |  | D3 |  |  |  |  |  |  |  |  |  |  |  |  |\n| 2 | A1 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |\n| 3 |  |  |  | D4 | D2 |  |  |  |  | H3 | H4 |  |  |  |  |  |  |  |\n\nFrom K4, all rough, kind things are quiet, and from D2, Dave is nice, and from D3, Dave is rough, we can conclude that Dave is quiet.\n\n|  | A1 | A2 | A3 | D1 | D2 | D3 | F1 | H1 | H2 | H3 | H4 | K1 | K2 | K3 | K4 | K5 | K6 | K7 |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\n| 1 |  | A2 | A3 |  |  | D3 |  |  |  |  |  |  |  |  |  |  |  |  |\n| 2 | A1 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |\n| 3 |  |  |  | D4 | D2 |  |  |  |  | H3 | H4 |  |  |  |  |  |  |  |\n\nWe can also add that if Anne is cold and Anne is kind then Anne is green from K5.\n\n|  | A1 | A2 | A3 | D1 | D2 | D3 | F1 | H1 | H2 | H3 | H4 | K1 | K2 | K3 | K4 | K5 | K6 | K7 |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- | ---",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is rough\" is true, false, or unknown, we'll use the given information and apply logical reasoning.\n\nFrom the given information, we have:\n\n1. Dave is nice.\n2. Dave is rough.\n3. Dave is cold.\n\nWe also have the following rules:\n\n1. All kind things are young.\n2. If Dave is kind then Dave is quiet.\n3. All rough, kind things are quiet.\n4. If something is young then it is rough.\n5. If something is green and quiet then it is cold.\n6. If Anne is cold and Anne is kind then Anne is green.\n7. Kind, quiet things are green.\n\nNow, let's examine the given information and rules to see if we can derive any new information.\n\nFrom rule 1, we know that all kind things are young. Since Dave is nice (which means kind), we can conclude that Dave is young (rule 1).\n\nFrom rule 4, we know that if something is young then it is rough. Since Dave is young, we can conclude that Dave is rough (rule 4).\n\nHowever, we have a potential contradiction. The initial information states that Dave is rough (statement 2), but we've just derived that Dave is rough from the rules. We need to check if this contradicts any other information.\n\nWe can see that the initial information and the derived information do not contradict each other. Therefore, we can conclude that the statement \"Dave is rough\" is true.\n\nHere's a summary of our reasoning:\n\n1. Dave is nice (initial information) => Dave is kind (by definition of \"nice\")\n2. Dave is kind => Dave is quiet (rule 2)\n3. Dave is quiet => Dave is green (rule 7)\n4. Dave is green and quiet => Dave is cold (rule 5)\n5. Dave is young (rule 1)\n6. Dave is young => Dave is rough (rule 4)\n\nSince we've derived that Dave is rough from the given information and rules, we can conclude that the statement \"Dave is rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is rough\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. We are given the following facts:\n   - Dave is cold.\n   - Dave is nice.\n   - Dave is rough.\n   - Fiona is kind.\n   - Harry is green.\n   - Harry is kind.\n   - Harry is quiet.\n   - Harry is young.\n   - Kind, quiet things are green.\n   - If Dave is kind then Dave is quiet.\n   - All kind things are young.\n   - All rough, kind things are quiet.\n   - If Anne is cold and Anne is kind then Anne is green. (Note: This fact is not relevant to the statement about Dave, so we can ignore it.)\n   - If something is young then it is rough. (Note: This fact is also not directly relevant to Dave, but it might be useful later.)\n   - If something is green and quiet then it is cold.\n\n2. We can start by using the fact that Dave is nice. However, we don't have a direct link between \"nice\" and \"rough.\" We can't conclude that Dave is rough based on this fact alone.\n\n3. We can also use the fact that Dave is cold. However, we don't have a direct link between \"cold\" and \"rough.\" We can't conclude that Dave is rough based on this fact alone.\n\n4. We can use the fact that Dave is nice and try to connect it to the other facts. Since all kind things are young (Fact 8), we can infer that Dave is young.\n\n5. Now we know that Dave is young. According to Fact 12, if something is young then it is rough. Therefore, we can conclude that Dave is rough.\n\nBased on our analysis, we can determine that the statement \"Dave is rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is rough\" is true, false, or unknown, we need to analyze the given information and the conditions provided.\n\n1. Dave is cold. (Given)\n2. Dave is nice. (Given)\n3. Dave is rough. (Statement to be determined)\n4. Fiona is kind. (Given)\n5. Harry is green. (Given)\n6. Harry is kind. (Given)\n7. Harry is quiet. (Given)\n8. Harry is young. (Given)\n9. Kind, quiet things are green. (Given)\n10. If Dave is kind then Dave is quiet. (Given)\n11. All kind things are young. (Given)\n12. All rough, kind things are quiet. (Given)\n13. If Anne is cold and Anne is kind then Anne is green. (Given)\n14. If something is young then it is rough. (Given)\n15. If something is green and quiet then it is cold. (Given)\n\nFrom statement 10, we can deduce that since Dave is nice (kind), then Dave must be quiet. (Given that nice implies kind)\n\nNow, let's analyze the condition given in statement 12: \"All rough, kind things are quiet.\" To apply this condition, we need to know whether Dave is kind and rough.\n\nWe already know Dave is kind from statement 2. However, we don't know yet if Dave is rough.\n\nWe have two conditions that could potentially determine whether Dave is rough:\n- Condition 12: \"All rough, kind things are quiet.\" (If Dave is kind and rough, then he is quiet)\n- Condition 14: \"If something is young then it is rough.\" (If Dave is young, then he is rough)\n\nTo determine whether Dave is rough, we need to analyze the given information about Dave.\n\nSince we don't have any direct information about Dave's age, we can't conclude whether Dave is young or not. However, we can analyze the information about Anne and Harry.\n\nFrom statement 8, we know Harry is young. And from statement 14, we know that if something is young, then it is rough. Therefore, we can conclude that Harry is rough.\n\nFrom statement 7, we know Harry is quiet. And from statement 9, we know that kind, quiet things are green. Therefore, Harry is green.\n\nFrom statement 15, we know that if something is green and quiet, then it is cold. Therefore, we can conclude that Harry is cold.\n\nNow, let's go back to Anne. From statement 1, we know Anne is cold. And from statement 3, we know Anne is rough. And from statement 11, we know that all kind things are young. However, we also know that Anne is not young (since she is rough, from statement 14), so we can conclude that Anne is not kind.\n\nHowever, we do know that Anne is green and rough. We can't directly determine whether Anne is kind or not based on the given information.\n\nWe have enough information to conclude that the statement \"Dave is rough\" is unknown.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information, we have:\n   - Dave is cold.\n   - Dave is nice.\n   - Dave is rough.\n   - If Dave is kind then Dave is quiet.\n   - All kind things are young.\n   - All rough, kind things are quiet.\n   - If Anne is cold and Anne is kind then Anne is green. (This statement doesn't directly relate to Dave, so we can ignore it for now.)\n   - If something is young then it is rough. (This statement also doesn't directly relate to Dave, so we can ignore it for now.)\n   - If something is green and quiet then it is cold. (This statement doesn't directly relate to Dave, so we can ignore it for now.)\n\n2. Since the statement \"Dave is rough\" is already given in the problem, we need to determine whether it's true or false based on the other information.\n\n3. However, we also have a statement \"All rough, kind things are quiet.\" Since Dave is rough, this statement could help us determine whether Dave is kind or not. If Dave is kind, then he must be quiet. But if Dave is not kind, then we cannot determine whether he is quiet or not.\n\n4. Now, let's analyze the statement \"If Dave is kind then Dave is quiet.\" If Dave is kind, then he must be quiet, but if Dave is not kind, then we cannot determine whether he is quiet or not.\n\n5. We also have a statement \"All kind things are young.\" If Dave is kind, then he must be young, but if Dave is not kind, then we cannot determine whether he is young or not.\n\n6. Now, we have a statement \"If something is young then it is rough.\" If Dave is young, then he must be rough. But if Dave is not young, then we cannot determine whether he is rough or not.\n\n7. However, we already know that Dave is rough. So, from the statement \"If something is young then it is rough,\" we can conclude that Dave must be young because being young is the only possible reason for being rough.\n\n8. Now, since Dave is young, he must be rough. But this is not a problem, because we already know that Dave is rough.\n\n9. Since Dave is young, and all kind things are young, we can conclude that Dave is kind.\n\n10. Since Dave is kind, he must be quiet.\n\n11. Now, we have a statement \"Dave is cold.\" And we also have a statement \"If something is green and quiet then it is cold.\" However, we don't have any information that Dave is green or quiet.\n\n12. However, we have a statement \"If Dave is kind then Dave is quiet.\" So, we can conclude that Dave is quiet.\n\n13. Now, we have a statement \"If something is green and quiet then it is cold.\" Since Dave is quiet, this statement could help us determine whether Dave is green or not. But we don't have any information that Dave is green.\n\n14. However, we have a statement \"Anne is green.\" We also have a statement \"If Anne is cold and Anne is kind then Anne is green.\" But we don't have any information that Anne is cold or kind.\n\n15. Since Dave is kind, and all kind things are young, we can conclude that Dave is young.\n\n16. Since Dave is young, and all rough, kind things are quiet, we can conclude that Dave is quiet.\n\n17. Since Dave is quiet, and something is green and quiet then it is cold, we cannot determine whether Dave is green or not.\n\n18. However, we have a statement \"Harry is green.\" We also have a statement \"Harry is kind.\" We also have a statement \"Harry is quiet.\" Since Dave is kind, and all kind things are young, we can conclude that Dave is young. And since all young things are rough, we can conclude that Dave is rough.\n\n19. So, from the statement \"Harry is green,\" \"Harry is kind,\" and \"Harry is quiet,\" we can conclude that something is green and quiet then it is cold. And we also have a statement \"Dave is cold.\" However, we cannot determine whether Dave is green or not.\n\n20. Since Dave is kind, and all kind things are young, we can conclude that Dave is young.\n\n21. Since Dave is young, and all young things are rough, we can conclude that Dave is rough.\n\n22. Now, we can conclude that the statement \"Dave is rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(green_dave, quiet_dave), cold_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_dave, young_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_dave, quiet_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & quiet(X) -> green(X)",
+          "z3_formula": "Implies(And(kind_dave, quiet_dave), green_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_dave, rough_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_X, rough_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_X, young_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_X, quiet_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & quiet(X) -> green(X)",
+          "z3_formula": "Implies(And(kind_X, quiet_X), green_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(eats_X_squirrel, red_squirrel)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(cold_X, kind_X), green_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(green_X, quiet_X), cold_X)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_dave, quiet_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_dave, young_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_dave, kind_dave), quiet_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(green_dave, quiet_dave), cold_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & quiet(X) -> green(X)",
+          "z3_formula": "Implies(And(kind_harry, quiet_harry), green_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_dave, quiet_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_dave, young_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_dave, kind_dave), quiet_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(cold_anne, kind_anne), green_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_dave, rough_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(green_dave, quiet_dave), cold_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_dave, quiet_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_dave, young_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_dave, kind_dave), quiet_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_dave, rough_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(green_harry, quiet_harry), cold_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & quiet(X) -> green(X)",
+          "z3_formula": "Implies(And(kind_harry, quiet_harry), green_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_dave, quiet_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_harry, young_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_harry, kind_harry), quiet_harry)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == Unknown",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & quiet(X) -> green(X)",
+          "z3_formula": "Implies(And(kind_harry, quiet_harry), green_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_dave, quiet_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_dave, young_dave)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_dave, kind_dave), quiet_dave)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(cold_anne, kind_anne), green_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_anne, rough_anne)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(green_harry, quiet_harry), cold_harry)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_anne, rough_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_harry, green_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_harry, young_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_harry, kind_harry), quiet_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(cold_anne, kind_anne), green_anne)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_dave, young_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_dave, kind_dave), quiet_dave)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_dave, young_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_dave, quiet_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_dave, kind_dave), quiet_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_dave, rough_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(green_dave, quiet_dave), cold_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(cold_dave, kind_dave), green_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & quiet(X) -> green(X)",
+          "z3_formula": "Implies(And(kind_dave, quiet_dave), green_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & quiet(X) -> green(X)",
+          "z3_formula": "Implies(And(kind_harry, quiet_harry), green_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_dave, quiet_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_dave, young_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_dave, kind_dave), quiet_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_dave, rough_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(green_harry, quiet_harry), cold_harry)",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & quiet(X) -> green(X)",
+          "z3_formula": "Implies(And(kind_harry, quiet_harry), green_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_dave, quiet_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_anne, young_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_dave, kind_dave), quiet_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_harry, rough_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(green_harry, quiet_harry), cold_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == False",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == False",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == Unknown",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_dave, quiet_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_dave, young_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_dave, kind_dave), quiet_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 16
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 199,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 45
+    },
+    "maxsat_stats": {
+      "satisfied": 43,
+      "excluded": 2,
+      "total_weight": 197,
+      "solve_time_ms": 1.2119514867663383
+    },
+    "timing": {
+      "trace_gen_s": 25.084,
+      "extraction_s": 31.895,
+      "dedup_s": 1.714,
+      "maxsat_s": 0.004,
+      "total_s": 58.697
+    }
+  }
+}

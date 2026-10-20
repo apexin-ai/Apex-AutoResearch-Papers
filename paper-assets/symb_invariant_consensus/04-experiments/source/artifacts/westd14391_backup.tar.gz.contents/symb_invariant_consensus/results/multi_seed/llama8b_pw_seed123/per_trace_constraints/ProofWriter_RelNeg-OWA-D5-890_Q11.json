@@ -1,0 +1,1344 @@
+{
+  "pid": "ProofWriter_RelNeg-OWA-D5-890_Q11",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, cow)",
+          "z3_formula": "needs_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & needs(X, bald_eagle) -> round(bald_eagle)",
+          "z3_formula": "Implies(And(round_cow, needs_bald_eagle_cow), round_bald_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, rabbit)",
+          "z3_formula": "likes_bald_eagle_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & needs(X, bald_eagle) -> round(bald_eagle)",
+          "z3_formula": "Implies(And(round_cow, needs_bald_eagle_cow), round_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, cow)",
+          "z3_formula": "visits_mouse_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> blue(X)",
+          "z3_formula": "Implies(likes_mouse_cow, blue_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> likes(X, cow)",
+          "z3_formula": "Implies(visits_X_mouse, likes_X_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, cow)",
+          "z3_formula": "visits_mouse_cow == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & blue(X) -> needs(mouse, rabbit)",
+          "z3_formula": "Implies(And(likes_X_mouse, blue_X), needs_mouse_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> likes(bald_eagle, X)",
+          "z3_formula": "Implies(needs_X_bald_eagle, likes_bald_eagle_X)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, rabbit)",
+          "z3_formula": "likes_bald_eagle_rabbit == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> likes(bald_eagle, X)",
+          "z3_formula": "Implies(needs_X_bald_eagle, likes_bald_eagle_X)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & likes(bald_eagle, Y) -> visits(bald_eagle, X)",
+          "z3_formula": "Implies(And(visits_X_bald_eagle, likes_bald_eagle_Y), visits_bald_eagle_X)",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, cow)",
+          "z3_formula": "visits_mouse_cow == True",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & blue(X) -> needs(mouse, rabbit)",
+          "z3_formula": "Implies(And(likes_X_mouse, blue_X), needs_mouse_rabbit)",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> blue(X)",
+          "z3_formula": "Implies(visits_X_mouse, blue_X)",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> not(visits(X, bald_eagle))",
+          "z3_formula": "Implies(visits_X_mouse, Not(visits_X_bald_eagle))",
+          "source_step": 26
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 27
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 28
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, cow)",
+          "z3_formula": "visits_mouse_cow == True",
+          "source_step": 29
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & needs(X, bald_eagle) -> round(bald_eagle)",
+          "z3_formula": "Implies(And(round_cow, needs_bald_eagle_cow), round_bald_eagle)",
+          "source_step": 30
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, mouse)",
+          "z3_formula": "visits_bald_eagle_mouse == True",
+          "source_step": 31
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, mouse)",
+          "z3_formula": "needs_bald_eagle_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, cow)",
+          "z3_formula": "needs_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> likes(X, cow)",
+          "z3_formula": "Implies(visits_mouse, likes_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & blue(X) -> needs(X, rabbit)",
+          "z3_formula": "Implies(And(likes_mouse, blue), needs_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> likes(X, mouse)",
+          "z3_formula": "Implies(needs_bald_eagle, likes_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> not visits(X, bald_eagle)",
+          "z3_formula": "Implies(visits_mouse, not visits_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & likes(X, rabbit) -> visits(X, mouse)",
+          "z3_formula": "Implies(And(visits_bald_eagle, likes_rabbit), visits_mouse)",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, cow)",
+          "z3_formula": "needs_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, mouse)",
+          "z3_formula": "needs_bald_eagle_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(visit(mouse, rabbit))",
+          "z3_formula": "not(visit_mouse_rabbit) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visit(rabbit, bald_eagle)",
+          "z3_formula": "visit_rabbit_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visit(X, mouse) -> not(visit(X, bald_eagle))",
+          "z3_formula": "Implies(visit_mouse_X, not(visit_bald_eagle_X))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visit(X, mouse) -> like(X, cow)",
+          "z3_formula": "Implies(visit_mouse_X, like_cow_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "like(X, mouse) & blue(X) -> needs(mouse, rabbit)",
+          "z3_formula": "Implies(And(like_mouse_X, blue_X), needs_mouse_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> like(bald_eagle, rabbit)",
+          "z3_formula": "Implies(needs_bald_eagle_X, like_bald_eagle_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> like(bald_eagle, mouse)",
+          "z3_formula": "Implies(needs_bald_eagle_X, like_bald_eagle_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "like(X, cow) -> blue(X)",
+          "z3_formula": "Implies(like_cow_X, blue_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & visit(X, cow) -> green(cow)",
+          "z3_formula": "Implies(And(red_X, visit_cow_X), green_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visit(X, mouse) -> not(visit(X, bald_eagle))",
+          "z3_formula": "Implies(visit_mouse_X, not(visit_bald_eagle_X))",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & needs(X, bald_eagle) -> round(bald_eagle)",
+          "z3_formula": "Implies(And(round_X, needs_bald_eagle_X), round_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visit(X, bald_eagle) & like(bald_eagle, rabbit) -> visit(bald_eagle, mouse)",
+          "z3_formula": "Implies(And(visit_bald_eagle_X, like_bald_eagle_rabbit), visit_bald_eagle_mouse)",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, eagle)",
+          "z3_formula": "visits_rabbit_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, eagle)",
+          "z3_formula": "needs_rabbit_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, eagle) -> likes(eagle, mouse) & likes(eagle, rabbit)",
+          "z3_formula": "Implies(needs_rabbit_eagle, And(likes_eagle_mouse, likes_eagle_rabbit))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & blue(X) -> needs(X, rabbit)",
+          "z3_formula": "Implies(And(likes_mouse_X, blue_X), needs_X_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(mouse, rabbit)",
+          "z3_formula": "not visits_mouse_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> not visits(X, eagle)",
+          "z3_formula": "Implies(visits_mouse_X, not visits_X_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & needs(X, eagle) -> round(eagle)",
+          "z3_formula": "Implies(And(round_cow, needs_cow_eagle), round_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> blue(X)",
+          "z3_formula": "Implies(likes_cow_X, blue_X)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, mouse)",
+          "z3_formula": "needs_cow_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(eagle, cow)",
+          "z3_formula": "needs_eagle_cow == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> likes(X, cow)",
+          "z3_formula": "Implies(visits_mouse_X, likes_X_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(mouse, cow)",
+          "z3_formula": "not visits_mouse_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(X) & visits(X, cow) -> green(cow)",
+          "z3_formula": "Implies(And(red_X, visits_X_cow), green_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "visits(eagle, mouse) -> likes(eagle, rabbit)",
+          "z3_formula": "Implies(visits_eagle_mouse, likes_eagle_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "needs(eagle, mouse)",
+          "z3_formula": "needs_eagle_mouse == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "likes(eagle, rabbit)",
+          "z3_formula": "likes_eagle_rabbit == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "visits(eagle, mouse)",
+          "z3_formula": "visits_eagle_mouse == True",
+          "source_step": 17
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, cow)",
+          "z3_formula": "needs_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, mouse)",
+          "z3_formula": "needs_bald_eagle_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(visits(mouse, rabbit))",
+          "z3_formula": "not(visits_mouse_rabbit) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> likes(X, cow)",
+          "z3_formula": "Implies(visits_X_mouse, likes_X_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & blue(X) -> needs(X, rabbit)",
+          "z3_formula": "Implies(And(likes_X_mouse, blue_X), needs_X_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> likes(X, rabbit)",
+          "z3_formula": "Implies(needs_X_bald_eagle, likes_X_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> likes(X, mouse)",
+          "z3_formula": "Implies(needs_X_bald_eagle, likes_X_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> blue(X)",
+          "z3_formula": "Implies(likes_X_cow, blue_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & visits(X, cow) -> green(cow)",
+          "z3_formula": "Implies(And(red_X, visits_X_cow), green_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> not(visits(X, bald_eagle))",
+          "z3_formula": "Implies(visits_X_mouse, not(visits_X_bald_eagle))",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & needs(X, bald_eagle) -> round(bald_eagle)",
+          "z3_formula": "Implies(And(round_X, needs_X_bald_eagle), round_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & likes(bald_eagle, rabbit) -> visits(X, mouse)",
+          "z3_formula": "Implies(And(visits_X_bald_eagle, likes_bald_eagle_rabbit), visits_X_mouse)",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, cow)",
+          "z3_formula": "needs_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, mouse)",
+          "z3_formula": "needs_bald_eagle_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(visits(mouse, rabbit))",
+          "z3_formula": "not(visits_mouse_rabbit) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> Implies(Implies(needs(X, bald_eagle), likes(bald_eagle, mouse))",
+          "z3_formula": "Implies(needs_bald_eagle_mouse, Implies(needs_X_bald_eagle, likes_bald_eagle_mouse))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> Implies(Implies(needs(X, bald_eagle), likes(bald_eagle, rabbit))",
+          "z3_formula": "Implies(needs_bald_eagle_mouse, Implies(needs_X_bald_eagle, likes_bald_eagle_rabbit))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & blue(X) -> needs(mouse, rabbit)",
+          "z3_formula": "Implies(And(likes_mouse, blue_X), needs_mouse_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> likes(bald_eagle, mouse)",
+          "z3_formula": "Implies(needs_X_bald_eagle, likes_bald_eagle_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> likes(bald_eagle, rabbit)",
+          "z3_formula": "Implies(needs_X_bald_eagle, likes_bald_eagle_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> blue(X)",
+          "z3_formula": "Implies(likes_cow, blue_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & visits(X, cow) -> green(cow)",
+          "z3_formula": "Implies(And(red_X, visits_X_cow), green_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> not(visits(X, bald_eagle))",
+          "z3_formula": "Implies(visits_X_mouse, not(visits_X_bald_eagle))",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & needs(X, bald_eagle) -> round(bald_eagle)",
+          "z3_formula": "Implies(And(round_X, needs_X_bald_eagle), round_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & likes(bald_eagle, rabbit) -> visits(X, mouse)",
+          "z3_formula": "Implies(And(visits_X_bald_eagle, likes_bald_eagle_rabbit), visits_X_mouse)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == Unknown",
+          "source_step": 18
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, cow)",
+          "z3_formula": "needs_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, mouse)",
+          "z3_formula": "needs_bald_eagle_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(mouse, rabbit)",
+          "z3_formula": "not visits_mouse_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> likes(X, cow)",
+          "z3_formula": "Implies(visits_X_mouse, likes_X_cow)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & blue(X) -> needs(X, rabbit)",
+          "z3_formula": "Implies(And(likes_X_mouse, blue_X), needs_X_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> likes(bald_eagle, rabbit)",
+          "z3_formula": "Implies(needs_X_bald_eagle, likes_bald_eagle_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> likes(bald_eagle, mouse)",
+          "z3_formula": "Implies(needs_X_bald_eagle, likes_bald_eagle_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> blue(X)",
+          "z3_formula": "Implies(likes_X_cow, blue_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & visits(X, cow) -> green(cow)",
+          "z3_formula": "Implies(And(red_X, visits_X_cow), green_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> not visits(X, bald_eagle)",
+          "z3_formula": "Implies(visits_X_mouse, not visits_X_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & needs(X, bald_eagle) -> round(bald_eagle)",
+          "z3_formula": "Implies(And(round_X, needs_X_bald_eagle), round_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & likes(bald_eagle, rabbit) -> visits(X, mouse)",
+          "z3_formula": "Implies(And(visits_X_bald_eagle, likes_bald_eagle_rabbit), visits_X_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(mouse, rabbit)",
+          "z3_formula": "not needs_mouse_rabbit == True",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, cow)",
+          "z3_formula": "needs_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, mouse)",
+          "z3_formula": "needs_bald_eagle_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(mouse, rabbit)",
+          "z3_formula": "not visits_mouse_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & blue(X) -> needs(mouse, rabbit)",
+          "z3_formula": "Implies(And(likes_X_mouse, blue_X), needs_mouse_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> likes(X, cow)",
+          "z3_formula": "Implies(visits_X_mouse, likes_X_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & needs(X, bald_eagle) -> round(bald_eagle)",
+          "z3_formula": "Implies(And(round_X, needs_X_bald_eagle), round_bald_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & visits(X, cow) -> green(cow)",
+          "z3_formula": "Implies(And(red_X, visits_X_cow), green_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> not visits(X, bald_eagle)",
+          "z3_formula": "Implies(visits_X_mouse, not visits_X_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bald_eagle, rabbit)",
+          "z3_formula": "likes_bald_eagle_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bald_eagle, mouse)",
+          "z3_formula": "likes_bald_eagle_mouse == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bald_eagle)",
+          "z3_formula": "blue_bald_eagle == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, cow)",
+          "z3_formula": "needs_mouse_cow == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == Unknown",
+          "source_step": 18
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, cow)",
+          "z3_formula": "needs_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(visits(mouse, rabbit))",
+          "z3_formula": "not(visits_mouse_rabbit) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> likes(X, cow)",
+          "z3_formula": "Implies(visits_X_mouse, likes_X_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & blue(X) -> needs(mouse, rabbit)",
+          "z3_formula": "Implies(And(likes_X_mouse, blue_X), needs_mouse_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> likes(bald_eagle, rabbit)",
+          "z3_formula": "Implies(needs_X_bald_eagle, likes_bald_eagle_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> likes(bald_eagle, mouse)",
+          "z3_formula": "Implies(needs_X_bald_eagle, likes_bald_eagle_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> blue(X)",
+          "z3_formula": "Implies(likes_X_cow, blue_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & visits(X, cow) -> green(cow)",
+          "z3_formula": "Implies(And(red_X, visits_X_cow), green_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> not(visits(X, bald_eagle))",
+          "z3_formula": "Implies(visits_X_mouse, not(visits_X_bald_eagle))",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & needs(X, bald_eagle) -> round(bald_eagle)",
+          "z3_formula": "Implies(And(round_X, needs_X_bald_eagle), round_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & likes(bald_eagle, rabbit) -> visits(bald_eagle, mouse)",
+          "z3_formula": "Implies(And(visits_X_bald_eagle, likes_bald_eagle_rabbit), visits_bald_eagle_mouse)",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, cow)",
+          "z3_formula": "needs_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, mouse)",
+          "z3_formula": "needs_bald_eagle_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(visit(mouse, rabbit))",
+          "z3_formula": "not(visit_mouse_rabbit) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visit(rabbit, bald_eagle)",
+          "z3_formula": "visit_rabbit_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visit(X, mouse) -> like(X, cow)",
+          "z3_formula": "Implies(visit_mouse_X, like_cow_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "like(X, mouse) & blue(X) -> needs(X, rabbit)",
+          "z3_formula": "Implies(And(like_mouse_X, blue_X), needs_X_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> like(bald_eagle, rabbit)",
+          "z3_formula": "Implies(needs_X_bald_eagle, like_bald_eagle_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> like(bald_eagle, mouse)",
+          "z3_formula": "Implies(needs_X_bald_eagle, like_bald_eagle_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "like(X, cow) -> blue(X)",
+          "z3_formula": "Implies(like_cow_X, blue_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & visit(X, cow) -> green(cow)",
+          "z3_formula": "Implies(And(red_X, visit_cow_X), green_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visit(X, mouse) -> not(visit(X, bald_eagle))",
+          "z3_formula": "Implies(visit_mouse_X, not(visit_X_bald_eagle))",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & needs(X, bald_eagle) -> round(bald_eagle)",
+          "z3_formula": "Implies(And(round_X, needs_X_bald_eagle), round_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visit(X, bald_eagle) & like(bald_eagle, rabbit) -> visit(X, mouse)",
+          "z3_formula": "Implies(And(visit_X_bald_eagle, like_bald_eagle_rabbit), visit_X_mouse)",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, cow)",
+          "z3_formula": "needs_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, mouse)",
+          "z3_formula": "needs_bald_eagle_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(mouse, rabbit)",
+          "z3_formula": "not_visits_mouse_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> likes(X, cow)",
+          "z3_formula": "Implies(visits_mouse_X, likes_cow_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> not visits(X, bald_eagle)",
+          "z3_formula": "Implies(visits_mouse_X, not_visits_X_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> likes(X, mouse)",
+          "z3_formula": "Implies(needs_X_bald_eagle, likes_X_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> likes(X, rabbit)",
+          "z3_formula": "Implies(needs_X_bald_eagle, likes_X_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & blue(X) -> needs(mouse, rabbit)",
+          "z3_formula": "Implies(And(likes_X_mouse, blue_X), needs_mouse_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> likes(bald_eagle, X)",
+          "z3_formula": "Implies(needs_X_bald_eagle, likes_bald_eagle_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> likes(bald_eagle, mouse)",
+          "z3_formula": "Implies(needs_X_bald_eagle, likes_bald_eagle_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> blue(X)",
+          "z3_formula": "Implies(likes_X_cow, blue_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & needs(X, bald_eagle) -> round(bald_eagle)",
+          "z3_formula": "Implies(And(round_X, needs_X_bald_eagle), round_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & likes(bald_eagle, rabbit) -> visits(bald_eagle, mouse)",
+          "z3_formula": "Implies(And(visits_X_bald_eagle, likes_bald_eagle_rabbit), visits_bald_eagle_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bald_eagle, rabbit)",
+          "z3_formula": "likes_bald_eagle_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bald_eagle, mouse)",
+          "z3_formula": "likes_bald_eagle_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not round(bald_eagle)",
+          "z3_formula": "not_round_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(bald_eagle)",
+          "z3_formula": "not_blue_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(bald_eagle, mouse)",
+          "z3_formula": "not_likes_bald_eagle_mouse == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(bald_eagle, rabbit)",
+          "z3_formula": "not_likes_bald_eagle_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(rabbit)",
+          "z3_formula": "not_blue_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(rabbit, mouse)",
+          "z3_formula": "not_likes_rabbit_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(mouse, rabbit)",
+          "z3_formula": "not_needs_mouse_rabbit == True",
+          "source_step": 17
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> likes(bald_eagle, X)",
+          "z3_formula": "Implies(needs_rabbit_bald_eagle, likes_bald_eagle_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> likes(bald_eagle, mouse)",
+          "z3_formula": "Implies(needs_rabbit_bald_eagle, likes_bald_eagle_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, cow)",
+          "z3_formula": "needs_bald_eagle_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & needs(X, bald_eagle) -> round(bald_eagle)",
+          "z3_formula": "Implies(And(round_cow, needs_bald_eagle_cow), round_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not(visits(mouse, rabbit))",
+          "z3_formula": "Not(visits_mouse_rabbit) == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> likes(X, cow)",
+          "z3_formula": "Implies(visits_mouse_X, likes_X_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & blue(X) -> needs(mouse, rabbit)",
+          "z3_formula": "Implies(And(likes_X_mouse, blue_X), needs_mouse_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> blue(X)",
+          "z3_formula": "Implies(likes_X_cow, blue_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(blue_X, likes_X_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, mouse)",
+          "z3_formula": "visits_bald_eagle_mouse == True",
+          "source_step": 14
+        }
+      ]
+    }
+  ]
+}

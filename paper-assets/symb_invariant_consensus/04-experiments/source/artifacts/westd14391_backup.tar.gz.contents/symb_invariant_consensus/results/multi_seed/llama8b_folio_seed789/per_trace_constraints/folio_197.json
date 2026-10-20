@@ -1,0 +1,651 @@
+{
+  "pid": "folio_197",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "barks(kiki)",
+          "z3_formula": "barks_kiki == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "dog(kiki)",
+          "z3_formula": "dog_kiki == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "barks(X) -> not(jane_likes(X))",
+          "z3_formula": "Implies(barks_kiki, not(jane_likes_kiki))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "dog(X) -> barks(X)",
+          "z3_formula": "Implies(dog_kiki, barks_kiki)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "jumps(X) -> jane_likes(X)",
+          "z3_formula": "Implies(jumps_kiki, jane_likes_kiki)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "has_legs(X) -> jumps(X)",
+          "z3_formula": "Implies(has_legs_kiki, jumps_kiki)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "terricolous(X) -> has_legs(X)",
+          "z3_formula": "Implies(terricolous_kiki, has_legs_kiki)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "not(jumps(X)) & not(has_legs(X)) -> (terricolous(X) | has_legs(X))",
+          "z3_formula": "Implies(And(Not(jumps_kiki), Not(has_legs_kiki)), Or(terricolous_kiki, has_legs_kiki))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "dog(kiki) & barks(kiki)",
+          "z3_formula": "And(dog_kiki, barks_kiki)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "jane_does_not_like(kiki)",
+          "z3_formula": "not(jane_likes_kiki)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kiki_is_dog_or_cat",
+          "z3_formula": "Or(dog_kiki, cat_kiki)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "kiki_is_not_cat",
+          "z3_formula": "Not(cat_kiki)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "kiki_is_dog",
+          "z3_formula": "dog_kiki",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "barks(kiki)",
+          "z3_formula": "barks_kiki == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "dog(kiki)",
+          "z3_formula": "dog_kiki == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) & barks(X) -> not likes(jane, X)",
+          "z3_formula": "Implies(And(animal_kiki, barks_kiki), not likes_jane_kiki)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> (barks(X) | not barks(X))",
+          "z3_formula": "Implies(animal_kiki, Or(barks_kiki, not barks_kiki))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> (dog(X) | not dog(X))",
+          "z3_formula": "Implies(animal_kiki, Or(dog_kiki, not dog_kiki))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "dog(X) -> animal(X) & barks(X)",
+          "z3_formula": "Implies(dog_kiki, And(animal_kiki, barks_kiki))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> (jumps(X) | not jumps(X))",
+          "z3_formula": "Implies(animal_kiki, Or(jumps_kiki, not jumps_kiki))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> (has_legs(X) | not has_legs(X))",
+          "z3_formula": "Implies(animal_kiki, Or(has_legs_kiki, not has_legs_kiki))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "has_legs(X) -> jumps(X)",
+          "z3_formula": "Implies(has_legs_kiki, jumps_kiki)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "terricolous(X) -> has_legs(X)",
+          "z3_formula": "Implies(terricolous_kiki, has_legs_kiki)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not (jumps(X) & has_legs(X)) -> (terricolous(X) | has_legs(X))",
+          "z3_formula": "Implies(Not(And(jumps_kiki, has_legs_kiki)), Or(terricolous_kiki, has_legs_kiki))",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "False",
+      "constraints": []
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "barks(kiki)",
+          "z3_formula": "barks_kiki == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "dog(kiki)",
+          "z3_formula": "dog_kiki == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "barks(X) -> not(likes(jane, X))",
+          "z3_formula": "Implies(barks_kiki, not(likes_jane_kiki))",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "dog(X) -> barks(X)",
+          "z3_formula": "Implies(dog_kiki, barks_kiki)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "jumps(X) -> likes(jane, X)",
+          "z3_formula": "Implies(jumps_kiki, likes_jane_kiki)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "has_legs(X) -> jumps(X)",
+          "z3_formula": "Implies(has_legs_kiki, jumps_kiki)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "terricolous(X) -> has_legs(X)",
+          "z3_formula": "Implies(terricolous_kiki, has_legs_kiki)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not(jumps(X)) & not(has_legs(X)) -> (terricolous(X) | has_legs(X))",
+          "z3_formula": "Implies(And(Not(jumps_kiki), Not(has_legs_kiki)), Or(terricolous_kiki, has_legs_kiki))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(likes(jane, kiki))",
+          "z3_formula": "not(likes_jane_kiki) == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not(has_legs(kiki))",
+          "z3_formula": "not(has_legs_kiki) == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not(terricolous(kiki))",
+          "z3_formula": "not(terricolous_kiki) == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not(has_legs(kiki) | terricolous(kiki))",
+          "z3_formula": "not(Or(has_legs_kiki, terricolous_kiki)) == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not(has_legs(kiki) | terricolous(kiki)) | (has_legs(kiki) | terricolous(kiki))",
+          "z3_formula": "Or(not(Or(has_legs_kiki, terricolous_kiki)), Or(has_legs_kiki, terricolous_kiki)) == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "Unknown",
+          "z3_formula": "Unknown",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "barks(kikki)",
+          "z3_formula": "barks_kikki == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "dog(kikki)",
+          "z3_formula": "dog_kikki == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) & barks(X) -> not likes_jane(X)",
+          "z3_formula": "Implies(And(animal_kikki, barks_kikki), not likes_jane_kikki)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> (barks(X) | not barks(X))",
+          "z3_formula": "Implies(animal_kikki, Or(barks_kikki, not barks_kikki))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "dog(X) -> animal(X) & barks(X)",
+          "z3_formula": "Implies(dog_kikki, And(animal_kikki, barks_kikki))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> (jumps(X) | not jumps(X))",
+          "z3_formula": "Implies(animal_kikki, Or(jumps_kikki, not jumps_kikki))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "has_legs(X) -> jumps(X)",
+          "z3_formula": "Implies(has_legs_kikki, jumps_kikki)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "terricolous(X) -> has_legs(X)",
+          "z3_formula": "Implies(terricolous_kikki, has_legs_kikki)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not jumps(X) & not has_legs(X) -> (terricolous(X) | has_legs(X))",
+          "z3_formula": "Implies(And(not jumps_kikki, not has_legs_kikki), Or(terricolous_kikki, has_legs_kikki))",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "barks(kikki)",
+          "z3_formula": "barks_kikki == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "dog(kikki)",
+          "z3_formula": "dog_kikki == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "barks(X) -> not(likes(jane, X))",
+          "z3_formula": "Implies(barks_kikki, not(likes_jane_kikki))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "dog(X) -> barks(X)",
+          "z3_formula": "Implies(dog_kikki, barks_kikki)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "dog(X) -> has_legs(X)",
+          "z3_formula": "Implies(dog_kikki, has_legs_kikki)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "has_legs(X) -> jumps(X)",
+          "z3_formula": "Implies(has_legs_kikki, jumps_kikki)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "jumps(X) -> likes(jane, X)",
+          "z3_formula": "Implies(jumps_kikki, likes_jane_kikki)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not(jumps(X)) & not(has_legs(X)) -> (terricolous(X) | has_legs(X))",
+          "z3_formula": "Implies(And(Not(jumps_kikki), Not(has_legs_kikki)), Or(terricolous_kikki, has_legs_kikki))",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "barks(kiki)",
+          "z3_formula": "barks_kiki == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "dog(kiki)",
+          "z3_formula": "dog_kiki == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "barks(X) -> not likes(jane, X)",
+          "z3_formula": "Implies(barks_kiki, not likes_jane_kiki)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "dog(X) -> barks(X)",
+          "z3_formula": "Implies(dog_kiki, barks_kiki)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "jumps(X) -> likes(jane, X)",
+          "z3_formula": "Implies(jumps_kiki, likes_jane_kiki)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "has_legs(X) -> jumps(X)",
+          "z3_formula": "Implies(has_legs_kiki, jumps_kiki)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "terricolous(X) -> has_legs(X)",
+          "z3_formula": "Implies(terricolous_kiki, has_legs_kiki)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not jumps(X) & not has_legs(X) -> (terricolous(X) | has_legs(X))",
+          "z3_formula": "Implies(And(Not(jumps_kiki), Not(has_legs_kiki)), Or(terricolous_kiki, has_legs_kiki))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(jane, kiki)",
+          "z3_formula": "not likes_jane_kiki == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "barks(kiki)",
+          "z3_formula": "barks_kiki == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "dog(kiki)",
+          "z3_formula": "dog_kiki == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "dog(X) -> barks(X)",
+          "z3_formula": "Implies(dog_kiki, barks_kiki)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> barks(X)",
+          "z3_formula": "Implies(animal_kiki, barks_kiki)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "barks(X) -> not(jane_likes(X))",
+          "z3_formula": "Implies(barks_kiki, not(jane_likes_kiki))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> animal_type(X)",
+          "z3_formula": "Implies(animal_kiki, animal_type_kiki)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "dog(X) -> animal(X)",
+          "z3_formula": "Implies(dog_kiki, animal_kiki)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) & jumps(X) -> jane_likes(X)",
+          "z3_formula": "Implies(And(animal_kiki, jumps_kiki), jane_likes_kiki)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) & has_legs(X) -> jumps(X)",
+          "z3_formula": "Implies(And(animal_kiki, has_legs_kiki), jumps_kiki)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) & terricolous(X) -> has_legs(X)",
+          "z3_formula": "Implies(And(animal_kiki, terricolous_kiki), has_legs_kiki)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "not(jumps(X)) & not(has_legs(X)) -> (terricolous(X) | has_legs(X))",
+          "z3_formula": "Implies(And(Not(jumps_kiki), Not(has_legs_kiki)), Or(terricolous_kiki, has_legs_kiki))",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "jane_likes(kiki)",
+          "z3_formula": "jane_likes_kiki == Unknown",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "",
+      "constraints": []
+    },
+    {
+      "trace_idx": 10,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "barks(kiki)",
+          "z3_formula": "barks_kiki == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "barks(X) -> not(jane_likes(X))",
+          "z3_formula": "Implies(barks_kiki, not(jane_likes_kiki))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "dog(X) -> (barks(X) & animal(X))",
+          "z3_formula": "Implies(dog_kiki, And(barks_kiki, animal_kiki))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> (barks(X) & jane_does_not_like(X))",
+          "z3_formula": "Implies(animal_kiki, And(barks_kiki, jane_does_not_like_kiki))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "jumps(X) -> jane_likes(X)",
+          "z3_formula": "Implies(jumps_kiki, jane_likes_kiki)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "has_legs(X) -> jumps(X)",
+          "z3_formula": "Implies(has_legs_kiki, jumps_kiki)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "terricolous(X) -> has_legs(X)",
+          "z3_formula": "Implies(terricolous_kiki, has_legs_kiki)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not(jumps(X)) & not(has_legs(X)) -> (terricolous(X) | has_legs(X))",
+          "z3_formula": "Implies(And(Not(jumps_kiki), Not(has_legs_kiki)), Or(terricolous_kiki, has_legs_kiki))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "jumps(kiki)",
+          "z3_formula": "jumps_kiki == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "jane_likes(kiki)",
+          "z3_formula": "jane_likes_kiki == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not(jane_likes(kiki))",
+          "z3_formula": "not(jane_likes_kiki) == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "barks(kiki)",
+          "z3_formula": "barks_kiki == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "dog(kiki)",
+          "z3_formula": "dog_kiki == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "dog(X) -> barks(X)",
+          "z3_formula": "Implies(dog_kiki, barks_kiki)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "barks(X) -> not likes_jane(X)",
+          "z3_formula": "Implies(barks_kiki, not likes_kiki)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "jumps(X) -> likes_jane(X)",
+          "z3_formula": "Implies(jumps_kiki, likes_kiki)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "has_legs(X) -> jumps(X)",
+          "z3_formula": "Implies(has_legs_kiki, jumps_kiki)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "terricolous(X) -> has_legs(X)",
+          "z3_formula": "Implies(terricolous_kiki, has_legs_kiki)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not jumps(X) & not has_legs(X) -> (terricolous(X) | has_legs(X))",
+          "z3_formula": "Implies(And(not jumps_kiki, not has_legs_kiki), Or(terricolous_kiki, has_legs_kiki))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "terricolous(kiki)",
+          "z3_formula": "terricolous_kiki == True",
+          "source_step": 7
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,882 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-1220_Q4",
+    "problem": "Anne is blue. Bob is blue. Bob is green. Bob is smart. Dave is big. Dave is nice. Fiona is smart. If something is nice then it is not green. Quiet, blue things are big. If something is blue then it is young. If something is nice then it is quiet. Young things are blue. If Anne is young then Anne is quiet. If Dave is young then Dave is green. All big, quiet things are nice. If Fiona is blue then Fiona is not green.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is not quiet.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nGreen($x, bool) ::: Is x green?\nSmart($x, bool) ::: Is x smart?\nBig($x, bool) ::: Is x big?\nNice($x, bool) ::: Is x nice?\nQuiet($x, bool) ::: Is x quiet?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nBlue(Anne, True) ::: Anne is blue.\nBlue(Bob, True) ::: Bob is blue.\nGreen(Bob, True) ::: Bob is green.\nSmart(Bob, True) ::: Bob is smart.\nBig(Dave, True) ::: Dave is big.\nNice(Dave, True) ::: Dave is nice.\nSmart(Fiona, True) ::: Fiona is smart.\n\nRules:\nNice($x, True) >>> Green($x, False) ::: If something is nice then it is not green.\nQuiet($x, True) && Blue($x, True) >>> Big($x, True) ::: Quiet, blue things are big.\nBlue($x, True) >>> Young($x, True) ::: If something is blue then it is young.\nNice($x, True) >>> Quiet($x, True) ::: If something is nice then it is quiet.\nYoung($x, True) >>> Blue($x, True) ::: Young things are blue.\nYoung(Anne, True) >>> Quiet(Anne, True) ::: If Anne is young then Anne is quiet.\nYoung(Dave, True) >>> Green(Dave, True) ::: If Dave is young then Dave is green.\nBig($x, True) && Quiet($x, True) >>> Nice($x, True) ::: All big, quiet things are nice.\nBlue(Fiona, True) >>> Green(Fiona, False) ::: If Fiona is blue then Fiona is not green.\n\nQuery:\nQuiet(Dave, False) ::: Dave is not quiet."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "False": 95.0,
+      "True": 106.0,
+      "Unknown": 79.0
+    },
+    "answer_counts": {
+      "True": 5,
+      "False": 6,
+      "Unknown": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Dave is not quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the information given, we know:\n   - Dave is big (Statement 4).\n   - Dave is nice (Statement 5).\n   - All big, quiet things are nice (Statement 13).\n   - If something is nice then it is quiet (Statement 9).\n   - If something is nice then it is not green (Statement 8).\n   - Dave is not green (Implicit from Statement 8).\n   - Dave is big (Statement 4).\n   - Young things are blue (Statement 7).\n   - If Dave is young then Dave is green (Statement 12), which implies Dave is not young because if Dave were young, Dave would be green, but we know Dave is not green.\n   - Quiet, blue things are big (Statement 6).\n   - Blue things are young (Statement 6).\n   - If Anne is young then Anne is quiet (Statement 11), but this doesn't apply to Dave.\n   - All the statements are about Anne, Bob, Dave, and Fiona.\n\n2. Since Dave is not young (from Statement 12), Dave is not blue (from Statement 7), and therefore, Dave is not quiet (from Statement 6).\n\nTherefore, the statement \"Dave is not quiet\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply the rules of logic to determine whether the statement \"Dave is not quiet\" is true, false, or unknown.\n\n1. Dave is big.\n2. Dave is nice.\n3. All big, quiet things are nice.\nFrom statement 3, we can conclude that since Dave is nice and big, he must be quiet.\n\nNow, let's consider the statement \"Dave is not quiet.\"\n\nWe have established that Dave is quiet. This directly contradicts the statement \"Dave is not quiet.\"\n\nTherefore, the statement \"Dave is not quiet\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is big. (Given)\n2. All big, quiet things are nice. (Given)\n   However, this does not directly tell us about Dave's quietness. To proceed, we need another statement related to nice things. \n3. If something is nice then it is quiet. (Given)\n   Combining this with the previous statement, we can conclude that if Dave is big and nice, then Dave is quiet. But we cannot directly conclude that Dave is nice or quiet from the given information.\n\nHowever, there's another statement that helps us determine Dave's quietness. \n4. Quiet, blue things are big. (Given)\n   This does not tell us directly about Dave's quietness, but it gives us an important clue about blue things.\n\nNow, we need to analyze the information related to blue things.\n5. Anne is blue. (Given)\n6. Bob is blue. (Given)\n7. If something is blue then it is young. (Given)\n   From this, we can conclude that Anne and Bob are young.\n\n8. If Anne is young then Anne is quiet. (Given)\n   Since Anne is blue and young, Anne is quiet.\n\n9. If Dave is young then Dave is green. (Given)\n   This implies that Dave might not be young. However, we cannot conclude this from the given information about Dave being big.\n\n10. Dave is not blue. \n    We can derive this by analyzing the given statements. \n    - If Fiona is blue then Fiona is not green. (Given)\n    - We cannot directly relate this to Dave. However, if we combine this statement with the fact that Bob is both blue and green, we can conclude that Fiona is not blue. \n    However, that does not tell us anything about Dave. \n    - But we can conclude that Anne and Bob are blue. \n    - Since Dave is not blue and is big, we cannot conclude that Dave is green. However, we cannot conclude that Dave is not green either. \n    - If Dave were blue, then Dave would be young and green, which is a contradiction because we know Bob is blue and green. \n    Therefore, Dave is not blue. \n\n11. From statement 7, we know that if something is blue then it is young. \n    Since Dave is not blue, we can conclude that Dave is not young.\n\n12. Since Dave is big and not young, we can combine this with statement 4: Quiet, blue things are big.\n    We know Dave is big, so if Dave were quiet, then Dave would be blue, which contradicts the fact that Dave is not blue.\n    Therefore, Dave is not quiet.\n\nBased on the given information, we can conclude that \"Dave is not quiet\" is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is big. \n2. Quiet, blue things are big. \n   From the information in step 2, we can't directly conclude that Dave is quiet because it's only related to blue things. However, we'll keep it in mind for future steps.\n\n3. All big, quiet things are nice. \n   We can't conclude that Dave is quiet from this information alone because we don't know if Dave is quiet or not.\n\n4. Dave is nice. \n   We don't have any information about nice things being quiet or not. However, we do have this information: \n   If something is nice then it is quiet. \n   This information directly contradicts the statement \"If Dave is nice then Dave is not quiet\" (the statement we're trying to evaluate).\n\nHowever, from the given data we have the information: \n   Dave is nice. \n   If something is nice then it is quiet.\n   Therefore, we can conclude that Dave is quiet.\n\nNow, let's go back to the original statement \"Dave is not quiet.\" \n\nSince we've concluded that Dave is quiet from the given information, the statement \"Dave is not quiet\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and apply it step by step to determine the truth of the statement \"Dave is not quiet.\"\n\n1. Information about Dave:\n   - Dave is big.\n   - Dave is nice.\n\n2. Information about nice things:\n   - If something is nice, then it is quiet.\n   - All big, quiet things are nice.\n   - If something is nice, then it is not green.\n\nFrom the given information, we can conclude that Dave is quiet because he is nice (point 2). \n\nThe statement \"Dave is not quiet\" is the opposite of this conclusion. Therefore, based on the information provided, we can determine that the statement \"Dave is not quiet\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is big. (From the problem statement)\n2. Big, quiet things are nice. (From the problem statement)\n3. If something is nice then it is quiet. (From the problem statement)\n   - Since Dave is big and nice (from steps 1 and 2), we can conclude that Dave is quiet (from step 3).\n\nNow, let's analyze the given information in relation to the statement \"Dave is not quiet\".\n\nSince we have already concluded that Dave is quiet (from step 3), we can directly say that \"Dave is not quiet\" is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is big. \n2. Dave is nice. \n3. Quiet, blue things are big. \n4. If something is nice then it is not green. \n5. If something is blue then it is young. \n6. If something is nice then it is quiet. \n7. Young things are blue. \n8. If Anne is young then Anne is quiet. \n9. If Dave is young then Dave is green. \n10. All big, quiet things are nice. \n11. If Fiona is blue then Fiona is not green. \n12. Anne is blue. \n13. Bob is blue. \n14. Bob is green. \n15. Bob is smart. \n16. Dave is nice. \n17. Fiona is smart. \n\nFrom the given information:\n\n- Dave is big (1) and nice (16).\n- Quiet, blue things are big (3). This does not directly imply that Dave is quiet, but it might give us a clue.\n- If something is nice then it is quiet (6). Since Dave is nice (16), this implies that Dave is quiet.\n\nHowever, we have another piece of information:\n- If Dave is young then Dave is green (9). Since Dave is not green (from 4), Dave is not young.\n\nFrom this, we can infer that Dave is not quiet because Dave is not young.\n\nTherefore, the statement \"Dave is not quiet\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use logical deductions to determine the truth value of the statement \"Dave is not quiet.\"\n\n1. Given statements:\n   - Anne is blue.\n   - Bob is blue.\n   - Bob is green.\n   - Bob is smart.\n   - Dave is big.\n   - Dave is nice.\n   - Fiona is smart.\n   - If something is nice then it is not green.\n   - Quiet, blue things are big.\n   - If something is blue then it is young.\n   - If something is nice then it is quiet.\n   - Young things are blue.\n   - If Anne is young then Anne is quiet.\n   - If Dave is young then Dave is green.\n   - All big, quiet things are nice.\n   - If Fiona is blue then Fiona is not green.\n\n2. Let's start by using the statement \"If something is nice then it is quiet\" and \"Dave is nice\" to deduce that Dave is quiet.\n\n   - If something is nice then it is quiet.\n   - Dave is nice.\n   - \u2234 Dave is quiet.\n\nHowever, the statement \"Dave is not quiet\" is given. We need to determine if it's true, false, or unknown.\n\n3. We know that Dave is quiet from the deduction above. Therefore, the statement \"Dave is not quiet\" is false.\n\n4. Therefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information, we know:\n   - Dave is big.\n   - Dave is nice.\n   - Quiet, blue things are big.\n   - All big, quiet things are nice.\n   - If something is nice then it is quiet.\n\n2. Since Dave is nice and all big, quiet things are nice, we can conclude that Dave is quiet.\n\n3. However, we also need to consider the possibility of Dave being young, as it might affect his color and quietness.\n\n4. From the given information, we know:\n   - If Dave is young then Dave is green.\n\n5. Now, we need to determine whether Dave is young or not. If Dave is young, then he is green, which contradicts the fact that he is big (since young things are blue). However, we cannot directly conclude that Dave is not young. We need to consider the age of Dave in relation to other statements.\n\n6. Since young things are blue, we can conclude that Dave is not young because if he were young, he would be blue.\n\n7. However, we also know that if something is blue then it is young. This statement creates a paradox when combined with the conclusion that Dave is not young. \n\n8. This paradox arises because the initial conclusion that Dave is not young is based on the fact that young things are blue and Dave is big (which contradicts the blue color). However, if we assume Dave is blue (and therefore young), we get a contradiction with the fact that Dave is big.\n\n9. This paradox cannot be resolved using the given information. We cannot determine whether Dave is young or not, which means we cannot conclude that Dave is not quiet with certainty.\n\n10. Therefore, the statement \"Dave is not quiet\" is unknown because we cannot determine whether Dave is quiet or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement 'Dave is not quiet' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is big. (Given)\n2. If something is big, quiet things are nice. (Given)\n   From this, we can infer that Dave is nice because he is big and quiet. However, we don't have direct evidence of Dave being quiet yet. We only know that big, quiet things are nice.\n\n3. Dave is nice. (From step 2 and given information)\n4. If something is nice, it is quiet. (Given)\n   From this, we can infer that Dave is quiet because he is nice.\n\nNow that we have this information, we can analyze the statement 'Dave is not quiet.'\n\n5. The statement 'Dave is not quiet' is opposite of what we inferred in step 4. \n   We know Dave is quiet, so the statement 'Dave is not quiet' is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve the problem, we need to analyze the given statements and determine their implications.\n\n1. Dave is big. (1)\n2. Dave is nice. (2)\n3. Quiet, blue things are big. (4)\n4. If something is nice then it is quiet. (5)\n5. All big, quiet things are nice. (6)\n\nFrom (4), we know that if something is quiet, then it is also nice. Since Dave is nice (2), Dave must be quiet.\n\nHowever, we also have the following statements:\n \n1. Dave is big. (1)\n2. If Dave is young then Dave is green. (14)\n3. Young things are blue. (13)\n4. If something is blue then it is young. (12)\n5. If Anne is young then Anne is quiet. (11)\n6. All big, quiet things are nice. (6)\n\nFrom (12), we know that if something is blue, then it is young. Since young things are blue (13), Dave cannot be blue and therefore cannot be young (since Dave is big and blue and young are mutually exclusive).\n\nThis means Dave is not young, and therefore, Dave is not green (from (14)).\n\nHowever, we also know that if something is nice, then it is quiet (5), and all big, quiet things are nice (6). Since Dave is big (1) and nice (2), Dave must be quiet.\n\nThe only statement we haven't considered is the following:\n\nIf something is blue then it is young. (12)\nYoung things are blue. (13)\nIf Anne is young then Anne is quiet. (11)\nIf Dave is young then Dave is green. (14)\n\nFrom (1), we know that Dave is big. From (13), we know that young things are blue. Therefore, Dave is not young. Therefore, Dave is not green (from (14)).\n\nNow, from (12), we know that if something is blue, then it is young. Since Dave is big (1) and Dave is not young (because Dave is not blue), Dave is not blue.\n\nHowever, we have the following statements:\n\nDave is big. (1)\nDave is nice. (2)\nQuiet, blue things are big. (4)\nIf something is blue then it is young. (12)\nYoung things are blue. (13)\nIf Dave is young then Dave is green. (14)\nIf Anne is young then Anne is quiet. (11)\n\nFrom (4), we know that quiet, blue things are big. We also know that young things are blue (13) and if something is blue then it is young (12). However, Dave is not young (because Dave is not blue), and therefore, Dave is not blue.\n\nFrom (1) and (2), we know that Dave is big and nice. Since Dave is big and nice, Dave must be quiet (because all big, quiet things are nice (6) and if something is nice, then it is quiet (5)).\n\nNow we have the following statements:\n\nDave is big. (1)\nDave is nice. (2)\nIf something is blue then it is young. (12)\nYoung things are blue. (13)\nQuiet, blue things are big. (4)\nIf Dave is young then Dave is green. (14)\nIf Anne is young then Anne is quiet. (11)\n\nWe know that Dave is not blue (because Dave is not young and if something is blue then it is young). Therefore, Dave is not quiet, blue (because Dave is not blue).\n\nFrom (1) and (2), we know that Dave is big and nice. Since Dave is big and nice, Dave must be quiet (because all big, quiet things are nice (6) and if something is nice, then it is quiet (5)).\n\nHowever, from (4) we know that quiet, blue things are big. Since Dave is not blue, Dave cannot be quiet, blue. From (11), we know that if Anne is young, then Anne is quiet. Since Anne is blue (because Anne is young and if something is blue then it is young), we know that Anne is quiet. We also know that Anne is quiet and quiet things are blue (because Anne is young and if something is blue, then it is young). However, we also know that Dave is not quiet, blue (because Dave is not blue).\n\nThe final answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not quiet\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. Given information:\n   - Dave is big.\n   - Dave is nice.\n   - If something is nice then it is not green.\n   - Quiet, blue things are big.\n   - If something is blue then it is young.\n   - If something is nice then it is quiet.\n   - Young things are blue.\n   - If Anne is young then Anne is quiet.\n   - If Dave is young then Dave is green.\n   - All big, quiet things are nice.\n\n2. We need to determine whether Dave is quiet or not.\n\nFrom the given information:\n- Dave is big (1).\n- All big, quiet things are nice (9).\n- Dave is nice (2).\n\nSince Dave is big and nice, and all big, quiet things are nice, we can infer that Dave is quiet.\n\nHowever, we also have the statement:\n- Dave is young then Dave is green (8).\n\nSince young things are blue (7), if Dave were young, then Dave would be blue, and therefore Dave would not be green. This creates a contradiction.\n\nTo resolve the contradiction, we need to determine whether Dave is young or not.\n\nFrom the given information:\n- If Dave is young then Dave is green (8).\n- Dave is not green (3).\n\nThis implies that Dave is not young.\n\nSince Dave is not young, we can conclude that Dave is not quiet (as all young things are blue, and therefore quiet, according to statement 7).\n\nTherefore, the statement \"Dave is not quiet\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & quiet(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_dave, quiet_dave), nice_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_dave, quiet_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> not green(X)",
+          "z3_formula": "Implies(nice_dave, not green_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "not green(X)",
+          "z3_formula": "not green_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> blue(X)",
+          "z3_formula": "Implies(young_dave, blue_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> green(X)",
+          "z3_formula": "Implies(young_dave, green_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not Implies(young_dave, green_dave)",
+          "z3_formula": "Not(Implies(young_dave, green_dave))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(quiet_dave, blue_dave), big_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_dave, young_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_anne, quiet_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(dave)",
+          "z3_formula": "not quiet_dave == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & quiet(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_dave, quiet_dave), nice_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(dave)",
+          "z3_formula": "Not(quiet_dave) == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & quiet(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_dave, quiet_dave), nice_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_dave, quiet_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(quiet_dave, blue_dave), big_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_anne, young_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_anne, quiet_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> green(X)",
+          "z3_formula": "Implies(young_dave, green_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not green(dave)",
+          "z3_formula": "Not(green_dave) == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(dave)",
+          "z3_formula": "Not(blue_dave) == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_dave, young_dave)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not young(dave)",
+          "z3_formula": "Not(young_dave) == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & not young(X) -> not quiet(X)",
+          "z3_formula": "Implies(And(big_dave, Not(young_dave)), Not(quiet_dave))",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(dave)",
+          "z3_formula": "Not(quiet_dave) == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & quiet(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_dave, quiet_dave), big_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & quiet(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_dave, quiet_dave), nice_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_dave, quiet_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_dave, quiet_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & quiet(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_dave, quiet_dave), nice_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> not green(X)",
+          "z3_formula": "Implies(nice_dave, not green_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & quiet(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_dave, quiet_dave), nice_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_dave, quiet_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(dave)",
+          "z3_formula": "Not(quiet_dave) == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(quiet_dave, blue_dave), big_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> not green(X)",
+          "z3_formula": "Implies(nice_dave, not green_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_dave, young_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_dave, quiet_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> blue(X)",
+          "z3_formula": "Implies(young_dave, blue_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(anne) -> quiet(anne)",
+          "z3_formula": "Implies(young_anne, quiet_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> green(X)",
+          "z3_formula": "Implies(young_dave, green_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & quiet(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_dave, quiet_dave), nice_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> not green(X)",
+          "z3_formula": "Implies(blue_fiona, not green_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(dave)",
+          "z3_formula": "Not(quiet_dave) == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> not green(X)",
+          "z3_formula": "Implies(nice_dave, not green_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(quiet_dave, blue_dave), big_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_dave, young_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_dave, quiet_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> blue(X)",
+          "z3_formula": "Implies(young_dave, blue_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(anne) -> quiet(anne)",
+          "z3_formula": "Implies(young_anne, quiet_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(dave) -> green(dave)",
+          "z3_formula": "Implies(young_dave, green_dave)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & quiet(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_dave, quiet_dave), nice_dave)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> not green(X)",
+          "z3_formula": "Implies(blue_fiona, not green_fiona)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(quiet_dave, blue_dave), big_dave)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & quiet(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_dave, quiet_dave), nice_dave)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_dave, quiet_dave)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> green(X)",
+          "z3_formula": "Implies(young_dave, green_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> blue(X)",
+          "z3_formula": "Implies(young_dave, blue_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not young(dave)",
+          "z3_formula": "Not(young_dave) == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_dave, young_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(dave)",
+          "z3_formula": "Not(quiet_dave) == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> (quiet(X) -> nice(X))",
+          "z3_formula": "Implies(big_dave, Implies(quiet_dave, nice_dave))",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_dave, quiet_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(dave)",
+          "z3_formula": "Not(quiet_dave) == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> nice(X)",
+          "z3_formula": "Implies(quiet_dave, nice_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & quiet(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_dave, quiet_dave), nice_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_dave, young_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> blue(X)",
+          "z3_formula": "Implies(young_dave, blue_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_anne, quiet_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> green(X)",
+          "z3_formula": "Implies(young_dave, green_dave)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_dave, young_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> quiet(X)",
+          "z3_formula": "Implies(And(big_dave, blue_dave), quiet_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> not green(X)",
+          "z3_formula": "Implies(nice_dave, not green_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(quiet_dave, blue_dave), big_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_dave, young_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_dave, quiet_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> blue(X)",
+          "z3_formula": "Implies(young_dave, blue_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(anne) -> quiet(anne)",
+          "z3_formula": "Implies(young_anne, quiet_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> green(X)",
+          "z3_formula": "Implies(young_dave, green_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & quiet(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_dave, quiet_dave), nice_dave)",
+          "source_step": 10
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 125,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 28
+    },
+    "maxsat_stats": {
+      "satisfied": 25,
+      "excluded": 3,
+      "total_weight": 110,
+      "solve_time_ms": 1.4563938602805138
+    },
+    "timing": {
+      "trace_gen_s": 11.074,
+      "extraction_s": 19.568,
+      "dedup_s": 0.645,
+      "maxsat_s": 0.003,
+      "total_s": 31.291
+    }
+  }
+}

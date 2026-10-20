@@ -1,0 +1,1041 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-1210_Q8",
+    "problem": "Bob is not kind. Bob is smart. Dave is not blue. Dave is cold. Dave is kind. Dave is not red. Dave is smart. Dave is white. Fiona is kind. Fiona is smart. Fiona is white. Harry is red. If someone is red then they are kind. If Harry is kind then Harry is blue. If Harry is kind and Harry is not red then Harry is not blue. If Fiona is not kind then Fiona is blue. All young people are smart. All red, blue people are smart. If Harry is young and Harry is smart then Harry is white. If someone is smart and blue then they are young. If someone is blue and not red then they are young.\n\nDetermine whether the following statement is true, false, or unknown:\nHarry is not smart.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nSmart($x, bool) ::: Is x smart?\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nRed($x, bool) ::: Is x red?\nWhite($x, bool) ::: Is x white?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nKind(Bob, False) ::: Bob is not kind.\nSmart(Bob, True) ::: Bob is smart.\nBlue(Dave, False) ::: Dave is not blue.\nCold(Dave, True) ::: Dave is cold.\nKind(Dave, True) ::: Dave is kind.\nRed(Dave, False) ::: Dave is not red.\nSmart(Dave, True) ::: Dave is smart.\nWhite(Dave, True) ::: Dave is white.\nKind(Fiona, True) ::: Fiona is kind.\nSmart(Fiona, True) ::: Fiona is smart.\nWhite(Fiona, True) ::: Fiona is white.\nRed(Harry, True) ::: Harry is red.\n\nRules:\nRed($x, True) >>> Kind($x, True) ::: If someone is red then they are kind.\nKind(Harry, True) >>> Blue(Harry, True) ::: If Harry is kind then Harry is blue.\nKind(Harry, True) && Red(Harry, False) >>> Blue(Harry, False) ::: If Harry is kind and Harry is not red then Harry is not blue.\nKind(Fiona, False) >>> Blue(Fiona, True) ::: If Fiona is not kind then Fiona is blue.\nYoung($x, True) >>> Smart($x, True) ::: All young people are smart.\nRed($x, True) && Blue($x, True) >>> Smart($x, True) ::: All red, blue people are smart.\nYoung(Harry, True) && Smart(Harry, True) >>> White(Harry, True) ::: If Harry is young and Harry is smart then Harry is white.\nSmart($x, True) && Blue($x, True) >>> Young($x, True) ::: If someone is smart and blue then they are young.\nBlue($x, True) && Red($x, False) >>> Young($x, True) ::: If someone is blue and not red then they are young.\n\nQuery:\nSmart(Harry, False) ::: Harry is not smart."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 70.0,
+      "True": 99.0,
+      "Unknown": 114.0
+    },
+    "answer_counts": {
+      "False": 3,
+      "Unknown": 4,
+      "True": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Harry is not smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is red. (Given)\n\n2. If someone is red then they are kind. (Given)\n   So, Harry is kind. (From 1 and 2)\n\n3. If Harry is kind then Harry is blue. (Given)\n   So, Harry is blue. (From 2 and 3)\n\nHowever, we have another statement that says: If Harry is kind and Harry is not red then Harry is not blue. \n\n4. Harry is kind (From 2) \n5. Harry is not red (From 1)\n6. If Harry is kind and Harry is not red then Harry is not blue. (Given)\n   So, Harry is not blue. (From 4, 5, and 6)\n\nNow, let's look at the statement that says: If someone is blue and not red then they are young.\n\n7. Harry is blue (From 3, which is incorrect because of statement 6)\n   However, we know that Harry is not blue. (From 6)\n   But, if someone is blue then they are young. (Let's continue for the sake of the argument, but we will find that it will eventually lead to a contradiction)\n   So, Harry is young. (Let's assume for now)\n\nHowever, we already have a statement that says: If Harry is young and Harry is smart then Harry is white. \n\n8. Harry is young (From 7, which is a contradiction because we established that Harry is not blue in statement 6)\n   However, let's continue with the assumption that Harry is young (From 7)\n   If Harry is young and Harry is smart then Harry is white. (Given)\n   However, we will find a contradiction later, but let's continue for now.\n\nWe have a statement that says: All young people are smart.\n\n9. If Harry is young then Harry is smart. (From 8, which is a contradiction because we established that Harry is not blue in statement 6)\n   However, let's continue with the assumption that Harry is young (From 7)\n   All young people are smart. (Given)\n   So, Harry is smart. (From 7 and 9)\n\nNow, we have a contradiction. We established that Harry is not blue in statement 6, but we also concluded that Harry is blue in statement 3. \n\nLet's resolve the contradiction. The statement that says: If Harry is kind then Harry is blue, is the one that is causing the contradiction. \n\nNow, let's look at the statement that says: If someone is smart and blue then they are young.\n\n10. Harry is smart (From 9)\n   Harry is blue (From 3, which is incorrect because of statement 6)\n   However, we know that Harry is not blue. (From 6)\n   But, if someone is blue then they are young. (Let's continue for the sake of the argument, but we will find that it will eventually lead to a contradiction)\n   So, Harry is young. (Let's assume for now)\n\nHowever, we already have a statement that says: If Harry is young and Harry is smart then Harry is white. \n\n11. Harry is young (From 10, which is a contradiction because we established that Harry is not blue in statement 6)\n   However, let's continue with the assumption that Harry is young (From 10)\n   If Harry is young and Harry is smart then Harry is white. (Given)\n   However, we will find a contradiction later, but let's continue for now.\n\nWe have a statement that says: All young people are smart.\n\n12. If Harry is young then Harry is smart. (From 11, which is a contradiction because we established that Harry is not blue in statement 6)\n   However, let's continue with the assumption that Harry is young (From 10)\n   All young people are smart. (Given)\n   So, Harry is smart. (From 10 and 12)\n\nHowever, we already established that Harry is not blue in statement 6.\n\n13. If Harry is not blue then Harry is not young. (From 10 and 6)\n   However, let's continue with the assumption that Harry is young (From 10)\n   All young people are smart. (Given)\n   So, Harry is smart. (From 10 and 13)\n\nHowever, we have a statement that says: If someone is smart and blue then they are young.\n\n14. Harry is smart (From 13)\n   Harry is not blue (From 6)\n   So, Harry is not young. (From 13 and 6)\n\nHowever, we already have a statement that says: All young people are smart.\n\n15. If Harry is young then Harry is smart. (From 14, which is a contradiction because we established that Harry is not blue in statement 6)\n   However, let's continue with the assumption that Harry is young (From 10)\n   All young people are smart. (Given)\n   So, Harry is smart. (From 10 and 15)\n\nHowever, we already established that Harry is not blue in statement 6.\n\n16. If someone is smart and blue then they are young. (Given)\n   However, let's continue with the assumption that Harry is young (From 10)\n   Harry is not blue. (From 6)\n   So, Harry is not young. (From 10 and 6)\n\nNow, let's look at the statement that says: If someone is blue and not red then they are young.\n\n17. If Harry is blue and not red then Harry is young. (Given)\n   However, let's continue with the assumption that Harry is young (From 10)\n   Harry is not blue. (From 6)\n   So, Harry is not young. (From 10 and 6)\n\nHowever, we already established that Harry is not blue in statement 6.\n\n18. If Harry is not blue then Harry is not young. (From 10 and 6)\n   However, let's continue with the assumption that Harry is young (From 10)\n   All red, blue people are smart. (Given)\n   However, we will find a contradiction later, but let's continue for now.\n\nWe have a statement that says: All red, blue people are smart.\n\n19. If Harry is red and Harry is blue then Harry is smart. (From 1 and 18)\n   However, let's continue with the assumption that Harry is young (From 10)\n   Harry is not blue. (From 6)\n   So, Harry is not red and blue. (From 1 and 6)\n\nHowever, we already have a statement that says: If Harry is young and Harry is smart then Harry is white.\n\n20. Harry is young (From 10)\n   Harry is smart (From 19)\n   If Harry is young and Harry is smart then Harry is white. (Given)\n   So, Harry is white. (From 10, 19, and 20)\n\nHowever, we have a statement that says: If someone is smart and blue then they are young.\n\n21. Harry is smart (From 19)\n   Harry is not blue (From 6)\n   So, Harry is not young. (From 10 and 6)\n\nHowever, we already established that Harry is not blue in statement 6.\n\n22. If someone is smart and blue then they are young. (Given)\n   However, let's continue with the assumption that Harry is young (From 10)\n   Harry is not blue. (From 6)\n   So, Harry is not young. (From 10 and 6)\n\nHowever, we already have a statement that says: If Harry is young and Harry is smart then Harry is white.\n\n23. Harry is young (From 10)\n   Harry is smart (From 22)\n   If Harry is young and Harry is smart then Harry is white. (Given)\n   So, Harry is white. (From 10, 22, and 23)\n\nHowever, we have a statement that says: If someone is blue and not red then they are young.\n\n24. If Harry is blue and not red then Harry is young. (Given)\n   However, let's continue with the assumption that Harry is young (From 10)\n   Harry is not blue. (From 6)\n   So, Harry is not young. (From 10 and 6)\n\nHowever, we already established that Harry is not blue in statement 6.\n\n25. If someone is blue and not red then they are young. (Given)\n   However, let's continue with the assumption that Harry is young (From 10)\n   Harry is not blue. (From 6)\n   So, Harry is not young. (From 10 and 6)\n\nHowever, we already have a statement that says: If Harry is young and Harry is smart then Harry is white.\n\n26. Harry is young (From 10)\n   Harry is smart (From 25)\n   If Harry is young and Harry is smart then Harry is white. (Given)\n   So, Harry is white. (From 10, 25, and 26)\n\nHowever, we have a statement that says: If someone is smart and blue then they are young.\n\n27. Harry is smart (From 25)\n   Harry is not blue (From 6)\n   So, Harry is not young. (From 10 and 6)\n\nHowever, we already established that Harry is not blue in statement 6.\n\n28. If someone is smart and blue then they are young. (Given)\n   However, let's continue with the assumption that Harry is young (From 10)\n   Harry is not blue.",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and apply them to Harry. We'll break down the statements and use them to deduce information about Harry.\n\nGiven statements:\n\n1. Bob is not kind.\n2. Bob is smart.\n3. Dave is not blue.\n4. Dave is cold.\n5. Dave is kind.\n6. Dave is not red.\n7. Dave is smart.\n8. Dave is white.\n9. Fiona is kind.\n10. Fiona is smart.\n11. Fiona is white.\n12. Harry is red.\n13. If someone is red then they are kind.\n14. If Harry is kind then Harry is blue.\n15. If Harry is kind and Harry is not red then Harry is not blue.\n16. If Fiona is not kind then Fiona is blue.\n17. All young people are smart.\n18. All red, blue people are smart.\n19. If Harry is young and Harry is smart then Harry is white.\n20. If someone is smart and blue then they are young.\n21. If someone is blue and not red then they are young.\n\nNow, let's analyze the statements:\n\nFrom statement 12, we know that Harry is red.\nFrom statement 13, we know that since Harry is red, he is also kind.\nFrom statement 14, we know that since Harry is kind, he is blue.\nHowever, we also have statement 15 which says that if Harry is kind and not red, then he is not blue. But since we already know that Harry is red, this statement doesn't affect our conclusion.\nNow, let's consider the fact that Harry is blue (from statement 14) and red (from statement 12). We can use this information in statement 21, which says that if someone is blue and not red, then they are young. However, in this case, Harry is both blue and red, so we can't conclude that he is young based on this statement.\n\nNow, let's use statement 20 to analyze the relationship between being smart and blue. We know that Harry is blue (from statement 14), but we can't conclude that he is young based on statement 21. However, if someone is smart and blue, then they are young (statement 20). We still don't know if Harry is smart or not, but we'll get to that later.\n\nLet's consider statement 17, which says that all young people are smart. However, we still don't know if Harry is young or not.\n\nNow, let's go back to the fact that Harry is kind (from statement 13) and blue (from statement 14). We also know that if someone is blue and not red, then they are young (statement 21). However, in Harry's case, we know that he is both blue and red, so we can't conclude that he is young based on this statement.\n\nHowever, we can use statement 18 to analyze the relationship between being red, blue, and smart. We know that Harry is both red and blue, so he must be smart according to this statement.\n\nNow, let's put it all together: we know that Harry is red (from statement 12), blue (from statement 14), and smart (from statement 18).\n\nNow, let's consider statement 19, which says that if Harry is young and Harry is smart then Harry is white. We still don't know if Harry is young or not, but we do know that he is smart.\n\nFrom statement 10, we know that Fiona is kind, smart, and white.\n\nNow, let's analyze the statement \"Harry is not smart.\"\n\nIf Harry is not smart, then we can't conclude that he is young or white based on statement 19. However, if Harry is not smart, then he can't be blue (from statement 20) because all blue people are young and smart.\n\nWe know that Harry is red (from statement 12), but if Harry is not smart, then he can't be blue (from statement 20). We also know that if Harry is not blue and he is red, then he is not young (statement 21).\n\nNow, let's consider statement 17, which says that all young people are smart. If Harry is not young, then he must be old.\n\nHowever, we still don't know if Harry is smart or not. We can only conclude that if Harry is not smart, then he can't be young.\n\nNow, let's go back to the fact that Harry is red (from statement 12) and kind (from statement 13). We also know that if someone is red then they are kind (statement 13).\n\nNow, let's consider statement 16, which says that if Fiona is not kind then Fiona is blue. We know that Fiona is kind (from statement 9), so we can't conclude that she is blue.\n\nNow, let's consider statement 15, which says that if Harry is kind and Harry is not red then Harry is not blue. We know that Harry is kind (from statement 13) and red (from statement 12), so this statement doesn't affect our conclusion.\n\nNow, let's consider statement 14, which says that if Harry is kind then Harry is blue. We know that Harry is kind (from statement 13) and red (from statement 12), so we can conclude that Harry is blue.\n\nNow, let's go back to the fact that Harry is blue (from statement 14) and red (from statement 12). We can use this information in statement 21, which says that if someone is blue and not red then they are young. However, in Harry's case, we know that he is both blue and red, so we can't conclude that he is young based on this statement.\n\nHowever, we can use statement 20 to analyze the relationship between being smart and blue. We know that Harry is blue (from statement 14), but we still don't know if he is young or not.\n\nHowever, we can use statement 18 to analyze the relationship between being red, blue, and smart. We know that Harry is both red and blue, so he must be smart according to this statement.\n\nNow, let's put it all together: we know that Harry is red (from statement 12), blue (from statement 14), and smart (from statement 18).\n\nHowever, we also know that if Harry is not smart, then we can't conclude that he is young or white based on statement 19.\n\nBut we do know that if Harry is not smart, then he can't be blue (from statement 20) because all blue people are young and smart.\n\nSo, we have a contradiction: on the one hand, we know that Harry is blue (from statement 14), but on the other hand, we know that if Harry is not smart, then he can't be blue (from statement 20).\n\nThis means that our original assumption that Harry is not smart must be false.\n\nTherefore, the statement \"Harry is not smart\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is red. \n   (Given)\n\n2. If someone is red then they are kind. \n   (Given)\n   Therefore, Harry is kind.\n\n3. If Harry is kind then Harry is blue. \n   (Given)\n   However, we also have another rule: If Harry is kind and Harry is not red then Harry is not blue.\n   We need to consider this rule before making any conclusions.\n\n4. We know that Harry is kind (from step 2) and Harry is red (from step 1). \n   Therefore, we can apply the rule: If Harry is kind and Harry is not red then Harry is not blue.\n   Since Harry is red, the condition \"Harry is not red\" is not satisfied. \n   Hence, this rule does not apply.\n\n5. However, we know that if someone is blue and not red then they are young. \n   (Given)\n   We also know that Harry is red (from step 1), but we do not know whether Harry is blue or not. \n   We need to continue analyzing the information.\n\n6. We know that if Harry is young and Harry is smart then Harry is white. \n   (Given)\n   But we do not know whether Harry is young or not. \n   We need to continue analyzing the information.\n\n7. We know that if someone is smart and blue then they are young. \n   (Given)\n   But we do not know whether Harry is smart or blue. \n   We need to continue analyzing the information.\n\n8. We know that all young people are smart. \n   (Given)\n   But we do not know whether Harry is young or not. \n   We need to continue analyzing the information.\n\n9. We know that all red, blue people are smart. \n   (Given)\n   However, we do not know whether Harry is blue or not. \n   We need to continue analyzing the information.\n\n10. We know that if someone is red then they are kind. \n   (Given)\n   We also know that if Harry is kind then Harry is blue. \n   (Given)\n   However, we also have another rule: If Harry is kind and Harry is not red then Harry is not blue.\n   We need to consider this rule again.\n\n11. Since we cannot determine whether Harry is young, smart, blue, or not, \n    we cannot determine whether the statement \"Harry is not smart\" is true or false.\n\nTherefore, the final answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether Harry is not smart, we need to analyze the given information step by step.\n\n1. Harry is red. (Given)\n2. If someone is red then they are kind. (Given)\n   Therefore, Harry is kind. (From 1 and 2)\n\n3. If Harry is kind then Harry is blue. (Given)\n   However, we also have another rule: If Harry is kind and Harry is not red then Harry is not blue. (Given)\n   This implies that we cannot conclude Harry is blue yet.\n\n4. If Harry is young and Harry is smart then Harry is white. (Given)\n   We don't know if Harry is young or smart yet, so we cannot conclude Harry's color.\n\n5. If someone is blue and not red then they are young. (Given)\n   However, since we don't know if Harry is blue or not, we cannot conclude Harry's age yet.\n\n6. All young people are smart. (Given)\n   We don't know if Harry is young or not, so we cannot conclude Harry's smartness yet.\n\n7. All red, blue people are smart. (Given)\n   However, since Harry is red (from 1), we cannot conclude Harry's smartness based on this rule.\n\n8. If someone is smart and blue then they are young. (Given)\n   We still don't know if Harry is blue or smart, so we cannot conclude Harry's age or youngness yet.\n\n9. If Harry is not kind then Harry is blue. (Given)\n   However, we know Harry is kind (from 2), so we cannot conclude Harry is blue.\n\n10. Fiona is kind, Fiona is smart, and Fiona is white. (Given)\n    These facts do not provide any information about Harry.\n\nSince we have not been able to conclude Harry's smartness from the given information, the statement \"Harry is not smart\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement 'Harry is not smart' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is red. (Given information)\n2. If someone is red then they are kind. (Given information)\n   From (1) and (2), we can conclude that Harry is kind.\n\n3. If Harry is kind then Harry is blue. (Given information)\n   From (2) and (3), we can conclude that Harry is blue.\n\n4. If Harry is kind and Harry is not red then Harry is not blue. (Given information)\n   However, we already concluded that Harry is kind (from step 2) and Harry is red (from step 1). So, Harry does not meet the condition of 'not red'. Therefore, this statement does not apply to Harry.\n\n5. From steps 2 and 3, we have two conflicting statements about Harry's color. To resolve this, we need to analyze further.\n\n6. If Harry is red then they are kind. (Given information)\n   We already concluded that Harry is kind (from step 2). \n\n7. If someone is smart and blue then they are young. (Given information)\n   We concluded that Harry is blue (from step 3). However, we don't know if Harry is smart yet. We will analyze this later.\n\n8. If someone is blue and not red then they are young. (Given information)\n   We concluded that Harry is blue (from step 3) and Harry is red (from step 1). However, this statement does not apply to Harry because Harry is red, not 'not red'.\n\n9. All young people are smart. (Given information)\n   We do not know if Harry is young yet. We will analyze this later.\n\n10. If Harry is young and Harry is smart then Harry is white. (Given information)\n    We do not know if Harry is young yet. We will analyze this later.\n\n11. All red, blue people are smart. (Given information)\n    We concluded that Harry is red (from step 1) and Harry is blue (from step 3). However, this statement does not apply to Harry because Harry is both red and blue, not just 'red, blue'.\n\n12. If someone is blue and not red then they are young. (Given information)\n    We concluded that Harry is blue (from step 3) and Harry is red (from step 1). However, this statement does not apply to Harry because Harry is red, not 'not red'.\n\n13. If Harry is kind and Harry is not red then Harry is not blue. (Given information)\n    We concluded that Harry is kind (from step 2) and Harry is red (from step 1). This statement applies to Harry because Harry is kind and Harry is red. Therefore, Harry is not blue.\n\nHowever, we previously concluded that Harry is blue (from step 3). This creates a conflict. To resolve this, we need to analyze further.\n\n14. Fiona is white. (Given information)\n15. Fiona is kind. (Given information)\n16. Fiona is smart. (Given information)\n17. If Fiona is not kind then Fiona is blue. (Given information)\n   From (15) and (17), we can conclude that this statement does not apply to Fiona.\n\n18. All young people are smart. (Given information)\n   We do not know if Fiona is young yet. We will analyze this later.\n\n19. If someone is smart and blue then they are young. (Given information)\n   We concluded that Fiona is smart (from step 16) and Fiona is not blue (from step 17). However, this statement does not apply to Fiona because Fiona is not blue.\n\n20. If someone is blue and not red then they are young. (Given information)\n   We concluded that Fiona is not blue (from step 17). However, this statement does not apply to Fiona because Fiona is not blue.\n\n21. If Harry is young and Harry is smart then Harry is white. (Given information)\n   We do not know if Harry is young yet. We will analyze this later.\n\n22. If Fiona is not kind then Fiona is blue. (Given information)\n   From (15) and (22), we can conclude that this statement does not apply to Fiona.\n\n23. If Harry is kind then Harry is blue. (Given information)\n   We concluded that Harry is kind (from step 2). However, we previously concluded that Harry is not blue (from step 13).\n\n24. All young people are smart. (Given information)\n   We do not know if Harry is young yet. We will analyze this later.\n\n25. If Harry is young and Harry is smart then Harry is white. (Given information)\n   We do not know if Harry is young yet. We will analyze this later.\n\n26. If Fiona is not kind then Fiona is blue. (Given information)\n   From (15) and (26), we can conclude that this statement does not apply to Fiona.\n\n27. Fiona is white. (Given information)\n   We concluded that Fiona is white (from step 14).\n\n28. Fiona is smart. (Given information)\n   We concluded that Fiona is smart (from step 16).\n\n29. If someone is blue and not red then they are young. (Given information)\n   We concluded that Fiona is not blue (from step 17). However, this statement does not apply to Fiona because Fiona is not blue.\n\n30. Dave is cold. (Given information)\n31. Dave is kind. (Given information)\n32. Dave is not blue. (Given information)\n33. Dave is smart. (Given information)\n34. Dave is white. (Given information)\n35. If someone is smart and blue then they are young. (Given information)\n   We concluded that Dave is smart (from step 33) and Dave is not blue (from step 32). However, this statement does not apply to Dave because Dave is not blue.\n\n36. If someone is blue and not red then they are young. (Given information)\n   We concluded that Dave is not blue (from step 32). However, this statement does not apply to Dave because Dave is not blue.\n\n37. If Harry is young and Harry is smart then Harry is white. (Given information)\n   We do not know if Harry is young yet. We will analyze this later.\n\n38. If Dave is not kind then Dave is blue. (Given information)\n   From (31) and (38), we can conclude that this statement does not apply to Dave.\n\n39. If Harry is kind then Harry is blue. (Given information)\n   We concluded that Harry is kind (from step 2). However, we previously concluded that Harry is not blue (from step 13).\n\n40. All young people are smart. (Given information)\n   We do not know if Harry is young yet. We will analyze this later.\n\n41. If Fiona is not kind then Fiona is blue. (Given information)\n   From (15) and (41), we can conclude that this statement does not apply to Fiona.\n\n42. If someone is blue and not red then they are young. (Given information)\n   We concluded that Fiona is not blue (from step 17). However, this statement does not apply to Fiona because Fiona is not blue.\n\n43. Dave is white. (Given information)\n   We concluded that Dave is white (from step 34).\n\n44. If Dave is not kind then Dave is blue. (Given information)\n   From (31) and (44), we can conclude that this statement does not apply to Dave.\n\n45. If Harry is young and Harry is smart then Harry is white. (Given information)\n   We do not know if Harry is young yet. We will analyze this later.\n\n46. If Dave is not kind then Dave is blue. (Given information)\n   From (31) and (46), we can conclude that this statement does not apply to Dave.\n\n47. If Harry is kind then Harry is blue. (Given information)\n   We concluded that Harry is kind (from step 2). However, we previously concluded that Harry is not blue (from step 13).\n\n48. If Harry is young and Harry is smart then Harry is white. (Given information)\n   We do not know if Harry is young yet. We will analyze this later.\n\n49. If someone is blue and not red then they are young. (Given information)\n   We concluded that Harry is blue (from step 3) and Harry is red (from step 1). However, this statement does not apply to Harry because Harry is red, not 'not red'.\n\n50. If Harry is not kind then Harry is blue. (Given information)\n   From (2) and (50), we can conclude that this statement does not apply to Harry.\n\n51. If Harry is young and Harry is smart then Harry is white. (Given information)\n   We do not know if Harry is young yet. We will analyze this later.\n\n52. If Dave is not kind then Dave is blue. (Given information)\n   From (31) and (52), we can conclude that this statement does not apply to Dave.\n\n53. If Fiona is not kind then Fiona is blue. (Given information)\n   From (15) and (53), we can conclude that this statement does not apply to Fiona.\n\n54. If someone is blue and not red then they are young. (Given information)\n   We concluded that Fiona is not blue (from step 17). However, this statement does not apply to Fiona because Fiona is not blue.\n\n55. If Harry is kind then Harry is blue. (Given information)\n   We concluded that Harry is kind (from step 2). However, we previously concluded that Harry is not blue (from step 13).\n\n56. If Harry is young and Harry is smart then Harry is white. (Given information)\n",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications. We will break down the information step by step.\n\n1. All young people are smart.\n2. All red, blue people are smart.\n3. If someone is smart and blue then they are young.\n4. If someone is blue and not red then they are young.\n5. If someone is red then they are kind.\n6. If Harry is kind then Harry is blue.\n7. If Harry is kind and Harry is not red then Harry is not blue.\n8. Harry is red.\n9. Harry is kind.\n10. Harry is not blue.\n11. Fiona is kind.\n12. Fiona is smart.\n13. Fiona is white.\n14. Dave is kind.\n15. Dave is cold.\n16. Dave is not blue.\n17. Dave is smart.\n18. Dave is white.\n19. If someone is smart and blue then they are young.\n20. If Harry is young and Harry is smart then Harry is white.\n21. If Harry is young then Harry is white.\n\nFrom the given statements, we can conclude the following:\n\n- Harry is red (8).\n- Harry is kind (9).\n- Harry is not blue (10).\n- If someone is red then they are kind (5), so Harry's kind is already implied by being red.\n- If Harry is kind then Harry is blue (6), but we know Harry is not blue (10).\n- If Harry is kind and Harry is not red then Harry is not blue (7). This statement implies that being kind and not red makes someone not blue, but we already know Harry is not blue.\n- If Harry is young and Harry is smart then Harry is white (20), but this statement does not provide information about Harry's youth or intelligence.\n- If Harry is young then Harry is white (21), but this statement also does not provide information about Harry's youth.\n\nHowever, from the statement (8) Harry is red, and (5) if someone is red then they are kind, which implies Harry is kind. \n\nSince Harry is kind, and we know that (6) if Harry is kind then Harry is blue, but (10) Harry is not blue. Thus we can use (7) to determine that Harry is not young because being kind and not red makes Harry not blue. This is an implication of (7) - If Harry is kind and Harry is not red then Harry is not blue. \n\nIf Harry is not young then he is not white (21). \n\nSince (8) Harry is red, and (5) if someone is red then they are kind, which implies Harry is kind, (9) Dave is kind, and (11) Fiona is kind, and all of them are kind. Now we can use (5) if someone is red then they are kind, which implies Harry is kind, and (3) if someone is smart and blue then they are young, (4) if someone is blue and not red then they are young, (6) if Harry is kind then Harry is blue, and (7) if Harry is kind and Harry is not red then Harry is not blue. Since we know Harry is not blue (10), we can conclude that Harry is not young.\n\nNow we have to check if Harry is smart or not. We know that (18) Dave is smart, (12) Fiona is smart, (17) Dave is smart, and (12) Fiona is smart. Since all young people are smart (1) and all red, blue people are smart (2), and none of the above statements imply that Harry is young or blue, but we know Harry is not young. Since (7) implies that Harry is not young and (7) also implies that Harry is not blue, we can conclude that Harry is not red, blue. \n\nBut we know Harry is red (8), so we can use (1) all young people are smart to determine if Harry is smart or not. Since Harry is not young, we can use (1) to determine that he is not smart.\n\nHowever, we can use (1) to determine if Harry is smart or not only if we know that Harry is not young or not red, blue. But we know Harry is not young, which implies he is not smart, using (1). Since we have a statement that Harry is red, (8) Harry is red, and (5) if someone is red then they are kind, which implies Harry is kind. \n\nNow we can use (1) to determine if Harry is smart or not. Since Harry is not young, we can use (1) to determine that he is not smart.\n\nThe statement \"Harry is not smart\" can be determined to be true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to use logical reasoning and analyze the given statements.\n\nStep 1:  Analyze the given statements:\n\n1. Bob is not kind.\n2. Bob is smart.\n3. Dave is not blue.\n4. Dave is cold.\n5. Dave is kind.\n6. Dave is not red.\n7. Dave is smart.\n8. Dave is white.\n9. Fiona is kind.\n10. Fiona is smart.\n11. Fiona is white.\n12. Harry is red.\n13. If someone is red then they are kind.\n14. If Harry is kind then Harry is blue.\n15. If Harry is kind and Harry is not red then Harry is not blue.\n16. If Fiona is not kind then Fiona is blue.\n17. All young people are smart.\n18. All red, blue people are smart.\n19. If Harry is young and Harry is smart then Harry is white.\n20. If someone is smart and blue then they are young.\n21. If someone is blue and not red then they are young.\n\nStep 2:  Use the statements to determine the truth value of \"Harry is not smart.\"\n\nTo do this, we need to start with the given statements and deduce the truth value of \"Harry is not smart.\"\n\nFrom statement 12, we know that Harry is red.\n\nFrom statement 13, we know that if someone is red, then they are kind.\n\nSo, Harry is kind.\n\nNow we need to determine if Harry is blue.\n\nFrom statement 14, we know that if Harry is kind, then Harry is blue.\n\nFrom statement 15, we know that if Harry is kind and Harry is not red, then Harry is not blue.\n\nHowever, we already know that Harry is red (from statement 12), so the condition \"Harry is not red\" is not met.\n\nTherefore, from statement 15, we cannot conclude that Harry is not blue.\n\nHowever, we can conclude from statement 15 that the condition \"if Harry is kind and Harry is not red then Harry is not blue\" is met. But this does not necessarily mean Harry is blue, as it was stated \"if\" Harry is kind and not red, then he is not blue.\n\nNow, we will check the other statements. From statement 13, we know that if someone is red, then they are kind, which we have already concluded. However, we need to check if Harry is blue or not.\n\nFrom statement 20, we know that if someone is smart and blue, then they are young. However, we need to know if Harry is blue or not.\n\nFrom statement 21, we know that if someone is blue and not red, then they are young. However, we need to know if Harry is blue or not.\n\nFrom statement 18, we know that all red, blue people are smart. However, we need to know if Harry is blue or not.\n\nFrom statement 20, we know that if someone is smart and blue, then they are young. From statement 17, we know that all young people are smart. Therefore, if Harry is young and smart, then he is white.\n\nFrom statement 19, we know that if Harry is young and Harry is smart, then Harry is white.\n\nNow, we will check if Harry is smart or not.\n\nFrom statement 17, we know that all young people are smart.\n\nHowever, from statement 20, we know that if someone is smart and blue, then they are young.\n\nFrom statement 20, we cannot conclude that Harry is young.\n\nHowever, we can conclude that if Harry is smart, then he is not blue (since if someone is smart and blue, then they are young, and we already know that all young people are smart).\n\nNow, we need to check if Harry is blue or not.\n\nFrom statement 21, we know that if someone is blue and not red, then they are young.\n\nHowever, from statement 20, we know that if someone is smart and blue, then they are young.\n\nSince we cannot conclude that Harry is young from statement 20, we cannot conclude that Harry is blue from statement 21.\n\nHowever, from statement 15, we know that if Harry is kind and Harry is not red, then Harry is not blue.\n\nSince we have already concluded that Harry is kind, we can conclude that Harry is not blue.\n\nNow, we need to check if Harry is smart or not.\n\nFrom statement 17, we know that all young people are smart.\n\nHowever, we cannot conclude that Harry is young.\n\nHowever, we can conclude that if Harry is smart, then he is not blue (since if someone is smart and blue, then they are young, and we already know that all young people are smart).\n\nFrom statement 17, we know that all young people are smart.\n\nFrom statement 20, we know that if someone is smart and blue, then they are young.\n\nFrom statement 20, we cannot conclude that Harry is young.\n\nHowever, we can conclude that if Harry is smart, then he is not blue.\n\nHowever, we cannot conclude that Harry is not smart.\n\nTherefore, the statement \"Harry is not smart\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve the problem, we need to apply the given statements to Harry and determine whether he is smart or not.\n\n1. Harry is red.\n2. If someone is red then they are kind. (So, Harry is kind.)\n3. If Harry is kind then Harry is blue. (This statement contradicts with the fact that Harry is red. However, we will still continue with the statement to see if we can derive a conclusion.)\n4. If Harry is kind and Harry is not red then Harry is not blue. (This statement is applicable as Harry is kind and not red. So, Harry is not blue.)\n\nNow, we have the following information about Harry: \nHarry is red, Harry is kind, Harry is not blue.\n\n5. If Fiona is not kind then Fiona is blue. (This does not provide any information about Harry.)\n6. All young people are smart.\n7. All red, blue people are smart.\n8. If Harry is young and Harry is smart then Harry is white. (This statement is applicable as Harry is red. However, we don't know if Harry is young yet.)\n9. If someone is smart and blue then they are young.\n10. If someone is blue and not red then they are young.\n\nFrom statements 9 and 10, we can conclude that blue people are young.\n\nFrom statement 3, we know that if Harry is kind then Harry is blue. However, we have also concluded that if Harry is kind and not red then Harry is not blue. This is a contradiction, and we can conclude that Harry cannot be kind and not red.\n\nHowever, we already know that Harry is kind and not red from statement 2. Therefore, this is an unknown. \n\nHowever, we can see from the original list of information that we do not have a definitive statement about Harry being young or not. Let's look at some other statements to see if we can derive a conclusion.\n\nFrom statement 6, we know that all young people are smart. \n\nFrom statement 1, we know that Harry is red.\n\nFrom statement 7, we know that all red, blue people are smart. \n\nFrom statement 8, we know that if Harry is young and Harry is smart then Harry is white.\n\nHowever, we do not know if Harry is young or not. \n\nFrom statement 9 and 10, we can conclude that blue people are young.\n\nIf Harry were blue, then he would be young. However, if Harry is not blue then we have no conclusion about his age.\n\nHowever, we do know that Harry is not smart from statement 6, since if Harry is young, then he is smart.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement 'Harry is not smart' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given statements:\n   - Bob is not kind. Bob is smart. (We don't need this information)\n   - Dave is not blue. Dave is cold. Dave is kind. Dave is not red. Dave is smart. Dave is white. (We don't need this information)\n   - Fiona is kind. Fiona is smart. Fiona is white. (We don't need this information)\n   - Harry is red. (This statement will be crucial)\n   - If someone is red then they are kind. (This statement is relevant)\n   - If Harry is kind then Harry is blue. (This statement is relevant)\n   - If Harry is kind and Harry is not red then Harry is not blue. (This statement is relevant)\n   - If Fiona is not kind then Fiona is blue. (We don't need this information)\n   - All young people are smart. (This statement is relevant)\n   - All red, blue people are smart. (This statement is relevant)\n   - If Harry is young and Harry is smart then Harry is white. (This statement is relevant)\n   - If someone is smart and blue then they are young. (This statement is relevant)\n   - If someone is blue and not red then they are young. (This statement is relevant)\n\n2. Determine Harry's kind status:\n   From the statement 'Harry is red', and 'If someone is red then they are kind', we can conclude that Harry is kind.\n\n3. Determine Harry's blue status:\n   Since Harry is kind and red, from 'If Harry is kind and Harry is not red then Harry is not blue', we can conclude that Harry is blue.\n\n4. Determine Harry's smart status:\n   From the statement 'All red, blue people are smart', we can conclude that Harry is smart because he is both red and blue.\n\n5. Determine Harry's age status:\n   Since Harry is blue and not red, from 'If someone is blue and not red then they are young', we can conclude that Harry is young.\n\n6. Determine Harry's white status:\n   Since Harry is young, smart, and white is not mentioned in any of the previous statements, we cannot conclude Harry's white status.\n\n7. Conclusion:\n   Given that Harry is smart, we can now evaluate the statement 'Harry is not smart'. Since we have already concluded that Harry is smart, this statement is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not smart\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. Harry is red. (From the problem statement)\n2. If someone is red then they are kind. (From the problem statement)\n   So, Harry is kind.\n\n3. If Harry is kind then Harry is blue. (From the problem statement)\n   So, Harry is blue.\n\n4. If Harry is kind and Harry is not red then Harry is not blue. (From the problem statement)\n   However, we already know that Harry is red (step 1) and kind (step 2). So, this statement is not applicable in this case.\n   Therefore, we cannot conclude anything about Harry being blue from this statement.\n\n5. All young people are smart. (From the problem statement)\n   This statement does not provide any information about Harry's age.\n\n6. All red, blue people are smart. (From the problem statement)\n   Since Harry is red (step 1) and blue (step 3), this statement implies that Harry is smart.\n\nHowever, from step 6, we can conclude that Harry is smart. Therefore, we cannot say that Harry is not smart. \n\nSo, the statement \"Harry is not smart\" is unknown because we can conclude the opposite.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to use logical deductions based on the given statements. We will break down the information and analyze it step by step.\n\nGiven statements:\n\n1. Bob is not kind. (Bob's color or age is not relevant to this problem)\n2. Bob is smart. (Bob's color or age is not relevant to this problem)\n3. Dave is not blue. (Dave's color is white, but this is not directly relevant to Harry's smartness)\n4. Dave is cold. (Not relevant to this problem)\n5. Dave is kind. (Dave's kind nature is not directly relevant to Harry's smartness)\n6. Dave is not red. (Dave's color is white, but this is not directly relevant to Harry's smartness)\n7. Dave is smart. (Dave's smartness is not directly relevant to Harry's smartness)\n8. Dave is white. (This is consistent with statement 3)\n9. Fiona is kind. (Fiona's kind nature is not directly relevant to Harry's smartness)\n10. Fiona is smart. (Fiona's smartness is not directly relevant to Harry's smartness)\n11. Fiona is white. (This is consistent with statement 9)\n12. Harry is red. (This is relevant to Harry's color)\n13. If someone is red then they are kind. (This is relevant to Harry's kind nature)\n14. If Harry is kind then Harry is blue. (This is relevant to Harry's color)\n15. If Harry is kind and Harry is not red then Harry is not blue. (This is relevant to Harry's color)\n16. If Fiona is not kind then Fiona is blue. (This is not directly relevant to Harry's smartness)\n17. All young people are smart. (This is relevant to Harry's age and smartness)\n18. All red, blue people are smart. (This is relevant to Harry's color and smartness)\n19. If Harry is young and Harry is smart then Harry is white. (This is relevant to Harry's age and color)\n20. If someone is smart and blue then they are young. (This is relevant to Harry's age and color)\n21. If someone is blue and not red then they are young. (This is relevant to Harry's age and color)\n\nNow, let's analyze the given statements to determine whether Harry is smart or not.\n\nFrom statement 12, we know that Harry is red.\n\nFrom statement 13, we know that if someone is red, then they are kind.\n\nFrom statement 13, we also know that Harry is kind.\n\nHowever, from statement 15, we know that if Harry is kind and Harry is not red, then Harry is not blue. But we already know that Harry is red, so this statement is not applicable to Harry.\n\nFrom statement 14, we know that if Harry is kind, then Harry is blue. However, this statement is in conflict with statement 15, which implies that Harry is not blue if he is kind and not red.\n\nTo resolve this conflict, we need to analyze the statements further.\n\nFrom statement 12, we know that Harry is red.\n\nFrom statement 13, we know that if someone is red, then they are kind. Therefore, Harry is kind.\n\nHowever, from statement 15, we know that if Harry is kind and Harry is not red, then Harry is not blue. But we already know that Harry is red, so this statement is not applicable to Harry.\n\nFrom statement 15, we also know that if Harry is kind and Harry is red, then Harry is blue. However, this statement is in conflict with statement 13, which implies that Harry is red if he is kind.\n\nTo resolve this conflict, we need to analyze the statements further.\n\nFrom statement 12, we know that Harry is red.\n\nFrom statement 13, we know that if someone is red, then they are kind. Therefore, Harry is kind.\n\nFrom statement 15, we know that if Harry is kind and Harry is red, then Harry is blue. Therefore, Harry is blue.\n\nNow, let's analyze the statements to determine whether Harry is smart or not.\n\nFrom statement 12, we know that Harry is red.\n\nFrom statement 13, we know that if someone is red, then they are kind. Therefore, Harry is kind.\n\nHowever, from statement 17, we know that all young people are smart. We also know that Harry is kind, but we don't know if Harry is young or not.\n\nFrom statement 18, we know that all red, blue people are smart. We know that Harry is red and blue, but we don't know if Harry is smart or not.\n\nFrom statement 20, we know that if someone is smart and blue, then they are young. However, this statement is not applicable to Harry because we don't know if Harry is smart or not.\n\nFrom statement 21, we know that if someone is blue and not red, then they are young. However, this statement is not applicable to Harry because we don't know if Harry is blue or not.\n\nNow, let's analyze the statements to determine whether Harry is young or not.\n\nFrom statement 12, we know that Harry is red.\n\nFrom statement 13, we know that if someone is red, then they are kind. Therefore, Harry is kind.\n\nFrom statement 15, we know that if Harry is kind and Harry is red, then Harry is blue. Therefore, Harry is blue.\n\nFrom statement 20, we know that if someone is smart and blue, then they are young. However, we don't know if Harry is smart or not.\n\nFrom statement 21, we know that if someone is blue and not red, then they are young. We know that Harry is blue, but we don't know if Harry is young or not.\n\nHowever, from statement 17, we know that all young people are smart. We also know that Harry is blue, but we don't know if Harry is smart or not.\n\nNow, let's analyze the statements to determine whether Harry is smart or not.\n\nFrom statement 12, we know that Harry is red.\n\nFrom statement 13, we know that if someone is red, then they are kind. Therefore, Harry is kind.\n\nFrom statement 15, we know that if Harry is kind and Harry is red, then Harry is blue. Therefore, Harry is blue.\n\nFrom statement 18, we know that all red, blue people are smart. We know that Harry is red and blue, but we don't know if Harry is smart or not.\n\nHowever, from statement 17, we know that all young people are smart. We also know that Harry is blue, but we don't know if Harry is young or not.\n\nFrom statement 20, we know that if someone is smart and blue, then they are young. However, this statement is not applicable to Harry because we don't know if Harry is smart or not.\n\nFrom statement 21, we know that if someone is blue and not red, then they are young. However, this statement is not applicable to Harry because we don't know if Harry is blue or not.\n\nNow, let's analyze the statements to determine whether Harry is young or not.\n\nFrom statement 12, we know that Harry is red.\n\nFrom statement 13, we know that if someone is red, then they are kind. Therefore, Harry is kind.\n\nFrom statement 15, we know that if Harry is kind and Harry is red, then Harry is blue. Therefore, Harry is blue.\n\nFrom statement 20, we know that if someone is smart and blue, then they are young. However, we don't know if Harry is smart or not.\n\nFrom statement 21, we know that if someone is blue and not red, then they are young. We know that Harry is blue, but we don't know if Harry is young or not.\n\nHowever, from statement 17, we know that all young people are smart. We also know that Harry is blue, but we don't know if Harry is smart or not.\n\nNow, let's analyze the statements to determine whether Harry is smart or not.\n\nFrom statement 12, we know that Harry is red.\n\nFrom statement 13, we know that if someone is red, then they are kind. Therefore, Harry is kind.\n\nFrom statement 15, we know that if Harry is kind and Harry is red, then Harry is blue. Therefore, Harry is blue.\n\nFrom statement 17, we know that all young people are smart. We also know that Harry is blue, but we don't know if Harry is young or not.\n\nHowever, from statement 20, we know that if someone is smart and blue, then they are young. Therefore, if Harry is smart, then Harry is young.\n\nFrom statement 21, we know that if someone is blue and not red, then they are young. We know that Harry is blue, but we don't know if Harry is young or not.\n\nNow, let's analyze the statements to determine whether Harry is young or not.\n\nFrom statement 12, we know that Harry is red.\n\nFrom statement 13, we know that if someone is red, then they are kind. Therefore, Harry is kind.\n\nFrom statement 15, we know that if Harry is kind and Harry is red, then Harry is blue. Therefore, Harry is blue.\n\nFrom statement 17, we know that all young people are smart. We also know that Harry is blue, but we don't know if Harry is young or not.\n\nFrom statement 20, we know that if someone is smart and blue, then they are young. We don't know if Harry is smart or not.\n\nHowever, from statement 21, we know that if someone is blue and not red, then they are young. We know that Harry is blue, but we don't know if Harry is young or not.\n\nNow, let's analyze the statements to determine whether",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement 'Harry is not smart' is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nFrom the given statements:\n\n1. Harry is red. \n2. If someone is red then they are kind.\n3. If Harry is kind then Harry is blue.\n4. If Harry is kind and Harry is not red then Harry is not blue.\n\nFrom statement 2, we can conclude that Harry is kind.\n\nNow, using statements 3 and 4, we have two possibilities:\n\n- If Harry is kind, then Harry is blue. (From statement 3)\n- However, since Harry is red and kind, using statement 4, Harry is not blue.\n\nSo, we can conclude that Harry is not blue.\n\nFrom the given statements:\n\n5. If someone is blue and not red then they are young.\n6. If someone is smart and blue then they are young.\n7. If someone is blue then they are smart.\n\nWe can use these statements to determine whether Harry is young and smart.\n\nHowever, we already know Harry is not blue. Using statement 5, we can conclude that Harry is not young.\n\nNow, we need to determine whether Harry is smart.\n\nFrom the given statements:\n\n8. All young people are smart.\n9. All red, blue people are smart.\n10. If someone is blue then they are smart.\n\nWe can use these statements to determine whether Harry is smart.\n\nHowever, we already know Harry is not young (from statement 5) and Harry is not blue.\n\nUsing statement 9, we know that all red people are smart. Since Harry is red, we can conclude that Harry is smart.\n\nNow that we know Harry is smart, we can answer the question: 'Harry is not smart.'\n\nThe statement 'Harry is not smart' is false because we have determined that Harry is smart.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_harry, kind_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> blue(X)",
+          "z3_formula": "Implies(kind_harry, blue_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & blue(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_harry, blue_harry), smart_harry)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_harry, smart_harry), young_harry)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_harry, smart_harry)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & not red(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_harry, Not(red_harry)), young_harry)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(harry)",
+          "z3_formula": "Not(smart_harry)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(harry)",
+          "z3_formula": "Not(blue_harry)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not young(harry)",
+          "z3_formula": "Not(young_harry)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(harry)",
+          "z3_formula": "Not(kind_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not red(harry)",
+          "z3_formula": "Not(red_harry)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_harry, kind_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> blue(X)",
+          "z3_formula": "Implies(kind_harry, blue_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & Not(red(X)) -> Not(blue(X))",
+          "z3_formula": "Implies(And(kind_harry, Not(red_harry)), Not(blue_harry))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) & Not(red(X)) -> young(X)",
+          "z3_formula": "Implies(And(blue_harry, Not(red_harry)), young_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) & smart(X) -> white(X)",
+          "z3_formula": "Implies(And(young_harry, smart_harry), white_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(X) & blue(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_harry, blue_harry), young_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_harry, smart_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(X) & blue(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_harry, blue_harry), smart_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & Not(red(X)) -> Not(blue(X))",
+          "z3_formula": "Implies(And(kind_harry, Not(red_harry)), Not(blue_harry))",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_harry, kind_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> blue(X)",
+          "z3_formula": "Implies(kind_harry, blue_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & Not(red(X)) -> Not(blue(X))",
+          "z3_formula": "Implies(And(kind_harry, Not(red_harry)), Not(blue_harry))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & smart(X) -> white(X)",
+          "z3_formula": "Implies(And(young_harry, smart_harry), white_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & Not(red(X)) -> young(X)",
+          "z3_formula": "Implies(And(blue_harry, Not(red_harry)), young_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_harry, smart_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_harry, blue_harry), young_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "Not(kind(X)) -> blue(X)",
+          "z3_formula": "Implies(Not(kind_harry), blue_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 13
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_X, smart_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(X) & blue(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_X, blue_X), smart_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_X, blue_X), young_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & Not(red(X)) -> young(X)",
+          "z3_formula": "Implies(And(blue_X, Not(red_X)), young_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_X, kind_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> blue(X)",
+          "z3_formula": "Implies(kind_X, blue_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & Not(red(X)) -> Not(blue(X))",
+          "z3_formula": "Implies(And(kind_X, Not(red_X)), Not(blue_X))",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "Not(blue(harry))",
+          "z3_formula": "Not(blue_harry) == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "Not(young(harry))",
+          "z3_formula": "Not(young_harry) == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "Not(blue(dave))",
+          "z3_formula": "Not(blue_dave) == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & smart(X) -> white(X)",
+          "z3_formula": "Implies(And(young_X, smart_X), white_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_X, white_X)",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not kind(bob)",
+          "z3_formula": "Not(kind_bob)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(dave)",
+          "z3_formula": "Not(blue_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not red(dave)",
+          "z3_formula": "Not(red_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_harry, kind_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> blue(X)",
+          "z3_formula": "Implies(kind_harry, blue_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not red(X) -> not blue(X)",
+          "z3_formula": "Implies(And(kind_harry, Not(red_harry)), Not(blue_harry))",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "not kind(X) -> blue(X)",
+          "z3_formula": "Implies(Not(kind_fiona), blue_fiona)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_X, smart_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & blue(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_X, blue_X), smart_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & smart(X) -> white(X)",
+          "z3_formula": "Implies(And(young_X, smart_X), white_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_X, blue_X), young_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & not red(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_X, Not(red_X)), young_X)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(harry)",
+          "z3_formula": "Not(blue_harry)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(harry)",
+          "z3_formula": "Not(blue_harry)",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(harry)",
+          "z3_formula": "Not(blue_harry)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(harry)",
+          "z3_formula": "Not(blue_harry)",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(harry)",
+          "z3_formula": "Not(blue_harry)",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(harry)",
+          "z3_formula": "Not(blue_harry)",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(harry)",
+          "z3_formula": "Not(blue_harry)",
+          "source_step": 29
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(harry)",
+          "z3_formula": "Not(smart_harry)",
+          "source_step": 30
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_harry, kind_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> blue(X)",
+          "z3_formula": "Implies(kind_harry, blue_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & Not(red(X)) -> Not(blue(X))",
+          "z3_formula": "Implies(And(kind_harry, Not(red_harry)), Not(blue_harry))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "Not(blue(harry))",
+          "z3_formula": "Not(blue_harry) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "Not(red(harry))",
+          "z3_formula": "Not(red_harry) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "Not(kind(X)) -> blue(X)",
+          "z3_formula": "Implies(Not(kind_harry), blue_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "Not(kind(X)) -> Not(blue(X))",
+          "z3_formula": "Implies(Not(kind_harry), Not(blue_harry))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "Not(blue(X)) -> Not(kind(X))",
+          "z3_formula": "Implies(Not(blue_harry), Not(kind_harry))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "Not(blue(X)) -> young(X)",
+          "z3_formula": "Implies(Not(blue_harry), young_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "Not(red(X)) & Not(blue(X)) -> young(X)",
+          "z3_formula": "Implies(And(Not(red_harry), Not(blue_harry)), young_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_harry, smart_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> Not(smart(X))",
+          "z3_formula": "Implies(young_harry, Not(smart_harry))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "Not(smart(X)) -> Not(young(X))",
+          "z3_formula": "Implies(Not(smart_harry), Not(young_harry))",
+          "source_step": 12
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_harry, kind_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry) -> blue(harry)",
+          "z3_formula": "Implies(kind_harry, blue_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & Not(red(X)) -> Not(blue(X))",
+          "z3_formula": "Implies(And(kind_harry, Not(red_harry)), Not(blue_harry))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_harry, smart_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & blue(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_harry, blue_harry), smart_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not kind(harry)",
+          "z3_formula": "Not(kind_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(dave)",
+          "z3_formula": "Not(blue_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not red(dave)",
+          "z3_formula": "Not(red_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_harry, kind_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> blue(X)",
+          "z3_formula": "Implies(kind_harry, blue_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not red(X) -> not blue(X)",
+          "z3_formula": "Implies(And(kind_harry, Not(red_harry)), Not(blue_harry))",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "not kind(X) -> blue(X)",
+          "z3_formula": "Implies(Not(kind_harry), blue_harry)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_harry, smart_harry)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & blue(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_harry, blue_harry), smart_harry)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_harry, blue_harry), young_harry)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & not red(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_harry, Not(red_harry)), young_harry)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_harry, kind_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> blue(X)",
+          "z3_formula": "Implies(kind_harry, blue_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & ~red(X) -> ~blue(X)",
+          "z3_formula": "Implies(And(kind_harry, Not(red_harry)), Not(blue_harry))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(harry)",
+          "z3_formula": "Not(blue_harry) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(harry)",
+          "z3_formula": "Not(blue_harry) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & ~red(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_harry, Not(red_harry)), young_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not young(harry)",
+          "z3_formula": "Not(young_harry) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not young(harry)",
+          "z3_formula": "Not(young_harry) == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_harry, smart_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & blue(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_harry, blue_harry), smart_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_harry, smart_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(harry)",
+          "z3_formula": "Not(smart_harry) == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "False",
+          "z3_formula": "Not(smart_harry) == False",
+          "source_step": 10
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 152,
+      "traces_with_constraints": 9,
+      "unique_after_dedup": 44
+    },
+    "maxsat_stats": {
+      "satisfied": 38,
+      "excluded": 6,
+      "total_weight": 133,
+      "solve_time_ms": 2.0881667733192444
+    },
+    "timing": {
+      "trace_gen_s": 25.107,
+      "extraction_s": 49.911,
+      "dedup_s": 1.299,
+      "maxsat_s": 0.005,
+      "total_s": 76.322
+    }
+  }
+}

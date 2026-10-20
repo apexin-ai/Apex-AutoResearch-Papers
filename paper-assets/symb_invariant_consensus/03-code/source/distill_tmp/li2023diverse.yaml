@@ -1,0 +1,25 @@
+paper_key: "li2023diverse"
+title: "Making Language Models Better Reasoners with Step-Aware Verifier"
+venue: "ACL 2023"
+full_text_available: false
+
+research:
+  baselines: ["CoT", "SC-CoT", "voting_verifier"]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "GSM8K", size: "1319"}
+    - {name: "MATH", size: "500"}
+  ablation_dimensions: ["verifier_granularity", "diverse_prompts", "sample_count"]
+  training_recipe: {info: "step-aware verifier training"}
+  method_family: "diverse prompting + step-aware verification"
+
+positioning:
+  core_claim: "Combining diverse prompting strategies with step-level verification outperforms simple self-consistency"
+  key_results: "GSM8K: +3.2% over SC-CoT with step-aware verifier"
+  limitations: ["N/A"]
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

@@ -1,0 +1,1034 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-169_Q6",
+    "problem": "The bald eagle chases the rabbit. The bald eagle does not chase the tiger. The bald eagle is green. The bald eagle is red. The bald eagle is young. The bald eagle sees the rabbit. The bear sees the bald eagle. The rabbit is red. The rabbit needs the bald eagle. The tiger chases the bear. The tiger is green. The tiger sees the bald eagle. If something is young and red then it is green. If something sees the bear then it needs the tiger. If something needs the bald eagle then the bald eagle chases the rabbit. If something is big and it chases the rabbit then it sees the bear. If something sees the rabbit and it needs the tiger then the tiger is not blue. If something chases the rabbit then it sees the bald eagle. If the rabbit is not young and the rabbit does not need the bald eagle then the rabbit sees the bear. If something is red and it needs the bear then it is big. If something is red then it needs the bear.\n\nDetermine whether the following statement is true, false, or unknown:\nThe rabbit is not big.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nSees($x, $y, bool) ::: Does x see y?\nNeeds($x, $y, bool) ::: Does x need y?\nGreen($x, bool) ::: Is x green?\nRed($x, bool) ::: Is x red?\nYoung($x, bool) ::: Is x young?\nBig($x, bool) ::: Is x big?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nChases(BaldEagle, Rabbit, True) ::: The bald eagle chases the rabbit.\nChases(BaldEagle, Tiger, False) ::: The bald eagle does not chase the tiger.\nGreen(BaldEagle, True) ::: The bald eagle is green.\nRed(BaldEagle, True) ::: The bald eagle is red.\nYoung(BaldEagle, True) ::: The bald eagle is young.\nSees(BaldEagle, Rabbit, True) ::: The bald eagle sees the rabbit.\nSees(Bear, BaldEagle, True) ::: The bear sees the bald eagle.\nRed(Rabbit, True) ::: The rabbit is red.\nNeeds(Rabbit, BaldEagle, True) ::: The rabbit needs the bald eagle.\nChases(Tiger, Bear, True) ::: The tiger chases the bear.\nGreen(Tiger, True) ::: The tiger is green.\nSees(Tiger, BaldEagle, True) ::: The tiger sees the bald eagle.\n\nRules:\nYoung($x, True) && Red($x, True) >>> Green($x, True) ::: If something is young and red then it is green.\nSees($x, Bear, True) >>> Needs($x, Tiger, True) ::: If something sees the bear then it needs the tiger.\nNeeds($x, BaldEagle, True) >>> Chases(BaldEagle, Rabbit, True) ::: If something needs the bald eagle then the bald eagle chases the rabbit.\nBig($x, True) && Chases($x, Rabbit, True) >>> Sees($x, Bear, True) ::: If something is big and it chases the rabbit then it sees the bear.\nSees($x, Rabbit, True) && Needs($x, Tiger, True) >>> Blue(Tiger, False) ::: If something sees the rabbit and it needs the tiger then the tiger is not blue.\nChases($x, Rabbit, True) >>> Sees($x, BaldEagle, True) ::: If something chases the rabbit then it sees the bald eagle.\nYoung(Rabbit, False) && Needs(Rabbit, BaldEagle, False) >>> Sees(Rabbit, Bear, True) ::: If the rabbit is not young and the rabbit does not need the bald eagle then the rabbit sees the bear.\nRed($x, True) && Needs($x, Bear, True) >>> Big($x, True) ::: If something is red and it needs the bear then it is big.\nRed($x, True) >>> Needs($x, Bear, True) ::: If something is red then it needs the bear.\n\nQuery:\nBig(Rabbit, False) ::: The rabbit is not big."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 137.5,
+      "Unknown": 89.0
+    },
+    "answer_counts": {
+      "False": 10,
+      "Unknown": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The rabbit is not big\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle is young and red. \nFrom the information given, we know that if something is young and red then it is green. Therefore, we can conclude that the bald eagle is green, but this information will be ignored for now because it does not directly relate to the rabbit.\n\n2. The rabbit is red. \nFrom the information given, we know that if something is red then it needs the bear. Therefore, we can conclude that the rabbit needs the bear.\n\n3. The rabbit needs the bear. \nFrom the information given, we know that if something needs the bear then the bear sees the bald eagle. However, this does not directly relate to the statement we are analyzing.\n\n4. The rabbit sees the bear. \nFrom the information given, we know that if the rabbit is not young and the rabbit does not need the bald eagle then the rabbit sees the bear. However, we already know that the rabbit is red, and since it is red, it needs the bear. Therefore, we cannot conclude that the rabbit sees the bear using this rule. We will ignore this rule for now.\n\n5. The rabbit chases the bald eagle. \nFrom the information given, we know that if something chases the bald eagle then it sees the bald eagle. However, this does not directly relate to the statement we are analyzing.\n\n6. The rabbit is not big. \nFrom the information given, we know that if something is red and it needs the bear then it is big. However, we already know that the rabbit is red and it needs the bear. Therefore, we can conclude that the statement \"The rabbit is not big\" is false.\n\nTherefore, the final answer is: \n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit is not big\" is true, false, or unknown, we need to analyze the given information and the conditions provided.\n\n1. If something is young and red then it is green.\n   - From the given information, the bald eagle is both young and red. However, this does not directly relate to the rabbit.\n\n2. If something sees the bear then it needs the tiger.\n   - The bear sees the bald eagle, but this does not directly tell us about the rabbit.\n\n3. If something needs the bald eagle then the bald eagle chases the rabbit.\n   - The rabbit needs the bald eagle, so the bald eagle chases the rabbit, which is true.\n\n4. If something is big and it chases the rabbit then it sees the bear.\n   - We do not know if the rabbit is big or not. We need to find out if the rabbit is big.\n\n5. If something sees the rabbit and it needs the tiger then the tiger is not blue.\n   - The tiger sees the bald eagle, but this does not tell us about the rabbit's size or relationship to the tiger.\n\n6. If something chases the rabbit then it sees the bald eagle.\n   - The bald eagle chases the rabbit, so the bald eagle sees the rabbit, which is true.\n\n7. If the rabbit is not young and the rabbit does not need the bald eagle then the rabbit sees the bear.\n   - This statement does not help us determine if the rabbit is big or not.\n\n8. If something is red and it needs the bear then it is big.\n   - The rabbit is red and needs the bald eagle. However, this does not directly tell us about the rabbit's size.\n\n9. If something is red then it needs the bear.\n   - The rabbit is red and needs the bald eagle, which does not necessarily mean it needs the bear.\n\nNow, let's analyze the given statements about the rabbit:\n\n- The rabbit is red.\n- The rabbit sees the bald eagle.\n- The rabbit needs the bald eagle.\n\nFrom statement 3, since the rabbit needs the bald eagle, the bald eagle chases the rabbit.\n\nFrom statement 6, since the bald eagle chases the rabbit, the bald eagle sees the rabbit.\n\nWe do not have any information that directly states the rabbit is big or not. However, statement 8 says that if something is red and it needs the bear, then it is big. The rabbit is red, but it needs the bald eagle, not the bear.\n\nHowever, statement 9 says that if something is red then it needs the bear. Since the rabbit is red, the rabbit needs the bear.\n\nNow, using statement 8, since the rabbit is red and it needs the bear, the rabbit is big.\n\nTherefore, the statement \"The rabbit is not big\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit is not big\" is true, false, or unknown, we need to analyze the given information and use the rules provided.\n\n1. The bald eagle chases the rabbit. \n2. The bald eagle does not chase the tiger. \n3. The bald eagle is green. \n4. The bald eagle is red. \n5. The bald eagle is young. \n6. The bald eagle sees the rabbit. \n7. The bear sees the bald eagle. \n8. The rabbit is red. \n9. The rabbit needs the bald eagle. \n10. The tiger chases the bear. \n11. The tiger is green. \n12. The tiger sees the bald eagle. \n13. If something is young and red then it is green.\n14. If something sees the bear then it needs the tiger.\n15. If something needs the bald eagle then the bald eagle chases the rabbit.\n16. If something is big and it chases the rabbit then it sees the bear.\n17. If something sees the rabbit and it needs the tiger then the tiger is not blue.\n18. If something chases the rabbit then it sees the bald eagle.\n19. If the rabbit is not young and the rabbit does not need the bald eagle then the rabbit sees the bear.\n20. If something is red and it needs the bear then it is big.\n21. If something is red then it needs the bear.\n\nFrom statements 8 and 21, we know the rabbit is red and it needs the bear.\n\nUsing statement 20, since the rabbit is red and it needs the bear, the rabbit must be big.\n\nNow, we can conclude that the statement \"The rabbit is not big\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit is not big\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the statement \"If something is red and it needs the bear then it is big\" and \"If something is red then it needs the bear,\" we can conclude that something that is red needs the bear and is big.\n\n2. Given that \"The rabbit is red,\" we can conclude that \"The rabbit needs the bear\" from the statement \"If something is red then it needs the bear.\"\n\n3. Now, we have two possibilities: \n   - If the rabbit needs the bear, then it is big (from step 1).\n   - We need to check if the rabbit is big or not.\n\n4. From the statement \"If something is young and red then it is green,\" we cannot conclude anything about the rabbit because we do not know if the rabbit is young.\n\n5. To determine if the rabbit is big or not, we can check if there is any rule that states the opposite: if something is not big. \n\n6. We can use the rule \"If something is big and it chases the rabbit then it sees the bear.\" This rule does not help us determine if the rabbit is big or not, but we can use another rule: \"If something is big then it is red.\"\n\n7. Unfortunately, we do not have a direct rule that states \"If something is not big then it sees the bear.\" However, we can use the rule \"If something is not big then it does not chase the rabbit.\"\n\n8. Given that \"The bald eagle sees the rabbit,\" we can conclude that \"The bald eagle does not see the bear,\" because if the bald eagle sees the bear, then the bald eagle chases the rabbit (from the statement \"If something chases the rabbit then it sees the bald eagle\").\n\n9. Now we know that the bald eagle does not see the bear. From the statement \"The bear sees the bald eagle,\" we can conclude that the bear is not the one who sees the bald eagle.\n\n10. Using the rule \"If something sees the bear then it needs the tiger,\" we cannot conclude anything about the rabbit because the bald eagle sees the bear, but we do not know if the bald eagle sees the rabbit.\n\n11. We have another rule: \"If something sees the rabbit and it needs the tiger then the tiger is not blue.\" This rule does not help us determine if the rabbit is big or not.\n\n12. Given that \"The tiger chases the bear,\" we can conclude that \"The tiger sees the bald eagle,\" because if the tiger does not see the bald eagle, then the tiger is not the one who chases the bear (from the statement \"If something chases the rabbit then it sees the bald eagle\").\n\n13. Now, we know that the tiger sees the bald eagle. From the statement \"The bald eagle does not chase the tiger,\" we can conclude that the tiger is not the one who sees the bald eagle.\n\n14. Given that \"The tiger sees the bald eagle,\" we can conclude that \"The tiger does not see the bear,\" because if the tiger sees the bear, then the tiger is the one who chases the rabbit (from the statement \"If something sees the bear then it needs the tiger\").\n\n15. Now, we have two possibilities:\n   - The tiger does not see the bear.\n   - The tiger sees the bald eagle.\n\n16. Given that \"The tiger is green,\" we can conclude that \"The tiger needs the bear\" from the statement \"If something is green then it needs the bear.\"\n\n17. However, we already know that the tiger does not see the bear.\n\n18. Therefore, we can conclude that \"The tiger sees the bald eagle\" is true.\n\n19. Now, we have the information that the tiger sees the bald eagle, the tiger is green, and the tiger does not see the bear.\n\n20. We can conclude that \"The tiger needs the bear\" is true.\n\n21. Given that \"The tiger is green\" and \"The tiger needs the bear,\" we can conclude that \"The tiger is big\" from the statement \"If something is red and it needs the bear then it is big.\"\n\n22. Now, we have the information that the tiger is big.\n\n23. Given that \"The tiger is big,\" we can conclude that \"The tiger sees the bear\" from the statement \"If something is big and it chases the rabbit then it sees the bear.\"\n\n24. However, we already know that the tiger does not see the bear.\n\n25. Therefore, we can conclude that \"The tiger sees the bear\" is false.\n\n26. Given that \"The tiger does not see the bear,\" we can conclude that \"The tiger does not chase the rabbit\" from the statement \"If something chases the rabbit then it sees the bear.\"\n\n27. Now, we know that the tiger does not chase the rabbit.\n\n28. Given that \"The tiger sees the bald eagle,\" we can conclude that \"The tiger is not the one who sees the bear.\"\n\n29. Now, we have the information that the tiger does not chase the rabbit and the tiger sees the bald eagle.\n\n30. We can conclude that \"The tiger is not the one who sees the bear.\"\n\n31. Given that \"The tiger is not the one who sees the bear,\" we can conclude that \"The tiger is not the one who chases the rabbit\" from the statement \"If something sees the bear then it needs the tiger.\"\n\n32. However, we already know that the tiger does not chase the rabbit.\n\n33. Therefore, we can conclude that \"The tiger is not the one who sees the bear\" is true.\n\n34. Given that \"The tiger is not the one who sees the bear,\" we can conclude that \"The tiger does not need the bear\" from the statement \"If something sees the bear then it needs the tiger.\"\n\n35. However, we already know that the tiger needs the bear.\n\n36. Therefore, we can conclude that \"The tiger does not need the bear\" is false.\n\n37. Now, we have the information that the tiger needs the bear.\n\n38. Given that \"The tiger needs the bear,\" we can conclude that \"The tiger is big\" from the statement \"If something is red and it needs the bear then it is big.\"\n\n39. However, we already know that the tiger is big.\n\n40. Therefore, we can conclude that \"The tiger is big\" is true.\n\n41. Now, we have the information that the tiger is big.\n\n42. Given that \"The tiger is big,\" we can conclude that \"The tiger sees the bear\" from the statement \"If something is big and it chases the rabbit then it sees the bear.\"\n\n43. However, we already know that the tiger does not see the bear.\n\n44. Therefore, we can conclude that \"The tiger sees the bear\" is false.\n\n45. Given that \"The tiger does not see the bear,\" we can conclude that \"The tiger does not chase the rabbit\" from the statement \"If something chases the rabbit then it sees the bear.\"\n\n46. However, we already know that the tiger does not chase the rabbit.\n\n47. Therefore, we can conclude that \"The tiger does not see the bear\" is true.\n\n48. Given that \"The tiger does not see the bear,\" we can conclude that \"The tiger does not need the bear\" from the statement \"If something sees the bear then it needs the tiger.\"\n\n49. However, we already know that the tiger needs the bear.\n\n50. Therefore, we can conclude that \"The tiger does not need the bear\" is false.\n\n51. Now, we have the information that the tiger needs the bear.\n\n52. Given that \"The tiger needs the bear,\" we can conclude that \"The tiger is big\" from the statement \"If something is red and it needs the bear then it is big.\"\n\n53. However, we already know that the tiger is big.\n\n54. Therefore, we can conclude that \"The tiger is big\" is true.\n\n55. Now, we have the information that the tiger is big.\n\n56. Given that \"The tiger is big,\" we can conclude that \"The tiger sees the bear\" from the statement \"If something is big and it chases the rabbit then it sees the bear.\"\n\n57. However, we already know that the tiger does not see the bear.\n\n58. Therefore, we can conclude that \"The tiger sees the bear\" is false.\n\n59. Given that \"The tiger does not see the bear,\" we can conclude that \"The tiger does not chase the rabbit\" from the statement \"If something chases the rabbit then it sees the bear.\"\n\n60. However, we already know that the tiger does not chase the rabbit.\n\n61. Therefore, we can conclude that \"The tiger does not see the bear\" is true.\n\n62. Given that \"The tiger does not see the bear,\" we can conclude that \"The tiger does not need the bear\" from the statement \"If something sees the bear then it needs the tiger.\"\n\n63. However, we already know that the tiger needs the bear.\n\n64. Therefore, we can conclude that \"The tiger does not need the bear\" is false.\n\n65. Now, we have the information that the tiger needs the bear.\n\n66. Given that \"The tiger needs the bear,\" we can conclude that \"The tiger is big\" from the statement \"If something is red and it needs the bear then it is big.\"\n\n67. However, we already know that the tiger is big.\n\n68. Therefore, we can conclude that \"The tiger is big\" is true.\n\n69. Now, we have the information that the tiger is big.\n\n70. Given that \"The tiger is big,\" we can conclude that \"The tiger sees the bear\" from the statement \"If something is big and it chases the rabbit then it sees the bear.\"\n\n71. However, we",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given rules step by step to find out whether the statement \"The rabbit is not big\" is true, false, or unknown.\n\nGiven statements:\n1. The bald eagle chases the rabbit.\n2. The bald eagle does not chase the tiger.\n3. The bald eagle is green.\n4. The bald eagle is red.\n5. The bald eagle is young.\n6. The bald eagle sees the rabbit.\n7. The bear sees the bald eagle.\n8. The rabbit is red.\n9. The rabbit needs the bald eagle.\n10. The tiger chases the bear.\n11. The tiger is green.\n12. The tiger sees the bald eagle.\n13. If something is young and red then it is green.\n14. If something sees the bear then it needs the tiger.\n15. If something needs the bald eagle then the bald eagle chases the rabbit.\n16. If something is big and it chases the rabbit then it sees the bear.\n17. If something sees the rabbit and it needs the tiger then the tiger is not blue.\n18. If something chases the rabbit then it sees the bald eagle.\n19. If the rabbit is not young and the rabbit does not need the bald eagle then the rabbit sees the bear.\n20. If something is red and it needs the bear then it is big.\n21. If something is red then it needs the bear.\n\nTo determine whether the statement \"The rabbit is not big\" is true, false, or unknown, let's start by using the given statements.\n\nFrom statement 5, we know that the bald eagle is young. \nFrom statement 3, we know that the bald eagle is red.\nUsing rule 13: \"If something is young and red then it is green,\" we can conclude that the bald eagle is green.\n\nFrom statement 9, we know that the rabbit needs the bald eagle.\nUsing rule 15: \"If something needs the bald eagle then the bald eagle chases the rabbit,\" we can conclude that the bald eagle chases the rabbit.\n\nFrom statement 1, we know that the bald eagle chases the rabbit. \nUsing rule 18: \"If something chases the rabbit then it sees the bald eagle,\" we can conclude that the rabbit sees the bald eagle.\n\nFrom statement 8, we know that the rabbit is red.\nUsing rule 21: \"If something is red then it needs the bear,\" we can conclude that the rabbit needs the bear.\n\nNow, let's analyze the statement \"The rabbit is not big.\"\n\nUsing rule 20: \"If something is red and it needs the bear then it is big,\" we can conclude that the rabbit is big.\n\nSo, the statement \"The rabbit is not big\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve the problem, we will break it down step by step using the given information and logical rules.\n\n1. The bald eagle is green.  (1)\n2. The bald eagle is red.  (2)\n3. The bald eagle is young.  (3)\n4. The bald eagle sees the rabbit.  (4)\n5. The bear sees the bald eagle.  (5)\n6. The rabbit is red.  (6)\n7. The rabbit needs the bald eagle.  (7)\n8. The tiger chases the bear.  (8)\n9. The tiger is green.  (9)\n10. The tiger sees the bald eagle.  (10)\n\nFrom rule 1: If something is young and red then it is green.\nFrom (3) and (2), the bald eagle is young and red. \nTherefore, from rule 1, the bald eagle is green. This is consistent with (1).\n\nFrom rule 5: If something sees the bear then it needs the tiger.\nFrom (5), the bear sees the bald eagle. \nTherefore, the bald eagle needs the tiger.\n\nFrom rule 7: If something needs the bald eagle then the bald eagle chases the rabbit.\nFrom (7), the rabbit needs the bald eagle. \nTherefore, the bald eagle chases the rabbit. This is consistent with (4).\n\nFrom rule 9: If something is big and it chases the rabbit then it sees the bear.\nSince the bald eagle is not explicitly mentioned as being big, we need to determine if it is big or not.\n\nFrom rule 11: If something chases the rabbit then it sees the bald eagle.\nThe bald eagle chases the rabbit (from step 7). \nTherefore, the bald eagle sees the rabbit. This is consistent with (4).\n\nFrom rule 12: If the rabbit is not young and the rabbit does not need the bald eagle then the rabbit sees the bear.\nThe rabbit is not young (from (3) and (6), the rabbit is red and the bald eagle is young). \nThe rabbit does not need the bald eagle (from (7), the rabbit needs the bald eagle, but this is a contradiction, so we will ignore this statement for now).\n\nFrom rule 13: If something is red and it needs the bear then it is big.\nThe rabbit is red (from (6)). \nThe rabbit needs the bear (from (7) and (5), the bald eagle sees the bear and the bear sees the bald eagle, so the bald eagle needs the tiger and the rabbit needs the bald eagle).\n\nFrom (6) and (7), the rabbit is red and it needs the bald eagle. \nHowever, from rule 13, if the rabbit is red and it needs the bear, then it is big.\n\nFrom (6), the rabbit is red. \nFrom (7), the rabbit needs the bald eagle.\nFrom rule 14: If something is red then it needs the bear.\nThe rabbit is red (from (6)). \nThe rabbit needs the bear.\n\nFrom (13), if the rabbit is red and it needs the bear, then it is big.\n\nSince the rabbit is big from the previous conclusion, we can now determine if the bald eagle is big or not.\n\nFrom rule 9: If something is big and it chases the rabbit then it sees the bear.\nThe bald eagle chases the rabbit (from step 7). \nThe bald eagle is big (from (13), the bald eagle is red, but it needs the tiger, not the bear, so we will ignore this statement for now).\n\nFrom rule 15: If something sees the rabbit and it needs the tiger then the tiger is not blue.\nThe bald eagle sees the rabbit (from (4)). \nThe bald eagle needs the tiger (from step 2).\n\nFrom (10), the tiger sees the bald eagle. \nFrom (8), the tiger chases the bear.\n\nFrom rule 9: If something is big and it chases the rabbit then it sees the bear.\nThe tiger chases the rabbit (from (8) and (10), the tiger sees the bald eagle and the bald eagle chases the rabbit). \nThe tiger is big (from (9) and (10), the tiger is green and it chases the bear).\n\nNow we can conclude that the tiger is big.\n\nSince the tiger is big, from rule 9: If something is big and it chases the rabbit then it sees the bear.\nThe tiger chases the rabbit (from (8) and (10), the tiger sees the bald eagle and the bald eagle chases the rabbit).\nThe tiger sees the bear.\n\nSince the tiger sees the bear, from rule 5: If something sees the bear then it needs the tiger.\nThe tiger needs the tiger.\n\nSince the tiger needs the tiger, from rule 7: If something needs the bald eagle then the bald eagle chases the rabbit.\nThe tiger needs the bald eagle (this is a contradiction, so we will ignore this statement for now).\n\nSince the tiger is big, the tiger chases the rabbit (from (8) and (10), the tiger sees the bald eagle and the bald eagle chases the rabbit).\n\nSince the tiger chases the rabbit, from rule 11: If something chases the rabbit then it sees the bald eagle.\nThe tiger sees the bald eagle.\n\nSince the tiger sees the bald eagle, from rule 5: If something sees the bear then it needs the tiger.\nThe bald eagle needs the tiger.\n\nFrom rule 7: If something needs the bald eagle then the bald eagle chases the rabbit.\nThe tiger needs the bald eagle (this is a contradiction, so we will ignore this statement for now).\n\nSince the tiger is big, the tiger chases the rabbit (from (8) and (10), the tiger sees the bald eagle and the bald eagle chases the rabbit).\n\nSince the tiger chases the rabbit, from rule 11: If something chases the rabbit then it sees the bald eagle.\nThe tiger sees the bald eagle.\n\nFrom (10), the tiger sees the bald eagle. \nFrom (9), the tiger is green.\n\nFrom (13), if the rabbit is red and it needs the bear, then it is big.\n\nFrom (6) and (7), the rabbit is red and it needs the bald eagle. \nHowever, from rule 13, if the rabbit is red and it needs the bear, then it is big.\n\nFrom (6), the rabbit is red. \nFrom (7), the rabbit needs the bald eagle.\nFrom rule 14: If something is red then it needs the bear.\nThe rabbit is red (from (6)). \nThe rabbit needs the bear.\n\nFrom (13), if the rabbit is red and it needs the bear, then it is big.\n\nThe final answer to the question of whether the rabbit is big is therefore:\n\nThe rabbit is big.\n\nSo the statement \"The rabbit is not big\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit is not big\" is true, false, or unknown, we need to analyze the given information and use the provided rules to derive conclusions.\n\nFrom the given information:\n1. The rabbit is red.\n2. The rabbit needs the bald eagle.\n3. If something is red then it needs the bear.\n4. If something is red and it needs the bear then it is big.\n\nUsing rule 3, we know the rabbit needs the bear because it is red.\nUsing rule 4, we know the rabbit is big because it is red and it needs the bear.\n\nNow, let's analyze the statement \"The rabbit is not big\" based on the derived conclusion. Since we have concluded that the rabbit is big, the statement \"The rabbit is not big\" is false.\n\nSo, the answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we will use a step-by-step approach to determine the properties of the entities mentioned in the problem statement.\n\n1. The bald eagle does not chase the tiger. \n   - This statement does not provide any information about the color or age of the bald eagle.\n\n2. The bald eagle is green. \n   - This statement contradicts the statement that the bald eagle is red.\n\n3. The bald eagle is red. \n   - This statement contradicts the statement that the bald eagle is green.\n\n4. The bald eagle is young. \n   - We have two contradictory statements about the color of the bald eagle, so we cannot determine its color.\n\n5. The bald eagle sees the rabbit. \n   - This statement does not provide any information about the properties of the bald eagle.\n\n6. The bear sees the bald eagle. \n   - This statement does not provide any information about the properties of the bear.\n\n7. The rabbit is red. \n   - Since we know the rabbit is red, we can use the statements that relate to red entities.\n\n8. The rabbit needs the bald eagle. \n   - If the rabbit needs the bald eagle, then the bald eagle chases the rabbit, which is true (statement 5).\n\n9. The tiger chases the bear. \n   - This statement does not provide any information about the color or age of the tiger or the bear.\n\n10. The tiger is green. \n   - Since we know the tiger is green, we can use the statements that relate to green entities.\n\n11. The tiger sees the bald eagle. \n   - This statement does not provide any information about the properties of the tiger.\n\n12. If something sees the bear then it needs the tiger.\n   - We know the bear sees the bald eagle (statement 6), so the bald eagle needs the tiger.\n\n13. If something needs the bald eagle then the bald eagle chases the rabbit.\n   - We know the rabbit needs the bald eagle (statement 8), so the bald eagle chases the rabbit, which is true (statement 5).\n\n14. If something chases the rabbit then it sees the bald eagle.\n   - We know the bald eagle chases the rabbit (statement 5), so the bald eagle sees the rabbit, which is true (statement 5).\n\n15. If the rabbit is not young and the rabbit does not need the bald eagle then the rabbit sees the bear.\n   - We know the rabbit is red (statement 7) and it does not need the bald eagle (because the bald eagle chases the rabbit, statement 5), so the rabbit sees the bear.\n\n16. If something is red and it needs the bear then it is big.\n   - We know the rabbit is red (statement 7) and it needs the bear (because it sees the bear, statement 15), so the rabbit is big.\n\nNow, we can analyze the statement \"The rabbit is not big.\"\n\nWe have determined that the rabbit is big (statement 16), so the statement \"The rabbit is not big\" is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit is not big\" is true, false, or unknown, we need to analyze the given information and the rules provided. We can break down the problem into several steps:\n\n1. The rabbit is red (given information).\n2. If something is red, it needs the bear (rule).\n3. If something is red and it needs the bear, then it is big (rule).\n   - From step 2, we know the rabbit needs the bear.\n   - From step 3, if the rabbit needs the bear and it is red, then it is big.\n   - Therefore, we can conclude that the rabbit is big.\n\nHowever, we need to determine if the statement \"The rabbit is not big\" is true, false, or unknown. Since we concluded that the rabbit is big, the statement \"The rabbit is not big\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit is not big\" is true, false, or unknown, we need to analyze the given information and the conditions. \n\nFirst, we need to find a condition that directly relates to the size of the rabbit. \n\nFrom the information given:\n- The bald eagle is green.\n- The bald eagle is red.\n- The bald eagle is young.\n- The bald eagle sees the rabbit.\n- The bear sees the bald eagle.\n- The rabbit is red.\n- The rabbit needs the bald eagle.\n- The tiger chases the bear.\n- The tiger is green.\n- The tiger sees the bald eagle.\n\nNow, we need to find a condition that relates to the size of the rabbit. One condition is \"If something is red and it needs the bear then it is big.\" Since the rabbit is red and it needs the bear (from the statement \"The rabbit needs the bald eagle\" which implies that the rabbit needs the bear because if something needs the bald eagle then the bald eagle chases the rabbit), this condition implies that the rabbit is big.\n\nHowever, we also have another condition \"If something is young and red then it is green.\" The bald eagle is young and red, which implies that it is green. Since the bald eagle is green, it does not necessarily mean that the rabbit is not big. It implies that the bald eagle is green, not the rabbit.\n\nSo, we need to look at another condition that relates to the size of the rabbit. We also have \"If something is red then it needs the bear.\" The rabbit is red, which implies that it needs the bear.\n\nNow, we have two conditions: \n\n1. If something is red and it needs the bear then it is big.\n2. If something is red then it needs the bear.\n\nFrom these conditions, we can conclude that the rabbit is big.\n\nHowever, we need to consider another condition: \n\n\"If the rabbit is not young and the rabbit does not need the bald eagle then the rabbit sees the bear.\" The rabbit is not young, but it is unclear whether the rabbit needs the bald eagle. \n\nSince the rabbit is big (from condition 1 and 2), we need to find out if the condition \"If something is big and it chases the rabbit then it sees the bear\" is applicable. However, we cannot conclude whether the rabbit is chased by something big or not.\n\nSo, we need to find another condition that relates to the fact that the rabbit is big and sees the bear. We have \"If something sees the rabbit and it needs the tiger then the tiger is not blue.\" However, this does not relate to the size of the rabbit.\n\nWe have \"If something chases the rabbit then it sees the bald eagle.\" However, this does not directly relate to the size of the rabbit.\n\nWe have \"The tiger chases the bear.\" However, this does not directly relate to the size of the rabbit.\n\nWe have \"The bear sees the bald eagle.\" However, this does not directly relate to the size of the rabbit.\n\nWe have \"The bald eagle does not chase the tiger.\" However, this does not directly relate to the size of the rabbit.\n\nWe have \"The tiger is green.\" However, this does not directly relate to the size of the rabbit.\n\nWe have \"The tiger sees the bald eagle.\" However, this does not directly relate to the size of the rabbit.\n\nWe have \"The tiger is green.\" However, this does not directly relate to the size of the rabbit.\n\nWe have \"The tiger chases the bear.\" However, this does not directly relate to the size of the rabbit.\n\nHowever, we have the condition \"If something is young and red then it is green\" that implies the bald eagle is green, which does not directly relate to the size of the rabbit.\n\nThe condition \"If something sees the bear then it needs the tiger\" implies that the bear needs the tiger. However, this does not directly relate to the size of the rabbit.\n\nWe have \"The rabbit needs the bald eagle.\" However, this does not directly relate to the size of the rabbit.\n\nWe have \"The rabbit is red.\" However, this does not directly relate to the size of the rabbit.\n\nHowever, we have the condition \"If something is big and it chases the rabbit then it sees the bear\" that implies that if something big chases the rabbit then it sees the bear. However, this condition does not directly apply to the fact that the rabbit is big and does not see the bear.\n\nWe have \"If something chases the rabbit then it sees the bald eagle.\" However, this does not directly relate to the size of the rabbit.\n\nWe have \"The bald eagle chases the rabbit.\" However, this does not directly relate to the size of the rabbit.\n\nWe have \"The bald eagle does not chase the tiger.\" However, this does not directly relate to the size of the rabbit.\n\nHowever, we have \"The bald eagle sees the rabbit.\" This does not directly relate to the size of the rabbit.\n\nNow, let us look at another condition: \"If the rabbit is not young and the rabbit does not need the bald eagle then the rabbit sees the bear.\" We know that the rabbit is not young. However, we cannot conclude whether the rabbit needs the bald eagle or not.\n\nSince the rabbit is big, we need to find out if the condition \"If something is big and it chases the rabbit then it sees the bear\" is applicable. However, we cannot conclude whether the rabbit is chased by something big or not.\n\nHowever, we have the condition \"If something sees the bear then it needs the tiger.\" However, this does not directly relate to the size of the rabbit.\n\nWe have \"The rabbit needs the bald eagle.\" However, this does not directly relate to the size of the rabbit.\n\nHowever, we have \"The tiger chases the bear.\" This does not directly relate to the size of the rabbit.\n\nWe have \"The bear sees the bald eagle.\" However, this does not directly relate to the size of the rabbit.\n\nWe have \"The bald eagle does not chase the tiger.\" However, this does not directly relate to the size of the rabbit.\n\nWe have \"The bald eagle is green.\" However, this does not directly relate to the size of the rabbit.\n\nWe have \"The tiger sees the bald eagle.\" However, this does not directly relate to the size of the rabbit.\n\nHowever, we have the condition \"If something is red and it needs the bear then it is big.\" The rabbit is red and it needs the bear. Therefore, the rabbit is big.\n\nHowever, we need to consider another condition: \"If something is young and red then it is green.\" The bald eagle is young and red, which implies that it is green.\n\nNow, we have \"The rabbit is not big\" as the statement to be determined. However, we have concluded that the rabbit is big.\n\nTherefore, the statement \"The rabbit is not big\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve the problem, let's analyze the given statements and the conclusion we need to determine.\n\n1. The bald eagle chases the rabbit.\n2. The bald eagle does not chase the tiger.\n3. The bald eagle is green.\n4. The bald eagle is red.\n5. The bald eagle is young.\n6. The bald eagle sees the rabbit.\n7. The bear sees the bald eagle.\n8. The rabbit is red.\n9. The rabbit needs the bald eagle.\n10. The tiger chases the bear.\n11. The tiger is green.\n12. The tiger sees the bald eagle.\n\nNow, let's analyze the given rules:\n\n1. If something is young and red then it is green.\n2. If something sees the bear then it needs the tiger.\n3. If something needs the bald eagle then the bald eagle chases the rabbit.\n4. If something is big and it chases the rabbit then it sees the bear.\n5. If something sees the rabbit and it needs the tiger then the tiger is not blue. (This statement only involves the tiger's color, which we already know is green. We can ignore this statement for now.)\n6. If something chases the rabbit then it sees the bald eagle.\n7. If the rabbit is not young and the rabbit does not need the bald eagle then the rabbit sees the bear.\n8. If something is red and it needs the bear then it is big.\n9. If something is red then it needs the bear.\n\nNow, let's analyze the given conclusion:\n\nThe rabbit is not big.\n\nTo determine whether this conclusion is true, false, or unknown, we need to find a path from the given statements to the conclusion.\n\nFrom statement 9, if something is red then it needs the bear. Since the rabbit is red (statement 8), the rabbit needs the bear.\n\nFrom statement 8, if something is red and it needs the bear then it is big. Since the rabbit is red and needs the bear, the rabbit is big.\n\nHowever, we have a contradiction. The rabbit is both big and not big. This is an inconsistent conclusion. We cannot determine whether the conclusion is true or false because it is inconsistent with the given statements.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit is not big\" is true, false, or unknown, we need to analyze the given information and the rules.\n\nGiven information:\n1. The bald eagle is green.\n2. The bald eagle is red.\n3. The bald eagle is young.\n4. The bald eagle sees the rabbit.\n5. The bear sees the bald eagle.\n6. The rabbit is red.\n7. The rabbit needs the bald eagle.\n8. The tiger chases the bear.\n9. The tiger is green.\n10. The tiger sees the bald eagle.\n\nRules:\n1. If something is young and red then it is green.\n2. If something sees the bear then it needs the tiger.\n3. If something needs the bald eagle then the bald eagle chases the rabbit.\n4. If something is big and it chases the rabbit then it sees the bear.\n5. If something sees the rabbit and it needs the tiger then the tiger is not blue.\n6. If something chases the rabbit then it sees the bald eagle.\n7. If the rabbit is not young and the rabbit does not need the bald eagle then the rabbit sees the bear.\n8. If something is red and it needs the bear then it is big.\n9. If something is red then it needs the bear.\n\nTo determine whether the rabbit is big or not, we need to apply the rules.\n\nFrom rule 8, if something is red and it needs the bear then it is big. Since the rabbit is red (given information 6) and it needs the bear (given information 7), we can conclude that the rabbit is big.\n\nHowever, we need to verify this conclusion by checking if there's any other rule that can contradict it.\n\nRule 8 also states that if something is red then it needs the bear. Since the rabbit is red (given information 6), we can conclude that the rabbit needs the bear.\n\nBut we already know that the rabbit is big from rule 8. Therefore, the statement \"The rabbit is not big\" cannot be true.\n\nHowever, to conclude whether the statement is true, false, or unknown, we need to check if there's any other rule that can provide contradictory information.\n\nSince we have already concluded that the rabbit is big from rules 8 and 9, and there's no other rule that can provide contradictory information, we can conclude that the statement \"The rabbit is not big\" is false.\n\nSo, the answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle) & red(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True & red_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & red(X) -> green(X)",
+          "z3_formula": "Implies(And(young_bald_eagle, red_bald_eagle), green_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(rabbit)",
+          "z3_formula": "red_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> needs(X, bear)",
+          "z3_formula": "Implies(red_rabbit, needs_rabbit_bear)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, bear)",
+          "z3_formula": "needs_rabbit_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bear)",
+          "z3_formula": "needs_rabbit_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) -> sees(bear, bald_eagle)",
+          "z3_formula": "Implies(needs_rabbit_bear, sees_bear_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bear)",
+          "z3_formula": "sees_rabbit_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "not young(X) & not needs(X, bald_eagle) -> sees(X, bear)",
+          "z3_formula": "Implies(And(Not(young_rabbit), Not(needs_rabbit_bald_eagle)), sees_rabbit_bear)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "chases(rabbit, bald_eagle)",
+          "z3_formula": "chases_rabbit_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bald_eagle) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(chases_rabbit_bald_eagle, sees_rabbit_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not big(rabbit)",
+          "z3_formula": "Not(big_rabbit) == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, bear) -> big(X)",
+          "z3_formula": "Implies(And(red_rabbit, needs_rabbit_bear), big_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not big(rabbit)",
+          "z3_formula": "Not(big_rabbit) == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(rabbit)",
+          "z3_formula": "red_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bald_eagle)",
+          "z3_formula": "sees_rabbit_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> chases(Y, X)",
+          "z3_formula": "Implies(needs_bald_eagle_rabbit, chases_bald_eagle_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> sees(Y, X)",
+          "z3_formula": "Implies(chases_bald_eagle_rabbit, sees_bald_eagle_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> sees(Y, X)",
+          "z3_formula": "Implies(sees_bald_eagle_rabbit, sees_rabbit_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & red(X) -> green(X)",
+          "z3_formula": "Implies(And(young_rabbit, red_rabbit), green_rabbit)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(sees_bear_bald_eagle, needs_bald_eagle_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> chases(bald_eagle, X)",
+          "z3_formula": "Implies(needs_rabbit_bald_eagle, chases_bald_eagle_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & chases(X, rabbit) -> sees(X, bear)",
+          "z3_formula": "Implies(And(big_rabbit, chases_rabbit_rabbit), sees_rabbit_bear)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & needs(X, tiger) -> Not(blue(X))",
+          "z3_formula": "Implies(And(sees_tiger_bald_eagle, needs_bald_eagle_tiger), Not(blue_tiger))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(chases_bald_eagle_rabbit, sees_bald_eagle_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "Not(young(X)) & Not(needs(X, bald_eagle)) -> sees(X, bear)",
+          "z3_formula": "Implies(And(Not(young_rabbit), Not(needs_rabbit_bald_eagle)), sees_rabbit_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, bear) -> big(X)",
+          "z3_formula": "Implies(And(red_rabbit, needs_rabbit_bear), big_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> needs(X, bear)",
+          "z3_formula": "Implies(red_rabbit, needs_rabbit_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, rabbit)",
+          "z3_formula": "chases_bald_eagle_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(bald_eagle, tiger))",
+          "z3_formula": "Not(chases_bald_eagle_tiger) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(bald_eagle)",
+          "z3_formula": "red_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, rabbit)",
+          "z3_formula": "sees_bald_eagle_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(rabbit)",
+          "z3_formula": "red_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, bear)",
+          "z3_formula": "chases_tiger_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bald_eagle)",
+          "z3_formula": "sees_tiger_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & red(X) -> green(X)",
+          "z3_formula": "Implies(And(young_bald_eagle, red_bald_eagle), green_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(sees_bear_bald_eagle, needs_bald_eagle_tiger)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> chases(bald_eagle, rabbit)",
+          "z3_formula": "Implies(needs_rabbit_bald_eagle, chases_bald_eagle_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & chases(X, rabbit) -> sees(X, bear)",
+          "z3_formula": "Implies(And(big_rabbit, chases_rabbit_rabbit), sees_bear_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & needs(X, tiger) -> not(blue(X))",
+          "z3_formula": "Implies(And(sees_rabbit_rabbit, needs_rabbit_tiger), Not(blue_rabbit))",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(chases_bald_eagle_rabbit, sees_bald_eagle_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "not(young(X)) & not(needs(X, bald_eagle)) -> sees(X, bear)",
+          "z3_formula": "Implies(And(Not(young_rabbit), Not(needs_rabbit_bald_eagle)), sees_bear_rabbit)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, bear) -> big(X)",
+          "z3_formula": "Implies(And(red_rabbit, needs_rabbit_bear), big_rabbit)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> needs(X, bear)",
+          "z3_formula": "Implies(red_rabbit, needs_rabbit_bear)",
+          "source_step": 21
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(bald_eagle)",
+          "z3_formula": "red_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & red(X) -> green(X)",
+          "z3_formula": "Implies(And(young_bald_eagle, red_bald_eagle), green_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> bald_eagle_chases_rabbit",
+          "z3_formula": "Implies(needs_rabbit_bald_eagle, bald_eagle_chases_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "bald_eagle_chases_rabbit",
+          "z3_formula": "bald_eagle_chases_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "bald_eagle_chases_rabbit -> rabbit_sees_bald_eagle",
+          "z3_formula": "Implies(bald_eagle_chases_rabbit, rabbit_sees_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "rabbit_sees_bald_eagle",
+          "z3_formula": "rabbit_sees_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(rabbit)",
+          "z3_formula": "red_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> needs(X, bear)",
+          "z3_formula": "Implies(red_rabbit, needs_rabbit_bear)",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "needs_rabbit_bear",
+          "z3_formula": "needs_rabbit_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, bear) -> big(X)",
+          "z3_formula": "Implies(And(red_rabbit, needs_rabbit_bear), big_rabbit)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bald_eagle)",
+          "z3_formula": "red_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, rabbit)",
+          "z3_formula": "sees_bald_eagle_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(rabbit)",
+          "z3_formula": "red_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, bear)",
+          "z3_formula": "chases_tiger_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bald_eagle)",
+          "z3_formula": "sees_tiger_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & red(X) -> green(X)",
+          "z3_formula": "Implies(And(young_bald_eagle, red_bald_eagle), green_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(sees_bear_bald_eagle, needs_bald_eagle_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> chases(bald_eagle, rabbit)",
+          "z3_formula": "Implies(needs_rabbit_bald_eagle, chases_bald_eagle_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & chases(X, rabbit) -> sees(X, bear)",
+          "z3_formula": "Implies(And(big_tiger, chases_tiger_rabbit), sees_tiger_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(chases_tiger_rabbit, sees_tiger_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> needs(X, bear)",
+          "z3_formula": "Implies(red_rabbit, needs_rabbit_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, bear) -> big(X)",
+          "z3_formula": "Implies(And(red_rabbit, needs_rabbit_bear), big_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(rabbit)",
+          "z3_formula": "red_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> needs(X, bear)",
+          "z3_formula": "Implies(red_rabbit, needs_rabbit_bear)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, bear) -> big(X)",
+          "z3_formula": "Implies(And(red_rabbit, needs_rabbit_bear), big_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not big(rabbit)",
+          "z3_formula": "Not(big_rabbit) == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not_chases(bald_eagle, tiger)",
+          "z3_formula": "not_chases_bald_eagle_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(bald_eagle)",
+          "z3_formula": "red_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, rabbit)",
+          "z3_formula": "sees_bald_eagle_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(rabbit)",
+          "z3_formula": "red_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, bear)",
+          "z3_formula": "chases_tiger_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bald_eagle)",
+          "z3_formula": "sees_tiger_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(sees_bear_bald_eagle, needs_bald_eagle_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> chases(bald_eagle, rabbit)",
+          "z3_formula": "Implies(needs_rabbit_bald_eagle, chases_bald_eagle_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(chases_bald_eagle_rabbit, sees_bald_eagle_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "not young(X) & not needs(X, bald_eagle) -> sees(X, bear)",
+          "z3_formula": "Implies(And(Not(young_rabbit), Not(needs_rabbit_bald_eagle)), sees_rabbit_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, bear) -> big(X)",
+          "z3_formula": "Implies(And(red_rabbit, needs_rabbit_bear), big_rabbit)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(rabbit)",
+          "z3_formula": "red_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> needs(X, bear)",
+          "z3_formula": "Implies(red_rabbit, needs_rabbit_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, bear) -> big(X)",
+          "z3_formula": "Implies(And(red_rabbit, needs_rabbit_bear), big_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 4
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, rabbit)",
+          "z3_formula": "chases_bald_eagle_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not chases(bald_eagle, tiger)",
+          "z3_formula": "not chases_bald_eagle_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(bald_eagle)",
+          "z3_formula": "red_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, rabbit)",
+          "z3_formula": "sees_bald_eagle_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(rabbit)",
+          "z3_formula": "red_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, bear)",
+          "z3_formula": "chases_tiger_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bald_eagle)",
+          "z3_formula": "sees_tiger_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & red(X) -> green(X)",
+          "z3_formula": "Implies(And(young_bald_eagle, red_bald_eagle), green_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(sees_bear_bald_eagle, needs_tiger_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> chases(bald_eagle, rabbit)",
+          "z3_formula": "Implies(needs_rabbit_bald_eagle, chases_bald_eagle_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & chases(X, rabbit) -> sees(X, bear)",
+          "z3_formula": "Implies(And(big_X, chases_X_rabbit), sees_X_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & needs(X, tiger) -> not blue(X)",
+          "z3_formula": "Implies(And(sees_X_rabbit, needs_X_tiger), Not(blue_X))",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(chases_X_rabbit, sees_X_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "not young(X) & not needs(X, bald_eagle) -> sees(X, bear)",
+          "z3_formula": "Implies(And(Not(young_X), Not(needs_X_bald_eagle)), sees_X_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, bear) -> big(X)",
+          "z3_formula": "Implies(And(red_X, needs_X_bear), big_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> needs(X, bear)",
+          "z3_formula": "Implies(red_X, needs_X_bear)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bald_eagle)",
+          "z3_formula": "red_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, rabbit)",
+          "z3_formula": "sees_bald_eagle_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(rabbit)",
+          "z3_formula": "red_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, bear)",
+          "z3_formula": "chases_tiger_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bald_eagle)",
+          "z3_formula": "sees_tiger_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & red(X) -> green(X)",
+          "z3_formula": "Implies(And(young_bald_eagle, red_bald_eagle), green_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(sees_bear_bald_eagle, needs_tiger_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> bald_eagle_chases_rabbit",
+          "z3_formula": "Implies(needs_rabbit_bald_eagle, bald_eagle_chases_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & bald_eagle_chases_rabbit -> sees(X, bear)",
+          "z3_formula": "Implies(And(big_rabbit, bald_eagle_chases_rabbit), sees_rabbit_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & needs(X, tiger) -> not blue(X)",
+          "z3_formula": "Implies(And(sees_rabbit_tiger, needs_tiger_bald_eagle), not blue_tiger)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(chases_rabbit_bald_eagle, sees_bald_eagle_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "not young(X) & not needs(X, bald_eagle) -> sees(X, bear)",
+          "z3_formula": "Implies(And(Not(young_rabbit), Not(needs_rabbit_bald_eagle)), sees_rabbit_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, bear) -> big(X)",
+          "z3_formula": "Implies(And(red_rabbit, needs_rabbit_bear), big_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> needs(X, bear)",
+          "z3_formula": "Implies(red_rabbit, needs_rabbit_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, bear)",
+          "z3_formula": "needs_rabbit_bear == True",
+          "source_step": 21
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 151,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 52
+    },
+    "maxsat_stats": {
+      "satisfied": 51,
+      "excluded": 1,
+      "total_weight": 146,
+      "solve_time_ms": 1.4422610402107239
+    },
+    "timing": {
+      "trace_gen_s": 24.599,
+      "extraction_s": 47.691,
+      "dedup_s": 1.707,
+      "maxsat_s": 0.004,
+      "total_s": 74.001
+    }
+  }
+}

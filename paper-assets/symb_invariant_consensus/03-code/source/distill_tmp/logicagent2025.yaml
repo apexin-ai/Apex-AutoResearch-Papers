@@ -1,0 +1,28 @@
+paper_key: "logicagent2025"
+title: "From Ambiguity to Verdict: A Semiotic-Grounded Multi-Perspective Agent for LLM Logical Reasoning (LogicAgent)"
+venue: "ACL 2026"
+full_text_available: false
+
+research:
+  baselines: ["standard CoT prompting", "other reasoning agents"]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "RepublicQA", size: "N/A (college-level, Flesch-Kincaid Grade 11.94)"}
+    - {name: "ProntoQA", size: "N/A"}
+    - {name: "ProofWriter", size: "N/A"}
+    - {name: "FOLIO", size: "N/A"}
+    - {name: "ProverQA", size: "N/A"}
+  ablation_dimensions: ["semiotic square components", "automated deduction vs reflective verification"]
+  training_recipe: {info: "agent-based prompting framework, no training"}
+  method_family: "multi-perspective reasoning agent"
+
+positioning:
+  core_claim: "Semiotic-square-guided multi-perspective reasoning jointly addresses logical and semantic complexity, achieving 6.25% improvement on RepublicQA and 7.05% on mainstream logic benchmarks"
+  key_results: "+6.25% average on RepublicQA; +7.05% average on ProntoQA, ProofWriter, FOLIO, ProverQA"
+  limitations: ["N/A"]
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

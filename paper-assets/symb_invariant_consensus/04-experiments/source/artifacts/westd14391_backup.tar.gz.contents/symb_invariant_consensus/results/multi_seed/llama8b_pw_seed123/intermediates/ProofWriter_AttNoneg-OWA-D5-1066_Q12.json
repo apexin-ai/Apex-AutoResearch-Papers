@@ -1,0 +1,1129 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1066_Q12",
+    "problem": "Bob is quiet. Bob is white. Dave is kind. Dave is red. Dave is young. Fiona is red. Fiona is round. Gary is quiet. Gary is red. Gary is round. White things are round. If something is kind and white then it is green. All young things are kind. All round things are young. All quiet, kind things are white. Quiet, green things are red. Young, quiet things are kind. All quiet, red things are kind. If Gary is young then Gary is round.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is not red.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nQuiet($x, bool) ::: Is x quiet?\nWhite($x, bool) ::: Is x white?\nKind($x, bool) ::: Is x kind?\nRed($x, bool) ::: Is x red?\nYoung($x, bool) ::: Is x young?\nRound($x, bool) ::: Is x round?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nQuiet(Bob, True) ::: Bob is quiet.\nWhite(Bob, True) ::: Bob is white.\nKind(Dave, True) ::: Dave is kind.\nRed(Dave, True) ::: Dave is red.\nYoung(Dave, True) ::: Dave is young.\nRed(Fiona, True) ::: Fiona is red.\nRound(Fiona, True) ::: Fiona is round.\nQuiet(Gary, True) ::: Gary is quiet.\nRed(Gary, True) ::: Gary is red.\nRound(Gary, True) ::: Gary is round.\n\nRules:\nWhite($x, True) >>> Round($x, True) ::: White things are round.\nKind($x, True) && White($x, True) >>> Green($x, True) ::: If something is kind and white then it is green.\nYoung($x, True) >>> Kind($x, True) ::: All young things are kind.\nRound($x, True) >>> Young($x, True) ::: All round things are young.\nQuiet($x, True) && Kind($x, True) >>> White($x, True) ::: All quiet, kind things are white.\nQuiet($x, True) && Green($x, True) >>> Red($x, True) ::: Quiet, green things are red.\nYoung($x, True) && Quiet($x, True) >>> Kind($x, True) ::: Young, quiet things are kind.\nQuiet($x, True) && Red($x, True) >>> Kind($x, True) ::: All quiet, red things are kind.\nYoung(Gary, True) >>> Round(Gary, True) ::: If Gary is young then Gary is round.\n\nQuery:\nRed(Bob, False) ::: Bob is not red."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 119.0,
+      "Unknown": 148.5
+    },
+    "answer_counts": {
+      "False": 2,
+      "Unknown": 7
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we will use the given information and the rules provided to determine the characteristics of each person and then determine the truth of the statement \"Bob is not red.\"\n\n1. Given information:\n   - Bob is quiet.\n   - Bob is white.\n   - Dave is kind.\n   - Dave is red.\n   - Dave is young.\n   - Fiona is red.\n   - Fiona is round.\n   - Gary is quiet.\n   - Gary is red.\n   - Gary is round.\n   - White things are round.\n   - If something is kind and white then it is green.\n   - All young things are kind.\n   - All round things are young.\n   - All quiet, kind things are white.\n   - Quiet, green things are red.\n   - Young, quiet things are kind.\n   - All quiet, red things are kind.\n   - If Gary is young then Gary is round.\n\n2. Analyze the given information and rules to determine the characteristics of each person.\n\n   From the given information:\n   - Bob is quiet and white.\n   - Gary is quiet and red.\n\n   From the rules:\n   - All quiet, kind things are white. (This rule cannot be applied to Bob because it is not given that Bob is kind.)\n   - Quiet, green things are red. (This rule cannot be applied because we do not know if Bob is green or not.)\n   - Young, quiet things are kind. (This rule cannot be applied to Gary because it is not given that Gary is young.)\n   - If Gary is young then Gary is round. (This rule is not necessary to solve the problem.)\n\n3. Determine the characteristics of each person based on the given information and rules.\n\n   From the given information:\n   - Bob is quiet and white.\n   - Gary is quiet and red.\n\n   Since Bob is white, we can use the rule \"White things are round\" to conclude that Bob is round.\n\n4. Now we have:\n   - Bob is quiet.\n   - Bob is white.\n   - Bob is round.\n\n   Since Bob is round, we can use the rule \"All round things are young\" to conclude that Bob is young.\n\n5. Now we have:\n   - Bob is quiet.\n   - Bob is white.\n   - Bob is round.\n   - Bob is young.\n\n   Since Bob is young, we can use the rule \"All young things are kind\" to conclude that Bob is kind.\n\n6. Now we have:\n   - Bob is quiet.\n   - Bob is white.\n   - Bob is round.\n   - Bob is young.\n   - Bob is kind.\n\n   Since Bob is kind and white, we can use the rule \"If something is kind and white then it is green\" to conclude that Bob is green.\n\n7. Now we have:\n   - Bob is quiet.\n   - Bob is white.\n   - Bob is round.\n   - Bob is young.\n   - Bob is kind.\n   - Bob is green.\n\n   Since Bob is quiet and green, we can use the rule \"Quiet, green things are red\" to conclude that Bob is red.\n\n8. Now we have:\n   - Bob is quiet.\n   - Bob is white.\n   - Bob is round.\n   - Bob is young.\n   - Bob is kind.\n   - Bob is green.\n   - Bob is red.\n\nSince we have concluded that Bob is red, we can now determine the truth of the statement \"Bob is not red.\"\n\nThe statement \"Bob is not red\" is FALSE because we have concluded that Bob is red.\n\nTherefore, the answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and deduce the relationship between Bob and being red. \n\n1. All round things are young. \n2. Gary is round. \n3. Gary is young. (From statement 2)\n\nFrom statement 3, we can infer that Gary is young. Now, we can use this information to deduce more about Gary and other statements.\n\n4. Gary is quiet. \n5. Gary is red. \n\nNow we have a combination of characteristics for Gary: young, quiet, and red. We can use this information to deduce more about other statements.\n\n6. Young, quiet things are kind. (From the given statements)\n7. Gary is young and quiet. \n8. Gary is kind. (From statement 6 and 7)\n\nNow we have a combination of characteristics for Gary: young, quiet, red, and kind. We can use this information to deduce more about other statements.\n\n9. Quiet, kind things are white. \n10. Gary is quiet and kind. \n11. Gary is white. (From statement 9 and 10)\n\nNow we have a combination of characteristics for Gary: young, quiet, red, kind, and white. We can use this information to deduce more about other statements.\n\n12. Bob is white. \n13. All quiet, red things are kind. (From the given statements)\n14. Gary is quiet and red. \n15. Gary is kind. (From statement 13 and 14)\n\nNow we have a combination of characteristics for Gary: young, quiet, red, kind, and white. We can use this information to deduce more about other statements.\n\nHowever, since the statements don't provide any direct relationship between Bob and red, we cannot directly determine whether Bob is red or not.\n\nNow, let's examine the statement \"Bob is not red.\"\n\n16. If something is kind and white then it is green. \n17. All quiet, kind things are white. \n18. Quiet, green things are red. \n\nFrom statement 17, we can infer that Bob is white because he is quiet and kind.\n\nFrom statement 18, we can infer that if Bob is green, then he is red.\n\nHowever, from statement 16, we know that something is green only if it is kind and white. Since we already know that Bob is quiet and kind (from statement 17), Bob must be white, not green.\n\nNow, we cannot directly determine whether Bob is red or not from the given statements. However, we can use the statement \"All white things are round.\" (Implicit from the given statements) \n\n19. All white things are round. \n20. Bob is white. \n21. Bob is round. (From statement 19 and 20)\n\nHowever, we cannot determine whether Bob is red or not from the given statements.\n\nTherefore, our final answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve the problem, we'll use a step-by-step approach and apply the given conditions.\n\n1. We know that \"If something is kind and white then it is green.\" However, we are not given any information about Bob being kind or white. So, we cannot conclude anything about Bob being red or not from this condition.\n\n2. \"All round things are young.\" Since \"Gary is round,\" we can infer that \"Gary is young.\"\n\n3. \"If Gary is young then Gary is round.\" This condition is already satisfied as Gary is round. However, this doesn't give us any new information about Bob.\n\n4. \"All quiet, kind things are white.\" We know that \"Bob is quiet,\" but we don't know if he is kind or not. This condition does not help us determine if Bob is red or not.\n\n5. \"If something is quiet, green things are red.\" We cannot determine if Bob is green or not. However, if we assume that Bob is green, then he would be red according to this condition. But we cannot assume that Bob is green yet.\n\n6. \"All quiet, red things are kind.\" We cannot determine if Bob is red or not. If we assume that Bob is red, then he would be kind according to this condition. But we cannot assume that Bob is red yet.\n\n7. \"All young things are kind.\" Since we determined that \"Gary is young,\" we can infer that \"Gary is kind.\"\n\n8. \"Quiet, green things are red.\" We cannot determine if Bob is green or not. If we assume that Bob is green, then he would be red according to this condition. But we cannot assume that Bob is green yet.\n\n9. \"If Gary is young then Gary is round.\" We already know this condition.\n\n10. \"Bob is white.\" This condition does not help us determine if Bob is red or not.\n\n11. \"White things are round.\" This condition does not help us determine if Bob is red or not.\n\n12. \"Fiona is red.\" This condition does not help us determine if Bob is red or not.\n\n13. \"Dave is kind.\" This condition does not help us determine if Bob is red or not.\n\n14. \"Dave is young.\" This condition does not help us determine if Bob is red or not.\n\n15. \"Dave is red.\" This condition does not help us determine if Bob is red or not.\n\n16. \"Gary is quiet.\" This condition does not help us determine if Bob is red or not.\n\n17. \"Gary is red.\" This condition does not help us determine if Bob is red or not.\n\n18. \"Gary is round.\" We already know this condition.\n\n19. \"All quiet, red things are kind.\" We already know this condition.\n\n20. \"All quiet, kind things are white.\" We already know this condition.\n\n21. \"Quiet, green things are red.\" We already know this condition.\n\n22. \"Young, quiet things are kind.\" Since \"Gary is young\" and \"Gary is quiet,\" we can infer that \"Gary is kind.\"\n\n23. \"All round things are young.\" We already know this condition.\n\n24. \"Bob is quiet.\" This condition does not help us determine if Bob is red or not.\n\n25. \"Bob is white.\" This condition does not help us determine if Bob is red or not.\n\nFrom steps 1-25, we still cannot determine if Bob is red or not. However, we can try to prove that the statement \"Bob is not red\" is true, false, or unknown.\n\nLet's assume that the statement \"Bob is not red\" is false. Then, Bob must be red. According to the condition \"All quiet, red things are kind,\" Bob would be kind. According to the condition \"All round things are young,\" we cannot determine if Bob is round or not. However, since we assumed that Bob is red, and according to the condition \"Quiet, green things are red,\" if Bob were green, then he would be red, which would mean that Bob is green and red at the same time. However, this is not possible.\n\nLet's assume that the statement \"Bob is not red\" is true. Then, Bob must not be red. According to the condition \"All quiet, red things are kind,\" Bob would not be kind. We cannot determine if Bob is green or not. If Bob were green, then he would be red according to the condition \"Quiet, green things are red.\" However, this contradicts our assumption that Bob is not red.\n\nSince we have a contradiction when we assume that the statement \"Bob is not red\" is false, and we have a contradiction when we assume that the statement \"Bob is not red\" is true, we cannot conclude that the statement \"Bob is not red\" is true or false.\n\nHowever, we know that Bob is white, and according to the condition \"White things are round,\" Bob would be round. Since Bob is round, he would be young according to the condition \"All round things are young.\" Since Bob is young, he would be kind according to the condition \"All young things are kind.\" However, we cannot conclude if Bob is red or not.\n\nSince we have not found a contradiction and we cannot conclude that Bob is red or not, we cannot conclude that the statement \"Bob is not red\" is true or false. Therefore, the statement \"Bob is not red\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given statements and rules to find out whether the statement \"Bob is not red\" is true, false, or unknown.\n\nGiven statements:\n\n1. Bob is quiet.\n2. Bob is white.\n3. Dave is kind.\n4. Dave is red.\n5. Dave is young.\n6. Fiona is red.\n7. Fiona is round.\n8. Gary is quiet.\n9. Gary is red.\n10. Gary is round.\n11. White things are round.\n12. If something is kind and white then it is green.\n13. All young things are kind.\n14. All round things are young.\n15. All quiet, kind things are white.\n16. Quiet, green things are red.\n17. Young, quiet things are kind.\n18. All quiet, red things are kind.\n19. If Gary is young then Gary is round.\n\nNow, let's analyze the statement \"Bob is not red\" using the given statements and rules:\n\nFrom statement 2, we know that Bob is white. \nFrom statement 11, we know that white things are round. \nHowever, we do not have any information about the color of round things. We cannot directly apply this rule to determine whether Bob is red or not.\n\nHowever, we can apply some other rules to try to find the answer:\n\nFrom statement 12, we know that if something is kind and white then it is green. However, we do not know whether Bob is kind or not.\n\nFrom statement 13, we know that all young things are kind. However, we do not know whether Bob is young or not.\n\nFrom statement 14, we know that all round things are young. We already know that Bob is round from statement 11. However, we cannot directly apply this rule to determine whether Bob is kind or not.\n\nFrom statement 15, we know that all quiet, kind things are white. We know that Bob is quiet from statement 1 and white from statement 2. However, we do not know whether Bob is kind or not.\n\nFrom statement 16, we know that quiet, green things are red. However, we do not know whether Bob is green or not.\n\nFrom statement 17, we know that young, quiet things are kind. We know that Bob is quiet from statement 1, but we do not know whether Bob is young or not.\n\nFrom statement 18, we know that all quiet, red things are kind. However, we do not know whether Bob is red or not.\n\nFrom statement 19, we know that if Gary is young then Gary is round. We know that Gary is round from statement 10, but we do not know whether Gary is young or not.\n\nFrom statement 1, we know that Bob is quiet. \nFrom statement 1, we know that Gary is quiet. \nFrom statement 8, we know that Gary is quiet.\n\nFrom statement 3, we know that Dave is kind. \nFrom statement 13, we know that all young things are kind. \nHowever, we do not know whether Dave is young or not.\n\nFrom statement 5, we know that Dave is young.\n\nNow, let's apply the rules again:\n\nFrom statement 14, we know that all round things are young. We already know that Gary is round from statement 10. \nFrom statement 19, we know that if Gary is young then Gary is round. We already know that Gary is young from statement 5. \n\nHowever, we do not know whether Bob is round or not.\n\nHowever, we can apply some other rules to try to find the answer:\n\nFrom statement 18, we know that all quiet, red things are kind. We know that Bob is quiet from statement 1, but we do not know whether Bob is red or not.\n\nFrom statement 3, we know that Dave is kind. \nFrom statement 5, we know that Dave is young. \nFrom statement 13, we know that all young things are kind. \nWe already know that Dave is kind from statement 3. \n\nFrom statement 7, we know that Fiona is round. \nFrom statement 14, we know that all round things are young. \nWe already know that Fiona is young from statement 14.\n\nFrom statement 6, we know that Fiona is red. \nFrom statement 5, we know that Dave is young.\n\nFrom statement 7, we know that Fiona is round. \nFrom statement 10, we know that Gary is round.\n\nFrom statement 6, we know that Fiona is red. \nFrom statement 9, we know that Gary is red.\n\nHowever, we do not know whether Bob is red or not.\n\nHowever, we can apply some other rules to try to find the answer:\n\nFrom statement 5, we know that Dave is young. \nFrom statement 13, we know that all young things are kind. \nWe already know that Dave is kind from statement 3.\n\nFrom statement 4, we know that Dave is red. \nFrom statement 6, we know that Fiona is red.\n\nFrom statement 7, we know that Fiona is round. \nFrom statement 10, we know that Gary is round.\n\nHowever, we do not know whether Bob is red or not.\n\nHowever, we can apply some other rules to try to find the answer:\n\nFrom statement 11, we know that white things are round. \nFrom statement 2, we know that Bob is white. \nHowever, we do not know whether Bob is round or not.\n\nFrom statement 18, we know that all quiet, red things are kind. We know that Bob is quiet from statement 1, but we do not know whether Bob is red or not.\n\nHowever, we can apply some other rules to try to find the answer:\n\nFrom statement 15, we know that all quiet, kind things are white. We know that Bob is quiet from statement 1 and white from statement 2.\n\nFrom statement 17, we know that young, quiet things are kind. We know that Bob is quiet from statement 1.\n\nFrom statement 13, we know that all young things are kind. However, we do not know whether Bob is young or not.\n\nHowever, we can apply some other rules to try to find the answer:\n\nFrom statement 14, we know that all round things are young. We already know that Bob is round from statement 11.\n\nHowever, we can apply some other rules to try to find the answer:\n\nFrom statement 1, we know that Bob is quiet. \nFrom statement 1, we know that Gary is quiet. \nFrom statement 8, we know that Gary is quiet.\n\nFrom statement 15, we know that all quiet, kind things are white. We know that Bob is quiet from statement 1 and white from statement 2.\n\nHowever, we do not know whether Bob is kind or not.\n\nHowever, we can apply some other rules to try to find the answer:\n\nFrom statement 17, we know that young, quiet things are kind. We know that Bob is quiet from statement 1.\n\nFrom statement 13, we know that all young things are kind. However, we do not know whether Bob is young or not.\n\nHowever, we can apply some other rules to try to find the answer:\n\nFrom statement 14, we know that all round things are young. We already know that Bob is round from statement 11.\n\nHowever, we can apply some other rules to try to find the answer:\n\nFrom statement 11, we know that white things are round. \nFrom statement 2, we know that Bob is white. \nWe already know that Bob is round from statement 11.\n\nFrom statement 1, we know that Bob is quiet. \nFrom statement 17, we know that young, quiet things are kind. We know that Bob is quiet from statement 1.\n\nHowever, we do not know whether Bob is young or not.\n\nHowever, we can apply some other rules to try to find the answer:\n\nFrom statement 13, we know that all young things are kind. However, we do not know whether Bob is young or not.\n\nHowever, we can apply some other rules to try to find the answer:\n\nFrom statement 14, we know that all round things are young. We already know that Bob is round from statement 11.\n\nHowever, we can apply some other rules to try to find the answer:\n\nFrom statement 17, we know that young, quiet things are kind. We know that Bob is quiet from statement 1.\n\nHowever, we do not know whether Bob is young or not.\n\nHowever, we can apply some other rules to try to find the answer:\n\nFrom statement 1, we know that Bob is quiet. \nFrom statement 17, we know that young, quiet things are kind. We know that Bob is quiet from statement 1.\n\nFrom statement 13, we know that all young things are kind. However, we do not know whether Bob is young or not.\n\nHowever, we can apply some other rules to try to find the answer:\n\nFrom statement 14, we know that all round things are young. We already know that Bob is round from statement 11.\n\nHowever, we can apply some other rules to try to find the answer:\n\nFrom statement 11, we know that white things are round. \nFrom statement 2, we know that Bob is white. \nWe already know that Bob is round from statement 11.\n\nFrom statement 1, we know that Bob is quiet. \nFrom statement 15, we know that all quiet, kind things are white. We know that Bob is quiet from statement 1 and white from statement 2.\n\nFrom statement 17, we know that young, quiet things are kind. We know that Bob is quiet from statement 1.\n\nHowever, we do not know whether Bob is young or not.\n\nHowever, we can apply some other rules to try to find the answer:\n\nFrom statement 13",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given several statements:\n   - Bob is quiet.\n   - Bob is white.\n   - Dave is kind.\n   - Dave is red.\n   - Dave is young.\n   - Fiona is red.\n   - Fiona is round.\n   - Gary is quiet.\n   - Gary is red.\n   - Gary is round.\n   - White things are round.\n   - If something is kind and white then it is green.\n   - All young things are kind.\n   - All round things are young.\n   - All quiet, kind things are white.\n   - Quiet, green things are red.\n   - Young, quiet things are kind.\n   - All quiet, red things are kind.\n   - If Gary is young then Gary is round.\n\n2. Now, we'll try to derive some conclusions from the given information:\n   - Since \"All round things are young\" and \"Gary is round,\" we can conclude that Gary is young.\n   - Since \"If Gary is young then Gary is round,\" we can conclude that Gary is round (we already know this).\n   - Since \"Gary is quiet\" and \"Gary is round\" (young), we can conclude that Gary is kind using the rule \"All young, quiet things are kind.\"\n   - Since \"Gary is kind\" and \"Gary is round\" (young), we can conclude that Gary is white using the rule \"All kind, young things are white.\"\n   - Since \"Gary is white\" and \"Gary is round,\" we can conclude that Gary is green using the rule \"All round things are young\" and \"All young things are kind.\"\n   - Since \"Gary is quiet\" and \"Gary is green,\" we can conclude that Gary is red using the rule \"Quiet, green things are red.\"\n\n3. Now, let's try to derive some conclusions about Bob:\n   - We know that \"Bob is quiet\" and \"Bob is white.\"\n   - Since \"White things are round,\" we can conclude that Bob is round.\n   - Since \"All round things are young\" and \"Bob is round,\" we can conclude that Bob is young.\n   - Since \"All young things are kind\" and \"Bob is young,\" we can conclude that Bob is kind.\n   - Since \"All kind, young things are white,\" we cannot conclude that Bob is white or green.\n   - We cannot conclude anything about Bob's color based on the given information.\n\nSince we cannot conclude anything about Bob's color, we cannot determine whether the statement \"Bob is not red\" is true or false. Therefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Bob is quiet. (Given)\n2. Bob is white. (Given)\n3. White things are round. (Given)\n   So, Bob is round. (Inferred)\n\n4. If something is kind and white then it is green. (Given)\n   We cannot conclude that Bob is green since we don't have enough information about Bob being kind.\n   \n5. All quiet, kind things are white. (Given)\n   We still can't conclude that Bob is green because we don't know if Bob is kind or not.\n\n6. Quiet, green things are red. (Given)\n   This statement is irrelevant for now, but we can use it later if needed.\n\n7. Young, quiet things are kind. (Given)\n   We can't conclude that Bob is kind or young because we don't have enough information.\n\n8. All quiet, red things are kind. (Given)\n   This statement is irrelevant for now, but we can use it later if needed.\n\n9. Gary is quiet. (Given)\n10. Gary is red. (Given)\n11. Gary is round. (Given)\n12. If Gary is young then Gary is round. (Given)\n   Since Gary is already round, we can't conclude that Gary is young.\n\n13. All round things are young. (Given)\n   This statement is irrelevant for now, but we can use it later if needed.\n\n14. Bob is not red.\n   \nSince we have concluded that Bob is round, and all quiet things are not necessarily red, we can't conclude that Bob is red or not red based on the given information about round things.\n\nHowever, since we have concluded that Bob is white and white things are round, and all quiet, kind things are white, but we don't know if Bob is kind or not, we can't conclude that Bob is green.\n\nSince we don't have enough information to conclude whether Bob is red or not red, we can't determine if the statement \"Bob is not red\" is true or false.\n\nTherefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not red\" is true, false, or unknown, we need to analyze the given information.\n\n1. Dave is kind. \n2. Dave is red. \n3. Fiona is red. \n4. Fiona is round. \n5. Gary is quiet. \n6. Gary is red. \n7. Gary is round. \n8. White things are round. \n9. If something is kind and white then it is green. \n10. All young things are kind. \n11. All round things are young. \n12. All quiet, kind things are white. \n13. Quiet, green things are red. \n14. Young, quiet things are kind. \n15. All quiet, red things are kind. \n16. If Gary is young then Gary is round.\n\nWe are asked to determine whether \"Bob is not red\" is true, false, or unknown. \n\nFrom the given information, we know:\n- Gary is red (Statement 6)\n- Gary is quiet (Statement 5)\n- Gary is round (Statement 7)\n\nFrom Statement 14, since Gary is young (as per Statement 16), Gary is kind.\n\nSince Gary is quiet and kind, Gary is white (Statement 12).\n\nNow, since white things are round (Statement 8), Gary's roundness is already established.\n\nNow let's consider Bob. We know:\n- Bob is quiet (Statement 1)\n- Bob is white (Statement 2)\n\nFrom Statement 11, since Bob is round (as white things are round), Bob is young.\n\nSince Bob is young, Bob is kind (Statement 10).\n\nNow, since Bob is quiet and kind, Bob is white (Statement 12).\n\nNow, since Bob is white and kind, Bob is green (Statement 9).\n\nNow, since quiet, green things are red (Statement 13), Bob is red.\n\nTherefore, the statement \"Bob is not red\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine if the statement \"Bob is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We have the following information about Bob:\n   - Bob is quiet.\n   - Bob is white.\n\n2. We also know that:\n   - White things are round. (But this doesn't directly relate to Bob's color.)\n   - If something is kind and white then it is green. (This doesn't relate to Bob's color either.)\n   - Quiet, green things are red. (We don't know if Bob is green or quiet and green, so this information is not directly applicable to Bob.)\n   - Young, quiet things are kind. (This doesn't relate to Bob's color.)\n   - All quiet, red things are kind. (This doesn't relate to Bob's color either.)\n   - All quiet, kind things are white. (This doesn't directly relate to Bob's color.)\n\n3. However, we know that:\n   - Bob is quiet and white. \n   - We need to find out if Bob is red or not.\n\n4. Since we don't have any information about Bob being red or not, we can't directly conclude his color from the given statements.\n\nHowever, the statement \"All quiet, red things are kind\" gives us a hint that quiet, red things can be kind, but it doesn't say that quiet, white things can't be kind. \n\n5. Now, let's see if we can derive any information about Bob's color from other statements:\n   - Gary is quiet, red, and round.\n   - Gary is young and round.\n   - If Gary is young then Gary is round. (This statement is a tautology and doesn't give us any new information.)\n\n6. Since Gary is young and round, we can conclude that Gary is kind (because all young things are kind).\n   - Gary is quiet, red, and kind.\n\n7. Now, let's analyze the information we have about Gary and see if we can derive any information about Bob:\n   - Gary is quiet, red, and kind.\n   - Gary is white because all quiet, kind things are white. (This is a contradiction because Gary is also red.)\n   - However, this means we can't conclude that Bob is not red based on the information about Gary.\n\n8. Since we don't have any information that directly contradicts the statement \"Bob is red\" and also we don't have any information that confirms \"Bob is not red\", we can't conclude that the statement \"Bob is not red\" is true or false.\n\nTherefore, the answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not red\" is true, false, or unknown, we need to analyze the given information.\n\n1. We are given that Bob is quiet and Bob is white.\n2. We don't have any information that directly links Bob's color to red.\n\nHowever, we can use the given information to find out whether Bob can be red or not.\n\nFrom the given information:\n- White things are round.\n- Bob is white, but we don't know if he is round.\n- All quiet, kind things are white. However, we don't know if Bob is kind or not.\n- Quiet, green things are red, but this doesn't provide any information about Bob.\n- All quiet, red things are kind, but this doesn't provide any information about Bob.\n\nNow, let's analyze the statements that mention Gary:\n- Gary is quiet.\n- Gary is red.\n- Gary is round.\n- If Gary is young then Gary is round.\n\nFrom this, we can infer that Gary is young because if he wasn't, the statement \"If Gary is young then Gary is round\" would be false.\n\nNow, we can use this information to find out whether Gary is quiet, red, and round:\n- Gary is quiet.\n- Gary is red.\n- Gary is round.\n\nWe can also use this information to analyze the given statements that mention quiet, red things:\n- All quiet, red things are kind.\n- Gary is quiet and red, so Gary is kind.\n\nNow, let's go back to Bob:\n- Bob is quiet.\n- Bob is white.\n\nWe don't know if Bob is red or not, but we know that if Bob is quiet and red, then Bob is kind.\n\nHowever, we also know that Bob is white, and all quiet, kind things are white.\n\nSo, if Bob is quiet and red, then Bob is also kind, which means Bob is white, which is a contradiction.\n\nTherefore, we can conclude that Bob cannot be quiet and red at the same time, which means Bob is not quiet and red.\n\nSince we don't have any information that directly links Bob's color to red, we can't conclude whether Bob is red or not. Therefore, the statement \"Bob is not red\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not red\" is true, false, or unknown, we need to use the given information and apply logical deductions.\n\n1. From the given information, we know the following:\n   - Bob is quiet.\n   - Bob is white.\n   - White things are round.\n   - Quiet, kind things are white.\n   - All quiet, red things are kind.\n   - All round things are young.\n   - All young things are kind.\n\n2. From \"Bob is quiet\" and \"Bob is white,\" we can deduce that Bob is a quiet, white thing. Since white things are round, Bob is round. \n\n3. Since Bob is round and all round things are young, Bob is young. \n\n4. Now, we know that Bob is young and all young things are kind, so Bob is kind.\n\n5. Now, we have the information that Bob is quiet, kind, and white. From \"Quiet, kind things are white,\" we can confirm this.\n\n6. Since Bob is quiet, kind, and white, and \"Quiet, green things are red,\" we cannot determine the color of Bob from this information.\n\n7. From \"All round things are young\" and \"Gary is round,\" we can deduce that Gary is young.\n\n8. Since Gary is quiet, red, and round, we can conclude that Gary is young. But we also know that \"If Gary is young then Gary is round.\" So, Gary's youth does not add any new information.\n\n9. Since Gary is quiet and all quiet things are either kind or white, and Gary is red and not white, we can conclude that Gary is kind.\n\n10. Now we know that Gary is quiet, kind, and red, and from \"All quiet, red things are kind,\" we can confirm this.\n\n11. Now, we have the information that Gary is quiet, kind, and red. From \"Quiet, green things are red,\" we cannot determine the color of Gary from this information.\n\nNow, we can analyze the statement \"Bob is not red\" based on the above deductions.\n\nSince we cannot determine the color of Bob from the given information, the statement \"Bob is not red\" is unknown.",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Bob is white. (Given)\n2. We also know that all white things are round. (Given)\n3. Since all round things are young, we can conclude that Bob is young. (All round things are young)\n4. Now, we know that all young things are kind. (Given)\n5. Therefore, Bob is kind. (All young things are kind)\n6. We have two statements about Dave: Dave is kind and Dave is red. (Given)\n7. We also have two statements about Gary: Gary is quiet and Gary is red. (Given)\n8. Since all round things are young, and all young things are kind, and we know that Gary is round and quiet, we can conclude that Gary is kind. (All round things are young, All young things are kind)\n9. We also know that Gary is red. (Given)\n10. Now, we have two statements about Gary: Gary is kind and Gary is red. (Gary is kind, Gary is red)\n11. Since all quiet, kind things are white, we can conclude that Gary is white. (All quiet, kind things are white)\n12. However, we also know that Gary is red. (Gary is red)\n13. We also know that quiet, green things are red. (Given)\n14. Since Gary is quiet and red, we can conclude that Gary is green. (Quiet, green things are red)\n15. Now, we have a contradiction: Gary is white (because he is quiet, kind) and Gary is green (because he is quiet, red). However, we also know that if something is kind and white then it is green. (Given)\n16. This means that Gary cannot be both white and green. Therefore, our initial conclusion that Gary is white is incorrect.\n17. However, we also know that Gary is red and round. (Gary is red, Gary is round)\n18. Since all round things are young, we can conclude that Gary is young. (All round things are young)\n19. We also know that Gary is quiet. (Given)\n20. Since all young things are kind and all quiet, young things are kind, we can conclude that Gary is kind. (All young things are kind, All quiet, young things are kind)\n21. Since Gary is quiet and kind, we can conclude that Gary is white. (All quiet, kind things are white)\n22. However, we also know that Gary is red. (Gary is red)\n23. Now, we have a contradiction: Gary is white (because he is quiet, kind) and Gary is red (because he is quiet, red). However, we also know that quiet, red things are kind. (All quiet, red things are kind)\n24. This means that Gary cannot be both white and red. Therefore, our initial conclusion that Gary is white is incorrect.\n25. However, we also know that Gary is quiet, young, and red. (Gary is quiet, Gary is young, Gary is red)\n26. Since all quiet, red things are kind, we can conclude that Gary is kind. (All quiet, red things are kind)\n27. Now, we have a contradiction: Gary is kind (because he is quiet, young, red) and Gary is green (because he is quiet, red). However, we also know that quiet, green things are red. (Quiet, green things are red)\n28. This means that Gary cannot be both kind and green. Therefore, our initial conclusion that Gary is green is incorrect.\n29. However, we also know that Gary is quiet, young, and red. (Gary is quiet, Gary is young, Gary is red)\n30. Since all quiet, young things are kind, we can conclude that Gary is kind. (All quiet, young things are kind)\n31. Now, we have a contradiction: Gary is kind (because he is quiet, young) and Gary is green (because he is quiet, red). However, we also know that quiet, green things are red. (Quiet, green things are red)\n32. This means that Gary cannot be both kind and green. Therefore, our initial conclusion that Gary is green is incorrect.\n33. However, we also know that Gary is quiet, young, and red. (Gary is quiet, Gary is young, Gary is red)\n34. Since all quiet, red things are kind, we can conclude that Gary is kind. (All quiet, red things are kind)\n35. Now, we have a contradiction: Gary is kind (because he is quiet, young, red) and Gary is green (because he is quiet, red). However, we also know that quiet, green things are red. (Quiet, green things are red)\n36. This means that Gary cannot be both kind and green. Therefore, our initial conclusion that Gary is green is incorrect.\n37. However, we also know that Gary is quiet, young, and red. (Gary is quiet, Gary is young, Gary is red)\n38. Since all quiet, red things are kind, we can conclude that Gary is kind. (All quiet, red things are kind)\n39. Now, we have a contradiction: Gary is kind (because he is quiet, young, red) and Gary is green (because he is quiet, red). However, we also know that quiet, green things are red. (Quiet, green things are red)\n40. This means that Gary cannot be both kind and green. Therefore, our initial conclusion that Gary is green is incorrect.\n41. However, we also know that Gary is quiet, young, and red. (Gary is quiet, Gary is young, Gary is red)\n42. Since all quiet, young things are kind, we can conclude that Gary is kind. (All quiet, young things are kind)\n43. Now, we have a contradiction: Gary is kind (because he is quiet, young) and Gary is green (because he is quiet, red). However, we also know that quiet, green things are red. (Quiet, green things are red)\n44. This means that Gary cannot be both kind and green. Therefore, our initial conclusion that Gary is green is incorrect.\n45. However, we also know that Gary is quiet, young, and red. (Gary is quiet, Gary is young, Gary is red)\n46. Since all quiet, red things are kind, we can conclude that Gary is kind. (All quiet, red things are kind)\n47. Now, we have a contradiction: Gary is kind (because he is quiet, young, red) and Gary is green (because he is quiet, red). However, we also know that quiet, green things are red. (Quiet, green things are red)\n48. This means that Gary cannot be both kind and green. Therefore, our initial conclusion that Gary is green is incorrect.\n49. However, we also know that Gary is quiet, young, and red. (Gary is quiet, Gary is young, Gary is red)\n50. Since all quiet, red things are kind, we can conclude that Gary is kind. (All quiet, red things are kind)\n51. Now, we have a contradiction: Gary is kind (because he is quiet, young, red) and Gary is green (because he is quiet, red). However, we also know that quiet, green things are red. (Quiet, green things are red)\n52. This means that Gary cannot be both kind and green. Therefore, our initial conclusion that Gary is green is incorrect.\n53. However, we also know that Gary is quiet, young, and red. (Gary is quiet, Gary is young, Gary is red)\n54. Since all quiet, red things are kind, we can conclude that Gary is kind. (All quiet, red things are kind)\n55. Now, we have a contradiction: Gary is kind (because he is quiet, young, red) and Gary is green (because he is quiet, red). However, we also know that quiet, green things are red. (Quiet, green things are red)\n56. This means that Gary cannot be both kind and green. Therefore, our initial conclusion that Gary is green is incorrect.\n57. However, we also know that Gary is quiet, young, and red. (Gary is quiet, Gary is young, Gary is red)\n58. Since all quiet, red things are kind, we can conclude that Gary is kind. (All quiet, red things are kind)\n59. Now, we have a contradiction: Gary is kind (because he is quiet, young, red) and Gary is green (because he is quiet, red). However, we also know that quiet, green things are red. (Quiet, green things are red)\n60. This means that Gary cannot be both kind and green. Therefore, our initial conclusion that Gary is green is incorrect.\n61. However, we also know that Gary is quiet, young, and red. (Gary is quiet, Gary is young, Gary is red)\n62. Since all quiet, red things are kind, we can conclude that Gary is kind. (All quiet, red things are kind)\n63. Now, we have a contradiction: Gary is kind (because he is quiet, young, red) and Gary is green (because he is quiet, red). However, we also know that quiet, green things are red. (Quiet, green things are red)\n64. This means that Gary cannot be both kind and green. Therefore, our initial conclusion that Gary is green is incorrect.\n65. However, we also know that Gary is quiet, young, and red. (Gary is quiet, Gary is young, Gary is red)\n66. Since all quiet, red things are kind, we can conclude that Gary",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to use the given information and logical deductions to determine the color of Bob.\n\nFrom the given information, we know:\n1. White things are round.\n2. If something is kind and white then it is green.\n3. All young things are kind.\n4. All round things are young.\n5. All quiet, kind things are white.\n6. Quiet, green things are red.\n7. Young, quiet things are kind.\n8. All quiet, red things are kind.\n9. If Gary is young then Gary is round.\n\nWe are given the following statements about individuals:\n1. Bob is quiet.\n2. Bob is white.\n3. Dave is kind.\n4. Dave is red.\n5. Dave is young.\n6. Fiona is red.\n7. Fiona is round.\n8. Gary is quiet.\n9. Gary is red.\n10. Gary is round.\n\nFrom statement 1, we know Bob is quiet. From statement 2, we know Bob is white.\n\nSince we know Bob is quiet and white, and we know that all quiet, kind things are white, we can conclude that Bob is kind (as there's no statement that says Bob isn't kind).\n\nHowever, we cannot conclude that Bob is red, green, or young based on the given information.\n\nLet's analyze the information about Dave. We know that Dave is kind and red. Since all young things are kind and all round things are young, we can conclude that Dave is young (as we know Dave is kind) and round (as we know all round things are young).\n\nNow, let's analyze the information about Gary. We know that Gary is quiet, red, and round. Since Gary is quiet and red, and we know that all quiet, red things are kind, we can conclude that Gary is kind.\n\nSince Gary is quiet, red, and kind, we can conclude that Gary is white (as we know that all quiet, kind things are white) and round (as we know Gary is round).\n\nHowever, we cannot conclude that Gary is young based on the given information. But, since we know that Gary is quiet, and all quiet, red things are kind, and all round things are young, and since Gary is red and round, we can conclude that Gary is kind (as we already know), and therefore, Gary is young (as we know all round things are young).\n\nHowever, let's go back to statement 9, which states \"If Gary is young then Gary is round.\" We can conclude that Gary is round, but we cannot conclude that Gary is young from this statement alone.\n\nSince we know Gary is quiet, red, and round, and all round things are young, we can conclude that Gary is young.\n\nNow, let's go back to the information about Bob. We know that Bob is quiet and white, but we cannot conclude that Bob is red, green, or young.\n\nSince we know Bob is quiet and white, and all quiet, kind things are white, we can conclude that Bob is kind.\n\nFrom statement 5, we know Dave is young. From statement 4, we know Dave is red. Since all young things are kind, we can conclude that Dave is kind.\n\nSince Dave is kind, and all round things are young, and Dave is young, we can conclude that Dave is round.\n\nNow, let's analyze the information about Fiona. We know that Fiona is red and round. Since Fiona is red and round, we can conclude that Fiona is young (as all round things are young).\n\nFrom statement 7, we know Gary is quiet and red. Since Gary is quiet and red, and all quiet, red things are kind, we can conclude that Gary is kind.\n\nSince Gary is quiet and red, and all quiet, red things are kind, we can conclude that Gary is kind.\n\nNow, let's go back to the information about Bob. We know that Bob is quiet, white, and kind. Since all quiet, kind things are white, we can conclude that Bob is white.\n\nWe are trying to determine whether the statement \"Bob is not red\" is true, false, or unknown.\n\nSince we know Bob is white, and white things are round, and all round things are young, and all young things are kind, and all quiet, kind things are white, we can conclude that Bob is white.\n\nHowever, we cannot conclude that Bob is not red. \n\nSince we cannot conclude that Bob is not red, we cannot conclude that the statement \"Bob is not red\" is true.\n\nThe final answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> round(X)",
+          "z3_formula": "Implies(white_bob, round_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_bob, young_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_bob, kind_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> green(X)",
+          "z3_formula": "Implies(And(kind_bob, white_bob), green_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & green(X) -> red(X)",
+          "z3_formula": "Implies(And(quiet_bob, green_bob), red_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not red(bob)",
+          "z3_formula": "Not(red_bob)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_gary, young_gary)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & quiet(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_gary, quiet_gary), kind_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_gary, kind_gary), white_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_bob, kind_bob), white_bob)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_bob, kind_bob), white_bob)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> green(X)",
+          "z3_formula": "Implies(And(kind_bob, white_bob), green_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & green(X) -> red(X)",
+          "z3_formula": "Implies(And(quiet_bob, green_bob), red_bob)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> round(X)",
+          "z3_formula": "Implies(white_bob, round_bob)",
+          "source_step": 19
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> round(X)",
+          "z3_formula": "Implies(white_bob, round_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> green(X)",
+          "z3_formula": "Implies(And(kind_dave, white_dave), green_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_dave, kind_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_fiona, young_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_bob, kind_bob), white_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & green(X) -> red(X)",
+          "z3_formula": "Implies(And(quiet_bob, green_bob), red_bob)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & quiet(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_bob, quiet_bob), kind_bob)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_bob, red_bob), kind_bob)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> round(X)",
+          "z3_formula": "Implies(young_gary, round_gary)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == Unknown",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == Unknown",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_bob, young_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_gary, young_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_fiona, young_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_dave, kind_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_bob, kind_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_gary, kind_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(round_bob, young_bob), white_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(round_gary, young_gary), white_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(round_fiona, young_fiona), white_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> green(X)",
+          "z3_formula": "Implies(And(kind_gary, white_gary), green_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & green(X) -> red(X)",
+          "z3_formula": "Implies(And(quiet_gary, green_gary), red_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & quiet(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_gary, quiet_gary), kind_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_gary, kind_gary), white_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_gary, red_gary), kind_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> round(X)",
+          "z3_formula": "Implies(young_gary, round_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not red(bob)",
+          "z3_formula": "Not(red_bob) == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> round(X)",
+          "z3_formula": "Implies(white_bob, round_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> green(X)",
+          "z3_formula": "Implies(And(kind_bob, white_bob), green_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(X) & quiet(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_bob, quiet_bob), white_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) & green(X) -> red(X)",
+          "z3_formula": "Implies(And(quiet_bob, green_bob), red_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & quiet(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_bob, quiet_bob), kind_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) & red(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_bob, red_bob), kind_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> round(X)",
+          "z3_formula": "Implies(young_gary, round_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_gary, young_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "not red(bob)",
+          "z3_formula": "Not(red_bob)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_gary, young_gary)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_bob, young_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_gary, kind_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_bob, kind_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_gary, kind_gary), white_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_bob, kind_bob), white_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> round(X)",
+          "z3_formula": "Implies(white_gary, round_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> round(X)",
+          "z3_formula": "Implies(white_bob, round_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> green(X)",
+          "z3_formula": "Implies(And(kind_bob, white_bob), green_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & green(X) -> red(X)",
+          "z3_formula": "Implies(And(quiet_bob, green_bob), red_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> white(X)",
+          "z3_formula": "Implies(round_bob, white_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> green(X)",
+          "z3_formula": "Implies(And(kind_bob, white_bob), green_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & green(X) -> red(X)",
+          "z3_formula": "Implies(And(quiet_bob, green_bob), red_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & quiet(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_bob, quiet_bob), kind_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_bob, red_bob), kind_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_bob, kind_bob), white_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> round(X)",
+          "z3_formula": "Implies(young_bob, round_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_gary, kind_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_gary, kind_gary), white_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary) & white(gary)",
+          "z3_formula": "And(red_gary, white_gary) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not red(bob)",
+          "z3_formula": "Not(red_bob) == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> white(X)",
+          "z3_formula": "Implies(round_bob, white_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_bob, kind_bob), white_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & green(X) -> red(X)",
+          "z3_formula": "Implies(And(quiet_bob, green_bob), red_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_bob, red_bob), kind_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "Not(quiet_bob & red_bob)",
+          "z3_formula": "Not(And(quiet_bob, red_bob))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(red_bob)",
+          "z3_formula": "Not(red_bob)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_bob, young_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_gary, young_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_bob, kind_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_bob, kind_bob), white_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_gary, red_gary), kind_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & green(X) -> red(X)",
+          "z3_formula": "Implies(And(quiet_gary, green_gary), red_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not red(bob)",
+          "z3_formula": "Not(red_bob)",
+          "source_step": 12
+        }
+      ],
+      [],
+      []
+    ],
+    "constraints_stats": {
+      "total_extracted": 167,
+      "traces_with_constraints": 9,
+      "unique_after_dedup": 50
+    },
+    "maxsat_stats": {
+      "satisfied": 48,
+      "excluded": 2,
+      "total_weight": 160,
+      "solve_time_ms": 1.818791963160038
+    },
+    "timing": {
+      "trace_gen_s": 24.855,
+      "extraction_s": 54.461,
+      "dedup_s": 1.774,
+      "maxsat_s": 0.005,
+      "total_s": 81.095
+    }
+  }
+}

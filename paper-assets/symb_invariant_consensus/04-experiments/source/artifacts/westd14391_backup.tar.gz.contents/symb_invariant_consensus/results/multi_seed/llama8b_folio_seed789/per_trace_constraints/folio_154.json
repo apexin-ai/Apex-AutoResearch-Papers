@@ -1,0 +1,772 @@
+{
+  "pid": "folio_154",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "owns_large_desktop_monitor_at_home(remy)",
+          "z3_formula": "owns_large_desktop_monitor_at_home_remy == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "owns_large_desktop_monitor_at_home(X) -> works_regularly_and_often_at_home(X)",
+          "z3_formula": "Implies(owns_large_desktop_monitor_at_home_remy, works_regularly_and_often_at_home_remy)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "fully_stocked_and_impressive_home_office(X) -> owns_large_desktop_monitor_at_home(X)",
+          "z3_formula": "Implies(fully_stocked_and_impressive_home_office_remy, owns_large_desktop_monitor_at_home_remy)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "fully_stocked_and_impressive_home_office(X) -> works_regularly_and_often_at_home(X)",
+          "z3_formula": "Implies(fully_stocked_and_impressive_home_office_remy, works_regularly_and_often_at_home_remy)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "works_regularly_and_often_at_home(X) -> visits_office_supply_store_regularly(X)",
+          "z3_formula": "Implies(works_regularly_and_often_at_home_remy, visits_office_supply_store_regularly_remy)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "works_regularly_and_often_at_home(X) -> spends_free_time_tidying_and_organizing_spaces_in_home(X)",
+          "z3_formula": "Implies(works_regularly_and_often_at_home_remy, spends_free_time_tidying_and_organizing_spaces_in_home_remy)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "spends_free_time_tidying_and_organizing_spaces_in_home(X) -> not_late_and_wakes_up_after_noon(X)",
+          "z3_formula": "Implies(spends_free_time_tidying_and_organizing_spaces_in_home_remy, not_late_and_wakes_up_after_noon_remy)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not_late_and_wakes_up_after_noon(X) | not spends_free_time_tidying_and_organizing_spaces_in_home(X)",
+          "z3_formula": "Or(not_late_and_wakes_up_after_noon_remy, Not(spends_free_time_tidying_and_organizing_spaces_in_home_remy))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not has_fully_stocked_and_impressive_home_office_and_visits_office_supply_store_regularly(remy)",
+          "z3_formula": "Not(And(fully_stocked_and_impressive_home_office_remy, visits_office_supply_store_regularly_remy))",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "large_desktop_monitor_at_home(remy)",
+          "z3_formula": "large_desktop_monitor_at_home_remy == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "large_desktop_monitor_at_home(X) -> works_regularly_and_often_at_home(X)",
+          "z3_formula": "Implies(large_desktop_monitor_at_home_remy, works_regularly_and_often_at_home_remy)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "fully_stocked_and_impressive_home_office(remy)",
+          "z3_formula": "fully_stocked_and_impressive_home_office_remy == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "fully_stocked_and_impressive_home_office(X) -> large_desktop_monitor_at_home(X)",
+          "z3_formula": "Implies(fully_stocked_and_impressive_home_office_remy, large_desktop_monitor_at_home_remy)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "works_regularly_and_often_at_home(remy)",
+          "z3_formula": "works_regularly_and_often_at_home_remy == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "works_regularly_and_often_at_home(X) -> visits_office_supply_store_regularly(X)",
+          "z3_formula": "Implies(works_regularly_and_often_at_home_remy, visits_office_supply_store_regularly_remy)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits_office_supply_store_regularly(remy)",
+          "z3_formula": "visits_office_supply_store_regularly_remy == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "works_regularly_and_often_at_home(X) -> spends_free_time_tidying_and_organizing_spaces_in_homes(X)",
+          "z3_formula": "Implies(works_regularly_and_often_at_home_remy, spends_free_time_tidying_and_organizing_spaces_in_homes_remy)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "spends_free_time_tidying_and_organizing_spaces_in_homes(remy)",
+          "z3_formula": "spends_free_time_tidying_and_organizing_spaces_in_homes_remy == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "spends_free_time_tidying_and_organizing_spaces_in_homes(X) -> does_not_go_to_bed_late_and_wake_up_every_day_after_noon(X)",
+          "z3_formula": "Implies(spends_free_time_tidying_and_organizing_spaces_in_homes_remy, does_not_go_to_bed_late_and_wake_up_every_day_after_noon_remy)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "does_not_go_to_bed_late_and_wake_up_every_day_after_noon(remy)",
+          "z3_formula": "does_not_go_to_bed_late_and_wake_up_every_day_after_noon_remy == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "does_not_go_to_bed_late_and_wake_up_every_day_after_noon(remy) | does_not_go_to_bed_late_and_wake_up_every_day_after_noon(remy) & spends_free_time_tidying_and_organizing_spaces_in_homes(remy)",
+          "z3_formula": "Or(does_not_go_to_bed_late_and_wake_up_every_day_after_noon_remy, And(does_not_go_to_bed_late_and_wake_up_every_day_after_noon_remy, spends_free_time_tidying_and_organizing_spaces_in_homes_remy)) == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "does_not_go_to_bed_late_and_wake_up_every_day_after_noon(remy) & does_not_go_to_bed_late_and_wake_up_every_day_after_noon(remy) & spends_free_time_tidying_and_organizing_spaces_in_homes(remy)",
+          "z3_formula": "And(does_not_go_to_bed_late_and_wake_up_every_day_after_noon_remy, And(does_not_go_to_bed_late_and_wake_up_every_day_after_noon_remy, spends_free_time_tidying_and_organizing_spaces_in_homes_remy)) == False",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "does_not_go_to_bed_late_and_wake_up_every_day_after_noon(remy) | does_not_go_to_bed_late_and_wake_up_every_day_after_noon(remy) & does_not_spends_free_time_tidying_and_organizing_spaces_in_homes(remy)",
+          "z3_formula": "Or(does_not_go_to_bed_late_and_wake_up_every_day_after_noon_remy, And(does_not_go_to_bed_late_and_wake_up_every_day_after_noon_remy, Not(spends_free_time_tidying_and_organizing_spaces_in_homes_remy))) == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "does_not_spends_free_time_tidying_and_organizing_spaces_in_homes(remy)",
+          "z3_formula": "Not(spends_free_time_tidying_and_organizing_spaces_in_homes_remy) == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "does_not_spends_free_time_tidying_and_organizing_spaces_in_homes(remy) -> does_not_have_fully_stocked_and_impressive_home_office(remy)",
+          "z3_formula": "Implies(NOT(spends_free_time_tidying_and_organizing_spaces_in_homes_remy), does_not_have_fully_stocked_and_impressive_home_office_remy)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "does_not_have_fully_stocked_and_impressive_home_office(remy)",
+          "z3_formula": "does_not_have_fully_stocked_and_impressive_home_office_remy == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "fully_stocked_and_impressive_home_office(remy) & visits_office_supply_store_regularly(remy)",
+          "z3_formula": "And(fully_stocked_and_impressive_home_office_remy, visits_office_supply_store_regularly_remy) == Unknown",
+          "source_step": 18
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "owns_monitor_at_home(remy)",
+          "z3_formula": "owns_monitor_at_home_remy == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "owns_monitor_at_home(X) -> works_at_home(X)",
+          "z3_formula": "Implies(owns_monitor_at_home_remy, works_at_home_remy)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "fully_stocked_home_office(X) -> owns_monitor_at_home(X)",
+          "z3_formula": "Implies(fully_stocked_home_office_remy, owns_monitor_at_home_remy)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "works_at_home(X) -> visits_office_supply_store(X)",
+          "z3_formula": "Implies(works_at_home_remy, visits_office_supply_store_remy)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "works_at_home(X) -> spends_time_tidy(X)",
+          "z3_formula": "Implies(works_at_home_remy, spends_time_tidy_remy)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "spends_time_tidy(X) -> not_late_wake_up(X)",
+          "z3_formula": "Implies(spends_time_tidy_remy, not_late_wake_up_remy)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "fully_stocked_home_office(remy) & visits_office_supply_store(remy)",
+          "z3_formula": "And(fully_stocked_home_office_remy, visits_office_supply_store_remy) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not_late_wake_up(remy) | not spends_time_tidy(remy)",
+          "z3_formula": "Or(not_late_wake_up_remy, Not(spends_time_tidy_remy)) == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not spends_time_tidy(remy) | not_late_wake_up(remy)",
+          "z3_formula": "Or(Not(spends_time_tidy_remy), not_late_wake_up_remy) == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not_late_wake_up(remy) & spends_time_tidy(remy)",
+          "z3_formula": "And(not_late_wake_up_remy, spends_time_tidy_remy) == False",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not spends_time_tidy(remy) & not_late_wake_up(remy)",
+          "z3_formula": "And(Not(spends_time_tidy_remy), not_late_wake_up_remy) == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not (fully_stocked_home_office(remy) & visits_office_supply_store(remy))",
+          "z3_formula": "Not(And(fully_stocked_home_office_remy, visits_office_supply_store_remy)) == True",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "works_regularly_and_often_at_home(Remy)",
+          "z3_formula": "works_regularly_and_often_at_home_remy == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "spends_free_time_tidy_and_organizing_spaces_in_home(Remy)",
+          "z3_formula": "spends_free_time_tidy_and_organizing_spaces_in_home_remy == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "owns_large_desktop_monitor_at_home(X) -> works_regularly_and_often_at_home(X)",
+          "z3_formula": "Implies(owns_large_desktop_monitor_at_home_remy, works_regularly_and_often_at_home_remy)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "owns_large_desktop_monitor_at_home(X) -> has_fully_stocked_and_impressive_home_office(X)",
+          "z3_formula": "Implies(owns_large_desktop_monitor_at_home_remy, has_fully_stocked_and_impressive_home_office_remy)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "works_regularly_and_often_at_home(X) -> spends_free_time_tidy_and_organizing_spaces_in_home(X)",
+          "z3_formula": "Implies(work_regularly_and_often_at_home_remy, spends_free_time_tidy_and_organizing_spaces_in_home_remy)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "works_regularly_and_often_at_home(X) -> visits_office_supply_store_regularly(X)",
+          "z3_formula": "Implies(work_regularly_and_often_at_home_remy, visits_office_supply_store_regularly_remy)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "spends_free_time_tidy_and_organizing_spaces_in_home(X) -> not_goes_to_bed_late_and_wakes_up_every_day_after_noon(X)",
+          "z3_formula": "Implies(spends_free_time_tidy_and_organizing_spaces_in_home_remy, not_goes_to_bed_late_and_wakes_up_every_day_after_noon_remy)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not_goes_to_bed_late_and_wakes_up_every_day_after_noon(Remy)",
+          "z3_formula": "not_goes_to_bed_late_and_wakes_up_every_day_after_noon_remy == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not owns_large_desktop_monitor_at_home(Remy)",
+          "z3_formula": "not owns_large_desktop_monitor_at_home_remy == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not visits_office_supply_store_regularly(Remy)",
+          "z3_formula": "not visits_office_supply_store_regularly_remy == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "owns_large_desktop_monitor_at_home(remy)",
+          "z3_formula": "owns_large_desktop_monitor_at_home_remy == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "owns_large_desktop_monitor_at_home(X) -> works_regularly_and_often_at_home(X)",
+          "z3_formula": "Implies(owns_large_desktop_monitor_at_home_remy, works_regularly_and_often_at_home_remy)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "fully_stocked_and_impressive_home_office(remy)",
+          "z3_formula": "fully_stocked_and_impressive_home_office_remy == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "fully_stocked_and_impressive_home_office(X) -> owns_large_desktop_monitor_at_home(X)",
+          "z3_formula": "Implies(fully_stocked_and_impressive_home_office_remy, owns_large_desktop_monitor_at_home_remy)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "fully_stocked_and_impressive_home_office(X) -> works_regularly_and_often_at_home(X)",
+          "z3_formula": "Implies(fully_stocked_and_impressive_home_office_remy, works_regularly_and_often_at_home_remy)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "works_regularly_and_often_at_home(X) -> visits_office_supply_store_regularly(X)",
+          "z3_formula": "Implies(works_regularly_and_often_at_home_remy, visits_office_supply_store_regularly_remy)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "works_regularly_and_often_at_home(X) -> spends_free_time_tidying_and_organizing_spaces_in_home(X)",
+          "z3_formula": "Implies(works_regularly_and_often_at_home_remy, spends_free_time_tidying_and_organizing_spaces_in_home_remy)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "spends_free_time_tidying_and_organizing_spaces_in_home(X) -> not_goes_to_bed_late_and_wakes_up_every_day_after_noon(X)",
+          "z3_formula": "Implies(spends_free_time_tidying_and_organizing_spaces_in_home_remy, not_goes_to_bed_late_and_wakes_up_every_day_after_noon_remy)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "fully_stocked_and_impressive_home_office(remy) & visits_office_supply_store_regularly(remy)",
+          "z3_formula": "And(fully_stocked_and_impressive_home_office_remy, visits_office_supply_store_regularly_remy) == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "large_desktop_monitor_at_home(remy)",
+          "z3_formula": "large_desktop_monitor_at_home_remy == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "large_desktop_monitor_at_home(X) -> work_regularly_and_often_at_home(X)",
+          "z3_formula": "Implies(large_desktop_monitor_at_home_remy, work_regularly_and_often_at_home_remy)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "fully_stocked_and_impressive_home_office(remy)",
+          "z3_formula": "fully_stocked_and_impressive_home_office_remy == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "fully_stocked_and_impressive_home_office(X) -> large_desktop_monitor_at_home(X)",
+          "z3_formula": "Implies(fully_stocked_and_impressive_home_office_remy, large_desktop_monitor_at_home_remy)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "work_regularly_and_often_at_home(X) -> spend_free_time_tidy_and_organize_spaces(X)",
+          "z3_formula": "Implies(work_regularly_and_often_at_home_remy, spend_free_time_tidy_and_organize_spaces_remy)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "work_regularly_and_often_at_home(X) -> visit_office_supply_store_regularly(X)",
+          "z3_formula": "Implies(work_regularly_and_often_at_home_remy, visit_office_supply_store_regularly_remy)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "spend_free_time_tidy_and_organize_spaces(X) -> not_bed_late_and_wake_up_after_noon(X)",
+          "z3_formula": "Implies(spend_free_time_tidy_and_organize_spaces_remy, not_bed_late_and_wake_up_after_noon_remy)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "either_bed_late_and_wake_up_after_noon_or_not(X)",
+          "z3_formula": "either_bed_late_and_wake_up_after_noon_remy_or_not_bed_late_and_wake_up_after_noon_remy == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not_bed_late_and_wake_up_after_noon_and_spend_free_time_tidy_and_organize_spaces(X)",
+          "z3_formula": "And(Not(either_bed_late_and_wake_up_after_noon_remy_or_not_bed_late_and_wake_up_after_noon_remy), spend_free_time_tidy_and_organize_spaces_remy) == False",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not_large_desktop_monitor_at_home(X)",
+          "z3_formula": "Not(large_desktop_monitor_at_home_remy) == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "either_work_regularly_and_often_at_home_and_visit_office_supply_store_regularly_or_not(X)",
+          "z3_formula": "Or(work_regularly_and_often_at_home_remy_and_visit_office_supply_store_regularly_remy, Not(work_regularly_and_often_at_home_remy_and_visit_office_supply_store_regularly_remy)) == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "either_work_regularly_and_often_at_home_and_visit_office_supply_store_regularly_and_fully_stocked_and_impressive_home_office_or_not(X)",
+          "z3_formula": "Or(And(work_regularly_and_often_at_home_remy_and_visit_office_supply_store_regularly_remy, fully_stocked_and_impressive_home_office_remy), Not(And(work_regularly_and_often_at_home_remy_and_visit_office_supply_store_regularly_remy, fully_stocked_and_impressive_home_office_remy))) == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "unknown == True",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "",
+      "constraints": []
+    },
+    {
+      "trace_idx": 8,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "large_desktop_monitor_at_home_remy",
+          "z3_formula": "large_desktop_monitor_at_home_remy == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "large_desktop_monitor_at_home(X) -> works_regularly_at_home(X)",
+          "z3_formula": "Implies(large_desktop_monitor_at_home_remy, works_regularly_at_home_remy)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "works_regularly_at_home(X) -> spends_free_time_tidy(X)",
+          "z3_formula": "Implies(works_regularly_at_home_remy, spends_free_time_tidy_remy)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "spends_free_time_tidy(X) -> not_late_and_after_noon(X)",
+          "z3_formula": "Implies(spends_free_time_tidy_remy, not_late_and_after_noon_remy)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "fully_stocked_home_office_remy",
+          "z3_formula": "fully_stocked_home_office_remy == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits_office_supply_store_remy",
+          "z3_formula": "visits_office_supply_store_remy == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "fully_stocked_home_office(X) -> large_desktop_monitor_at_home(X)",
+          "z3_formula": "Implies(fully_stocked_home_office_remy, large_desktop_monitor_at_home_remy)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "works_regularly_at_home(X) -> visits_office_supply_store(X)",
+          "z3_formula": "Implies(works_regularly_at_home_remy, visits_office_supply_store_remy)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "not_late_and_after_noon(X) | not_spends_free_time_tidy(X)",
+          "z3_formula": "Or(not_late_and_after_noon_remy, Not(spends_free_time_tidy_remy))",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "fully_stocked_home_office_remy & visits_office_supply_store_remy",
+          "z3_formula": "And(fully_stocked_home_office_remy, visits_office_supply_store_remy)",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "has_large_desktop_monitor_at_home(remy)",
+          "z3_formula": "has_large_desktop_monitor_at_home_remy == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "has_large_desktop_monitor_at_home(X) -> works_regularly_and_often_at_home(X)",
+          "z3_formula": "Implies(has_large_desktop_monitor_at_home_remy, works_regularly_and_often_at_home_remy)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "has_fully_stocked_and_impressive_home_office(X) -> has_large_desktop_monitor_at_home(X)",
+          "z3_formula": "Implies(has_fully_stocked_and_impressive_home_office_remy, has_large_desktop_monitor_at_home_remy)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "works_regularly_and_often_at_home(X) -> spends_free_time_tidying_and_organizing_spaces_in_home(X)",
+          "z3_formula": "Implies(works_regularly_and_often_at_home_remy, spends_free_time_tidying_and_organizing_spaces_in_home_remy)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "works_regularly_and_often_at_home(X) -> visits_office_supply_store_regularly(X)",
+          "z3_formula": "Implies(works_regularly_and_often_at_home_remy, visits_office_supply_store_regularly_remy)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "spends_free_time_tidying_and_organizing_spaces_in_home(X) & goes_to_bed_late(X) & wakes_up_every_day_after_noon(X)",
+          "z3_formula": "Implies(And(spends_free_time_tidying_and_organizing_spaces_in_home_remy, goes_to_bed_late_remy, wakes_up_every_day_after_noon_remy), True)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "spends_free_time_tidying_and_organizing_spaces_in_home(X) -> Not(goes_to_bed_late(X) & wakes_up_every_day_after_noon(X))",
+          "z3_formula": "Implies(spends_free_time_tidying_and_organizing_spaces_in_home_remy, Not(And(goes_to_bed_late_remy, wakes_up_every_day_after_noon_remy)))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "has_fully_stocked_and_impressive_home_office(remy)",
+          "z3_formula": "has_fully_stocked_and_impressive_home_office_remy == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "visits_office_supply_store_regularly(remy)",
+          "z3_formula": "visits_office_supply_store_regularly_remy == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "works_regularly_and_often_at_home(remy)",
+          "z3_formula": "works_regularly_and_often_at_home_remy == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "spends_free_time_tidying_and_organizing_spaces_in_home(remy)",
+          "z3_formula": "spends_free_time_tidying_and_organizing_spaces_in_home_remy == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "Not(has_fully_stocked_and_impressive_home_office(remy))",
+          "z3_formula": "Not(has_fully_stocked_and_impressive_home_office_remy) == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "has_fully_stocked_and_impressive_home_office(remy) & visits_office_supply_store_regularly(remy)",
+          "z3_formula": "And(has_fully_stocked_and_impressive_home_office_remy, visits_office_supply_store_regularly_remy) == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "has_fully_stocked_and_impressive_home_office(remy) | Not(visits_office_supply_store_regularly(remy))",
+          "z3_formula": "Or(has_fully_stocked_and_impressive_home_office_remy, Not(visits_office_supply_store_regularly_remy)) == True",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "fully_stocked_home_office(remy)",
+          "z3_formula": "fully_stocked_home_office_remy == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "fully_stocked_home_office(X) -> large_desktop_monitor_at_home(X)",
+          "z3_formula": "Implies(fully_stocked_home_office_remy, large_desktop_monitor_at_home_remy)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "large_desktop_monitor_at_home(X) -> works_regularly_and_often_at_home(X)",
+          "z3_formula": "Implies(large_desktop_monitor_at_home_remy, works_regularly_and_often_at_home_remy)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "works_regularly_and_often_at_home(X) -> visits_office_supply_store(X)",
+          "z3_formula": "Implies(works_regularly_and_often_at_home_remy, visits_office_supply_store_remy)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "works_regularly_and_often_at_home(X) -> spends_free_time_tidy_and_organize(X)",
+          "z3_formula": "Implies(works_regularly_and_often_at_home_remy, spends_free_time_tidy_and_organize_remy)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "spends_free_time_tidy_and_organize(X) -> not_bed_late_and_wake_up_after_noon(X)",
+          "z3_formula": "Implies(spends_free_time_tidy_and_organize_remy, not_bed_late_and_wake_up_after_noon_remy)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "visits_office_supply_store(remy)",
+          "z3_formula": "visits_office_supply_store_remy == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not_bed_late_and_wake_up_after_noon(remy) | not spends_free_time_tidy_and_organize(remy)",
+          "z3_formula": "Or(not_bed_late_and_wake_up_after_noon_remy, Not(spends_free_time_tidy_and_organize_remy))",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "owns_large_monitor_at_home(remy)",
+          "z3_formula": "owns_large_monitor_at_home_remy == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "owns_large_monitor_at_home(X) -> works_regularly_and_often_at_home(X)",
+          "z3_formula": "Implies(owns_large_monitor_at_home_remy, works_regularly_and_often_at_home_remy)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "fully_stocked_and_impressive_home_office(remy)",
+          "z3_formula": "fully_stocked_and_impressive_home_office_remy == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "fully_stocked_and_impressive_home_office(X) -> owns_large_monitor_at_home(X)",
+          "z3_formula": "Implies(fully_stocked_and_impressive_home_office_remy, owns_large_monitor_at_home_remy)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "works_regularly_and_often_at_home(remy)",
+          "z3_formula": "works_regularly_and_often_at_home_remy == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "works_regularly_and_often_at_home(X) -> visits_office_supply_store_regularly(X)",
+          "z3_formula": "Implies(works_regularly_and_often_at_home_remy, visits_office_supply_store_regularly_remy)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "visits_office_supply_store_regularly(remy)",
+          "z3_formula": "visits_office_supply_store_regularly_remy == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "spends_free_time_tidy_and_organizing_spaces(remy)",
+          "z3_formula": "spends_free_time_tidy_and_organizing_spaces_remy == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "spends_free_time_tidy_and_organizing_spaces(X) -> not_late_to_bed_and_wakes_up_after_noon(X)",
+          "z3_formula": "Implies(spend_free_time_tidy_and_organizing_spaces_remy, not_late_to_bed_and_wakes_up_after_noon_remy)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not_late_to_bed_and_wakes_up_after_noon(remy)",
+          "z3_formula": "not_late_to_bed_and_wakes_up_after_noon_remy == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "not_late_to_bed_and_wakes_up_after_noon(X) & spends_free_time_tidy_and_organizing_spaces(X) -> not_late_to_bed_and_wakes_up_after_noon(X)",
+          "z3_formula": "Implies(And(not_late_to_bed_and_wakes_up_after_noon_remy, spends_free_time_tidy_and_organizing_spaces_remy), not_late_to_bed_and_wakes_up_after_noon_remy)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not_late_to_bed_and_wakes_up_after_noon(remy) & spends_free_time_tidy_and_organizing_spaces(remy)",
+          "z3_formula": "And(not_late_to_bed_and_wakes_up_after_noon_remy, spends_free_time_tidy_and_organizing_spaces_remy) == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not_late_to_bed_and_wakes_up_after_noon(remy) & not spends_free_time_tidy_and_organizing_spaces(remy)",
+          "z3_formula": "And(not_late_to_bed_and_wakes_up_after_noon_remy, Not(spend_free_time_tidy_and_organizing_spaces_remy)) == True",
+          "source_step": 13
+        }
+      ]
+    }
+  ]
+}

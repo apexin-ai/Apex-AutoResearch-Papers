@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "78d13dc34618c454fb48",
+  "project": "cross_representation_disagreement_diagno",
+  "kind": "result",
+  "title": "analysis exp 001 supplement ef",
+  "task_key": "worker_analysis_exp_001_supplement_ef_20260515T060922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_001_supplement_ef_20260515T060922_result.json",
+    "occurrence": 1,
+    "bytes": 1915,
+    "sha256": "a57819d25247cd7a4a42d7333b32310fb15600836665da15fd86f1bb10b32ebb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n## (e) Phi Coefficient — FOL/Code 失败相关性\n\n| Subset | N | Both✓ | FOL✓ | Code✓ | Both✗ | φ | χ² | p |\n|--------|---|-------|------|-------|-------|---|---|---|\n| **all** | 204 | 104 | 57 | 18 | 25 | **0.189** | 7.30 | **0.007** |\n| GT=True | 72 | 46 | 12 | 8 | 6 | 0.203 | 2.96 | 0.086 |\n| GT=False | 63 | 27 | 19 | 5 | 12 | **0.260** | 4.26 | **0.039** |\n| GT=Unknown | 69 | 31 | 26 | 5 | 7 | 0.097 | 0.64 | 0.423 |\n\n**解读**：整体 φ=0.189（弱相关，p=0.007 显著）。100 个错误样本中 **75 个（75%）是互补性失败**（仅一方出错），支持双表征互补性。GT=Unknown 子集 φ 最低（0.097，不显著），说明对 Unknown 类型两种表征的失败模式最独立。GT=False 子集 φ 最高（0.260），共同失败风险相对较大。\n\n## (f) Cost-Effectiveness\n\n| 指标 | 值 |\n|------|-----|\n| 单表征 tokens/样本（est.） | 3,016 |\n| 双表征 base tokens/样本 | 6,032 (2.0x) |\n| Repair 额外 tokens/repair样本 | 26,895 |\n| **全 pipeline vs 单表征** | **5.76x** |\n| Code-only 准确率 | 59.8% |\n| FOL-only 准确率 | 78.9% |\n| Oracle 上界 | 87.8% |\n| Pipeline (repair) | 79.9% |\n| Pipeline (repair+FOL fallback) | **81.4%** |\n| **准确率增益 vs Code baseline** | **+21.6%** |\n| 每单位额外成本的增益 | 0.045 |\n\n**解读**：5.76x 成本换取 +21.6% 绝对准确率增益（59.8%→81.4%）。主要成本来自 repair 阶段（86/204 样本触发 repair，每个 repair 样本消耗约 26.9K 额外 tokens）。pipeline 准确率已接近 FOL-only 而非远超它，说明 repair 成功率（59/86=68.6%）是瓶颈——提升 repair 成功率可在不增加太多成本的前提下接近 oracle 上界（87.8%）。\n\n---\n\n脚本：`src/analysis_supplement_ef.py`\n输出：`results/exp001_supplement_ef.json` + `results/exp001_supplement_ef.txt`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-001-supplement-ef.md"
+}

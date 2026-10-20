@@ -1,0 +1,1 @@
+Oracle-SICA accuracy: 88.24% (180/204)\nSC accuracy: 79.41% (162/204)\nSICA (self-extracted) accuracy: 79.41% (162/204)\nDelta Oracle vs SC: +8.82pp\nZ3 vs gold match rate: 94.61% (193/204)\nParse errors: 0/204\nMcNemar p (Oracle vs SC): 6.15e-05\nBootstrap 95% CI Oracle: [0.8382, 0.9265]\nBootstrap 95% CI SC: [0.7353, 0.8480]

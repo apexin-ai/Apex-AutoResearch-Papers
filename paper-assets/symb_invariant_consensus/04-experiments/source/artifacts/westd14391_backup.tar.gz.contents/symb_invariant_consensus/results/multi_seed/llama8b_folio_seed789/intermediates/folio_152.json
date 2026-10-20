@@ -1,0 +1,643 @@
+{
+  "problem": {
+    "id": "folio_152",
+    "problem": "Given the following premises:\nNew Vessel Press is a publishing house which specializes in translating foreign literature into English. All of New Vessel Press's published books are in English. Neapolitan Chronicles is a book published by New Vessel Press. Neapolitan Chronicles was translated from Italian. Palace of Flies is a book published by New Vessel Press.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nPalace of Flies was translated from Italian.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "PublishingHouse(newvesselpress) \u2227 SpecializesIn(newvessel, translatingforeignliteratureintoenglish)",
+      "\u2200x (Book(x) \u2227 PublishedBy(x, newvesselpress) \u2192 In(x, english))",
+      "Book(neapolitanchronicles) \u2227 PublishedBy(neapolitanchronicles, newvesselpress)",
+      "TranslatedFrom(neapolitanchronicles, italian)",
+      "Book(palaceofflies) \u2227 PublishedBy(palaceofflies, newvesselpress)"
+    ],
+    "conclusion_fol": "TranslatedFrom(palaceofflies, italian)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "Unknown": 81.0
+    },
+    "answer_counts": {
+      "Unknown": 11
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's break down the given information step by step:\n\n1. New Vessel Press is a publishing house which specializes in translating foreign literature into English.\n   - This statement tells us about New Vessel Press's specialization but doesn't provide information about the specific books they publish.\n\n2. All of New Vessel Press's published books are in English.\n   - This statement is consistent with the information given in step 1, reinforcing the idea that New Vessel Press translates foreign literature into English.\n\n3. Neapolitan Chronicles is a book published by New Vessel Press.\n   - This statement tells us that Neapolitan Chronicles is one of the books published by New Vessel Press. Since we know that all of New Vessel Press's published books are in English (step 2), we can conclude that Neapolitan Chronicles is also in English.\n\n4. Neapolitan Chronicles was translated from Italian.\n   - This statement tells us the origin of the book Neapolitan Chronicles, which is Italian.\n\n5. Palace of Flies is a book published by New Vessel Press.\n   - This statement is the same as statement 3, reinforcing the idea that Palace of Flies is one of the books published by New Vessel Press.\n\nNow, let's analyze the conclusion: Palace of Flies was translated from Italian.\n- We know that Palace of Flies is published by New Vessel Press (steps 3 and 5), and we know that all of New Vessel Press's published books are in English (step 2). However, we don't have any information about the origin of Palace of Flies (i.e., whether it was translated from Italian or not).\n\nSince we don't have any direct information about the origin of Palace of Flies, we can't conclude that it was translated from Italian with certainty.\n\nTherefore, the conclusion is uncertain. \n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises step by step:\n\n1. New Vessel Press is a publishing house which specializes in translating foreign literature into English.\n   - This premise tells us about the specialization of New Vessel Press, but it doesn't provide any specific information about the languages they translate from or to.\n\n2. All of New Vessel Press's published books are in English.\n   - This premise tells us that all the books published by New Vessel Press are in the English language. However, it doesn't give any information about the language of the original texts.\n\n3. Neapolitan Chronicles is a book published by New Vessel Press.\n   - This premise connects a specific book (Neapolitan Chronicles) to the publishing house (New Vessel Press).\n\n4. Neapolitan Chronicles was translated from Italian.\n   - This premise provides specific information about the book Neapolitan Chronicles, stating that it was translated from Italian.\n\n5. Palace of Flies is a book published by New Vessel Press.\n   - This premise connects another specific book (Palace of Flies) to the publishing house (New Vessel Press).\n\nNow, let's analyze the given conclusion:\nPalace of Flies was translated from Italian.\n\nTo determine whether the conclusion is true, false, or uncertain, we need to find a connection between Palace of Flies and Italian, considering the given premises.\n\nFrom premise 1, we know that New Vessel Press specializes in translating foreign literature into English, but we don't know the specific languages they translate from.\n\nFrom premise 2, we know that all the books published by New Vessel Press are in English, which means Palace of Flies is also in English.\n\nFrom premise 4, we know that Neapolitan Chronicles was translated from Italian, but we don't have any information about the original language of Palace of Flies.\n\nSince we don't have any direct information about the original language of Palace of Flies, we can't conclude whether it was translated from Italian or not. Therefore, the conclusion \"Palace of Flies was translated from Italian\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we will analyze the given premises step by step.\n\nPremise 1: New Vessel Press is a publishing house which specializes in translating foreign literature into English.\n- This premise tells us that New Vessel Press primarily translates literature from other languages into English.\n\nPremise 2: All of New Vessel Press's published books are in English.\n- This premise indicates that every book published by New Vessel Press is in the English language.\n\nPremise 3: Neapolitan Chronicles is a book published by New Vessel Press.\n- This premise connects a specific book, Neapolitan Chronicles, to the publishing house New Vessel Press.\n\nPremise 4: Neapolitan Chronicles was translated from Italian.\n- This premise provides specific information about the book Neapolitan Chronicles, stating that it was translated from the Italian language.\n\nPremise 5: Palace of Flies is a book published by New Vessel Press.\n- This premise connects another specific book, Palace of Flies, to the publishing house New Vessel Press.\n\nNow, we need to analyze the conclusion:\n\nConclusion: Palace of Flies was translated from Italian.\n- The conclusion directly relates the book Palace of Flies to the Italian language, stating that it was translated from Italian.\n\nUsing the given premises, we can analyze the conclusion as follows:\n\nSince all books published by New Vessel Press are in English (Premise 2), we know that Palace of Flies is also in English.\n\nWe also know that Neapolitan Chronicles, another book published by New Vessel Press, was translated from Italian (Premise 4). However, this information about Neapolitan Chronicles does not provide any evidence about the language from which Palace of Flies was translated.\n\nConsidering Premise 1, which states that New Vessel Press specializes in translating foreign literature into English, it is possible that Palace of Flies was translated from Italian. However, there is no direct evidence or information provided in the premises that explicitly states the language from which Palace of Flies was translated.\n\nTherefore, based on the given premises, we cannot conclusively determine whether the conclusion is true or false. The information provided does not give us enough evidence to make a definitive statement about the language from which Palace of Flies was translated.\n\nSo, the answer is: \n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the premises step by step.\n\nPremise 1: New Vessel Press is a publishing house which specializes in translating foreign literature into English.\nThis premise tells us that New Vessel Press primarily translates literature from other languages into English, but it doesn't specify the languages they translate from.\n\nPremise 2: All of New Vessel Press's published books are in English.\nThis premise tells us that every book published by New Vessel Press is in the English language.\n\nPremise 3: Neapolitan Chronicles is a book published by New Vessel Press.\nThis premise connects Neapolitan Chronicles to New Vessel Press, which we already know publishes only English books.\n\nPremise 4: Neapolitan Chronicles was translated from Italian.\nThis premise gives us information about the book Neapolitan Chronicles and its translation source, Italian.\n\nNow, let's analyze the conclusion:\n\nConclusion: Palace of Flies was translated from Italian.\nWe need to determine whether this conclusion is true, false, or uncertain based on the premises.\n\nWe know that New Vessel Press publishes only English books (Premise 2), and Palace of Flies is one of those books (Premise 4). However, we don't have any direct information about the language Palace of Flies was translated from.\n\nFrom Premise 1, we know that New Vessel Press specializes in translating foreign literature into English, but it doesn't specify the languages they translate from. We also know that Neapolitan Chronicles was translated from Italian (Premise 4), but we don't know if that's the only language they translate from or if it's specific to Neapolitan Chronicles.\n\nSince we have no direct information about the translation source of Palace of Flies, we cannot conclude whether it was translated from Italian or not. Therefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion \"Palace of Flies was translated from Italian\" is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: New Vessel Press is a publishing house which specializes in translating foreign literature into English.\n\n- This means that New Vessel Press primarily publishes translated books in English.\n\nPremise 2: All of New Vessel Press's published books are in English.\n\n- This confirms that every book published by New Vessel Press is translated from another language into English.\n\nPremise 3: Neapolitan Chronicles is a book published by New Vessel Press.\n\n- Since Neapolitan Chronicles is published by New Vessel Press, it must be translated from another language into English.\n\nPremise 4: Neapolitan Chronicles was translated from Italian.\n\n- This directly tells us that Neapolitan Chronicles, a book published by New Vessel Press, was translated from Italian.\n\nPremise 5: Palace of Flies is a book published by New Vessel Press.\n\n- This premise does not provide any information about the language in which Palace of Flies was originally written.\n\nTo conclude whether Palace of Flies was translated from Italian, we must analyze the information we have.\n\nSince New Vessel Press only publishes translated books in English (Premise 1) and Palace of Flies is published by New Vessel Press (Premise 5), it is likely that Palace of Flies was translated from another language into English. However, there is no specific information provided in the premises that Palace of Flies was translated from Italian.\n\nTherefore, based on the information given, we cannot determine with certainty whether Palace of Flies was translated from Italian.\n\nThe conclusion is: **Uncertain**",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: New Vessel Press is a publishing house which specializes in translating foreign literature into English.\nThis premise tells us that New Vessel Press primarily translates foreign literature, but it doesn't specify the languages they translate from.\n\nPremise 2: All of New Vessel Press's published books are in English.\nThis premise tells us that all books published by New Vessel Press are in English, but it doesn't provide information about the source language of the translations.\n\nPremise 3: Neapolitan Chronicles is a book published by New Vessel Press.\nThis premise connects a specific book (Neapolitan Chronicles) to the publishing house (New Vessel Press), but it doesn't provide information about the source language of the translation.\n\nPremise 4: Neapolitan Chronicles was translated from Italian.\nThis premise provides specific information about one of the books published by New Vessel Press, stating that it was translated from Italian.\n\nPremise 5: Palace of Flies is a book published by New Vessel Press.\nThis premise connects a specific book (Palace of Flies) to the publishing house (New Vessel Press), but it doesn't provide information about the source language of the translation.\n\nBased on the premises, we can conclude the following:\n\n- New Vessel Press specializes in translating foreign literature into English (Premise 1).\n- All books published by New Vessel Press are in English (Premise 2).\n- Neapolitan Chronicles, a book published by New Vessel Press, was translated from Italian (Premise 4).\n\nHowever, there is no information provided about Palace of Flies being translated from Italian. In fact, we don't even know what language Palace of Flies was originally in. The only thing we know is that it's a book published by New Vessel Press, which means it's in English (Premise 2).\n\nTherefore, based on the given premises, the conclusion \"Palace of Flies was translated from Italian\" is uncertain because we don't have enough information to confirm or deny it.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: New Vessel Press is a publishing house which specializes in translating foreign literature into English.\nPremise 2: All of New Vessel Press's published books are in English.\nPremise 3: Neapolitan Chronicles is a book published by New Vessel Press.\nPremise 4: Neapolitan Chronicles was translated from Italian.\nPremise 5: Palace of Flies is a book published by New Vessel Press.\n\nFrom Premise 1, we know that New Vessel Press specializes in translating foreign literature into English, but it does not tell us anything about the source language of a specific book.\n\nFrom Premise 2, we know that all of New Vessel Press's published books are in English, but it does not provide any information about the source language of a specific book.\n\nFrom Premise 3, we know that Neapolitan Chronicles is a book published by New Vessel Press. Since Premise 4 states that Neapolitan Chronicles was translated from Italian, we can conclude that Neapolitan Chronicles is an example of a book that was translated from Italian by New Vessel Press.\n\nFrom Premise 5, we know that Palace of Flies is a book published by New Vessel Press.\n\nNow, let's analyze the conclusion: Palace of Flies was translated from Italian.\n\nSince Premise 1 and Premise 2 do not provide any information about the source language of Palace of Flies, we cannot conclude that it was translated from Italian based on those premises.\n\nHowever, Premise 1 does mention that New Vessel Press specializes in translating foreign literature into English. This implies that it is possible for Palace of Flies to be translated from a foreign language, but it does not provide any information about the specific language.\n\nTherefore, based on the given premises, we cannot determine whether Palace of Flies was translated from Italian or not.\n\nSo, the conclusion is: uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: New Vessel Press is a publishing house which specializes in translating foreign literature into English.\nThis premise tells us that New Vessel Press translates foreign literature, but it doesn't specify the languages they translate from.\n\nPremise 2: All of New Vessel Press's published books are in English.\nThis premise indicates that all the books published by New Vessel Press are translated into English.\n\nPremise 3: Neapolitan Chronicles is a book published by New Vessel Press.\nThis premise connects Neapolitan Chronicles to New Vessel Press, but it doesn't provide any information about the translation of Neapolitan Chronicles.\n\nPremise 4: Neapolitan Chronicles was translated from Italian.\nThis premise explicitly states the language from which Neapolitan Chronicles was translated.\n\nPremise 5: Palace of Flies is a book published by New Vessel Press.\nThis premise connects Palace of Flies to New Vessel Press, but it doesn't provide any information about the translation of Palace of Flies.\n\nWe can conclude that since all books published by New Vessel Press are in English (Premise 2) and Palace of Flies is a book published by New Vessel Press (Premise 5), it is likely that Palace of Flies was translated from a language other than English, but we cannot determine the exact language.\n\nHowever, we can make a logical inference using the process of elimination. We know that Neapolitan Chronicles was translated from Italian (Premise 4), but we cannot confirm if Palace of Flies was translated from Italian or any other language.\n\nTherefore, based on the given premises, we can conclude that the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: New Vessel Press is a publishing house which specializes in translating foreign literature into English.\nThis premise tells us about the primary function of New Vessel Press, but it doesn't provide any information about the specific languages they translate from or to.\n\nPremise 2: All of New Vessel Press's published books are in English.\nThis premise indicates that all books published by New Vessel Press are in the English language. However, it doesn't provide any information about the languages these books were translated from.\n\nPremise 3: Neapolitan Chronicles is a book published by New Vessel Press.\nThis premise links the book Neapolitan Chronicles to New Vessel Press, but it doesn't provide any information about the language it was translated from.\n\nPremise 4: Neapolitan Chronicles was translated from Italian.\nThis premise specifically states that Neapolitan Chronicles was translated from Italian. This provides some information about the translation process of one specific book.\n\nPremise 5: Palace of Flies is a book published by New Vessel Press.\nThis premise links the book Palace of Flies to New Vessel Press, but it doesn't provide any information about the language it was translated from.\n\nNow, let's analyze the conclusion:\nPalace of Flies was translated from Italian.\n\nWe know that Palace of Flies is a book published by New Vessel Press (Premise 5), and all of their published books are in English (Premise 2). However, we also know that Neapolitan Chronicles, another book published by New Vessel Press, was translated from Italian (Premise 4). This doesn't provide any direct information about Palace of Flies. \n\nThere is no direct connection between Palace of Flies and Italian translation. Since there is no information provided about the language Palace of Flies was translated from, the conclusion is uncertain. We cannot determine with certainty whether Palace of Flies was translated from Italian or not.\n\nTherefore, the final answer is:\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises:\n\n1. New Vessel Press is a publishing house which specializes in translating foreign literature into English. \n   - This premise tells us about the primary function of New Vessel Press, but it doesn't provide information about the specific languages they translate from.\n\n2. All of New Vessel Press's published books are in English.\n   - This premise indicates that every book published by New Vessel Press is in the English language, but it doesn't specify the original language of the books.\n\n3. Neapolitan Chronicles is a book published by New Vessel Press. Neapolitan Chronicles was translated from Italian.\n   - This premise tells us that one specific book, Neapolitan Chronicles, was translated from Italian. However, it doesn't provide information about other books published by New Vessel Press.\n\n4. Palace of Flies is a book published by New Vessel Press.\n   - This premise simply states that Palace of Flies is published by New Vessel Press, but it doesn't provide any information about the book's original language.\n\nNow, let's examine the conclusion: Palace of Flies was translated from Italian.\n\nBased on the given premises, we can see that there is no direct information about the original language of Palace of Flies. Although New Vessel Press specializes in translating foreign literature into English, and Palace of Flies is published by New Vessel Press, we cannot conclude that Palace of Flies was translated from Italian.\n\nTherefore, the conclusion is uncertain because we do not have enough information to determine whether Palace of Flies was translated from Italian or not.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion \"Palace of Flies was translated from Italian\" is true, false, or uncertain, let's analyze the given premises step by step.\n\n1. New Vessel Press is a publishing house which specializes in translating foreign literature into English.\n   - This premise tells us that New Vessel Press translates foreign literature into English, but it doesn't specify the languages from which they translate.\n\n2. All of New Vessel Press's published books are in English.\n   - This premise confirms that all books published by New Vessel Press are in English.\n\n3. Neapolitan Chronicles is a book published by New Vessel Press.\n   - This premise tells us that Neapolitan Chronicles is a book published by New Vessel Press, but it doesn't tell us anything about the language from which it was translated.\n\n4. Neapolitan Chronicles was translated from Italian.\n   - This premise tells us that Neapolitan Chronicles was translated from Italian, which confirms that New Vessel Press translates from Italian.\n\n5. Palace of Flies is a book published by New Vessel Press.\n   - This premise tells us that Palace of Flies is a book published by New Vessel Press, but it doesn't tell us anything about the language from which it was translated.\n\nNow, let's combine the premises. We know that New Vessel Press translates from foreign languages into English, and we know that Palace of Flies is a book published by New Vessel Press. However, we don't have any information about the language from which Palace of Flies was translated. Since we don't have any evidence that Palace of Flies was translated from Italian, the conclusion \"Palace of Flies was translated from Italian\" is uncertain.\n\nTherefore, the final answer is:\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion \"Palace of Flies was translated from Italian\" is true, false, or uncertain, let's analyze the given premises step by step.\n\nPremise 1: New Vessel Press is a publishing house which specializes in translating foreign literature into English.\n\nThis premise tells us about the primary function of New Vessel Press, which is to translate foreign literature into English. It does not provide specific information about the language of origin for each book.\n\nPremise 2: All of New Vessel Press's published books are in English.\n\nThis premise provides additional information about the language of New Vessel Press's published books. It confirms that all their books are in English, but it doesn't tell us anything about the language of origin for each book.\n\nPremise 3: Neapolitan Chronicles is a book published by New Vessel Press. Neapolitan Chronicles was translated from Italian.\n\nThis premise provides specific information about one of New Vessel Press's published books, Neapolitan Chronicles. It tells us that this book was translated from Italian.\n\nPremise 4: Palace of Flies is a book published by New Vessel Press.\n\nThis premise tells us that Palace of Flies is a book published by New Vessel Press, but it does not provide any information about its language of origin.\n\nNow, let's analyze the given premises to determine the certainty of the conclusion. We know that New Vessel Press publishes books in English (Premise 2) and that Neapolitan Chronicles, one of their published books, was translated from Italian (Premise 3). However, we do not have any direct information about the language of origin for Palace of Flies.\n\nBased on the given premises, we can conclude that Palace of Flies might be translated from any language other than Italian. It is uncertain whether Palace of Flies was translated from Italian because there is no specific information provided about its language of origin.\n\nTherefore, the conclusion \"Palace of Flies was translated from Italian\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "specializes_in(New Vessel Press, translating foreign literature into English)",
+          "z3_formula": "specializes_in_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_of(New Vessel Press) are in English",
+          "z3_formula": "all_books_of_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(New Vessel Press, Neapolitan Chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "in English(Neapolitan Chronicles)",
+          "z3_formula": "in_english_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from(Italian, Neapolitan Chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(New Vessel Press, Palace of Flies)",
+          "z3_formula": "published_by_new_vessel_press_palace_of_flies == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "specializes_in_new_vessel_press",
+          "z3_formula": "specializes_in_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_in_english",
+          "z3_formula": "all_books_in_english == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by_new_vessel_press_palace_of_flies",
+          "z3_formula": "published_by_new_vessel_press_palace_of_flies == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian_neapolitan_chronicles",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "is_publishing_house(new_vessel_press)",
+          "z3_formula": "is_publishing_house_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "specializes_in_translating_foreign_literature(new_vessel_press)",
+          "z3_formula": "specializes_in_translating_foreign_literature_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_published_by_new_vessel_press_are_in_english",
+          "z3_formula": "all_books_published_by_new_vessel_press_are_in_english == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "neapolitan_chronicles_published_by_new_vessel_press",
+          "z3_formula": "neapolitan_chronicles_published_by_new_vessel_press == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "neapolitan_chronicles_translated_from_italian",
+          "z3_formula": "neapolitan_chronicles_translated_from_italian == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "palace_of_flies_published_by_new_vessel_press",
+          "z3_formula": "palace_of_flies_published_by_new_vessel_press == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "specializes_in_translating_foreign_literature(X) -> all_books_published_by_X_are_translated_from_foreign_languages",
+          "z3_formula": "Implies(specializes_in_translating_foreign_literature_new_vessel_press, all_books_published_by_new_vessel_press_are_translated_from_foreign_languages)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "all_books_published_by_X_are_translated_from_foreign_languages -> all_books_published_by_X_are_in_english",
+          "z3_formula": "Implies(all_books_published_by_new_vessel_press_are_translated_from_foreign_languages, all_books_published_by_new_vessel_press_are_in_english)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "palace_of_flies_translated_from_italian",
+          "z3_formula": "palace_of_flies_translated_from_italian == Unknown",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "publishing_house(new_vessel_press)",
+          "z3_formula": "publishing_house_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "specializes_in_translation(new_vessel_press, foreign_language, english)",
+          "z3_formula": "specializes_in_translation_new_vessel_press_foreign_language_english == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_in_english(new_vessel_press)",
+          "z3_formula": "all_books_in_english_new_vessel_press == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, neapolitan_chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, palace_of_flies)",
+          "z3_formula": "published_by_new_vessel_press_palace_of_flies == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(palace_of_flies)",
+          "z3_formula": "translated_from_italian_palace_of_flies == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "publishing_house(X) & specializes_in_translation(X, foreign_language, english) -> all_books_in_english(X)",
+          "z3_formula": "Implies(And(publishing_house_new_vessel_press, specializes_in_translation_new_vessel_press_foreign_language_english), all_books_in_english_new_vessel_press)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "published_by(X, Y) -> all_books_in_english(X)",
+          "z3_formula": "Implies(published_by_new_vessel_press_neapolitan_chronicles, all_books_in_english_new_vessel_press)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "translated_from_italian(X) -> translated_from_italian(X)",
+          "z3_formula": "Implies(translated_from_italian_neapolitan_chronicles, translated_from_italian_neapolitan_chronicles)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "translated_from_italian(palace_of_flies)",
+          "z3_formula": "translated_from_italian_palace_of_flies == Unknown",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "publishes_in_english(new_vessel_press)",
+          "z3_formula": "publishes_in_english_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_in_english(new_vessel_press)",
+          "z3_formula": "all_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by_new_vessel_press(neapolitan_chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "published_by_new_vessel_press(palace_of_flies)",
+          "z3_formula": "published_by_new_vessel_press_palace_of_flies == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "publishes_in_english(X) -> all_books_in_english(X)",
+          "z3_formula": "Implies(publishes_in_english_new_vessel_press, all_books_in_english_new_vessel_press)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "all_books_in_english(X) -> all_books_translated(X)",
+          "z3_formula": "Implies(all_books_in_english_new_vessel_press, all_books_translated_new_vessel_press)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "published_by(X, Y) -> translated_from_some_language(Y)",
+          "z3_formula": "Implies(published_by_new_vessel_press_palace_of_flies, translated_from_some_language_palace_of_flies)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "translated_from_some_language(palace_of_flies)",
+          "z3_formula": "translated_from_some_language_palace_of_flies == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "specializes_in_foreign_literature(new_vessel_press)",
+          "z3_formula": "specializes_in_foreign_literature_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_in_english(new_vessel_press)",
+          "z3_formula": "all_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, neapolitan_chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, palace_of_flies)",
+          "z3_formula": "published_by_new_vessel_press_palace_of_flies == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "specializes_in_foreign_literature(X) -> all_books_in_english(X)",
+          "z3_formula": "Implies(specializes_in_foreign_literature_new_vessel_press, all_books_in_english_new_vessel_press)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "published_by(X, Y) -> in_english(Y)",
+          "z3_formula": "Implies(published_by_new_vessel_press_palace_of_flies, in_english_palace_of_flies)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "translated_from_italian(palace_of_flies)",
+          "z3_formula": "translated_from_italian_palace_of_flies == Unknown",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "publishing_house(new_vessel_press)",
+          "z3_formula": "publishing_house_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_in_english(new_vessel_press)",
+          "z3_formula": "all_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "book(neapolitan_chronicles, new_vessel_press)",
+          "z3_formula": "book_neapolitan_chronicles_new_vessel_press == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "book(palace_of_flies, new_vessel_press)",
+          "z3_formula": "book_palace_of_flies_new_vessel_press == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "publishing_house(X) -> translates_foreign_language(X)",
+          "z3_formula": "Implies(publishing_house_new_vessel_press, translates_foreign_language_new_vessel_press)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "all_books_in_english(X) -> all_books_translated(X)",
+          "z3_formula": "Implies(all_books_in_english_new_vessel_press, all_books_translated_new_vessel_press)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "translated_from_italian(palace_of_flies)",
+          "z3_formula": "translated_from_italian_palace_of_flies == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "publishes(New Vessel Press, foreign literature)",
+          "z3_formula": "publishes_new_vessel_press_foreign_literature == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books(New Vessel Press, English)",
+          "z3_formula": "all_books_new_vessel_press_english == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(New Vessel Press, Neapolitan Chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from(Italian, Neapolitan Chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(New Vessel Press, Palace of Flies)",
+          "z3_formula": "published_by_new_vessel_press_palace_of_flies == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "publishing_house(new_vessel_press)",
+          "z3_formula": "publishing_house_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "specializes_in_translation(new_vessel_press)",
+          "z3_formula": "specializes_in_translation_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_in_english(new_vessel_press)",
+          "z3_formula": "all_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, neapolitan_chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, palace_of_flies)",
+          "z3_formula": "published_by_new_vessel_press_palace_of_flies == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "publishing_house(X) & specializes_in_translation(X) -> all_books_in_english(X)",
+          "z3_formula": "Implies(And(publishing_house_new_vessel_press, specializes_in_translation_new_vessel_press), all_books_in_english_new_vessel_press)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "published_by(X, Y) -> book_in_language(X, Y)",
+          "z3_formula": "Implies(published_by_new_vessel_press_neapolitan_chronicles, book_in_language_new_vessel_press_neapolitan_chronicles)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "book_in_language(X, Y) & book_in_language(X, Z) -> book_in_language(X, Y) == book_in_language(X, Z)",
+          "z3_formula": "Implies(And(book_in_language_new_vessel_press_neapolitan_chronicles, book_in_language_new_vessel_press_palace_of_flies), book_in_language_new_vessel_press_neapolitan_chronicles == book_in_language_new_vessel_press_palace_of_flies)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "book_in_language(new_vessel_press, palace_of_flies) == book_in_language(new_vessel_press, palace_of_flies)",
+          "z3_formula": "book_in_language_new_vessel_press_palace_of_flies == book_in_language_new_vessel_press_palace_of_flies",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "publishes(New Vessel Press, English)",
+          "z3_formula": "publishes_new_vessel_press_English == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books(New Vessel Press, English)",
+          "z3_formula": "all_books_new_vessel_press_English == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(New Vessel Press, Neapolitan Chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from(Italian, Neapolitan Chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(New Vessel Press, Palace of Flies)",
+          "z3_formula": "published_by_new_vessel_press_palace_of_flies == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "translated_from(Italian, Palace of Flies)",
+          "z3_formula": "translated_from_italian_palace_of_flies == Unknown",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "publishes_foreign(New Vessel Press)",
+          "z3_formula": "publishes_foreign_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_in_english(New Vessel Press)",
+          "z3_formula": "all_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by_new_vessel_press(Neapolitan Chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(Neapolitan Chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "published_by_new_vessel_press(Palace of Flies)",
+          "z3_formula": "published_by_new_vessel_press_palace_of_flies == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "publishes_foreign(New Vessel Press)",
+          "z3_formula": "publishes_foreign_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_in_english(New Vessel Press)",
+          "z3_formula": "all_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(Neapolitan Chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "published_by_new_vessel_press(Palace of Flies)",
+          "z3_formula": "published_by_new_vessel_press_palace_of_flies == True",
+          "source_step": 4
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 85,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 43
+    },
+    "maxsat_stats": {
+      "satisfied": 43,
+      "excluded": 0,
+      "total_weight": 85,
+      "solve_time_ms": 0.9733717888593674
+    },
+    "timing": {
+      "trace_gen_s": 5.928,
+      "extraction_s": 18.806,
+      "dedup_s": 0.816,
+      "maxsat_s": 0.003,
+      "total_s": 25.553
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9912e67715c757668512",
+  "project": "cross_representation_disagreement_diagno",
+  "kind": "result",
+  "title": "analysis mvp final gate",
+  "task_key": "worker_analysis_mvp_final_gate_20260514T154854",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mvp_final_gate_20260514T154854_result.json",
+    "occurrence": 1,
+    "bytes": 1818,
+    "sha256": "ffc5be3e7c8ffd7c2e693b6dd340347c20a7741f02545ccb8284ef4c0ea68564"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 1. Pipeline 完成状态\nPipeline **未完成全部 204 样本**——在第 110 个样本（folio_validation_109 stability check 阶段）静默退出，无 ERROR/Traceback。vLLM 仍正常运行，实例未重启（uptime 21d）。原因不明，可能是 Python 进程被系统 kill。\n\n**样本总数：109/204**\n\n### 2. 日志最后数行\n```\n23:44:10 [folio_validation_109] stability check …\n23:45:15 HTTP Request: POST ... \"HTTP/1.1 200 OK\"\n23:45:26 HTTP Request: POST ... \"HTTP/1.1 200 OK\"\n23:45:42 HTTP Request: POST ... \"HTTP/1.1 200 OK\"\n(日志到此结束，无 done/error 行)\n```\n\n### 3. evaluate_mvp.py 完整输出\n\n**All samples (n=103 effective)：5/5 PASS → PROCEED**\n\n| Gate | Value | Threshold | Result |\n|------|-------|-----------|--------|\n| C1 disagree_rate | 33.0% (34/103) | ≥10% | PASS |\n| C2 diagnostic_rate | 88.2% (30/34) | ≥40% | PASS |\n| C3 error_types | 3 types | ≥2 | PASS |\n| C4 targeted_vs_blind | +11.6pp (T:69.8% B:58.1%) | >5pp | PASS |\n| C5 localization | 81.8% (18/22) | ≥60% | PASS |\n\n**Excl. GT=Unknown (n=67)：4/5 PASS**\n\n| Gate | Value | Threshold | Result |\n|------|-------|-----------|--------|\n| C1 | 32.8% (22/67) | ≥10% | PASS |\n| C2 | 90.9% (20/22) | ≥40% | PASS |\n| C3 | 2 types | ≥2 | PASS |\n| C4 | +3.6pp (T:67.9% B:64.3%) | >5pp | **FAIL** |\n| C5 | 92.9% (13/14) | ≥60% | PASS |\n\n### 4. Registry 更新\n- status → ANALYZING\n- conclusion → success\n- metrics → 全部 C1-C5 数值（含 excl_unknown）\n- checkpoint_path / log_path → 已设置\n- Cron：无活跃 cron 需要删除\n\n### 待决策\nPipeline 可通过 `--resume` 续跑剩余 95 样本补全到 204。Excl. Unknown 模式 C4 仅 +3.6pp（FAIL），更多数据可能改变此结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mvp-final-gate.md"
+}

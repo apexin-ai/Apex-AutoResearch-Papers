@@ -1,0 +1,1100 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1284_Q8",
+    "problem": "Anne is furry. Anne is nice. Anne is smart. Bob is young. Erin is nice. Harry is smart. Harry is young. Young things are furry. Nice, furry things are green. All green things are nice. Nice, green things are big. All green things are smart. If something is big and young then it is round. All green things are big. If Harry is young then Harry is furry. Furry, smart things are nice.\n\nDetermine whether the following statement is true, false, or unknown:\nHarry is not green.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nFurry($x, bool) ::: Is x furry?\nNice($x, bool) ::: Is x nice?\nSmart($x, bool) ::: Is x smart?\nYoung($x, bool) ::: Is x young?\nGreen($x, bool) ::: Is x green?\nBig($x, bool) ::: Is x big?\nRound($x, bool) ::: Is x round?\n\nFacts:\nFurry(Anne, True) ::: Anne is furry.\nNice(Anne, True) ::: Anne is nice.\nSmart(Anne, True) ::: Anne is smart.\nYoung(Bob, True) ::: Bob is young.\nNice(Erin, True) ::: Erin is nice.\nSmart(Harry, True) ::: Harry is smart.\nYoung(Harry, True) ::: Harry is young.\n\nRules:\nYoung($x, True) >>> Furry($x, True) ::: Young things are furry.\nNice($x, True) && Furry($x, True) >>> Green($x, True) ::: Nice, furry things are green.\nGreen($x, True) >>> Nice($x, True) ::: All green things are nice.\nNice($x, True) && Green($x, True) >>> Big($x, True) ::: Nice, green things are big.\nGreen($x, True) >>> Smart($x, True) ::: All green things are smart.\nBig($x, True) && Young($x, True) >>> Round($x, True) ::: If something is big and young then it is round.\nGreen($x, True) >>> Big($x, True) ::: All green things are big.\nYoung(Harry, True) >>> Furry(Harry, True) ::: If Harry is young then Harry is furry.\nFurry($x, True) && Smart($x, True) >>> Nice($x, True) ::: Furry, smart things are nice.\n\nQuery:\nGreen(Harry, False) ::: Harry is not green."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 156.0
+    },
+    "answer_counts": {
+      "False": 12
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we'll use the rules provided to determine the truth of the statement \"Harry is not green.\"\n\n1.  Harry is smart. (Rule: Harry is smart.)\n2.  Harry is young. (Rule: Harry is young.)\n3.  Young things are furry. (Rule: Young things are furry.)\n4.  Since Harry is young, then Harry is furry. (From steps 2 and 3)\n5.  Furry, smart things are nice. (Rule: Furry, smart things are nice.)\n6.  Since Harry is furry and smart, then Harry is nice. (From steps 1, 4, and 5)\n7.  All green things are nice. (Rule: All green things are nice.)\n8.  Since Harry is nice, then Harry is green or Harry is not green. (From step 6 and rule 7)\n9.  But, we already know Harry is green from steps 6 and 7. (From step 8 and the rules that all green things are nice and all green things are big)\n10. Therefore, the statement \"Harry is not green\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine the truth value of the statement \"Harry is not green,\" we need to analyze the given information step by step.\n\n1. Harry is young. \n   - From this, we can infer that Harry is furry (Young things are furry).\n\n2. Harry is furry and smart. \n   - Since Harry is furry and smart, we can conclude that Harry is nice (Furry, smart things are nice).\n\n3. Harry is nice and furry. \n   - Given that Harry is nice and furry, we can conclude that Harry is green (Nice, furry things are green).\n\nNow, let's analyze the given information again and compare it with our conclusion:\n\n- Harry is green (from step 3).\n- All green things are nice.\n- All green things are smart.\n- All green things are big.\n\nBased on this analysis, we have found that Harry is indeed green, which contradicts the statement \"Harry is not green.\" Therefore, the statement is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is smart. (Given information)\n2. Harry is young. (Given information)\n3. Young things are furry. (Given information)\n   So, Harry is furry. (From rule 2 and 3)\n\n4. Harry is furry. (From step 3)\n   Furry, smart things are nice. (Given information)\n   So, Harry is nice. (From rule 4 and 1)\n\n5. Harry is furry. (From step 3)\n   Harry is smart. (From rule 1)\n   Furry, smart things are nice. (Given information)\n   So, Harry is nice. (From rule 5)\n\n6. Harry is young. (Given information)\n   Harry is furry. (From step 3)\n   If Harry is young then Harry is furry. (Given information)\n   This rule is redundant as it's already established that Harry is furry in step 3.\n\n7. Harry is nice. (From step 4 or 5)\n   Nice, furry things are green. (Given information)\n   So, Harry is green. (From rule 7)\n\nNow that we have determined that Harry is green, we can conclude the truth value of the statement \"Harry is not green.\"\n\nThe statement \"Harry is not green\" is:\n\\boxed{false}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is smart. (Given)\n2. Harry is young. (Given)\n3. Young things are furry. (Given)\n   - From step 2, we know Harry is young.\n   - Therefore, Harry is furry. (From step 3)\n\n4. Furry, smart things are nice. (Given)\n   - From step 1, we know Harry is smart.\n   - From step 3, we know Harry is furry.\n   - Therefore, Harry is nice. (From step 4)\n\n5. Harry is furry. (From step 3)\n6. Harry is nice. (From step 4)\n\n7. Young things are furry. (Given)\n8. Harry is young. (From step 2)\n9. Therefore, Harry is furry. (From step 7 and step 8)\n10. From step 7, we know that Harry is furry because Harry is young.\n    From step 1, we know Harry is smart.\n    Therefore, Harry is nice (From step 4).\n\n11. Young things are furry. (Given)\n12. Harry is young. (From step 2)\n13. Harry is furry. (From step 11 and step 12)\n\n14. All green things are nice. (Given)\n15. All green things are smart. (Given)\n16. All green things are big. (Given)\n\n17. Nice, furry things are green. (Given)\n   - From step 4, we know Harry is nice and furry.\n   - Therefore, Harry is green. (From step 17)\n\n18. Harry is green. (From step 17)\n\nNow we can evaluate the statement \"Harry is not green.\"\n\nFrom step 18, we know Harry is green. Therefore, the statement \"Harry is not green\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is young. (Given)\n2. Young things are furry. (Given)\n   From this, we can conclude that Harry is furry.\n\n3. Harry is furry. (From step 2)\n4. Furry, smart things are nice. (Given)\n   Since we don't have information about Harry being smart, we cannot conclude that Harry is nice.\n\n5. Harry is smart. (Given)\n   Now we have a conflict in step 4. We know Harry is smart, so Harry is indeed nice because furry, smart things are nice.\n\n6. Harry is furry. (From step 2)\n7. Harry is smart. (From step 5)\n8. Furry, smart things are nice. (Given)\n   We already concluded that Harry is nice in step 5.\n\n9. Nice, furry things are green. (Given)\n   We know Harry is nice and furry, so Harry is green.\n\nNow, we need to determine if \"Harry is not green\" is true, false, or unknown. Since we concluded that Harry is green, the statement \"Harry is not green\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement 'Harry is not green' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is smart. (Given)\n2. Harry is young. (Given)\n3. Young things are furry. (From given information)\n   From (2) and (3), we can conclude that Harry is furry. (Harry is furry)\n\n4. Harry is furry. (From previous conclusion)\n   Harry is smart. (From given information)\n   Furry, smart things are nice. (From given information)\n   Therefore, Harry is nice. (Harry is nice)\n\n5. Harry is nice. (From previous conclusion)\n   All green things are nice. (From given information)\n   This implies that if Harry is not green, then Harry's being nice is consistent with the given information. However, since we have not yet determined Harry's color, this information does not directly help us conclude whether Harry is green or not.\n\n6. Harry is young. (From given information)\n   Young things are furry. (From given information)\n   From (6) and (8), we can conclude that Harry is furry. (Harry is furry) [This is a duplicate conclusion, but it confirms that Harry is indeed furry.]\n\n7. Harry is furry. (From previous conclusion)\n   All green things are big. (From given information)\n   Harry is not necessarily big. (No direct information is given about Harry's size in relation to being green or not.)\n   Since we cannot confirm Harry's size, we cannot conclude Harry's color.\n\n8. Harry is smart. (From given information)\n   All green things are smart. (From given information)\n   This implies that if Harry is green, then Harry's being smart is consistent with the given information. However, since we have not yet determined Harry's color, this information does not directly help us conclude whether Harry is green or not.\n\n9. Harry is nice. (From previous conclusion)\n   Nice, green things are big. (From given information)\n   We cannot confirm whether Harry is green, and we cannot conclude Harry's size.\n\n10. Erin is nice. (Given)\n    All green things are nice. (From given information)\n    This implies that Erin is green. However, this conclusion is irrelevant to determining whether Harry is green or not.\n\n11. Harry is young. (From given information)\n    Harry is smart. (From given information)\n    Young, smart things are green. (From given information)\n    Therefore, Harry is green. (Harry is green)\n\nFrom the information given, we can conclude that Harry is indeed green.\n\nTherefore, the statement 'Harry is not green' is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not green\" is true, false, or unknown, we need to analyze the given information step by step:\n\n1. Harry is young. (Given)\n2. Young things are furry. (Given)\n   So, Harry is furry. (From 1 and 2)\n\n3. Harry is furry. (From 2)\n   Harry is smart. (Given)\n   Furry, smart things are nice. (Given)\n   So, Harry is nice. (From 3 and the previous two statements)\n\n4. Harry is nice. (From 3)\n   Harry is smart. (Given)\n   All green things are smart. (Given)\n   So, Harry is green or Harry is not green, but we can't determine which one yet. (From 4 and the previous two statements)\n\n5. Harry is nice. (From 4)\n   Harry is furry. (From 2)\n   Nice, furry things are green. (Given)\n   So, Harry is green. (From 5 and the previous two statements)\n\nNow, we can determine that Harry is green.\n\nSince we have found that Harry is green, we can conclude that the statement \"Harry is not green\" is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not green\" is true, false, or unknown, we need to analyze the given premises and their implications.\n\n1. Harry is smart. (Premise)\n2. Harry is young. (Premise)\n3. Young things are furry. (Premise)\n4. Harry is furry. (Implication from premises 2 and 3)\n5. Furry, smart things are nice. (Premise)\n6. Harry is nice. (Implication from premises 1 and 5)\n7. Nice, furry things are green. (Premise)\n8. Harry is green. (Implication from premises 4 and 7)\n\nFrom the given premises and implications, we can conclude that Harry is indeed green.\n\nHowever, the original statement to evaluate is \"Harry is not green.\" \n\nSince we have established that Harry is green (from implication 8), we can conclude that the statement \"Harry is not green\" is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine the truth value of the statement \"Harry is not green,\" we need to analyze the given information step by step:\n\n1. Harry is smart. (This is a given statement)\n2. Harry is young. (This is a given statement)\n3. Young things are furry. (From the given information)\n   - Therefore, Harry is furry. (From step 2 and step 3)\n4. Furry, smart things are nice. (From the given information)\n   - Therefore, Harry is nice. (From step 1 and step 3)\n5. Nice, furry things are green. (From the given information)\n   - Therefore, Harry is green. (From step 4 and step 5)\n   \nHowever, we also need to consider other statements that could affect the outcome:\n\n6. All green things are big. (From the given information)\n7. All green things are smart. (From the given information)\n8. Nice, green things are big. (From the given information)\n9. If Harry is young then Harry is furry. (This is a given statement, but it's already been covered in step 3)\n10. All green things are nice. (From the given information)\n11. If something is big and young then it is round. (From the given information)\n\nFrom the statements above, we have determined that Harry is green. Now we need to consider the statement \"Harry is not green.\"\n\nSince Harry is green, the statement \"Harry is not green\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement 'Harry is not green' is true, false, or unknown, we need to analyze the given premises and the information about Harry.\n\n1. Harry is smart.\n2. Harry is young.\n3. Young things are furry.\n4. If Harry is young then Harry is furry. (This is the same as statement 3, but it is a conditional statement, which implies the same thing.)\n5. Furry, smart things are nice.\n\nFrom the given premises, we can conclude that Harry is furry (statement 3) and Harry is nice (from statements 1 and 5). \n\n6. Harry is furry and Harry is smart, so Harry is nice (from statement 5).\n\nNow, let's analyze the information about green things:\n7. Nice, furry things are green.\n8. All green things are nice.\n9. All green things are smart.\n10. All green things are big.\n\nFrom statement 7, we can conclude that Harry is green because he is furry and nice.\n\nNow, let's analyze the information about big things:\n11. If something is big and young then it is round.\n12. All green things are big.\n13. Harry is young.\n14. Harry is green (from statement 10 and the fact that Harry is green).\n\nSince Harry is green (and therefore big, from statement 10), and Harry is young, we can conclude that Harry is round (from statement 11).\n\nNow, let's analyze the information about the statement 'Harry is not green':\nWe have already concluded that Harry is green (from statement 10 and the fact that Harry is green).\n\nTherefore, the statement 'Harry is not green' is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply the rules of inference. \n\n1. Harry is young.\n   From this statement, we can infer:\n   - Harry is furry (by the rule: Young things are furry)\n   - Harry is smart (by the rule: Harry is smart, given directly)\n\n2. Harry is furry.\n   From this statement and the previous inference, we can infer:\n   - Harry is nice (by the rule: Furry, smart things are nice)\n\n3. Harry is nice.\n   From this statement and the previous inference, we can infer:\n   - Harry is green (by the rule: Nice, furry things are green)\n\nNow, let's analyze the given statement:\n\"Harry is not green.\"\n\nSince we have already inferred that Harry is green, this statement cannot be true. However, to be certain, we should check if there's any rule that could contradict our inference. \n\nWe can see that the rules provided do not directly contradict the fact that Harry is green, but there's an implication chain:\n\n- All green things are big.\n- All green things are smart.\n- If something is big and young then it is round.\n- All green things are big.\n\nHowever, there's a crucial statement that we haven't used yet: \"All green things are big.\" \nFrom this rule, we can infer that Harry is big. \n\nNow we have another implication chain:\n\n- Harry is big.\n- Harry is young.\n- If something is big and young then it is round.\n\nThis implies that Harry is round, but it doesn't contradict the fact that Harry is green. \n\nTherefore, our initial statement \"Harry is not green\" is false. \n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we'll analyze the given statements and apply them to the statement \"Harry is not green.\" We'll use a truth table or logical deductions to determine the truth value of the statement.\n\nGiven statements:\n1. Anne is furry.\n2. Anne is nice.\n3. Anne is smart.\n4. Bob is young.\n5. Erin is nice.\n6. Harry is smart.\n7. Harry is young.\n8. Young things are furry.\n9. Nice, furry things are green.\n10. All green things are nice.\n11. Nice, green things are big.\n12. All green things are smart.\n13. If something is big and young then it is round.\n14. All green things are big.\n15. If Harry is young then Harry is furry.\n16. Furry, smart things are nice.\n\nFrom statement 15, we can deduce that Harry is furry since he is young (statement 7).\n\nNow, let's analyze statement 16: \"Furry, smart things are nice.\" Since Harry is furry (from statement 15) and smart (statement 6), we can conclude that Harry is nice.\n\nStatement 9 says \"Nice, furry things are green.\" Since Harry is nice (from the previous conclusion) and furry (from statement 15), we can conclude that Harry is green.\n\nStatement 14 says \"All green things are big.\" Since Harry is green (from the previous conclusion), we can conclude that Harry is big.\n\nStatement 10 says \"All green things are nice.\" We've already concluded that Harry is nice (from statement 16).\n\nStatement 12 says \"All green things are smart.\" We've already concluded that Harry is smart (statement 6).\n\nThe original statement is \"Harry is not green.\" However, we've concluded that Harry is green (from statement 9), which means that the original statement is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & smart(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_harry, smart_harry), nice_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_harry, nice_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry) | not green(harry)",
+          "z3_formula": "Or(green_harry, Not(green_harry))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not green(harry)",
+          "z3_formula": "Not(green_harry)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry) & smart(harry)",
+          "z3_formula": "And(furry_harry, smart_harry) == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & smart(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_harry, smart_harry), nice_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry) & furry(harry)",
+          "z3_formula": "And(nice_harry, furry_harry) == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(nice_harry, furry_harry), green_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_harry, nice_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_harry, smart_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_harry, big_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & smart(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_harry, smart_harry), nice_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(nice_harry, furry_harry), green_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & smart(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_harry, smart_harry), nice_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(nice_harry, furry_harry), green_harry)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & smart(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_harry, smart_harry), nice_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(nice_harry, furry_harry), green_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & smart(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_harry, smart_harry), nice_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_harry, green_harry), big_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & smart(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_harry, smart_harry), nice_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_harry, smart_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry) or not green(harry)",
+          "z3_formula": "Or(green_harry, Not(green_harry))",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(nice_harry, furry_harry), green_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry) & smart(harry) -> nice(harry)",
+          "z3_formula": "Implies(And(furry_harry, smart_harry), nice_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry) & furry(harry) -> green(harry)",
+          "z3_formula": "Implies(And(nice_harry, furry_harry), green_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & smart(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_harry, smart_harry), nice_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(nice_harry, furry_harry), green_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_harry, big_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_harry, smart_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_harry, green_harry), big_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_harry, nice_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> round(X)",
+          "z3_formula": "Implies(And(big_harry, young_harry), round_harry)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & smart(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_harry, smart_harry), nice_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & smart(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_harry, smart_harry), nice_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(nice_harry, furry_harry), green_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_harry, nice_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_harry, smart_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_harry, big_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> round(X)",
+          "z3_formula": "Implies(And(big_harry, young_harry), round_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not green(harry)",
+          "z3_formula": "Not(green_harry) == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & smart(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_harry, smart_harry), nice_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> green(X)",
+          "z3_formula": "Implies(nice_harry, green_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry) == False",
+          "z3_formula": "green_harry == False",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_harry, big_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> round(X)",
+          "z3_formula": "Implies(And(big_harry, young_harry), round_harry)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(nice_anne, furry_anne), green_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_anne, nice_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_harry, big_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_harry, smart_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> round(X)",
+          "z3_formula": "Implies(And(big_harry, young_harry), round_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_harry, big_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & smart(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_harry, smart_harry), nice_harry)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not green(harry)",
+          "z3_formula": "Not(green_harry) == True",
+          "source_step": 21
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 162,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 27
+    },
+    "maxsat_stats": {
+      "satisfied": 26,
+      "excluded": 1,
+      "total_weight": 158,
+      "solve_time_ms": 0.97635667771101
+    },
+    "timing": {
+      "trace_gen_s": 6.706,
+      "extraction_s": 26.785,
+      "dedup_s": 0.721,
+      "maxsat_s": 0.003,
+      "total_s": 34.215
+    }
+  }
+}

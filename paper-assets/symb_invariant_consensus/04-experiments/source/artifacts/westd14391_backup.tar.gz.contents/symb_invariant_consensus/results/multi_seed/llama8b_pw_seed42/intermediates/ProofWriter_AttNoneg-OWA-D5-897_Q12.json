@@ -1,0 +1,1138 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-897_Q12",
+    "problem": "Anne is nice. Bob is big. Bob is blue. Bob is cold. Charlie is big. Charlie is cold. Charlie is nice. Charlie is young. Fiona is furry. Fiona is young. If someone is furry and nice then they are cold. If Bob is blue and Bob is big then Bob is cold. All blue, cold people are big. If someone is nice then they are smart. All smart, big people are nice. All smart people are blue. Blue, smart people are furry. Furry, cold people are smart. Cold people are big.\n\nDetermine whether the following statement is true, false, or unknown:\nAnne is not big.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNice($x, bool) ::: Is x nice?\nBig($x, bool) ::: Is x big?\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nFurry($x, bool) ::: Is x furry?\nSmart($x, bool) ::: Is x smart?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nNice(Anne, True) ::: Anne is nice.\nBig(Bob, True) ::: Bob is big.\nBlue(Bob, True) ::: Bob is blue.\nCold(Bob, True) ::: Bob is cold.\nBig(Charlie, True) ::: Charlie is big.\nCold(Charlie, True) ::: Charlie is cold.\nNice(Charlie, True) ::: Charlie is nice.\nYoung(Charlie, True) ::: Charlie is young.\nFurry(Fiona, True) ::: Fiona is furry.\nYoung(Fiona, True) ::: Fiona is young.\n\nRules:\nFurry($x, True) && Nice($x, True) >>> Cold($x, True) ::: If someone is furry and nice then they are cold.\nBlue(Bob, True) && Big(Bob, True) >>> Cold(Bob, True) ::: If Bob is blue and Bob is big then Bob is cold.\nBlue($x, True) && Cold($x, True) >>> Big($x, True) ::: All blue, cold people are big.\nNice($x, True) >>> Smart($x, True) ::: If someone is nice then they are smart.\nSmart($x, True) && Big($x, True) >>> Nice($x, True) ::: All smart, big people are nice.\nSmart($x, True) >>> Blue($x, True) ::: All smart people are blue.\nBlue($x, True) && Smart($x, True) >>> Furry($x, True) ::: Blue, smart people are furry.\nFurry($x, True) && Cold($x, True) >>> Smart($x, True) ::: Furry, cold people are smart.\nCold($x, True) >>> Big($x, True) ::: Cold people are big.\n\nQuery:\nBig(Anne, False) ::: Anne is not big."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 36.0,
+      "Unknown": 162.5
+    },
+    "answer_counts": {
+      "False": 1,
+      "Unknown": 11
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Anne is not big\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following information about Anne:\n   - Anne is nice.\n\n2. We are given the following information about Bob:\n   - Bob is big.\n   - Bob is blue.\n   - Bob is cold.\n\n3. We are given the following information about Charlie:\n   - Charlie is big.\n   - Charlie is cold.\n   - Charlie is nice.\n   - Charlie is young.\n\n4. We are given the following information about Fiona:\n   - Fiona is furry.\n   - Fiona is young.\n\n5. We are given the following information about the relationships between the characteristics:\n   - If someone is furry and nice then they are cold.\n   - If Bob is blue and Bob is big then Bob is cold.\n   - All blue, cold people are big.\n   - If someone is nice then they are smart.\n   - All smart, big people are nice.\n   - All smart people are blue.\n   - Blue, smart people are furry.\n   - Furry, cold people are smart.\n   - Cold people are big.\n\nNow, let's analyze the information step by step to determine whether the statement \"Anne is not big\" is true, false, or unknown:\n\n- From the information given about Anne, we know that Anne is nice. We also know that \"If someone is nice then they are smart\" and \"If someone is nice then they are smart\" implies that Anne is smart.\n- From the information given about smart people, we know that \"All smart people are blue\" and \"All smart, big people are nice\" implies that Anne is blue and big because Anne is nice.\n- Since we know that Anne is big and blue, we can conclude that Anne is cold because \"Cold people are big\" and \"If Bob is blue and Bob is big then Bob is cold\".\n\nHowever, we cannot conclude whether Anne is not big or not because we have found that Anne is indeed big. Therefore, the statement \"Anne is not big\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement 'Anne is not big' is true, false, or unknown, we need to analyze the given information.\n\n1. There's no direct information about Anne's size.\n2. There's no direct information about Anne's other characteristics such as being cold, blue, furry, young, or smart.\n3. We know that 'All smart people are blue', but we don't know if Anne is smart or not.\n4. We know that 'All blue, cold people are big', but we don't know if Anne is blue or cold.\n\nHowever, we can use the information that 'All smart, big people are nice', but we don't know if Anne is nice or not. We also know that 'If someone is furry and nice then they are cold', but we don't know if Anne is furry or nice.\n\nNow, let's analyze the information about Bob and Charlie.\n\n- Bob is blue, big, and cold.\n- Charlie is big, cold, nice, and young.\n\nFrom the information about Bob, we can infer that 'All blue, cold people are big'. This is consistent with the information that 'Cold people are big'.\n\nSince we don't have any direct information about Anne's size, we cannot conclude that the statement 'Anne is not big' is true or false based on the given information.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not big\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\nGiven information:\n\n1. If someone is furry and nice then they are cold.\n2. If Bob is blue and Bob is big then Bob is cold.\n3. All blue, cold people are big.\n4. If someone is nice then they are smart.\n5. All smart, big people are nice.\n6. All smart people are blue.\n7. Blue, smart people are furry.\n8. Furry, cold people are smart.\n9. Cold people are big.\n\nTo evaluate the statement \"Anne is not big,\" we need to consider the following:\n\n- There is no direct information about Anne being big or not big. \n- There is no information that links Anne to any of the characteristics mentioned in the given information (furry, nice, cold, blue, big, smart).\n- Since there is no information about Anne being big or not big, we cannot determine the truth value of the statement \"Anne is not big.\"\n\nHowever, we can establish that \"Anne is big\" is also unknown, as there is no information to support or refute this statement.\n\nTherefore, the statement \"Anne is not big\" is unknown, as we cannot determine its truth value based on the given information.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not big\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We have no direct information about Anne being big or small.\n2. We have no information about Anne being blue, cold, or furry.\n3. There is no rule that directly states \"If Anne is not big, then Anne is not cold\" or any other condition related to Anne.\n\nHowever, we can infer some information from the given rules:\n\n- If someone is nice, then they are smart (Rule 4).\n- All smart, big people are nice (Rule 5).\n- All smart people are blue (Rule 6).\n- Blue, smart people are furry (Rule 7).\n\nBut we cannot conclude that Anne is nice or smart because there is no direct information about Anne's characteristics.\n\nWe can also analyze the conditions related to Bob and Charlie:\n\n- If Bob is blue and Bob is big, then Bob is cold (Rule 2).\n- All blue, cold people are big (Rule 8).\n- If someone is furry and nice, then they are cold (Rule 1).\n- If Charlie is big, then Charlie is cold (Rule 3).\n- Charlie is big, Charlie is cold, Charlie is nice (Rule 3).\n\nHowever, these conditions do not provide any information about Anne's size or any other characteristics.\n\nTherefore, based on the given information, we cannot determine whether Anne is big or not. The statement \"Anne is not big\" is unknown because there is no direct or indirect evidence to support or refute this statement.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not big\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nGiven Information:\n- Anne is nice.\n- Bob is big.\n- Bob is blue.\n- Bob is cold.\n- Charlie is big.\n- Charlie is cold.\n- Charlie is nice.\n- Charlie is young.\n- Fiona is furry.\n- Fiona is young.\n\nRules:\n1. If someone is furry and nice then they are cold.\n2. If Bob is blue and Bob is big then Bob is cold.\n3. All blue, cold people are big.\n4. If someone is nice then they are smart.\n5. All smart, big people are nice.\n6. All smart people are blue.\n7. Blue, smart people are furry.\n8. Furry, cold people are smart.\n9. Cold people are big.\n\nWe are asked to determine the truth value of the statement \"Anne is not big.\"\n\nTo do this, we need to find any information that relates to Anne being big or not big. Let's analyze the rules and given information:\n\n- Rule 3: All blue, cold people are big.\n  We don't have any information about Anne being blue or cold, so this rule is not applicable to Anne.\n\n- Rule 5: All smart, big people are nice.\n  We don't have any information about Anne being smart or big, so this rule is not applicable to Anne.\n\n- Rule 4: If someone is nice then they are smart.\n  Since Anne is nice (given information), we can conclude that Anne is smart.\n\n- Rule 7: Blue, smart people are furry.\n  We don't have any information about Anne being blue, so this rule is not applicable to Anne.\n\n- Rule 8: Furry, cold people are smart.\n  We don't have any information about Anne being furry or cold, so this rule is not applicable to Anne.\n\n- Rule 9: Cold people are big.\n  We don't have any information about Anne being cold, so this rule is not applicable to Anne.\n\nWe don't have any direct information about Anne being big or not big. However, we can infer that Anne is smart because she is nice (Rule 4). But we can't conclude anything about Anne being big or not big based on the given information.\n\nTherefore, the statement \"Anne is not big\" is unknown because we don't have enough information to determine whether Anne is big or not big.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not big\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following information about Anne: \n   - Anne is nice. \n   (We do not know anything about Anne's size, so we will move on to other facts.)\n\n2. We are given the following information about Bob:\n   - Bob is big.\n   - Bob is blue.\n   - Bob is cold.\n   (From this, we can deduce that Bob is big and Bob is blue, so Bob is big, and Bob is blue, and Bob is cold, so Bob is cold.)\n   - If Bob is blue and Bob is big then Bob is cold.\n   - All blue, cold people are big.\n   (These two facts do not add any new information, but they confirm our previous deduction.)\n\n3. We are given the following information about Charlie:\n   - Charlie is big.\n   - Charlie is cold.\n   - Charlie is nice.\n   - Charlie is young.\n   (From this, we can deduce that Charlie is big, Charlie is cold, Charlie is nice, and Charlie is young.)\n\n4. We are given the following information about Fiona:\n   - Fiona is furry.\n   - Fiona is young.\n   (We do not know anything about Fiona's other properties, so we will move on to other facts.)\n\n5. We are given the following conditional statements:\n   - If someone is furry and nice then they are cold.\n   - If Bob is blue and Bob is big then Bob is cold.\n   - All blue, cold people are big.\n   - If someone is nice then they are smart.\n   - All smart, big people are nice.\n   - All smart people are blue.\n   - Blue, smart people are furry.\n   - Furry, cold people are smart.\n   - Cold people are big.\n\nFrom the given information and the conditional statements, we can deduce that:\n\n- Since Anne is nice, Anne is smart. \n- Since Anne is smart and big is unknown, we cannot determine if Anne is smart and big.\n- Since Anne is smart and big is unknown, we cannot determine if Anne is smart and blue.\n- Since Anne is smart and blue is unknown, we cannot determine if Anne is smart and furry.\n- Since Anne is smart and furry is unknown, we cannot determine if Anne is smart and cold.\n- Since Anne is smart and cold is unknown, we cannot determine if Anne is big.\n\nTherefore, we do not have enough information to determine whether Anne is big or not.\n\nThe final answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve the problem, we need to determine whether the statement 'Anne is not big' is true, false, or unknown based on the given conditions.\n\nLet's analyze the conditions:\n\n1. If someone is furry and nice then they are cold.\n2. If Bob is blue and Bob is big then Bob is cold.\n3. All blue, cold people are big.\n4. If someone is nice then they are smart.\n5. All smart, big people are nice.\n6. All smart people are blue.\n7. Blue, smart people are furry.\n8. Furry, cold people are smart.\n9. Cold people are big.\n\nFrom condition 9, we can infer that:\n- Big people can be either cold or not cold (since cold people are big, but it does not state that all big people are cold).\n\nNow, let's determine whether Anne is big or not. Since the problem does not provide any information about Anne being blue, cold, or furry, we cannot directly apply any of the conditions to determine if Anne is big. However, we can make some inferences:\n\n- We know that if someone is furry and nice, then they are cold (condition 1). \n- We also know that if someone is nice, then they are smart (condition 4), and if someone is smart, they are blue (condition 6).\n- However, we do not have any information about Anne being furry, nice, or smart.\n\nBased on the given conditions, we cannot determine whether Anne is big or not. Therefore, the statement 'Anne is not big' is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not big\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nGiven information:\n1. Anne is nice.\n2. Bob is big.\n3. Bob is blue.\n4. Bob is cold.\n5. Charlie is big.\n6. Charlie is cold.\n7. Charlie is nice.\n8. Charlie is young.\n9. Fiona is furry.\n10. Fiona is young.\n11. If someone is furry and nice then they are cold.\n12. If Bob is blue and Bob is big then Bob is cold.\n13. All blue, cold people are big.\n14. If someone is nice then they are smart.\n15. All smart, big people are nice.\n16. All smart people are blue.\n17. Blue, smart people are furry.\n18. Furry, cold people are smart.\n19. Cold people are big.\n\nFrom the given information, we can derive the following conclusions:\n\n- From (11), we know that if someone is furry and nice, then they are cold.\n- From (1), we know that Anne is nice.\n- From (9), we know that Fiona is furry.\n- Therefore, from (11), we can conclude that Fiona is cold.\n- From (19), we know that cold people are big.\n- Therefore, from (20), we can conclude that Fiona is big.\n\nNow we can analyze the statement \"Anne is not big.\"\nTo determine whether this statement is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nWe know that:\n- Anne is nice (from 1)\n- If someone is nice then they are smart (from 14)\n- Therefore, Anne is smart.\n- If someone is smart then they are blue (from 16)\n- Therefore, Anne is blue.\n- All blue people are big or young (from 13, because all blue, cold people are big and cold people are big, and since Anne is blue, Anne is either big or young)\n- We also know that Charlie is young and big (from 5 and 6)\n- We cannot conclude that Anne is big or young from the given information.\n- Therefore, we cannot conclude that Anne is not big or Anne is big.\n\nFrom the given information, we cannot determine whether Anne is big or not. Therefore, the statement \"Anne is not big\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications.\n\n1. Anne is nice. \n2. Bob is big. \n3. Bob is blue. \n4. Bob is cold. \n5. Charlie is big. \n6. Charlie is cold. \n7. Charlie is nice. \n8. Charlie is young. \n9. Fiona is furry. \n10. Fiona is young.\n\nWe also have the following implications:\n\n1. If someone is furry and nice then they are cold. (Implication 1)\n2. If Bob is blue and Bob is big then Bob is cold. (Implication 2)\n3. All blue, cold people are big. (Implication 3)\n4. If someone is nice then they are smart. (Implication 4)\n5. All smart, big people are nice. (Implication 5)\n6. All smart people are blue. (Implication 6)\n7. Blue, smart people are furry. (Implication 7)\n8. Furry, cold people are smart. (Implication 8)\n9. Cold people are big. (Implication 9)\n\nNow, let's analyze the statement \"Anne is not big\" in relation to the given implications.\n\nFrom Implication 2, we know that if Bob is blue and Bob is big, then Bob is cold. Since Bob is blue and Bob is big, we can conclude that Bob is cold.\n\nFrom Implication 9, we know that cold people are big. Since Bob is cold, we can conclude that Bob is big.\n\nHowever, we are given that Anne is nice (Statement 1). From Implication 4, we know that if someone is nice, then they are smart. Therefore, Anne is smart.\n\nFrom Implication 5, we know that all smart, big people are nice. Since Anne is smart and big, we cannot conclude that Anne is nice. But, since we already know that Anne is nice, we can use Implication 6, which states that all smart people are blue, to conclude that Anne is blue.\n\nNow, we have two possibilities: Anne is blue and big, or Anne is blue and not big. If Anne is blue and big, then from Implication 3, we know that all blue, cold people are big. Since Bob is blue and big, we can conclude that Bob is cold. However, we already know that Bob is blue, big, and cold. This does not give us any new information, but it does not contradict the statement \"Anne is not big\" either.\n\nHowever, if Anne is blue and not big, then from Implication 3, we know that all blue, cold people are big. This contradicts the fact that Anne is not big. Therefore, we can conclude that Anne is blue and big.\n\nSince we know that Anne is blue and big, we can use Implication 9, which states that cold people are big, to conclude that Anne is cold.\n\nNow, let's look at Implication 8, which states that furry, cold people are smart. Since Anne is furry (we do not have any direct evidence of this, but we will come back to this point), cold, and big, we can conclude that Anne is smart.\n\nHowever, we already know that Anne is nice (Statement 1). From Implication 4, we know that if someone is nice, then they are smart. Since we have already concluded that Anne is smart, we cannot use this implication to conclude that Anne is nice.\n\nNow, let's look at Implication 1, which states that if someone is furry and nice then they are cold. Since Anne is furry and nice, we can conclude that Anne is cold. But we already know that Anne is cold.\n\nLet's examine Implication 8 again. It states that furry, cold people are smart. Since Anne is furry, cold, and big, we can conclude that Anne is smart. However, we have already concluded that Anne is smart.\n\nNow, let's look at Implication 7, which states that blue, smart people are furry. Since Anne is blue and smart, we can conclude that Anne is furry.\n\nWe can now use the fact that Anne is furry and nice (Statement 1) to conclude that Anne is cold (Implication 1).\n\nHowever, we already know that Anne is cold. \n\nIn conclusion, based on the given implications, we have found a contradiction. If Anne is blue and big, then we can conclude that Anne is cold. However, we also know that Anne is furry, and from Implication 1, we can conclude that Anne is cold. But we already know that Anne is cold.\n\nTherefore, the statement \"Anne is not big\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve the problem, we need to analyze the given statements and apply logical reasoning.\n\nGiven statements:\n1. Anne is nice.\n2. Bob is big.\n3. Bob is blue.\n4. Bob is cold.\n5. Charlie is big.\n6. Charlie is cold.\n7. Charlie is nice.\n8. Charlie is young.\n9. Fiona is furry.\n10. Fiona is young.\n11. If someone is furry and nice then they are cold.\n12. If Bob is blue and Bob is big then Bob is cold.\n13. All blue, cold people are big.\n14. If someone is nice then they are smart.\n15. All smart, big people are nice.\n16. All smart people are blue.\n17. Blue, smart people are furry.\n18. Furry, cold people are smart.\n19. Cold people are big.\n\nWe need to determine whether the statement 'Anne is not big' is true, false, or unknown.\n\nFirst, let's examine the statement 'Anne is not big'. To prove this statement, we need to find a reason that makes it true, or show that it cannot be determined from the given information.\n\nGiven statement 1: Anne is nice.\n\nFrom statement 14: If someone is nice then they are smart.\nSo, Anne is smart.\n\nFrom statement 15: All smart, big people are nice.\nWe cannot conclude that Anne is big from this statement.\n\nFrom statement 16: All smart people are blue.\nWe cannot conclude that Anne is blue from this statement.\n\nFrom statement 17: Blue, smart people are furry.\nWe cannot conclude that Anne is furry from this statement.\n\nFrom statement 18: Furry, cold people are smart.\nWe cannot conclude that Anne is cold from this statement.\n\nFrom statement 19: Cold people are big.\nWe cannot conclude that Anne is big from this statement.\n\nSince we cannot determine whether Anne is big or not from the given information, the statement 'Anne is not big' is unknown.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine if the statement \"Anne is not big\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that if someone is furry and nice then they are cold. However, we don't have any information about Anne being furry or nice. \n\n2. We are also told that if Bob is blue and Bob is big then Bob is cold. However, this doesn't provide any information about Anne.\n\n3. All blue, cold people are big. This statement is not directly applicable to Anne as we don't know if Anne is blue, cold, or big.\n\n4. We know that Charlie is big, Charlie is cold, Charlie is nice, and Charlie is young. However, we don't have any information about Anne being big, cold, nice, or young.\n\n5. We know that if someone is nice then they are smart. However, we don't have any information about Anne being nice.\n\n6. All smart, big people are nice. This statement is also not directly applicable to Anne as we don't know if Anne is smart or big.\n\n7. All smart people are blue. This statement is not directly applicable to Anne as we don't know if Anne is smart.\n\n8. Blue, smart people are furry. This statement is not directly applicable to Anne as we don't know if Anne is blue, smart, or furry.\n\n9. Furry, cold people are smart. We don't have any information about Anne being furry or cold.\n\n10. Cold people are big. This statement is not directly applicable to Anne as we don't know if Anne is cold.\n\nSince we don't have any direct information about Anne being big, small, or any other characteristic, we cannot determine if the statement \"Anne is not big\" is true or false. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not big\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We don't have any information about Anne being big or not, but we can start by analyzing the other statements to see if we can derive any information about Anne.\n\n2. From the given information:\n   - If someone is furry and nice then they are cold. (Rule 1)\n   - If Bob is blue and Bob is big then Bob is cold. (Rule 2)\n   - All blue, cold people are big. (Rule 3)\n   - If someone is nice then they are smart. (Rule 4)\n   - All smart, big people are nice. (Rule 5)\n   - All smart people are blue. (Rule 6)\n   - Blue, smart people are furry. (Rule 7)\n   - Furry, cold people are smart. (Rule 8)\n   - Cold people are big. (Rule 9)\n\n3. Now, let's try to find any information about Anne. We can start by using the given information about Bob, Charlie, and Fiona.\n\n   - Since Bob is blue and big, we can conclude that Bob is cold using Rule 2.\n   - Since Bob is blue, big, and cold, we can conclude that Bob is big using Rule 3.\n   - Since Bob is cold, we can conclude that Bob is big using Rule 9.\n   - Since Bob is blue and big, we can conclude that Bob is smart using Rule 6.\n   - Since Bob is blue and smart, we can conclude that Bob is furry using Rule 7.\n   - Since Bob is furry and cold, we can conclude that Bob is smart using Rule 8.\n\n4. Now, let's analyze the information about Charlie.\n   - Since Charlie is big and cold, we can conclude that Charlie is big using Rule 9.\n   - Since Charlie is nice, we can conclude that Charlie is smart using Rule 4.\n   - Since Charlie is smart and big, we can conclude that Charlie is nice using Rule 5.\n   - Since Charlie is smart, we can conclude that Charlie is blue using Rule 6.\n   - Since Charlie is blue and smart, we can conclude that Charlie is furry using Rule 7.\n\n5. Now, let's analyze the information about Fiona.\n   - Since Fiona is furry and young, we can conclude that Fiona is young using the given information.\n   - Since Fiona is furry and young, we can conclude that Fiona is nice using Rule 1.\n   - Since Fiona is furry and nice, we can conclude that Fiona is cold using Rule 1.\n   - Since Fiona is furry and cold, we can conclude that Fiona is smart using Rule 8.\n\n6. Now, let's try to find any information about Anne.\n   - We don't have any information about Anne being big or not.\n   - We don't have any information about Anne being blue or not.\n   - We don't have any information about Anne being cold or not.\n   - We don't have any information about Anne being nice or not.\n   - We don't have any information about Anne being smart or not.\n   - We don't have any information about Anne being furry or not.\n\nSince we don't have any information about Anne being big or not, we cannot determine whether the statement \"Anne is not big\" is true or false. Therefore, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_anne, smart_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_anne, blue_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(blue_anne, big_anne), cold_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_anne, cold_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_anne, blue_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_anne, cold_anne), big_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & smart(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_anne, smart_anne), nice_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_anne, nice_anne), cold_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob) & cold(bob) -> big(X)",
+          "z3_formula": "Implies(And(big_bob, cold_bob), big_X)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_X, big_X)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "big(X)",
+          "z3_formula": "big_X == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_X, nice_X), cold_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob) & big(bob) -> cold(bob)",
+          "z3_formula": "Implies(And(blue_bob, big_bob), cold_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_X, cold_X), big_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_X, smart_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_X, big_X), nice_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_X, blue_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_X, smart_X), furry_X)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_X, cold_X), smart_X)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_X, big_X)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == False",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_anne, smart_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & smart(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_anne, smart_anne), nice_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_anne, blue_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_anne, smart_anne), furry_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(blue_bob, big_bob), cold_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_bob, cold_bob), big_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_charlie, nice_charlie), cold_charlie)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_charlie, cold_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not big(anne)",
+          "z3_formula": "Not(big_anne)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_X, nice_X), cold_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(blue_X, big_X), cold_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_X, cold_X), big_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_X, smart_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_X, big_X), nice_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_X, blue_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_X, smart_X), furry_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_X, cold_X), smart_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_X, big_X)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_anne, smart_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(blue_bob, big_bob), cold_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_bob, cold_bob), big_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_anne, nice_anne), cold_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(blue_bob, big_bob), cold_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_bob, cold_bob), big_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_anne, smart_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_anne, big_anne), nice_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_anne, blue_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_anne, smart_anne), furry_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_anne, cold_anne), smart_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_anne, big_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == Unknown",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_anne, nice_anne), cold_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(Bob) & big(Bob) -> cold(Bob)",
+          "z3_formula": "Implies(And(blue_bob, big_bob), cold_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_X, cold_X), big_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_X, smart_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_X, big_X), nice_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_X, blue_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_X, smart_X), furry_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_X, cold_X), smart_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_X, big_X)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_anne, nice_anne), cold_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_fiona, big_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_anne, smart_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_anne, blue_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X) | young(X)",
+          "z3_formula": "Implies(Or(big_anne, young_anne), blue_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "big(anne) | young(anne)",
+          "z3_formula": "Or(big_anne, young_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(Or(big_anne, Not(young_anne)))",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_anne, nice_anne), cold_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(blue_bob, big_bob), cold_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_bob, cold_bob), big_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_anne, smart_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_anne, big_anne), nice_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_anne, blue_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_anne, smart_anne), furry_anne)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_anne, cold_anne), smart_anne)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_bob, big_bob)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_anne, smart_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_anne, big_anne), nice_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_anne, blue_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(blue_anne, big_anne), cold_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & big(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_anne, big_anne), big_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_anne, nice_anne), cold_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_anne, blue_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_anne, big_anne)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_anne, nice_anne), cold_anne)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(blue_bob, big_bob), cold_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_charlie, cold_charlie), big_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_anne, smart_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_anne, big_anne), nice_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_anne, blue_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_anne, smart_anne), furry_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_anne, cold_anne), smart_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_anne, big_anne)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_anne, nice_anne), cold_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_anne, cold_anne), smart_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_anne, cold_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(blue_anne, big_anne), cold_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(blue_bob, big_bob), cold_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_bob, big_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_bob, smart_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_bob, smart_bob), furry_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_bob, cold_bob), smart_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_bob, big_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == Unknown",
+          "source_step": 6
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 168,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 57
+    },
+    "maxsat_stats": {
+      "satisfied": 55,
+      "excluded": 2,
+      "total_weight": 165,
+      "solve_time_ms": 1.7512096092104912
+    },
+    "timing": {
+      "trace_gen_s": 11.752,
+      "extraction_s": 26.736,
+      "dedup_s": 2.074,
+      "maxsat_s": 0.005,
+      "total_s": 40.567
+    }
+  }
+}

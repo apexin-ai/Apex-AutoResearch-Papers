@@ -1,0 +1,427 @@
+{
+  "problem": {
+    "id": "folio_180",
+    "problem": "Given the following premises:\nSusan flies to LGA airport. The departure and arrival can not be the same airport. John flies from LGA airport.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nSusan flies from LGA airport.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "FlyTo(susan, lga)",
+      "\u2200x \u2200y (FlyFrom(x, y) \u2295 FlyTo(x, y))",
+      "FlyFrom(john, lga)"
+    ],
+    "conclusion_fol": "FlyFrom(susan, lga)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 28.5,
+      "Unknown": 27.5
+    },
+    "answer_counts": {
+      "Unknown": 5,
+      "False": 6
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion \"Susan flies from LGA airport\" is true, false, or uncertain, let's analyze the given premises step by step.\n\nPremise 1: Susan flies to LGA airport.\nThis premise tells us that Susan's flight is heading to LGA airport, but it does not specify the departure airport.\n\nPremise 2: The departure and arrival cannot be the same airport.\nThis premise implies that Susan's flight departed from an airport other than LGA.\n\nPremise 3: John flies from LGA airport.\nThis premise provides information about John's flight but does not affect Susan's flight. It tells us that John's departure airport is LGA.\n\nFrom Premise 1, we know Susan's destination is LGA airport, but we don't know her departure airport. Premise 2 tells us that her departure airport cannot be LGA. However, it does not rule out the possibility of her departure airport being any other airport.\n\nFrom Premise 3, we know John flies from LGA airport. This information is irrelevant to Susan's flight.\n\nNow, let's analyze the conclusion: \"Susan flies from LGA airport.\"\n\nBased on the premises, we know that Susan's departure airport is not LGA (Premise 2). However, we don't know her actual departure airport. It could be any other airport. Therefore, we cannot conclude that Susan flies from LGA airport.\n\nThe conclusion is uncertain because there is not enough information to determine Susan's departure airport.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "Let's break down the given premises step by step:\n\nPremise 1: Susan flies to LGA airport.\nThis means Susan's destination is LGA airport, but it doesn't specify if she departed from LGA or another airport.\n\nPremise 2: The departure and arrival cannot be the same airport.\nThis premise clarifies that Susan did not depart from LGA airport. If she had departed from LGA, then LGA would have been both her departure and arrival airport, violating this rule.\n\nPremise 3: John flies from LGA airport.\nThis premise provides information about John, but it doesn't provide any direct information about Susan. We still don't know if Susan departed from LGA or another airport.\n\nNow, let's analyze the conclusion: Susan flies from LGA airport.\n\nGiven Premise 2, we know Susan did not depart from LGA airport. This makes the conclusion false, as it contradicts the information provided in the premises.\n\nTherefore, the conclusion is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we will analyze the premises step by step:\n\nPremise 1: Susan flies to LGA airport.\nThis tells us that Susan arrives at LGA airport, but it does not tell us where she departed from.\n\nPremise 2: The departure and arrival cannot be the same airport.\nThis premise tells us that Susan did not depart from LGA airport, because she is arriving at LGA airport. However, it does not tell us where she departed from.\n\nPremise 3: John flies from LGA airport.\nThis premise tells us that John departed from LGA airport, but it does not tell us where John is going or whether Susan's departure location is LGA airport.\n\nCombining Premise 1 and Premise 2, we know that Susan did not depart from LGA airport. However, there is no direct information linking Susan's departure location to another airport.\n\nCombining Premise 3 with the information from Premise 1 and Premise 2, we can infer that Susan departed from an airport other than LGA airport (because she is arriving at LGA airport and cannot depart from LGA airport). We also know that John departed from LGA airport, but we do not know if Susan's departure airport is the same as John's departure airport.\n\nHowever, there is no direct information that tells us Susan departed from LGA airport. But, we can conclude that Susan did not depart from LGA airport, but that does not necessarily mean that she departed from another airport that is known. However, since we know that John departed from LGA airport, we can say that Susan's departure airport is not LGA airport. Thus we can say that Susan did not fly from LGA airport.\n\nTherefore, the conclusion \"Susan flies from LGA airport\" is FALSE, because it contradicts the information from Premise 2.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the premises step by step.\n\nPremise 1: Susan flies to LGA airport.\nThis tells us the arrival airport of Susan, but we don't know her departure airport yet.\n\nPremise 2: The departure and arrival cannot be the same airport.\nThis means that Susan's departure airport must be different from LGA airport.\n\nFrom Premise 1, we know Susan's arrival airport is LGA. From Premise 2, we can conclude that Susan's departure airport cannot be LGA.\n\nHowever, we don't have any information about Susan's departure airport yet. We only know that it's not LGA. But we don't know what it is.\n\nNow, let's look at the conclusion: Susan flies from LGA airport.\nWe know that Susan's departure airport is not LGA (from Premise 2), but we don't know what it is. Therefore, we cannot conclude that Susan flies from LGA airport.\n\nConclusion: The conclusion is uncertain. We don't have enough information to determine whether Susan flies from LGA airport or not.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine the truth of the conclusion, let's analyze the premises step by step:\n\nPremise 1: Susan flies to LGA airport.\nThis premise tells us the destination of Susan's flight but not the departure airport.\n\nPremise 2: The departure and arrival can not be the same airport.\nThis premise implies that Susan's flight does not originate from LGA airport, as the departure and arrival are different airports.\n\nPremise 3: John flies from LGA airport.\nThis premise tells us the departure airport of John's flight but does not provide any information about Susan's flight.\n\nNow, let's examine the conclusion:\n\nConclusion: Susan flies from LGA airport.\nSince Premise 2 states that the departure and arrival cannot be the same airport, and Premise 1 states that Susan flies to LGA airport, we can conclude that Susan did not fly from LGA airport.\n\nTherefore, the conclusion is false, as there is a direct contradiction between the premises and the conclusion.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises step by step.\n\nPremise 1: Susan flies to LGA airport.\n\nThis premise tells us that Susan's flight destination is LGA airport.\n\nPremise 2: The departure and arrival cannot be the same airport.\n\nThis premise implies that if Susan flies to LGA airport, she must have departed from a different airport. However, it does not provide any information about John's flight.\n\nPremise 3: John flies from LGA airport.\n\nThis premise tells us that John's flight origin is LGA airport. However, it does not provide any information about Susan's flight origin.\n\nNow, let's analyze the conclusion: Susan flies from LGA airport.\n\nTo determine whether this conclusion is true, false, or uncertain, we need to consider the given premises. From Premise 1, we know that Susan flies to LGA airport, which means she cannot have flown from LGA airport (because the departure and arrival cannot be the same airport, as stated in Premise 2). Therefore, the conclusion \"Susan flies from LGA airport\" is false.\n\nHowever, we cannot conclude that Susan flies from LGA airport with absolute certainty, because the premises do not provide any information about Susan's flight origin. The conclusion is false because it contradicts Premise 1, but we cannot determine the exact airport from which Susan flies.\n\nTherefore, the final answer is: \n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion \"Susan flies from LGA airport\" is true, false, or uncertain, let's analyze the premises step by step.\n\nPremise 1: Susan flies to LGA airport.\n- This means Susan is arriving at LGA airport, but it does not specify whether she is departing from LGA airport or another airport.\n\nPremise 2: The departure and arrival cannot be the same airport.\n- This implies that Susan's departure airport is different from LGA airport, where she is arriving. So, Susan must have departed from another airport.\n\nPremise 3: John flies from LGA airport.\n- This premise does not provide any information about Susan's flight. It only tells us about John's flight from LGA airport.\n\nNow, let's combine the premises:\n- From Premise 1, we know Susan arrives at LGA airport.\n- From Premise 2, we know Susan does not depart from LGA airport.\n- Since the premises do not provide any information about Susan's departure airport, we cannot determine the airport from which Susan departs.\n\nHowever, since Premise 2 explicitly states that Susan's departure and arrival cannot be the same airport, we can conclude that Susan does indeed fly from an airport other than LGA. \n\nTherefore, the conclusion \"Susan flies from LGA airport\" cannot be true because Premise 2 explicitly states that Susan's departure and arrival cannot be the same airport, and we know Susan arrives at LGA airport.\n\nThe conclusion is also uncertain because we do not know the specific airport from which Susan departs. However, we can say that it is not LGA.\n\nSo, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we will analyze the given premises step by step.\n\nPremise 1: Susan flies to LGA airport.\nThis premise tells us that Susan arrives at LGA airport, but it doesn't tell us where she departs from.\n\nPremise 2: The departure and arrival cannot be the same airport.\nThis premise suggests that if Susan arrives at LGA airport, she must have departed from a different airport.\n\nPremise 3: John flies from LGA airport.\nThis premise tells us that John departs from LGA airport, but it doesn't provide any information about Susan's departure airport.\n\nNow, let's analyze the conclusion:\nConclusion: Susan flies from LGA airport.\n\nBased on the given premises, we can deduce the following:\n- Susan arrives at LGA airport (Premise 1).\n- She cannot arrive and depart from the same airport (Premise 2).\n- We don't know where Susan departs from, but we know John departs from LGA airport (Premise 3).\n\nSince we don't know where Susan departs from, we cannot conclude that she flies from LGA airport. The premises do not provide enough information to determine her departure airport.\n\nTherefore, the conclusion is:\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion \"Susan flies from LGA airport\" is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: Susan flies to LGA airport.\nThis premise tells us that Susan's flight destination is LGA airport.\n\nPremise 2: The departure and arrival cannot be the same airport.\nThis premise implies that if Susan's flight destination is LGA airport, then her departure airport must be different from LGA airport.\n\nFrom Premise 1, we know that Susan flies to LGA airport. \nFrom Premise 2, we know that Susan's departure airport cannot be LGA airport.\n\nSince Susan's departure airport cannot be LGA airport, and John flies from LGA airport (which is not relevant to Susan's departure airport), we can conclude that Susan does not fly from LGA airport.\n\nThe conclusion \"Susan flies from LGA airport\" is False.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises step by step.\n\nPremise 1: Susan flies to LGA airport.\nPremise 2: The departure and arrival cannot be the same airport.\nPremise 3: John flies from LGA airport.\n\nNow, let's examine the conclusion: Susan flies from LGA airport.\n\nFrom Premise 1, we know Susan flies to LGA airport. \nFrom Premise 2, we know that the departure and arrival cannot be the same airport, which implies that Susan's departure and arrival airports are different.\nHowever, Premise 2 does not explicitly state that Susan's departure airport is LGA airport, it only implies that her arrival airport is LGA.\n\nThe third premise, Premise 3, states that John flies from LGA airport, which does not provide any information about Susan's flight.\n\nSince Premise 2 only implies that Susan's arrival airport is LGA and does not explicitly state that her departure airport is LGA, we cannot conclude that Susan flies from LGA airport.\n\nTherefore, the conclusion \"Susan flies from LGA airport\" is uncertain because we cannot determine whether Susan's departure airport is LGA or not based on the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine the truth value of the conclusion, let's analyze the given premises step by step:\n\n1. Susan flies to LGA airport. \n   This premise tells us that Susan's flight destination is LGA airport. It does not specify whether she is flying from or to LGA airport, but it implies that she is arriving at LGA airport.\n\n2. The departure and arrival cannot be the same airport. \n   This premise further clarifies that Susan's flight is not a round-trip or a flight where the departure and arrival points are the same. Since premise 1 states that Susan is arriving at LGA airport, this premise implies that Susan did not depart from LGA airport.\n\n3. John flies from LGA airport. \n   This premise provides additional information about John's flight but does not directly affect the information about Susan's flight. It does not provide any information about Susan's departure or arrival airport.\n\nNow, let's examine the conclusion:\n\nSusan flies from LGA airport.\n\nBased on the given premises, we know that Susan's flight destination is LGA airport (premise 1), but we also know that Susan did not depart from LGA airport (premise 2). This creates a contradiction. The conclusion states that Susan flies from LGA airport, which contradicts premise 2.\n\nTherefore, the conclusion \"Susan flies from LGA airport\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the premises step by step:\n\nPremise 1: Susan flies to LGA airport.\nThis premise tells us that Susan's destination is LGA airport.\n\nPremise 2: The departure and arrival cannot be the same airport.\nThis premise is a general rule that applies to both Susan and John. It means that when someone flies, their departure and arrival airports must be different.\n\nPremise 3: John flies from LGA airport.\nThis premise tells us that John's departure airport is LGA, but it doesn't tell us anything about his arrival airport.\n\nNow, let's examine the conclusion:\n\nConclusion: Susan flies from LGA airport.\nThis conclusion claims that Susan's departure airport is LGA.\n\nFrom Premise 1, we know that Susan flies to LGA airport. Since the departure and arrival cannot be the same airport (Premise 2), this means that Susan's departure airport must be different from LGA. \n\nHowever, we cannot directly conclude that Susan's departure airport is not LGA, because we don't have any information about Susan's departure airport. We only know about her arrival airport (LGA). \n\nTherefore, the conclusion is uncertain, because we cannot definitively say whether Susan flies from LGA airport or not.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "flies(susan, lga)",
+          "z3_formula": "flies_susan_lga == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "departure(X, Y) & arrival(X, Y) -> False",
+          "z3_formula": "Implies(And(departure_susan_lga, arrival_susan_lga), False)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "flies(john, lga)",
+          "z3_formula": "flies_john_lga == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "flies(susan, lga)",
+          "z3_formula": "flies_susan_lga == Unknown",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "flies_to(susan, lga)",
+          "z3_formula": "flies_to_susan_lga == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "departure(X, Y) & arrival(X, Y) -> False",
+          "z3_formula": "Implies(And(departure_susan_lga, arrival_susan_lga), False)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "flies_from(john, lga)",
+          "z3_formula": "flies_from_john_lga == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "flies_from(susan, lga)",
+          "z3_formula": "flies_from_susan_lga == False",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "flies(susan, lga)",
+          "z3_formula": "flies_susan_lga == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "arrives(susan, lga)",
+          "z3_formula": "arrives_susan_lga == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "arrives(X, Y) & departure(X, Y) -> False",
+          "z3_formula": "Implies(And(arrives_susan_lga, departure_susan_lga), False)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "flies(john, lga)",
+          "z3_formula": "flies_john_lga == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "departure(susan, lga) == False",
+          "z3_formula": "departure_susan_lga == False",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "flies(susan, lga)",
+          "z3_formula": "flies_susan_lga == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "departure(X) != arrival(X)",
+          "z3_formula": "Not(equals_departure_arrival_susan)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "departure(susan) != lga",
+          "z3_formula": "Not(equals_departure_lga_susan)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(flies(susan, lga))",
+          "z3_formula": "uncertain_flies_susan_lga == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "flies(susan, lga)",
+          "z3_formula": "flies_susan_lga == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(flies(susan, lga) & flies(susan, lga))",
+          "z3_formula": "Not(And(flies_susan_lga, flies_susan_lga)) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "flies(john, lga)",
+          "z3_formula": "flies_john_lga == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not(flies(susan, lga))",
+          "z3_formula": "Not(flies_susan_lga) == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "flies(susan, lga)",
+          "z3_formula": "flies_susan_lga == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "departure(X) != arrival(X)",
+          "z3_formula": "Not(Implies(flies_susan_lga, flies_susan_lga))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "flies(john, lga)",
+          "z3_formula": "flies_john_lga == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "flies(susan, lga)",
+          "z3_formula": "Not(flies_susan_lga)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "flies(susan, lga)",
+          "z3_formula": "flies_susan_lga == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "arrives(X, Y) -> arrives(X, Y)",
+          "z3_formula": "Implies(arrives_susan_lga, arrives_susan_lga)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "arrives(X, Y) & departs(X, Y) -> False",
+          "z3_formula": "Implies(And(arrives_susan_lga, departs_susan_lga), False)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "flies(john, lga)",
+          "z3_formula": "flies_john_lga == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not flies(susan, lga)",
+          "z3_formula": "Not(flies_susan_lga)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "flies(susan, lga)",
+          "z3_formula": "flies_susan_lga == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "lga != departure(susan)",
+          "z3_formula": "Not(lga == departure_susan)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "departure(john) == lga",
+          "z3_formula": "departure_john == lga",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "departure(susan) != lga",
+          "z3_formula": "Not(departure_susan == lga)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "flies(susan, lga)",
+          "z3_formula": "flies_susan_lga == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "departure(X) == arrival(X) -> False",
+          "z3_formula": "Not(And(departure_susan_lga, arrival_susan_lga))",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not flies(susan, lga)",
+          "z3_formula": "Not(flies_susan_lga)",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "flies(susan, lga)",
+          "z3_formula": "flies_susan_lga == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "departure(X) != arrival(X)",
+          "z3_formula": "Not(And(departure_susan_lga, arrival_susan_lga))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "flies(john, lga)",
+          "z3_formula": "flies_john_lga == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "flies(susan, lga)",
+          "z3_formula": "Not(Or(departure_susan_lga, Not(departure_susan_lga)))",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "flies_to(susan, lga)",
+          "z3_formula": "flies_to_susan_lga == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "arriving_at(X, Y) -> not departing_from(X, Y)",
+          "z3_formula": "Implies(arriving_at_susan_lga, not departing_from_susan_lga)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "flies_from(john, lga)",
+          "z3_formula": "flies_from_john_lga == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "flies_from(susan, lga)",
+          "z3_formula": "flies_from_susan_lga == False",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "flies(susan, lga)",
+          "z3_formula": "flies_susan_lga == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "departure(X) != arrival(X)",
+          "z3_formula": "Implies(And(flies_susan_lga, flies_john_lga), Not(flies_susan_lga == flies_susan_lga))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "flies(john, lga)",
+          "z3_formula": "flies_john_lga == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "flies(susan, lga)",
+          "z3_formula": "flies_susan_lga == Unknown",
+          "source_step": 4
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 49,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 20
+    },
+    "maxsat_stats": {
+      "satisfied": 17,
+      "excluded": 3,
+      "total_weight": 40,
+      "solve_time_ms": 1.0116621851921082
+    },
+    "timing": {
+      "trace_gen_s": 4.659,
+      "extraction_s": 8.65,
+      "dedup_s": 0.255,
+      "maxsat_s": 0.002,
+      "total_s": 13.566
+    }
+  }
+}

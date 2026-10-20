@@ -1,0 +1,420 @@
+{
+  "pid": "folio_156",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all_humans_mortal",
+          "z3_formula": "all_humans_mortal == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_greeks_humans",
+          "z3_formula": "all_greeks_humans == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "all_greeks -> all_humans",
+          "z3_formula": "Implies(all_greeks, all_humans)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "all_humans -> all_mortal",
+          "z3_formula": "Implies(all_humans, all_mortal)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "all_greeks -> all_mortal",
+          "z3_formula": "Implies(all_greeks, all_mortal)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "some_greeks_mortal",
+          "z3_formula": "some_greeks_mortal == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mortal(human)",
+          "z3_formula": "mortal_human == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "human(greek)",
+          "z3_formula": "human_greek == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "human(X) -> mortal(X)",
+          "z3_formula": "Implies(human_greek, mortal_greek)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "mortal(greek)",
+          "z3_formula": "mortal_greek == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "some(greek, mortal)",
+          "z3_formula": "some_greek_mortal == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all(humans, mortal)",
+          "z3_formula": "all_humans_mortal == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all(greeks, humans)",
+          "z3_formula": "all_greeks_humans == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "all(X, Y) -> all(X, Z) Implies(all(Y, Z)",
+          "z3_formula": "Implies(all_humans_mortal, all_greeks_mortal)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "all(greeks, mortal)",
+          "z3_formula": "all_greeks_mortal == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "H \u2192 M",
+          "z3_formula": "Implies(human_mortal, mortal)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "G \u2192 H",
+          "z3_formula": "Implies(greek_human, human)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "\u2203G (G \u2227 M)",
+          "z3_formula": "Or(True, And(human, mortal))",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mortal(human)",
+          "z3_formula": "mortal_human == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "human(greek)",
+          "z3_formula": "human_greek == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "human(X) -> mortal(X)",
+          "z3_formula": "Implies(human_greek, mortal_greek)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "mortal(greek)",
+          "z3_formula": "mortal_greek == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "some(greek, mortal)",
+          "z3_formula": "some_greek_mortal == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mortal(humans)",
+          "z3_formula": "mortal_humans == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "human(greeks)",
+          "z3_formula": "human_greeks == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "mortal(greeks)",
+          "z3_formula": "mortal_greeks == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mortal(human)",
+          "z3_formula": "mortal_human == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "human(X) -> mortal(X)",
+          "z3_formula": "Implies(human_X, mortal_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "human(greek)",
+          "z3_formula": "human_greek == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "greek(X) -> human(X)",
+          "z3_formula": "Implies(greek_X, human_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "mortal(greek)",
+          "z3_formula": "mortal_greek == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mortal(human)",
+          "z3_formula": "mortal_human == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "human(greek)",
+          "z3_formula": "human_greek == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "human(X) -> mortal(X)",
+          "z3_formula": "Implies(human_greek, mortal_greek)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "mortal(greek)",
+          "z3_formula": "mortal_greek == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "some(greek, mortal)",
+          "z3_formula": "some_greek_mortal == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mortal(human)",
+          "z3_formula": "mortal_human == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "human(X) -> mortal(X)",
+          "z3_formula": "Implies(human_X, mortal_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "human(greek)",
+          "z3_formula": "human_greek == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "greek(X) -> human(X)",
+          "z3_formula": "Implies(greek_X, human_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "mortal(greek)",
+          "z3_formula": "mortal_greek == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mortal(human)",
+          "z3_formula": "mortal_human == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "human(greek)",
+          "z3_formula": "human_greek == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "human(X) -> mortal(X)",
+          "z3_formula": "Implies(human_greek, mortal_greek)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "mortal(greek)",
+          "z3_formula": "mortal_greek == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "some(greek, mortal)",
+          "z3_formula": "some_greek_mortal == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mortal(humans)",
+          "z3_formula": "mortal_humans == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "human(greeks)",
+          "z3_formula": "human_greeks == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "human(X) -> mortal(X)",
+          "z3_formula": "Implies(human_greeks, mortal_greeks)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "mortal(greeks)",
+          "z3_formula": "mortal_greeks == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "All A are B -> Some A are B",
+          "z3_formula": "Implies(Implies(human_greeks, mortal_greeks), Implies(human_greeks, mortal_greeks))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "some(greeks, mortal)",
+          "z3_formula": "some_greeks_mortal == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mortal(human)",
+          "z3_formula": "mortal_human == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "human(X) -> mortal(X)",
+          "z3_formula": "Implies(human_X, mortal_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "human(greek)",
+          "z3_formula": "human_greek == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "greek(X) -> human(X)",
+          "z3_formula": "Implies(greek_X, human_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "mortal(greek)",
+          "z3_formula": "mortal_greek == True",
+          "source_step": 3
+        }
+      ]
+    }
+  ]
+}

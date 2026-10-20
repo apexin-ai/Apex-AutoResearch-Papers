@@ -1,0 +1,903 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1057_Q2",
+    "problem": "Bob is kind. Bob is quiet. Bob is white. Charlie is quiet. Erin is furry. Erin is quiet. Erin is white. Fiona is blue. Fiona is furry. Fiona is kind. Fiona is quiet. All kind, rough people are furry. Green, furry people are quiet. If someone is rough then they are kind. If someone is quiet and kind then they are rough. If someone is white then they are quiet. If someone is blue and white then they are kind. If someone is white then they are blue. If Charlie is quiet then Charlie is white.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is not kind.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nQuiet($x, bool) ::: Is x quiet?\nWhite($x, bool) ::: Is x white?\nFurry($x, bool) ::: Is x furry?\nGreen($x, bool) ::: Is x green?\nBlue($x, bool) ::: Is x blue?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nKind(Bob, True) ::: Bob is kind.\nQuiet(Bob, True) ::: Bob is quiet.\nWhite(Bob, True) ::: Bob is white.\nQuiet(Charlie, True) ::: Charlie is quiet.\nFurry(Erin, True) ::: Erin is furry.\nQuiet(Erin, True) ::: Erin is quiet.\nWhite(Erin, True) ::: Erin is white.\nBlue(Fiona, True) ::: Fiona is blue.\nFurry(Fiona, True) ::: Fiona is furry.\nKind(Fiona, True) ::: Fiona is kind.\nQuiet(Fiona, True) ::: Fiona is quiet.\n\nRules:\nKind($x, True) && Rough($x, True) >>> Furry($x, True) ::: All kind, rough people are furry.\nGreen($x, True) && Furry($x, True) >>> Quiet($x, True) ::: Green, furry people are quiet.\nRough($x, True) >>> Kind($x, True) ::: If someone is rough then they are kind.\nQuiet($x, True) && Kind($x, True) >>> Rough($x, True) ::: If someone is quiet and kind then they are rough.\nWhite($x, True) >>> Quiet($x, True) ::: If someone is white then they are quiet.\nBlue($x, True) && White($x, True) >>> Kind($x, True) ::: If someone is blue and white then they are kind.\nWhite($x, True) >>> Blue($x, True) ::: If someone is white then they are blue.\nQuiet(Charlie, True) >>> White(Charlie, True) ::: If Charlie is quiet then Charlie is white.\n\nQuery:\nKind(Fiona, False) ::: Fiona is not kind."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 123.0,
+      "Unknown": 114.0
+    },
+    "answer_counts": {
+      "False": 10,
+      "Unknown": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Fiona is not kind\" is true, false, or unknown, we need to analyze the given information and apply the rules.\n\n1. Fiona is blue. \n2. Fiona is furry. \n3. Fiona is kind. \n4. Fiona is quiet.\n\nFrom the given rules:\n\n- If someone is blue and white then they are kind. (Rule 8)\n- If Fiona is white then she is blue. (Rule 9)\n- If Fiona is blue then she is kind (this can't be determined from Rule 8 alone, but Rule 3 confirms that Fiona is kind)\n\nHowever, we don't have any direct information that Fiona is white, so we can't apply Rule 9. \n\nNow, let's analyze Rule 8 and Rule 9 together: \n\nIf Fiona is white then she is blue (Rule 9), and if Fiona is blue and white then she is kind (Rule 8). This creates a loop where it can be said that Fiona is kind if Fiona is white, but Fiona is white if Fiona is blue, and Fiona is kind if Fiona is blue. Since we know Fiona is blue, we can conclude that Fiona is indeed kind.\n\nSo, since Fiona is kind, the statement \"Fiona is not kind\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not kind\" is true, false, or unknown, we need to analyze the given statements and the information provided about Fiona.\n\n1. We know that Fiona is blue (given statement).\n2. We know that Fiona is furry (given statement).\n3. We know that Fiona is kind (given statement).\n4. We know that Fiona is quiet (given statement).\n\nNow, let's analyze the given rules and see if they provide any information about Fiona being kind or not.\n\n1. If someone is rough then they are kind. \nWe don't know if Fiona is rough, but we do know that if someone is rough, then they are kind. This rule doesn't directly tell us about Fiona, but it gives us a condition for being kind.\n\n2. If someone is quiet and kind then they are rough. \nSince we know Fiona is quiet and kind, this rule might seem to apply to her. However, we need to be careful because this rule is a condition of being rough, not directly telling us about Fiona's characteristics.\n\n3. If someone is white then they are quiet. \nWe don't know if Fiona is white, but we know she is quiet. This rule doesn't directly tell us about Fiona's characteristics.\n\n4. If someone is blue and white then they are kind. \nFiona is blue, but we don't know if she is white. This rule doesn't directly tell us about Fiona's characteristics.\n\n5. If someone is white then they are blue. \nWe know Fiona is blue, but we don't know if she is white. This rule doesn't directly tell us about Fiona's characteristics.\n\n6. All kind, rough people are furry. \nSince Fiona is kind and furry, this rule might seem to apply to her. However, we need to be careful because this rule is a condition of being furry, not directly telling us about Fiona's characteristics.\n\n7. Green, furry people are quiet. \nWe don't know if Fiona is green, but we do know she is furry and quiet. This rule doesn't directly tell us about Fiona's characteristics.\n\n8. If Charlie is quiet then Charlie is white. \nThis rule is about Charlie, not Fiona, so it doesn't apply to our problem.\n\nNow, let's analyze the rules about being quiet and kind. We know that Fiona is quiet and kind. According to rule 2, if someone is quiet and kind then they are rough. This might seem to imply that Fiona is rough, but we need to be careful because we don't know if Fiona is rough.\n\nHowever, there's another rule that tells us something about being rough: If someone is rough then they are kind. We already know Fiona is kind, so this rule doesn't directly tell us about Fiona's characteristics.\n\nNow, let's analyze the rules about being furry and quiet. We know Fiona is furry and quiet. However, we don't know if Fiona is green, so rule 7 doesn't directly tell us about Fiona's characteristics.\n\nHowever, rule 3 tells us that if someone is quiet and kind then they are rough. Since Fiona is quiet and kind, this might seem to apply to her. But we need to be careful because this rule is a condition of being rough, not directly telling us about Fiona's characteristics.\n\nGiven that Fiona is blue and we know the rule that if someone is blue and white then they are kind, we need to find out if Fiona is white. We know that if someone is white then they are blue (rule 5). This implies that Fiona is indeed white.\n\nNow that we know Fiona is white, we can use the rule that if someone is white then they are quiet (rule 3). This implies that Fiona is indeed quiet.\n\nNow, let's analyze the rules about being white and quiet. We know Fiona is white and quiet. According to rule 3, if someone is quiet and kind then they are rough. Since Fiona is quiet and kind, this rule implies that Fiona is indeed rough.\n\nSince Fiona is rough, we can use the rule that if someone is rough then they are kind (rule 1). This implies that Fiona is indeed kind.\n\nTherefore, the statement \"Fiona is not kind\" is false. \n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not kind\" is true, false, or unknown, we need to analyze the given information and apply the rules to Fiona.\n\n1. Fiona is blue. \n2. Fiona is furry. \n3. Fiona is kind. \n4. Fiona is quiet. \n\nFrom rule 9: If someone is blue and white then they are kind. \nHowever, there is no information that Fiona is white, so we cannot apply this rule directly. \n\nFrom rule 5: All kind, rough people are furry. \nHowever, there is no information that Fiona is rough, so we cannot apply this rule directly.\n\nFrom rule 4: If someone is quiet and kind then they are rough. \nWe know that Fiona is quiet and kind, but this rule does not tell us anything about Fiona being rough or not.\n\nFrom rule 8: If someone is white then they are quiet. \nHowever, there is no information that Fiona is white, so we cannot apply this rule directly.\n\nFrom rule 7: If someone is white then they are blue. \nHowever, there is no information that Fiona is white, so we cannot apply this rule directly.\n\nFrom rule 6: If someone is rough then they are kind. \nHowever, we have no information about Fiona being rough, so we cannot apply this rule directly.\n\nFrom rule 3: Fiona is kind. \nThis directly states that Fiona is kind.\n\nTherefore, based on the given rules, Fiona is indeed kind. The statement \"Fiona is not kind\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether Fiona is kind or not, we need to analyze the given statements and their implications.\n\n1. Fiona is blue. Fiona is furry. Fiona is kind. Fiona is quiet. \n   We know that Fiona is blue and furry, and we also know that Fiona is kind and furry. \n\n2. All kind, rough people are furry. \n   Since Fiona is kind and furry, it can be concluded that Fiona is rough. \n\n3. If someone is quiet and kind then they are rough. \n   We already know that Fiona is quiet and kind, so we can confirm that Fiona is indeed rough.\n\n4. Fiona is blue and we know that if someone is blue and white then they are kind. \n   However, this statement contradicts our previous conclusion that Fiona is rough, because if Fiona is white, then she must be quiet (from statement 7), which makes her rough (from statement 3), and this in turn makes her kind (from statement 3), but it also means she must be furry (from statement 3), which we already know.\n\nHowever, statement 4 and statement 8 together give us a contradiction. Statement 8 says that if someone is white, then they are blue, which means Fiona must be blue, but Fiona is also white, which is a contradiction. Therefore, we can't conclude that Fiona is kind based on this argument alone. However, looking at statement 8 again, if someone is white, then they are blue, so this statement implies that Fiona is blue (from statement 1) and Fiona is white (from statement 1). From statement 8, we can conclude that Fiona is indeed blue and white.\n\n5. If someone is blue and white then they are kind. \n   Since Fiona is blue and white, we can conclude that Fiona is indeed kind.\n\nHowever, we also know that Fiona is rough from statement 2 and that all kind, rough people are furry from statement 2, which means Fiona must be furry, and Fiona is indeed furry from statement 1. Fiona's being furry supports this argument.\n\nHowever, statement 1 says Fiona is blue, and statement 4 says all green, furry people are quiet. Fiona is furry (from statement 1), and since Fiona is blue, it means she can't be green, so this argument does not apply to Fiona.\n\nHowever, statement 5 says if someone is quiet and kind then they are rough. Fiona is quiet (from statement 1), and Fiona is kind (from statement 1), so we can conclude that Fiona is indeed rough.\n\nHowever, statement 2 says all kind, rough people are furry. Fiona is kind (from statement 1) and Fiona is rough (from statement 5), so we can conclude that Fiona is indeed furry.\n\n6. Green, furry people are quiet. \n   This statement does not apply to Fiona because Fiona is blue, not green.\n\n7. If someone is white then they are quiet. \n   Fiona is white (from statement 1), so Fiona is indeed quiet.\n\n8. If someone is white then they are blue. \n   Fiona is white (from statement 1), so Fiona is indeed blue.\n\n9. Charlie is quiet. Erin is furry. Erin is quiet. Erin is white. Fiona is blue. Fiona is furry. Fiona is kind. Fiona is quiet. All kind, rough people are furry. Green, furry people are quiet. If someone is rough then they are kind. If someone is quiet and kind then they are rough. If someone is white then they are quiet. If someone is blue and white then they are kind. If someone is white then they are blue. If Charlie is quiet then Charlie is white.\n\nSince all the previous arguments agree that Fiona is both kind and rough, and since Fiona is indeed furry, Fiona is indeed blue, Fiona is indeed white, and Fiona is indeed quiet, we can conclude that Fiona is both kind and rough.\n\nHowever, statement 3 says if someone is quiet and kind then they are rough. Fiona is quiet (from statement 1) and Fiona is kind (from statement 1), so we can conclude that Fiona is indeed rough.\n\nHowever, statement 5 says if someone is quiet and kind then they are rough. Fiona is quiet (from statement 1) and Fiona is kind (from statement 1), so we can conclude that Fiona is indeed rough.\n\nHowever, statement 2 says all kind, rough people are furry. Fiona is kind (from statement 1) and Fiona is rough (from statement 5), so we can conclude that Fiona is indeed furry.\n\nHowever, statement 4 says all green, furry people are quiet. Fiona is furry (from statement 2), and since Fiona is blue, it means she can't be green, so this argument does not apply to Fiona.\n\nSince we know that Fiona is both kind and rough, and since Fiona is indeed furry, Fiona is indeed blue, Fiona is indeed white, and Fiona is indeed quiet, we can conclude that Fiona is indeed kind.\n\nHowever, statement 8 says if someone is white then they are blue. Fiona is white (from statement 1), so Fiona is indeed blue.\n\nHowever, statement 7 says if someone is white then they are quiet. Fiona is white (from statement 1), so Fiona is indeed quiet.\n\nHowever, statement 5 says if someone is quiet and kind then they are rough. Fiona is quiet (from statement 1) and Fiona is kind (from statement 1), so we can conclude that Fiona is indeed rough.\n\nHowever, statement 2 says all kind, rough people are furry. Fiona is kind (from statement 1) and Fiona is rough (from statement 5), so we can conclude that Fiona is indeed furry.\n\nHowever, statement 4 says if someone is blue and white then they are kind. Fiona is blue (from statement 1) and Fiona is white (from statement 1), so we can conclude that Fiona is indeed kind.\n\nHowever, statement 3 says if someone is quiet and kind then they are rough. Fiona is quiet (from statement 1) and Fiona is kind (from statement 1), so we can conclude that Fiona is indeed rough.\n\nHowever, statement 5 says if someone is quiet and kind then they are rough. Fiona is quiet (from statement 1) and Fiona is kind (from statement 1), so we can conclude that Fiona is indeed rough.\n\nHowever, statement 2 says all kind, rough people are furry. Fiona is kind (from statement 1) and Fiona is rough (from statement 5), so we can conclude that Fiona is indeed furry.\n\nSince all the previous arguments agree that Fiona is both kind and rough, and since Fiona is indeed furry, Fiona is indeed blue, Fiona is indeed white, and Fiona is indeed quiet, we can conclude that Fiona is indeed kind.\n\nSince all the previous arguments agree that Fiona is both kind and rough, and since Fiona is indeed furry, Fiona is indeed blue, Fiona is indeed white, and Fiona is indeed quiet, we can conclude that Fiona is indeed kind.\n\nSince we know that Fiona is both kind and rough, and since Fiona is indeed furry, Fiona is indeed blue, Fiona is indeed white, and Fiona is indeed quiet, we can conclude that Fiona is indeed kind.\n\nSince we know that Fiona is both kind and rough, and since Fiona is indeed furry, Fiona is indeed blue, Fiona is indeed white, and Fiona is indeed quiet, we can conclude that Fiona is indeed kind.\n\nSince all the previous arguments agree that Fiona is both kind and rough, and since Fiona is indeed furry, Fiona is indeed blue, Fiona is indeed white, and Fiona is indeed quiet, we can conclude that Fiona is indeed kind.\n\nSince we know that Fiona is both kind and rough, and since Fiona is indeed furry, Fiona is indeed blue, Fiona is indeed white, and Fiona is indeed quiet, we can conclude that Fiona is indeed kind.\n\nSince all the previous arguments agree that Fiona is both kind and rough, and since Fiona is indeed furry, Fiona is indeed blue, Fiona is indeed white, and Fiona is indeed quiet, we can conclude that Fiona is indeed kind.\n\nSince we know that Fiona is both kind and rough, and since Fiona is indeed furry, Fiona is indeed blue, Fiona is indeed white, and Fiona is indeed quiet, we can conclude that Fiona is indeed kind.\n\nSince all the previous arguments agree that Fiona is both kind and rough, and since Fiona is indeed furry, Fiona is indeed blue, Fiona is indeed white, and Fiona is indeed quiet, we can conclude that Fiona is indeed kind.\n\nSince we know that Fiona is both kind and rough, and since Fiona is indeed furry, Fiona is indeed blue, Fiona is indeed white, and Fiona is indeed quiet, we can conclude that Fiona is indeed kind.\n\nSince all the previous arguments agree that Fiona is both kind and rough, and since Fiona is indeed furry, Fiona is indeed blue, Fiona is indeed white, and Fiona is indeed quiet, we can conclude that Fiona is indeed kind.\n\nSince we know that Fiona is both kind and rough, and since Fiona is indeed furry, Fiona is indeed blue, Fiona is indeed white, and Fiona is indeed quiet, we can conclude that Fiona is indeed kind.\n\nSince all the previous arguments agree that Fiona is both kind and rough, and since Fiona is indeed furry, Fiona is indeed blue, Fiona is indeed white, and Fiona is indeed quiet, we can conclude that Fiona is indeed kind.\n\nSince we know that Fiona is both kind and rough, and since Fiona is indeed furry, Fiona is indeed blue, Fiona is indeed white, and Fiona is indeed quiet, we can conclude that Fiona is indeed kind.\n\nSince all the previous arguments agree that Fiona is both kind and rough, and since Fiona is indeed furry, Fiona is indeed blue, Fiona is indeed white, and Fiona is indeed quiet, we can conclude that Fiona is indeed kind.\n\nSince we know that Fiona is both kind and rough, and since Fiona is indeed furry,",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not kind\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. We are given the following statements:\n   - Fiona is blue.\n   - Fiona is furry.\n   - Fiona is kind.\n   - Fiona is quiet.\n   \n2. We have the following rules:\n   - All kind, rough people are furry.\n   - Green, furry people are quiet. (This rule is not relevant to the problem.)\n   - If someone is rough then they are kind.\n   - If someone is quiet and kind then they are rough.\n   - If someone is white then they are quiet.\n   - If someone is blue and white then they are kind.\n   - If someone is white then they are blue.\n   - If Charlie is quiet then Charlie is white.\n\n3. From the rule \"If someone is white then they are blue\" and the fact that Fiona is white, we can conclude that Fiona is blue. However, we already know that Fiona is blue from the given statements. So, this rule does not provide any new information.\n\n4. From the rule \"If someone is blue and white then they are kind\" and the fact that Fiona is blue and white, we can conclude that Fiona is kind. However, we already know that Fiona is kind from the given statements. So, this rule does not provide any new information.\n\n5. We can conclude that Fiona is white from the rule \"If someone is blue then they are white\" and the fact that Fiona is blue. Since Fiona is white, we can use the rule \"If someone is white then they are quiet\" to conclude that Fiona is quiet. This is consistent with the given statement that Fiona is quiet.\n\n6. Now, we need to determine whether Fiona is kind. We already know that Fiona is kind from the given statements. However, we can use the rule \"If someone is quiet and kind then they are rough\" to conclude that Fiona is rough. This is consistent with the given statement that Fiona is kind and rough.\n\n7. Since Fiona is furry, kind, and rough, we can use the rule \"All kind, rough people are furry\" to confirm that Fiona is indeed furry.\n\n8. Now, we can analyze the statement \"Fiona is not kind.\" Since we have concluded that Fiona is kind, we can determine that the statement \"Fiona is not kind\" is false.\n\nTherefore, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and apply the rules to determine whether the statement \"Fiona is not kind\" is true, false, or unknown.\n\nGiven statements:\n1. Bob is kind. (Bob's properties: kind, quiet, white)\n2. Bob is quiet. (Bob's properties: kind, quiet, white)\n3. Bob is white. (Bob's properties: kind, quiet, white)\n4. Charlie is quiet. (Charlie's properties: quiet)\n5. Erin is furry. (Erin's properties: furry, quiet, white)\n6. Erin is quiet. (Erin's properties: furry, quiet, white)\n7. Erin is white. (Erin's properties: furry, quiet, white)\n8. Fiona is blue. (Fiona's properties: blue, furry, kind, quiet)\n9. Fiona is furry. (Fiona's properties: blue, furry, kind, quiet)\n10. Fiona is kind. (Fiona's properties: blue, furry, kind, quiet)\n11. Fiona is quiet. (Fiona's properties: blue, furry, kind, quiet)\n12. All kind, rough people are furry. (rule)\n13. Green, furry people are quiet. (rule)\n14. If someone is rough then they are kind. (rule)\n15. If someone is quiet and kind then they are rough. (rule)\n16. If someone is white then they are quiet. (rule)\n17. If someone is blue and white then they are kind. (rule)\n18. If someone is white then they are blue. (rule)\n19. If Charlie is quiet then Charlie is white. (rule)\n\nTo determine whether \"Fiona is not kind\" is true, false, or unknown, we need to analyze Fiona's properties.\n\nFiona's properties: blue, furry, kind, quiet\n\nFrom statement 10, we know that Fiona is kind.\n\nNow, we need to check if any of the given rules contradict this property. \n\nWe can use rule 15 to check: \"If someone is quiet and kind then they are rough.\" \nFiona is quiet (statement 11) and kind (statement 10), but we don't know if Fiona is rough or not. \n\nHowever, we can use rule 2 and rule 16 to check if Fiona is white, which could then be used with rule 17 to check if Fiona is kind.\nRule 2 says that Bob is quiet, and rule 16 says that if someone is white then they are quiet, but this does not confirm that Bob is white. \nStatement 3 says that Bob is white, so we can confirm that rule 16 is correct when applied to Bob. \nSince rule 16 is correct, and statement 7 says that Erin is white, we can confirm that rule 16 is correct when applied to Erin as well.\nSince rule 16 is correct for Bob and Erin, and rule 18 says that if someone is white then they are blue, we can conclude that Bob and Erin are blue. \nStatement 8 says that Fiona is blue, so rule 18 is correct when applied to Fiona as well.\nNow, using rule 17, we can conclude that Fiona is kind because Fiona is blue and white.\n\nHowever, this doesn't tell us anything about rule 15, which is the only rule that could make \"Fiona is not kind\" true. \n\nWe can use rule 15 with the fact that Fiona is quiet (statement 11) and kind (statement 10) to conclude that Fiona is rough (rule 15). \n\nHowever, we can use rule 12 with the fact that Fiona is kind (statement 10) and furry (statement 9) to conclude that Fiona is rough (rule 12). \n\nSince both rule 12 and rule 15 conclude that Fiona is rough, and we know that Fiona is quiet (statement 11) and kind (statement 10), we can confirm that rule 15 and rule 12 are correct.\n\nSince rule 15 is correct, and we know that Fiona is quiet (statement 11) and kind (statement 10), we can confirm that \"Fiona is not kind\" is false.\n\nTherefore, the statement \"Fiona is not kind\" is \\boxed{false}.",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not kind\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. We are given the following facts about Fiona:\n   - Fiona is blue.\n   - Fiona is furry.\n   - Fiona is kind.\n   - Fiona is quiet.\n\n2. From the given information, we have the following rules:\n   - If someone is rough then they are kind. (Rule 1)\n   - If someone is quiet and kind then they are rough. (Rule 2)\n   - If someone is blue and white then they are kind. (Rule 5)\n   - If someone is white then they are blue. (Rule 6)\n   - If someone is white then they are quiet. (Rule 7)\n\n3. First, we can check if Fiona is white. From Rule 7, if someone is white then they are quiet. We already know that Fiona is quiet. However, we cannot conclude that Fiona is white from this rule alone.\n\n4. However, from Rule 6, if someone is white then they are blue. We already know that Fiona is blue. Therefore, we can conclude that Fiona is white.\n\n5. Now we know that Fiona is white. From Rule 7, if someone is white then they are quiet. We already know that Fiona is quiet. Therefore, we can conclude that Fiona is indeed white and quiet.\n\n6. Since Fiona is quiet, we can apply Rule 2: If someone is quiet and kind then they are rough. However, this does not provide any new information about Fiona, as we already know that Fiona is kind.\n\n7. Now, let's analyze the statement \"Fiona is not kind.\" We already know that Fiona is kind. Therefore, the statement \"Fiona is not kind\" is false.\n\nSo, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not kind\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Fiona is blue. Fiona is furry. Fiona is kind. Fiona is quiet. \nWe know Fiona's characteristics: blue, furry, kind, and quiet.\n\n2. All kind, rough people are furry. \nSince Fiona is kind and furry, we can deduce that Fiona is not rough (because all kind, rough people are furry, and we have not found any other characteristics that would classify Fiona as rough).\n\n3. Green, furry people are quiet. \nThis statement doesn't provide any information about Fiona, as we don't know her color (green) or if she is green, furry, or quiet.\n\n4. If someone is rough then they are kind. \nSince we deduced that Fiona is not rough, we can't conclude whether she is kind based on this statement.\n\n5. If someone is quiet and kind then they are rough. \nWe know Fiona is quiet and kind, but this statement says that someone who is quiet and kind is rough. However, since Fiona is not rough (from step 2), this statement does not apply to Fiona.\n\n6. If someone is white then they are quiet. \nFiona is white, so Fiona is quiet (as per this statement).\n\n7. If someone is white then they are blue. \nSince Fiona is white, Fiona is blue (as per this statement).\n\n8. If someone is blue and white then they are kind. \nFiona is blue and white, so Fiona is kind (as per this statement).\n\nNow, we have conflicting information about Fiona's kindness. Fiona is kind from statement 1, but we deduced that Fiona is kind from statement 8. To determine whether Fiona is kind or not, we will use the information from statement 1, as it directly states Fiona's characteristics.\n\nFrom statement 1, we know Fiona is kind. Therefore, the statement \"Fiona is not kind\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not kind\" is true, false, or unknown, we need to analyze the given information step by step.\n\nGiven information:\n\n1. Fiona is blue.\n2. Fiona is furry.\n3. Fiona is kind.\n4. Fiona is quiet.\n\nNow, let's examine the given rules:\n\n1. All kind, rough people are furry.\n   This does not apply to Fiona because we do not know if Fiona is rough.\n\n2. Green, furry people are quiet.\n   This does not apply to Fiona because Fiona is blue, not green.\n\n3. If someone is rough then they are kind.\n   This does not apply to Fiona because we do not know if Fiona is rough.\n\n4. If someone is quiet and kind then they are rough.\n   This does not apply to Fiona because we do not know if Fiona is rough.\n\n5. If someone is white then they are quiet.\n   This does not apply to Fiona because Fiona's color is blue, not white.\n\n6. If someone is blue and white then they are kind.\n   This does not apply to Fiona because we already know Fiona is kind (given information point 3).\n\n7. If someone is white then they are blue.\n   This does not apply to Fiona because we do not know if Fiona is white.\n\n8. If Charlie is quiet then Charlie is white.\n   This does not apply to Fiona because it is about Charlie, not Fiona.\n\nFrom the given information, we know that Fiona is blue (point 1), furry (point 2), kind (point 3), and quiet (point 4). To determine if the statement \"Fiona is not kind\" is true, we need to find a contradiction with the given information. \n\nHowever, from the given rules, there is no information that contradicts the fact that Fiona is kind. Therefore, we cannot conclude that Fiona is not kind.\n\nFinal answer: \n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not kind\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Fiona is blue.\n   - Fiona is furry.\n   - Fiona is kind.\n   - Fiona is quiet.\n\n2. Rules:\n   - All kind, rough people are furry. (Rule 1)\n   - Green, furry people are quiet. (This rule does not apply to Fiona as it's not mentioned that Fiona is green, so we can ignore it.)\n   - If someone is rough then they are kind. (Rule 3)\n   - If someone is quiet and kind then they are rough. (Rule 4)\n   - If someone is white then they are quiet. (Rule 5)\n   - If someone is blue and white then they are kind. (Rule 6)\n   - If someone is white then they are blue. (Rule 7)\n   - If Charlie is quiet then Charlie is white. (This rule does not apply to Fiona as it's about Charlie, so we can ignore it.)\n\n3. Analyze the given information and rules:\n   - Fiona is kind (given information), so we cannot conclude that she is rough or not. However, from Rule 3, if someone is rough then they are kind. This rule does not apply to Fiona directly, so we cannot use it to determine Fiona's kind or rough status.\n   - From Rule 4, if someone is quiet and kind then they are rough. Since Fiona is quiet and kind, we can apply this rule to Fiona: Fiona is quiet and kind, so Fiona is rough.\n   - We now know Fiona is rough, and from Rule 1, all kind, rough people are furry. Since Fiona is rough, we can apply this rule to Fiona: Fiona is rough, so Fiona is furry (which we already know).\n   - However, we cannot use Rule 1 to determine Fiona's kind status because it only talks about people who are both kind and rough.\n\n4. Conclusion:\n   From the given information and rules, we can conclude that Fiona is rough, furry, and quiet, but we cannot directly conclude that she is kind or not kind. The given statement is \"Fiona is not kind.\" However, we know that Fiona is kind (given information). Therefore, we can conclude that the statement \"Fiona is not kind\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not kind\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Fiona is blue. Fiona is furry. Fiona is kind. Fiona is quiet. \n   From this information, we have the following facts about Fiona:\n   - Fiona is blue.\n   - Fiona is furry.\n   - Fiona is kind.\n   - Fiona is quiet.\n\n2. All kind, rough people are furry. \n   We can conclude that since Fiona is kind, she must be furry. However, we already know Fiona is furry, so this fact does not provide any new information.\n\n3. Green, furry people are quiet. \n   This fact does not provide any information about Fiona, since Fiona is blue, not green.\n\n4. If someone is rough then they are kind. \n   We do not know if Fiona is rough or not, so we cannot use this fact.\n\n5. If someone is quiet and kind then they are rough. \n   We know Fiona is quiet and kind, but we cannot conclude that Fiona is rough because we do not know if the condition \"if someone is quiet and kind\" is the only condition for being rough.\n\n6. If someone is white then they are quiet. \n   We do not know if Fiona is white or not, so we cannot use this fact.\n\n7. If someone is blue and white then they are kind. \n   We know Fiona is blue, but we do not know if Fiona is white or not, so we cannot use this fact.\n\n8. If someone is white then they are blue. \n   We do not know if Fiona is white or not, so we cannot use this fact.\n\n9. Charlie is quiet. Erin is quiet. Erin is white. \n   We know Erin is quiet and white, but this does not provide any information about Fiona.\n\n10. Bob is kind. Bob is quiet. Bob is white. Charlie is quiet. \n    We know Charlie is quiet, and we know that if someone is white then they are quiet. This implies that Charlie is white, which matches fact 11.\n\n11. If Charlie is quiet then Charlie is white.\n    We already know Charlie is quiet and white, so this fact does not provide any new information.\n\nNow, we need to determine whether the statement \"Fiona is not kind\" is true, false, or unknown. We know that Fiona is kind (fact 1), so we can conclude that the statement \"Fiona is not kind\" is false.\n\nHowever, let's also examine the other facts about Fiona being blue and white. From fact 8, if someone is white then they are blue. And from fact 7, if someone is blue and white then they are kind. If we assume Fiona is white, then we can conclude that Fiona is kind based on fact 7.\n\nBut since Fiona is blue (fact 1), and from fact 8, if someone is white then they are blue, this implies that Fiona is white. Therefore, we can conclude that Fiona is indeed kind.\n\nSo, based on the given information and logical deductions, the statement \"Fiona is not kind\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not kind\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information, we know:\n   - Fiona is blue (Fiona is blue)\n   - Fiona is furry (Fiona is furry)\n   - Fiona is kind (Fiona is kind)\n   - Fiona is quiet (Fiona is quiet)\n\n2. We also have the following rules:\n   - All kind, rough people are furry. (Rule 1)\n   - Green, furry people are quiet. (Rule 2)\n   - If someone is rough then they are kind. (Rule 3)\n   - If someone is quiet and kind then they are rough. (Rule 4)\n   - If someone is white then they are quiet. (Rule 5)\n   - If someone is blue and white then they are kind. (Rule 6)\n   - If someone is white then they are blue. (Rule 7)\n   - If Charlie is quiet then Charlie is white. (Rule 8)\n\n3. Let's analyze the rules to see if we can derive any new information about Fiona:\n   - Since Fiona is kind, we can't directly apply Rule 3, but we can use Rule 4, which says if someone is quiet and kind then they are rough. However, we don't have enough information to confirm that Fiona is quiet and kind, so we can't directly apply this rule.\n   - We know Fiona is blue, so we can't directly apply Rule 6.\n   - We know Fiona is furry, so we can't directly apply Rule 1.\n\n4. Now, let's analyze the information we have about Fiona's characteristics:\n   - Fiona is blue\n   - Fiona is furry\n   - Fiona is kind\n   - Fiona is quiet\n\n5. We can use Rule 7 to conclude that since Fiona is white, then Fiona is blue. This rule is already satisfied since Fiona is blue.\n\n6. Now let's check if the statement \"Fiona is not kind\" is true, false, or unknown:\n   - We know Fiona is kind (Fiona is kind). So, we can conclude that the statement \"Fiona is not kind\" is false.\n\nTherefore, the final answer is:\n\\boxed{false}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_fiona, white_fiona), kind_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_fiona, blue_fiona)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_fiona, kind_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_fiona, kind_fiona), rough_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> white(X)",
+          "z3_formula": "Implies(quiet_fiona, white_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_fiona, white_fiona), kind_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_fiona, blue_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_fiona, rough_fiona), furry_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_fiona, furry_fiona), quiet_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_fiona, white_fiona), kind_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_fiona, rough_fiona), furry_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_fiona, kind_fiona), rough_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_fiona, quiet_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_fiona, blue_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_fiona, kind_fiona)",
+          "source_step": 6
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_fiona, rough_fiona), furry_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_fiona, kind_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_fiona, kind_fiona), rough_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_fiona, white_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_fiona, blue_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(charlie) -> white(charlie)",
+          "z3_formula": "Implies(quiet_charlie, white_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(fiona)",
+          "z3_formula": "Not(kind_fiona) == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_fiona, kind_fiona), rough_fiona)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_fiona, furry_fiona), rough_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(fiona)",
+          "z3_formula": "Not(kind_fiona == True)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_fiona, kind_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_fiona, kind_fiona), rough_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_fiona, white_fiona), kind_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_fiona, blue_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_fiona, quiet_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_fiona, rough_fiona), furry_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not(rough(fiona))",
+          "z3_formula": "Not(rough_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_fiona, furry_fiona), quiet_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_fiona, kind_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_fiona, kind_fiona), rough_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_fiona, quiet_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_fiona, blue_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_fiona, white_fiona), kind_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_fiona, rough_fiona), furry_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_fiona, furry_fiona), quiet_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_fiona, kind_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_fiona, kind_fiona), rough_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_fiona, quiet_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_fiona, white_fiona), kind_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_fiona, blue_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(charlie) -> white(charlie)",
+          "z3_formula": "Implies(quiet_charlie, white_charlie)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_fiona, rough_fiona), furry_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_fiona, furry_fiona), quiet_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_fiona, kind_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_fiona, kind_fiona), rough_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_fiona, quiet_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_fiona, white_fiona), kind_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_fiona, blue_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_fiona, rough_fiona), furry_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_fiona, furry_fiona), quiet_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_fiona, kind_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_fiona, kind_fiona), rough_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_fiona, quiet_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_fiona, white_fiona), kind_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_fiona, blue_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie) -> white(charlie)",
+          "z3_formula": "Implies(quiet_charlie, white_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(fiona)",
+          "z3_formula": "Not(kind_fiona) == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_fiona, rough_fiona), furry_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_fiona, furry_fiona), quiet_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_fiona, kind_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_fiona, kind_fiona), rough_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_fiona, quiet_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_fiona, white_fiona), kind_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_fiona, blue_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(charlie) -> white(charlie)",
+          "z3_formula": "Implies(quiet_charlie, white_charlie)",
+          "source_step": 2
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 129,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 22
+    },
+    "maxsat_stats": {
+      "satisfied": 20,
+      "excluded": 2,
+      "total_weight": 125,
+      "solve_time_ms": 0.9074639528989792
+    },
+    "timing": {
+      "trace_gen_s": 24.327,
+      "extraction_s": 25.721,
+      "dedup_s": 0.569,
+      "maxsat_s": 0.002,
+      "total_s": 50.619
+    }
+  }
+}

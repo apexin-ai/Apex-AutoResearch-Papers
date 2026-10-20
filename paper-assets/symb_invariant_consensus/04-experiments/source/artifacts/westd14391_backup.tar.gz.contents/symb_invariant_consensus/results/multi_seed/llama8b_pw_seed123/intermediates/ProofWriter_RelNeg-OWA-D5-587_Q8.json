@@ -1,0 +1,738 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-587_Q8",
+    "problem": "The bald eagle chases the squirrel. The bald eagle eats the bear. The bear does not eat the lion. The bear visits the lion. The lion does not eat the bald eagle. The squirrel is red. The squirrel visits the bald eagle. If something is round then it eats the squirrel. If something is blue and green then it chases the bald eagle. If something eats the squirrel then the squirrel is green. If the bald eagle is round then the bald eagle chases the lion. If something is blue then it chases the squirrel. All red things are blue. If something chases the lion then it is blue. Blue, red things are round. If something visits the bald eagle and it is not round then it visits the lion.\n\nDetermine whether the following statement is true, false, or unknown:\nThe squirrel does not eat the squirrel.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nEats($x, $y, bool) ::: Does x eat y?\nVisits($x, $y, bool) ::: Does x visit y?\nRed($x, bool) ::: Is x red?\nGreen($x, bool) ::: Is x green?\nBlue($x, bool) ::: Is x blue?\nRound($x, bool) ::: Is x round?\n\nFacts:\nChases(BaldEagle, Squirrel, True) ::: The bald eagle chases the squirrel.\nEats(BaldEagle, Bear, True) ::: The bald eagle eats the bear.\nEats(Bear, Lion, False) ::: The bear does not eat the lion.\nVisits(Bear, Lion, True) ::: The bear visits the lion.\nEats(Lion, BaldEagle, False) ::: The lion does not eat the bald eagle.\nRed(Squirrel, True) ::: The squirrel is red.\nVisits(Squirrel, BaldEagle, True) ::: The squirrel visits the bald eagle.\n\nRules:\nRound($x, True) >>> Eats($x, Squirrel, True) ::: If something is round then it eats the squirrel.\nBlue($x, True) && Green($x, True) >>> Chases($x, BaldEagle, True) ::: If something is blue and green then it chases the bald eagle.\nEats($x, Squirrel, True) >>> Green(Squirrel, True) ::: If something eats the squirrel then the squirrel is green.\nRound(BaldEagle, True) >>> Chases(BaldEagle, Lion, True) ::: If the bald eagle is round then the bald eagle chases the lion.\nBlue($x, True) >>> Chases($x, Squirrel, True) ::: If something is blue then it chases the squirrel.\nRed($x, True) >>> Blue($x, True) ::: All red things are blue.\nChases($x, Lion, True) >>> Blue($x, True) ::: If something chases the lion then it is blue.\nBlue($x, True) && Red($x, True) >>> Round($x, True) ::: Blue, red things are round.\nVisits($x, BaldEagle, True) && Round($x, False) >>> Visits($x, Lion, True) ::: If something visits the bald eagle and it is not round then it visits the lion.\n\nQuery:\nEats(Squirrel, Squirrel, False) ::: The squirrel does not eat the squirrel."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 86.5,
+      "True": 41.5,
+      "Unknown": 52.0
+    },
+    "answer_counts": {
+      "False": 9,
+      "True": 1,
+      "Unknown": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement 'The squirrel does not eat the squirrel' is true, false, or unknown, we need to analyze the given information.\n\n1. The squirrel is red. \n2. All red things are blue. \n3. If something is blue then it chases the squirrel. \n4. The squirrel visits the bald eagle. \n\nFrom (1), the squirrel is red.\nFrom (2), since the squirrel is red, it is also blue.\nFrom (3), since it's blue, it chases the squirrel.\n\nHowever, we also have information about what happens when something is round. But since we do not know if the squirrel is round, we cannot conclude that it eats the squirrel based on the round criteria.\n\nNow let's analyze the statement 'The squirrel does not eat the squirrel.' \n\nThere is no direct information that says the squirrel eats itself. However, we can use the information that if something is round then it eats the squirrel, and if something is blue and green then it chases the bald eagle. We also know that blue, red things are round.\n\nFrom (1), the squirrel is red.\nFrom (2), since the squirrel is red, it is also blue.\nFrom the information that blue, red things are round, the squirrel is also round.\n\nSince the squirrel is round, and if something is round then it eats the squirrel, the squirrel eats the squirrel.\n\nTherefore, the statement 'The squirrel does not eat the squirrel' is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel does not eat the squirrel\" is true, false, or unknown, we need to use the given information and logical deductions.\n\nGiven information:\n\n1. The squirrel is red. (Red)\n2. All red things are blue. (Blue)\n3. Blue things are round. (Round)\n4. If something is round then it eats the squirrel. (Eats squirrel)\n5. If something eats the squirrel then the squirrel is green. (Squirrel is green)\n6. The squirrel is red (not green). \n\nFrom (2), since the squirrel is red, it must be blue. From (3), since it's blue, it must be round.\n\nNow, we need to determine whether the squirrel eats the squirrel. \n\nFrom (4), since the squirrel is round, it eats the squirrel. However, this seems to contradict with the initial statement that the squirrel is red. The statement that red things are blue and subsequently round, seems to give us a contradiction. Therefore, we will consider the statements that do not contradict.\n\nSince we have determined that the squirrel is both round and red, then by (4) it eats the squirrel. \n\nSince the squirrel eats the squirrel, we can conclude that the statement \"The squirrel does not eat the squirrel\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we'll break down the given statements and analyze the properties of the objects involved.\n\n1. The bald eagle chases the squirrel.\n2. The bald eagle eats the bear.\n3. The bear does not eat the lion.\n4. The bear visits the lion.\n5. The lion does not eat the bald eagle.\n6. The squirrel is red.\n7. The squirrel visits the bald eagle.\n8. If something is round then it eats the squirrel.\n9. If something is blue and green then it chases the bald eagle.\n10. If something eats the squirrel then the squirrel is green.\n11. If the bald eagle is round then the bald eagle chases the lion.\n12. If something is blue then it chases the squirrel.\n13. All red things are blue.\n14. If something chases the lion then it is blue.\n15. Blue, red things are round.\n16. If something visits the bald eagle and it is not round then it visits the lion.\n\nNow, we'll evaluate the statement \"The squirrel does not eat the squirrel.\"\n\nFrom statement 6, we know that the squirrel is red. \n\nFrom statement 13, we know that all red things are blue. Therefore, the squirrel is also blue.\n\nFrom statement 15, we know that blue, red things are round. Therefore, the squirrel is also round.\n\nNow, we'll use statement 8, which says \"If something is round then it eats the squirrel.\" Since the squirrel is round, this statement implies that the squirrel eats the squirrel.\n\nHowever, we also have statement 10, which says \"If something eats the squirrel then the squirrel is green.\" This statement is in conflict with our previous conclusion that the squirrel is red (from statement 6). But we can still use this statement to determine the truth value of the given statement.\n\nSince we've concluded that the squirrel eats the squirrel (from statement 8), this implies that the squirrel eats the squirrel. Therefore, statement 10 is applicable here. \n\nAccording to statement 10, if the squirrel eats the squirrel, then the squirrel is green. But we already know that the squirrel is red. This statement cannot be true because if the squirrel is green then it cannot be red at the same time.\n\nHowever, we can conclude that the given statement \"The squirrel does not eat the squirrel\" is true because the squirrel is red and not green.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel does not eat the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The squirrel is red. (Given)\n2. All red things are blue. (Given)\n   So, the squirrel is blue. (From step 1 and step 2)\n\n3. If something is blue then it chases the squirrel. (Given)\n   However, we have the squirrel itself as a blue thing. So, this rule does not apply to the squirrel.\n   \n4. If something eats the squirrel then the squirrel is green. (Given)\n   This rule implies that if something is not green, it does not eat the squirrel.\n   Since the squirrel is blue (from step 2), we can't conclude that it does or does not eat the squirrel from this rule.\n\n5. The squirrel visits the bald eagle. (Given)\n   We don't know if the squirrel eats the bald eagle, but this rule is not relevant to the statement in question.\n   \n6. If the bald eagle is round then the bald eagle chases the lion. (Given)\n   We will come back to this rule later.\n\n7. Blue, red things are round. (Given)\n   Since the squirrel is blue (from step 2), it is also round. (From step 7)\n\n8. If something is round then it eats the squirrel. (Given)\n   Since the squirrel is round (from step 7), this rule implies that the squirrel eats the squirrel.\n\nHowever, we know that the squirrel is red, and all red things are blue, and blue, red things are round. So the squirrel is blue and red and round. We also know that blue things chase the squirrel and that blue things are round and red. Therefore, the squirrel does not eat itself because it is blue.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel does not eat the squirrel\" is true, false, or unknown, we need to analyze the given statements and find any information related to the squirrel eating itself.\n\nFrom the given statements:\n\n1. The squirrel is red.\n2. All red things are blue.\n3. Blue, red things are round.\n4. If something is round then it eats the squirrel.\n5. If something is blue then it chases the squirrel.\n\nFrom statement 1, the squirrel is red. \nFrom statement 2, all red things are blue, so the squirrel is blue.\nFrom statement 3, blue, red things are round, so the squirrel is round.\n\nNow, since the squirrel is round (from statement 3), we can use statement 4: If something is round then it eats the squirrel. This implies that the squirrel eats the squirrel.\n\nTherefore, the statement \"The squirrel does not eat the squirrel\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the given statement is true, false, or unknown, we need to analyze the information provided.\n\n1. The squirrel is red. (Given)\n2. All red things are blue. (Given)\n   Therefore, the squirrel is blue. (From 1 and 2)\n\n3. If something is blue then it chases the squirrel. (Given)\n   Since the squirrel is blue, it must chase the squirrel. However, this does not directly tell us if the squirrel eats the squirrel.\n\n4. If something eats the squirrel then the squirrel is green. (Given)\n   This implies that if the squirrel eats the squirrel, the squirrel would be green, but since we already know the squirrel is blue, this statement does not help us directly.\n\n5. The statement we are trying to evaluate is: The squirrel does not eat the squirrel.\n   We know the squirrel is blue (from step 2) but we still need to determine if the squirrel eats the squirrel.\n\n6. If something is round then it eats the squirrel. (Given)\n   We do not have information about the squirrel being round or not.\n\n7. We also know that blue, red things are round. (Given)\n   Since the squirrel is blue (and also red from the first statement), it must be round.\n\n8. From step 6, if the squirrel is round then it eats the squirrel.\n   Therefore, since the squirrel is indeed round, it must eat the squirrel.\n\nSince the squirrel eats the squirrel, the statement \"The squirrel does not eat the squirrel\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to determine the properties of the objects mentioned and then use the given statements to find the relationship between the squirrel and itself.\n\n1. The squirrel is red (given).\n2. All red things are blue (given).\n3. Blue, red things are round (given).\n\nFrom the above points, we can conclude that the squirrel is blue and round.\n\n4. If something is round then it eats the squirrel (given).\n\nSince the squirrel is round, it eats the squirrel.\n\nNow, let's consider the statement \"The squirrel does not eat the squirrel.\"\n\nBased on the conclusion we reached in step 4, the squirrel eats the squirrel. Therefore, the statement \"The squirrel does not eat the squirrel\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine if the statement \"The squirrel does not eat the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The squirrel is red. (Given)\n2. All red things are blue. (Given)\n3. Blue, red things are round. (Given)\n4. Since the squirrel is red, it is also blue and round. (From 1 and 2)\n\nNow we analyze the conditions that apply to the squirrel's color and shape:\n\n- If something is round then it eats the squirrel. (Given)\n- Since the squirrel is round, it should eat the squirrel. (From 4)\n\nHowever, we also know:\n\n- If something eats the squirrel then the squirrel is green. (Given)\n\nSince the squirrel eats itself, it contradicts the fact that the squirrel is red. Therefore, we conclude that the statement \"The squirrel is red\" is false, which leads to a contradiction.\n\nHowever, we cannot directly determine if the statement \"The squirrel does not eat the squirrel\" is true or false. We need to examine the possibilities based on the given conditions.\n\n- If the squirrel is green, then it does not eat itself because there is no condition that states something eating the squirrel implies it eats itself.\n- However, we know that the squirrel is red (from the initial information), so we cannot conclude it is green.\n\nWe cannot determine if the statement is true or false because we have a contradiction regarding the color of the squirrel. However, we can conclude that the information is insufficient to determine if the statement is true or false, but we can say that if the information about the squirrel's color is correct (i.e., the squirrel is red), then the statement would be false because the squirrel eats itself.\n\nSince we cannot directly determine if the statement \"The squirrel does not eat the squirrel\" is true or false, but the initial conditions imply that it is false (if the squirrel's color is indeed red), we will mark it as follows:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to use the given information to deduce the properties of the squirrel and then determine if it eats itself.\n\nGiven information:\n- The squirrel is red.\n- All red things are blue.\n- Blue things are round.\n- Blue, red things are round.\n- If something is round then it eats the squirrel.\n- If something is blue and green then it chases the bald eagle (this statement is irrelevant to this problem).\n- If something eats the squirrel then the squirrel is green (this statement is irrelevant to this problem).\n- The squirrel visits the bald eagle.\n\nFrom the given information, we can deduce that:\n- The squirrel is red.\n- Since the squirrel is red, it is also blue.\n- Since the squirrel is blue, it is also round.\n- As a round thing, the squirrel eats the squirrel.\n\nHowever, this conclusion is based on the statement that if something is round, it eats the squirrel. But this statement only applies if the round thing is not the squirrel. Since we concluded that the squirrel is round, we should be cautious about this conclusion.\n\nThe problem statement also says \"If something visits the bald eagle and it is not round then it visits the lion.\" We know that the squirrel visits the bald eagle, but we do not know if the squirrel is round or not. However, we concluded earlier that the squirrel is round. This conclusion seems contradictory to the statement, but it is actually consistent because the statement says \"it is not round,\" which means the thing visiting the bald eagle must be round.\n\nGiven this information, we cannot conclude that the squirrel eats the squirrel because the condition for the round thing to eat the squirrel (i.e., not being the squirrel) is not met. In other words, the conclusion that the squirrel eats the squirrel is based on an incorrect assumption.\n\nHowever, there is another condition for the statement \"If something is round then it eats the squirrel.\" which is that the round thing is not the squirrel. Since the squirrel is round, we should consider the possibility that the squirrel does not eat itself because it is not a different entity from itself.\n\nTherefore, based on the given information and the conditions provided, we cannot determine whether the statement is true or false. The correct answer is unknown because the conditions provided do not provide enough information to conclusively determine whether the squirrel eats the squirrel.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine if the statement \"The squirrel does not eat the squirrel\" is true, false, or unknown, we need to analyze the given information and find any relevant relationships between the squirrel and itself.\n\nFrom the problem statement, we know the following:\n\n1. The squirrel is red. \n2. All red things are blue.\n3. Blue, red things are round.\n\nThis implies that the squirrel is round and blue.\n\n4. If something is round then it eats the squirrel.\n5. The squirrel is round.\n\nFrom the above two points, we can conclude that the squirrel eats the squirrel. \n\nHowever, the statement \"The squirrel does not eat the squirrel\" is being evaluated.\n\nBased on the given information that the squirrel eats the squirrel, the statement \"The squirrel does not eat the squirrel\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel does not eat the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The squirrel is red (given)\n2. All red things are blue (given)\n   So, the squirrel is also blue (because it is red and all red things are blue)\n3. Blue things are round (given)\n   So, the squirrel is also round (because it is blue and blue things are round)\n4. If something is round, then it eats the squirrel (given)\n   Since the squirrel is round, this means the squirrel eats the squirrel (because it is round and round things eat the squirrel)\n5. The statement \"The squirrel does not eat the squirrel\" is false because we found out in step 4 that the squirrel actually eats the squirrel.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel does not eat the squirrel\" is true, false, or unknown, we need to analyze the given information and apply the logical rules.\n\nGiven information:\n\n1. The squirrel is red.\n2. All red things are blue.\n3. Blue, red things are round.\n4. If something is round then it eats the squirrel.\n5. If something is blue and green then it chases the bald eagle.\n6. If the bald eagle is round then the bald eagle chases the lion.\n7. The squirrel visits the bald eagle.\n8. If something visits the bald eagle and it is not round then it visits the lion.\n\nAnalysis:\n\nFrom (1), the squirrel is red.\nFrom (2), since the squirrel is red, it is also blue.\nFrom (3), since the squirrel is blue and red, it is also round.\nFrom (4), since the squirrel is round, it eats the squirrel. \n\nNow, we need to determine whether this conclusion is true or false.\n\nSince we have concluded that the squirrel eats the squirrel based on the given information, the statement \"The squirrel does not eat the squirrel\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_squirrel, blue_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases_squirrel(X)",
+          "z3_formula": "Implies(blue_squirrel, chases_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats_squirrel(X)",
+          "z3_formula": "Implies(round_squirrel, eats_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> chases_bald_eagle(X)",
+          "z3_formula": "Implies(And(blue_squirrel, green_squirrel), chases_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_squirrel, red_squirrel), round_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "eats_squirrel(squirrel)",
+          "z3_formula": "eats_squirrel == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_squirrel, blue_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> round(X)",
+          "z3_formula": "Implies(blue_squirrel, round_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats_squirrel(X)",
+          "z3_formula": "Implies(round_squirrel, eats_squirrel_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats_squirrel(X) -> green(squirrel)",
+          "z3_formula": "Implies(eats_squirrel_squirrel, green_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel) == False",
+          "z3_formula": "red_squirrel == False",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "eats_squirrel(squirrel)",
+          "z3_formula": "eats_squirrel_squirrel == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(round_squirrel, eats_squirrel_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> green(squirrel)",
+          "z3_formula": "Implies(eats_squirrel_squirrel, green_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "eats(squirrel, squirrel)",
+          "z3_formula": "eats_squirrel_squirrel == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not green(squirrel)",
+          "z3_formula": "Not(green_squirrel) == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not eats(squirrel, squirrel)",
+          "z3_formula": "Not(eats_squirrel_squirrel) == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_squirrel, blue_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> round(X)",
+          "z3_formula": "Implies(blue_squirrel, round_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(round_squirrel, eats_squirrel_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "eats(squirrel, squirrel)",
+          "z3_formula": "eats_squirrel_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases(X, squirrel)",
+          "z3_formula": "Implies(blue_squirrel, chases_squirrel_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, squirrel)",
+          "z3_formula": "chases_squirrel_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> chases(X, lion)",
+          "z3_formula": "Implies(round_bald_eagle, chases_bald_eagle_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "chases(bald_eagle, lion)",
+          "z3_formula": "chases_bald_eagle_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> green(X)",
+          "z3_formula": "Implies(eats_squirrel_squirrel, green_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == False",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_squirrel, red_squirrel), round_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_squirrel, blue_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_squirrel, red_squirrel), round_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(round_squirrel, eats_squirrel_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases(X, squirrel)",
+          "z3_formula": "Implies(blue_squirrel, chases_squirrel_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "eats(squirrel, squirrel)",
+          "z3_formula": "eats_squirrel_squirrel == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_squirrel, blue_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_squirrel, red_squirrel), round_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(round_squirrel, eats_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "eats(squirrel, squirrel)",
+          "z3_formula": "eats_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> green(squirrel)",
+          "z3_formula": "Implies(eats_squirrel, green_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases(X, squirrel)",
+          "z3_formula": "Implies(blue_squirrel, chases_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, squirrel)",
+          "z3_formula": "chases_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(squirrel, squirrel)",
+          "z3_formula": "Not(eats_squirrel)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_squirrel, blue_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_squirrel, red_squirrel), round_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(squirrel) & round(squirrel)",
+          "z3_formula": "And(blue_squirrel, round_squirrel) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(round_squirrel, eats_squirrel_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "eats(squirrel, squirrel)",
+          "z3_formula": "eats_squirrel_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(squirrel, squirrel)",
+          "z3_formula": "Not(eats_squirrel_squirrel) == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_squirrel, blue_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_squirrel, red_squirrel), round_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(round_squirrel, eats_squirrel_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "eats(squirrel, squirrel)",
+          "z3_formula": "eats_squirrel_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> green(squirrel)",
+          "z3_formula": "Implies(eats_squirrel_squirrel, green_squirrel)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_squirrel, blue_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> round(X)",
+          "z3_formula": "Implies(blue_squirrel, round_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_squirrel, red_squirrel), round_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(round_squirrel, eats_squirrel_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & Not(round(X)) -> visits(X, lion)",
+          "z3_formula": "Implies(And(visits_squirrel_bald_eagle, Not(round_squirrel)), visits_squirrel_lion)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_squirrel, blue_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_squirrel, red_squirrel), round_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(squirrel) & blue(squirrel)",
+          "z3_formula": "And(round_squirrel, blue_squirrel) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(round_squirrel, eats_squirrel_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "eats(squirrel, squirrel)",
+          "z3_formula": "eats_squirrel_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not eats(squirrel, squirrel)",
+          "z3_formula": "Not(eats_squirrel_squirrel) == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_squirrel, blue_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> round(X)",
+          "z3_formula": "Implies(blue_squirrel, round_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(round_squirrel, eats_squirrel_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "eats(squirrel, squirrel)",
+          "z3_formula": "eats_squirrel_squirrel == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_squirrel, blue_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_squirrel, red_squirrel), round_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(round_squirrel, eats_squirrel_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & Not(round(X)) -> visits(X, lion)",
+          "z3_formula": "Implies(And(visits_squirrel_bald_eagle, Not(round_squirrel)), visits_squirrel_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "eats(squirrel, squirrel)",
+          "z3_formula": "eats_squirrel_squirrel == True",
+          "source_step": 7
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 101,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 28
+    },
+    "maxsat_stats": {
+      "satisfied": 24,
+      "excluded": 4,
+      "total_weight": 94,
+      "solve_time_ms": 1.4435863122344017
+    },
+    "timing": {
+      "trace_gen_s": 5.984,
+      "extraction_s": 16.386,
+      "dedup_s": 0.614,
+      "maxsat_s": 0.003,
+      "total_s": 22.988
+    }
+  }
+}

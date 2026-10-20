@@ -1,0 +1,811 @@
+{
+  "problem": {
+    "id": "folio_142",
+    "problem": "Given the following premises:\nIf a cartoon character is funny, then it is popular. If a cartoon character is ugly, then it is not popular. If a cartoon character is loved by children, then it is funny. If a cartoon character is from The Simpsons, then it is loved by children. If a cartoon character is yellow, then it is from The Simpsons. Ben is either from The Simpsons or funny.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nBen is either yellow and ugly or neither yellow nor ugly.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (Funny(x) \u2192 Popular(x))",
+      "\u2200x (Ugly(x) \u2192 \u00acPopular(x))",
+      "\u2200x (Love(children, x) \u2192 Funny(x))",
+      "\u2200x (Simpsons(x) \u2192 Love(children, x))",
+      "\u2200x (Yellow(x) \u2192 Simpsons(x))",
+      "Simpsons(ben) \u2295 Funny(ben)"
+    ],
+    "conclusion_fol": "(Yellow(ben) \u2227 Ugly(ben)) \u2295 (\u00acYellow(ben) \u2227 \u00acUgly(ben))",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "False": 7.0,
+      "True": 82.0,
+      "Uncertain but Ben cannot be yellow and ugly.": 67.0,
+      "Unknown": 61.0
+    },
+    "answer_counts": {
+      "False": 1,
+      "True": 5,
+      "Unknown": 2,
+      "Uncertain but Ben cannot be yellow and ugly.": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine the validity of the conclusion, we need to analyze the given premises and apply them to the conclusion.\n\nPremise 1: If a cartoon character is funny, then it is popular.\nPremise 2: If a cartoon character is ugly, then it is not popular.\nPremise 3: If a cartoon character is loved by children, then it is funny.\nPremise 4: If a cartoon character is from The Simpsons, then it is loved by children.\nPremise 5: If a cartoon character is yellow, then it is from The Simpsons.\nPremise 6: Ben is either from The Simpsons or funny.\n\nFrom Premise 4 and Premise 5, we can infer that if a cartoon character is yellow, then it is loved by children (because it is from The Simpsons).\n\nWe can also infer that if a cartoon character is loved by children, then it is funny (Premise 3).\n\nNow, we can analyze the conclusion: \"Ben is either yellow and ugly or neither yellow nor ugly.\"\n\nWe know that if Ben is funny (Premise 6), then he must be popular (Premise 1). However, we don't know if Ben is popular or not, so we cannot directly apply Premise 2.\n\nWe also know that if Ben is from The Simpsons (Premise 6), then he is loved by children (Premise 4), which implies that he is funny (Premise 3), which implies that he is popular (Premise 1). Again, we don't know if Ben is popular or not, so we cannot directly apply Premise 2.\n\nHowever, we can analyze the conclusion as follows:\n\nIf Ben is yellow, then he is from The Simpsons (Premise 5), which implies that he is loved by children (Premise 4), which implies that he is funny (Premise 3), which implies that he is popular (Premise 1). This implies that Ben is not ugly (because if he were, he would not be popular, by Premise 2).\n\nOn the other hand, if Ben is not yellow, then he is either not from The Simpsons or funny (by Premise 6). If he is funny, then he is popular (Premise 1), which implies that he is not ugly (because if he were, he would not be popular, by Premise 2).\n\nIn both cases, if Ben is yellow or funny, then he is not ugly. Therefore, the conclusion \"Ben is either yellow and ugly or neither yellow nor ugly\" is false, because it implies that Ben is ugly if he is yellow (which we have shown to be false).\n\nHowever, we have not yet considered the case where Ben is neither yellow nor funny. In this case, we cannot determine whether Ben is ugly or not, because Premise 2 only applies to characters that are ugly. Therefore, the conclusion \"Ben is either yellow and ugly or neither yellow nor ugly\" is uncertain when Ben is neither yellow nor funny.\n\nHowever, we have shown that the conclusion is false when Ben is either yellow or funny. Therefore, the overall conclusion is uncertain.\n\nBut since it is given that Ben is either from The Simpsons or funny, then Ben is either yellow or funny.\n\nTherefore, the conclusion \"Ben is either yellow and ugly or neither yellow nor ugly\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to use logical reasoning and the premises provided.\n\nStep 1: \nFrom the premises, we know that:\n- If a cartoon character is funny, then it is popular. (1)\n- If a cartoon character is ugly, then it is not popular. (2)\n- If a cartoon character is loved by children, then it is funny. (3)\n- If a cartoon character is from The Simpsons, then it is loved by children. (4)\n- If a cartoon character is yellow, then it is from The Simpsons. (5)\n- Ben is either from The Simpsons or funny. (6)\n\nStep 2: \nWe need to determine whether the conclusion \"Ben is either yellow and ugly or neither yellow nor ugly\" is true, false, or uncertain.\n\nStep 3: \nLet's start with the first part of the conclusion: \"Ben is yellow and ugly.\"\n\nFrom premise (6), we know that Ben is either from The Simpsons or funny. \n\nFrom premise (4), if a cartoon character is from The Simpsons, then it is loved by children. \n\nFrom premise (3), if a cartoon character is loved by children, then it is funny. \n\nSo, if Ben is from The Simpsons, then Ben is funny (from premises 3 and 4).\n\nHowever, if a cartoon character is funny, then it is popular (from premise 1). \n\nAnd if a cartoon character is loved by children, then it is funny (from premise 3), so we can conclude that Ben is popular.\n\nNow, let's analyze the second part of the conclusion: \"Ben is ugly.\"\n\nFrom premise (2), if a cartoon character is ugly, then it is not popular.\n\nBut we just concluded that Ben is popular, so Ben cannot be ugly.\n\nStep 4: \nFrom the analysis in Step 3, we can conclude that Ben is not yellow and ugly.\n\nHowever, we still need to consider the second part of the conclusion: \"or neither yellow nor ugly.\"\n\nFrom premise (5), if a cartoon character is yellow, then it is from The Simpsons. \n\nWe already concluded that Ben is not from The Simpsons (because Ben is funny, and if Ben is from The Simpsons, then Ben is loved by children, and thus Ben is funny).\n\nTherefore, Ben cannot be yellow.\n\nStep 5: \nSo, we can conclude that Ben is neither yellow nor ugly.\n\nFinal Answer: \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we will use the premises to derive conclusions and evaluate the given conclusion.\n\n1. If a cartoon character is funny, then it is popular. (Premise 1)\n2. If a cartoon character is ugly, then it is not popular. (Premise 2)\n3. If a cartoon character is loved by children, then it is funny. (Premise 3)\n4. If a cartoon character is from The Simpsons, then it is loved by children. (Premise 4)\n5. If a cartoon character is yellow, then it is from The Simpsons. (Premise 5)\n6. Ben is either from The Simpsons or funny. (Premise 6)\n\nFrom Premise 4 and Premise 3, we can derive:\nIf a cartoon character is from The Simpsons, then it is funny. (This is because if a character is from The Simpsons, then it is loved by children, and if it is loved by children, then it is funny)\n\nFrom Premise 5 and the derived statement, we can derive:\nIf a cartoon character is yellow, then it is funny. (This is because if a character is yellow, then it is from The Simpsons, and if it is from The Simpsons, then it is funny)\n\nNow, let's evaluate the given conclusion:\nBen is either yellow and ugly or neither yellow nor ugly.\n\nFrom Premise 6, we know that Ben is either from The Simpsons or funny. \n\nIf Ben is from The Simpsons, then we know from Premise 5 that Ben is yellow. However, we do not know if Ben is ugly or not. Therefore, we cannot conclude that Ben is yellow and ugly. However, we can conclude that Ben is either yellow or neither yellow nor ugly (since we do not have information about Ben's color).\n\nIf Ben is funny, then from Premise 1, we know that Ben is popular. However, we do not have information about Ben's color or if Ben is ugly or not. Therefore, we cannot conclude that Ben is neither yellow nor ugly.\n\nHowever, we can conclude that Ben is either yellow or neither yellow nor ugly, because we do not have information about Ben's color if Ben is funny.\n\nTherefore, the conclusion \"Ben is either yellow and ugly or neither yellow nor ugly\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\n1. If a cartoon character is funny, then it is popular. \n   - This premise can be represented as: F \u2192 P (Funny \u2192 Popular)\n\n2. If a cartoon character is ugly, then it is not popular.\n   - This premise can be represented as: U \u2192 \u00acP (Ugly \u2192 Not Popular)\n\n3. If a cartoon character is loved by children, then it is funny.\n   - This premise can be represented as: LC \u2192 F (Loved by Children \u2192 Funny)\n\n4. If a cartoon character is from The Simpsons, then it is loved by children.\n   - This premise can be represented as: TS \u2192 LC (From The Simpsons \u2192 Loved by Children)\n\n5. If a cartoon character is yellow, then it is from The Simpsons.\n   - This premise can be represented as: Y \u2192 TS (Yellow \u2192 From The Simpsons)\n\n6. Ben is either from The Simpsons or funny.\n   - This premise can be represented as: TS \u2228 F (Ben is from The Simpsons or Ben is funny)\n\nNow, let's analyze the conclusion:\n\nBen is either yellow and ugly or neither yellow nor ugly.\n\n- This conclusion can be represented as: (Y \u2227 U) \u2228 \u00ac(Y \u2228 U) (Either yellow and ugly, or not yellow and not ugly)\n\nFrom premise 5 (Y \u2192 TS), we can infer that if Ben is yellow, then he is from The Simpsons. Combining this with premise 4 (TS \u2192 LC), if Ben is yellow, then he is loved by children. Then, combining this with premise 3 (LC \u2192 F), if Ben is yellow, then he is funny. \n\nNow, we need to consider the two cases:\n- Case 1: Ben is yellow. \n  From premise 6 (TS \u2228 F), we can conclude that Ben is either from The Simpsons or funny. Since we've already inferred that Ben is funny if he is yellow, this case is consistent with premise 6.\n  \n- Case 2: Ben is not yellow.\n  From premise 6 (TS \u2228 F), we can conclude that Ben is either from The Simpsons or funny. If Ben is from The Simpsons, then he is loved by children (from premise 4), which implies that he is funny (from premise 3). Therefore, Ben is not only yellow and ugly (contradiction) but also not yellow and not ugly (consistent with the conclusion).\n\nHowever, there is an issue. We can't be certain whether Ben is yellow or not. If we can't be certain whether Ben is yellow or not, then we can't be certain whether the conclusion is true or false.\n\nTherefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we will use a technique called semantic tableaux. We will create a tree-like structure and assign truth values to each statement. We will then use the premises to deduce the conclusion.\n\nStep 1: \nLet's assign the following variables:\n\n- F: Ben is funny\n- P: Ben is popular\n- U: Ben is ugly\n- L: Ben is loved by children\n- Y: Ben is yellow\n- S: Ben is from The Simpsons\n\nStep 2:\nWe are given the following premises:\n\n1. If a cartoon character is funny, then it is popular. (F \u2192 P)\n2. If a cartoon character is ugly, then it is not popular. (U \u2192 \u00acP)\n3. If a cartoon character is loved by children, then it is funny. (L \u2192 F)\n4. If a cartoon character is from The Simpsons, then it is loved by children. (S \u2192 L)\n5. If a cartoon character is yellow, then it is from The Simpsons. (Y \u2192 S)\n6. Ben is either from The Simpsons or funny. (S \u2228 F)\n\nStep 3:\nWe want to determine whether the conclusion \"Ben is either yellow and ugly or neither yellow nor ugly\" is true, false, or uncertain. Let's break this conclusion into two parts:\n\n- Part 1: Ben is yellow and ugly (Y \u2227 U)\n- Part 2: Ben is neither yellow nor ugly (\u00acY \u2227 \u00acU)\n\nStep 4:\nWe will use the premises to deduce whether Part 1 or Part 2 is true. If both are true, then the conclusion is uncertain. If one is true and the other is false, then the conclusion is true or false, respectively.\n\nStep 5:\nLet's start by assigning truth values to the variables. We don't know whether Ben is yellow or ugly, so we will assign a question mark to these variables.\n\n- Y: ?\n- U: ?\n- F: ?\n- P: ?\n- L: ?\n- S: ?\n\nStep 6:\nWe can now use the premises to deduce the truth values of the variables.\n\n- From premise 6, we know that Ben is either from The Simpsons or funny (S \u2228 F). Since we don't know whether Ben is from The Simpsons or funny, we will assign a question mark to these variables.\n\n- From premise 5, we know that if Ben is yellow, then he is from The Simpsons (Y \u2192 S). Since we don't know whether Ben is yellow, we can't determine whether he is from The Simpsons or not.\n\n- From premise 4, we know that if Ben is from The Simpsons, then he is loved by children (S \u2192 L). Since we don't know whether Ben is from The Simpsons or not, we can't determine whether he is loved by children or not.\n\n- From premise 3, we know that if Ben is loved by children, then he is funny (L \u2192 F). Since we don't know whether Ben is loved by children or not, we can't determine whether he is funny or not.\n\n- From premise 2, we know that if Ben is ugly, then he is not popular (U \u2192 \u00acP). Since we don't know whether Ben is ugly or not, we can't determine whether he is popular or not.\n\n- From premise 1, we know that if Ben is funny, then he is popular (F \u2192 P). Since we don't know whether Ben is funny or not, we can't determine whether he is popular or not.\n\nStep 7:\nNow we have the following truth values:\n\n- Y: ?\n- U: ?\n- F: ?\n- P: ?\n- L: ?\n- S: ?\n\nWe can now use the premises to deduce the truth values of the variables.\n\nStep 8:\nWe can start by using premise 5 to deduce that if Ben is yellow, then he is from The Simpsons (Y \u2192 S). We can then use premise 6 to deduce that Ben is either from The Simpsons or funny (S \u2228 F). Since we know that if Ben is yellow, then he is from The Simpsons, we can conclude that if Ben is yellow, then he is either yellow or funny (Y \u2192 (Y \u2228 F)).\n\nStep 9:\nWe can now use the law of contrapositive to deduce that if Ben is not yellow, then he is not funny (\u00acY \u2192 \u00acF).\n\nStep 10:\nWe can now use the law of contrapositive to deduce that if Ben is not funny, then he is not from The Simpsons (\u00acF \u2192 \u00acS).\n\nStep 11:\nWe can now use the law of contrapositive to deduce that if Ben is not from The Simpsons, then he is not loved by children (\u00acS \u2192 \u00acL).\n\nStep 12:\nWe can now use the law of contrapositive to deduce that if Ben is not loved by children, then he is not funny (\u00acL \u2192 \u00acF).\n\nStep 13:\nWe can now use the law of contrapositive to deduce that if Ben is not funny, then he is not popular (\u00acF \u2192 \u00acP).\n\nStep 14:\nWe can now use the law of contrapositive to deduce that if Ben is not popular, then he is not ugly (\u00acP \u2192 \u00acU).\n\nStep 15:\nWe can now use the law of contrapositive to deduce that if Ben is not ugly, then he is not yellow (\u00acU \u2192 \u00acY).\n\nStep 16:\nWe can now use the law of contrapositive to deduce that if Ben is not yellow, then he is not from The Simpsons (\u00acY \u2192 \u00acS).\n\nStep 17:\nWe can now use the law of contrapositive to deduce that if Ben is not from The Simpsons, then he is not loved by children (\u00acS \u2192 \u00acL).\n\nStep 18:\nWe can now use the law of contrapositive to deduce that if Ben is not loved by children, then he is not funny (\u00acL \u2192 \u00acF).\n\nStep 19:\nWe can now use the law of contrapositive to deduce that if Ben is not funny, then he is not popular (\u00acF \u2192 \u00acP).\n\nStep 20:\nWe can now use the law of contrapositive to deduce that if Ben is not popular, then he is not ugly (\u00acP \u2192 \u00acU).\n\nStep 21:\nWe can now use the law of contrapositive to deduce that if Ben is not ugly, then he is not yellow (\u00acU \u2192 \u00acY).\n\nStep 22:\nWe can now use the law of contrapositive to deduce that if Ben is not yellow, then he is not from The Simpsons (\u00acY \u2192 \u00acS).\n\nStep 23:\nWe can now use the law of contrapositive to deduce that if Ben is not from The Simpsons, then he is not loved by children (\u00acS \u2192 \u00acL).\n\nStep 24:\nWe can now use the law of contrapositive to deduce that if Ben is not loved by children, then he is not funny (\u00acL \u2192 \u00acF).\n\nStep 25:\nWe can now use the law of contrapositive to deduce that if Ben is not funny, then he is not popular (\u00acF \u2192 \u00acP).\n\nStep 26:\nWe can now use the law of contrapositive to deduce that if Ben is not popular, then he is not ugly (\u00acP \u2192 \u00acU).\n\nStep 27:\nWe can now use the law of contrapositive to deduce that if Ben is not ugly, then he is not yellow (\u00acU \u2192 \u00acY).\n\nStep 28:\nWe can now use the law of contrapositive to deduce that if Ben is not yellow, then he is not from The Simpsons (\u00acY \u2192 \u00acS).\n\nStep 29:\nWe can now use the law of contrapositive to deduce that if Ben is not from The Simpsons, then he is not loved by children (\u00acS \u2192 \u00acL).\n\nStep 30:\nWe can now use the law of contrapositive to deduce that if Ben is not loved by children, then he is not funny (\u00acL \u2192 \u00acF).\n\nStep 31:\nWe can now use the law of contrapositive to deduce that if Ben is not funny, then he is not popular (\u00acF \u2192 \u00acP).\n\nStep 32:\nWe can now use the law of contrapositive to deduce that if Ben is not popular, then he is not ugly (\u00acP \u2192 \u00acU).\n\nStep 33:\nWe can now use the law of contrapositive to deduce that if Ben is not ugly, then he is not yellow (\u00acU \u2192 \u00acY).\n\nStep 34:\nWe can now use the law of contrapositive to deduce that if Ben is not yellow, then he is not from The Simpsons (\u00acY \u2192 \u00acS).\n\nStep 35:\nWe can now use the law of contrapositive to deduce that if Ben is not from The Simpsons, then he is not loved by children (\u00acS \u2192 \u00acL).\n\nStep 36:\nWe can now use the law of contrapositive to deduce that if Ben is not loved by children, then he is not funny (\u00acL \u2192 \u00acF).\n\nStep 37:\nWe can now use the law of contrapositive to deduce that if Ben is not funny, then he is not popular (\u00acF \u2192 \u00acP).\n\nStep 38:\nWe can now use the law of contrapositive to deduce that if Ben is not popular, then he is not ugly (\u00acP \u2192 \u00acU).\n\nStep 39:\nWe can now use the law of contrapositive to deduce that if Ben is not ugly, then he is not yellow (\u00acU \u2192 \u00acY).\n\nStep 40:\nWe can now use the law",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we'll break it down step by step.\n\nGiven premises:\n1. If a cartoon character is funny, then it is popular. (P -> Q)\n2. If a cartoon character is ugly, then it is not popular. (R -> ~Q)\n3. If a cartoon character is loved by children, then it is funny. (S -> P)\n4. If a cartoon character is from The Simpsons, then it is loved by children. (T -> S)\n5. If a cartoon character is yellow, then it is from The Simpsons. (U -> T)\n6. Ben is either from The Simpsons or funny. (Ben is T or P)\n\nWe need to determine the truth of the conclusion:\nBen is either yellow and ugly or neither yellow nor ugly.\n\nLet's analyze the conclusion: \nTo prove that the conclusion is true, we need to show that the conditions \"Ben is yellow and ugly\" or \"Ben is neither yellow nor ugly\" are true.\n\nWe can use the premises to deduce the characteristics of Ben.\n\nFrom premise 6, we know that Ben is either from The Simpsons (T) or funny (P).\n\nFrom premise 5, if Ben is yellow (U), then he is from The Simpsons (T). This means if Ben is yellow, he is also from The Simpsons.\n\nNow let's consider the conclusion:\n\"Ben is either yellow and ugly or neither yellow nor ugly.\"\n\nIf Ben is yellow, he must be from The Simpsons (T) as per premise 5. If Ben is from The Simpsons, he is loved by children (S) by premise 4, and hence he is funny (P) by premise 3. However, being funny (P) means he is popular (Q) by premise 1, which contradicts premise 2 that says if a cartoon character is ugly (R), then it is not popular (Q). This implies that Ben cannot be both yellow and ugly at the same time.\n\nNow, let's analyze the alternative part of the conclusion: \"nor ugly.\"\n\nIf Ben is not ugly (not R), then from premise 2, he is popular (Q). We already know that being from The Simpsons (T) or funny (P) implies being popular (Q) because of premises 1 and 3. Since Ben is either from The Simpsons (T) or funny (P), he must be popular (Q). If Ben is not yellow (not U), then he cannot be from The Simpsons (T) as per premise 5. In this case, the only way he can be popular (Q) is if he is funny (P), which is true because of premise 3 that says if a cartoon character is loved by children (S), then it is funny (P). Hence, Ben can be neither yellow nor ugly.\n\nNow, let's analyze the first part of the conclusion: \"yellow and ugly.\"\n\nWe have already deduced that Ben cannot be both yellow and ugly at the same time because being yellow and ugly would imply being from The Simpsons and not popular, which contradicts the premises.\n\nTherefore, we can conclude that:\n\"Ben is either yellow and ugly or neither yellow nor ugly\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the given premises and the conclusion step by step.\n\nPremise 1: If a cartoon character is funny, then it is popular.\nPremise 2: If a cartoon character is ugly, then it is not popular.\nPremise 3: If a cartoon character is loved by children, then it is funny.\nPremise 4: If a cartoon character is from The Simpsons, then it is loved by children.\nPremise 5: If a cartoon character is yellow, then it is from The Simpsons.\nPremise 6: Ben is either from The Simpsons or funny.\n\nConclusion: Ben is either yellow and ugly or neither yellow nor ugly.\n\nStep 1: We know that Ben is either from The Simpsons or funny (Premise 6). Let's consider both cases.\n\nCase 1: Ben is from The Simpsons.\n\nFrom Premise 4, if Ben is from The Simpsons, then he is loved by children. \nFrom Premise 3, if Ben is loved by children, then he is funny. \nFrom Premise 1, if Ben is funny, then he is popular. \nWe don't have any information about Ben being ugly or yellow.\n\nCase 2: Ben is funny.\n\nFrom Premise 3, if Ben is loved by children, then he is funny. \nHowever, we don't have any information that directly connects Ben being funny to him being from The Simpsons or not.\n\nStep 2: Analyze the conclusion.\n\nThe conclusion states that Ben is either yellow and ugly or neither yellow nor ugly. If Ben is yellow, then he is from The Simpsons (Premise 5). If he is from The Simpsons, then he is loved by children (Premise 4), which implies that he is funny (Premise 3). But being funny doesn't necessarily make him popular (Premise 1), it only implies that he is popular.\n\nHowever, if Ben is yellow and thus from The Simpsons, then we can't conclude anything about him being ugly or not from the given premises. \n\nStep 3: Conclusion Analysis\n\nIf Ben is yellow, we can't conclude anything about him being ugly or not. However, the conclusion says \"or neither yellow nor ugly.\" This means that if Ben is not yellow, then he must be neither yellow nor ugly.\n\nNow let's consider the possibility that Ben is not yellow. Then, from Premise 5, we know that he is not from The Simpsons. From Premise 6, we know that he is either from The Simpsons or funny. Therefore, he must be funny.\n\nFrom Premise 2, if Ben is ugly, then he is not popular. However, from Premise 1, if he is funny, then he is popular. This creates a contradiction because Ben can't be both funny and ugly at the same time.\n\nHowever, this doesn't mean that the conclusion is false. The conclusion is uncertain because we can't determine the truth value of \"Ben is yellow and ugly\" or \"Ben is neither yellow nor ugly\" based on the given premises.\n\nHowever, if we assume Ben is not yellow and thus not from The Simpsons (because he is funny) then he cannot be ugly since he must be funny.\n\nSo the conclusion is uncertain but we can determine that it is true that Ben cannot be yellow and ugly at the same time.\n\n\\boxed{Uncertain but Ben cannot be yellow and ugly.}",
+        "answer": "Uncertain but Ben cannot be yellow and ugly.",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to use the given premises and apply logical deductions.\n\nPremises:\n1. If a cartoon character is funny, then it is popular. (FP)\n2. If a cartoon character is ugly, then it is not popular. (UP)\n3. If a cartoon character is loved by children, then it is funny. (LC)\n4. If a cartoon character is from The Simpsons, then it is loved by children. (SF)\n5. If a cartoon character is yellow, then it is from The Simpsons. (YS)\n6. Ben is either from The Simpsons or funny. (BF)\n\nConclusion:\nBen is either yellow and ugly or neither yellow nor ugly. (CYNU)\n\nStep 1: Determine if Ben is from The Simpsons.\nFrom premise 6, we know Ben is either from The Simpsons or funny. \n\nStep 2: Consider the case when Ben is from The Simpsons.\nFrom premise 5, if Ben is yellow, then he is from The Simpsons. However, we do not know if Ben is yellow or not. \n\nStep 3: Consider the case when Ben is funny.\nFrom premise 6, we know Ben is either from The Simpsons or funny. We already considered the case when Ben is from The Simpsons. \n\nStep 4: Analyze the premises related to being funny.\nFrom premise 3, if Ben is loved by children, then he is funny. \nFrom premise 4, if Ben is from The Simpsons, then he is loved by children. However, we do not know if Ben is loved by children or not.\n\nStep 5: Analyze the premises related to being yellow.\nFrom premise 5, if Ben is yellow, then he is from The Simpsons. However, we do not know if Ben is yellow or not.\n\nStep 6: Analyze the premises related to being ugly.\nFrom premise 2, if Ben is ugly, then he is not popular. We do not have any information about Ben's popularity.\n\nStep 7: Determine the relationship between being yellow and ugly.\nWe know that if Ben is yellow, then he is from The Simpsons (premise 5). However, we do not know if Ben is yellow or not. If Ben is yellow, then he is from The Simpsons, and from premise 4, if Ben is from The Simpsons, then he is loved by children, and from premise 3, if Ben is loved by children, then he is funny. We do not have any information about Ben's ugliness.\n\nHowever, we can use a process of elimination to determine whether Ben is yellow and ugly or neither yellow nor ugly.\n\nLet's assume Ben is yellow (Y). Then, from premise 5, Ben is from The Simpsons (S). \n\nFrom premise 4, if Ben is from The Simpsons, then he is loved by children (LC). From premise 3, if Ben is loved by children, then he is funny (F). We do not have any information about Ben's ugliness. However, we can conclude that Ben is not ugly because being yellow (Y) and being from The Simpsons (S) implies that Ben is funny (F), and from premise 2, if a cartoon character is funny, then it is popular. Since being yellow (Y) and being from The Simpsons (S) implies that Ben is not ugly, we can conclude that Ben is not yellow and ugly.\n\nNow, let's assume Ben is not yellow (NY). Then, we cannot determine if Ben is from The Simpsons or not.\n\nHowever, we know that Ben is either from The Simpsons or funny (premise 6). We already considered the case when Ben is from The Simpsons, and we found that Ben is not yellow and ugly.\n\nIf Ben is not from The Simpsons, then Ben is funny (premise 6). From premise 3, if Ben is loved by children, then he is funny. We do not have any information about Ben's ugliness. However, we can conclude that Ben is not ugly because being funny (F) implies that Ben is popular (premise 1), and from premise 2, if a cartoon character is ugly, then it is not popular. Since being funny (F) implies that Ben is not ugly, we can conclude that Ben is neither yellow nor ugly.\n\nTherefore, we can conclude that Ben is either yellow and ugly or neither yellow nor ugly is uncertain.",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we'll use logical reasoning and the given premises.\n\nGiven premises:\n\n1. If a cartoon character is funny, then it is popular. (1)\n2. If a cartoon character is ugly, then it is not popular. (2)\n3. If a cartoon character is loved by children, then it is funny. (3)\n4. If a cartoon character is from The Simpsons, then it is loved by children. (4)\n5. If a cartoon character is yellow, then it is from The Simpsons. (5)\n6. Ben is either from The Simpsons or funny. (6)\n\nWe need to determine if the conclusion: \nBen is either yellow and ugly or neither yellow nor ugly. \n\nLet's break down the conclusion into two parts:\n- Part A: Ben is yellow and ugly\n- Part B: Ben is neither yellow nor ugly\n\nTo prove or disprove the conclusion, we need to find out if Part A or Part B follows logically from the premises.\n\n**Part A: Ben is yellow and ugly**\n\nWe can start by using premises (5) and (4) to find a connection between yellow and being from The Simpsons.\n\n(5) If a cartoon character is yellow, then it is from The Simpsons.\n(4) If a cartoon character is from The Simpsons, then it is loved by children.\n\nUsing (4), we know that if a character is from The Simpsons, it is loved by children.\nUsing (3), we know that if a character is loved by children, it is funny.\nUsing (1), we know that if a character is funny, it is popular.\nUsing (2), we know that if a character is ugly, it is not popular.\n\nSo, if a character is yellow (from (5)), it is from The Simpsons (by modus ponens), and then it is loved by children (by (4)), funny (by (3)), and popular (by (1)). \n\nBut if a character is yellow and funny, then it cannot be ugly (by (2)) because being ugly would mean it's not popular, and we've already established it's popular.\n\nHowever, this doesn't directly contradict the conclusion, but it shows that being yellow and ugly is not a consistent possibility. However, we cannot conclude that Ben is neither yellow nor ugly.\n\n**Part B: Ben is neither yellow nor ugly**\n\nWe need to show that the premises do not allow us to conclude that Ben is neither yellow nor ugly.\n\nAs we've seen earlier, being yellow and funny leads to a character being popular, which would contradict being ugly. However, we cannot conclude that Ben is neither yellow nor ugly.\n\nTo show that being neither yellow nor ugly is a possibility, we can use the information that Ben is either from The Simpsons or funny (premise (6)).\n\nIf Ben is funny (part of premise (6)), then it doesn't necessarily mean he's yellow (because being funny doesn't imply being yellow). \n\nSo, we can conclude that being neither yellow nor ugly is a possibility, as we can't prove it's not possible.\n\nGiven that we have found no direct contradiction to the conclusion and that being neither yellow nor ugly is a possibility, we can conclude that the conclusion \"Ben is either yellow and ugly or neither yellow nor ugly\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we'll use the method of truth tables and logical deductions. However, given the complexity of the premises and the conclusion, we will simplify the steps.\n\n1. Given premises:\n   - P1: If a cartoon character is funny, then it is popular. (FP)\n   - P2: If a cartoon character is ugly, then it is not popular. (UP)\n   - P3: If a cartoon character is loved by children, then it is funny. (LCF)\n   - P4: If a cartoon character is from The Simpsons, then it is loved by children. (STC)\n   - P5: If a cartoon character is yellow, then it is from The Simpsons. (YT)\n   - P6: Ben is either from The Simpsons or funny. (BF)\n\n2. Conclusion:\n   - C: Ben is either yellow and ugly or neither yellow nor ugly. (YU or NYU)\n\nLet's start simplifying the premises:\n\nFrom P4 and P5, we can conclude that if a cartoon character is yellow, then it is from The Simpsons. This can be written as:\n- P7: If a cartoon character is yellow, then it is from The Simpsons. (Y\u2192S)\n\nNow, let's analyze the conclusion using P6 (BF). If Ben is either from The Simpsons or funny (BF), we can analyze both possibilities.\n\n**Case 1: Ben is from The Simpsons (S)**\n\n- P6 (BF) and P4 (STC) imply that if Ben is from The Simpsons, then he is loved by children (LC).\n- P3 (LCF) implies that if Ben is loved by children, then he is funny (F).\n- P1 (FP) and P2 (UP) do not affect this case.\n- P5 (YT) and P7 (Y\u2192S) do not affect this case.\n\nHowever, we cannot conclude anything about Ben's appearance (yellow or ugly) from the given premises.\n\n**Case 2: Ben is funny (F)**\n\n- P3 (LCF) implies that if Ben is funny, then he is loved by children (LC).\n- P4 (STC) does not directly affect this case.\n- P1 (FP) implies that if Ben is funny, then he is popular (P).\n- P2 (UP) implies that if Ben is not ugly (not U), then he is popular (P). However, we cannot conclude that Ben is not ugly from the given premises.\n\nHowever, we can conclude that Ben is either yellow or not yellow from P6 (BF) and P7 (Y\u2192S).\n\nNow, let's analyze the conclusion using P6 (BF). If Ben is either from The Simpsons or funny (BF), we can analyze both possibilities. However, the conclusion is in terms of Ben's appearance (yellow or ugly).\n\nSince we cannot conclude anything about Ben's appearance (yellow or ugly) from the given premises in both cases, the conclusion is uncertain.\n\nTherefore, the final answer is:\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to break it down step by step using the given premises:\n\nPremise 1: If a cartoon character is funny, then it is popular. (F \u2192 P)\nPremise 2: If a cartoon character is ugly, then it is not popular. (U \u2192 \u00acP)\nPremise 3: If a cartoon character is loved by children, then it is funny. (L \u2192 F)\nPremise 4: If a cartoon character is from The Simpsons, then it is loved by children. (S \u2192 L)\nPremise 5: If a cartoon character is yellow, then it is from The Simpsons. (Y \u2192 S)\nPremise 6: Ben is either from The Simpsons or funny. (B: S \u2228 F)\n\nNow, we need to analyze the conclusion:\n\nConclusion: Ben is either yellow and ugly or neither yellow nor ugly. (Y \u2227 U \u2228 \u00ac(Y \u2228 U))\n\nStep 1: We can start by using Premise 6 to create two cases for Ben:\n\nCase 1: Ben is from The Simpsons (S)\nCase 2: Ben is funny (F)\n\nStep 2: Using Premise 3, if Ben is from The Simpsons, then he is loved by children (L). If Ben is funny, then he is loved by children (L) or he is ugly (U).\n\nStep 3: Using Premise 4, if Ben is from The Simpsons, then he is loved by children (L). This means that if Ben is from The Simpsons, he is also funny (F).\n\nStep 4: Since Premise 5 states that if a cartoon character is yellow, then it is from The Simpsons, we can conclude that if Ben is yellow, then he is from The Simpsons (S).\n\nStep 5: Combining the results from Steps 3 and 4, if Ben is yellow, then he is both from The Simpsons (S) and funny (F).\n\nStep 6: Since Premise 2 states that if a cartoon character is ugly, then it is not popular (U \u2192 \u00acP), and Premise 1 states that if a cartoon character is funny, then it is popular (F \u2192 P), we can conclude that Ben cannot be both funny (F) and ugly (U) at the same time.\n\nStep 7: Now, we can analyze the conclusion:\n\nIf Ben is yellow (Y), then he is from The Simpsons (S) and funny (F). However, we cannot conclude that Ben is ugly (U). Therefore, the conclusion \"Ben is either yellow and ugly or neither yellow nor ugly\" is true.\n\nHowever, there is another possibility that has to be considered:\n\nIf Ben is not yellow (\u00acY), then we cannot conclude that Ben is not funny (\u00acF). Therefore, the conclusion \"Ben is either yellow and ugly or neither yellow nor ugly\" is also true when Ben is not yellow.\n\nSince both possibilities lead to the same conclusion, we can conclude that the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to use logical reasoning and the given premises.\n\nPremise 1: If a cartoon character is funny, then it is popular. \nLet's denote 'F' as funny, 'P' as popular. This can be written as F \u2192 P.\n\nPremise 2: If a cartoon character is ugly, then it is not popular. \nLet's denote 'U' as ugly. This can be written as U \u2192 \u00acP (\u00acP means 'not popular').\n\nPremise 3: If a cartoon character is loved by children, then it is funny. \nLet's denote 'L' as loved by children. This can be written as L \u2192 F.\n\nPremise 4: If a cartoon character is from The Simpsons, then it is loved by children. \nLet's denote 'S' as from The Simpsons. This can be written as S \u2192 L.\n\nPremise 5: If a cartoon character is yellow, then it is from The Simpsons. \nLet's denote 'Y' as yellow. This can be written as Y \u2192 S.\n\nPremise 6: Ben is either from The Simpsons or funny. \nLet's denote 'B' as Ben. This can be written as B \u2228 S \u2228 F.\n\nNow, we need to determine whether the conclusion is true, false, or uncertain:\nBen is either yellow and ugly or neither yellow nor ugly.\n\nTo do this, we need to check if the conclusion can be derived from the given premises. \n\nLet's denote 'Y' as yellow, 'U' as ugly, 'S' as from The Simpsons, 'F' as funny, and 'P' as popular.\n\nWe want to prove: Y \u2227 U \u2228 \u00ac(Y \u2228 U)\n\nWe can start by using Premise 5 (Y \u2192 S) and Premise 4 (S \u2192 L) to derive a connection between Y and F:\n\nY \u2192 S (Premise 5)\nS \u2192 L (Premise 4)\nL \u2192 F (Premise 3)\nTherefore, Y \u2192 F.\n\nNow, we can use Premise 1 (F \u2192 P) to derive a connection between Y and P:\n\nY \u2192 F (derived)\nF \u2192 P (Premise 1)\nTherefore, Y \u2192 P.\n\nNow, we can use Premise 2 (U \u2192 \u00acP) and the derived connection Y \u2192 P to derive a connection between Y and U:\n\nY \u2192 P (derived)\nU \u2192 \u00acP (Premise 2)\nTherefore, Y \u2192 \u00acU.\n\nNow, we can use the derived connection Y \u2192 \u00acU and the definition of \u00acU to derive the following:\n\n\u00acU = U'\nU' = \u00acU\n\u00ac(Y \u2228 U) = \u00acY \u2227 \u00acU\n\u00acY \u2227 \u00acU = Y' \u2227 U'\n\nNow, we can use the derived connection Y \u2192 \u00acU and the definition of U to derive the following:\n\nY \u2192 U'\n\nNow, we can use the derived connection Y \u2192 U' and the definition of U' to derive the following:\n\nY \u2192 \u00ac(Y \u2228 U)\n\nNow, we can use Premise 6 (B \u2228 S \u2228 F) to derive a connection between B and Y \u2228 U:\n\nB \u2228 S \u2228 F (Premise 6)\nB = Ben (given)\nTherefore, Ben = B.\n\nNow, we can use the derived connection Y \u2192 \u00ac(Y \u2228 U) to derive the following:\n\n\u00ac(Y \u2228 U) \u2192 B\n\nNow, we can use the definition of \u2228 to derive the following:\n\n\u00ac(Y \u2228 U) \u2228 (Y \u2228 U) = T\n\nNow, we can use the derived connection \u00ac(Y \u2228 U) \u2192 B and the definition of \u2228 to derive the following:\n\n\u00ac(Y \u2228 U) \u2228 (Y \u2228 U) \u2192 B \u2228 (Y \u2228 U)\n\nNow, we can use the definition of T to derive the following:\n\nT \u2192 B \u2228 (Y \u2228 U)\n\nNow, we can use the definition of B to derive the following:\n\nT \u2192 B \u2228 (Y \u2228 U)\n\nNow, we can use the definition of \u2228 to derive the following:\n\nB \u2228 (Y \u2228 U) = Y \u2228 U \u2228 B\n\nNow, we can use the definition of \u2228 to derive the following:\n\nY \u2228 U \u2228 B = Y \u2228 U \u2228 (B \u2228 S \u2228 F)\n\nNow, we can use the definition of \u2228 to derive the following:\n\nY \u2228 U \u2228 (B \u2228 S \u2228 F) = Y \u2228 U \u2228 (B \u2228 S \u2228 F)\n\nNow, we can use the definition of \u2228 to derive the following:\n\nY \u2228 U \u2228 (B \u2228 S \u2228 F) = Y \u2228 U \u2228 (B \u2228 (S \u2228 F))\n\nNow, we can use the definition of \u2228 to derive the following:\n\nY \u2228 U \u2228 (B \u2228 (S \u2228 F)) = (Y \u2228 U) \u2228 B \u2228 (S \u2228 F)\n\nNow, we can use the definition of \u2228 to derive the following:\n\n(Y \u2228 U) \u2228 B \u2228 (S \u2228 F) = (Y \u2228 U) \u2228 (B \u2228 (S \u2228 F))\n\nNow, we can use the definition of \u2228 to derive the following:\n\n(Y \u2228 U) \u2228 (B \u2228 (S \u2228 F)) = (Y \u2228 B \u2228 (S \u2228 F)) \u2228 U\n\nNow, we can use the definition of \u2228 to derive the following:\n\n(Y \u2228 B \u2228 (S \u2228 F)) \u2228 U = Y \u2228 B \u2228 (S \u2228 F) \u2228 U\n\nNow, we can use the definition of \u2228 to derive the following:\n\nY \u2228 B \u2228 (S \u2228 F) \u2228 U = Y \u2228 (B \u2228 (S \u2228 F)) \u2228 U\n\nNow, we can use the definition of \u2228 to derive the following:\n\nY \u2228 (B \u2228 (S \u2228 F)) \u2228 U = (Y \u2228 B \u2228 S \u2228 F) \u2228 U\n\nNow, we can use the definition of \u2228 to derive the following:\n\n(Y \u2228 B \u2228 S \u2228 F) \u2228 U = Y \u2228 B \u2228 S \u2228 F \u2228 U\n\nNow, we can use the definition of \u2228 to derive the following:\n\nY \u2228 B \u2228 S \u2228 F \u2228 U = Y \u2228 U \u2228 B \u2228 S \u2228 F\n\nNow, we can use the definition of \u2228 to derive the following:\n\nY \u2228 U \u2228 B \u2228 S \u2228 F = (Y \u2228 U) \u2228 (B \u2228 (S \u2228 F))\n\nNow, we can use the definition of \u2228 to derive the following:\n\n(Y \u2228 U) \u2228 (B \u2228 (S \u2228 F)) = ((Y \u2228 U) \u2228 B) \u2228 (S \u2228 F)\n\nNow, we can use the definition of \u2228 to derive the following:\n\n((Y \u2228 U) \u2228 B) \u2228 (S \u2228 F) = (Y \u2228 U \u2228 B) \u2228 (S \u2228 F)\n\nNow, we can use the definition of \u2228 to derive the following:\n\n(Y \u2228 U \u2228 B) \u2228 (S \u2228 F) = Y \u2228 (U \u2228 (B \u2228 (S \u2228 F)))\n\nNow, we can use the definition of \u2228 to derive the following:\n\nY \u2228 (U \u2228 (B \u2228 (S \u2228 F))) = (Y \u2228 U) \u2228 (B \u2228 (S \u2228 F))\n\nNow, we can use the definition of \u2228 to derive the following:\n\n(Y \u2228 U) \u2228 (B \u2228 (S \u2228 F)) = Y \u2228 (U \u2228 (B \u2228 S \u2228 F))\n\nNow, we can use the definition of \u2228 to derive the following:\n\nY \u2228 (U \u2228 (B \u2228 S \u2228 F)) = Y \u2228 U \u2228 B \u2228 S \u2228 F\n\nNow, we can use the definition of \u2228 to derive the following:\n\nY \u2228 U \u2228 B \u2228 S \u2228 F = Y \u2228 U \u2228 (B \u2228 S \u2228 F)\n\nNow, we can use the definition of \u2228 to derive the following:\n\nY \u2228 U \u2228 (B \u2228 S \u2228 F) = Y \u2228 U \u2228 (B \u2228 S \u2228 F)\n\nNow, we can use the definition of \u2228 to derive the following:\n\nY \u2228 U \u2228 (B \u2228 S \u2228 F) = Y \u2228 U \u2228 (B \u2228 (S \u2228 F))\n\nNow, we can use the definition of \u2228 to derive the following:\n\nY \u2228 U \u2228 (B \u2228 (S \u2228 F)) = Y \u2228 U \u2228 (B \u2228 (S \u2228 F))\n\nNow, we can use the definition of \u2228 to derive the following:\n\nY \u2228 U \u2228 (B \u2228 (S \u2228 F)) = (Y \u2228 U \u2228 B) \u2228 (S \u2228 F)\n\nNow, we can use the definition of \u2228 to derive the following:\n\n(Y \u2228 U \u2228 B) \u2228 (S \u2228 F) = Y \u2228 U \u2228 B \u2228 S \u2228 F\n\nNow, we can use the definition of \u2228 to derive the following:\n\nY \u2228 U \u2228 B \u2228 S \u2228 F = (Y \u2228 U \u2228 B) \u2228 (S \u2228 F)\n\nNow, we can use the definition of \u2228 to derive the following:\n\n(Y \u2228 U \u2228 B) \u2228 (S \u2228 F) = ((Y \u2228 U) \u2228 B) \u2228 (S \u2228 F)\n\nNow, we can use the definition of \u2228 to derive the following:\n\n((Y \u2228 U) \u2228 B) \u2228 (S \u2228 F) = (Y \u2228 U \u2228 B) \u2228 (S \u2228 F)\n\nNow, we can use the definition of \u2228 to derive the following:\n\n(Y \u2228 U \u2228 B) \u2228 (S \u2228 F) = Y \u2228 (U \u2228 (B \u2228 S \u2228 F))\n\nNow, we can use the definition of \u2228 to derive the following:\n\nY \u2228 (U \u2228 (B \u2228 S \u2228 F)) = Y \u2228 (U \u2228 (B \u2228 S \u2228 F))\n\nNow, we can use the definition of \u2228 to derive the following:\n\nY \u2228 (U \u2228 (B \u2228 S \u2228 F)) = Y \u2228 (B \u2228 (S \u2228 F) \u2228 U)\n\nNow, we can use the definition of \u2228 to derive the following:\n\nY \u2228 (B \u2228 (S \u2228 F",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "funny(X) -> popular(X)",
+          "z3_formula": "Implies(funny_X, popular_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "ugly(X) -> !popular(X)",
+          "z3_formula": "Implies(ugly_X, Not(popular_X))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "loved_by_children(X) -> funny(X)",
+          "z3_formula": "Implies(loved_by_children_X, funny_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "from_simpsons(X) -> loved_by_children(X)",
+          "z3_formula": "Implies(from_simpsons_X, loved_by_children_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "yellow(X) -> from_simpsons(X)",
+          "z3_formula": "Implies(yellow_X, from_simpsons_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "from_simpsons(X) | funny(X)",
+          "z3_formula": "Or(from_simpsons_X, funny_X)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "yellow(X) & ugly(X) | !yellow(X) & !ugly(X)",
+          "z3_formula": "Or(And(yellow_X, ugly_X), And(Not(yellow_X), Not(ugly_X)))",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "funny(ben)",
+          "z3_formula": "funny_ben == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "ugly(ben)",
+          "z3_formula": "ugly_ben == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "funny(X) -> popular(X)",
+          "z3_formula": "Implies(funny_ben, popular_ben)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "ugly(X) -> Not(popular(X))",
+          "z3_formula": "Implies(ugly_ben, Not(popular_ben))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_children(X) -> funny(X)",
+          "z3_formula": "Implies(loved_by_children_ben, funny_ben)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "from_simpsons(X) -> loved_by_children(X)",
+          "z3_formula": "Implies(from_simpsons_ben, loved_by_children_ben)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "from_simpsons(X) -> Not(yellow(X))",
+          "z3_formula": "Implies(from_simpsons_ben, Not(yellow_ben))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "yellow(X) -> from_simpsons(X)",
+          "z3_formula": "Implies(yellow_ben, from_simpsons_ben)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "from_simpsons(X) | funny(X)",
+          "z3_formula": "Or(from_simpsons_ben, funny_ben)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "Not(yellow(ben) & ugly(ben))",
+          "z3_formula": "Not(And(yellow_ben, ugly_ben))",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "funny(X) -> popular(X)",
+          "z3_formula": "Implies(funny_ben, popular_ben)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "ugly(X) -> !popular(X)",
+          "z3_formula": "Implies(ugly_ben, Not(popular_ben))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_children(X) -> funny(X)",
+          "z3_formula": "Implies(loved_by_children_ben, funny_ben)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "from_simpsons(X) -> loved_by_children(X)",
+          "z3_formula": "Implies(from_simpsons_ben, loved_by_children_ben)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "yellow(X) -> from_simpsons(X)",
+          "z3_formula": "Implies(yellow_ben, from_simpsons_ben)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "yellow(X) -> funny(X)",
+          "z3_formula": "Implies(yellow_ben, funny_ben)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "from_simpsons_ben | funny_ben",
+          "z3_formula": "Or(from_simpsons_ben, funny_ben)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "yellow_ben | !yellow_ben",
+          "z3_formula": "Or(yellow_ben, Not(yellow_ben))",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "funny(ben)",
+          "z3_formula": "funny_ben == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "yellow(ben)",
+          "z3_formula": "yellow_ben == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "funny(X) -> popular(X)",
+          "z3_formula": "Implies(funny_ben, popular_ben)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "ugly(X) -> Not(popular(X))",
+          "z3_formula": "Implies(ugly_ben, Not(popular_ben))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_children(X) -> funny(X)",
+          "z3_formula": "Implies(loved_by_children_ben, funny_ben)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "from_the_simpsons(X) -> loved_by_children(X)",
+          "z3_formula": "Implies(from_the_simpsons_ben, loved_by_children_ben)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "yellow(X) -> from_the_simpsons(X)",
+          "z3_formula": "Implies(yellow_ben, from_the_simpsons_ben)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "popular(ben)",
+          "z3_formula": "popular_ben == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "loved_by_children(ben)",
+          "z3_formula": "loved_by_children_ben == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "yellow(ben) | not yellow(ben)",
+          "z3_formula": "yellow_ben | Not(yellow_ben)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "yellow(ben) & ugly(ben) | not yellow(ben) & not ugly(ben)",
+          "z3_formula": "And(yellow_ben, ugly_ben) | And(Not(yellow_ben), Not(ugly_ben))",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "funny(ben)",
+          "z3_formula": "funny_ben == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "popular(ben)",
+          "z3_formula": "popular_ben == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "ugly(ben)",
+          "z3_formula": "ugly_ben == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "loved_by_children(ben)",
+          "z3_formula": "loved_by_children_ben == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "yellow(ben)",
+          "z3_formula": "yellow_ben == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "from_the_simpsons(ben)",
+          "z3_formula": "from_the_simpsons_ben == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "funny(X) -> popular(X)",
+          "z3_formula": "Implies(funny_ben, popular_ben)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "ugly(X) -> Not(popular(X))",
+          "z3_formula": "Implies(ugly_ben, Not(popular_ben))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_children(X) -> funny(X)",
+          "z3_formula": "Implies(loved_by_children_ben, funny_ben)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "from_the_simpsons(X) -> loved_by_children(X)",
+          "z3_formula": "Implies(from_the_simpsons_ben, loved_by_children_ben)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "yellow(X) -> from_the_simpsons(X)",
+          "z3_formula": "Implies(yellow_ben, from_the_simpsons_ben)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "Or(from_the_simpsons(X), funny(X))",
+          "z3_formula": "Or(from_the_simpsons_ben, funny_ben)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Or(yellow(ben) & ugly(ben), Not(yellow(ben)) & Not(ugly(ben)))",
+          "z3_formula": "Or(And(yellow_ben, ugly_ben), And(Not(yellow_ben), Not(ugly_ben)))",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "funny(X) -> popular(X)",
+          "z3_formula": "Implies(funny_ben, popular_ben)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "ugly(X) -> ~popular(X)",
+          "z3_formula": "Implies(ugly_ben, Not(popular_ben))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_children(X) -> funny(X)",
+          "z3_formula": "Implies(loved_by_children_ben, funny_ben)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "from_the_simpsons(X) -> loved_by_children(X)",
+          "z3_formula": "Implies(from_the_simpsons_ben, loved_by_children_ben)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "yellow(X) -> from_the_simpsons(X)",
+          "z3_formula": "Implies(yellow_ben, from_the_simpsons_ben)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "yellow_ben | funny_ben",
+          "z3_formula": "Or(yellow_ben, funny_ben)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "~(yellow_ben & ugly_ben)",
+          "z3_formula": "Not(And(yellow_ben, ugly_ben))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "yellow_ben & ugly_ben -> False",
+          "z3_formula": "Implies(And(yellow_ben, ugly_ben), False)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "~ugly_ben -> popular_ben",
+          "z3_formula": "Implies(Not(ugly_ben), popular_ben)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "~ugly_ben & popular_ben",
+          "z3_formula": "And(Not(ugly_ben), popular_ben)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "~(yellow_ben | ~ugly_ben)",
+          "z3_formula": "Not(Or(yellow_ben, Not(ugly_ben)))",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "yellow_ben | ~ugly_ben",
+          "z3_formula": "Or(yellow_ben, Not(ugly_ben))",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "yellow_ben | ~ugly_ben == True",
+          "z3_formula": "yellow_ben | Not(ugly_ben) == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "funny(ben)",
+          "z3_formula": "funny_ben == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "yellow(ben)",
+          "z3_formula": "yellow_ben == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "yellow(X) -> from_simpsons(X)",
+          "z3_formula": "Implies(yellow_ben, from_simpsons_ben)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "from_simpsons(X) -> loved_by_children(X)",
+          "z3_formula": "Implies(from_simpsons_ben, loved_by_children_ben)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_children(X) -> funny(X)",
+          "z3_formula": "Implies(loved_by_children_ben, funny_ben)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "funny(X) -> popular(X)",
+          "z3_formula": "Implies(funny_ben, popular_ben)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "ugly(X) -> not popular(X)",
+          "z3_formula": "Implies(ugly_ben, Not(popular_ben))",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "popular(ben)",
+          "z3_formula": "popular_ben == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not (yellow(ben) & ugly(ben))",
+          "z3_formula": "Not(And(yellow_ben, ugly_ben)) == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "funny(ben)",
+          "z3_formula": "funny_ben == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "yellow(ben)",
+          "z3_formula": "yellow_ben == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "funny(X) -> popular(X)",
+          "z3_formula": "Implies(funny_ben, popular_ben)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "ugly(X) -> Not(popular(X))",
+          "z3_formula": "Implies(ugly_ben, Not(popular_ben))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "yellow(X) -> from_simpsons(X)",
+          "z3_formula": "Implies(yellow_ben, from_simpsons_ben)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "from_simpsons(X) -> loved_by_children(X)",
+          "z3_formula": "Implies(from_simpsons_ben, loved_by_children_ben)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_children(X) -> funny(X)",
+          "z3_formula": "Implies(loved_by_children_ben, funny_ben)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "from_simpsons(X) -> loved_by_children(X)",
+          "z3_formula": "Implies(from_simpsons_ben, loved_by_children_ben)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "yellow(ben) & ugly(ben)",
+          "z3_formula": "And(yellow_ben, ugly_ben)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(yellow(ben) & ugly(ben))",
+          "z3_formula": "Not(And(yellow_ben, ugly_ben))",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "funny(ben)",
+          "z3_formula": "funny_ben == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "yellow(X) -> from_simpsons(X)",
+          "z3_formula": "Implies(yellow_ben, from_simpsons_ben)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "from_simpsons(X) -> loved_by_children(X)",
+          "z3_formula": "Implies(from_simpsons_ben, loved_by_children_ben)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "loved_by_children(X) -> funny(X)",
+          "z3_formula": "Implies(loved_by_children_ben, funny_ben)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "funny(X) -> popular(X)",
+          "z3_formula": "Implies(funny_ben, popular_ben)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "ugly(X) -> not popular(X)",
+          "z3_formula": "Implies(ugly_ben, Not(popular_ben))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "yellow(X) -> from_simpsons(X)",
+          "z3_formula": "Implies(yellow_ben, from_simpsons_ben)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "from_simpsons(X) -> loved_by_children(X)",
+          "z3_formula": "Implies(from_simpsons_ben, loved_by_children_ben)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_children(X) -> funny(X)",
+          "z3_formula": "Implies(loved_by_children_ben, funny_ben)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "funny(X) -> popular(X)",
+          "z3_formula": "Implies(funny_ben, popular_ben)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "ugly(X) -> not popular(X)",
+          "z3_formula": "Implies(ugly_ben, Not(popular_ben))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "yellow(X) & funny(X) -> not ugly(X)",
+          "z3_formula": "Implies(And(yellow_ben, funny_ben), Not(ugly_ben))",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not (yellow(X) & ugly(X))",
+          "z3_formula": "Not(And(yellow_ben, ugly_ben)) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "yellow(X) & ugly(X)",
+          "z3_formula": "And(yellow_ben, ugly_ben) == False",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "yellow(X) | not ugly(X)",
+          "z3_formula": "Or(yellow_ben, Not(ugly_ben)) == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "yellow(X) | not ugly(X)",
+          "z3_formula": "Or(yellow_ben, Not(ugly_ben)) == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "funny(X) -> popular(X)",
+          "z3_formula": "Implies(funny_ben, popular_ben)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "ugly(X) -> not popular(X)",
+          "z3_formula": "Implies(ugly_ben, not popular_ben)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_children(X) -> funny(X)",
+          "z3_formula": "Implies(loved_by_children_ben, funny_ben)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "from_the_simpsons(X) -> loved_by_children(X)",
+          "z3_formula": "Implies(from_the_simpsons_ben, loved_by_children_ben)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "yellow(X) -> from_the_simpsons(X)",
+          "z3_formula": "Implies(yellow_ben, from_the_simpsons_ben)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "from_the_simpsons(X) or funny(X)",
+          "z3_formula": "Or(from_the_simpsons_ben, funny_ben)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "yellow_ben or not yellow_ben",
+          "z3_formula": "Or(yellow_ben, not yellow_ben)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "funny(ben)",
+          "z3_formula": "funny_ben == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "funny(X) -> popular(X)",
+          "z3_formula": "Implies(funny_ben, popular_ben)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "ugly(X) -> Not(popular(X))",
+          "z3_formula": "Implies(ugly_ben, Not(popular_ben))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_children(X) -> funny(X)",
+          "z3_formula": "Implies(loved_by_children_ben, funny_ben)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "from_the_simpsons(X) -> loved_by_children(X)",
+          "z3_formula": "Implies(from_the_simpsons_ben, loved_by_children_ben)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "yellow(X) -> from_the_simpsons(X)",
+          "z3_formula": "Implies(yellow_ben, from_the_simpsons_ben)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "yellow(ben) & funny(ben)",
+          "z3_formula": "And(yellow_ben, funny_ben)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(yellow(ben) & ugly(ben))",
+          "z3_formula": "Not(And(yellow_ben, ugly_ben))",
+          "source_step": 7
+        }
+      ],
+      []
+    ],
+    "constraints_stats": {
+      "total_extracted": 112,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 35
+    },
+    "maxsat_stats": {
+      "satisfied": 30,
+      "excluded": 5,
+      "total_weight": 103,
+      "solve_time_ms": 1.9134590402245522
+    },
+    "timing": {
+      "trace_gen_s": 24.818,
+      "extraction_s": 38.885,
+      "dedup_s": 1.061,
+      "maxsat_s": 0.004,
+      "total_s": 64.768
+    }
+  }
+}

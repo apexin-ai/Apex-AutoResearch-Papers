@@ -1,0 +1,1413 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-765_Q15",
+    "problem": "Anne is blue. Anne is kind. Anne is quiet. Bob is not kind. Bob is young. Erin is white. Gary is blue. Gary is kind. Gary is nice. Gary is quiet. Gary is rough. Nice people are kind. All white, quiet people are blue. Kind, nice people are quiet. Rough people are nice. If someone is white then they are rough. All blue, nice people are rough.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is not quiet.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nKind($x, bool) ::: Is x kind?\nQuiet($x, bool) ::: Is x quiet?\nNotKind($x, bool) ::: Is x not kind?\nYoung($x, bool) ::: Is x young?\nWhite($x, bool) ::: Is x white?\nNice($x, bool) ::: Is x nice?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nBlue(Anne, True) ::: Anne is blue.\nKind(Anne, True) ::: Anne is kind.\nQuiet(Anne, True) ::: Anne is quiet.\nNotKind(Bob, True) ::: Bob is not kind.\nYoung(Bob, True) ::: Bob is young.\nWhite(Erin, True) ::: Erin is white.\nBlue(Gary, True) ::: Gary is blue.\nKind(Gary, True) ::: Gary is kind.\nNice(Gary, True) ::: Gary is nice.\nQuiet(Gary, True) ::: Gary is quiet.\nRough(Gary, True) ::: Gary is rough.\n\nRules:\nNice($x, True) >>> Kind($x, True) ::: Nice people are kind.\nWhite($x, True) && Quiet($x, True) >>> Blue($x, True) ::: All white, quiet people are blue.\nKind($x, True) && Nice($x, True) >>> Quiet($x, True) ::: Kind, nice people are quiet.\nRough($x, True) >>> Nice($x, True) ::: Rough people are nice.\nWhite($x, True) >>> Rough($x, True) ::: If someone is white then they are rough.\nBlue($x, True) && Nice($x, True) >>> Rough($x, True) ::: All blue, nice people are rough.\n\nQuery:\nQuiet(Bob, False) ::: Bob is not quiet."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 0.0,
+      "Unknown": 205.0
+    },
+    "answer_counts": {
+      "Unknown": 9,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to use the given statements and apply them to the question \"Bob is not quiet.\" \n\nGiven statements:\n\n1. Anne is blue.\n2. Anne is kind.\n3. Anne is quiet.\n4. Bob is not kind.\n5. Bob is young.\n6. Erin is white.\n7. Gary is blue.\n8. Gary is kind.\n9. Gary is nice.\n10. Gary is quiet.\n11. Gary is rough.\n12. Nice people are kind.\n13. All white, quiet people are blue.\n14. Kind, nice people are quiet.\n15. Rough people are nice.\n16. If someone is white then they are rough.\n17. All blue, nice people are rough.\n\nNow, let's apply the statements to the question:\n\nWe are looking for \"Bob is not quiet.\" To find the truth value of this statement, we need to see if we can conclude that Bob is quiet.\n\nFrom statement 5, we know Bob is young, but this does not provide any information about Bob being quiet.\n\nFrom statement 4, we know Bob is not kind. \n\nFrom statement 14, we know that kind, nice people are quiet. But we already know Bob is not kind, so we cannot conclude anything about Bob being quiet using this statement.\n\nFrom statement 17, we know all blue, nice people are rough. Since Bob is not kind, we cannot conclude Bob is blue or nice. \n\nFrom statement 16, we know if someone is white then they are rough. Since Bob is not white (from statement 6, Erin is white), we cannot conclude Bob is rough.\n\nFrom statement 13, we know all white, quiet people are blue. But we already know Bob is not white, so we cannot conclude Bob is blue.\n\nFrom statement 10, we know Gary is quiet. But this does not provide any information about Bob being quiet.\n\nFrom statement 3, we know Anne is quiet. But this does not provide any information about Bob being quiet.\n\nSince none of the given statements provide any information about Bob being quiet, we cannot conclude that Bob is quiet or not quiet. \n\nTherefore, the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not quiet\" is true, false, or unknown, we need to analyze the given information.\n\n1. Bob is young.\n2. Bob is not kind.\n\nFrom the given statements, we have the following implications:\n\n- If someone is white then they are rough.\n- All white, quiet people are blue.\n- All blue, nice people are rough.\n- Nice people are kind.\n- Kind, nice people are quiet.\n\nSince Bob is not kind, we cannot conclude that Bob is nice. However, we cannot directly conclude that Bob is quiet or not quiet either.\n\nTo find a conclusion, we need to look for a connection between Bob and the other statements.\n\nLet's analyze the statement \"All blue, nice people are rough.\" Since Bob is not kind, we cannot directly conclude that Bob is nice or blue. However, we can see that this statement does not directly apply to Bob.\n\nNow, let's analyze the statement \"All white, quiet people are blue.\" We do not know if Bob is white or not. Even if Bob is white, we cannot conclude that Bob is quiet, as there are no other statements that connect white people with being quiet.\n\nHowever, we can analyze the statement \"If someone is white then they are rough.\" Since Bob is not rough (there is no statement that directly applies to Bob being rough), it means Bob is not white.\n\nNow we have a new piece of information: Bob is not white.\n\nSince Bob is not white, we cannot conclude that Bob is quiet or blue. However, we can conclude that Bob is not quiet is false because Bob is not white.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given statements to the conclusion \"Bob is not quiet.\" We'll break it down step by step:\n\n1. Given statements:\n   - Anne is blue. \n   - Anne is kind. \n   - Anne is quiet. \n   - Bob is not kind. \n   - Bob is young. \n   - Erin is white. \n   - Gary is blue. \n   - Gary is kind. \n   - Gary is nice. \n   - Gary is quiet. \n   - Gary is rough. \n   - Nice people are kind. \n   - All white, quiet people are blue. \n   - Kind, nice people are quiet. \n   - Rough people are nice. \n   - If someone is white then they are rough. \n   - All blue, nice people are rough.\n\n2. Apply the statements to the conclusion:\n   - We know that Bob is not kind.\n   - We need to determine if Bob is quiet or not.\n\nFrom the statement \"All white, quiet people are blue,\" we cannot directly apply it to Bob because we don't know if Bob is white or not. However, from the statement \"If someone is white then they are rough,\" we can infer that Bob is not white because if he were, he would be rough (and we know that Bob is young, but we don't have any information about him being rough).\n\nNow, from the statement \"All blue, nice people are rough,\" and \"Gary is blue, Gary is kind, Gary is nice, Gary is quiet, Gary is rough,\" we can infer that nice people can be either rough (Gary) or quiet (Gary). But we still don't have any information about Bob being blue or nice.\n\nHowever, from the statement \"Rough people are nice,\" we can infer that Bob is nice because he is rough. \n\nNow we have two possibilities for Bob: he can be nice and quiet (Gary), or he can be nice and rough (Gary). Since we don't have any information that directly states Bob is quiet or not, we cannot conclude anything about Bob's quietness.\n\nTherefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Bob is young and Bob is not kind. However, we don't have any information about Bob's quietness or color yet.\n\n2. We have the following information about colors:\n   - Anne is blue.\n   - Erin is white.\n   - Gary is blue.\n\n3. We have the following information about quietness and colors:\n   - All white, quiet people are blue.\n   - Gary is quiet, and Gary is blue.\n\n4. Since we don't know if Erin is quiet, we can't conclude Bob's color based on this information.\n\n5. We have the following information about kindness and niceness:\n   - Bob is not kind.\n   - Gary is kind.\n   - Nice people are kind.\n   - All kind, nice people are quiet.\n   - Gary is nice.\n\n6. Since Gary is kind and nice, we can conclude that Gary is quiet. However, we don't have any information about Bob's niceness.\n\n7. We have the following information about roughness:\n   - Rough people are nice.\n   - Gary is nice and rough.\n   - All blue, nice people are rough.\n\n8. Based on the information in step 7, we can conclude that Gary is blue and rough. However, we still don't have any information about Bob's roughness.\n\n9. We have the following information about colors and roughness:\n   - All white, quiet people are blue.\n   - We don't know if Gary is quiet, but we do know that he is blue and rough.\n\n10. Since Gary is blue and rough, we can conclude that Bob is not blue and rough, but we still don't know if Bob is quiet or not.\n\n11. We have the following information about Bob's color and quietness:\n   - We don't know Bob's color, and we don't know if Bob is quiet or not.\n\n12. Based on the given information, we can't determine if Bob is quiet or not, so the statement \"Bob is not quiet\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not quiet\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nFrom the given information:\n\n1. Anne is blue.\n2. Anne is kind.\n3. Anne is quiet.\n4. Bob is not kind.\n5. Bob is young.\n6. Erin is white.\n7. Gary is blue.\n8. Gary is kind.\n9. Gary is nice.\n10. Gary is quiet.\n11. Gary is rough.\n12. Nice people are kind.\n13. All white, quiet people are blue.\n14. Kind, nice people are quiet.\n15. Rough people are nice.\n16. If someone is white then they are rough.\n17. All blue, nice people are rough.\n\nWe need to find a relationship between Bob and the given characteristics (blue, kind, quiet, rough, and white). Since we are trying to determine if Bob is not quiet, we need to find out if Bob is quiet or not.\n\nFrom the information, we know Bob is not kind (statement 4). We also know that kind, nice people are quiet (statement 14). However, we don't have any direct information about Bob being nice or not. But since we know Bob is not kind, it doesn't necessarily mean he's not nice.\n\nLet's try to find a connection between Bob and the other characteristics. We know Bob is young (statement 5), but this doesn't give us any information about his color or personality.\n\nWe can start by looking at the relationships between the colors. We know Erin is white (statement 6) and all white people are rough (statement 16). However, we don't know if Erin is quiet or not. We also know Gary is blue (statement 7) and all blue people are nice (this can be derived from statements 13 and 17). However, we don't know if Bob is blue or not.\n\nNow, let's look at the relationships between the personality traits. We know Bob is not kind (statement 4) and all blue, nice people are rough (statement 17). However, we don't know if Bob is blue or nice.\n\nLet's try to derive some new information. From statement 16, we know all white people are rough. Since Gary is blue (statement 7) and all blue people are nice (which can be derived from statements 13 and 17), we can conclude that Gary is not white. We also know Gary is quiet (statement 10) and all quiet people are blue or white (this can be derived from statements 13 and 16). However, since Gary is blue, we can conclude that Gary is not white.\n\nNow, let's try to find a connection between Bob and Gary. We know Bob is not kind (statement 4) and Gary is kind (statement 8). However, we don't know if Bob is quiet or not.\n\nLet's analyze the statement \"All white, quiet people are blue\" (statement 13). This means that if someone is white and quiet, they must be blue. However, we don't know if Bob is white or quiet.\n\nFrom statement 10, we know Gary is quiet. We also know Gary is blue (statement 7). However, we don't know if Bob is quiet or not.\n\nNow, let's look at the statement \"Bob is not quiet.\" To determine if this statement is true, false, or unknown, we need to find out if Bob is quiet or not.\n\nWe know Bob is young (statement 5), but this doesn't give us any information about his color or personality. We also know Bob is not kind (statement 4), but this doesn't necessarily mean he's not quiet.\n\nSince we don't have any direct information about Bob being quiet or not, we can't determine if the statement \"Bob is not quiet\" is true or false. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Bob is young and Bob is not kind. This information alone does not tell us anything about Bob's quietness.\n\n2. We also know that Gary is quiet, Gary is kind, Gary is nice, Gary is blue, and Gary is rough. However, this information is about Gary, not Bob.\n\n3. We have the following rules:\n   - Nice people are kind.\n   - All white, quiet people are blue.\n   - Kind, nice people are quiet.\n   - Rough people are nice.\n   - If someone is white then they are rough.\n   - All blue, nice people are rough.\n\n4. Since Bob is not kind, we can conclude that Bob is not nice. We don't know whether Bob is quiet or not yet.\n\n5. If Bob were white, then he would be rough, and since rough people are nice, this would imply that Bob is nice, which contradicts our earlier conclusion. Therefore, Bob cannot be white.\n\n6. Since Bob is not white and cannot be quiet (because if he were quiet, then he would be blue, but we have no information about him being blue or nice), and we also know that Bob is young and not kind, we cannot conclude that Bob is quiet or not quiet based on the given information.\n\nTherefore, the statement \"Bob is not quiet\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement 'Bob is not quiet' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that 'Anne is blue. Anne is kind. Anne is quiet.' This statement tells us that Anne is quiet, but we cannot conclude anything about Bob from this information.\n\n2. The statement 'Bob is not kind' gives us information about Bob's kindness, but we still don't know if Bob is quiet or not.\n\n3. The statement 'Bob is young' does not provide any information about Bob's personality or characteristics, so we cannot use this information to determine if Bob is quiet or not.\n\n4. The statement 'Erin is white' tells us that Erin is white, but we cannot conclude anything about Bob from this information.\n\n5. The statement 'Gary is blue. Gary is kind. Gary is nice. Gary is quiet. Gary is rough. Gary is nice' gives us information about Gary's characteristics, but we still cannot conclude anything about Bob from this information.\n\n6. The statement 'Nice people are kind' is a general rule that we can use later to determine Bob's quietness. However, we still cannot conclude anything about Bob's quietness from this information alone.\n\n7. The statement 'All white, quiet people are blue' gives us a general rule that we can use to determine if someone is blue based on their color and quietness. However, we still cannot conclude anything about Bob's quietness from this information alone.\n\n8. The statement 'Kind, nice people are quiet' is a general rule that we can use later to determine Bob's quietness. We know that Gary is kind and nice, but we still cannot conclude anything about Bob from this information.\n\n9. The statement 'Rough people are nice' gives us a general rule that we can use later to determine if someone is nice based on their roughness. However, we still cannot conclude anything about Bob's quietness from this information alone.\n\n10. The statement 'If someone is white then they are rough' gives us a general rule that we can use to determine if someone is rough based on their color. However, we still cannot conclude anything about Bob's quietness from this information alone.\n\n11. The statement 'All blue, nice people are rough' gives us a general rule that we can use later to determine if someone is rough based on their color and niceness. However, we still cannot conclude anything about Bob's quietness from this information alone.\n\nNow, let's analyze the given information about Bob: 'Bob is not kind. Bob is young. Erin is white.' Since Erin is white, we can conclude from the statement 'If someone is white then they are rough' that Erin is rough. However, we still cannot conclude anything about Bob's quietness from this information alone.\n\nHowever, we can conclude from the statement 'Bob is not kind' and 'Nice people are kind' that Bob is not nice. \n\nSince 'Rough people are nice', we can conclude that Bob is not rough.\n\nNow, let's analyze the given information about Gary: 'Gary is blue. Gary is kind. Gary is nice. Gary is quiet. Gary is rough. Gary is nice.' Since Gary is blue and nice, we can conclude from the statement 'All blue, nice people are rough' that Gary is rough.\n\nSince 'Rough people are nice', we can conclude that Gary is nice.\n\nSince 'Gary is nice', we can conclude from the statement 'Nice people are kind' that Gary is kind.\n\nSince 'Gary is kind' and 'Kind, nice people are quiet', we can conclude that Gary is quiet.\n\nSince 'Gary is rough', we can conclude from the statement 'Gary is blue. Gary is kind. Gary is nice. Gary is quiet. Gary is rough' that Gary is quiet.\n\nNow, let's analyze the given information about Bob and Gary together: 'Bob is not kind. Bob is young. Erin is white. Gary is blue. Gary is kind. Gary is nice. Gary is quiet. Gary is rough. Gary is nice.' Since Gary is quiet, we can conclude from the statement 'Gary is blue. Gary is kind. Gary is nice. Gary is quiet. Gary is rough' that Gary is quiet. However, we still cannot conclude anything about Bob's quietness from this information alone.\n\nNow, let's analyze the given information about Bob and Erin together: 'Bob is not kind. Bob is young. Erin is white. Gary is blue. Gary is kind. Gary is nice. Gary is quiet. Gary is rough. Gary is nice.' Since Erin is white, we can conclude from the statement 'If someone is white then they are rough' that Erin is rough. However, we still cannot conclude anything about Bob's quietness from this information alone.\n\nNow, let's analyze the given information about Bob and Gary together with the given rules: 'Bob is not kind. Bob is young. Erin is white. Gary is blue. Gary is kind. Gary is nice. Gary is quiet. Gary is rough. Gary is nice.' Since Gary is kind and nice, we can conclude from the statement 'Kind, nice people are quiet' that Gary is quiet. However, we still cannot conclude anything about Bob's quietness from this information alone.\n\nHowever, we can conclude from the statement 'Gary is quiet' and 'Gary is blue' that Gary is quiet. \n\nSince 'Gary is quiet' and 'Gary is blue', we can conclude from the statement 'All white, quiet people are blue' that Gary is blue. However, we still cannot conclude anything about Bob's quietness from this information alone.\n\nHowever, we can conclude from the statement 'Gary is blue' and 'Gary is rough' that Gary is rough.\n\nSince 'Gary is rough' and 'Rough people are nice', we can conclude that Gary is nice.\n\nSince 'Gary is kind' and 'Nice people are kind', we can conclude that Gary is kind.\n\nSince 'Gary is kind' and 'Kind, nice people are quiet', we can conclude that Gary is quiet.\n\nSince 'Gary is quiet', we can conclude that Bob is not quiet.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following information:\n   - Anne is blue.\n   - Anne is kind.\n   - Anne is quiet.\n   - Bob is not kind.\n   - Bob is young.\n   - Erin is white.\n   - Gary is blue.\n   - Gary is kind.\n   - Gary is nice.\n   - Gary is quiet.\n   - Gary is rough.\n   - Nice people are kind.\n   - All white, quiet people are blue.\n   - Kind, nice people are quiet.\n   - Rough people are nice.\n   - If someone is white then they are rough.\n   - All blue, nice people are rough.\n\n2. We will start by analyzing the statement \"Bob is not quiet\" and the given information to see if we can deduce anything about Bob's quietness.\n\n3. From the information, we know that Gary is kind, Gary is nice, and Gary is quiet. We also know that \"Kind, nice people are quiet.\" This implies that being kind and nice makes someone quiet.\n\n4. However, we do not have any information that directly links Bob's characteristics to being quiet or not.\n\n5. But we can make some connections based on the given information. For example, we know that Gary is blue and Gary is nice. We also know that \"All blue, nice people are rough.\" This implies that being blue and nice makes someone rough.\n\n6. Now, let's analyze the statement \"Bob is not quiet.\" If we can find any information that directly contradicts this statement, we can conclude that the statement is false.\n\n7. Unfortunately, we do not have any information that directly contradicts the statement \"Bob is not quiet.\" However, we can make some connections based on the given information. If we assume that Bob is not quiet, then we can use the information that \"Kind, nice people are quiet\" to infer that Bob is either not kind or not nice.\n\n8. We already know that Bob is not kind. However, we do not have enough information to determine whether Bob is nice or not. Therefore, we cannot conclude that the statement \"Bob is not quiet\" is true or false based on the given information.\n\n9. However, since we know Bob is not kind, and we know that nice people are kind, this means that Bob is not nice. We also know that if someone is not quiet, then they are either not nice or not kind, since \"Kind, nice people are quiet.\" Therefore, we can deduce that if Bob is not quiet, then Bob is either not kind or not nice. We already know that Bob is not kind, therefore Bob is not nice. We also know that if someone is not quiet, then they are either not nice or not kind. We know that Bob is not kind, therefore Bob is not nice. We know that nice people are kind, so if Bob is not nice, then Bob is not kind. This is a tautology and therefore true. Since Bob is not nice, then Bob is not quiet, because if Bob was quiet then Bob would be nice, but we know that Bob is not nice.",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement 'Bob is not quiet' is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\nGiven statements:\n\n1. Anne is blue.\n2. Anne is kind.\n3. Anne is quiet.\n4. Bob is not kind.\n5. Bob is young.\n6. Erin is white.\n7. Gary is blue.\n8. Gary is kind.\n9. Gary is nice.\n10. Gary is quiet.\n11. Gary is rough.\n12. Nice people are kind.\n13. All white, quiet people are blue.\n14. Kind, nice people are quiet.\n15. Rough people are nice.\n16. If someone is white then they are rough.\n17. All blue, nice people are rough.\n\nNow, let's analyze the given statements to find any information related to Bob.\n\nFrom statement 5, we know that Bob is young. However, this information does not directly help us determine whether Bob is quiet or not.\n\nFrom statement 4, we know that Bob is not kind. However, this does not directly help us determine whether Bob is quiet or not.\n\nWe need to look for any other information that might be related to Bob being quiet or not.\n\nFrom statement 14, we know that 'Kind, nice people are quiet.' However, we already know that Bob is not kind (statement 4), so we cannot conclude that Bob is quiet based on this statement.\n\nFrom statement 17, we know that 'All blue, nice people are rough.' However, we cannot conclude that Bob is blue or nice based on the given information, so we cannot apply this statement to Bob.\n\nFrom statement 16, we know that 'If someone is white then they are rough.' However, we do not know whether Bob is white or not, so we cannot apply this statement to Bob.\n\nFrom statement 13, we know that 'All white, quiet people are blue.' However, we do not know whether Bob is white or quiet, so we cannot apply this statement to Bob.\n\nFrom statement 10, we know that Gary is quiet. However, this information does not directly help us determine whether Bob is quiet or not.\n\nFrom statement 12, we know that 'Nice people are kind.' However, we already know that Bob is not kind (statement 4), so we cannot conclude that Bob is not nice based on this statement.\n\nFrom statement 11, we know that Gary is rough. However, this information does not directly help us determine whether Bob is quiet or not.\n\nNow, let's look for any information that might help us determine whether Bob is quiet or not.\n\nUnfortunately, we cannot directly conclude that Bob is quiet or not based on the given information.\n\nHowever, we can conclude that Bob is not quiet if we can prove that he is quiet. But we cannot prove that he is quiet based on the given information.\n\nTherefore, we cannot conclude that Bob is quiet or not based on the given information. The answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not quiet\" is true, false, or unknown, we need to analyze the given information and use the rules of inference.\n\n1. Given information:\n   - Anne is blue.\n   - Anne is kind.\n   - Anne is quiet.\n   - Bob is not kind.\n   - Bob is young.\n   - Erin is white.\n   - Gary is blue.\n   - Gary is kind.\n   - Gary is nice.\n   - Gary is quiet.\n   - Gary is rough.\n   - Nice people are kind.\n   - All white, quiet people are blue.\n   - Kind, nice people are quiet.\n   - Rough people are nice.\n   - If someone is white then they are rough.\n   - All blue, nice people are rough.\n\n2. Let's start by analyzing the properties of Gary:\n   - Gary is blue.\n   - Gary is kind.\n   - Gary is nice.\n   - Gary is quiet.\n   - Gary is rough.\n   From the rules \"All white, quiet people are blue\" and \"Gary is quiet,\" we cannot conclude that Gary is white. However, we can conclude that Gary is blue and Gary is rough, because \"Gary is blue\" and \"All blue, nice people are rough.\"\n   Since Gary is nice and Gary is rough, we can conclude that Gary is nice.\n\n3. Now, let's analyze the properties of Bob:\n   - Bob is not kind.\n   - Bob is young.\n   We do not have enough information to determine whether Bob is quiet or not. Since we do not have any information about Bob's color or whether he is nice or rough, we cannot conclude whether Bob is quiet or not.\n\nTherefore, the statement \"Bob is not quiet\" is unknown, as we do not have enough information to determine whether Bob is quiet or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not quiet\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. Given information:\n   - Anne is blue, kind, and quiet.\n   - Bob is not kind.\n   - Bob is young.\n   - Erin is white.\n   - Gary is blue, kind, nice, quiet, and rough.\n   - Nice people are kind.\n   - All white, quiet people are blue.\n   - Kind, nice people are quiet.\n   - Rough people are nice.\n   - If someone is white, then they are rough.\n   - All blue, nice people are rough.\n\n2. Analyze the given information to determine the characteristics of Bob:\n   - Bob is not kind (given).\n   - Bob is young (given), but this information is irrelevant to the statement \"Bob is not quiet.\"\n   - Since Bob is not kind, we can't directly apply the information that kind, nice people are quiet.\n   - We can't determine Bob's color or whether he is white or blue based on the given information.\n\n3. Since we can't directly determine Bob's quietness from the given information, we need to analyze the statements that involve quietness:\n   - All white, quiet people are blue (this doesn't provide information about Bob).\n   - Kind, nice people are quiet (this doesn't provide information about Bob since we don't know if he is kind or nice).\n\n4. However, the statement \"Rough people are nice\" tells us that Bob can't be rough, because he is not kind (and we don't know if he is nice). But, this doesn't provide information about Bob's quietness.\n\n5. We can analyze the statement \"All blue, nice people are rough.\" This tells us that if Bob is blue, he is rough, and if he is nice, he is rough. However, this doesn't provide information about Bob's quietness.\n\n6. Based on the given information, we cannot determine whether Bob is quiet or not. There is no direct or indirect information that links Bob's characteristics to being quiet.\n\nTherefore, the answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following statements:\n   - Anne is blue. \n   - Anne is kind. \n   - Anne is quiet. \n   - Bob is not kind. \n   - Bob is young. \n   - Erin is white. \n   - Gary is blue. \n   - Gary is kind. \n   - Gary is nice. \n   - Gary is quiet. \n   - Gary is rough. \n   - Nice people are kind. \n   - All white, quiet people are blue. \n   - Kind, nice people are quiet. \n   - Rough people are nice. \n   - If someone is white then they are rough. \n   - All blue, nice people are rough.\n\n2. First, let's break down the information we have about Bob:\n   - Bob is not kind.\n   - Bob is young.\n\nHowever, we don't have any information that directly relates to Bob's quietness.\n\n3. Let's analyze the given conditions that relate to quietness:\n   - Kind, nice people are quiet.\n   - Gary is kind and nice, so he is quiet.\n\nBut we don't have any information that links Bob being not kind to being quiet or not quiet.\n\n4. Now, let's analyze the information that relates to color:\n   - Erin is white.\n   - All white people are rough.\n\nHowever, we don't have any information about Bob's color.\n\n5. To determine whether the statement \"Bob is not quiet\" is true, false, or unknown, we need to look at the available information about Bob and the conditions given.\n\nSince we don't have any information that directly relates to Bob's quietness, we can't determine whether the statement is true or false. Therefore, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(bob))",
+          "z3_formula": "Not(kind_bob) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_bob, nice_bob), quiet_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_bob, nice_bob), rough_bob)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_bob, rough_bob)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_bob, quiet_bob), blue_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "not(white(bob))",
+          "z3_formula": "Not(white_bob) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(bob))",
+          "z3_formula": "Not(kind_bob) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_gary, kind_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> nice(X)",
+          "z3_formula": "Implies(rough_gary, nice_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not(quiet(bob))",
+          "z3_formula": "Not(quiet_bob) == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(bob)",
+          "z3_formula": "Not(kind_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_bob, rough_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_bob, quiet_bob), blue_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_bob, nice_bob), rough_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_bob, kind_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_bob, nice_bob), quiet_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(bob)",
+          "z3_formula": "Not(quiet_bob)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(bob))",
+          "z3_formula": "Not(kind_bob) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_gary, kind_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_erin, rough_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_gary, nice_gary), rough_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> nice(X)",
+          "z3_formula": "Implies(rough_gary, nice_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not(white(bob))",
+          "z3_formula": "Not(white_bob) == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not(quiet(bob)) or quiet(bob)",
+          "z3_formula": "Or(Not(quiet_bob), quiet_bob) == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(bob))",
+          "z3_formula": "Not(kind_bob) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_erin, quiet_erin), blue_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "not(quiet(X)) -> not(blue(X))",
+          "z3_formula": "Implies(Not(quiet_erin), Not(blue_erin))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(bob))",
+          "z3_formula": "Not(kind_bob) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_gary, nice_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_gary, nice_gary), quiet_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> blue(X)",
+          "z3_formula": "Implies(And(nice_gary, rough_gary), blue_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_erin, quiet_erin), blue_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & rough(X) -> not(blue(X))",
+          "z3_formula": "Implies(And(blue_bob, rough_bob), Not(blue_bob))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not(blue(bob))",
+          "z3_formula": "Not(blue_bob) == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_erin, quiet_erin), blue_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not(blue(bob))",
+          "z3_formula": "Not(blue_bob) == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not(quiet(bob))",
+          "z3_formula": "Not(quiet_bob) == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(quiet(bob))",
+          "z3_formula": "unknown_quiet_bob == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(bob))",
+          "z3_formula": "Not(kind_bob) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_anne, nice_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_erin, quiet_erin), blue_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_gary, nice_gary), quiet_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> nice(X)",
+          "z3_formula": "Implies(rough_gary, nice_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_erin, rough_erin)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_gary, nice_gary), rough_gary)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not(quiet(gary))",
+          "z3_formula": "Not(quiet_gary) == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not(white(gary))",
+          "z3_formula": "Not(white_gary) == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "blue(gary) | white(gary)",
+          "z3_formula": "Or(blue_gary, white_gary)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(bob)",
+          "z3_formula": "Not(kind_bob)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_gary, kind_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_gary, quiet_gary), blue_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_gary, nice_gary), quiet_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> nice(X)",
+          "z3_formula": "Implies(rough_gary, nice_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_gary, rough_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_gary, nice_gary), rough_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(bob)",
+          "z3_formula": "Not(quiet_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(bob)",
+          "z3_formula": "Not(nice_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not white(bob)",
+          "z3_formula": "Not(white_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(bob) | blue(bob) | nice(bob)",
+          "z3_formula": "Or(Not(quiet_bob), blue_bob, nice_bob)",
+          "source_step": 6
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(bob))",
+          "z3_formula": "Not(kind_bob)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_gary, kind_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_erin, quiet_erin), blue_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_gary, nice_gary), quiet_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> nice(X)",
+          "z3_formula": "Implies(rough_gary, nice_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_erin, rough_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_gary, nice_gary), rough_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(nice(bob))",
+          "z3_formula": "Not(nice_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not(kind(bob)) | not(nice(bob))",
+          "z3_formula": "Or(Not(kind_bob), Not(nice_bob))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not(nice(bob))",
+          "z3_formula": "Not(nice_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not(kind(bob)) | not(nice(bob))",
+          "z3_formula": "Or(Not(kind_bob), Not(nice_bob))",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not(nice(bob))",
+          "z3_formula": "Not(nice_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not(nice(bob))",
+          "z3_formula": "Not(nice_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not(nice(bob))",
+          "z3_formula": "Not(nice_bob)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(bob))",
+          "z3_formula": "Not(kind_bob) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_gary, nice_gary), quiet_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_erin, quiet_erin), blue_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_gary, nice_gary), quiet_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> nice(X)",
+          "z3_formula": "Implies(rough_gary, nice_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_erin, rough_erin)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_gary, nice_gary), rough_gary)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not(quiet(bob))",
+          "z3_formula": "Not(quiet_bob) == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(bob))",
+          "z3_formula": "Not(kind_bob)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_gary, kind_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_erin, quiet_erin), blue_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_gary, nice_gary), quiet_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> nice(X)",
+          "z3_formula": "Implies(rough_gary, nice_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_erin, rough_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_gary, nice_gary), rough_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(quiet(bob))",
+          "z3_formula": "Not(quiet_bob)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(bob))",
+          "z3_formula": "Not(kind_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_gary, nice_gary), quiet_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_erin, quiet_erin), blue_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_gary, nice_gary), quiet_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> nice(X)",
+          "z3_formula": "Implies(rough_gary, nice_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_erin, rough_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_gary, nice_gary), rough_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not(quiet(bob))",
+          "z3_formula": "Not(quiet_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Or(quiet_bob, Not(quiet_bob))",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(bob)",
+          "z3_formula": "Not(kind_bob) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_gary, kind_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_erin, rough_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_erin, quiet_erin), blue_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_gary, nice_gary), quiet_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> nice(X)",
+          "z3_formula": "Implies(rough_gary, nice_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_gary, nice_gary), rough_gary)",
+          "source_step": 11
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 214,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 43
+    },
+    "maxsat_stats": {
+      "satisfied": 40,
+      "excluded": 3,
+      "total_weight": 210,
+      "solve_time_ms": 1.1879168450832367
+    },
+    "timing": {
+      "trace_gen_s": 15.245,
+      "extraction_s": 35.682,
+      "dedup_s": 1.917,
+      "maxsat_s": 0.004,
+      "total_s": 52.848
+    }
+  }
+}

@@ -1,0 +1,1023 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-658_Q4",
+    "problem": "Anne is rough. Charlie is quiet. Charlie is smart. Charlie is white. Erin is quiet. Erin is red. Fiona is quiet. Fiona is red. Fiona is round. Fiona is smart. Fiona is white. If someone is furry and round then they are smart. All round, red people are furry. All smart, furry people are rough. If Erin is red then Erin is white. All smart, rough people are furry. All furry, rough people are round. If someone is white then they are rough. If someone is red and rough then they are smart. All red, rough people are white.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is not furry.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRough($x, bool) ::: Is x rough?\nQuiet($x, bool) ::: Is x quiet?\nSmart($x, bool) ::: Is x smart?\nWhite($x, bool) ::: Is x white?\nFurry($x, bool) ::: Is x furry?\nRed($x, bool) ::: Is x red?\nRound($x, bool) ::: Is x round?\n\nFacts:\nRough(Anne, True) ::: Anne is rough.\nQuiet(Charlie, True) ::: Charlie is quiet.\nSmart(Charlie, True) ::: Charlie is smart.\nWhite(Charlie, True) ::: Charlie is white.\nQuiet(Erin, True) ::: Erin is quiet.\nRed(Erin, True) ::: Erin is red.\nQuiet(Fiona, True) ::: Fiona is quiet.\nRed(Fiona, True) ::: Fiona is red.\nRound(Fiona, True) ::: Fiona is round.\nSmart(Fiona, True) ::: Fiona is smart.\nWhite(Fiona, True) ::: Fiona is white.\n\nRules:\nFurry($x, True) && Round($x, True) >>> Smart($x, True) ::: If someone is furry and round then they are smart.\nRound($x, True) && Red($x, True) >>> Furry($x, True) ::: All round, red people are furry.\nSmart($x, True) && Furry($x, True) >>> Rough($x, True) ::: All smart, furry people are rough.\nRed(Erin, True) >>> White(Erin, True) ::: If Erin is red then Erin is white.\nSmart($x, True) && Rough($x, True) >>> Furry($x, True) ::: All smart, rough people are furry.\nFurry($x, True) && Rough($x, True) >>> Round($x, True) ::: All furry, rough people are round.\nWhite($x, True) >>> Rough($x, True) ::: If someone is white then they are rough.\nRed($x, True) && Rough($x, True) >>> Smart($x, True) ::: If someone is red and rough then they are smart.\nRed($x, True) && Rough($x, True) >>> White($x, True) ::: All red, rough people are white.\n\nQuery:\nFurry(Fiona, False) ::: Fiona is not furry."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 136.5,
+      "Unknown": 112.5
+    },
+    "answer_counts": {
+      "False": 10,
+      "Unknown": 2
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to analyze the given information and apply it to the statement \"Fiona is not furry.\"\n\n1. Let's start with the information we have about Fiona:\n   - Fiona is quiet.\n   - Fiona is red.\n   - Fiona is round.\n   - Fiona is smart.\n   - Fiona is white.\n\n2. Now, let's look at the given conditions:\n   - If someone is furry and round, then they are smart. (Fiona is round, but we need to determine if she is furry to apply this condition.)\n   - All round, red people are furry. (Fiona is round and red, so she might be furry.)\n   - All smart, furry people are rough. (We need to determine if Fiona is furry first to apply this condition.)\n   - If someone is white, then they are rough. (Fiona is white, so she is rough.)\n   - If someone is red and rough, then they are smart. (Fiona is red and rough, so she might be smart.)\n   - All red, rough people are white. (Fiona is red and rough, so she is white, but this condition contradicts the previous one. However, we need to consider the condition where all smart, rough people are furry, which we haven't applied yet.)\n   - All smart, rough people are furry. (Fiona is smart and rough, so she might be furry.)\n\n3. Now, let's analyze the condition where all smart, rough people are furry:\n   - Fiona is smart (from the given information).\n   - Fiona is rough (from the condition \"If someone is white, then they are rough\").\n   - Therefore, Fiona is furry (from the condition \"All smart, rough people are furry\").\n\n4. Since Fiona is furry, we can apply the condition \"If someone is furry and round, then they are smart\" to confirm that Fiona is smart (which we already knew).\n\n5. Now, let's analyze the statement \"Fiona is not furry.\"\n   - We have determined that Fiona is furry. Therefore, the statement \"Fiona is not furry\" is false.\n\nSo, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not furry\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\nFrom the given information:\n\n1. Fiona is quiet.\n2. Fiona is red.\n3. Fiona is round.\n4. Fiona is smart.\n5. Fiona is white.\n\nWe also have the following rules:\n\n1. All round, red people are furry. (Rule 1)\n2. If someone is white then they are rough. (Rule 2)\n3. If someone is red and rough then they are smart. (Rule 3)\n4. All red, rough people are white. (Rule 4)\n5. If Erin is red then Erin is white. (Rule 5) - This rule is not directly applicable to Fiona, so we can ignore it.\n6. All smart, furry people are rough. (Rule 6)\n7. All furry, rough people are round. (Rule 7)\n8. If someone is furry and round then they are smart. (Rule 8)\n9. Charlie is smart. (This is a fact, but not directly applicable to Fiona)\n10. Charlie is white. (This is a fact, but not directly applicable to Fiona)\n\nNow, let's apply the rules to the given information:\n\nFrom Rule 1, we know that since Fiona is round and red, she must be furry.\n\nHowever, we need to determine if this conclusion is true or not. Let's analyze the other rules to see if they conflict with this conclusion.\n\nFrom Rule 6, we know that all smart, furry people are rough. Since Fiona is furry (from Rule 1), she must be rough. But Rule 8 states that if someone is furry and round, then they are smart. Since Fiona is furry and round, she must be smart.\n\nNow, we have a conflict. On one hand, we concluded that Fiona is furry and rough. On the other hand, we concluded that Fiona is furry and smart.\n\nTo resolve this conflict, let's analyze the other rules. From Rule 7, we know that all furry, rough people are round. Since Fiona is furry and rough, she must be round. But we already know that Fiona is round.\n\nNow, we have a contradiction. We cannot conclude that Fiona is not furry. However, we also cannot conclude that Fiona is furry. The statement \"Fiona is not furry\" is unknown because we have conflicting information.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is not furry' is true, false, or unknown, we need to analyze the given information and the relationships between the characteristics.\n\n1. Given information:\n   - Fiona is quiet.\n   - Fiona is red.\n   - Fiona is round.\n   - Fiona is smart.\n   - Fiona is white.\n\n2. Analyzing relationships:\n   - All round, red people are furry.\n   - All smart, furry people are rough.\n   - All furry, rough people are round.\n   - All red, rough people are white.\n   - All smart, rough people are furry.\n   - All round, red people are furry.\n   - All smart, furry people are rough.\n   - If someone is white then they are rough.\n   - If someone is red and rough then they are smart.\n   - All red, rough people are white.\n   - If someone is furry and round then they are smart.\n   - All smart, furry people are rough.\n   - All furry, rough people are round.\n   - If someone is red then they are white.\n\n3. Analyzing Fiona's characteristics:\n   - Fiona is round.\n   - Fiona is red.\n   - Given the relationship 'All round, red people are furry', we can conclude that Fiona is furry.\n   - This contradicts the statement 'Fiona is not furry'.\n\nSince Fiona is furry, the statement 'Fiona is not furry' is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not furry\" is true, false, or unknown, we need to analyze the given information and apply the rules of inference.\n\nGiven information:\n1. Fiona is quiet.\n2. Fiona is red.\n3. Fiona is round.\n4. Fiona is smart.\n5. Fiona is white.\n\nRules:\n1. If someone is furry and round then they are smart. (Furry and Round \u2192 Smart)\n2. All round, red people are furry. (Round, Red \u2192 Furry)\n3. All smart, furry people are rough. (Smart, Furry \u2192 Rough)\n4. If Erin is red then Erin is white. (Red \u2192 White)\n5. All smart, rough people are furry. (Smart, Rough \u2192 Furry)\n6. All furry, rough people are round. (Furry, Rough \u2192 Round)\n7. If someone is white then they are rough. (White \u2192 Rough)\n8. If someone is red and rough then they are smart. (Red, Rough \u2192 Smart)\n9. All red, rough people are white. (Red, Rough \u2192 White)\n\nNow, let's analyze the statement \"Fiona is not furry.\" To do this, we need to find a possible contradiction or an inconsistency in the given information.\n\nFrom rule 2, we know that all round, red people are furry. Since Fiona is round and red, it's possible that Fiona is furry. However, we cannot conclude this with certainty because there might be other conditions that make Fiona not furry.\n\nLet's analyze the given information about Fiona:\n\nFiona is quiet (1).\nFiona is red (2).\nFiona is round (3).\nFiona is smart (4).\nFiona is white (5).\n\nFrom rule 7, we know that if someone is white, then they are rough. Since Fiona is white, it's possible that Fiona is rough.\n\nFrom rule 8, we know that if someone is red and rough, then they are smart. Since Fiona is red and possibly rough, it's possible that Fiona is smart.\n\nFrom rule 3, we know that all smart, furry people are rough. However, we don't know if Fiona is furry or not. If Fiona is furry, then it's possible that Fiona is rough. But if Fiona is not furry, then we cannot conclude that Fiona is rough.\n\nFrom rule 6, we know that all furry, rough people are round. However, we don't know if Fiona is furry or not. If Fiona is furry and rough, then it's possible that Fiona is round. But if Fiona is not furry, then we cannot conclude that Fiona is round.\n\nFrom rule 2, we know that all round, red people are furry. However, we don't know if Fiona is furry or not. If Fiona is round and red, then it's possible that Fiona is furry. But if Fiona is not furry, then we cannot conclude that Fiona is round.\n\nNow, let's analyze the statement \"Fiona is not furry.\" We cannot conclude this with certainty because there might be other conditions that make Fiona furry.\n\nHowever, we can conclude that Fiona is round, red, smart, and white. This information is consistent with the given rules. But we cannot conclude that Fiona is furry or not furry.\n\nTherefore, the statement \"Fiona is not furry\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is not furry' is true, false, or unknown, we need to analyze the given information and apply the rules of inference to find the conclusion.\n\nGiven information:\n\n1. Fiona is quiet. \n2. Fiona is red. \n3. Fiona is round. \n4. Fiona is smart. \n5. Fiona is white.\n\nRules of inference:\n\n1. If someone is furry and round then they are smart. \n2. All round, red people are furry. \n3. All smart, furry people are rough. \n4. All furry, rough people are round. \n5. If someone is white then they are rough. \n6. If someone is red and rough then they are smart. \n7. All red, rough people are white.\n\nNow, let's break down the problem into smaller steps:\n\nStep 1: Determine if Fiona is furry or not.\n\nFrom rule 2, all round, red people are furry. \nSince Fiona is round (3) and red (2), Fiona is furry.\n\nStep 2: Determine if Fiona is not furry.\n\nSince we determined that Fiona is furry (from step 1), we can conclude that 'Fiona is not furry' is false.\n\nTherefore, the statement 'Fiona is not furry' is \\boxed{false}.",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we'll use a method called semantic tableaux or truth trees, which is a systematic way of evaluating logical statements.\n\nStep 1: Break down the given information into logical statements.\n\n1. Anne is rough. \n2. Charlie is quiet. \n3. Charlie is smart. \n4. Charlie is white. \n5. Erin is quiet. \n6. Erin is red. \n7. Fiona is quiet. \n8. Fiona is red. \n9. Fiona is round. \n10. Fiona is smart. \n11. Fiona is white. \n12. If someone is furry and round then they are smart. \n13. All round, red people are furry. \n14. All smart, furry people are rough. \n15. All furry, rough people are round. \n16. If Erin is red then Erin is white. \n17. All smart, rough people are furry. \n18. All furry, rough people are round. \n19. If someone is white then they are rough. \n20. If someone is red and rough then they are smart. \n21. All red, rough people are white.\n\nStep 2: We need to find the truth value of the statement \"Fiona is not furry.\" To do this, we'll assume the opposite: \"Fiona is furry.\"\n\nStep 3: Using statement 12, if someone is furry and round then they are smart. If Fiona is furry, then we can infer that Fiona is smart. But we already know that Fiona is smart from statement 10. So, our assumption that \"Fiona is furry\" leads to a contradiction with statement 10. However, we need to make sure we've taken into account all the other statements that might relate to Fiona being furry.\n\nStep 4: We know that Fiona is red from statement 8. Using statement 13, all round, red people are furry. However, we don't know if Fiona is round. We need to check if Fiona being round leads to a contradiction or not.\n\nStep 5: We know that Fiona is round from statement 9. Using statement 13, all round, red people are furry. Since we've already established that Fiona is furry, this statement doesn't lead to a contradiction.\n\nStep 6: Now, let's examine the relationship between Fiona being red and being rough. We know that Fiona is red from statement 8, and we also know that all round, red people are furry from statement 13. However, we need to check if Fiona being round and red leads to a contradiction with the other statements.\n\nStep 7: We know that Fiona is round from statement 9, and we also know that all furry, rough people are round from statement 15. If Fiona is furry (which we established in step 3), then it's possible that Fiona is rough. However, we need to check if Fiona being rough leads to a contradiction or not.\n\nStep 8: We know that Fiona is white from statement 11, and we also know that if someone is white then they are rough from statement 19. So, Fiona being white implies that Fiona is rough.\n\nStep 9: Now, let's examine the relationship between Fiona being rough and being smart. We know that Fiona is rough from step 8, and we also know that all red, rough people are white from statement 21. However, we need to check if Fiona being red and rough leads to a contradiction or not.\n\nStep 10: We know that Fiona is red from statement 8, and we also know that if someone is red and rough then they are smart from statement 20. However, we also know that all red, rough people are white from statement 21. This implies that Fiona is white.\n\nStep 11: Now, let's examine the relationship between Fiona being white and being rough. We know that Fiona is white from statement 11, and we also know that if someone is white then they are rough from statement 19. So, Fiona being white implies that Fiona is rough.\n\nStep 12: We've established that Fiona is furry, round, and red. We've also established that Fiona is white, which implies that Fiona is rough. Using statement 14, all smart, furry people are rough. We know that Fiona is furry, round, and red, which implies that Fiona is smart. However, we already know that Fiona is smart from statement 10.\n\nStep 13: Since we've established that Fiona is furry, and we know that all smart, furry people are rough, and we also know that all furry, rough people are round, we can conclude that Fiona is round.\n\nStep 14: We've established that Fiona is round, and we know that all round, red people are furry. However, we already know that Fiona is furry from step 3.\n\nStep 15: Since we've established that Fiona is furry, and we know that all furry, rough people are round, and we also know that Fiona is round, we can conclude that Fiona is rough.\n\nStep 16: We've established that Fiona is white from statement 11, and we also know that if someone is white then they are rough from statement 19. So, Fiona being white implies that Fiona is rough.\n\nStep 17: Now, let's re-examine the statement \"Fiona is not furry.\" Our assumption that \"Fiona is furry\" has led to a chain of conclusions that don't lead to a contradiction. However, we've established that Fiona is furry, which means that the statement \"Fiona is not furry\" is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not furry\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. We are given the following statements:\n   - Fiona is quiet.\n   - Fiona is red.\n   - Fiona is round.\n   - Fiona is smart.\n   - Fiona is white.\n\n2. From the given statements, we can infer that Fiona is indeed furry, because:\n   - All round, red people are furry.\n   - Fiona is round and red.\n\n3. Now, let's analyze the statement \"Fiona is not furry.\" We have already found that Fiona is furry, which contradicts the statement. So, the statement \"Fiona is not furry\" is false.\n\nTherefore, the final answer is: \n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not furry\" is true, false, or unknown, we need to analyze the given information step by step.\n\nGiven information:\n1. Fiona is quiet.\n2. Fiona is red.\n3. Fiona is round.\n4. Fiona is smart.\n5. Fiona is white.\n\nFrom the premises:\n- If someone is furry and round then they are smart. (1)\n- All round, red people are furry. (2)\n- All smart, furry people are rough. (3)\n- If Erin is red then Erin is white. (4)\n- All smart, rough people are furry. (5)\n- All furry, rough people are round. (6)\n- If someone is white then they are rough. (7)\n- If someone is red and rough then they are smart. (8)\n- All red, rough people are white. (9)\n\nNow, let's analyze the statement \"Fiona is not furry\".\n\nWe know Fiona is round (3) and red (2). So, from the premise \"All round, red people are furry\" (2), we can conclude that Fiona is furry.\n\nThis contradicts the statement \"Fiona is not furry\". \n\nTherefore, the statement \"Fiona is not furry\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given statements and use them to determine the characteristics of Fiona.\n\n1. Given statements:\n   - Anne is rough.\n   - Charlie is quiet.\n   - Charlie is smart.\n   - Charlie is white.\n   - Erin is quiet.\n   - Erin is red.\n   - Fiona is quiet.\n   - Fiona is red.\n   - Fiona is round.\n   - Fiona is smart.\n   - Fiona is white.\n   - If someone is furry and round then they are smart.\n   - All round, red people are furry.\n   - All smart, furry people are rough.\n   - All furry, rough people are round.\n   - If Erin is red then Erin is white.\n   - All smart, rough people are furry.\n   - All furry, rough people are round.\n   - If someone is white then they are rough.\n   - If someone is red and rough then they are smart.\n   - All red, rough people are white.\n\n2. Determine Fiona's characteristics using the given statements:\n   - From statement 7, we know that Fiona is red.\n   - From statement 8, we know that Fiona is round.\n   - From statement 9, we know that Fiona is smart.\n   - From statement 10, we know that Fiona is white.\n\n3. Determine if Fiona is furry:\n   - From statement 5, we know that all round, red people are furry.\n   - Since Fiona is round (statement 8) and red (statement 7), we can conclude that Fiona is furry.\n   - We will check the truth of the statement \"Fiona is not furry.\"\n\n4. Evaluate the truth of the statement \"Fiona is not furry\":\n   - Since we know from step 3 that Fiona is furry, the statement \"Fiona is not furry\" is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine if the statement 'Fiona is not furry' is true, false, or unknown, we need to break down the given information and use logical deductions.\n\n1. Fiona is quiet. (Statement 3)\n2. Fiona is red. (Statement 5)\n3. Fiona is round. (Statement 6)\n4. Fiona is smart. (Statement 7)\n5. Fiona is white. (Statement 8)\n\nFrom the given premises, we have:\n- All round, red people are furry. (Premise 3)\n- Fiona is round. (Statement 3)\n- Fiona is red. (Statement 5)\nTherefore, Fiona is furry.\n\nNow, we have a contradiction with the statement we need to evaluate: 'Fiona is not furry.'\n\nSince we have already deduced that Fiona is furry, the statement 'Fiona is not furry' must be false.\n\nTherefore, the answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not furry\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information, we know that:\n   - Fiona is quiet.\n   - Fiona is red.\n   - Fiona is round.\n   - Fiona is smart.\n   - Fiona is white.\n\n2. We also know the following rules:\n   - If someone is white then they are rough.\n   - All smart, rough people are furry.\n   - All furry, rough people are round.\n   - If someone is red and rough then they are smart.\n   - All red, rough people are white.\n   - If Erin is red then Erin is white.\n   - All round, red people are furry.\n   - If someone is furry and round then they are smart.\n\n3. To determine whether Fiona is furry, we need to check the given rules and see if they apply to her. We already know that Fiona is round and smart, and from the rule \"If someone is furry and round then they are smart,\" we can conclude that Fiona is furry.\n\n4. Since we have concluded that Fiona is furry, we can now check if the statement \"Fiona is not furry\" is true or false. Based on our conclusion, \"Fiona is not furry\" is false.\n\nSo, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to use logical deduction based on the given statements.\n\n1. All round, red people are furry. \n2. All smart, furry people are rough. \n3. All furry, rough people are round. \n4. If someone is white then they are rough. \n5. If someone is red and rough then they are smart. \n6. All red, rough people are white. \n7. Fiona is quiet. \n8. Fiona is red. \n9. Fiona is round. \n10. Fiona is smart. \n11. Fiona is white.\n\nFrom statement 8 and 11, we can conclude that Fiona is both red and white. However, from statement 6, we know that all red, rough people are white. Also, from statement 4, we know that if someone is white, then they are rough. Therefore, we can conclude that Fiona is rough.\n\nNow, using the conclusion that Fiona is rough, and combining it with statement 5 (if someone is red and rough then they are smart), we can conclude that Fiona is smart.\n\nFrom statement 3 (all furry, rough people are round) and our conclusion that Fiona is round, we can conclude that Fiona is furry.\n\nNow, we need to determine whether the statement \"Fiona is not furry\" is true, false, or unknown.\n\nSince we concluded that Fiona is furry, the statement \"Fiona is not furry\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_fiona, round_fiona), smart_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_fiona, red_fiona), furry_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(smart_fiona, furry_fiona), rough_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_fiona, rough_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_fiona, rough_fiona), smart_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> white(X)",
+          "z3_formula": "Implies(And(red_fiona, rough_fiona), white_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(smart_fiona, rough_fiona), furry_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(fiona)",
+          "z3_formula": "Not(furry_fiona) == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_fiona, red_fiona), furry_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_fiona, rough_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_fiona, rough_fiona), smart_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> white(X)",
+          "z3_formula": "Implies(And(red_fiona, rough_fiona), white_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(smart_fiona, furry_fiona), rough_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_fiona, rough_fiona), round_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_fiona, round_fiona), smart_fiona)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_fiona, red_fiona), furry_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(smart_fiona, furry_fiona), rough_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_fiona, rough_fiona), round_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> white(X)",
+          "z3_formula": "Implies(And(red_fiona, rough_fiona), white_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(smart_fiona, furry_fiona), rough_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_fiona, round_fiona), smart_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_fiona, rough_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_fiona, rough_fiona), smart_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> white(X)",
+          "z3_formula": "Implies(red_fiona, white_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_fiona, round_fiona), smart_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_fiona, red_fiona), furry_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(smart_fiona, furry_fiona), rough_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_fiona, rough_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_fiona, rough_fiona), smart_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> white(X)",
+          "z3_formula": "Implies(And(red_fiona, rough_fiona), white_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_fiona, rough_fiona), round_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona) & red(fiona) & smart(fiona) & white(fiona)",
+          "z3_formula": "And(round_fiona, And(red_fiona, And(smart_fiona, white_fiona)))",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(fiona)",
+          "z3_formula": "Not(furry_fiona)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_fiona, round_fiona), smart_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_fiona, red_fiona), furry_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_fiona, rough_fiona), round_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_fiona, rough_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_fiona, rough_fiona), smart_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> white(X)",
+          "z3_formula": "Implies(And(red_fiona, rough_fiona), white_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(fiona)",
+          "z3_formula": "Not(furry_fiona) == True",
+          "source_step": 13
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_fiona, red_fiona), furry_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(fiona)",
+          "z3_formula": "Not(furry_fiona) == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_fiona, round_fiona), smart_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_fiona, red_fiona), furry_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(smart_fiona, furry_fiona), rough_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_fiona, rough_fiona), round_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_fiona, rough_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_fiona, rough_fiona), smart_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> white(X)",
+          "z3_formula": "Implies(And(red_fiona, rough_fiona), white_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_fiona, round_fiona), smart_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_fiona, red_fiona), furry_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(smart_fiona, furry_fiona), rough_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_fiona, rough_fiona), round_fiona)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> white(X)",
+          "z3_formula": "Implies(red_erin, white_erin)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_fiona, rough_fiona), smart_fiona)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> white(X)",
+          "z3_formula": "Implies(And(red_fiona, rough_fiona), white_fiona)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(fiona)",
+          "z3_formula": "Not(furry_fiona)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_fiona, red_fiona), furry_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_fiona, rough_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(smart_fiona, rough_fiona), furry_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_fiona, rough_fiona), round_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_fiona, rough_fiona), smart_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> white(X)",
+          "z3_formula": "Implies(red_fiona, white_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "erinn(red) -> erinn(white)",
+          "z3_formula": "Implies(red_erinn, white_erinn)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_fiona, red_fiona), furry_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_fiona, round_fiona), smart_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(fiona)",
+          "z3_formula": "Not(furry_fiona) == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_fiona, red_fiona), furry_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(smart_fiona, furry_fiona), rough_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_fiona, rough_fiona), round_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_fiona, rough_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_fiona, rough_fiona), smart_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> white(X)",
+          "z3_formula": "Implies(And(red_fiona, rough_fiona), white_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "fiona is both red and white",
+          "z3_formula": "And(red_fiona, white_fiona) == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "fiona is rough",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "fiona is smart",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "fiona is furry",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(fiona)",
+          "z3_formula": "Not(furry_fiona) == True",
+          "source_step": 14
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 149,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 27
+    },
+    "maxsat_stats": {
+      "satisfied": 26,
+      "excluded": 1,
+      "total_weight": 141,
+      "solve_time_ms": 0.8803112432360649
+    },
+    "timing": {
+      "trace_gen_s": 13.843,
+      "extraction_s": 33.109,
+      "dedup_s": 0.755,
+      "maxsat_s": 0.003,
+      "total_s": 47.709
+    }
+  }
+}

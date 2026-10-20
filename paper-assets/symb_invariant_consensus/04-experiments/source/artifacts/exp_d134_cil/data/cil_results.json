@@ -1,0 +1,225 @@
+{
+  "experiment": "exp_d134_cil",
+  "description": "CIL (Cumulative Information Lift) computation",
+  "formula": "CIL(V,G) = log2[P(V correct | G wrong) / P(V correct | G correct)]",
+  "pairs": [
+    {
+      "generator": "Mistral-7B",
+      "verifier": "DeBERTa-large-MNLI",
+      "verifier_type": "NLI",
+      "dataset": "PW-600",
+      "n": 600,
+      "combo_gain_w3": 6.67,
+      "cil": 1.6655,
+      "p_v_correct_given_g_wrong": 0.7527,
+      "p_v_correct_given_g_correct": 0.2373,
+      "n_g_wrong": 364,
+      "n_g_right": 236,
+      "both_right": 56,
+      "v_right_g_wrong": 274,
+      "g_right_v_wrong": 180,
+      "both_wrong": 90
+    },
+    {
+      "generator": "Mistral-7B",
+      "verifier": "RoBERTa-large-MNLI",
+      "verifier_type": "NLI",
+      "dataset": "PW-600",
+      "n": 600,
+      "combo_gain_w3": 4.17,
+      "cil": 1.4232,
+      "p_v_correct_given_g_wrong": 0.5,
+      "p_v_correct_given_g_correct": 0.1864,
+      "n_g_wrong": 364,
+      "n_g_right": 236,
+      "both_right": 44,
+      "v_right_g_wrong": 182,
+      "g_right_v_wrong": 192,
+      "both_wrong": 182
+    },
+    {
+      "generator": "Mistral-7B",
+      "verifier": "BART-large-MNLI",
+      "verifier_type": "NLI",
+      "dataset": "PW-600",
+      "n": 600,
+      "combo_gain_w3": 5.17,
+      "cil": 1.859,
+      "p_v_correct_given_g_wrong": 0.6456,
+      "p_v_correct_given_g_correct": 0.178,
+      "n_g_wrong": 364,
+      "n_g_right": 236,
+      "both_right": 42,
+      "v_right_g_wrong": 235,
+      "g_right_v_wrong": 194,
+      "both_wrong": 129
+    },
+    {
+      "generator": "Qwen2.5-14B",
+      "verifier": "DeBERTa-large-MNLI",
+      "verifier_type": "NLI",
+      "dataset": "PW-600",
+      "n": 600,
+      "combo_gain_w3": 0.33,
+      "note": "SC corrected: 74.0% BH (was 70.33% local). combo_w3=74.33%",
+      "cil": -0.0827,
+      "p_v_correct_given_g_wrong": 0.5281,
+      "p_v_correct_given_g_correct": 0.5592,
+      "n_g_wrong": 178,
+      "n_g_right": 422,
+      "both_right": 236,
+      "v_right_g_wrong": 94,
+      "g_right_v_wrong": 186,
+      "both_wrong": 84
+    },
+    {
+      "generator": "Qwen2.5-14B",
+      "verifier": "SICA",
+      "verifier_type": "SICA",
+      "dataset": "PW-600",
+      "n": 600,
+      "combo_gain_w3": 0.5,
+      "note": "SICA_acc=0.7083, SC_acc=0.7033",
+      "cil": -3.5272,
+      "p_v_correct_given_g_wrong": 0.0843,
+      "p_v_correct_given_g_correct": 0.9716,
+      "n_g_wrong": 178,
+      "n_g_right": 422,
+      "both_right": 410,
+      "v_right_g_wrong": 15,
+      "g_right_v_wrong": 12,
+      "both_wrong": 163
+    },
+    {
+      "generator": "LLaMA-3.1-8B",
+      "verifier": "DeBERTa-large-MNLI",
+      "verifier_type": "NLI",
+      "dataset": "PW-600",
+      "n": 600,
+      "combo_gain_w3": 4.17,
+      "cil": null,
+      "note": "per-question data on westd-16639, CIL not computable from this server",
+      "sc_accuracy": 0.7
+    },
+    {
+      "generator": "Qwen3-14B",
+      "verifier": "DeBERTa-large-MNLI",
+      "verifier_type": "NLI",
+      "dataset": "PW-600",
+      "n": 600,
+      "combo_gain_w3": 1.0,
+      "cil": null,
+      "note": "per-question data on westd-16639, CIL not computable from this server",
+      "sc_accuracy": 0.85
+    },
+    {
+      "generator": "Mistral-7B",
+      "verifier": "DeBERTa-large-MNLI",
+      "verifier_type": "NLI",
+      "dataset": "FOLIO-204",
+      "n": 204,
+      "combo_gain_w3": 2.94,
+      "cil": -0.4741,
+      "p_v_correct_given_g_wrong": 0.4086,
+      "p_v_correct_given_g_correct": 0.5676,
+      "n_g_wrong": 93,
+      "n_g_right": 111,
+      "both_right": 63,
+      "v_right_g_wrong": 38,
+      "g_right_v_wrong": 48,
+      "both_wrong": 55,
+      "note": "SC corrected: 55.88% (was 54.41%). combo_w3=58.82%"
+    },
+    {
+      "generator": "Mistral-7B",
+      "verifier": "SICA",
+      "verifier_type": "SICA",
+      "dataset": "FOLIO-204",
+      "n": 204,
+      "combo_gain_w3": 3.43,
+      "note": "SICA_acc=0.5931, SC_acc=0.5588 (corrected from 0.5441)",
+      "cil": -2.928,
+      "p_v_correct_given_g_wrong": 0.129,
+      "p_v_correct_given_g_correct": 0.982,
+      "n_g_wrong": 93,
+      "n_g_right": 111,
+      "both_right": 109,
+      "v_right_g_wrong": 12,
+      "g_right_v_wrong": 2,
+      "both_wrong": 81
+    },
+    {
+      "generator": "Mistral-7B",
+      "verifier": "SICA",
+      "verifier_type": "SICA",
+      "dataset": "PW-600",
+      "n": 600,
+      "combo_gain_w3": -2.83,
+      "note": "SICA_acc=0.3650, SC_acc=0.3933",
+      "cil": -4.6112,
+      "p_v_correct_given_g_wrong": 0.0357,
+      "p_v_correct_given_g_correct": 0.8729,
+      "n_g_wrong": 364,
+      "n_g_right": 236,
+      "both_right": 206,
+      "v_right_g_wrong": 13,
+      "g_right_v_wrong": 30,
+      "both_wrong": 351
+    }
+  ],
+  "correlation": {
+    "n_pairs": 8,
+    "spearman_cil_vs_gain": {
+      "rho": 0.8095,
+      "p": 0.0149
+    },
+    "pearson_cil_vs_gain": {
+      "r": 0.7994,
+      "p": 0.0173
+    }
+  },
+  "corrections_applied": {
+    "date": "2026-05-21",
+    "reason": "SC baseline corrections for 3 pairs",
+    "changes": [
+      {
+        "pair": "Mistral-7B + DeBERTa-MNLI / FOLIO-204",
+        "old_gain": 4.41,
+        "new_gain": 2.94,
+        "fix": "SC 54.41%->55.88%"
+      },
+      {
+        "pair": "Mistral-7B + SICA / FOLIO-204",
+        "old_gain": 4.9,
+        "new_gain": 3.43,
+        "fix": "SC 54.41%->55.88%"
+      },
+      {
+        "pair": "Qwen2.5-14B + DeBERTa-MNLI / PW-600",
+        "old_gain": 0.83,
+        "new_gain": 0.33,
+        "fix": "SC 70.33%->74.0% (BH corrected)"
+      }
+    ],
+    "correlation_before": {
+      "spearman": {
+        "rho": 0.7619,
+        "p": 0.028
+      },
+      "pearson": {
+        "r": 0.734,
+        "p": 0.0382
+      }
+    },
+    "correlation_after": {
+      "spearman": {
+        "rho": 0.8095,
+        "p": 0.0149
+      },
+      "pearson": {
+        "r": 0.7994,
+        "p": 0.0173
+      }
+    }
+  }
+}

@@ -1,0 +1,100 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wang2023selfconsistency}
+\citation{pan2023logiclm}
+\citation{olausson2023linc}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{wang2023selfconsistency}
+\citation{chen2023usc}
+\citation{loo2025scaling}
+\citation{taubenfeld2025weighted}
+\citation{li2023diverse}
+\citation{pan2023logiclm}
+\citation{olausson2023linc}
+\citation{cobbe2021gsm8k}
+\citation{lightman2023prm}
+\citation{wang2024mathshepherd}
+\citation{snell2025scaling}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Self-Consistency and Extensions.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Neuro-Symbolic Reasoning.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Verification and Reranking.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Test-Time Compute Scaling.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Constraint Satisfaction in NLP.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setting}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}SICA Pipeline}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{1. Trace Generation.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{2. Constraint Extraction.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{3. Deduplication.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{4. MAX-SAT Aggregation.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Candidate Diversity Rate (C0)}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Main results: SICA vs SC across models and domains. $\Delta $ = SICA $-$ SC in percentage points. No condition achieves statistical significance. C0 = candidate diversity rate.}}{4}{table.caption.13}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:main}{{1}{4}{Main results: SICA vs SC across models and domains. $\Delta $ = SICA $-$ SC in percentage points. No condition achieves statistical significance. C0 = candidate diversity rate}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Domains.}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Parameters.}{4}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Main Results}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Constraint Ablation}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Constraint ablation on $n$=804 (Qwen2.5-14B, D012). MAX-SAT provides no advantage over counting or random weighting. Proxy-based reconstruction (see Section~\ref {sec:limitations}).}}{5}{table.caption.14}\protected@file@percent }
+\newlabel{tab:ablation}{{2}{5}{Constraint ablation on $n$=804 (Qwen2.5-14B, D012). MAX-SAT provides no advantage over counting or random weighting. Proxy-based reconstruction (see Section~\ref {sec:limitations})}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Oracle Control: Localizing the Bottleneck}{5}{subsection.4.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Oracle experiment on FOLIO ($n$=204). Gold FOL constraints enable significant gains, proving the aggregation mechanism is effective given discriminative constraints.}}{5}{table.caption.15}\protected@file@percent }
+\newlabel{tab:oracle}{{3}{5}{Oracle experiment on FOLIO ($n$=204). Gold FOL constraints enable significant gains, proving the aggregation mechanism is effective given discriminative constraints}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Constraint Quality Analysis}{5}{subsection.4.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Constraint precision by domain and model. All values near chance (0.50), indicating non-discriminative constraints regardless of condition.}}{5}{table.caption.16}\protected@file@percent }
+\newlabel{tab:precision}{{4}{5}{Constraint precision by domain and model. All values near chance (0.50), indicating non-discriminative constraints regardless of condition}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}C0 as Deployment Diagnostic}{6}{subsection.4.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces C0 diagnostic validation across 12 conditions. C0$<$5\% guarantees $\Delta $=0 (sensitivity=1.0). C0$>$20\% shows mean gap 0.15pp with SD=2.8pp.}}{6}{table.caption.17}\protected@file@percent }
+\newlabel{tab:c0}{{5}{6}{C0 diagnostic validation across 12 conditions. C0$<$5\% guarantees $\Delta $=0 (sensitivity=1.0). C0$>$20\% shows mean gap 0.15pp with SD=2.8pp}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Overhead Analysis}{6}{subsection.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}K Sensitivity}{6}{subsection.4.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Comparison with Logic-LM}{6}{subsection.4.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}The Capability Trap}{7}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Implications for Practitioners}{7}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Limitations}{7}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:limitations}{{5.3}{7}{Limitations}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Oracle scope.}{7}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Proxy reconstruction.}{7}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Domain coverage.}{7}{section*.20}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{wang2023selfconsistency}{{1}{2023}{{Wang et al.}}{{}}}
+\bibcite{chen2023usc}{{2}{2023}{{Chen et al.}}{{}}}
+\bibcite{pan2023logiclm}{{3}{2023}{{Pan et al.}}{{}}}
+\bibcite{olausson2023linc}{{4}{2023}{{Olausson et al.}}{{}}}
+\bibcite{cobbe2021gsm8k}{{5}{2021}{{Cobbe et al.}}{{}}}
+\bibcite{lightman2023prm}{{6}{2023}{{Lightman et al.}}{{}}}
+\bibcite{wang2024mathshepherd}{{7}{2024}{{Wang et al.}}{{}}}
+\bibcite{snell2025scaling}{{8}{2025}{{Snell et al.}}{{}}}
+\bibcite{loo2025scaling}{{9}{2025}{{Loo et al.}}{{}}}
+\bibcite{taubenfeld2025weighted}{{10}{2025}{{Taubenfeld et al.}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{LLaMA-8B D012 signal.}{8}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Self-extraction only.}{8}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\bibcite{li2023diverse}{{11}{2023}{{Li et al.}}{{}}}
+\bibcite{liang2023debate}{{12}{2023}{{Liang et al.}}{{}}}
+\bibcite{du2023debate}{{13}{2023}{{Du et al.}}{{}}}
+\bibcite{openai2024o1}{{14}{2024}{{OpenAI}}{{}}}
+\bibcite{deepseek2025r1}{{15}{2025}{{DeepSeek}}{{}}}
+\bibcite{han2022folio}{{16}{2022}{{Han et al.}}{{}}}
+\bibcite{tafjord2021proofwriter}{{17}{2021}{{Tafjord et al.}}{{}}}
+\bibcite{geva2021strategyqa}{{18}{2021}{{Geva et al.}}{{}}}
+\bibcite{clark2018arc}{{19}{2018}{{Clark et al.}}{{}}}
+\bibcite{cobbe2021gsm8k_data}{{20}{2021b}{{Cobbe et al.}}{{}}}
+\bibcite{qwq2024}{{21}{2024}{{QwQ-Team}}{{}}}
+\bibcite{yang2024qwen25}{{22}{2024}{{Yang et al.}}{{}}}
+\bibcite{dubey2024llama3}{{23}{2024}{{Dubey et al.}}{{}}}
+\bibcite{jiang2023mistral}{{24}{2023}{{Jiang et al.}}{{}}}
+\bibcite{biere2021maxsat}{{25}{2021}{{Biere et al.}}{{}}}
+\bibcite{wei2022cot}{{26}{2022}{{Wei et al.}}{{}}}
+\bibcite{xu2025satbench}{{27}{2025}{{Xu et al.}}{{}}}
+\bibcite{huang2025constraint}{{28}{2025}{{Huang et al.}}{{}}}
+\bibcite{rogers2020negative}{{29}{2020}{{Rogers et al.}}{{}}}
+\bibcite{biswas2024negative}{{30}{2024}{{Biswas et al.}}{{}}}
+\gdef \@abspage@last{10}

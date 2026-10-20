@@ -1,0 +1,861 @@
+{
+  "problem": {
+    "id": "folio_1",
+    "problem": "Given the following premises:\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nIf Bonnie is either both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances or neither is a young child nor teenager who wishes to further her academic career and educational opportunities, then Bonnie is either a student who attends the school or is an inactive and disinterested member of the community.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (TalentShows(x) \u2192 Engaged(x))",
+      "\u2200x (TalentShows(x) \u2228 Inactive(x))",
+      "\u2200x (Chaperone(x) \u2192 \u00acStudents(x))",
+      "\u2200x (Inactive(x) \u2192 Chaperone(x))",
+      "\u2200x (AcademicCareer(x) \u2192 Students(x))",
+      "(Engaged(bonnie) \u2227 Students(bonnie)) \u2295 (\u00acEngaged(bonnie) \u2227 \u00acStudents(bonnie))"
+    ],
+    "conclusion_fol": "AcademicCareer(bonnie) \u2295 Chaperone(bonnie) \u2192 AcademicCareer(bonnie) \u2295 Inactive(bonnie)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 84.0,
+      "Unknown": 25.0
+    },
+    "answer_counts": {
+      "True": 6,
+      "Unknown": 3
+    },
+    "traces": [
+      {
+        "trace": "To determine the truth value of the given conclusion, we need to analyze the premises and use logical deductions.\n\nPremise 1: If people perform in school talent shows often, then they attend and are very engaged with school events.\n\nPremise 2: People either perform in school talent shows often or are inactive and disinterested members of their community.\n\nPremise 3: If people chaperone high school dances, then they are not students who attend the school.\n\nPremise 4: All people who are inactive and disinterested members of their community chaperone high school dances.\n\nPremise 5: All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school.\n\nPremise 6: Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\n\nWe can represent the information given in the premises using the following variables:\n\n- A: Attend and are very engaged with school events\n- P: Perform in school talent shows often\n- I: Inactive and disinterested member of the community\n- C: Chaperone high school dances\n- S: Student who attends the school\n- B: Young child or teenager who wishes to further her academic career and educational opportunities\n\nWe can rewrite the premises in terms of these variables:\n\n1. P \u2192 A (If people perform in school talent shows often, then they attend and are very engaged with school events)\n2. P \u2228 I (People either perform in school talent shows often or are inactive and disinterested members of their community)\n3. C \u2192 \u00acS (If people chaperone high school dances, then they are not students who attend the school)\n4. I \u2192 C (All people who are inactive and disinterested members of their community chaperone high school dances)\n5. B \u2192 S (All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school)\n6. (A \u2227 S) \u2228 \u00ac(A \u2227 S)\n\nNow we can analyze the given conclusion:\n\nConclusion: If B \u2228 (\u00acB) then S \u2228 I\n\nLet's break it down:\n\nB \u2228 (\u00acB) is a tautology, which is always true.\n\nFrom premise 2, we know that P \u2228 I is always true.\n\nFrom premise 1, we know that P \u2192 A is always true.\n\nFrom premise 6, we know that (A \u2227 S) \u2228 \u00ac(A \u2227 S) is always true.\n\nWe can use these premises to determine the truth value of the conclusion.\n\nFirst, let's consider the case when B is true:\n\nB \u2192 S (from premise 5)\n\nSince B is true, we know that S is true.\n\nBut from premise 3, we know that C \u2192 \u00acS, which means that if C is true, then S is false.\n\nFrom premise 4, we know that I \u2192 C, which means that if I is true, then C is true.\n\nBut if C is true, then S is false (from premise 3).\n\nTherefore, if B is true, then S is true, and if I is true, then C is true and S is false.\n\nNow let's consider the case when B is false:\n\n\u00acB is true.\n\nFrom premise 2, we know that P \u2228 I is always true.\n\nIf P is true, then A is true (from premise 1).\n\nIf A is true, then S is true (from premise 6).\n\nBut from premise 3, we know that C \u2192 \u00acS, which means that if C is true, then S is false.\n\nFrom premise 4, we know that I \u2192 C, which means that if I is true, then C is true.\n\nBut if C is true, then S is false (from premise 3).\n\nTherefore, if \u00acB is true and P is true, then S is true, and if I is true, then C is true and S is false.\n\nIf P is false, then I is true (from premise 2).\n\nIf I is true, then C is true (from premise 4).\n\nIf C is true, then S is false (from premise 3).\n\nTherefore, if \u00acB is true and P is false, then I is true, C is true, and S is false.\n\nNow we can see that in both cases, if B \u2228 (\u00acB) is true, then S \u2228 I is also true.\n\nTherefore, the conclusion is true.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply them to the conclusion.\n\nPremise 1: If people perform in school talent shows often, then they attend and are very engaged with school events.\nPremise 2: People either perform in school talent shows often or are inactive and disinterested members of their community.\nPremise 3: If people chaperone high school dances, then they are not students who attend the school.\nPremise 4: All people who are inactive and disinterested members of their community chaperone high school dances.\nPremise 5: All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school.\nPremise 6: Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\n\nNow, let's analyze the conclusion:\n\nConclusion: If Bonnie is either both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances or neither is a young child nor teenager who wishes to further her academic career and educational opportunities, then Bonnie is either a student who attends the school or is an inactive and disinterested member of the community.\n\nTo evaluate this conclusion, we can use a truth table or analyze it step by step.\n\nLet's define the following variables:\n\n- P: Bonnie attends and is very engaged with school events.\n- Q: Bonnie is a student who attends the school.\n- R: Bonnie is a young child or teenager who wishes to further her academic career and educational opportunities.\n- S: Bonnie chaperones high school dances.\n- T: Bonnie is an inactive and disinterested member of the community.\n\nFrom Premise 1, we know that if P is true, then Q is true.\nFrom Premise 2, we know that P is true or T is true.\nFrom Premise 3, we know that if S is true, then Q is false.\nFrom Premise 4, we know that if T is true, then S is true.\nFrom Premise 5, we know that if R is true, then Q is true.\nFrom Premise 6, we know that either P and Q are true, or P and Q are false.\n\nNow, let's consider the conclusion:\n\nIf (R and S) or not R, then Q or T.\n\nWe can break this down into two cases:\n\nCase 1: R is true, S is true.\n\nFrom Premise 5, we know that Q is true.\nFrom Premise 4, we know that T is true.\nTherefore, the conclusion holds.\n\nCase 2: R is false.\n\nFrom Premise 6, we know that P and Q are false.\nFrom Premise 2, we know that T is true.\nTherefore, the conclusion holds.\n\nIn both cases, the conclusion holds, so the conclusion is true.\n\nTherefore, the final answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we will use a truth table and logical reasoning. \n\nGiven premises:\n\n1. If people perform in school talent shows often, then they attend and are very engaged with school events. (Let's call this A \u2192 B, where A is \"people perform in school talent shows often\" and B is \"people attend and are very engaged with school events\".)\n2. People either perform in school talent shows often or are inactive and disinterested members of their community. (Let's call this A \u2228 C, where C is \"people are inactive and disinterested members of their community\".)\n3. If people chaperone high school dances, then they are not students who attend the school. (Let's call this D \u2192 \u00acE, where D is \"people chaperone high school dances\" and E is \"people are students who attend the school\".)\n4. All people who are inactive and disinterested members of their community chaperone high school dances. (Let's call this C \u2192 D.)\n5. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. (Let's call this F \u2192 E.)\n6. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school. (Let's call this B \u2227 E \u2228 \u00acB \u2227 \u00acE.)\n\nWe need to determine the truth of the conclusion:\n\nIf Bonnie is either both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances or neither is a young child nor teenager who wishes to further her academic career and educational opportunities, then Bonnie is either a student who attends the school or is an inactive and disinterested member of the community.\n\nLet's break down the conclusion:\n\nLet G be \"Bonnie is both a young child or teenager who wishes to further her academic career and educational opportunities\" and H be \"Bonnie chaperones high school dances\".\n\nThe conclusion is: (G \u2227 H) \u2228 \u00acG \u2192 (E \u2228 C)\n\nNow, we can use the premises to fill in the truth table:\n\n| A | B | C | D | E | F | G | H | B \u2227 E \u2228 \u00acB \u2227 \u00acE |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- |\n| T | T | F | F | T | T | T | F | T \u2227 T \u2228 \u00acT \u2227 \u00acT |\n| T | T | F | F | T | T | T | T | T \u2227 T \u2228 \u00acT \u2227 \u00acT |\n| T | F | F | F | T | T | T | F | F \u2227 T \u2228 \u00acT \u2227 \u00acT |\n| T | F | F | F | T | T | T | T | F \u2227 T \u2228 \u00acT \u2227 \u00acT |\n| F | T | T | T | F | F | F | F | F \u2227 F \u2228 \u00acF \u2227 \u00acF |\n| F | T | T | T | F | F | F | T | F \u2227 F \u2228 \u00acF \u2227 \u00acF |\n| F | F | T | T | F | F | F | F | F \u2227 F \u2228 \u00acF \u2227 \u00acF |\n| F | F | T | T | F | F | F | T | F \u2227 F \u2228 \u00acF \u2227 \u00acF |\n\nFrom the premises, we can deduce the following:\n\n* From (1), if A then B\n* From (2), A \u2228 C\n* From (3), D \u2192 \u00acE\n* From (4), C \u2192 D\n* From (5), F \u2192 E\n\nWe can also deduce that:\n\n* If Bonnie is a student who attends the school, then she is either both attends and is very engaged with school events or neither attends and is very engaged with school events (from the last premise).\n\nFrom the truth table, we can see that the conclusion (G \u2227 H) \u2228 \u00acG \u2192 (E \u2228 C) is uncertain, because there are cases where the premise is true, but the conclusion is false.\n\nHowever, we can simplify the conclusion by using the premises. \n\nLet's assume the conclusion is true.\n\nFrom the premises, we know that if G \u2227 H is true, then E \u2228 C must be true.\n\nWe also know that if G is false, then H is either true or false.\n\nIf H is true, then E \u2228 C must be true, because D \u2192 \u00acE and C \u2192 D.\n\nIf H is false, then G must be false, and E \u2228 C must be true, because A \u2228 C.\n\nTherefore, we can conclude that if Bonnie is either both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances or neither is a young child nor teenager who wishes to further her academic career and educational opportunities, then Bonnie is either a student who attends the school or is an inactive and disinterested member of the community.\n\nSo, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to break down the premises and understand the relationships between different statements.\n\nPremise 1: \nIf people perform in school talent shows often, then they attend and are very engaged with school events.\n\nThis can be represented as:\nP1: (Perform in school talent shows) \u2192 (Attend and are engaged with school events)\n\nPremise 2: \nPeople either perform in school talent shows often or are inactive and disinterested members of their community.\n\nThis can be represented as:\nP2: (Perform in school talent shows) \u2228 (Inactive and disinterested member of the community)\n\nPremise 3: \nIf people chaperone high school dances, then they are not students who attend the school.\n\nThis can be represented as:\nP3: (Chaperone high school dances) \u2192 \u00ac(Student who attends the school)\n\nPremise 4: \nAll people who are inactive and disinterested members of their community chaperone high school dances.\n\nThis can be represented as:\nP4: (Inactive and disinterested member of the community) \u2192 (Chaperone high school dances)\n\nPremise 5: \nAll young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school.\n\nThis can be represented as:\nP5: (Young child or teenager who wishes to further academic career) \u2192 (Student who attends the school)\n\nPremise 6: \nBonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\n\nThis can be represented as:\nP6: (Bonnie attends and is engaged) \u2228 \u00ac(Bonnie attends and is engaged)\n\nNow, we need to analyze the conclusion:\n\nConclusion: \nIf Bonnie is either both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances or neither is a young child nor teenager who wishes to further her academic career and educational opportunities, then Bonnie is either a student who attends the school or is an inactive and disinterested member of the community.\n\nThis can be represented as:\nC: [(Young child or teenager who wishes to further academic career) \u2227 (Chaperone high school dances)] \u2228 \u00ac(Young child or teenager who wishes to further academic career) \u2192 (Student who attends the school) \u2228 (Inactive and disinterested member of the community)\n\nWe can break down the conclusion into two parts:\n\nPart 1: \n(Young child or teenager who wishes to further academic career) \u2227 (Chaperone high school dances) \u2192 (Student who attends the school) \u2228 (Inactive and disinterested member of the community)\n\nWe can use Premise 3 (P3) and Premise 4 (P4) to derive:\n\n(Young child or teenager who wishes to further academic career) \u2227 (Chaperone high school dances) \u2192 \u00ac(Student who attends the school)\n\nNow, we can use the definition of disjunction (\u2228) to rewrite the above statement:\n\n(Young child or teenager who wishes to further academic career) \u2227 (Chaperone high school dances) \u2192 \u00ac(Student who attends the school) \u2228 (Student who attends the school) \u2228 (Inactive and disinterested member of the community)\n\nUsing the identity law (A \u2228 A = A), we can simplify the above statement:\n\n(Young child or teenager who wishes to further academic career) \u2227 (Chaperone high school dances) \u2192 (Student who attends the school) \u2228 (Inactive and disinterested member of the community)\n\nThis matches the conclusion (C).\n\nHowever, we need to analyze the other part of the conclusion:\n\nPart 2: \n\u00ac(Young child or teenager who wishes to further academic career) \u2192 (Student who attends the school) \u2228 (Inactive and disinterested member of the community)\n\nWe can use Premise 6 (P6) to rewrite the above statement:\n\n\u00ac(Young child or teenager who wishes to further academic career) \u2192 \u00ac(Bonnie attends and is engaged)\n\nUsing the definition of negation (\u00ac), we can rewrite the above statement:\n\n\u00ac(Young child or teenager who wishes to further academic career) \u2192 (Bonnie does not attend and is not engaged) \u2228 (Bonnie attends and is engaged)\n\nUsing the identity law (A \u2228 A = A), we can simplify the above statement:\n\n\u00ac(Young child or teenager who wishes to further academic career) \u2192 (Bonnie does not attend and is not engaged)\n\nNow, we can use Premise 1 (P1) to derive:\n\n(Bonnie does not attend and is not engaged) \u2192 \u00ac(Bonnie attends and is engaged)\n\nUsing the definition of negation (\u00ac), we can rewrite the above statement:\n\n(Bonnie does not attend and is not engaged) \u2192 (Bonnie attends and is engaged)\n\nThis is a contradiction.\n\nTherefore, we cannot conclude that the conclusion is true. The conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we will break it down into smaller steps using the premises provided.\n\nPremises:\n\n1. If people perform in school talent shows often, then they attend and are very engaged with school events.\n2. People either perform in school talent shows often or are inactive and disinterested members of their community.\n3. If people chaperone high school dances, then they are not students who attend the school.\n4. All people who are inactive and disinterested members of their community chaperone high school dances.\n5. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school.\n6. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\n\nConclusion to evaluate:\nIf Bonnie is either both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances or neither is a young child nor teenager who wishes to further her academic career and educational opportunities, then Bonnie is either a student who attends the school or is an inactive and disinterested member of the community.\n\nStep 1: We need to analyze the premises and understand the relationships between the statements. From premise 2, we can infer that there are two categories of people: those who perform in school talent shows often and those who are inactive and disinterested members of their community.\n\nStep 2: We can also see that from premise 5, students who attend the school are those who wish to further their academic careers and educational opportunities. This will be useful in our analysis.\n\nStep 3: We need to consider the relationship between being a student who attends the school and chaperoning high school dances. From premise 3, if someone chaperones high school dances, then they are not a student who attends the school.\n\nStep 4: Now, let's examine the conclusion. We need to determine if the statement is true, false, or uncertain.\n\nTo prove the conclusion, we need to find a path from the given conditions (Bonnie is either both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances or neither is a young child nor teenager who wishes to further her academic career and educational opportunities) to the conclusion (Bonnie is either a student who attends the school or is an inactive and disinterested member of the community).\n\nLet's break it down further:\n\n- If Bonnie is both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances, then from premise 3, she is not a student who attends the school.\n- However, from premise 4, all people who are inactive and disinterested members of their community chaperone high school dances. Therefore, if Bonnie chaperones high school dances, she is an inactive and disinterested member of her community.\n- If Bonnie neither is a young child nor teenager who wishes to further her academic career and educational opportunities, then we cannot directly determine whether she is a student who attends the school or an inactive and disinterested member of the community.\n\nHowever, from premise 6, Bonnie is either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\n\nCombining the information from premise 2 and premise 6, we can infer that if Bonnie is not a student who attends the school, then she must be an inactive and disinterested member of her community (because people either perform in school talent shows often or are inactive and disinterested members of their community).\n\nNow, let's examine the two cases:\n\nCase 1: Bonnie is both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances.\n\nFrom premise 3, she is not a student who attends the school.\nFrom premise 4, she must be an inactive and disinterested member of the community.\n\nCase 2: Bonnie neither is a young child nor teenager who wishes to further her academic career and educational opportunities.\n\nFrom premise 6, she is either a student who attends the school or an inactive and disinterested member of the community.\n\nIn both cases, the conclusion that Bonnie is either a student who attends the school or is an inactive and disinterested member of the community holds true.\n\nTherefore, the conclusion is true.",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we will break it down into smaller steps and use the given premises to derive a conclusion.\n\nPremise 1: If people perform in school talent shows often, then they attend and are very engaged with school events.\nPremise 2: People either perform in school talent shows often or are inactive and disinterested members of their community.\nPremise 3: If people chaperone high school dances, then they are not students who attend the school.\nPremise 4: All people who are inactive and disinterested members of their community chaperone high school dances.\nPremise 5: All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school.\nPremise 6: Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\n\nNow, let's analyze the conclusion:\nIf Bonnie is either both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances or neither is a young child nor teenager who wishes to further her academic career and educational opportunities, then Bonnie is either a student who attends the school or is an inactive and disinterested member of the community.\n\nFrom Premise 2, we can infer that if Bonnie is an inactive and disinterested member of her community, then she does not perform in school talent shows often.\n\nFrom Premise 1, we can infer that if Bonnie attends and is very engaged with school events, then she performs in school talent shows often.\n\nFrom Premise 6, we can infer that if Bonnie attends and is very engaged with school events, then she is a student who attends the school.\n\nNow, let's consider the two cases:\n\nCase 1: Bonnie is both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances.\n\nFrom Premise 5, we can infer that Bonnie is a student who attends the school. From Premise 3, we can infer that Bonnie is not a student who attends the school. This is a contradiction, so the conclusion cannot be true in this case.\n\nCase 2: Bonnie neither is a young child nor teenager who wishes to further her academic career and educational opportunities.\n\nFrom Premise 5, we can infer that Bonnie is not a student who attends the school.\n\nFrom Premise 2, we can infer that Bonnie is either an inactive and disinterested member of her community or performs in school talent shows often.\n\nFrom Premise 4, we can infer that if Bonnie is an inactive and disinterested member of her community, then she chaperones high school dances.\n\nFrom Premise 6, we can infer that Bonnie is either a student who attends the school or is an inactive and disinterested member of her community.\n\nTherefore, the conclusion is true in this case.\n\nSince the conclusion is true in one case, we cannot conclude that it is false. However, we cannot conclude that it is true in all cases. Therefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we will use a method called \"natural deduction\" to break down the given premises and the conclusion into smaller, more manageable statements.\n\n**Premise 1:** If people perform in school talent shows often, then they attend and are very engaged with school events.\n\n**Premise 2:** People either perform in school talent shows often or are inactive and disinterested members of their community.\n\n**Premise 3:** If people chaperone high school dances, then they are not students who attend the school.\n\n**Premise 4:** All people who are inactive and disinterested members of their community chaperone high school dances.\n\n**Premise 5:** All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school.\n\n**Premise 6:** Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\n\n**Conclusion:** If Bonnie is either both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances or neither is a young child nor teenager who wishes to further her academic career and educational opportunities, then Bonnie is either a student who attends the school or is an inactive and disinterested member of the community.\n\nLet's break down the conclusion into two possible scenarios:\n\n**Scenario 1:** Bonnie is both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances.\n\n**Scenario 2:** Bonnie neither is a young child nor teenager who wishes to further her academic career and educational opportunities.\n\nWe will analyze each scenario separately.\n\n**Scenario 1:** Bonnie is both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances.\n\nFrom **Premise 3**, we know that if people chaperone high school dances, then they are not students who attend the school.\n\nTherefore, Bonnie is not a student who attends the school.\n\nFrom **Premise 4**, we know that all people who are inactive and disinterested members of their community chaperone high school dances.\n\nTherefore, Bonnie is an inactive and disinterested member of the community.\n\n**Scenario 2:** Bonnie neither is a young child nor teenager who wishes to further her academic career and educational opportunities.\n\nFrom **Premise 6**, we know that Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\n\nSince Bonnie neither is a young child nor teenager who wishes to further her academic career and educational opportunities, we can assume that she is neither a student who attends the school nor is very engaged with school events.\n\nFrom **Premise 2**, we know that people either perform in school talent shows often or are inactive and disinterested members of their community.\n\nSince Bonnie is neither a student who attends the school nor is very engaged with school events, we can assume that she is an inactive and disinterested member of the community.\n\nTherefore, in both scenarios, the conclusion is true.\n\n**Final Answer:** \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "Let's break down the given premises and conclusion step by step:\n\nPremise 1: If people perform in school talent shows often, then they attend and are very engaged with school events.\n\nLet P represent the statement \"people perform in school talent shows often,\" E represent \"attend and are very engaged with school events,\" and S represent \"are a student who attends the school.\"\n\nPremise 1 can be rewritten as: P \u2192 E\n\nPremise 2: People either perform in school talent shows often or are inactive and disinterested members of their community.\n\nThis premise can be rewritten as: P \u2228 I (where I represents \"are an inactive and disinterested member of the community\")\n\nPremise 3: If people chaperone high school dances, then they are not students who attend the school.\n\nThis premise can be rewritten as: C \u2192 \u00acS (where C represents \"chaperone high school dances\")\n\nPremise 4: All people who are inactive and disinterested members of their community chaperone high school dances.\n\nThis premise can be rewritten as: I \u2192 C\n\nPremise 5: All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school.\n\nThis premise can be rewritten as: Y \u2192 S (where Y represents \"are a young child or teenager who wishes to further their academic career and educational opportunities\")\n\nPremise 6: Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\n\nThis premise can be rewritten as: (E \u2227 S) \u2228 (\u00acE \u2227 \u00acS)\n\nConclusion: If Bonnie is either both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances or neither is a young child nor teenager who wishes to further her academic career and educational opportunities, then Bonnie is either a student who attends the school or is an inactive and disinterested member of the community.\n\nLet's analyze the conclusion using the premises:\n\nCase 1: Bonnie is both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances.\n\nThis can be represented as: Y \u2227 C\n\nFrom Premise 3 (C \u2192 \u00acS), we know that if Bonnie chaperones high school dances, then she is not a student who attends the school. Therefore, we can conclude that: \u00acS\n\nFrom Premise 5 (Y \u2192 S), we know that if Bonnie is a young child or teenager who wishes to further her academic career and educational opportunities, then she is a student who attends the school. Therefore, we can conclude that: S\n\nWe have a contradiction: \u00acS \u2227 S. This means that the conclusion is uncertain for this case.\n\nCase 2: Bonnie is neither a young child nor teenager who wishes to further her academic career and educational opportunities.\n\nThis can be represented as: \u00acY\n\nFrom Premise 2 (P \u2228 I), we know that Bonnie is either people who perform in school talent shows often or an inactive and disinterested member of the community. Since we don't have any information about Bonnie performing in school talent shows often, we can't conclude anything about E.\n\nHowever, from Premise 4 (I \u2192 C), we know that if Bonnie is an inactive and disinterested member of the community, then she chaperones high school dances. Therefore, we can conclude that: C\n\nFrom Premise 3 (C \u2192 \u00acS), we know that if Bonnie chaperones high school dances, then she is not a student who attends the school. Therefore, we can conclude that: \u00acS\n\nWe can't conclude anything about Bonnie being a student who attends the school or an inactive and disinterested member of the community.\n\nSince the conclusion is uncertain for Case 1 and we can't conclude anything about the conclusion for Case 2, the overall conclusion is uncertain.\n\nTherefore, the answer is:\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given premises and the conclusion step by step.\n\nPremise 1: If people perform in school talent shows often, then they attend and are very engaged with school events.\nThis premise establishes a relationship between performing in school talent shows and attending and being engaged with school events.\n\nPremise 2: People either perform in school talent shows often or are inactive and disinterested members of their community.\nThis premise presents an either-or situation between performing in school talent shows and being inactive and disinterested in the community.\n\nPremise 3: If people chaperone high school dances, then they are not students who attend the school.\nThis premise establishes a relationship between chaperoning high school dances and not being a student who attends the school.\n\nPremise 4: All people who are inactive and disinterested members of their community chaperone high school dances.\nThis premise links inactivity and disinterest in the community with chaperoning high school dances.\n\nPremise 5: All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school.\nThis premise establishes that young children and teenagers who wish to further their education are students who attend the school.\n\nPremise 6: Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\nThis premise presents an either-or situation for Bonnie regarding her involvement with school events and her status as a student.\n\nConclusion: If Bonnie is either both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances or neither is a young child nor teenager who wishes to further her academic career and educational opportunities, then Bonnie is either a student who attends the school or is an inactive and disinterested member of the community.\n\nNow, let's analyze the conclusion using the given premises.\n\nLet's denote:\n- B: Bonnie attends and is very engaged with school events\n- S: Bonnie is a student who attends the school\n- D: Bonnie is an inactive and disinterested member of the community\n- C: Bonnie is a young child or teenager who wishes to further her academic career and educational opportunities\n- H: Bonnie chaperones high school dances\n\nFrom Premise 1 and 2, we can conclude that:\n- If B, then S\n- B or D\n\nFrom Premise 4, we can conclude that:\n- D \u2192 H\n\nFrom Premise 3, we can conclude that:\n- H \u2192 \u00acS\n\nFrom Premise 5, we can conclude that:\n- C \u2192 S\n\nFrom Premise 6, we can conclude that:\n- (B and S) or (\u00acB and \u00acS)\n\nNow, let's analyze the conclusion. The conclusion states that:\n- (C and H) or (\u00acC) \u2192 (S or D)\n\nUsing the premises, we can derive the conclusion as follows:\n\n- If C and H, then (B or D) from Premise 2\n- If C and H, then D from D \u2192 H (Premise 4) and H \u2192 \u00acS (Premise 3)\n- If C and H, then \u00acS from H \u2192 \u00acS (Premise 3)\n- If C and H, then (B and S) or (\u00acB and \u00acS) from Premise 6\n- If C and H, then S from (B and S) or (\u00acB and \u00acS) (Premise 6) and \u00acS (\u00acS from above)\n- If C and H, then a contradiction (S and \u00acS)\n- Therefore, C and H is not possible\n\n- If \u00acC, then (B or D) from Premise 2\n- If \u00acC, then \u00acD from C \u2192 S (Premise 5) and \u00acS (from above)\n- If \u00acC, then \u00acH from \u00acD (\u00acD from above) and D \u2192 H (Premise 4)\n- If \u00acC, then (B and S) or (\u00acB and \u00acS) from Premise 6\n- If \u00acC, then S or \u00acD from (B and S) or (\u00acB and \u00acS) (Premise 6)\n\nTherefore, the conclusion follows from the premises.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we need to analyze the given premises and their relationships to the conclusion.\n\nPremise 1: If people perform in school talent shows often, then they attend and are very engaged with school events.\nPremise 2: People either perform in school talent shows often or are inactive and disinterested members of their community.\nPremise 3: If people chaperone high school dances, then they are not students who attend the school.\nPremise 4: All people who are inactive and disinterested members of their community chaperone high school dances.\nPremise 5: All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school.\nPremise 6: Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\n\nConclusion: If Bonnie is either both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances or neither is a young child nor teenager who wishes to further her academic career and educational opportunities, then Bonnie is either a student who attends the school or is an inactive and disinterested member of the community.\n\nLet's analyze the given premises:\n\nFrom Premise 1 and Premise 2, we can deduce the following:\n- If people perform in school talent shows often, they attend and are very engaged with school events.\n- If people do not perform in school talent shows often, they are inactive and disinterested members of their community.\n\nFrom Premise 3 and Premise 4, we can deduce the following:\n- If people chaperone high school dances, they are inactive and disinterested members of their community.\n\nFrom Premise 5, we can deduce the following:\n- If people are young children or teenagers who wish to further their academic careers and educational opportunities, they are students who attend the school.\n\nFrom Premise 6, we can deduce the following:\n- Bonnie is either a student who attends the school and is very engaged with school events, or she is not a student who attends the school and is not very engaged with school events.\n\nNow, let's analyze the conclusion:\nIf Bonnie is either both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances or neither is a young child nor teenager who wishes to further her academic career and educational opportunities, then Bonnie is either a student who attends the school or is an inactive and disinterested member of the community.\n\nFrom Premise 5, we know that if Bonnie is a young child or teenager who wishes to further her academic career and educational opportunities, she is a student who attends the school.\n\nFrom Premise 3, we know that if Bonnie chaperones high school dances, she is not a student who attends the school.\n\nFrom Premise 4, we know that if Bonnie is an inactive and disinterested member of her community, she chaperones high school dances.\n\nFrom Premise 6, we know that Bonnie is either a student who attends the school and is very engaged with school events, or she is not a student who attends the school and is not very engaged with school events.\n\nNow, let's consider the two cases:\n\nCase 1: Bonnie is both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances.\nFrom Premise 5, we know that Bonnie is a student who attends the school.\nFrom Premise 3, we know that this is a contradiction, since Bonnie chaperones high school dances, and from Premise 3, we know that this implies she is not a student who attends the school.\n\nHowever, we must also consider the statement from Premise 6 that Bonnie is either a student who attends the school and is very engaged with school events, or she is not a student who attends the school and is not very engaged with school events.\n\nThis implies that we cannot necessarily conclude that Bonnie is a student who attends the school if she chaperones high school dances, since the statement from Premise 6 allows for the possibility that she is not a student who attends the school.\n\nCase 2: Bonnie is neither a young child nor teenager who wishes to further her academic career and educational opportunities.\nThis implies that Bonnie is not a student who attends the school, since from Premise 5, we know that if people are young children or teenagers who wish to further their academic careers and educational opportunities, they are students who attend the school.\n\nFrom Premise 6, we know that if Bonnie is not a student who attends the school, then she is not very engaged with school events.\n\nFrom Premise 2, we know that if people do not perform in school talent shows often, they are inactive and disinterested members of their community.\n\nThis implies that Bonnie is an inactive and disinterested member of her community, since she does not perform in school talent shows often (from Premise 6, we know that if she is not a student who attends the school, then she is not very engaged with school events).\n\nConclusion:\nIf Bonnie is either both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances or neither is a young child nor teenager who wishes to further her academic career and educational opportunities, then Bonnie is either a student who attends the school or is an inactive and disinterested member of the community.\n\nSince we cannot conclude that Bonnie is a student who attends the school if she chaperones high school dances (from Case 1), but we can conclude that she is an inactive and disinterested member of her community if she is not a young child or teenager who wishes to further her academic career and educational opportunities (from Case 2), we can conclude that the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: If people perform in school talent shows often, then they attend and are very engaged with school events.\nPremise 2: People either perform in school talent shows often or are inactive and disinterested members of their community.\nPremise 3: If people chaperone high school dances, then they are not students who attend the school.\nPremise 4: All people who are inactive and disinterested members of their community chaperone high school dances.\nPremise 5: All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school.\nPremise 6: Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\n\nNow, let's break down the conclusion into its components:\n\nConclusion: If Bonnie is either both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances or neither is a young child nor teenager who wishes to further her academic career and educational opportunities, then Bonnie is either a student who attends the school or is an inactive and disinterested member of the community.\n\nTo evaluate the conclusion, we can analyze it in terms of the premises.\n\nLet's denote the following:\n\nA = Bonnie attends and is very engaged with school events\nB = Bonnie is a student who attends the school\nC = Bonnie is an inactive and disinterested member of the community\nD = Bonnie is a young child or teenager who wishes to further her academic career and educational opportunities\nE = Bonnie chaperones high school dances\n\nFrom Premise 6, we know that:\n\n( A and B ) or ( not A and not B )\n\nNow, let's analyze the conclusion using logical reasoning:\n\n1. If ( D and E ), then ( B or C ) (This is the conclusion we want to evaluate)\n\nTo prove the conclusion, we need to show that:\n\n( D and E ) -> ( B or C )\n\nWe can do this by using the logical rules of implication and disjunction.\n\nFrom Premise 2, we know that:\n\n( P or Q )\n\nFrom Premise 4, we know that:\n\n( C -> E )\n\nFrom Premise 3, we know that:\n\n( E -> not B )\n\nNow, let's analyze the conclusion:\n\n( D and E ) -> ( B or C )\n\nWe can rewrite this as:\n\n( D and E ) -> ( B or ( C and E ) )\n\nSince ( C and E ) is equivalent to ( C ), we can rewrite this as:\n\n( D and E ) -> ( B or C )\n\nNow, let's apply the logical rules of implication and disjunction:\n\n( D and E ) -> ( B or C )\n\n( D and E ) -> ( B or ( C and E ) )\n\nSince ( C and E ) is equivalent to ( C ), we can rewrite this as:\n\n( D and E ) -> ( B or C )\n\nUsing the rule of implication, we can rewrite this as:\n\nnot ( D and E ) or ( B or C )\n\nUsing the rule of disjunction, we can rewrite this as:\n\n( not D or not E ) or ( B or C )\n\nNow, let's analyze the conclusion in terms of the premises:\n\nPremise 1: If people perform in school talent shows often, then they attend and are very engaged with school events.\nPremise 2: People either perform in school talent shows often or are inactive and disinterested members of their community.\nPremise 3: If people chaperone high school dances, then they are not students who attend the school.\nPremise 4: All people who are inactive and disinterested members of their community chaperone high school dances.\nPremise 5: All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school.\nPremise 6: Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\n\nFrom Premise 6, we know that:\n\n( A and B ) or ( not A and not B )\n\nNow, let's analyze the conclusion in terms of the premises:\n\n( not D or not E ) or ( B or C )\n\nWe can rewrite this as:\n\n( not D or not E ) or ( not ( not A and not B ) or C )\n\nUsing the rule of disjunction, we can rewrite this as:\n\n( not D or not E ) or ( A or C )\n\nNow, let's analyze the conclusion in terms of the premises:\n\n( not D or not E ) or ( A or C )\n\nFrom Premise 1, we know that:\n\nA -> ( B and attends )\n\nFrom Premise 5, we know that:\n\nD -> B\n\nFrom Premise 3, we know that:\n\nE -> not B\n\nNow, let's analyze the conclusion in terms of the premises:\n\n( not D or not E ) or ( A or C )\n\nUsing the rule of disjunction, we can rewrite this as:\n\n( not D or not E ) or ( ( B and attends ) or C )\n\nUsing the rule of disjunction, we can rewrite this as:\n\n( not D or not E ) or ( B or C )\n\nNow, let's analyze the conclusion in terms of the premises:\n\n( not D or not E ) or ( B or C )\n\nFrom Premise 2, we know that:\n\nP or Q\n\nFrom Premise 4, we know that:\n\nC -> E\n\nFrom Premise 3, we know that:\n\nE -> not B\n\nNow, let's analyze the conclusion in terms of the premises:\n\n( not D or not E ) or ( B or C )\n\nUsing the rule of disjunction, we can rewrite this as:\n\n( not D or not E ) or ( B or ( C and E ) )\n\nUsing the rule of disjunction, we can rewrite this as:\n\n( not D or not E ) or ( B or C )\n\nNow, let's analyze the conclusion in terms of the premises:\n\n( not D or not E ) or ( B or C )\n\nFrom Premise 6, we know that:\n\n( A and B ) or ( not A and not B )\n\nNow, let's analyze the conclusion in terms of the premises:\n\n( not D or not E ) or ( B or C )\n\nUsing the rule of disjunction, we can rewrite this as:\n\n( not D or not E ) or ( ( A and B ) or C )\n\nUsing the rule of disjunction, we can rewrite this as:\n\n( not D or not E ) or ( A or C )\n\nNow, let's analyze the conclusion in terms of the premises:\n\n( not D or not E ) or ( A or C )\n\nFrom Premise 1, we know that:\n\nA -> ( B and attends )\n\nFrom Premise 5, we know that:\n\nD -> B\n\nFrom Premise 3, we know that:\n\nE -> not B\n\nNow, let's analyze the conclusion in terms of the premises:\n\n( not D or not E ) or ( A or C )\n\nUsing the rule of disjunction, we can rewrite this as:\n\n( not D or not E ) or ( ( B and attends ) or C )\n\nUsing the rule of disjunction, we can rewrite this as:\n\n( not D or not E ) or ( B or C )\n\nNow, let's analyze the conclusion in terms of the premises:\n\n( not D or not E ) or ( B or C )\n\nFrom Premise 2, we know that:\n\nP or Q\n\nFrom Premise 4, we know that:\n\nC -> E\n\nFrom Premise 3, we know that:\n\nE -> not B\n\nNow, let's analyze the conclusion in terms of the premises:\n\n( not D or not E ) or ( B or C )\n\nUsing the rule of disjunction, we can rewrite this as:\n\n( not D or not E ) or ( B or ( C and E ) )\n\nUsing the rule of disjunction, we can rewrite this as:\n\n( not D or not E ) or ( B or C )\n\nNow, let's analyze the conclusion in terms of the premises:\n\n( not D or not E ) or ( B or C )\n\nFrom Premise 6, we know that:\n\n( A and B ) or ( not A and not B )\n\nNow, let's analyze the conclusion in terms of the premises:\n\n( not D or not E ) or ( B or C )\n\nUsing the rule of disjunction, we can rewrite this as:\n\n( not D or not E ) or ( ( A and B ) or C )\n\nUsing the rule of disjunction, we can rewrite this as:\n\n( not D or not E ) or ( A or C )\n\nNow, let's analyze the conclusion in terms of the premises:\n\n( not D or not E ) or ( A or C )\n\nFrom Premise 1, we know that:\n\nA -> ( B and attends )\n\nFrom Premise 5, we know that:\n\nD -> B\n\nFrom Premise 3, we know that:\n\nE -> not B\n\nNow, let's analyze the conclusion in terms of the premises:\n\n( not D or not E ) or ( A or C )\n\nUsing the rule of disjunction, we can rewrite this as:\n\n( not D or not E ) or ( ( B and attends ) or C )\n\nUsing the rule of disjunction, we can rewrite this as:\n\n( not D or not E ) or ( B or C )\n\nNow, let's analyze the conclusion in terms of the premises:\n\n( not D or not E ) or ( B or C )\n\nFrom Premise 2, we know that:\n\nP or Q\n\nFrom Premise 4,",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given premises step by step and use logical deductions.\n\nPremise 1: If people perform in school talent shows often, then they attend and are very engaged with school events.\nPremise 2: People either perform in school talent shows often or are inactive and disinterested members of their community.\nPremise 3: If people chaperone high school dances, then they are not students who attend the school.\nPremise 4: All people who are inactive and disinterested members of their community chaperone high school dances.\nPremise 5: All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school.\nPremise 6: Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\n\nLet's denote the following statements:\n- A: People perform in school talent shows often.\n- B: People attend and are very engaged with school events.\n- C: People are inactive and disinterested members of their community.\n- D: People chaperone high school dances.\n- E: People are students who attend the school.\n- F: People are young children or teenagers who wish to further their academic careers and educational opportunities.\n\nNow, let's analyze the premises:\n\n1. If A, then B.\n2. A or C.\n3. If D, then not E.\n4. C implies D.\n5. F implies E.\n6. Bonnie is either both B and E or neither B nor E.\n\nNow we need to analyze the given conclusion:\nIf F or (not F), then E or C.\n\nLet's start by using the premises to derive some intermediate conclusions:\n\nFrom Premise 2 and Premise 6, we can conclude:\n- If Bonnie is B, then she is E.\n- If Bonnie is not B, then she is C.\n\nFrom Premise 5, we can conclude:\n- If Bonnie is F, then she is E.\n\nFrom Premise 3 and Premise 4, we can conclude:\n- If Bonnie is C, then she is D.\n\nNow, let's analyze the given conclusion:\nIf F or (not F), then E or C.\n\nCase 1: Bonnie is F.\n- From Premise 5, Bonnie is E.\n- The conclusion is true in this case.\n\nCase 2: Bonnie is not F.\n- From Premise 5, Bonnie is not E.\n- From Premise 6, Bonnie is C.\n- From Premise 4, Bonnie is D.\n- The conclusion is true in this case.\n\nSince the conclusion is true in both cases, the conclusion is logically valid.\n\nTherefore, the conclusion is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "P -> A",
+          "z3_formula": "Implies(P, A)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "P | I",
+          "z3_formula": "Or(P, I)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "C -> ~S",
+          "z3_formula": "Implies(C, Not(S))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "I -> C",
+          "z3_formula": "Implies(I, C)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "B -> S",
+          "z3_formula": "Implies(B, S)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "(A & S) | ~ (A & S)",
+          "z3_formula": "Or(And(A, S), Not(And(A, S)))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "(B | ~B) -> (S | I)",
+          "z3_formula": "Implies(Or(B, Not(B)), Or(S, I))",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "perform_in_talent_show(people)",
+          "z3_formula": "perform_in_talent_show_people == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "perform_in_talent_show(people) -> attend_and_engaged(people)",
+          "z3_formula": "Implies(perform_in_talent_show_people, attend_and_engaged_people)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "perform_in_talent_show(people) | inactive_disinterested(people)",
+          "z3_formula": "Or(perform_in_talent_show_people, inactive_disinterested_people)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chaperone_dance(people) -> not_student(people)",
+          "z3_formula": "Implies(chaperone_dance_people, not_student_people)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "inactive_disinterested(people) -> chaperone_dance(people)",
+          "z3_formula": "Implies(inactive_disinterested_people, chaperone_dance_people)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young_child_or_teenager(people) & wish_to_further_academic_career(people) -> student(people)",
+          "z3_formula": "Implies(And(young_child_or_teenager_people, wish_to_further_academic_career_people), student_people)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "attend_and_engaged(people) & student(people) | not(attend_and_engaged(people) & student(people))",
+          "z3_formula": "Or(And(attend_and_engaged_people, student_people), Not(And(attend_and_engaged_people, student_people)))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "attend_and_engaged(people) -> student(people)",
+          "z3_formula": "Implies(attend_and_engaged_people, student_people)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "inactive_disinterested(people) -> chaperone_dance(people)",
+          "z3_formula": "Implies(inactive_disinterested_people, chaperone_dance_people)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young_child_or_teenager(people) & wish_to_further_academic_career(people) -> student(people)",
+          "z3_formula": "Implies(And(young_child_or_teenager_people, wish_to_further_academic_career_people), student_people)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "young_child_or_teenager(people) & wish_to_further_academic_career(people) | not(young_child_or_teenager(people) & wish_to_further_academic_career(people))",
+          "z3_formula": "Or(And(young_child_or_teenager_people, wish_to_further_academic_career_people), Not(And(young_child_or_teenager_people, wish_to_further_academic_career_people)))",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "young_child_or_teenager(people) & wish_to_further_academic_career(people) & chaperone_dance(people) | not(young_child_or_teenager(people) & wish_to_further_academic_career(people))",
+          "z3_formula": "Or(And(young_child_or_teenager_people, wish_to_further_academic_career_people, chaperone_dance_people), Not(And(young_child_or_teenager_people, wish_to_further_academic_career_people)))",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "young_child_or_teenager(people) & wish_to_further_academic_career(people) & chaperone_dance(people) -> student(people) | inactive_disinterested(people)",
+          "z3_formula": "Implies(And(young_child_or_teenager_people, wish_to_further_academic_career_people, chaperone_dance_people), Or(student_people, inactive_disinterested_people))",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "A",
+          "z3_formula": "A == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "A -> B",
+          "z3_formula": "Implies(A, B)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "A | C",
+          "z3_formula": "Or(A, C)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "D -> ~E",
+          "z3_formula": "Implies(D, Not(E))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "C -> D",
+          "z3_formula": "Implies(C, D)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "F -> E",
+          "z3_formula": "Implies(F, E)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "B & E | ~B & ~E",
+          "z3_formula": "Or(And(B, E), And(Not(B), Not(E)))",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "G",
+          "z3_formula": "G == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "H",
+          "z3_formula": "H == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "(G & H) | ~G",
+          "z3_formula": "Or(And(G, H), Not(G))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "(E | C)",
+          "z3_formula": "Or(E, C)",
+          "source_step": 11
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "young_child_or_teenager_bonnie",
+          "z3_formula": "young_child_or_teenager_bonnie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chaperones_high_school_dances_bonnie",
+          "z3_formula": "chaperones_high_school_dances_bonnie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young_child_or_teenager(X) & chaperones_high_school_dances(X) -> not_student(X)",
+          "z3_formula": "Implies(And(young_child_or_teenager_bonnie, chaperones_high_school_dances_bonnie), not_student_bonnie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chaperones_high_school_dances(X) -> inactive_and_disinterested(X)",
+          "z3_formula": "Implies(chaperones_high_school_dances_bonnie, inactive_and_disinterested_bonnie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "not_student(X) -> inactive_and_disinterested(X)",
+          "z3_formula": "Implies(not_student_bonnie, inactive_and_disinterested_bonnie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young_child_or_teenager(X) -> student(X)",
+          "z3_formula": "Implies(young_child_or_teenager_bonnie, student_bonnie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "not young_child_or_teenager(X) -> (student(X) | inactive_and_disinterested(X))",
+          "z3_formula": "Implies(Not(young_child_or_teenager_bonnie), Or(student_bonnie, inactive_and_disinterested_bonnie))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "student_bonnie | inactive_and_disinterested_bonnie",
+          "z3_formula": "Or(student_bonnie, inactive_and_disinterested_bonnie) == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "perform_in_talent_shows(people)",
+          "z3_formula": "perform_in_talent_shows_people == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "perform_in_talent_shows(people) -> attend_and_engaged(people)",
+          "z3_formula": "Implies(perform_in_talent_shows_people, attend_and_engaged_people)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "perform_in_talent_shows(people) | inactive_disinterested(people)",
+          "z3_formula": "Or(perform_in_talent_shows_people, inactive_disinterested_people)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chaperone_dances(people) -> not_student(people)",
+          "z3_formula": "Implies(chaperone_dances_people, not_student_people)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "inactive_disinterested(people) -> chaperone_dances(people)",
+          "z3_formula": "Implies(inactive_disinterested_people, chaperone_dances_people)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young_child_or_teenager(people) & wish_to_further_academic_career(people) -> student(people)",
+          "z3_formula": "Implies(And(young_child_or_teenager_people, wish_to_further_academic_career_people), student_people)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young_child_or_teenager(people) & wish_to_further_academic_career(people) | not_young_child_or_teenager(people)",
+          "z3_formula": "Or(And(young_child_or_teenager_people, wish_to_further_academic_career_people), Not(young_child_or_teenager_people))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "attend_and_engaged(people) -> perform_in_talent_shows(people)",
+          "z3_formula": "Implies(attend_and_engaged_people, perform_in_talent_shows_people)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "attend_and_engaged(people) -> student(people)",
+          "z3_formula": "Implies(attend_and_engaged_people, student_people)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "student(people) | inactive_disinterested(people)",
+          "z3_formula": "Or(student_people, inactive_disinterested_people)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "perform_in_talent_shows(X) -> attends_and_engaged(X)",
+          "z3_formula": "Implies(perform_in_talent_shows_X, attends_and_engaged_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "perform_in_talent_shows(X) | inactive_disinterested(X)",
+          "z3_formula": "Or(perform_in_talent_shows_X, inactive_disinterested_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chaperone_high_school_dances(X) -> not_student(X)",
+          "z3_formula": "Implies(chaperone_high_school_dances_X, not_student_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "inactive_disinterested(X) -> chaperone_high_school_dances(X)",
+          "z3_formula": "Implies(inactive_disinterested_X, chaperone_high_school_dances_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young_child_or_teenager(X) & wishes_to_further_academic_career(X) -> student(X)",
+          "z3_formula": "Implies(And(young_child_or_teenager_X, wishes_to_further_academic_career_X), student_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "Bonnie & young_child_or_teenager(Bonnie) & wishes_to_further_academic_career(Bonnie) -> Bonnie & chaperone_high_school_dances(Bonnie)",
+          "z3_formula": "Implies(And(Bonnie, young_child_or_teenager_Bonnie, wishes_to_further_academic_career_Bonnie), And(Bonnie, chaperone_high_school_dances_Bonnie))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "Bonnie & chaperone_high_school_dances(Bonnie) -> not_student(Bonnie)",
+          "z3_formula": "Implies(And(Bonnie, chaperone_high_school_dances_Bonnie), not_student_Bonnie)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Bonnie & chaperone_high_school_dances(Bonnie) -> inactive_disinterested(Bonnie)",
+          "z3_formula": "Implies(And(Bonnie, chaperone_high_school_dances_Bonnie), inactive_disinterested_Bonnie)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "Bonnie | not_young_child_or_teenager(Bonnie) | not_wishes_to_further_academic_career(Bonnie)",
+          "z3_formula": "Or(Bonnie, not_young_child_or_teenager_Bonnie, not_wishes_to_further_academic_career_Bonnie)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "Bonnie & not_young_child_or_teenager(Bonnie) -> not_student(Bonnie) & not_engaged(Bonnie)",
+          "z3_formula": "Implies(And(Bonnie, not_young_child_or_teenager_Bonnie), And(not_student_Bonnie, not_engaged_Bonnie))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "Bonnie & not_young_child_or_teenager(Bonnie) -> inactive_disinterested(Bonnie)",
+          "z3_formula": "Implies(And(Bonnie, not_young_child_or_teenager_Bonnie), inactive_disinterested_Bonnie)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "inactive_disinterested(Bonnie) | inactive_disinterested(Bonnie)",
+          "z3_formula": "Or(inactive_disinterested_Bonnie, inactive_disinterested_Bonnie)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "Bonnie -> inactive_disinterested(Bonnie)",
+          "z3_formula": "Implies(Bonnie, inactive_disinterested_Bonnie)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "inactive_disinterested(Bonnie) -> inactive_disinterested(Bonnie)",
+          "z3_formula": "Implies(inactive_disinterested_Bonnie, inactive_disinterested_Bonnie)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "inactive_disinterested(Bonnie) | inactive_disinterested(Bonnie)",
+          "z3_formula": "Or(inactive_disinterested_Bonnie, inactive_disinterested_Bonnie)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "Bonnie -> inactive_disinterested(Bonnie)",
+          "z3_formula": "Implies(Bonnie, inactive_disinterested_Bonnie)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "inactive_disinterested(Bonnie) -> inactive_disinterested(Bonnie)",
+          "z3_formula": "Implies(inactive_disinterested_Bonnie, inactive_disinterested_Bonnie)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "inactive_disinterested(Bonnie)",
+          "z3_formula": "inactive_disinterested_Bonnie == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "P",
+          "z3_formula": "P == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "P -> E",
+          "z3_formula": "Implies(P, E)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "P V I",
+          "z3_formula": "P_or_I == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "I -> C",
+          "z3_formula": "Implies(I, C)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "C -> ~S",
+          "z3_formula": "Implies(C, Not(S))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "Y -> S",
+          "z3_formula": "Implies(Y, S)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "(E & S) V (~E & ~S)",
+          "z3_formula": "(E_and_S)_or_((Not(E) & Not(S))) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "(Y & C) -> (S V I)",
+          "z3_formula": "Implies(And(Y, C), Or(S, I))",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "perform_in_talent_shows(people)",
+          "z3_formula": "perform_in_talent_shows_people == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "perform_in_talent_shows(people) -> attend_and_engage(people)",
+          "z3_formula": "Implies(perform_in_talent_shows_people, attend_and_engage_people)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "perform_in_talent_shows(people) or inactive_disinterested(people)",
+          "z3_formula": "Or(perform_in_talent_shows_people, inactive_disinterested_people) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(eats_people_squirrel, red_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chaperone_high_school_dances(X) -> not_student(X)",
+          "z3_formula": "Implies(chaperone_high_school_dances_people, not_student_people)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "inactive_disinterested(people) -> chaperone_high_school_dances(people)",
+          "z3_formula": "Implies(inactive_disinterested_people, chaperone_high_school_dances_people)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young_child_or_teenager(people) -> student(people)",
+          "z3_formula": "Implies(young_child_or_teenager_people, student_people)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "Bonnie (B) -> (attend_and_engage(B) & student(B)) or (not attend_and_engage(B) & not student(B))",
+          "z3_formula": "Implies(Bonnie, Or(And(attend_and_engage_Bonnie, student_Bonnie), And(Not(attend_and_engage_Bonnie), Not(student_Bonnie))))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "(C and H) or not C -> (S or D)",
+          "z3_formula": "Implies(Or(C_and_H, Not(C)), Or(S_or_D))",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "perform_in_talent_shows(people)",
+          "z3_formula": "perform_in_talent_shows_people == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "perform_in_talent_shows(people) -> attends_and_is_very_engaged(people)",
+          "z3_formula": "Implies(perform_in_talent_shows_people, attends_and_is_very_engaged_people)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "not perform_in_talent_shows(people) -> inactive_and_disinterested(people)",
+          "z3_formula": "Implies(Not(perform_in_talent_shows_people), inactive_and_disinterested_people)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chaperones_high_school_dances(people)",
+          "z3_formula": "chaperones_high_school_dances_people == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chaperones_high_school_dances(people) -> inactive_and_disinterested(people)",
+          "z3_formula": "Implies(chaperones_high_school_dances_people, inactive_and_disinterested_people)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young_child_or_teenager_wishes_to_further_academic_career_and_educational_opportunities(people)",
+          "z3_formula": "young_child_or_teenager_wishes_to_further_academic_career_and_educational_opportunities_people == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young_child_or_teenager_wishes_to_further_academic_career_and_educational_opportunities(people) -> attends_school(people)",
+          "z3_formula": "Implies(young_child_or_teenager_wishes_to_further_academic_career_and_educational_opportunities_people, attends_school_people)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "bonnie_young_child_or_teenager_wishes_to_further_academic_career_and_educational_opportunities",
+          "z3_formula": "bonnie_young_child_or_teenager_wishes_to_further_academic_career_and_educational_opportunities == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "bonnie_chaperones_high_school_dances",
+          "z3_formula": "bonnie_chaperones_high_school_dances == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "bonnie_neither_young_child_nor_teenager_wishes_to_further_academic_career_and_educational_opportunities",
+          "z3_formula": "bonnie_neither_young_child_nor_teenager_wishes_to_further_academic_career_and_educational_opportunities == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "bonnie_attends_school_or_inactive_and_disinterested",
+          "z3_formula": "Or(attends_school_bonnie, inactive_and_disinterested_bonnie)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "attends_and_very_engaged(bonnie)",
+          "z3_formula": "attends_and_very_engaged_bonnie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "student_attends_school(bonnie)",
+          "z3_formula": "student_attends_school_bonnie == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "performs_in_talent_shows(X) -> attends_and_very_engaged(X)",
+          "z3_formula": "Implies(performs_in_talent_shows_bonnie, attends_and_very_engaged_bonnie)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "performs_in_talent_shows(X) or inactive_and_disinterested(X)",
+          "z3_formula": "Or(performs_in_talent_shows_bonnie, inactive_and_disinterested_bonnie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chaperones_high_school_dances(X) -> not student_attends_school(X)",
+          "z3_formula": "Implies(chaperones_high_school_dances_bonnie, not student_attends_school_bonnie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "inactive_and_disinterested(X) -> chaperones_high_school_dances(X)",
+          "z3_formula": "Implies(inactive_and_disinterested_bonnie, chaperones_high_school_dances_bonnie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young_child_or_teenager_wishes_to_further_academic_career(X) -> student_attends_school(X)",
+          "z3_formula": "Implies(young_child_or_teenager_wishes_to_further_academic_career_bonnie, student_attends_school_bonnie)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "(not young_child_or_teenager_wishes_to_further_academic_career(bonnie) or not chaperones_high_school_dances(bonnie)) or (student_attends_school(bonnie) or inactive_and_disinterested(bonnie))",
+          "z3_formula": "(not young_child_or_teenager_wishes_to_further_academic_career_bonnie or not chaperones_high_school_dances_bonnie) or (student_attends_school_bonnie or inactive_and_disinterested_bonnie)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "A",
+          "z3_formula": "A == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "A -> B",
+          "z3_formula": "Implies(A, B)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "A or C",
+          "z3_formula": "Or(A, C) == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "D -> not E",
+          "z3_formula": "Implies(D, Not(E))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "C -> D",
+          "z3_formula": "Implies(C, D)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "F -> E",
+          "z3_formula": "Implies(F, E)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "B or not B",
+          "z3_formula": "Or(B, Not(B)) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not B -> C",
+          "z3_formula": "Implies(Not(B), C)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not B -> C",
+          "z3_formula": "Implies(Not(B), C)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not F -> C",
+          "z3_formula": "Implies(Not(F), C)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "C -> D",
+          "z3_formula": "Implies(C, D)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "B -> E",
+          "z3_formula": "Implies(B, E)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not B -> C",
+          "z3_formula": "Implies(Not(B), C)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not F -> E",
+          "z3_formula": "Implies(Not(F), Not(E))",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not F -> C",
+          "z3_formula": "Implies(Not(F), C)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not F -> D",
+          "z3_formula": "Implies(Not(F), D)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "F or not F",
+          "z3_formula": "Or(F, Not(F)) == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "E or C",
+          "z3_formula": "Or(E, C) == True",
+          "source_step": 18
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 121,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 89
+    },
+    "maxsat_stats": {
+      "satisfied": 89,
+      "excluded": 0,
+      "total_weight": 118,
+      "solve_time_ms": 1.7975959926843643
+    },
+    "timing": {
+      "trace_gen_s": 24.561,
+      "extraction_s": 34.082,
+      "dedup_s": 2.777,
+      "maxsat_s": 0.007,
+      "total_s": 61.426
+    }
+  }
+}

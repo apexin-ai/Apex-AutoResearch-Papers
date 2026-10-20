@@ -1,0 +1,472 @@
+[
+  {
+    "id": "folio_0",
+    "problem": "Given the following premises:\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nBonnie performs in school talent shows often.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "∀x (TalentShows(x) → Engaged(x))",
+      "∀x (TalentShows(x) ∨ Inactive(x))",
+      "∀x (Chaperone(x) → ¬Students(x))",
+      "∀x (Inactive(x) → Chaperone(x))",
+      "∀x (AcademicCareer(x) → Students(x))",
+      "(Engaged(bonnie) ∧ Students(bonnie)) ⊕ (¬Engaged(bonnie) ∧ ¬Students(bonnie))"
+    ],
+    "conclusion_fol": "Engaged(bonnie)"
+  },
+  {
+    "id": "folio_1",
+    "problem": "Given the following premises:\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nIf Bonnie is either both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances or neither is a young child nor teenager who wishes to further her academic career and educational opportunities, then Bonnie is either a student who attends the school or is an inactive and disinterested member of the community.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "∀x (TalentShows(x) → Engaged(x))",
+      "∀x (TalentShows(x) ∨ Inactive(x))",
+      "∀x (Chaperone(x) → ¬Students(x))",
+      "∀x (Inactive(x) → Chaperone(x))",
+      "∀x (AcademicCareer(x) → Students(x))",
+      "(Engaged(bonnie) ∧ Students(bonnie)) ⊕ (¬Engaged(bonnie) ∧ ¬Students(bonnie))"
+    ],
+    "conclusion_fol": "AcademicCareer(bonnie) ⊕ Chaperone(bonnie) → AcademicCareer(bonnie) ⊕ Inactive(bonnie)"
+  },
+  {
+    "id": "folio_2",
+    "problem": "Given the following premises:\nIf people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nIf Bonnie either chaperones high school dances or, if she does not, she performs in school talent shows often, then Bonnie is both a young child or teenager who wishes to further her academic career and educational opportunities and an inactive and disinterested member of the community.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "∀x (TalentShows(x) → Engaged(x))",
+      "∀x (TalentShows(x) ∨ Inactive(x))",
+      "∀x (Chaperone(x) → ¬Students(x))",
+      "∀x (Inactive(x) → Chaperone(x))",
+      "∀x (AcademicCareer(x) → Students(x))",
+      "(Engaged(bonnie) ∧ Students(bonnie)) ⊕ (¬Engaged(bonnie) ∧ ¬Students(bonnie))"
+    ],
+    "conclusion_fol": "Chaperone(bonnie) ⊕ TalentShows(bonnie) → AcademicCareer(bonnie) ∧ Inactive(bonnie))"
+  },
+  {
+    "id": "folio_3",
+    "problem": "Given the following premises:\nAll employees who schedule a meeting with their customers will appear in the company today.  Everyone who has lunch in the company schedules meetings with their customers.  Employees will either have lunch in the company or have lunch at home. If an employee has lunch at home, then he/she is working remotely from home. All employees who are in other countries work remotely from home.  No managers work remotely from home.  James is either a manager and appears in the company today or neither a manager nor appears in the company today.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nJames has lunch in the company.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "∀x (Meeting(x) → AppearInCompany(x))",
+      "∀x (LunchInCompany(x) → Meetings(x))",
+      "∀x (LunchInCompany(x) ∨ LunchAtHome(x))",
+      "∀x (LunchAtHome(x) → WorkRemotelyFromHome(x))",
+      "∀x (InOtherCountries(x) → WorkRemotelyFromHome(x))",
+      "∀x (Manager(x) → ¬WorkRemotelyFromHome(x))",
+      "Manager(james) ⊕ AppearInCompany(james)"
+    ],
+    "conclusion_fol": "LunchInCompany(james)"
+  },
+  {
+    "id": "folio_4",
+    "problem": "Given the following premises:\nAll employees who schedule a meeting with their customers will appear in the company today.  Everyone who has lunch in the company schedules meetings with their customers.  Employees will either have lunch in the company or have lunch at home. If an employee has lunch at home, then he/she is working remotely from home. All employees who are in other countries work remotely from home.  No managers work remotely from home.  James is either a manager and appears in the company today or neither a manager nor appears in the company today.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nJames does not have lunch in the company.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "∀x (Meeting(x) → AppearInCompany(x))",
+      "∀x (LunchInCompany(x) → Meetings(x))",
+      "∀x (LunchInCompany(x) ∨ LunchAtHome(x))",
+      "∀x (LunchAtHome(x) → WorkRemotelyFromHome(x))",
+      "∀x (InOtherCountries(x) → WorkRemotelyFromHome(x))",
+      "∀x (Manager(x) → ¬WorkRemotelyFromHome(x))",
+      "Manager(james) ⊕ AppearInCompany(james)"
+    ],
+    "conclusion_fol": "¬LunchInCompany(james)"
+  },
+  {
+    "id": "folio_5",
+    "problem": "Given the following premises:\nAll employees who schedule a meeting with their customers will appear in the company today.  Everyone who has lunch in the company schedules meetings with their customers.  Employees will either have lunch in the company or have lunch at home. If an employee has lunch at home, then he/she is working remotely from home. All employees who are in other countries work remotely from home.  No managers work remotely from home.  James is either a manager and appears in the company today or neither a manager nor appears in the company today.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nIf James is either a manager or in other countries,  then James either has lunch at home and works remotely from home, or neither has lunch at home nor works remotely from home.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "∀x (Meeting(x) → AppearInCompany(x))",
+      "∀x (LunchInCompany(x) → Meetings(x))",
+      "∀x (LunchInCompany(x) ∨ LunchAtHome(x))",
+      "∀x (LunchAtHome(x) → WorkRemotelyFromHome(x))",
+      "∀x (InOtherCountries(x) → WorkRemotelyFromHome(x))",
+      "∀x (Manager(x) → ¬WorkRemotelyFromHome(x))",
+      "Manager(james) ⊕ AppearInCompany(james)"
+    ],
+    "conclusion_fol": "(Manager(james) ⊕ InOtherCountries(james)) → (LunchAtHome(james) ⊕ WorkRemotelyFromHome(james))"
+  },
+  {
+    "id": "folio_6",
+    "problem": "Given the following premises:\nMonkeypox is an infectious disease caused by the monkeypox virus. Monkeypox virus can occur in certain animals, including humans. Humans are mammals. Mammals are animals. Symptons of Monkeypox include fever, headache, muscle pains, feeling tired, and so on. People feel tired when they get a glu.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nThere is an animal.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "∃x (OccurMonkeypoxVirus(x) ∧ GetMonkeypox(x))",
+      "∃x (Animal(x) ∧ OccurMonkeypoxVirus(x))",
+      "∀x (Human(x) → Mammal(x))",
+      "∀x (Mammal(x) → Animal(x))",
+      "∃x (GetMonkeypox(x) ∧ (Fever(x) ∨ Headache(x) ∨ MusclePain(x) ∨ Tired(x)))",
+      "∀x (Human(x) ∧ Flu(x) → Tired(x))"
+    ],
+    "conclusion_fol": "∃x (Animal(x))"
+  },
+  {
+    "id": "folio_7",
+    "problem": "Given the following premises:\nMonkeypox is an infectious disease caused by the monkeypox virus. Monkeypox virus can occur in certain animals, including humans. Humans are mammals. Mammals are animals. Symptons of Monkeypox include fever, headache, muscle pains, feeling tired, and so on. People feel tired when they get a glu.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nNo one gets flu.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "∃x (OccurMonkeypoxVirus(x) ∧ GetMonkeypox(x))",
+      "∃x (Animal(x) ∧ OccurMonkeypoxVirus(x))",
+      "∀x (Human(x) → Mammal(x))",
+      "∀x (Mammal(x) → Animal(x))",
+      "∃x (GetMonkeypox(x) ∧ (Fever(x) ∨ Headache(x) ∨ MusclePain(x) ∨ Tired(x)))",
+      "∀x (Human(x) ∧ Flu(x) → Tired(x))"
+    ],
+    "conclusion_fol": "∀x (Human(x) → ¬Flu(x))"
+  },
+  {
+    "id": "folio_8",
+    "problem": "Given the following premises:\nMonkeypox is an infectious disease caused by the monkeypox virus. Monkeypox virus can occur in certain animals, including humans. Humans are mammals. Mammals are animals. Symptons of Monkeypox include fever, headache, muscle pains, feeling tired, and so on. People feel tired when they get a glu.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nSymptons of Monkeypox include coughing.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "∃x (OccurMonkeypoxVirus(x) ∧ GetMonkeypox(x))",
+      "∃x (Animal(x) ∧ OccurMonkeypoxVirus(x))",
+      "∀x (Human(x) → Mammal(x))",
+      "∀x (Mammal(x) → Animal(x))",
+      "∃x (GetMonkeypox(x) ∧ (Fever(x) ∨ Headache(x) ∨ MusclePain(x) ∨ Tired(x)))",
+      "∀x (Human(x) ∧ Flu(x) → Tired(x))"
+    ],
+    "conclusion_fol": "∃x (GetMonkeypox(x) ∧ Coughing(x))"
+  },
+  {
+    "id": "folio_9",
+    "problem": "Given the following premises:\nThere are six types of wild turkeys: Eastern wild turkey, Osceola wild turkey, Gould’s wild turkey, Merriam’s wild turkey, Rio Grande wild turkey, and Ocellated wild turkey. Tom is not an Eastern wild turkey. Tom is not an Osceola wild turkey. Tom is also not a Gould's wild turkey, or a Merriam's wild turkey, or a Rio Grande wild turkey. Tom is a wild turkey.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nTom is an Ocellated wild turkey.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "∀x (WildTurkey(x) → (Eastern(x) ∨ Osceola(x) ∨ Goulds(x) ∨ Merriams(x) ∨ Riogrande(x) ∨ Ocellated(x)))",
+      "¬(WildTurkey(tom) ∧ Eastern(tom))",
+      "¬(WildTurkey(tom) ∧ Osceola(tom))",
+      "WildTurkey(tom) → ¬(Goulds(tom) ∨ Merriams(tom) ∨ Riogrande(tom))",
+      "WildTurkey(tom)"
+    ],
+    "conclusion_fol": "Ocellated(tom)"
+  },
+  {
+    "id": "folio_10",
+    "problem": "Given the following premises:\nThere are six types of wild turkeys: Eastern wild turkey, Osceola wild turkey, Gould’s wild turkey, Merriam’s wild turkey, Rio Grande wild turkey, and Ocellated wild turkey. Tom is not an Eastern wild turkey. Tom is not an Osceola wild turkey. Tom is also not a Gould's wild turkey, or a Merriam's wild turkey, or a Rio Grande wild turkey. Tom is a wild turkey.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nTom is an Eastern wild turkey.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "∀x (WildTurkey(x) → (Eastern(x) ∨ Osceola(x) ∨ Goulds(x) ∨ Merriams(x) ∨ Riogrande(x) ∨ Ocellated(x)))",
+      "¬(WildTurkey(tom) ∧ Eastern(tom))",
+      "¬(WildTurkey(tom) ∧ Osceola(tom))",
+      "WildTurkey(tom) → ¬(Goulds(tom) ∨ Merriams(tom) ∨ Riogrande(tom))",
+      "WildTurkey(tom)"
+    ],
+    "conclusion_fol": "Eastern(tom)"
+  },
+  {
+    "id": "folio_11",
+    "problem": "Given the following premises:\nThere are six types of wild turkeys: Eastern wild turkey, Osceola wild turkey, Gould’s wild turkey, Merriam’s wild turkey, Rio Grande wild turkey, and Ocellated wild turkey. Tom is not an Eastern wild turkey. Tom is not an Osceola wild turkey. Tom is also not a Gould's wild turkey, or a Merriam's wild turkey, or a Rio Grande wild turkey. Tom is a wild turkey.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nJoey is a wild turkey.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "∀x (WildTurkey(x) → (Eastern(x) ∨ Osceola(x) ∨ Goulds(x) ∨ Merriams(x) ∨ Riogrande(x) ∨ Ocellated(x)))",
+      "¬(WildTurkey(tom) ∧ Eastern(tom))",
+      "¬(WildTurkey(tom) ∧ Osceola(tom))",
+      "WildTurkey(tom) → ¬(Goulds(tom) ∨ Merriams(tom) ∨ Riogrande(tom))",
+      "WildTurkey(tom)"
+    ],
+    "conclusion_fol": "WildTurkey(joey)"
+  },
+  {
+    "id": "folio_12",
+    "problem": "Given the following premises:\nA Japanese game company created the game the Legend of Zelda. All games in the Top 10 list are made by Japanese game companies. [BG] If a game sells more than one million copies, then it will be selected into the Top 10 list. The Legend of Zelda sold more than one million copies.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nThe Legend of Zelda is in the Top 10 list.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "∃x (Japanese(x) ∧ VideoGameCompany(x) ∧ Game(thelegendofzelda) ∧ Created(x, thelegendofzelda))",
+      "∀x ∀y (Game(x) ∧ InTop10(x) ∧ Created(x, y) → Japanese(y))",
+      "∀x (Game(x) ∧ SellsMoreThan(x, onemillioncopies) → Top10(x))",
+      "SellsMoreThan(thelegendofzelda, onemillioncopies)"
+    ],
+    "conclusion_fol": "Top10(thelegendofzelda)"
+  },
+  {
+    "id": "folio_13",
+    "problem": "Given the following premises:\nA Japanese game company created the game the Legend of Zelda. All games in the Top 10 list are made by Japanese game companies. [BG] If a game sells more than one million copies, then it will be selected into the Top 10 list. The Legend of Zelda sold more than one million copies.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nFIFA 22 is made by a Japanese video game company.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "∃x (Japanese(x) ∧ VideoGameCompany(x) ∧ Game(thelegendofzelda) ∧ Created(x, thelegendofzelda))",
+      "∀x ∀y (Game(x) ∧ InTop10(x) ∧ Created(x, y) → Japanese(y))",
+      "∀x (Game(x) ∧ SellsMoreThan(x, onemillioncopies) → Top10(x))",
+      "SellsMoreThan(thelegendofzelda, onemillioncopies)"
+    ],
+    "conclusion_fol": "∀x (Created(fifa22, x) → Japanese(x) ∧ VideoGameCompany(x))"
+  },
+  {
+    "id": "folio_14",
+    "problem": "Given the following premises:\nA Japanese game company created the game the Legend of Zelda. All games in the Top 10 list are made by Japanese game companies. [BG] If a game sells more than one million copies, then it will be selected into the Top 10 list. The Legend of Zelda sold more than one million copies.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nThe Legend of Zelda is not in the Top 10 list.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "∃x (Japanese(x) ∧ VideoGameCompany(x) ∧ Game(thelegendofzelda) ∧ Created(x, thelegendofzelda))",
+      "∀x ∀y (Game(x) ∧ InTop10(x) ∧ Created(x, y) → Japanese(y))",
+      "∀x (Game(x) ∧ SellsMoreThan(x, onemillioncopies) → Top10(x))",
+      "SellsMoreThan(thelegendofzelda, onemillioncopies)"
+    ],
+    "conclusion_fol": "¬Top10(thelegendofzelda)"
+  },
+  {
+    "id": "folio_15",
+    "problem": "Given the following premises:\nAll squares have four sides. All four-sided things are shapes.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nAll squares are shapes.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "∀x (Square(x) → FourSides(x))",
+      "∀x (FourSides(x) → IsShape(x))"
+    ],
+    "conclusion_fol": "∀x (Square(x) → IsShape(x))"
+  },
+  {
+    "id": "folio_16",
+    "problem": "Given the following premises:\nAll rabbits are cute.  Some turtles exist.  An animal is either a rabbit or a squirrel. If something is skittish, then it is not still. All squirrels are skittish. Rock is still.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nRock is a turtle.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "∀x (Rabbit(x) → Cute(x))",
+      "∃x (Turtle(x))",
+      "∀x (Rabbit(x) ∨ Squirrel(x))",
+      "∀x (Skittish(x) → ¬Still(x))",
+      "∀x (Squirrel(x) → Skittish(x))",
+      "Still(rock)"
+    ],
+    "conclusion_fol": "Turtle(rock)"
+  },
+  {
+    "id": "folio_17",
+    "problem": "Given the following premises:\nAll rabbits are cute.  Some turtles exist.  An animal is either a rabbit or a squirrel. If something is skittish, then it is not still. All squirrels are skittish. Rock is still.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nRock is not a turtle.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "∀x (Rabbit(x) → Cute(x))",
+      "∃x (Turtle(x))",
+      "∀x (Rabbit(x) ∨ Squirrel(x))",
+      "∀x (Skittish(x) → ¬Still(x))",
+      "∀x (Squirrel(x) → Skittish(x))",
+      "Still(rock)"
+    ],
+    "conclusion_fol": "¬Turtle(rock)"
+  },
+  {
+    "id": "folio_18",
+    "problem": "Given the following premises:\nAll rabbits are cute.  Some turtles exist.  An animal is either a rabbit or a squirrel. If something is skittish, then it is not still. All squirrels are skittish. Rock is still.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nRock is a turtle or cute.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "∀x (Rabbit(x) → Cute(x))",
+      "∃x (Turtle(x))",
+      "∀x (Rabbit(x) ∨ Squirrel(x))",
+      "∀x (Skittish(x) → ¬Still(x))",
+      "∀x (Squirrel(x) → Skittish(x))",
+      "Still(rock)"
+    ],
+    "conclusion_fol": "Turtle(rock) ∨ Cute(rock)"
+  },
+  {
+    "id": "folio_19",
+    "problem": "Given the following premises:\nAll rabbits are cute.  Some turtles exist.  An animal is either a rabbit or a squirrel. If something is skittish, then it is not still. All squirrels are skittish. Rock is still.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nIf Rock is not both a turtle and a squirrel, then Rock is either cute or skittish.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "∀x (Rabbit(x) → Cute(x))",
+      "∃x (Turtle(x))",
+      "∀x (Rabbit(x) ∨ Squirrel(x))",
+      "∀x (Skittish(x) → ¬Still(x))",
+      "∀x (Squirrel(x) → Skittish(x))",
+      "Still(rock)"
+    ],
+    "conclusion_fol": "¬(Turtle(rock) ∧ Squirrel(rock)) → Cute(rock) ⊕ Skittish(rock)"
+  },
+  {
+    "id": "folio_20",
+    "problem": "Given the following premises:\nAll rabbits are cute.  Some turtles exist.  An animal is either a rabbit or a squirrel. If something is skittish, then it is not still. All squirrels are skittish. Rock is still.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nIf Rock is cute and still, then Rock is a turtle and skittish.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "∀x (Rabbit(x) → Cute(x))",
+      "∃x (Turtle(x))",
+      "∀x (Rabbit(x) ∨ Squirrel(x))",
+      "∀x (Skittish(x) → ¬Still(x))",
+      "∀x (Squirrel(x) → Skittish(x))",
+      "Still(rock)"
+    ],
+    "conclusion_fol": "Cute(rock) ∧ Still(rock) → Turtle(rock) ∧ Skittish(rock)"
+  },
+  {
+    "id": "folio_21",
+    "problem": "Given the following premises:\n\"Stranger Things\" is a popular Netflix show. If a Netflix show is popular, Karen will binge-watch it. If and only if Karen binge-watches a Netflix show, she will download it. Karen does not download \"Black Mirror\". \"Black Mirror\" is a Netflix show. If Karen binge-watches a Netflix show, she will share it to Lisa.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nKaren will share \"Stranger Things\" to Lisa.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "NetflixShow(strangerThings) ∧ Popular(strangerThings)",
+      "∀x ((NetflixShow(x) ∧ Popular(x)) → BingeWatch(karen, x))",
+      "∀x ((NetflixShow(x) ∧ BingeWatch(karen, x)) ↔ Download(karen, x))",
+      "¬Download(karen, blackMirror)",
+      "NetflixShow(blackMirror)",
+      "∀x ((NetflixShow(x) ∧ BingeWatch(karen, x)) → Share(x, lisa))"
+    ],
+    "conclusion_fol": "Share(strangerThings, lisa)"
+  },
+  {
+    "id": "folio_22",
+    "problem": "Given the following premises:\n\"Stranger Things\" is a popular Netflix show. If a Netflix show is popular, Karen will binge-watch it. If and only if Karen binge-watches a Netflix show, she will download it. Karen does not download \"Black Mirror\". \"Black Mirror\" is a Netflix show. If Karen binge-watches a Netflix show, she will share it to Lisa.\n\nDetermine whether the following conclusion is true, false, or uncertain:\n\"Black Mirror\" is popular.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "NetflixShow(strangerThings) ∧ Popular(strangerThings)",
+      "∀x ((NetflixShow(x) ∧ Popular(x)) → BingeWatch(karen, x))",
+      "∀x ((NetflixShow(x) ∧ BingeWatch(karen, x)) ↔ Download(karen, x))",
+      "¬Download(karen, blackMirror)",
+      "NetflixShow(blackMirror)",
+      "∀x ((NetflixShow(x) ∧ BingeWatch(karen, x)) → Share(x, lisa))"
+    ],
+    "conclusion_fol": "Popular(blackMirror)"
+  },
+  {
+    "id": "folio_23",
+    "problem": "Given the following premises:\n\"Stranger Things\" is a popular Netflix show. If a Netflix show is popular, Karen will binge-watch it. If and only if Karen binge-watches a Netflix show, she will download it. Karen does not download \"Black Mirror\". \"Black Mirror\" is a Netflix show. If Karen binge-watches a Netflix show, she will share it to Lisa.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nKaren will share \"Black Mirror\" to Lisa.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "NetflixShow(strangerThings) ∧ Popular(strangerThings)",
+      "∀x ((NetflixShow(x) ∧ Popular(x)) → BingeWatch(karen, x))",
+      "∀x ((NetflixShow(x) ∧ BingeWatch(karen, x)) ↔ Download(karen, x))",
+      "¬Download(karen, blackMirror)",
+      "NetflixShow(blackMirror)",
+      "∀x ((NetflixShow(x) ∧ BingeWatch(karen, x)) → Share(x, lisa))"
+    ],
+    "conclusion_fol": "Share(blackMirror, lisa)"
+  },
+  {
+    "id": "folio_24",
+    "problem": "Given the following premises:\nBeijing is the capital of the People's Republic of China.  Beijing is the world's most populous national capital city. Beijing is located in Northern China. Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games. Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics Many of Beijing's 91 universities consistently rank among the best in the Asia-Pacific and the world.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nBeijing has hosted both the 2008 Summer Olympics and a winter olympics.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "CapitalOf(beijing, prx)",
+      "MostPopulousNationalCapitalCity(beijing)",
+      "InNorthernChina(beijing)",
+      "Hosted(beijing, summer2008olympic) ∧ Hosted(beijing, summer2008paralympicgames)",
+      "Hosted(beijing, summerolympic) ∧ Hosted(beijing, winterolympic) ∧ Hosted(beijing, summerparalympicgames)  ∧ Hosted(beijing, winterparalympicgames)",
+      "∃x (BeijingUniversity(x) ∧ ConsistentlyRankAmongTheBest(x))"
+    ],
+    "conclusion_fol": "Hosted(beijing, summer2008olympic) ∧ Hosted(beijing, winterolympic)"
+  },
+  {
+    "id": "folio_25",
+    "problem": "Given the following premises:\nBeijing is the capital of the People's Republic of China.  Beijing is the world's most populous national capital city. Beijing is located in Northern China. Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games. Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics Many of Beijing's 91 universities consistently rank among the best in the Asia-Pacific and the world.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nBeijing is located in southern China.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "CapitalOf(beijing, prx)",
+      "MostPopulousNationalCapitalCity(beijing)",
+      "InNorthernChina(beijing)",
+      "Hosted(beijing, summer2008olympic) ∧ Hosted(beijing, summer2008paralympicgames)",
+      "Hosted(beijing, summerolympic) ∧ Hosted(beijing, winterolympic) ∧ Hosted(beijing, summerparalympicgames)  ∧ Hosted(beijing, winterparalympicgames)",
+      "∃x (BeijingUniversity(x) ∧ ConsistentlyRankAmongTheBest(x))"
+    ],
+    "conclusion_fol": "InSouthernChina(beijing)"
+  },
+  {
+    "id": "folio_26",
+    "problem": "Given the following premises:\nBeijing is the capital of the People's Republic of China.  Beijing is the world's most populous national capital city. Beijing is located in Northern China. Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games. Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics Many of Beijing's 91 universities consistently rank among the best in the Asia-Pacific and the world.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nBeijing is the second largest Chinese city by urban population.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "CapitalOf(beijing, prx)",
+      "MostPopulousNationalCapitalCity(beijing)",
+      "InNorthernChina(beijing)",
+      "Hosted(beijing, summer2008olympic) ∧ Hosted(beijing, summer2008paralympicgames)",
+      "Hosted(beijing, summerolympic) ∧ Hosted(beijing, winterolympic) ∧ Hosted(beijing, summerparalympicgames)  ∧ Hosted(beijing, winterparalympicgames)",
+      "∃x (BeijingUniversity(x) ∧ ConsistentlyRankAmongTheBest(x))"
+    ],
+    "conclusion_fol": "SecondLargestChineseCity(beijing)"
+  },
+  {
+    "id": "folio_27",
+    "problem": "Given the following premises:\nAll aliens are extraterrestrial. If someone is from Mars, then they are aliens. No extraterrestrial is human. Everyone from Earth is a human. Marvin cannot be from Earth and from Mars. If Marvin is not from Earth, then Marvin is an extraterrestrial.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nMarvin is an alien.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "∀x (Alien(x) → Extraterrestrial(x))",
+      "∀x (FromMars(x) → Alien(x))",
+      "∀x (Extraterrestrial(x) → ¬Human(x))",
+      "∀x (FromEarth(x) → Human(x))",
+      "¬FromEarth(marvin) ∧ ¬FromMars(marvin)",
+      "¬FromEarth(marvin) → Extraterrestrial(marvin)"
+    ],
+    "conclusion_fol": "Alien(marvin)"
+  },
+  {
+    "id": "folio_28",
+    "problem": "Given the following premises:\nAll aliens are extraterrestrial. If someone is from Mars, then they are aliens. No extraterrestrial is human. Everyone from Earth is a human. Marvin cannot be from Earth and from Mars. If Marvin is not from Earth, then Marvin is an extraterrestrial.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nMarvin is neither a human nor from Mars.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "∀x (Alien(x) → Extraterrestrial(x))",
+      "∀x (FromMars(x) → Alien(x))",
+      "∀x (Extraterrestrial(x) → ¬Human(x))",
+      "∀x (FromEarth(x) → Human(x))",
+      "¬FromEarth(marvin) ∧ ¬FromMars(marvin)",
+      "¬FromEarth(marvin) → Extraterrestrial(marvin)"
+    ],
+    "conclusion_fol": "¬Human(marvin) ∧ ¬FromMars(marvin)"
+  },
+  {
+    "id": "folio_29",
+    "problem": "Given the following premises:\nAll aliens are extraterrestrial. If someone is from Mars, then they are aliens. No extraterrestrial is human. Everyone from Earth is a human. Marvin cannot be from Earth and from Mars. If Marvin is not from Earth, then Marvin is an extraterrestrial.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nIf Marvin is not from Mars, then Marvin is a human.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "∀x (Alien(x) → Extraterrestrial(x))",
+      "∀x (FromMars(x) → Alien(x))",
+      "∀x (Extraterrestrial(x) → ¬Human(x))",
+      "∀x (FromEarth(x) → Human(x))",
+      "¬FromEarth(marvin) ∧ ¬FromMars(marvin)",
+      "¬FromEarth(marvin) → Extraterrestrial(marvin)"
+    ],
+    "conclusion_fol": "¬FromMars(marvin) → Human(marvin)"
+  }
+]

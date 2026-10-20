@@ -1,0 +1,577 @@
+{
+  "pid": "folio_3",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "manager(james)",
+          "z3_formula": "manager_james == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "manager(X) -> not(work_remotely_from_home(X))",
+          "z3_formula": "Implies(manager_james, Not(work_remotely_from_home_james))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not(work_remotely_from_home(james))",
+          "z3_formula": "Not(work_remotely_from_home_james) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "in_company_today(james)",
+          "z3_formula": "in_company_today_james == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "in_company_today(james) -> has_lunch_in_company(james)",
+          "z3_formula": "Implies(in_company_today_james, has_lunch_in_company_james)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "has_lunch_in_company(james)",
+          "z3_formula": "has_lunch_in_company_james == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "not(manager(james))",
+          "z3_formula": "Not(manager_james) == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "not(in_company_today(james))",
+          "z3_formula": "Not(in_company_today_james) == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "not(schedules_meeting_with_customer(X)) -> not(has_lunch_in_company(X))",
+          "z3_formula": "Implies(Not(schedules_meeting_with_customer_james), Not(has_lunch_in_company_james))",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not(has_lunch_in_company(james))",
+          "z3_formula": "Not(has_lunch_in_company_james) == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "not(schedules_meeting_with_customer(james))",
+          "z3_formula": "Not(schedules_meeting_with_customer_james) == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "not(schedules_meeting_with_customer(X)) -> work_remotely_from_home(X)",
+          "z3_formula": "Implies(Not(schedules_meeting_with_customer_james), work_remotely_from_home_james)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "in_other_country(X) -> work_remotely_from_home(X)",
+          "z3_formula": "Implies(in_other_country_james, work_remotely_from_home_james)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "work_remotely_from_home(james)",
+          "z3_formula": "work_remotely_from_home_james == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "in_other_country(james)",
+          "z3_formula": "in_other_country_james == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "Unknown",
+          "z3_formula": "Unknown",
+          "source_step": 22
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "appears_in_company_today(James)",
+          "z3_formula": "appears_in_company_today_james == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "has_lunch_in_company(James) -> appears_in_company_today(James)",
+          "z3_formula": "Implies(has_lunch_in_company_james, appears_in_company_today_james)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "has_lunch_in_company(James) -> schedules_meetings_with_customers(James)",
+          "z3_formula": "Implies(has_lunch_in_company_james, schedules_meetings_with_customers_james)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "has_lunch_in_company(James) -> schedules_meetings_with_customers(James) -> appears_in_company_today(James)",
+          "z3_formula": "Implies(And(has_lunch_in_company_james, schedules_meetings_with_customers_james), appears_in_company_today_james)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "has_lunch_at_home(James) -> works_remotely_from_home(James)",
+          "z3_formula": "Implies(has_lunch_at_home_james, works_remotely_from_home_james)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "works_remotely_from_home(James) -> not_manager(James)",
+          "z3_formula": "Implies(works_remotely_from_home_james, not_manager_james)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "not_manager(James) -> not_appears_in_company_today(James)",
+          "z3_formula": "Implies(not_manager_james, not_appears_in_company_today_james)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not_manager(James) -> has_lunch_at_home(James)",
+          "z3_formula": "Implies(not_manager_james, has_lunch_at_home_james)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not_appears_in_company_today(James) -> not_manager(James)",
+          "z3_formula": "Implies(not_appears_in_company_today_james, not_manager_james)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "has_lunch_at_home(James) -> works_remotely_from_home(James)",
+          "z3_formula": "has_lunch_at_home_james == True -> works_remotely_from_home_james == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "all_employees_work_remotely_from_home_in_other_countries",
+          "z3_formula": "all_employees_work_remotely_from_home_in_other_countries == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "no_managers_work_remotely_from_home",
+          "z3_formula": "no_managers_work_remotely_from_home == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "James is either a manager and appears in the company today or neither a manager nor appears in the company today",
+          "z3_formula": "Or(And(manager_james, appears_in_company_today_james), And(not_manager_james, not_appears_in_company_today_james))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "has_lunch_in_company(James)",
+          "z3_formula": "has_lunch_in_company_james == Unknown",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "schedule_meeting_with_customers(X) -> appears_in_company_today(X)",
+          "z3_formula": "Implies(schedule_meeting_with_customers_james, appears_in_company_today_james)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "has_lunch_in_company(X) -> schedule_meeting_with_customers(X)",
+          "z3_formula": "Implies(has_lunch_in_company_james, schedule_meeting_with_customers_james)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "has_lunch_at_home(X) -> working_remotely_from_home(X)",
+          "z3_formula": "Implies(has_lunch_at_home_james, working_remotely_from_home_james)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "working_remotely_from_home(X) -> in_other_countries(X)",
+          "z3_formula": "Implies(working_remotely_from_home_james, in_other_countries_james)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "in_other_countries(X) -> working_remotely_from_home(X)",
+          "z3_formula": "Implies(in_other_countries_james, working_remotely_from_home_james)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "manager(X) -> not working_remotely_from_home(X)",
+          "z3_formula": "Implies(manager_james, not working_remotely_from_home_james)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not manager(X) -> not manager(X)",
+          "z3_formula": "Implies(not manager_james, not manager_james)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "has_lunch_at_home(X) | has_lunch_in_company(X)",
+          "z3_formula": "Or(has_lunch_at_home_james, has_lunch_in_company_james)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "has_lunch_in_company(james)",
+          "z3_formula": "Or(And(manager_james, appears_in_company_today_james), And(not manager_james, appears_in_company_today_james)) == False",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "manager(james)",
+          "z3_formula": "manager_james == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "appears_in_company_today(james)",
+          "z3_formula": "appears_in_company_today_james == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "appears_in_company_today(X) -> appears_in_company_today(X)",
+          "z3_formula": "Implies(appears_in_company_today_james, appears_in_company_today_james)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "appears_in_company_today(X) -> appears_in_company_today(X)",
+          "z3_formula": "Implies(appears_in_company_today_james, appears_in_company_today_james)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "manager(X) -> not(remotely_from_home(X))",
+          "z3_formula": "Implies(manager_james, not(remotely_from_home_james))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "has_lunch_in_company(X) -> appears_in_company_today(X)",
+          "z3_formula": "Implies(has_lunch_in_company_james, appears_in_company_today_james)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "appears_in_company_today(X) -> appears_in_company_today(X)",
+          "z3_formula": "Implies(appears_in_company_today_james, appears_in_company_today_james)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "has_lunch_at_home(X) -> remotely_from_home(X)",
+          "z3_formula": "Implies(has_lunch_at_home_james, remotely_from_home_james)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "remotely_from_home(X) -> not(manager(X))",
+          "z3_formula": "Implies(remotely_from_home_james, not(manager_james))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not(manager(X)) -> not(appears_in_company_today(X))",
+          "z3_formula": "Implies(not(manager_james), not(appears_in_company_today_james))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not(appears_in_company_today(X)) -> has_lunch_at_home(X)",
+          "z3_formula": "Implies(not(appears_in_company_today_james), has_lunch_at_home_james)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "has_lunch_in_company(james)",
+          "z3_formula": "has_lunch_in_company_james == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "has_lunch_at_home(james)",
+          "z3_formula": "has_lunch_at_home_james == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "appears_in_company_today(james)",
+          "z3_formula": "appears_in_company_today_james == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "appears_in_company_today(james) -> manager(james)",
+          "z3_formula": "Implies(appears_in_company_today_james, manager_james)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not manager(james)",
+          "z3_formula": "Not(manager_james) == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "appears_in_company_today(X) -> has_meeting_with_customer(X)",
+          "z3_formula": "Implies(appears_in_company_today_james, has_meeting_with_customer_james)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "has_meeting_with_customer(X) -> has_lunch_in_company(X)",
+          "z3_formula": "Implies(has_meeting_with_customer_james, has_lunch_in_company_james)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "has_lunch_in_company(X) | has_lunch_at_home(X)",
+          "z3_formula": "Or(has_lunch_in_company_james, has_lunch_at_home_james)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "has_lunch_at_home(X) -> working_remotely_from_home(X)",
+          "z3_formula": "Implies(has_lunch_at_home_james, working_remotely_from_home_james)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not working_remotely_from_home(james)",
+          "z3_formula": "Not(working_remotely_from_home_james) == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "working_remotely_from_home(X) -> in_other_countries(X)",
+          "z3_formula": "Implies(working_remotely_from_home_james, in_other_countries_james)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "in_other_countries(X) -> working_remotely_from_home(X)",
+          "z3_formula": "Implies(in_other_countries_james, working_remotely_from_home_james)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not working_remotely_from_home(james)",
+          "z3_formula": "Not(working_remotely_from_home_james) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "has_lunch_in_company(james)",
+          "z3_formula": "has_lunch_in_company_james == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 9,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "schedules_meeting_with_customer(james)",
+          "z3_formula": "schedules_meeting_with_customer_james == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "appears_in_company_today(james)",
+          "z3_formula": "appears_in_company_today_james == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "schedules_meeting_with_customer(X) -> appears_in_company_today(X)",
+          "z3_formula": "Implies(schedules_meeting_with_customer_james, appears_in_company_today_james)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "has_lunch_at_home(X) -> works_remotely_from_home(X)",
+          "z3_formula": "Implies(has_lunch_at_home_james, works_remotely_from_home_james)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "works_remotely_from_home(X) -> in_other_countries(X)",
+          "z3_formula": "Implies(works_remotely_from_home_james, in_other_countries_james)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "in_other_countries(X) -> works_remotely_from_home(X)",
+          "z3_formula": "Implies(in_other_countries_james, works_remotely_from_home_james)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "manager(X) -> not works_remotely_from_home(X)",
+          "z3_formula": "Implies(manager_james, not works_remotely_from_home_james)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "manager(X) & not appears_in_company_today(X) -> not manager(X) & not appears_in_company_today(X)",
+          "z3_formula": "Implies(And(manager_james, not appears_in_company_today_james), And(not manager_james, not appears_in_company_today_james))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "has_lunch_in_company(james)",
+          "z3_formula": "has_lunch_in_company_james == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 11,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "schedules_meeting_with_customer(X) -> appears_in_company_today(X)",
+          "z3_formula": "Implies(schedules_meeting_with_customer_X, appears_in_company_today_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "has_lunch_in_company(X) -> schedules_meeting_with_customer(X)",
+          "z3_formula": "Implies(has_lunch_in_company_X, schedules_meeting_with_customer_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "has_lunch_in_company(X) | has_lunch_at_home(X)",
+          "z3_formula": "Or(has_lunch_in_company_X, has_lunch_at_home_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "has_lunch_at_home(X) -> works_remotely_from_home(X)",
+          "z3_formula": "Implies(has_lunch_at_home_X, works_remotely_from_home_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "works_remotely_from_home(X) -> is_in_other_countries(X)",
+          "z3_formula": "Implies(works_remotely_from_home_X, is_in_other_countries_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "is_in_other_countries(X) -> works_remotely_from_home(X)",
+          "z3_formula": "Implies(is_in_other_countries_X, works_remotely_from_home_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "is_manager(X) -> not(works_remotely_from_home(X))",
+          "z3_formula": "Implies(is_manager_X, Not(works_remotely_from_home_X))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "has_lunch_in_company(james)",
+          "z3_formula": "has_lunch_in_company_james == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "schedules_meeting_with_customer(james)",
+          "z3_formula": "schedules_meeting_with_customer_james == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "appears_in_company_today(james)",
+          "z3_formula": "appears_in_company_today_james == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "is_manager(james)",
+          "z3_formula": "is_manager_james == True",
+          "source_step": 11
+        }
+      ]
+    }
+  ]
+}

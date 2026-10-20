@@ -1,0 +1,660 @@
+{
+  "pid": "folio_6",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "virus(monkeypox)",
+          "z3_formula": "virus_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "occurs_in(monkeypox, humans)",
+          "z3_formula": "occurs_in_monkeypox_humans == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(humans)",
+          "z3_formula": "mammal_humans == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_humans, animal_humans)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "animal(humans)",
+          "z3_formula": "animal_humans == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "monkeypox_virus_in_animals",
+          "z3_formula": "monkeypox_virus_in_animals == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(humans)",
+          "z3_formula": "mammal_humans == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "animal(mammals)",
+          "z3_formula": "animal_mammals == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_humans, animal_humans)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "animal(humans)",
+          "z3_formula": "animal_humans == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "symptoms_monkeypox",
+          "z3_formula": "symptoms_monkeypox == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "tired_when_flu",
+          "z3_formula": "tired_when_flu == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "monkeypox_is_infectious",
+          "z3_formula": "monkeypox_is_infectious == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "monkeypox_virus_occurs_in_animals",
+          "z3_formula": "monkeypox_virus_occurs_in_animals == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "humans_are_mammals",
+          "z3_formula": "humans_are_mammals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mammals_are_animals",
+          "z3_formula": "mammals_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "monkeypox_has_symptoms",
+          "z3_formula": "monkeypox_has_symptoms == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "flu_makes_people_tired",
+          "z3_formula": "flu_makes_people_tired == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "monkeypox_virus_occurs_in_animals -> animals_exist",
+          "z3_formula": "Implies(monkeypox_virus_occurs_in_animals, animals_exist)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "caused_by(monkeypox, monkeypox_virus)",
+          "z3_formula": "caused_by_monkeypox_monkeypox_virus == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "virus(monkeypox_virus)",
+          "z3_formula": "virus_monkeypox_virus == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "in_animals(monkeypox_virus, humans)",
+          "z3_formula": "in_animals_monkeypox_virus_humans == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(humans)",
+          "z3_formula": "mammal_humans == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "animal(humans)",
+          "z3_formula": "animal_humans == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "animal(mammals)",
+          "z3_formula": "animal_mammals == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "virus(X) -> infectious(X)",
+          "z3_formula": "Implies(virus_monkeypox_virus, infectious_monkeypox)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "in_animals(X, Y) -> in_animals(X, Z)",
+          "z3_formula": "Implies(in_animals_monkeypox_virus_humans, in_animals_monkeypox_virus_mammals)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_humans, animal_humans)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "in_animals(monkeypox_virus, mammals)",
+          "z3_formula": "in_animals_monkeypox_virus_mammals == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "animal(humans)",
+          "z3_formula": "animal_humans == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "there_is_an_animal",
+          "z3_formula": "there_is_an_animal == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "monkeypox_virus_occurs_in_humans",
+          "z3_formula": "monkeypox_virus_occurs_in_humans == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "human_is_mammal",
+          "z3_formula": "human_is_mammal == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mammal_is_animal",
+          "z3_formula": "mammal_is_animal == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "human_is_animal",
+          "z3_formula": "human_is_animal == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "there_is_an_animal",
+          "z3_formula": "there_is_an_animal == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "virus(monkeypox)",
+          "z3_formula": "virus_monkeypox == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "occurs_in(monkeypox, humans)",
+          "z3_formula": "occurs_in_monkeypox_humans == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(humans)",
+          "z3_formula": "mammal_humans == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "animal(mammals)",
+          "z3_formula": "animal_mammals == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "virus(X) -> infectious(X)",
+          "z3_formula": "Implies(virus_monkeypox, infectious_monkeypox)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "occurs_in(X, Y) -> animal(Y)",
+          "z3_formula": "Implies(occurs_in_monkeypox_humans, animal_humans)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_humans, animal_humans)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "animal(humans)",
+          "z3_formula": "animal_humans == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "animal(other_animals)",
+          "z3_formula": "animal_other_animals == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "monkeypox_virus_occurs_in_humans",
+          "z3_formula": "monkeypox_virus_occurs_in_humans == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "human_is_mammal",
+          "z3_formula": "human_is_mammal == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mammal_is_animal",
+          "z3_formula": "mammal_is_animal == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "there_is_an_animal",
+          "z3_formula": "there_is_an_animal == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "monkeypox_virus_occurs_in_humans",
+          "z3_formula": "monkeypox_virus_occurs_in_humans == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "human_is_mammal",
+          "z3_formula": "human_is_mammal == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mammal_is_animal",
+          "z3_formula": "mammal_is_animal == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "monkeypox_has_symptoms",
+          "z3_formula": "monkeypox_has_symptoms == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "flu_causes_tiredness",
+          "z3_formula": "flu_causes_tiredness == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_is_animal, animal_is_animal)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "human(X) -> mammal(X)",
+          "z3_formula": "Implies(human_is_mammal, mammal_is_animal)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "human_is_animal",
+          "z3_formula": "animal_is_animal == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "monkeypox_virus_occurs_in_animal -> animal_exists",
+          "z3_formula": "Implies(monkeypox_virus_occurs_in_animal, animal_exists)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "animal_exists",
+          "z3_formula": "animal_exists == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "caused_by(monkeypox, monkeypox_virus)",
+          "z3_formula": "caused_by_monkeypox_monkeypox_virus == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "occurs_in(monkeypox_virus, animals)",
+          "z3_formula": "occurs_in_monkeypox_virus_animals == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "occurs_in(monkeypox_virus, humans)",
+          "z3_formula": "occurs_in_monkeypox_virus_humans == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(humans)",
+          "z3_formula": "mammal_humans == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "animal(mammals)",
+          "z3_formula": "animal_mammals == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_humans, animal_humans)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "animal(humans)",
+          "z3_formula": "animal_humans == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "animal",
+          "z3_formula": "animal == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "caused_by(monkeypox, monkeypox_virus)",
+          "z3_formula": "caused_by_monkeypox_monkeypox_virus == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "can_occur_in(monkeypox_virus, humans)",
+          "z3_formula": "can_occur_in_monkeypox_virus_humans == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(humans)",
+          "z3_formula": "mammal_humans == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_humans, animal_humans)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "animal(humans)",
+          "z3_formula": "animal_humans == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "monkeypox_virus_in_animals",
+          "z3_formula": "monkeypox_virus_in_animals == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammals_are_animals",
+          "z3_formula": "mammals_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "monkeypox_virus_in_animals -> animals_exist",
+          "z3_formula": "Implies(monkeypox_virus_in_animals, animals_exist)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "humans_are_mammals",
+          "z3_formula": "Implies(humans_are_mammals, mammals_are_animals)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "humans_are_mammals",
+          "z3_formula": "humans_are_mammals == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "symptoms_of_monkeypox",
+          "z3_formula": "symptoms_of_monkeypox == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "people_feel_tired",
+          "z3_formula": "people_feel_tired == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "animals_exist",
+          "z3_formula": "animals_exist == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "humans_are_animals",
+          "z3_formula": "humans_are_animals == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "there_is_an_animal",
+          "z3_formula": "there_is_an_animal == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "monkeypox_virus_in_animals",
+          "z3_formula": "monkeypox_virus_in_animals == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "human_mammal",
+          "z3_formula": "human_mammal == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mammal_animal",
+          "z3_formula": "mammal_animal == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "there_is_an_animal",
+          "z3_formula": "there_is_an_animal == True",
+          "source_step": 5
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,996 @@
+{
+  "pid": "ProofWriter_RelNeg-OWA-D5-442_Q9",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> round(X)",
+          "z3_formula": "Implies(eats_mouse_mouse, round_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "mouse == red -> sees(mouse, cow)",
+          "z3_formula": "Implies(red_mouse, sees_mouse_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(mouse, cow))",
+          "z3_formula": "Not(chases_mouse_cow) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, eagle)",
+          "z3_formula": "eats_mouse_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> not(chases(X, mouse))",
+          "z3_formula": "Implies(chases_X_cat, Not(chases_X_mouse))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(mouse, cat) -> eats(cat, mouse)",
+          "z3_formula": "Implies(chases_mouse_cat, eats_cat_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> chases(X, cat)",
+          "z3_formula": "Implies(round_X, chases_X_cat)",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(mouse, cow)",
+          "z3_formula": "Not(sees_mouse_cow) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, bald_eagle)",
+          "z3_formula": "eats_mouse_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> round(X)",
+          "z3_formula": "Implies(eats_mouse_bald_eagle, round_bald_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> sees(X, cow)",
+          "z3_formula": "Implies(red_mouse, sees_mouse_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> not chases(X, mouse)",
+          "z3_formula": "Implies(chases_cat_cat, Not(chases_cat_mouse))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(mouse, cat) -> eats(cat, mouse)",
+          "z3_formula": "Implies(chases_mouse_cat, eats_cat_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> chases(X, cat)",
+          "z3_formula": "Implies(round_mouse, chases_mouse_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(cat, cat)",
+          "z3_formula": "Not(chases_cat_cat) == True",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(cow, mouse)",
+          "z3_formula": "Not(sees_cow_mouse) == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> not chases(X, mouse)",
+          "z3_formula": "Implies(chases_cat, Not(chases_mouse))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> not chases(mouse, X)",
+          "z3_formula": "Implies(chases_cat, Not(chases_mouse_cat))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not chases(mouse, cow)",
+          "z3_formula": "Not(chases_mouse_cow) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, eagle)",
+          "z3_formula": "eats_mouse_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> sees(X, cow)",
+          "z3_formula": "Implies(red_mouse, sees_mouse_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> round(X)",
+          "z3_formula": "Implies(eats_mouse, round_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> chases(X, cat)",
+          "z3_formula": "Implies(round_mouse, chases_mouse_cat)",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(mouse, cow)",
+          "z3_formula": "Not(sees_mouse_cow) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not chases(mouse, cow)",
+          "z3_formula": "Not(chases_mouse_cow) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, eagle)",
+          "z3_formula": "eats_mouse_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> round(X)",
+          "z3_formula": "Implies(eats_mouse_eagle, round_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> sees(X, cow)",
+          "z3_formula": "Implies(red_mouse, sees_mouse_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> not chases(X, mouse)",
+          "z3_formula": "Implies(chases_cat_cat, Not(chases_cat_mouse))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(mouse, cat) -> eats(cat, mouse)",
+          "z3_formula": "Implies(chases_mouse_cat, eats_cat_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> chases(X, cat)",
+          "z3_formula": "Implies(round_mouse, chases_mouse_cat)",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "predator_prey(cat, cow)",
+          "z3_formula": "predator_prey_cat_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & chases(X, Y) -> chases(X, Y)",
+          "z3_formula": "Implies(And(sees_cow_cat, chases_cow_cat), chases_cow_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, cow)",
+          "z3_formula": "chases_cat_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> chases(Y, Y)",
+          "z3_formula": "Implies(chases_cat_cow, chases_cat_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, cat)",
+          "z3_formula": "chases_cat_cat == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) & eats(Y, X) -> Not(eats(X, Y))",
+          "z3_formula": "Implies(And(eats_cow_cat, eats_cat_cow), Not(eats_cat_cow))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "Not(sees(mouse, cow))",
+          "z3_formula": "Not(sees_mouse_cow) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "Not(chases(mouse, cow))",
+          "z3_formula": "Not(chases_mouse_cow) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, eagle)",
+          "z3_formula": "eats_mouse_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> round(X)",
+          "z3_formula": "Implies(eats_mouse_eagle, round_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> chases(X, cat)",
+          "z3_formula": "Implies(round_mouse, chases_mouse_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> chases(cat, X)",
+          "z3_formula": "Implies(chases_mouse_cat, chases_cat_mouse)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "chases(mouse, cat)",
+          "z3_formula": "chases_mouse_cat == Unknown",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> Not(chases(cat, X))",
+          "z3_formula": "Implies(chases_cat_mouse, Not(chases_cat_mouse))",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, cat)",
+          "z3_formula": "chases_cat_cat == Unknown",
+          "source_step": 20
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(mouse, cow)",
+          "z3_formula": "Not(sees_mouse_cow) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not chases(mouse, cow)",
+          "z3_formula": "Not(chases_mouse_cow) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, eagle)",
+          "z3_formula": "eats_mouse_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> round(X)",
+          "z3_formula": "Implies(eats_mouse_eagle, round_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> sees(X, cow)",
+          "z3_formula": "Implies(red_mouse, sees_mouse_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> not chases(X, mouse)",
+          "z3_formula": "Implies(chases_cat_cat, Not(chases_X_mouse))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(mouse, cat) -> eats(cat, mouse)",
+          "z3_formula": "Implies(chases_mouse_cat, eats_cat_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> chases(X, cat)",
+          "z3_formula": "Implies(round_mouse, chases_mouse_cat)",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> Not(chases(X, Y))",
+          "z3_formula": "Implies(eats_cow_cat, Not(chases_cat_cat))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "Not(chases(cat, mouse))",
+          "z3_formula": "Not(chases_cat_mouse) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, eagle)",
+          "z3_formula": "eats_mouse_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> round(X)",
+          "z3_formula": "Implies(eats_mouse_eagle, round_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "Not(chases(mouse, cow))",
+          "z3_formula": "Not(chases_mouse_cow) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "Not(sees(cow, mouse))",
+          "z3_formula": "Not(sees_cow_mouse) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(mouse) -> sees(mouse, cow)",
+          "z3_formula": "Implies(red_mouse, sees_mouse_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "Not(red(mouse))",
+          "z3_formula": "Not(red_mouse) == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> Not(chases(X, mouse))",
+          "z3_formula": "Implies(chases_X_cat, Not(chases_X_mouse))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(mouse, cat) -> eats(cat, mouse)",
+          "z3_formula": "Implies(chases_mouse_cat, eats_cat_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> chases(X, cat)",
+          "z3_formula": "Implies(round_mouse, chases_mouse_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "chases(mouse, cat)",
+          "z3_formula": "chases_mouse_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, cat)",
+          "z3_formula": "chases_cat_cat == Unknown",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> sees(X, Y)",
+          "z3_formula": "Implies(eats_cat_cow, sees_cat_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, cow)",
+          "z3_formula": "sees_cat_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "If sees(X, Y) then sees(Y, X)",
+          "z3_formula": "Implies(sees_cat_cow, sees_cow_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(cat, cow) -> chases(cat, cow)",
+          "z3_formula": "Implies(eats_cat_cow, chases_cat_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, cow)",
+          "z3_formula": "chases_cat_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(cat, cow) -> Not(chases(cat, mouse))",
+          "z3_formula": "Implies(chases_cat_cow, Not(chases_cat_mouse))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "Not(chases(cat, mouse))",
+          "z3_formula": "Not(chases_cat_mouse) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "Not(chases(cat, mouse)) -> chases(cat, cat)",
+          "z3_formula": "Implies(Not(chases_cat_mouse), chases_cat_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, cat)",
+          "z3_formula": "chases_cat_cat == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> not(chases(X, mouse))",
+          "z3_formula": "Implies(chases_X_cat, Not(chases_X_mouse))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(mouse, cat) -> eats(cat, mouse)",
+          "z3_formula": "Implies(chases_mouse_cat, eats_cat_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> chases(X, cat)",
+          "z3_formula": "Implies(round_X, chases_X_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(cow, mouse)",
+          "z3_formula": "Not(sees_cow_mouse) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not chases(mouse, cow)",
+          "z3_formula": "Not(chases_mouse_cow) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, bald_eagle)",
+          "z3_formula": "eats_mouse_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> round(X)",
+          "z3_formula": "Implies(eats_X_mouse, round_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(mouse) -> sees(mouse, cow)",
+          "z3_formula": "Implies(red_mouse, sees_mouse_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> not chases(X, mouse)",
+          "z3_formula": "Implies(chases_X_cat, Not(chases_X_mouse))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(mouse, cat) -> eats(cat, mouse)",
+          "z3_formula": "Implies(chases_mouse_cat, eats_cat_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> chases(X, cat)",
+          "z3_formula": "Implies(round_X, chases_X_cat)",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> eats(X, Y)",
+          "z3_formula": "Implies(chases_cat_cat, eats_cat_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> not(chases(X, mouse))",
+          "z3_formula": "Implies(chases_X_cat, Not(chases_X_mouse))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(cat, mouse))",
+          "z3_formula": "Not(eats_cat_mouse) == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> chases(X, cat)",
+          "z3_formula": "Implies(round_mouse, chases_mouse_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "chases(mouse, cat)",
+          "z3_formula": "chases_mouse_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> eats(X, Y)",
+          "z3_formula": "Implies(chases_mouse_cat, eats_mouse_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, bald_eagle)",
+          "z3_formula": "eats_mouse_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(bald_eagle, mouse))",
+          "z3_formula": "Not(eats_bald_eagle_mouse) == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> round(X)",
+          "z3_formula": "Implies(eats_mouse_bald_eagle, round_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> chases(X, cat)",
+          "z3_formula": "Implies(round_mouse, chases_mouse_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, cat)",
+          "z3_formula": "chases_cat_cat == True",
+          "source_step": 14
+        }
+      ]
+    }
+  ]
+}

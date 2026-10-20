@@ -1,0 +1,27 @@
+{
+  "icg": {
+    "kappa": 0.7188,
+    "eff_k": 1.35,
+    "accuracy_pct": 51.96,
+    "n": 204,
+    "method": "bootstrap_constraint_subsets",
+    "B": 12,
+    "m": 5,
+    "K_icg": 10
+  },
+  "contrastive": {
+    "kappa": 0.9643,
+    "eff_k": 1.03,
+    "accuracy_pct": 47.55,
+    "n": 163,
+    "method": "bootstrap_constraint_subsampling",
+    "B": 12,
+    "frac": 0.5
+  },
+  "reference": {
+    "sc": {"kappa": 0.4384, "eff_k": 2.02, "accuracy_pct": 56.86},
+    "diverse_prompt": {"kappa": 0.403, "eff_k": 2.21},
+    "debate": {"kappa": 0.1549, "eff_k": 4.44, "accuracy_pct": 38.24}
+  },
+  "wall_time_s": 11.7
+}

@@ -1,0 +1,832 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-111_Q2",
+    "problem": "Bob is big. Bob is blue. Bob is cold. Bob is white. Dave is cold. Dave is kind. Dave is nice. Gary is cold. Gary is kind. Harry is white. All white things are blue. All big, kind things are nice. If something is nice then it is big. If something is kind then it is nice. If something is rough then it is white. If something is big and nice then it is rough. All white, blue things are cold.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is not blue.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nWhite($x, bool) ::: Is x white?\nKind($x, bool) ::: Is x kind?\nNice($x, bool) ::: Is x nice?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nBig(Bob, True) ::: Bob is big.\nBlue(Bob, True) ::: Bob is blue.\nCold(Bob, True) ::: Bob is cold.\nWhite(Bob, True) ::: Bob is white.\nCold(Dave, True) ::: Dave is cold.\nKind(Dave, True) ::: Dave is kind.\nNice(Dave, True) ::: Dave is nice.\nCold(Gary, True) ::: Gary is cold.\nKind(Gary, True) ::: Gary is kind.\nWhite(Harry, True) ::: Harry is white.\n\nRules:\nWhite($x, True) >>> Blue($x, True) ::: All white things are blue.\nBig($x, True) && Kind($x, True) >>> Nice($x, True) ::: All big, kind things are nice.\nNice($x, True) >>> Big($x, True) ::: If something is nice then it is big.\nKind($x, True) >>> Nice($x, True) ::: If something is kind then it is nice.\nRough($x, True) >>> White($x, True) ::: If something is rough then it is white.\nBig($x, True) && Nice($x, True) >>> Rough($x, True) ::: If something is big and nice then it is rough.\nWhite($x, True) && Blue($x, True) >>> Cold($x, True) ::: All white, blue things are cold.\n\nQuery:\nBlue(Bob, False) ::: Bob is not blue."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 115.0,
+      "Unknown": 98.0
+    },
+    "answer_counts": {
+      "False": 10,
+      "Unknown": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Bob is not blue\" is true, false, or unknown, we need to use the given information and apply logical deductions.\n\nStep 1: Identify the given statements about Bob.\n- Bob is big.\n- Bob is blue.\n- Bob is cold.\n- Bob is white.\n\nFrom these statements, we know that Bob is both blue and white.\n\nStep 2: Use the given information to make deductions about Bob.\n- All white things are blue. (This statement is true, but it's also given that Bob is white. So, this means Bob is indeed blue, which we already knew.)\n- All white, blue things are cold. (Since Bob is white and blue, this statement applies to Bob. Therefore, Bob is indeed cold, which we already knew.)\n\nHowever, the given information states that \"All white things are blue.\" This implies that anything that is white is also blue. Since Bob is white, we can deduce that Bob is blue.\n\nStep 3: Use the given information to make deductions about the relationship between white and blue.\n- All white, blue things are cold. (We've already determined that Bob is white and blue. This means Bob is indeed cold, which we already knew.)\n\nHowever, this statement also implies that the only things that can be white and blue are cold. Since Bob is white, blue, and cold, this fits the criteria.\n\nStep 4: Evaluate the given statement \"Bob is not blue.\"\n- Based on the given information, we know that Bob is both blue and white.\n- The statement \"All white things are blue\" implies that anything that is white is also blue.\n- Since Bob is white, we can deduce that Bob is indeed blue.\n\nGiven the information, we can conclude that the statement \"Bob is not blue\" is false.\n\nThe final answer is \\boxed{False}.",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given statements:\n   - Bob is big.\n   - Bob is blue.\n   - Bob is cold.\n   - Bob is white.\n\n2. Rules:\n   - All white things are blue. (Rule 1)\n   - If something is nice then it is big. (Rule 2)\n   - If something is kind then it is nice. (Rule 3)\n   - If something is rough then it is white. (Rule 4)\n   - If something is big and nice then it is rough. (Rule 5)\n   - All white, blue things are cold. (Rule 6)\n\n3. Analyze \"Bob is blue\" and \"Bob is white\":\n   Since Bob is both blue and white, we can apply Rule 1: \"All white things are blue.\" This doesn't give us any new information, but we also have another statement, \"All white, blue things are cold\" (Rule 6). This means that since Bob is both white and blue, he must be cold, which is consistent with the information given.\n\n4. Analyze the statement \"Bob is not blue\":\n   Since we have the given statement \"Bob is blue,\" and we've already concluded that Bob is indeed cold, blue, and white, we can now apply the rule that if something is big, then it is kind (not explicitly mentioned in the rules but we can deduce this from rule 3 and rule 5). Since Bob is big, it can be concluded that Bob is kind (rule 5 is not applicable here but we can deduce from rule 3).\n\nNow, from the given rules, we can deduce that if something is kind, then it is nice (Rule 3). Since Bob is kind, he must be nice. \n\nFrom Rule 5: \"If something is big and nice then it is rough.\" Since Bob is big and nice, he must be rough. \n\nNow we can conclude from rule 4: \"If something is rough then it is white.\" Since Bob is rough, he must be white.\n\nHowever, we have two conclusions here:\n- Bob is white.\n- Bob is blue.\n\nWe already know that Bob is blue from the given statements, but the statement \"Bob is not blue\" is being evaluated. Since we have a contradiction between the given statement \"Bob is blue\" and the conclusion \"Bob is white,\" we need to analyze further.\n\nGiven that all white things are blue (Rule 1), we can see that if Bob is white, then he must be blue. However, this rule is not applicable here because we already know Bob is blue, and we are trying to prove if he is not blue.\n\nHowever, we have another statement, \"Bob is white.\" Given that all white, blue things are cold (Rule 6), we can see that Bob is indeed cold, blue, and white, which is consistent with the information given.\n\nThe final conclusion here is that there is a conflict between the rules and the given information. Since we can't have two conclusions at the same time, we will analyze the given statements and the rules again.\n\nGiven the information \"Bob is white\" and \"Bob is blue,\" we can see that all white things are blue (Rule 1). This doesn't give us any new information, but we also have another statement, \"All white, blue things are cold\" (Rule 6). This means that since Bob is both white and blue, he must be cold, which is consistent with the information given.\n\nNow, the statement \"Bob is not blue\" is being evaluated. Since we have the given statement \"Bob is blue,\" and we've already concluded that Bob is indeed cold, blue, and white, we can't conclude if Bob is not blue or not. The final answer is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not blue\" is true, false, or unknown, we need to analyze the given information.\n\n1. Bob is big. \n2. Bob is blue. \n3. Bob is cold. \n4. Bob is white.\n\nFrom the information provided, we can conclude that Bob is blue. However, this conclusion is based on statement 2. To verify whether statement 2 is true or not, let's analyze the given rules:\n\n1. All white things are blue. \n   Since Bob is white (statement 4), according to this rule, Bob must be blue.\n\n2. All big, kind things are nice. \n   We don't have enough information to determine whether Bob is kind or not.\n\n3. If something is nice then it is big. \n   This rule is not relevant to determining whether Bob is blue or not.\n\n4. If something is kind then it is nice. \n   Again, this rule is not relevant to determining whether Bob is blue or not.\n\n5. If something is big and nice then it is rough. \n   This rule is not relevant to determining whether Bob is blue or not.\n\n6. All white, blue things are cold. \n   Since Bob is white and blue (from rule 1 and statement 4), according to this rule, Bob must be cold.\n\nHowever, we were asked to determine whether the statement \"Bob is not blue\" is true, false, or unknown. Based on the given information, Bob is blue (statement 2 and rule 1), so the statement \"Bob is not blue\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not blue\" is true, false, or unknown, we need to analyze the given statements and the properties of Bob.\n\n1. Bob is big.\n2. Bob is blue.\n3. Bob is cold.\n4. Bob is white.\n\nFrom the given statements, we can directly conclude that Bob is blue. This contradicts the statement \"Bob is not blue.\" However, we need to verify if any other statements could affect the conclusion.\n\nFrom the additional statements:\n\n1. All white things are blue.\n2. All big, kind things are nice.\n3. If something is nice then it is big.\n4. If something is kind then it is nice.\n5. If something is big and nice then it is rough.\n6. All white, blue things are cold.\n\nSince Bob is blue, we can use the statement \"All white things are blue\" to conclude that Bob is white.\n\nNow, we have the following properties for Bob:\n- Bob is big.\n- Bob is blue.\n- Bob is white.\n\nFrom the statement \"All white things are blue,\" we know that Bob is blue. However, from the statement \"Bob is white,\" we cannot directly conclude that Bob is not blue. But since \"All white, blue things are cold\" and we already know that Bob is blue, we can say that Bob is cold.\n\nHowever, we still need to determine if Bob being white affects the statement \"Bob is not blue.\" \n\nFrom the statement \"All white things are blue,\" we can conclude that white things are indeed blue, but that does not necessarily mean that Bob cannot be white and blue. In fact, this statement only confirms that all white things are blue, which we already know Bob is.\n\nThe statement \"Bob is white\" and \"Bob is blue\" both being true does not affect the truth value of \"Bob is not blue.\" However, since \"All white things are blue\" is true, we can say that Bob being white means that Bob is indeed blue.\n\nTherefore, the statement \"Bob is not blue\" is false. \n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine the properties of Bob, Dave, Gary, and Harry. We will then use this information to determine whether the statement \"Bob is not blue\" is true, false, or unknown.\n\nGiven statements:\n1. Bob is big.\n2. Bob is blue.\n3. Bob is cold.\n4. Bob is white.\n5. Dave is cold.\n6. Dave is kind.\n7. Dave is nice.\n8. Gary is cold.\n9. Gary is kind.\n10. Harry is white.\n11. All white things are blue.\n12. All big, kind things are nice.\n13. If something is nice then it is big.\n14. If something is kind then it is nice.\n15. If something is rough then it is white.\n16. If something is big and nice then it is rough.\n17. All white, blue things are cold.\n\nWe need to determine the truth value of statement 2: \"Bob is blue\".\n\nUsing statement 11, we know that all white things are blue. And from statement 4, we know that Bob is white. Therefore, we can conclude that Bob is blue.\n\nSince statement 2 is true, the statement \"Bob is not blue\" must be false.\n\nTherefore, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not blue\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nGiven information:\n1. Bob is big.\n2. Bob is blue.\n3. Bob is cold.\n4. Bob is white.\n5. Dave is cold.\n6. Dave is kind.\n7. Dave is nice.\n8. Gary is cold.\n9. Gary is kind.\n10. Harry is white.\n11. All white things are blue.\n12. All big, kind things are nice.\n13. If something is nice then it is big.\n14. If something is kind then it is nice.\n15. If something is big and nice then it is rough.\n16. All white, blue things are cold.\n\nStatement to be evaluated: Bob is not blue.\n\nAnalysis:\n\nFrom the given information, we know that Bob is blue (statement 2). However, we also know that Bob is white (statement 4) and all white things are blue (statement 11). This creates a seeming paradox because if Bob is white and all white things are blue, it would imply that Bob is blue, which contradicts our initial assumption that the statement \"Bob is not blue\" is true.\n\nHowever, we also know that all white, blue things are cold (statement 16). Since Bob is both white and blue, this would imply that Bob is cold (which is consistent with statement 3).\n\nNow, let's examine the possible relationships between the attributes of Bob.\n\n- Bob is blue, which means Bob is also white (since all white things are blue).\n- Since Bob is white, and all white things are blue, it is true that Bob is blue.\n- We know that Bob is white and blue, and all white, blue things are cold, which implies that Bob is cold.\n- We also know that Bob is big, and since all big, kind things are nice, and all nice things are big, it is possible that Bob is kind. However, we do not have enough information to conclude whether Bob is kind.\n\nHowever, we can conclude that Bob is blue.\n\nTherefore, the statement \"Bob is not blue\" is false. \n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not blue\" is true, false, or unknown, we need to analyze the given statements and rules.\n\n1. Bob is blue. (This directly contradicts the statement we are trying to evaluate.)\n\nHowever, there is no information that directly says \"Bob is not blue\" or \"Bob is blue\" with a specific condition. \n\nBut, we have the following rule: All white things are blue. We can also determine that Bob is white because we know Bob is cold and all white, blue things are cold.\n\nFrom this, we can deduce that Bob is indeed blue.\n\nTherefore, the statement \"Bob is not blue\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not blue\" is true, false, or unknown, we need to analyze the given information and the properties of Bob.\n\n1. Bob is big.\n2. Bob is blue.\n3. Bob is cold.\n4. Bob is white.\n\nFrom statement 2, we know that Bob is blue. \n\nNow, we need to find a relationship between blue and white. We are given the following information:\n- All white things are blue.\n\nSince Bob is white (statement 4), this means he is also blue (from the above rule). This does not contradict the fact that Bob is blue (statement 2). \n\nSo, based on the given information, we cannot conclude that the statement \"Bob is not blue\" is true. It's unknown because we know Bob is blue, but we also know he is white and all white things are blue.\n\nTherefore, the final answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not blue\" is true, false, or unknown, we need to analyze the given information.\n\n1. \"All white, blue things are cold.\" - This means that if something is both white and blue, it is cold.\n\n2. \"Bob is white.\" - We don't know if Bob is blue yet, but we know he is white.\n\n3. \"All white things are blue.\" - This is a contradictory statement because it implies that everything that is white is also blue, which is not possible since white and blue are different colors.\n\nHowever, considering this statement as it is, if we assume that all white things are indeed blue, then we can proceed with the analysis.\n\n4. \"Bob is white. All white things are blue. Therefore, Bob is blue.\" - This is our conclusion based on the given information.\n\nNow, let's consider the other statements about Bob.\n\n5. \"Bob is big. Bob is blue.\" - We have already established that Bob is blue, and now we know he is big.\n\n6. \"Bob is cold.\" - We don't have enough information to determine if Bob is cold or not.\n\nConsidering the relationship between \"cold\", \"blue\", and \"white\" from the given statements, we know that all white, blue things are cold. Since Bob is both white and blue, it's possible that he is cold.\n\nHowever, the statement \"Bob is not blue\" is being analyzed. We have already concluded that Bob is blue based on the given information.\n\nTherefore, the statement \"Bob is not blue\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that \"Bob is blue.\"\n   This statement directly contradicts the statement we are trying to evaluate (\"Bob is not blue\"). However, we need to consider the other given information to see if it affects this conclusion.\n\n2. We are given that \"All white things are blue.\"\n   This statement implies that if something is white, then it is blue. However, we don't know if Bob is white or not.\n\n3. We are given that \"Bob is white.\"\n   This statement directly contradicts the information we have from the previous step. However, we need to consider the other given information to see if it affects this conclusion.\n\n4. We are given that \"All white, blue things are cold.\"\n   This statement doesn't directly help us determine if Bob is not blue, but we can use it to analyze the characteristics of Bob later.\n\n5. We are given that \"Bob is cold.\"\n   This statement tells us that Bob has one characteristic, but it doesn't help us determine if Bob is not blue.\n\n6. We are given that \"Bob is big.\"\n   This statement tells us that Bob has another characteristic, but it doesn't help us determine if Bob is not blue.\n\n7. We are given that \"All big, kind things are nice.\"\n   This statement doesn't directly help us determine if Bob is not blue.\n\n8. We are given that \"Dave is cold.\"\n   This statement tells us that Dave has one characteristic, but it doesn't help us determine if Bob is not blue.\n\n9. We are given that \"Dave is kind.\"\n   This statement tells us that Dave has another characteristic, but it doesn't help us determine if Bob is not blue.\n\n10. We are given that \"Gary is cold.\"\n    This statement tells us that Gary has one characteristic, but it doesn't help us determine if Bob is not blue.\n\n11. We are given that \"Gary is kind.\"\n    This statement tells us that Gary has another characteristic, but it doesn't help us determine if Bob is not blue.\n\n12. We are given that \"Harry is white.\"\n    This statement tells us that Harry has one characteristic, but it doesn't help us determine if Bob is not blue.\n\n13. We are given that \"Harry is white.\"\n    We already know that \"All white things are blue.\" However, we don't know if Harry is big or not.\n\n14. We are given that \"All big, kind things are nice.\"\n    This statement tells us that if something is big and kind, then it is nice. However, we don't know if Harry is kind or not.\n\n15. We are given that \"Bob is big.\"\n    This statement tells us that Bob has one characteristic, but it doesn't help us determine if Bob is not blue.\n\n16. We are given that \"Bob is big.\"\n    We are also given that \"If something is big and nice, then it is rough.\" Since \"Bob is big,\" and we don't know if Bob is nice or not, we can't determine if Bob is rough or not.\n\n17. We are given that \"All big, kind things are nice.\"\n    This statement tells us that if something is big and kind, then it is nice. We know that \"Bob is big\" and \"Bob is kind\" because we are given that \"Gary is kind\" and \"Dave is kind.\" We can conclude that Bob is nice because he is big and kind.\n\n18. We are given that \"If something is nice then it is big.\"\n    This statement tells us that if something is nice, then it is big. We already know that Bob is nice, so we can conclude that Bob is big.\n\n19. We are given that \"If something is big and nice then it is rough.\"\n    This statement tells us that if something is big and nice, then it is rough. We know that Bob is big and nice, so we can conclude that Bob is rough.\n\n20. We are given that \"All rough things are white.\"\n    This statement tells us that if something is rough, then it is white. We already know that Bob is rough, so we can conclude that Bob is white.\n\n21. We are given that \"All white things are blue.\"\n    This statement tells us that if something is white, then it is blue. We already know that Bob is white, so we can conclude that Bob is blue.\n\nNow we have enough information to determine whether the statement \"Bob is not blue\" is true, false, or unknown. We have found that Bob is blue, so the statement \"Bob is not blue\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given conditions to determine the properties of Bob and then check if the statement \"Bob is not blue\" is true or false.\n\n1. Given conditions:\n   - All white things are blue.\n   - Bob is white.\n   - Therefore, Bob is blue.\n\n2. Statement to evaluate: Bob is not blue.\n\nBased on the above step, we know that Bob is blue. This directly contradicts the statement \"Bob is not blue.\" Therefore, we can conclude that the statement \"Bob is not blue\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Bob is big.\n   - Bob is blue.\n   - Bob is cold.\n   - Bob is white.\n\n2. Analyzing the relationships:\n   - All white things are blue. (This means if something is white, it is also blue.)\n   - Since Bob is white, it also means Bob is blue. This contradicts the statement \"Bob is not blue.\"\n\n3. Conclusion:\n   Based on the analysis, we have found a direct contradiction to the statement \"Bob is not blue.\" Therefore, we can conclude that the statement \"Bob is not blue\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_bob, blue_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & blue(X) -> cold(X)",
+          "z3_formula": "Implies(And(white_bob, blue_bob), cold_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(bob)",
+          "z3_formula": "Not(blue_bob) == False",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_bob, blue_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_bob, big_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_bob, nice_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> white(X)",
+          "z3_formula": "Implies(rough_bob, white_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(big_bob, nice_bob), rough_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & blue(X) -> cold(X)",
+          "z3_formula": "Implies(And(white_bob, blue_bob), cold_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_bob, blue_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & kind(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_bob, kind_bob), nice_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_bob, big_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_bob, kind_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(big_bob, nice_bob), rough_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & blue(X) -> cold(X)",
+          "z3_formula": "Implies(And(white_bob, blue_bob), cold_bob)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_bob, blue_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & kind(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_bob, kind_bob), nice_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_bob, big_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_bob, nice_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(big_bob, nice_bob), rough_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & blue(X) -> cold(X)",
+          "z3_formula": "Implies(And(white_bob, blue_bob), cold_bob)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_bob, blue_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & kind(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_bob, kind_bob), nice_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_bob, big_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_bob, nice_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> white(X)",
+          "z3_formula": "Implies(rough_bob, white_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(big_bob, nice_bob), rough_bob)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & blue(X) -> cold(X)",
+          "z3_formula": "Implies(And(white_bob, blue_bob), cold_bob)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_bob, blue_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & kind(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_bob, kind_bob), nice_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_bob, big_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_bob, nice_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(big_bob, nice_bob), rough_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & blue(X) -> cold(X)",
+          "z3_formula": "Implies(And(white_bob, blue_bob), cold_bob)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_bob, blue_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & blue(X) -> cold(X)",
+          "z3_formula": "Implies(And(white_bob, blue_bob), cold_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_bob, blue_bob)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all_white_blue(X) -> cold(X)",
+          "z3_formula": "Implies(And(white_X, blue_X), cold_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_bob, blue_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == Or(Not(Not(And(white_bob, blue_bob))), Not(Not(Implies(And(white_bob, blue_bob), cold_bob))))",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(bob)",
+          "z3_formula": "Not(blue_bob) == False",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_bob, blue_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & kind(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_bob, kind_bob), nice_bob)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_bob, big_bob)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(big_bob, nice_bob), rough_bob)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> white(X)",
+          "z3_formula": "Implies(rough_bob, white_bob)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_bob, blue_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_bob, blue_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 3
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 117,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 22
+    },
+    "maxsat_stats": {
+      "satisfied": 22,
+      "excluded": 0,
+      "total_weight": 117,
+      "solve_time_ms": 0.8147098124027252
+    },
+    "timing": {
+      "trace_gen_s": 11.641,
+      "extraction_s": 16.838,
+      "dedup_s": 0.459,
+      "maxsat_s": 0.002,
+      "total_s": 28.941
+    }
+  }
+}

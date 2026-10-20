@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66fc4d7cf461668dd3ee",
+  "project": "cross_representation_disagreement_diagno",
+  "kind": "result",
+  "title": "analysis c4 decline root cause",
+  "task_key": "worker_analysis_c4_decline_root_cause_20260514T180046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_c4_decline_root_cause_20260514T180046_result.json",
+    "occurrence": 1,
+    "bytes": 1040,
+    "sha256": "8db5719778397101b275e41e3349b012b394f34fedac71ff2450a843b5adedae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。报告已写入 artifacts 并注册到 registry。核心发现：\n\n**C4 下滑的 3 个驱动因素:**\n\n1. **Code-side targeted 优势蒸发** (最主要) — 从 0-79 的 +40pp 崩塌到 109-125 的 0pp。后期 blind repair 大幅进步 (50%→71-88%)，而 targeted 下降 (90%→71%)。推测后期 code bug 更复杂，targeted 诊断反而锚定错误修复路径。\n\n2. **FOL-side targeted 全线负向** (结构性) — 在所有区间都是 -33 到 -50pp。关键发现: FOL **逻辑错误**时 targeted 成功率仅 17% (1/6)，而 FOL **语法错误**时 75% (3/4)。逻辑错误太难修，blind 从头重写反而更有效。\n\n3. **后期样本更难** (放大效应) — 109-125 的 disagree rate 53% (vs 0-79 的 30%)，FOL acc 从 81%降到 71%，Code acc 从 62%降到 53%。更多 disagree 放大了前两个问题。\n\n**204 全量预测**: 边际趋势延续 → +5.6pp (勉强 PASS)，有 ~40% 概率跌破 5pp threshold。建议对 FOL 逻辑错误 fallback 到 blind strategy。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-c4-decline-root-cause.md"
+}

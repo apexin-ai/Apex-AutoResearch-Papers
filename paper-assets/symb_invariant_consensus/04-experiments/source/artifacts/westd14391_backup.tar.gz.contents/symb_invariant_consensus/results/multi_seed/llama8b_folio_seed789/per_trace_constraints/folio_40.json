@@ -1,0 +1,564 @@
+{
+  "pid": "folio_40",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "timeless(max)",
+          "z3_formula": "timeless_max == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not timeless(mass_product)",
+          "z3_formula": "Not(timeless_mass_product)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "or timeless(zaha_hadid) & timeless(kelly_wearstler)",
+          "z3_formula": "Or(And(timeless_zaha_hadid, timeless_kelly_wearstler), timeless_max)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "evocative(kelly_wearstler)",
+          "z3_formula": "evocative_kelly_wearstler == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "dreamy(kelly_wearstler)",
+          "z3_formula": "dreamy_kelly_wearstler == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "timeless(max) -> (mass_product & evocative)(max)",
+          "z3_formula": "Implies(timeless_max, And(mass_product_max, evocative_max))",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "timeless(zaha_hadid)",
+          "z3_formula": "timeless_zaha_hadid == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not timeless(mass_product)",
+          "z3_formula": "not timeless_mass_product == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "or timeless(zaha_hadid), timeless(kelly_wearstler)",
+          "z3_formula": "Or(timeless_zaha_hadid, timeless_kelly_wearstler) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "evocative(kelly_wearstler)",
+          "z3_formula": "evocative_kelly_wearstler == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "dreamy(kelly_wearstler)",
+          "z3_formula": "dreamy_kelly_wearstler == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "timeless(max) -> (mass_product(max) & evocative(max))",
+          "z3_formula": "Implies(timeless_max, And(mass_product_max, evocative_max))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not timeless(max)",
+          "z3_formula": "Not(timeless_max) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "or timeless(zaha_hadid), timeless(kelly_wearstler)",
+          "z3_formula": "Or(timeless_zaha_hadid, timeless_kelly_wearstler) == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "or timeless(kelly_wearstler), timeless(max)",
+          "z3_formula": "Or(timeless_kelly_wearstler, timeless_max) == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "evocative(kelly_wearstler) & dreamy(kelly_wearstler)",
+          "z3_formula": "And(evocative_kelly_wearstler, dreamy_kelly_wearstler) == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "or timeless(kelly_wearstler), timeless(max)",
+          "z3_formula": "Or(timeless_kelly_wearstler, timeless_max) == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "evocative(max) & dreamy(max)",
+          "z3_formula": "And(evocative_max, dreamy_max) == True",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "timeless(zaha_hadid)",
+          "z3_formula": "timeless_zaha_hadid == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not timeless(mass_product)",
+          "z3_formula": "Not(timeless_mass_product) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "or timeless(zaha_hadid), timeless(kelly_wearstler)",
+          "z3_formula": "Or(timeless_zaha_hadid, timeless_kelly_wearstler) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "evocative(kelly_wearstler)",
+          "z3_formula": "evocative_kelly_wearstler == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "dreamy(kelly_wearstler)",
+          "z3_formula": "dreamy_kelly_wearstler == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "timeless(max) -> (mass_product(max) & evocative(max))",
+          "z3_formula": "Implies(timeless_max, And(mass_product_max, evocative_max))",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "timeless(zaha_hadid)",
+          "z3_formula": "timeless_zaha_hadid == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not timeless(mass_product)",
+          "z3_formula": "Not(timeless_mass_product) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "or timeless(zaha_hadid), timeless(kelly_wearstler)",
+          "z3_formula": "Or(timeless_zaha_hadid, timeless_kelly_wearstler) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "evocative(kelly_wearstler)",
+          "z3_formula": "evocative_kelly_wearstler == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "dreamy(kelly_wearstler)",
+          "z3_formula": "dreamy_kelly_wearstler == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "timeless(max) -> (mass_product(max) & evocative(max))",
+          "z3_formula": "Implies(timeless_max, And(mass_product_max, evocative_max))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "evocative(kelly_wearstler) -> evocative(max)",
+          "z3_formula": "Implies(evocative_kelly_wearstler, evocative_max)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "timeless(zaha_hadid)",
+          "z3_formula": "timeless_zaha_hadid == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not timeless(mass_product)",
+          "z3_formula": "Not(timeless_mass_product) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "or timeless(zaha_hadid), timeless(kelly_wearstler)",
+          "z3_formula": "Or(timeless_zaha_hadid, timeless_kelly_wearstler) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "evocative(kelly_wearstler)",
+          "z3_formula": "evocative_kelly_wearstler == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "dreamy(kelly_wearstler)",
+          "z3_formula": "dreamy_kelly_wearstler == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "timeless(max) -> (mass_product(max) & evocative(max))",
+          "z3_formula": "Implies(timeless_max, And(mass_product_max, evocative_max))",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "timeless(zaha_hadid)",
+          "z3_formula": "timeless_zaha_hadid == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not timeless(mass_product)",
+          "z3_formula": "Not(timeless_mass_product) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "or timeless(zaha_hadid), timeless(kelly_wearstler)",
+          "z3_formula": "Or(timeless_zaha_hadid, timeless_kelly_wearstler) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "evocative(kelly_wearstler)",
+          "z3_formula": "evocative_kelly_wearstler == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "dreamy(kelly_wearstler)",
+          "z3_formula": "dreamy_kelly_wearstler == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "timeless(max) -> (mass_product & evocative)(max)",
+          "z3_formula": "Implies(timeless_max, And(mass_product_max, evocative_max))",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "timeless(zaha_hadid)",
+          "z3_formula": "timeless_zaha_hadid == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not timeless(mass_product)",
+          "z3_formula": "Not(timeless_mass_product) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "or timeless(zaha_hadid), timeless(kelly_wearstler)",
+          "z3_formula": "Or(timeless_zaha_hadid, timeless_kelly_wearstler) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "evocative(kelly_wearstler)",
+          "z3_formula": "evocative_kelly_wearstler == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "dreamy(kelly_wearstler)",
+          "z3_formula": "dreamy_kelly_wearstler == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "timeless(max) -> (mass_product(max) & evocative(max))",
+          "z3_formula": "Implies(timeless_max, And(mass_product_max, evocative_max))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "evocative(max) & dreamy(max)",
+          "z3_formula": "And(evocative_max, dreamy_max) == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "timeless(zaha_hadid)",
+          "z3_formula": "timeless_zaha_hadid == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not timeless(mass_product)",
+          "z3_formula": "Not(timeless_mass_product) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "or timeless(zaha_hadid), timeless(kelly_wearstler)",
+          "z3_formula": "Or(timeless_zaha_hadid, timeless_kelly_wearstler) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "evocative(kelly_wearstler)",
+          "z3_formula": "evocative_kelly_wearstler == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "dreamy(kelly_wearstler)",
+          "z3_formula": "dreamy_kelly_wearstler == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "timeless(max) -> (mass_product(max) & evocative(max))",
+          "z3_formula": "Implies(timeless_max, And(mass_product_max, evocative_max))",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "timeless(zaha_hadid)",
+          "z3_formula": "timeless_zaha_hadid == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not timeless(mass_product)",
+          "z3_formula": "Not(timeless_mass_product) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "or timeless(zaha_hadid), timeless(kelly_wearstler)",
+          "z3_formula": "Or(timeless_zaha_hadid, timeless_kelly_wearstler) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "evocative(kelly_wearstler)",
+          "z3_formula": "evocative_kelly_wearstler == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "dreamy(kelly_wearstler)",
+          "z3_formula": "dreamy_kelly_wearstler == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "timeless(max) -> (mass_product(max) & evocative(max))",
+          "z3_formula": "Implies(timeless_max, And(mass_product_max, evocative_max))",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "timeless(zaha_hadid)",
+          "z3_formula": "timeless_zaha_hadid == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "Not(timeless(X)) -> Not(timeless_mass_product(X))",
+          "z3_formula": "Implies(Not(timeless_mass_product), Not(timeless))",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "timeless(zaha_hadid) | timeless(kelly_wearstler)",
+          "z3_formula": "Or(timeless_zaha_hadid, timeless_kelly_wearstler)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "evocative(kelly_wearstler)",
+          "z3_formula": "evocative_kelly_wearstler == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "evocative(kelly_wearstler)",
+          "z3_formula": "evocative_kelly_wearstler == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "timeless(max) -> (mass_product(max) & evocative(max))",
+          "z3_formula": "Implies(timeless_max, And(mass_product_max, evocative_max))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "evocative(max) & dreamy(max)",
+          "z3_formula": "And(evocative_max, dreamy_max)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "timeless(zaha_hadid)",
+          "z3_formula": "timeless_zaha_hadid == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not timeless(mass_product)",
+          "z3_formula": "Not(timeless_mass_product) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "or timeless(zaha_hadid), timeless(kelly_wearstler)",
+          "z3_formula": "Or(timeless_zaha_hadid, timeless_kelly_wearstler) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "timeless(kelly_wearstler) -> evocative(kelly_wearstler)",
+          "z3_formula": "Implies(timeless_kelly_wearstler, evocative_kelly_wearstler) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "timeless(kelly_wearstler) -> dreamy(kelly_wearstler)",
+          "z3_formula": "Implies(timeless_kelly_wearstler, dreamy_kelly_wearstler) == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "timeless(max) -> (mass_product(max) & evocative(max))",
+          "z3_formula": "Implies(timeless_max, And(mass_product_max, evocative_max))",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "timeless(zaha_hadid)",
+          "z3_formula": "timeless_zaha_hadid == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not timeless(mass_product)",
+          "z3_formula": "not timeless_mass_product == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "or timeless(zaha_hadid), timeless(kelly_wearstler)",
+          "z3_formula": "Or(timeless_zaha_hadid, timeless_kelly_wearstler) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "evocative(kelly_wearstler)",
+          "z3_formula": "evocative_kelly_wearstler == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "dreamy(kelly_wearstler)",
+          "z3_formula": "dreamy_kelly_wearstler == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "timeless(max) -> (mass_product(max) & evocative(max))",
+          "z3_formula": "Implies(timeless_max, And(mass_product_max, evocative_max))",
+          "source_step": 6
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,858 @@
+{
+  "pid": "folio_109",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "spills_food_on_clothing(peter)",
+          "z3_formula": "spills_food_on_clothing_peter == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "grew_up_as_only_child(peter)",
+          "z3_formula": "grew_up_as_only_child_peter == False",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "spills_food_on_clothing(X) -> not tidy_spaces_consistently(X) & enjoys_cleaning(X)",
+          "z3_formula": "Implies(spills_food_on_clothing_peter, And(not_tidy_spaces_consistently_peter, enjoys_cleaning_peter))",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "foodies_go_out_frequently(X) -> spills_food_on_clothing(X)",
+          "z3_formula": "Implies(foodies_go_out_frequently_peter, spills_food_on_clothing_peter)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "grew_up_as_only_child(X) -> tidy_spaces_consistently(X) & enjoys_cleaning(X)",
+          "z3_formula": "Implies(grew_up_as_only_child_peter, And(tidy_spaces_consistently_peter, enjoys_cleaning_peter))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "parents_busy(X) -> grew_up_as_only_child(X)",
+          "z3_formula": "Implies(parents_busy_peter, grew_up_as_only_child_peter)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "high_net_income(X) -> parents_busy(X)",
+          "z3_formula": "Implies(high_net_income_peter, parents_busy_peter)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "high_net_income(X) -> parents_busy(X)",
+          "z3_formula": "Implies(high_net_income_peter, parents_busy_peter)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "high_net_income(X) -> parents_busy(X)",
+          "z3_formula": "Implies(high_net_income_peter, parents_busy_peter)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "foodies_go_out_frequently(peter) | not high_net_income(peter)",
+          "z3_formula": "Or(foodies_go_out_frequently_peter, Not(high_net_income_peter))",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "spills_food_on_clothing(peter)",
+          "z3_formula": "spills_food_on_clothing_peter == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "grew_up_as_only_child(peter)",
+          "z3_formula": "grew_up_as_only_child_peter == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "spills_food_on_clothing(X) & grew_up_as_only_child(X) -> foodie(X)",
+          "z3_formula": "Implies(And(spills_food_on_clothing_peter, grew_up_as_only_child_peter), foodie_peter)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "foodie(X) -> spills_food_on_clothing(X)",
+          "z3_formula": "Implies(foodie_peter, spills_food_on_clothing_peter)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "grew_up_as_only_child(X) -> tidy_spaces_consistently(X)",
+          "z3_formula": "Implies(grew_up_as_only_child_peter, tidy_spaces_consistently_peter)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "grew_up_as_only_child(X) -> enjoys_cleaning(X)",
+          "z3_formula": "Implies(grew_up_as_only_child_peter, enjoys_cleaning_peter)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "busy_parents(X) -> grew_up_as_only_child(X)",
+          "z3_formula": "Implies(busy_parents_peter, grew_up_as_only_child_peter)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "high_net_income(X) -> busy_parents(X)",
+          "z3_formula": "Implies(high_net_income_peter, busy_parents_peter)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "busy_parents(X) -> tidy_spaces_consistently(X)",
+          "z3_formula": "Implies(busy_parents_peter, tidy_spaces_consistently_peter)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "busy_parents(X) -> enjoys_cleaning(X)",
+          "z3_formula": "Implies(busy_parents_peter, enjoys_cleaning_peter)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "high_net_income(X) -> busy_parents(X)",
+          "z3_formula": "Implies(high_net_income_peter, busy_parents_peter)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "foodie(peter)",
+          "z3_formula": "foodie_peter == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "high_net_income(peter)",
+          "z3_formula": "high_net_income_peter == True",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "spills_food_on_clothing(peter)",
+          "z3_formula": "spills_food_on_clothing_peter == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "spills_food_on_clothing(X) -> not tidy_space_consistently(X) & enjoys_cleaning(X)",
+          "z3_formula": "Implies(spills_food_on_clothing_peter, And(not_tidy_space_consistently_peter, enjoys_cleaning_peter))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "foodies_go_out_frequently(peter)",
+          "z3_formula": "foodies_go_out_frequently_peter == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "foodies_go_out_frequently(X) -> spills_food_on_clothing(X)",
+          "z3_formula": "Implies(foodies_go_out_frequently_peter, spills_food_on_clothing_peter)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "grew_up_as_only_child(peter)",
+          "z3_formula": "grew_up_as_only_child_peter == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "grew_up_as_only_child(X) -> tidy_space_consistently(X) & enjoys_cleaning(X)",
+          "z3_formula": "Implies(grew_up_as_only_child_peter, And(tidy_space_consistently_peter, enjoys_cleaning_peter))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "parents_busy_with_jobs(peter)",
+          "z3_formula": "parents_busy_with_jobs_peter == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "parents_busy_with_jobs(X) -> grew_up_as_only_child(X)",
+          "z3_formula": "Implies(parents_busy_with_jobs_peter, grew_up_as_only_child_peter)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "household_high_net_income(peter)",
+          "z3_formula": "household_high_net_income_peter == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "household_high_net_income(X) -> parents_busy_with_jobs(X)",
+          "z3_formula": "Implies(household_high_net_income_peter, parents_busy_with_jobs_peter)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "either_foodie_or_household_high_net_income(peter)",
+          "z3_formula": "Or(foodies_go_out_frequently_peter, household_high_net_income_peter)",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "spills_food_on_clothing(peter)",
+          "z3_formula": "spills_food_on_clothing_peter == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "grew_up_as_only_child(peter)",
+          "z3_formula": "grew_up_as_only_child_peter == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "spills_food_on_clothing(X) -> not(tidy_space_consistently(X)) & enjoys_cleaning(X)",
+          "z3_formula": "Implies(spills_food_on_clothing_peter, And(not(tidy_space_consistently_peter), enjoys_cleaning_peter))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "foodies_go_out_frequently(X) -> spills_food_on_clothing(X)",
+          "z3_formula": "Implies(foodies_go_out_frequently_peter, spills_food_on_clothing_peter)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "parents_busy(X) -> grew_up_as_only_child(X)",
+          "z3_formula": "Implies(parents_busy_peter, grew_up_as_only_child_peter)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "high_net_income(X) -> parents_busy(X)",
+          "z3_formula": "Implies(high_net_income_peter, parents_busy_peter)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "grew_up_as_only_child(X) -> tidy_space_consistently(X) & enjoys_cleaning(X)",
+          "z3_formula": "Implies(grew_up_as_only_child_peter, And(tidy_space_consistently_peter, enjoys_cleaning_peter))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "spills_food_on_clothing(X) & grew_up_as_only_child(X) -> foodies_go_out_frequently(X)",
+          "z3_formula": "Implies(And(spills_food_on_clothing_peter, grew_up_as_only_child_peter), foodies_go_out_frequently_peter)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "high_net_income(X) -> parents_busy(X)",
+          "z3_formula": "Implies(high_net_income_peter, parents_busy_peter)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "parents_busy(X) -> grew_up_as_only_child(X)",
+          "z3_formula": "Implies(parents_busy_peter, grew_up_as_only_child_peter)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "foodies_go_out_frequently(peter) | high_net_income(peter)",
+          "z3_formula": "Or(foodies_go_out_frequently_peter, high_net_income_peter)",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "spills_food_on_clothing(X)",
+          "z3_formula": "spills_food_on_clothing_peter == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "grew_up_as_only_child(X)",
+          "z3_formula": "grew_up_as_only_child_peter == False",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "spills_food_on_clothing(X) -> not tidy_spaces_consistently(X) & enjoys_cleaning(X)",
+          "z3_formula": "Implies(spills_food_on_clothing_peter, And(not_tidy_spaces_consistently_peter, enjoys_cleaning_peter))",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "spills_food_on_clothing(X) -> foodie(X)",
+          "z3_formula": "Implies(spills_food_on_clothing_peter, foodie_peter)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "foodie(X) -> spills_food_on_clothing(X)",
+          "z3_formula": "Implies(foodie_peter, spills_food_on_clothing_peter)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "grew_up_as_only_child(X) -> tidy_spaces_consistently(X) & enjoys_cleaning(X)",
+          "z3_formula": "Implies(grew_up_as_only_child_peter, And(tidy_spaces_consistently_peter, enjoys_cleaning_peter))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "parents_busy(X) -> grew_up_as_only_child(X)",
+          "z3_formula": "Implies(parents_busy_peter, grew_up_as_only_child_peter)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "high_net_income(X) -> parents_busy(X)",
+          "z3_formula": "Implies(high_net_income_peter, parents_busy_peter)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "grew_up_as_only_child(X) | not grew_up_as_only_child(X)",
+          "z3_formula": "Or(grew_up_as_only_child_peter, Not(grew_up_as_only_child_peter))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "high_net_income(X) | foodie(X)",
+          "z3_formula": "Or(high_net_income_peter, foodie_peter)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "rule",
+          "expression": "spills_food(X) -> not tidy(X) & enjoys_cleaning(X)",
+          "z3_formula": "Implies(spills_food_peter, And(not_tidy_peter, enjoys_cleaning_peter))",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "foodies(X) -> spills_food(X)",
+          "z3_formula": "Implies(foodies_peter, spills_food_peter)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "only_child(X) -> tidy(X) & enjoys_cleaning(X)",
+          "z3_formula": "Implies(only_child_peter, And(tidy_peter, enjoys_cleaning_peter))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "busy_parents(X) -> only_child(X)",
+          "z3_formula": "Implies(busy_parents_peter, only_child_peter)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "high_net_income(X) -> busy_parents(X)",
+          "z3_formula": "Implies(high_net_income_peter, busy_parents_peter)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "(spills_food(X) & only_child(X)) | not (spills_food(X) | only_child(X))",
+          "z3_formula": "Or(And(spills_food_peter, only_child_peter), Not(Or(spills_food_peter, only_child_peter)))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "Or(foodies_peter, high_net_income_peter)",
+          "z3_formula": "Or(foodies_peter, high_net_income_peter)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "spills_food_on_clothing(X) -> not tidy_space_consistently(X) & enjoys_cleaning(X)",
+          "z3_formula": "Implies(spills_food_on_clothing_peter, And(not tidy_space_consistently_peter, enjoys_cleaning_peter))",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "foodies(X) -> spills_food_on_clothing(X)",
+          "z3_formula": "Implies(foodies_peter, spills_food_on_clothing_peter)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "only_child(X) -> tidy_space_consistently(X) & enjoys_cleaning(X)",
+          "z3_formula": "Implies(only_child_peter, And(tidy_space_consistently_peter, enjoys_cleaning_peter))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "busy_parents(X) -> only_child(X)",
+          "z3_formula": "Implies(busy_parents_peter, only_child_peter)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "high_net_income(X) -> busy_parents(X)",
+          "z3_formula": "Implies(high_net_income_peter, busy_parents_peter)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "high_net_income(X) -> busy_parents(X)",
+          "z3_formula": "Implies(high_net_income_peter, busy_parents_peter)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "Or(spills_food_on_clothing(peter) & only_child(peter), Not(spills_food_on_clothing(peter) & only_child(peter)))",
+          "z3_formula": "Or(spills_food_on_clothing_peter & only_child_peter, Not(spills_food_on_clothing_peter & only_child_peter))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Or(foodies(peter), high_net_income(peter))",
+          "z3_formula": "Or(foodies_peter, high_net_income_peter)",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "rule",
+          "expression": "spills_food(X) -> not tidy_space(X) & enjoys_cleaning(X)",
+          "z3_formula": "Implies(spills_food_peter, And(not_tidy_space_peter, enjoys_cleaning_peter))",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "foodies(X) -> spills_food(X)",
+          "z3_formula": "Implies(foodies_peter, spills_food_peter)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "only_child(X) -> tidy_space(X) & enjoys_cleaning(X)",
+          "z3_formula": "Implies(only_child_peter, And(tidy_space_peter, enjoys_cleaning_peter))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "busy_parents(X) -> only_child(X)",
+          "z3_formula": "Implies(busy_parents_peter, only_child_peter)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "high_net_income(X) -> busy_parents(X)",
+          "z3_formula": "Implies(high_net_income_peter, busy_parents_peter)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "either spills_food(peter) & only_child(peter) or not spills_food(peter) & not only_child(peter)",
+          "z3_formula": "Or(And(spills_food_peter, only_child_peter), And(Not(spills_food_peter), Not(only_child_peter)))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "either foodies(peter) or high_net_income(peter)",
+          "z3_formula": "Or(foodies_peter, high_net_income_peter)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "spill_food_on_clothing(peter)",
+          "z3_formula": "spill_food_on_peter == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "spill_food_on_clothing(X) -> not tidy_space_consistently(X) & enjoy_cleaning(X)",
+          "z3_formula": "Implies(spill_food_on_peter, And(not_tidy_space_consistently_peter, enjoy_cleaning_peter))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "foodies_go_out_frequently(peter)",
+          "z3_formula": "foodies_go_out_frequently_peter == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "foodies_go_out_frequently(X) -> spill_food_on_clothing(X)",
+          "z3_formula": "Implies(foodies_go_out_frequently_peter, spill_food_on_peter)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "only_child(peter)",
+          "z3_formula": "only_child_peter == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "only_child(X) -> tidy_space_consistently(X) & enjoy_cleaning(X)",
+          "z3_formula": "Implies(only_child_peter, And(tidy_space_consistently_peter, enjoy_cleaning_peter))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "busy_parents(peter)",
+          "z3_formula": "busy_parents_peter == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "busy_parents(X) -> only_child(X)",
+          "z3_formula": "Implies(busy_parents_peter, only_child_peter)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "high_net_income_household(peter)",
+          "z3_formula": "high_net_income_household_peter == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "high_net_income_household(X) -> busy_parents(X)",
+          "z3_formula": "Implies(high_net_income_household_peter, busy_parents_peter)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "foodie_or_high_net_income(peter)",
+          "z3_formula": "Or(foodies_go_out_frequently_peter, high_net_income_household_peter)",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "spills_food_on_clothing(peter)",
+          "z3_formula": "spills_food_on_peter == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "spills_food_on_clothing(X) -> not tidy_space_consistently(X) & enjoys_cleaning(X)",
+          "z3_formula": "Implies(spills_food_on_peter, And(not_tidy_space_consistently_peter, enjoys_cleaning_peter))",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "foodies_go_out_frequently(peter)",
+          "z3_formula": "foodies_go_out_frequently_peter == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "foodies_go_out_frequently(X) -> spills_food_on_clothing(X)",
+          "z3_formula": "Implies(foodies_go_out_frequently_peter, spills_food_on_peter)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "grew_up_as_only_child(peter)",
+          "z3_formula": "grew_up_as_only_child_peter == False",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "grew_up_as_only_child(X) -> tidy_space_consistently(X) & enjoys_cleaning(X)",
+          "z3_formula": "Implies(grew_up_as_only_child_peter, And(tidy_space_consistently_peter, enjoys_cleaning_peter))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "parents_busy_with_jobs(peter)",
+          "z3_formula": "parents_busy_with_jobs_peter == False",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "parents_busy_with_jobs(X) -> grew_up_as_only_child(X)",
+          "z3_formula": "Implies(parents_busy_with_jobs_peter, grew_up_as_only_child_peter)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "high_net_income_household(peter)",
+          "z3_formula": "high_net_income_household_peter == False",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "high_net_income_household(X) -> parents_busy_with_jobs(X)",
+          "z3_formula": "Implies(high_net_income_household_peter, parents_busy_with_jobs_peter)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "peter_is_foodie_or_high_net_income_household",
+          "z3_formula": "Or(foodies_go_out_frequently_peter, high_net_income_household_peter)",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "spills_food_on_clothing(peter)",
+          "z3_formula": "spills_food_on_clothing_peter == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "grew_up_as_only_child(peter)",
+          "z3_formula": "grew_up_as_only_child_peter == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "spills_food_on_clothing(X) -> not tidy_spaces_consistently_and_enjoy_cleaning(X)",
+          "z3_formula": "Implies(spills_food_on_clothing_peter, not tidy_spaces_consistently_and_enjoy_cleaning_peter)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "grew_up_as_only_child(X) -> tidy_spaces_consistently_and_enjoy_cleaning(X)",
+          "z3_formula": "Implies(grew_up_as_only_child_peter, tidy_spaces_consistently_and_enjoy_cleaning_peter)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "spills_food_on_clothing(X) -> foodie(X)",
+          "z3_formula": "Implies(spills_food_on_clothing_peter, foodie_peter)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "foodie(X) -> spills_food_on_clothing(X)",
+          "z3_formula": "Implies(foodie_peter, spills_food_on_clothing_peter)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "grew_up_as_only_child(X) -> not spills_food_on_clothing(X)",
+          "z3_formula": "Implies(grew_up_as_only_child_peter, not spills_food_on_clothing_peter)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "has_parents_busy_with_regular_jobs(X) -> grew_up_as_only_child(X)",
+          "z3_formula": "Implies(has_parents_busy_with_regular_jobs, grew_up_as_only_child_peter)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "has_high_net_income(X) -> has_parents_busy_with_regular_jobs(X)",
+          "z3_formula": "Implies(has_high_net_income, has_parents_busy_with_regular_jobs)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not tidy_spaces_consistently_and_enjoy_cleaning(peter)",
+          "z3_formula": "not tidy_spaces_consistently_and_enjoy_cleaning_peter == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "tidy_spaces_consistently_and_enjoy_cleaning(peter)",
+          "z3_formula": "tidy_spaces_consistently_and_enjoy_cleaning_peter == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "foodie(peter)",
+          "z3_formula": "foodie_peter == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not foodie(peter)",
+          "z3_formula": "not foodie_peter == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not grew_up_as_only_child(peter)",
+          "z3_formula": "not grew_up_as_only_child_peter == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not has_parents_busy_with_regular_jobs",
+          "z3_formula": "not has_parents_busy_with_regular_jobs == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not has_high_net_income",
+          "z3_formula": "not has_high_net_income == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "has_high_net_income",
+          "z3_formula": "has_high_net_income == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "spills_food_on_clothing(peter) & grew_up_as_only_child(peter)",
+          "z3_formula": "And(spills_food_on_clothing_peter, grew_up_as_only_child_peter) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not (spills_food_on_clothing(peter) & grew_up_as_only_child(peter))",
+          "z3_formula": "Not(And(spills_food_on_clothing_peter, grew_up_as_only_child_peter)) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "foodie(peter) | has_high_net_income",
+          "z3_formula": "Or(foodie_peter, has_high_net_income) == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "spills_food_on_clothing(peter)",
+          "z3_formula": "spills_food_on_clothing_peter == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "grew_up_as_only_child(peter)",
+          "z3_formula": "grew_up_as_only_child_peter == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "spills_food_on_clothing(X) -> tidy_space_consistently_and_enjoy_cleaning(X)",
+          "z3_formula": "Implies(spills_food_on_clothing_peter, tidy_space_consistently_and_enjoy_cleaning_peter)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "grew_up_as_only_child(X) -> tidy_space_consistently_and_enjoy_cleaning(X)",
+          "z3_formula": "Implies(grew_up_as_only_child_peter, tidy_space_consistently_and_enjoy_cleaning_peter)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "tidy_space_consistently_and_enjoy_cleaning(X) -> foodie_who_goes_out_frequently(X)",
+          "z3_formula": "Implies(tidy_space_consistently_and_enjoy_cleaning_peter, foodie_who_goes_out_frequently_peter)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "foodie_who_goes_out_frequently(X) -> foodie_who_goes_out_frequently(X)",
+          "z3_formula": "Implies(foodie_who_goes_out_frequently_peter, foodie_who_goes_out_frequently_peter)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "grew_up_as_only_child(X) -> has_parents_who_are_busy(X)",
+          "z3_formula": "Implies(grew_up_as_only_child_peter, has_parents_who_are_busy_peter)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "has_parents_who_are_busy(X) -> grew_up_as_only_child(X)",
+          "z3_formula": "Implies(has_parents_who_are_busy_peter, grew_up_as_only_child_peter)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "has_parents_who_are_busy(X) -> household_with_high_net_income(X)",
+          "z3_formula": "Implies(has_parents_who_are_busy_peter, household_with_high_net_income_peter)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "household_with_high_net_income(X) -> has_parents_who_are_busy(X)",
+          "z3_formula": "Implies(household_with_high_net_income_peter, has_parents_who_are_busy_peter)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "foodie_who_goes_out_frequently(peter) or household_with_high_net_income(peter)",
+          "z3_formula": "(foodie_who_goes_out_frequently_peter == True) or (household_with_high_net_income_peter == True)",
+          "source_step": 10
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1371 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-523_Q13",
+    "problem": "Anne is green. Anne is young. Charlie is blue. Charlie is green. Charlie is white. Dave is white. Erin is white. If Dave is kind and Dave is white then Dave is blue. If someone is white then they are nice. If someone is white then they are nice. All nice, green people are young. If someone is green then they are quiet. Nice people are kind. If Dave is blue then Dave is white. If Anne is nice and Anne is not white then Anne is green. If Dave is white and Dave is blue then Dave is green.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is not quiet.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nYoung($x, bool) ::: Is x young?\nBlue($x, bool) ::: Is x blue?\nWhite($x, bool) ::: Is x white?\nKind($x, bool) ::: Is x kind?\nNice($x, bool) ::: Is x nice?\nQuiet($x, bool) ::: Is x quiet?\n\nFacts:\nGreen(Anne, True) ::: Anne is green.\nYoung(Anne, True) ::: Anne is young.\nBlue(Charlie, True) ::: Charlie is blue.\nGreen(Charlie, True) ::: Charlie is green.\nWhite(Charlie, True) ::: Charlie is white.\nWhite(Dave, True) ::: Dave is white.\nWhite(Erin, True) ::: Erin is white.\n\nRules:\nKind(Dave, True) && White(Dave, True) >>> Blue(Dave, True) ::: If Dave is kind and Dave is white then Dave is blue.\nWhite($x, True) >>> Nice($x, True) ::: If someone is white then they are nice.\nNice($x, True) && Green($x, True) >>> Young($x, True) ::: All nice, green people are young.\nGreen($x, True) >>> Quiet($x, True) ::: If someone is green then they are quiet.\nNice($x, True) >>> Kind($x, True) ::: Nice people are kind.\nBlue(Dave, True) >>> White(Dave, True) ::: If Dave is blue then Dave is white.\nNice(Anne, True) && White(Anne, False) >>> Green(Anne, True) ::: If Anne is nice and Anne is not white then Anne is green.\nWhite(Dave, True) && Blue(Dave, True) >>> Green(Dave, True) ::: If Dave is white and Dave is blue then Dave is green.\n\nQuery:\nQuiet(Erin, False) ::: Erin is not quiet."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 96.0,
+      "Unknown": 180.5
+    },
+    "answer_counts": {
+      "Unknown": 8,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Erin is not quiet\" is true, false, or unknown, we need to analyze the given statements and the information provided about Erin.\n\n1. Given statements:\n   - Anne is green.\n   - Anne is young.\n   - Charlie is blue.\n   - Charlie is green.\n   - Charlie is white.\n   - Dave is white.\n   - Erin is white.\n   - If Dave is kind and Dave is white then Dave is blue.\n   - If someone is white then they are nice.\n   - If someone is white then they are nice. (This statement is a repetition, and we can ignore it.)\n   - All nice, green people are young.\n   - If someone is green then they are quiet.\n   - Nice people are kind.\n   - If Dave is blue then Dave is white.\n   - If Anne is nice and Anne is not white then Anne is green.\n   - If Dave is white and Dave is blue then Dave is green.\n\n2. Given information about Erin:\n   - Erin is white.\n\n3. Analyzing the given statements and information:\n   - Since Erin is white, we can conclude that Erin is nice (from the statement \"If someone is white then they are nice\").\n   - Since Erin is nice, we can conclude that Erin is kind (from the statement \"Nice people are kind\").\n   - Since Erin is white and kind, we can conclude that Erin is blue (from the statement \"If Dave is kind and Dave is white then Dave is blue\").\n   - Since Erin is blue, we can conclude that Erin is not green (from the statement \"Charlie is green\" and \"Charlie is blue\").\n   - Since Erin is not green, we cannot conclude that Erin is quiet or not quiet based on the statement \"If someone is green then they are quiet\".\n   - Therefore, the statement \"Erin is not quiet\" is unknown because we do not have enough information to determine whether Erin is quiet or not.\n\nFinal answer: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement 'Erin is not quiet' is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Given that Erin is white: From the statements, 'If someone is white then they are nice' and 'If someone is white then they are nice', we can conclude that Erin is nice.\n\n2. Since Erin is nice, we can conclude that Erin is kind, as 'Nice people are kind'.\n\n3. Now we need to find out if Erin is green or not. From the statements, 'All nice, green people are young' and 'If someone is green then they are quiet', we can conclude that if Erin is green, then Erin is quiet. But we want to determine if Erin is not quiet, so we need to find out if Erin is not green.\n\n4. Since Dave is white and Dave is kind, we can conclude that Dave is blue from the statement 'If Dave is kind and Dave is white then Dave is blue'.\n\n5. We also know that if Dave is blue then Dave is white from the statement 'If Dave is blue then Dave is white'. This creates a loop, but we can conclude that Dave is indeed white because it's given.\n\n6. From the statement 'If Dave is white and Dave is blue then Dave is green', we can conclude that Dave is not green because if he were, then he would be both white and green.\n\n7. Now, we can use the fact that 'If Anne is nice and Anne is not white then Anne is green'. Since Anne is nice, we can conclude that Anne is not green because if she were, then she would be white.\n\n8. Since Charlie is white, we can conclude that Charlie is nice from the statement 'If someone is white then they are nice'.\n\n9. From the statement 'All nice, green people are young', we can conclude that Charlie is not green because if he were, then he would be young.\n\n10. Now, let's analyze the given information about Charlie. We know that Charlie is blue, white, and green. Since Charlie is white and green, we can conclude that Charlie is quiet because 'If someone is green then they are quiet'.\n\n11. Now we need to find out if Erin is not green. From the statement 'If someone is green then they are quiet', we can conclude that if Erin is green, then Erin is quiet.\n\n12. Since Charlie is white and green, and Erin is white, we can conclude that Erin is not green because if Erin were, then Erin would be quiet.\n\n13. Now we can conclude that Erin is not quiet because if Erin were quiet, then Erin would be green, which we have concluded is not the case.\n\nHowever, there is one condition that we still haven't used: 'If Anne is green and Anne is young then Anne is blue'. We don't have enough information to conclude if Anne is young, but we can conclude that Erin is not green and Erin is not quiet.\n\nBut we still don't have enough information to determine whether Erin is not quiet. Since Erin is white, we can conclude that Erin is nice. And since nice people are kind, we can conclude that Erin is kind. We don't have enough information to conclude if Erin is quiet or not.\n\nTherefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not quiet\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Given information:\n   - Anne is green.\n   - Anne is young.\n   - Charlie is blue.\n   - Charlie is green.\n   - Charlie is white.\n   - Dave is white.\n   - Erin is white.\n   - If Dave is kind and Dave is white then Dave is blue.\n   - If someone is white then they are nice.\n   - If someone is white then they are nice. (This statement is redundant and can be ignored.)\n   - All nice, green people are young.\n   - If someone is green then they are quiet.\n   - Nice people are kind.\n   - If Anne is nice and Anne is not white then Anne is green.\n   - If Dave is blue then Dave is white.\n   - If Dave is white and Dave is blue then Dave is green.\n\n2. Deductions:\n   - Since Erin is white, Erin is nice (by the statement \"If someone is white then they are nice\").\n   - Since Erin is nice, Erin is kind (by the statement \"Nice people are kind\").\n   - We cannot conclude that Erin is blue or green from the given information.\n   - We cannot conclude that Erin is white from the given information because it is already given.\n   - If Erin is green, then Erin is quiet (by the statement \"If someone is green then they are quiet\"). However, we do not know if Erin is green or not.\n   - If Erin is not green, then we cannot conclude that Erin is not quiet because the given information does not provide any statement that links non-green people to quietness.\n\n3. Conclusion:\n   - Since we cannot conclude that Erin is quiet or not quiet from the given information, the statement \"Erin is not quiet\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether Erin is not quiet, we need to find out if Erin is quiet or not. \n\nFrom the given information:\n\n1. Erin is white. (From the statement \"Erin is white\")\n2. If someone is white then they are nice. (From the statement \"If someone is white then they are nice\")\n3. Nice people are kind. (From the statement \"Nice people are kind\")\n4. If someone is white then they are nice. (This statement is repeated, which means it's redundant and can be ignored)\n5. All nice, green people are young. (From the statement \"All nice, green people are young\")\n6. If Anne is nice and Anne is not white then Anne is green. (This statement is irrelevant to Erin, so we can ignore it)\n7. If Dave is kind and Dave is white then Dave is blue. (This statement is irrelevant to Erin, so we can ignore it)\n8. If Dave is blue then Dave is white. (This statement is irrelevant to Erin, so we can ignore it)\n9. If Dave is white and Dave is blue then Dave is green. (This statement is irrelevant to Erin, so we can ignore it)\n10. If someone is green then they are quiet. (From the statement \"If someone is green then they are quiet\")\n11. Charlie is blue. (This statement is irrelevant to Erin, so we can ignore it)\n12. Charlie is green. (This statement is irrelevant to Erin, so we can ignore it)\n13. Charlie is white. (This statement is irrelevant to Erin, so we can ignore it)\n\nFrom the given information, we know that Erin is white (statement 1). We also know that if someone is white then they are nice (statement 2). However, we do not have any information about Erin being green or not.\n\nTo determine if Erin is quiet, we need to know if Erin is green or not. However, we do not have any information about Erin being green or not. \n\nWe can infer that Erin might not be green because we do not have any statement that directly states Erin is green, and we have the statement \"If someone is green then they are quiet\" (statement 10).\n\nHowever, we cannot conclude that Erin is not quiet because we do not have enough information to determine if Erin is green or not.\n\nTherefore, the answer is: \n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Anne is green.\n   - Anne is young.\n   - Charlie is blue.\n   - Charlie is green.\n   - Charlie is white.\n   - Dave is white.\n   - Erin is white.\n   - If Dave is kind and Dave is white then Dave is blue.\n   - If someone is white then they are nice.\n   - If someone is white then they are nice. (This is a duplicate statement, which can be ignored.)\n   - All nice, green people are young.\n   - If someone is green then they are quiet.\n   - Nice people are kind.\n   - If Anne is nice and Anne is not white then Anne is green.\n   - If Dave is blue then Dave is white.\n   - If Dave is white and Dave is blue then Dave is green.\n\n2. Analyze the given information to determine the characteristics of Erin:\n   - Erin is white.\n   - Since Erin is white, according to the given information, Erin is nice.\n\n3. Analyze the given information to determine the characteristics of nice people:\n   - Nice people are kind.\n\n4. Analyze the given information to determine the characteristics of kind people:\n   - Dave is kind, and we know that kind people are nice, but we don't know if there are any other kind people besides Dave.\n   - Since Dave is white, we know that Dave is nice, and we also know that nice people are kind, so Dave's kindness is consistent with the given information.\n\n5. Analyze the given information to determine the relationship between nice people and the color green:\n   - All nice, green people are young.\n   - We know that Erin is nice, but we don't know if Erin is green or not.\n\n6. Analyze the given information to determine the relationship between green people and quietness:\n   - If someone is green then they are quiet.\n\n7. We know that Erin is white and nice, but we don't know if Erin is green or not. We need to determine if Erin is green or not to conclude whether Erin is quiet or not.\n\n8. Analyze the given information to determine the characteristics of Anne:\n   - Anne is green.\n   - We don't have any information that directly links Anne's characteristics to Erin's characteristics.\n\n9. Analyze the given information to determine the relationship between blue people and the color white:\n   - If Dave is blue then Dave is white.\n   - If Dave is white and Dave is blue then Dave is green.\n\n10. Based on the given information, we can conclude that:\n    - If Dave is blue then Dave is white.\n    - We know that Dave is white.\n    - Therefore, we cannot conclude if Dave is blue or not based on the given information.\n\n11. However, we can conclude that if someone is white then they are nice, and if someone is nice then they are kind. But we cannot conclude if someone is green or not based on the given information.\n\n12. Therefore, we cannot conclude whether Erin is green or not based on the given information.\n\n13. Since we don't know if Erin is green or not, we cannot conclude whether Erin is quiet or not based on the given information.\n\n14. Therefore, the statement \"Erin is not quiet\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether Erin is not quiet, we need to find out if Erin is quiet or not. To do that, we need to analyze the given information.\n\nFrom the given statements, we know:\n1. Erin is white. \n2. If someone is white, then they are nice.\n3. If someone is nice, then they are kind.\n4. If someone is green, then they are quiet.\n\nHowever, we don't have any information about Erin being green. \n\nSo, let's try to find out if Erin is green or not.\n\nFrom the given statements, we know:\n1. Dave is white.\n2. If Dave is white, then Dave is blue.\n3. If Dave is blue, then Dave is white.\n4. If Dave is white and Dave is blue, then Dave is green.\n\nFrom the above statements, we can conclude that Dave is green, but we don't know if this applies to Erin. However, we can see that the statement \"If Dave is blue then Dave is white\" is contradictory to \"If Dave is white then Dave is blue.\" Therefore, we can infer that Dave is not blue, and since Dave is white, he is not green.\n\nNow, we need to find out if Erin is green or not.\n1. Erin is white.\n2. If someone is white, then they are nice.\n3. If someone is nice, then they are kind.\n4. We don't have any information that contradicts the statement \"If someone is white then they are nice.\" However, we do have a statement \"If someone is white then they are nice.\" which is the same as the previous one. However, we also have \"All nice, green people are young,\" which means that if Erin is green, she would be young. Since we don't have any information that says Erin is young or old, we can't conclude that Erin is green.\n\nHowever, we do know that \"If someone is green then they are quiet.\" This means that if Erin is green, she would be quiet. \n\nSo, let's analyze the statement \"If someone is white then they are nice\" and the fact that Erin is white. If Erin is white, she is nice, and if she is nice, she is kind.\n\nHowever, we still don't have any information about Erin being green. But since we know that \"If someone is green then they are quiet,\" we can't conclude that Erin is not quiet. Therefore, we can't conclude that Erin is not quiet. \n\nSo, the answer is: \n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether Erin is not quiet, we need to analyze the given statements step by step.\n\n1. Dave is white. (Statement 1)\n2. If Dave is white then Dave is blue. (Statement 2)\n   From statement 1 and statement 2, we can conclude that Dave is blue. (Inference 1)\n3. If Dave is blue then Dave is white. (Statement 3)\n   This statement contradicts statement 1. However, it also contradicts itself, as it implies that blue and white are the same, which is not the case according to statement 2. We can ignore this statement as it's a contradiction.\n4. Dave is white. (Statement 1, repeated from above)\n5. Dave is blue. (Inference 1, repeated from above)\n6. If Dave is kind and Dave is white then Dave is blue. (Statement 4)\n   We already know that Dave is white and Dave is blue. However, we cannot determine if Dave is kind from the given statements.\n7. Erin is white. (Statement 5)\n8. If someone is white then they are nice. (Statement 6)\n   From statement 7 and statement 6, we can conclude that Erin is nice. (Inference 2)\n9. Nice people are kind. (Statement 7)\n   From statement 8 and statement 9, we can conclude that Erin is kind. (Inference 3)\n10. If Dave is white and Dave is blue then Dave is green. (Statement 8)\n    This statement is a contradiction, as Dave cannot be both white and blue at the same time according to statements 2 and 7.\n11. Charlie is blue. (Statement 3)\n12. Charlie is green. (Statement 4)\n13. Charlie is white. (Statement 5)\n   Statements 11-13 are contradictions, as Charlie cannot be all three colors at the same time.\n14. If someone is white then they are nice. (Statement 6, repeated from above)\n15. If someone is white then they are nice. (Statement 6, repeated again)\n   These statements are redundant and do not provide any new information.\n16. All nice, green people are young. (Statement 8)\n17. If Anne is nice and Anne is not white then Anne is green. (Statement 9)\n   We cannot determine if Anne is nice or not from the given statements.\n18. Anne is green. (Statement 1)\n19. Anne is young. (Statement 2)\n   We cannot determine if Anne is nice or not from the given statements, so we cannot use statement 17 to conclude anything.\n20. If someone is green then they are quiet. (Statement 10)\n   From statement 18 and statement 20, we can conclude that Anne is quiet. (Inference 4)\n21. If Anne is nice and Anne is not white then Anne is green. (Statement 9, repeated from above)\n   We already know that Anne is green. However, we cannot determine if Anne is nice or not from the given statements.\n22. Erin is white. (Statement 5, repeated from above)\n23. Erin is nice. (Inference 2, repeated from above)\n24. Erin is kind. (Inference 3, repeated from above)\n25. Erin is quiet. (Statement 20, repeated from above)\n   We cannot determine if Erin is not quiet or not from the given statements.\n\nHowever, we can determine that Anne is quiet. Since the statement is about Erin and not Anne, we cannot make a conclusion about Erin's quietness.\n\nTherefore, the answer to the question \"Erin is not quiet\" is unknown.",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to use the given information and logical deductions to determine the statement's truth value. \n\nStep 1: Analyze the given statements.\n1. Anne is green.\n2. Anne is young.\n3. Charlie is blue.\n4. Charlie is green.\n5. Charlie is white.\n6. Dave is white.\n7. Dave is kind.\n8. Erin is white.\n9. If Dave is kind and Dave is white then Dave is blue.\n10. If someone is white then they are nice.\n11. If someone is white then they are nice. (This is a repeated statement, but we can ignore it since it's the same as statement 10.)\n12. All nice, green people are young.\n13. If someone is green then they are quiet.\n14. Nice people are kind.\n15. If Anne is nice and Anne is not white then Anne is green.\n16. If Dave is blue then Dave is white.\n17. If Dave is white and Dave is blue then Dave is green.\n\nStep 2: Identify the relevant statements for the conclusion.\nWe need to determine whether Erin is not quiet. To do this, we need to know if Erin is quiet or not.\n\nStep 3: Analyze the statement \"Erin is white.\"\nSince Erin is white, we can use the statements that relate to white people.\n\nStep 4: Analyze the statement \"All nice, green people are young.\"\nSince Erin is white and there is no information that says Erin is green, we cannot apply this statement to Erin.\n\nStep 5: Analyze the statement \"If someone is green then they are quiet.\"\nSince we do not know if Erin is green or not, we cannot apply this statement to Erin.\n\nStep 6: Analyze the statement \"If Dave is kind and Dave is white then Dave is blue.\"\nWe do not have information that says Dave is kind and white at the same time, so we cannot apply this statement.\n\nStep 7: Analyze the statement \"Nice people are kind.\"\nWe do not have information that says Erin is nice or not, so we cannot apply this statement.\n\nStep 8: Analyze the statement \"If Dave is blue then Dave is white.\"\nWe do not have information that says Dave is blue, so we cannot apply this statement.\n\nStep 9: Analyze the statement \"If Dave is white and Dave is blue then Dave is green.\"\nWe do not have information that says Dave is white and blue at the same time, so we cannot apply this statement.\n\nStep 10: Analyze the statement \"If someone is white then they are nice.\"\nSince Erin is white, we can use this statement to say that Erin is nice.\n\nStep 11: Analyze the statement \"Nice people are kind.\"\nSince Erin is nice, we can use this statement to say that Erin is kind.\n\nStep 12: Analyze the statement \"If Dave is kind and Dave is white then Dave is blue.\"\nSince we know Erin is kind and white, we can use this statement to say that Erin is blue.\n\nStep 13: Analyze the statement \"If Dave is blue then Dave is white.\"\nSince Erin is blue, we can use this statement to say that Erin is white.\n\nStep 14: Analyze the statement \"If Dave is white and Dave is blue then Dave is green.\"\nSince Erin is white and blue, we can use this statement to say that Erin is green.\n\nStep 15: Analyze the statement \"If someone is green then they are quiet.\"\nSince Erin is green, we can use this statement to say that Erin is quiet.\n\nHowever, when we analyze the given statements again, we see that statement 4 \"Charlie is green\" and statement 13 \"If someone is green then they are quiet\" does not necessarily imply that green people are quiet, and we can't conclude that Erin is quiet based on the given information.\n\nSince we cannot conclude that Erin is quiet or not, the answer is unknown.",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not quiet\" is true, false, or unknown, we need to analyze the given information and apply the rules of logic step by step.\n\n1. Given information:\n   - Anne is green.\n   - Anne is young.\n   - Charlie is blue.\n   - Charlie is green.\n   - Charlie is white.\n   - Dave is white.\n   - Erin is white.\n   - If Dave is kind and Dave is white then Dave is blue.\n   - If someone is white then they are nice.\n   - If someone is white then they are nice. (Duplicate of the previous rule)\n   - All nice, green people are young.\n   - If someone is green then they are quiet.\n   - Nice people are kind.\n   - If Anne is nice and Anne is not white then Anne is green.\n   - If Dave is blue then Dave is white.\n   - If Dave is white and Dave is blue then Dave is green.\n\n2. First, let's analyze the statement \"Erin is not quiet.\"\n   For this statement to be true, Erin must not be quiet. However, we need to establish the relationship between Erin's color and her quietness.\n\n3. We know Erin is white (given information). According to the rules:\n   - If someone is white, then they are nice (rule 6).\n   - Nice people are kind (rule 8).\n   - Since Erin is white, she is nice (rule 6), and therefore, she is kind (rule 8).\n\n4. However, we cannot directly determine Erin's quietness from the given information. The rule that states \"If someone is green then they are quiet\" (rule 7) does not apply to Erin because Erin is not green; she is white.\n\n5. There is no direct information about Erin being green or not green. Therefore, we cannot conclude whether Erin is quiet or not based on the given information.\n\n6. However, let's consider the statement \"If Dave is white and Dave is blue then Dave is green.\" This statement implies that if someone is both white and blue, then they must be green. Now, if we consider Dave's information, we know that:\n   - Dave is white (given information).\n   - If Dave is kind and Dave is white then Dave is blue (rule 3).\n   - If Dave is blue then Dave is white (rule 9).\n   - If Dave is white and Dave is blue then Dave is green (rule 10).\n\nFrom rule 3, we can conclude that Dave is kind and white, which makes him blue. From rule 9, we can conclude that Dave is blue and white. Therefore, from rule 10, we can conclude that Dave is green.\n\nNow we have found that Dave is green. Since we know that if someone is green then they are quiet (rule 7), we can conclude that Dave is quiet.\n\n7. However, we still cannot conclude whether Erin is quiet or not. We only know that Dave is quiet because he is green.\n\n8. To determine whether Erin is quiet or not, we need to find a direct connection between Erin's color and her quietness or a connection between Erin and Dave's quietness.\n\n9. We know Erin is white, and we know that if someone is white, they are nice (rule 6). However, there is no direct connection between Erin being white and Erin being quiet.\n\n10. The only connection we can establish is that Erin is white and Dave is white. However, since Dave is green, not white, the connection between Erin's color and her quietness remains unknown.\n\n11. Therefore, based on the given information, we cannot determine whether Erin is quiet or not.\n\nThe final answer is \\boxed{Unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we will use the given statements and apply logical reasoning to determine whether the statement \"Erin is not quiet\" is true, false, or unknown.\n\nGiven Statements:\n1. Anne is green.\n2. Anne is young.\n3. Charlie is blue.\n4. Charlie is green.\n5. Charlie is white.\n6. Dave is white.\n7. If Dave is kind and Dave is white then Dave is blue.\n8. If someone is white then they are nice.\n9. If someone is white then they are nice. (Duplicate of statement 8, can be ignored)\n10. All nice, green people are young.\n11. If someone is green then they are quiet.\n12. Nice people are kind.\n13. If Anne is nice and Anne is not white then Anne is green.\n14. If Dave is blue then Dave is white.\n15. If Dave is white and Dave is blue then Dave is green.\n\nFrom statements 8 and 10, we can conclude that since Erin is white (statement 5), Erin is nice (statement 8).\n\nFrom statement 11, we know that if someone is green then they are quiet.\n\nWe need to determine whether Erin is green or not to conclude whether Erin is quiet or not.\n\nFrom statement 5, Erin is white. Using statement 8, we can conclude that Erin is nice.\n\nNow, let's examine statement 6, which states that Dave is white. We can use statement 7, which states that if Dave is kind and Dave is white then Dave is blue. This implies that Dave is kind.\n\nUsing statement 8, we know that since Dave is white, he is nice. From statement 12, we can conclude that since Dave is nice, he is kind.\n\nWe now have a contradiction. Dave is both kind (from statement 7) and kind (from statement 12), which is true. However, we also have Dave is white (statement 6) and Dave is white (from statement 14). Using statement 15, if Dave is white and Dave is blue then Dave is green. This is a contradiction because Dave cannot be both green and white.\n\nHowever, let's examine the other possibility from statement 7: If Dave is kind and Dave is white then Dave is blue. From statement 6, Dave is white. Since Dave is kind (from statement 7), then Dave is blue. Using statement 14, we can conclude that since Dave is blue, he is white.\n\nHowever, this still leaves us with the contradiction that Dave is both green and white from statement 15.\n\nNow, let's examine the other statements related to the color blue. From statement 3, Charlie is blue. Using statement 4, Charlie is green. From statement 5, Charlie is white. This is a contradiction because Charlie cannot be both blue and white.\n\nHowever, let's examine the other possibility from statement 14: If Dave is blue then Dave is white. From statement 3, Charlie is blue. Using statement 14, we can conclude that since Charlie is blue, he is white.\n\nNow, let's examine the other statements related to the color green. From statement 1, Anne is green. From statement 2, Anne is young. From statement 11, we know that if someone is green then they are quiet. This implies that Anne is quiet.\n\nFrom statement 4, Charlie is green. From statement 5, Charlie is white. This is a contradiction because Charlie cannot be both green and white.\n\nHowever, let's examine the other possibility from statement 11: If someone is green then they are quiet. From statement 1, Anne is green. We already concluded that Anne is quiet.\n\nFrom statement 5, Erin is white. Using statement 8, we can conclude that Erin is nice.\n\nNow, let's examine statement 13, which states that if Anne is nice and Anne is not white then Anne is green. We already know that Anne is green (statement 1). However, we can use statement 13 to conclude that since Anne is nice (from statement 13), then Anne is green.\n\nNow, let's examine statement 10, which states that all nice, green people are young. From statement 1, Anne is green. From statement 13, we can conclude that since Anne is nice, then Anne is green. Using statement 10, we can conclude that since Anne is nice and green, she is young.\n\nHowever, this still leaves us with the conclusion that Anne is quiet from statement 11.\n\nWe now need to determine whether Erin is green or not to conclude whether Erin is quiet or not.\n\nFrom statement 5, Erin is white. Using statement 8, we can conclude that Erin is nice.\n\nWe still have a contradiction from statement 15: If Dave is white and Dave is blue then Dave is green. We have Dave is white (statement 6) and Dave is blue (from statement 7).\n\nHowever, we can use statement 7 to conclude that Dave is blue. From statement 14, we can conclude that since Dave is blue, he is white.\n\nNow, let's examine the other possibility from statement 7: If Dave is kind and Dave is white then Dave is blue. From statement 6, Dave is white. Since Dave is kind (from statement 7), then Dave is blue.\n\nHowever, this still leaves us with the contradiction that Dave is both green and white from statement 15.\n\nNow, let's examine the other possibility from statement 14: If Dave is blue then Dave is white. From statement 3, Charlie is blue. Using statement 14, we can conclude that since Charlie is blue, he is white.\n\nHowever, this still leaves us with the contradiction that Charlie is both green and white from statement 5.\n\nNow, let's examine statement 4, which states that Charlie is green. From statement 5, Charlie is white. This is a contradiction because Charlie cannot be both green and white.\n\nHowever, let's examine the other possibility from statement 11: If someone is green then they are quiet. From statement 1, Anne is green. We already concluded that Anne is quiet.\n\nWe still have the conclusion that Dave is blue (from statement 7).\n\nNow, let's examine statement 13, which states that if Anne is nice and Anne is not white then Anne is green. We already know that Anne is green (statement 1). However, we can use statement 13 to conclude that since Anne is nice (from statement 13), then Anne is green.\n\nNow, let's examine statement 10, which states that all nice, green people are young. From statement 1, Anne is green. From statement 13, we can conclude that since Anne is nice, then Anne is green. Using statement 10, we can conclude that since Anne is nice and green, she is young.\n\nHowever, this still leaves us with the conclusion that Anne is quiet from statement 11.\n\nWe now need to determine whether Erin is green or not to conclude whether Erin is quiet or not.\n\nFrom statement 5, Erin is white. Using statement 8, we can conclude that Erin is nice.\n\nWe still have a contradiction from statement 15: If Dave is white and Dave is blue then Dave is green. We have Dave is white (statement 6) and Dave is blue (from statement 7).\n\nHowever, we can use statement 7 to conclude that Dave is blue. From statement 14, we can conclude that since Dave is blue, he is white.\n\nNow, let's examine the other possibility from statement 7: If Dave is kind and Dave is white then Dave is blue. From statement 6, Dave is white. Since Dave is kind (from statement 7), then Dave is blue.\n\nHowever, this still leaves us with the contradiction that Dave is both green and white from statement 15.\n\nNow, let's examine the other possibility from statement 14: If Dave is blue then Dave is white. From statement 3, Charlie is blue. Using statement 14, we can conclude that since Charlie is blue, he is white.\n\nHowever, this still leaves us with the contradiction that Charlie is both green and white from statement 5.\n\nNow, let's examine statement 4, which states that Charlie is green. From statement 5, Charlie is white. This is a contradiction because Charlie cannot be both green and white.\n\nHowever, let's examine the other possibility from statement 11: If someone is green then they are quiet. From statement 1, Anne is green. We already concluded that Anne is quiet.\n\nWe still have the conclusion that Dave is blue (from statement 7).\n\nNow, let's examine statement 13, which states that if Anne is nice and Anne is not white then Anne is green. We already know that Anne is green (statement 1). However, we can use statement 13 to conclude that since Anne is nice (from statement 13), then Anne is green.\n\nNow, let's examine statement 10, which states that all nice, green people are young. From statement 1, Anne is green. From statement 13, we can conclude that since Anne is nice, then Anne is green. Using statement 10, we can conclude that since Anne is nice and green, she is young.\n\nHowever, this still leaves us with the conclusion that Anne is quiet from statement 11.\n\nWe now need to determine whether Erin is green or not to conclude whether Erin is quiet or not.\n\nHowever, we can use statement 8 to conclude that Erin is nice. We still have the conclusion that Dave is blue (from statement 7).\n\nNow, let's examine the other possibility from statement 7: If Dave is kind and Dave is white then Dave is blue. From statement 6, Dave is white. Since Dave is kind (from statement 7), then Dave is blue.\n\nHowever, we can use statement 14 to conclude that since Dave is",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether Erin is not quiet, we need to analyze the given statements and find any information related to Erin being quiet or not.\n\n1. Anne is green.\n2. Anne is young.\n3. Charlie is blue.\n4. Charlie is green.\n5. Charlie is white.\n6. Dave is white.\n7. Erin is white.\n8. If Dave is kind and Dave is white then Dave is blue.\n9. If someone is white then they are nice.\n10. If someone is white then they are nice. (Duplicate statement, can be ignored)\n11. All nice, green people are young.\n12. If someone is green then they are quiet.\n13. Nice people are kind.\n14. If Dave is blue then Dave is white.\n15. If Anne is nice and Anne is not white then Anne is green.\n16. If Dave is white and Dave is blue then Dave is green.\n\nFrom statement 9, we know that if someone is white, then they are nice. Since Erin is white (statement 7), Erin is nice.\n\nFrom statement 13, we know that nice people are kind. Since Erin is nice, Erin is kind.\n\nNow, let's examine the statements related to Dave, as some of them might have implications for Erin.\n\nFrom statement 8, we know that if Dave is kind and Dave is white, then Dave is blue. Since we already know that Dave is white (statement 6) and kind (because Erin is kind, and Dave's characteristics are not explicitly stated to be different from Erin's), Dave is blue.\n\nFrom statement 14, we know that if Dave is blue, then Dave is white. This is a tautology and does not provide any new information.\n\nFrom statement 16, we know that if Dave is white and Dave is blue, then Dave is green. Since we already know that Dave is blue, and from the previous statement, Dave is white, Dave is indeed green.\n\nNow, from statement 12, we know that if someone is green, then they are quiet. Since Dave is green, Dave is quiet.\n\nWe cannot directly infer whether Erin is quiet or not from the given information. However, we do not have enough evidence to prove that Erin is not quiet either.\n\nThe final answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement 'Erin is not quiet' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following information about colors:\n   - Anne is green.\n   - Charlie is blue.\n   - Charlie is green.\n   - Charlie is white.\n   - Dave is white.\n   - Erin is white.\n\n2. We also know the following about color and personality:\n   - If someone is white then they are nice.\n   - If someone is white then they are nice. (This is a repeated statement, but it doesn't provide any additional information.)\n   - All nice, green people are young.\n   - If someone is green then they are quiet.\n   - Nice people are kind.\n\n3. Now, let's analyze the information about Dave:\n   - Dave is white.\n   - Dave is kind.\n   - If Dave is white and Dave is blue then Dave is green.\n\nFrom the above information, we can conclude that Dave is white and kind, and since all nice people are kind, Dave is nice. Since Dave is nice and white, we can also conclude that Dave is quiet (because if someone is white then they are nice, and nice people are quiet according to the information about green people).\n\n4. Now, let's analyze the information about Erin:\n   - Erin is white.\n   - Since Erin is white, Erin is nice.\n   - Since Erin is nice and white, Erin is quiet (because nice people are quiet according to the information about green people).\n\nFrom the information about Erin, we can conclude that Erin is quiet.\n\nNow, to determine whether the statement 'Erin is not quiet' is true, false, or unknown, we can conclude that it is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(dave) & white(dave) -> blue(dave)",
+          "z3_formula": "Implies(And(kind_dave, white_dave), blue_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_erin, nice_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_dave, nice_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_anne, green_anne), young_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_charlie, quiet_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_erin, kind_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(dave) & white(dave) -> blue(dave)",
+          "z3_formula": "Implies(And(kind_dave, white_dave), blue_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(dave) -> white(dave)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(dave) & blue(dave) -> green(dave)",
+          "z3_formula": "Implies(And(white_dave, blue_dave), green_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not green(erin)",
+          "z3_formula": "Not(green_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "unknown quiet(erin)",
+          "z3_formula": "Or(Not(quiet_erin), Not(Not(quiet_erin)))",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_erin, nice_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_erin, kind_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_erin, green_erin), young_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_erin, quiet_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_dave, white_dave), blue_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> green(X)",
+          "z3_formula": "Implies(And(blue_dave, white_dave), green_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not green(dave)",
+          "z3_formula": "Not(green_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & not white(X) -> green(X)",
+          "z3_formula": "Implies(And(nice_anne, Not(white_anne)), green_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not green(anne)",
+          "z3_formula": "Not(green_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_charlie, nice_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_charlie, green_charlie), young_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not green(charlie)",
+          "z3_formula": "Not(green_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie) & white(charlie) & green(charlie)",
+          "z3_formula": "And(blue_charlie, white_charlie, green_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_charlie, quiet_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_erin, quiet_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not green(erin)",
+          "z3_formula": "Not(green_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin) & white(charlie)",
+          "z3_formula": "And(white_erin, white_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not green(erin)",
+          "z3_formula": "Not(green_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(erin)",
+          "z3_formula": "Not(quiet_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> blue(X)",
+          "z3_formula": "Implies(And(green_anne, young_anne), blue_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(Not(quiet_erin))",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(dave) & white(dave) -> blue(dave)",
+          "z3_formula": "Implies(And(kind_dave, white_dave), blue_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_erin, nice_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_dave, nice_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_anne, green_anne), young_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_X, quiet_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_erin, kind_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & not white(X) -> green(X)",
+          "z3_formula": "Implies(And(nice_anne, Not(white_anne)), green_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & blue(X) -> green(X)",
+          "z3_formula": "Implies(And(white_dave, blue_dave), green_dave)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_erin, nice_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_erin, kind_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_erin, quiet_erin)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_dave, white_dave), blue_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_erin, nice_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_erin, nice_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_green, green_X), young_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_X, quiet_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_erin, kind_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_dave, nice_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & not white(X) -> green(X)",
+          "z3_formula": "Implies(And(nice_anne, Not(white_anne)), green_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & blue(X) -> green(X)",
+          "z3_formula": "Implies(And(white_dave, blue_dave), green_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == Unknown",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == Unknown",
+          "source_step": 13
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_dave, blue_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_erin, nice_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_erin, kind_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_erin, nice_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_erin, nice_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_anne, green_anne), young_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & Not(white(X)) -> green(X)",
+          "z3_formula": "Implies(And(nice_anne, Not(white_anne)), green_anne)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_anne, quiet_anne)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_dave, white_dave), blue_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_erin, nice_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_erin, nice_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_erin, green_erin), young_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_erin, quiet_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_erin, nice_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_erin, white_erin), blue_erin)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_erin, white_erin)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & blue(X) -> green(X)",
+          "z3_formula": "Implies(And(white_erin, blue_erin), green_erin)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_dave, white_dave), blue_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_erin, nice_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_erin, kind_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_anne, young_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_X, quiet_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_erin, kind_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & not(white(X)) -> green(X)",
+          "z3_formula": "Implies(And(nice_anne, Not(white_anne)), green_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & blue(X) -> green(X)",
+          "z3_formula": "Implies(And(white_dave, blue_dave), green_dave)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_dave, white_dave), blue_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_dave, nice_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_anne, quiet_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_dave, kind_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & not(white(X)) -> green(X)",
+          "z3_formula": "Implies(And(nice_anne, Not(white_anne)), green_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_anne, green_anne), young_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie) | white(charlie)",
+          "z3_formula": "Or(green_charlie, white_charlie)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave) | white(dave)",
+          "z3_formula": "Or(green_dave, white_dave)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin) | not(green(erin))",
+          "z3_formula": "Or(green_erin, Not(green_erin))",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin) -> quiet(erin)",
+          "z3_formula": "Implies(green_erin, quiet_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not(green(erin)) -> not(quiet(erin))",
+          "z3_formula": "Implies(Not(green_erin), Not(quiet_erin))",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_dave, white_dave), blue_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_erin, nice_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_erin, nice_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_green, green_anne), young_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_erin, quiet_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_erin, kind_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & blue(X) -> green(X)",
+          "z3_formula": "Implies(And(white_dave, blue_dave), green_dave)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_dave, nice_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_charlie, nice_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_anne, green_anne), young_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_charlie, quiet_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_dave, kind_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave) & blue(dave) -> green(dave)",
+          "z3_formula": "Implies(And(white_dave, blue_dave), green_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 9
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 207,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 59
+    },
+    "maxsat_stats": {
+      "satisfied": 54,
+      "excluded": 5,
+      "total_weight": 200,
+      "solve_time_ms": 2.4011731147766113
+    },
+    "timing": {
+      "trace_gen_s": 24.319,
+      "extraction_s": 35.994,
+      "dedup_s": 2.061,
+      "maxsat_s": 0.006,
+      "total_s": 62.38
+    }
+  }
+}

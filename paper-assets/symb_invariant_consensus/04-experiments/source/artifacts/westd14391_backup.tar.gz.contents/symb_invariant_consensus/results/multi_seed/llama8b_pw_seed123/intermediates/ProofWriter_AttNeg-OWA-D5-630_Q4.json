@@ -1,0 +1,994 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-630_Q4",
+    "problem": "Anne is green. Anne is quiet. Dave is round. Erin is nice. Fiona is not nice. Fiona is quiet. Fiona is rough. If something is rough and green then it is round. All smart things are round. If something is round and blue then it is rough. All blue things are rough. Quiet things are green. Round things are green. All nice things are blue. All rough, nice things are blue. Rough, nice things are quiet.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is not green.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nQuiet($x, bool) ::: Is x quiet?\nRound($x, bool) ::: Is x round?\nNice($x, bool) ::: Is x nice?\nRough($x, bool) ::: Is x rough?\nBlue($x, bool) ::: Is x blue?\nSmart($x, bool) ::: Is x smart?\n\nFacts:\nGreen(Anne, True) ::: Anne is green.\nQuiet(Anne, True) ::: Anne is quiet.\nRound(Dave, True) ::: Dave is round.\nNice(Erin, True) ::: Erin is nice.\nNice(Fiona, False) ::: Fiona is not nice.\nQuiet(Fiona, True) ::: Fiona is quiet.\nRough(Fiona, True) ::: Fiona is rough.\n\nRules:\nRough($x, True) && Green($x, True) >>> Round($x, True) ::: If something is rough and green then it is round.\nSmart($x, True) >>> Round($x, True) ::: All smart things are round.\nRound($x, True) && Blue($x, True) >>> Rough($x, True) ::: If something is round and blue then it is rough.\nBlue($x, True) >>> Rough($x, True) ::: All blue things are rough.\nQuiet($x, True) >>> Green($x, True) ::: Quiet things are green.\nRound($x, True) >>> Green($x, True) ::: Round things are green.\nNice($x, True) >>> Blue($x, True) ::: All nice things are blue.\nRough($x, True) && Nice($x, True) >>> Blue($x, True) ::: All rough, nice things are blue.\nRough($x, True) && Nice($x, True) >>> Quiet($x, True) ::: Rough, nice things are quiet.\n\nQuery:\nGreen(Fiona, False) ::: Fiona is not green."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 137.5,
+      "True": 116.0
+    },
+    "answer_counts": {
+      "True": 2,
+      "False": 9
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement 'Fiona is not green' is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\nGiven information:\n\n1. Fiona is not nice.\n2. Fiona is quiet.\n3. Fiona is rough.\n4. If something is rough and green, then it is round.\n5. All smart things are round. (This information is not relevant to the problem.)\n6. If something is round and blue, then it is rough. (This information contradicts statement 4, but it's not relevant to the problem.)\n7. All blue things are rough. (This information contradicts statement 6, but it's not relevant to the problem.)\n8. Quiet things are green.\n9. Round things are green.\n10. All nice things are blue.\n11. All rough, nice things are blue.\n12. Rough, nice things are quiet.\n\nTo determine whether Fiona is green or not, we can use the information that quiet things are green (statement 8) and Fiona is quiet (statement 2).\n\nFrom statement 8, we can conclude that Fiona is green because she is quiet.\n\nHowever, we also have statement 9, which says that round things are green. But we have a problem with the information in statements 4 and 7 (and also 6) which may seem to be inconsistent - but they are irrelevant. \n\nFrom statement 9, we can also conclude that Fiona is green because she is round (which is not explicitly stated but can be inferred from the other information).\n\nHowever, from statement 4, we can conclude that Fiona is not green because if she were both rough and green, she would have to be round.\n\nSince Fiona is quiet (statement 2) and quiet things are green (statement 8), and Fiona is not nice (statement 1) and nice things are blue (statement 10), we can conclude that Fiona is green.\n\nHowever, since Fiona is rough (statement 3) and from statement 4, if Fiona were both rough and green, she would have to be round, but that would mean she is also green (from statement 9). This would create a contradiction.\n\nThus, we can conclude that Fiona is not green because if she were, she would have to be both rough and green, which would imply she is round and green, which creates a contradiction.\n\nTherefore, the statement 'Fiona is not green' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is not green' is true, false, or unknown, we need to analyze the given information and apply the rules provided.\n\n1. Fiona is quiet. (Given)\n2. Quiet things are green. (Rule)\n\nFrom rule 2, we can infer that Fiona is green.\n\nHowever, we need to consider the entire set of rules to confirm this. \n\n3. Fiona is rough. (Given)\n4. If something is rough and green then it is round. (Rule)\nWe can't directly conclude Fiona's roundness from the given information, but we can analyze further.\n\n5. Fiona is not nice. (Given)\n6. All nice things are blue. (Rule)\nFiona is not blue.\n\n7. Round things are green. (Rule)\n8. All blue things are rough. (Rule)\n9. If something is round and blue then it is rough. (Rule)\nWe know Fiona is not blue, so we can't conclude her roundness or roughness from these rules.\n\nHowever, we can combine rule 3 (Fiona is rough) with rule 8 (All blue things are rough) to get a new rule: Fiona is not blue (from rule 6), so Fiona is not rough (from rule 8).\n\nBut we know from rule 3 that Fiona is indeed rough. The statement 'Fiona is not blue' does not conflict with Fiona being rough.\n\n10. Rough, nice things are blue. (Rule)\nFiona is not nice (from rule 5), so we can't apply this rule.\n\n11. Quiet things are green. (Rule)\nFiona is quiet (from rule 1), so Fiona is green.\n\nCombining rule 4 with rule 11, we get: Fiona is rough (from rule 3) and green (from rule 11), so Fiona is round (from rule 4).\n\nHowever, we can't directly conclude Fiona's roundness from the given information. We can analyze further by combining rule 7 (Round things are green) with rule 11 (Quiet things are green). \n\nCombining rule 7 with rule 11, we get: Round things are green and Quiet things are green, so quiet and round things are green.\n\nWe know from rule 1 that Fiona is quiet, and from rule 4 that if something is rough and green then it is round. Combining these two, we get: Fiona is rough (from rule 3) and green (from rule 11), so Fiona is round (from rule 4).\n\nHowever, we can't directly conclude Fiona's roundness from the given information. \n\n12. All smart things are round. (Rule)\nWe don't have any information about Fiona being smart.\n\nCombining rule 7 (Round things are green) with rule 3 (Fiona is rough), we get: Round things are green and Fiona is rough, so Fiona is green.\n\nHowever, we can't directly conclude Fiona's roundness from the given information. \n\nSince we know from rule 1 that Fiona is quiet, and from rule 11 that quiet things are green, we can conclude that Fiona is green.\n\nSince we know from rule 3 that Fiona is rough, and from rule 4 that if something is rough and green then it is round, we can conclude that Fiona is round.\n\nHowever, we can't directly conclude Fiona's roundness from the given information.\n\nThe given statement 'Fiona is not green' is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not green\" is true, false, or unknown, we need to analyze the given information and apply the rules step by step.\n\n1. We are given the following statements:\n   - Fiona is not nice (Fiona is not nice).\n   - Fiona is quiet (Fiona is quiet).\n   - Fiona is rough (Fiona is rough).\n\n2. We are also given the following rules:\n   - Quiet things are green (Quiet things are green).\n   - Round things are green (Round things are green).\n   - If something is rough and green then it is round (Rough and green implies round).\n   - All blue things are rough (All blue things are rough).\n   - If something is round and blue then it is rough (Round and blue implies rough).\n   - All nice things are blue (All nice things are blue).\n   - All rough, nice things are blue (All rough, nice things are blue).\n   - Rough, nice things are quiet (Rough, nice things are quiet).\n\n3. From the given information, we know that Fiona is rough (Fiona is rough) and not nice (Fiona is not nice). We need to determine whether Fiona is green or not.\n\n4. Let's start with the possibility that Fiona is green. If Fiona is green and rough, then it must be round according to the rule \"If something is rough and green then it is round\" (Rough and green implies round).\n\n5. Now we have two possibilities: Fiona is round and green, or Fiona is not round and green. However, we can eliminate the first possibility since Fiona is rough, and according to the rule \"If something is round and blue then it is rough\" (Round and blue implies rough), Fiona must be blue to be round. If Fiona is blue, then it must be nice because all blue things are rough and all nice things are blue.\n\n6. However, we know that Fiona is not nice (Fiona is not nice). Therefore, the possibility that Fiona is round and green is eliminated, and Fiona must be not round and green.\n\n7. Since Fiona is quiet (Fiona is quiet), and quiet things are green (Quiet things are green), we can conclude that Fiona is green.\n\n8. However, we already concluded that Fiona is not round and green. This creates a contradiction. Therefore, the initial assumption that Fiona is green is false.\n\n9. Since the initial assumption that Fiona is green is false, we can conclude that the statement \"Fiona is not green\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether Fiona is not green, we need to analyze the given statements and apply the rules to Fiona's characteristics.\n\n1. Fiona is not nice. (From the statement \"Fiona is not nice.\")\n2. Fiona is quiet. (From the statement \"Fiona is quiet.\")\n3. Fiona is rough. (From the statement \"Fiona is rough.\")\n\nNow, let's apply the rules to Fiona's characteristics:\n\n1. All nice things are blue. Since Fiona is not nice, we cannot conclude that she is blue.\n2. All blue things are rough. This rule is irrelevant to Fiona since we don't know if she is blue.\n3. Quiet things are green. Since Fiona is quiet, we can conclude that she is green.\n\nNow, let's analyze the statement \"If something is rough and green then it is round.\" We know Fiona is rough and green (from steps 3 and 4), so we can conclude that Fiona is round.\n\nHowever, we also have the rule \"Round things are green.\" This seems to create a contradiction, but let's continue. The rule \"All smart things are round\" is irrelevant to Fiona.\n\nWe have another rule that says \"If something is round and blue then it is rough.\" This rule is also irrelevant to Fiona since we don't know if she is blue.\n\nHowever, we do know that Fiona is round and green (from step 6 and the analysis of the rules). We also have the rule \"All round things are green.\" This rule does not create a contradiction with the previous conclusion that Fiona is round and green.\n\nThe rule \"All blue things are rough\" is still irrelevant to Fiona since we don't know if she is blue.\n\nNow, let's analyze the statement \"Rough, nice things are blue.\" Since Fiona is not nice (from step 1), we cannot conclude that she is blue.\n\nHowever, we do know that Fiona is rough and quiet. We have the rule \"Rough, nice things are blue.\" This rule does not apply to Fiona since she is not nice.\n\nWe have another rule that says \"Quiet things are green.\" Since Fiona is quiet, we can conclude that she is green.\n\nNow, let's analyze the statement \"Fiona is not green.\" We have concluded that Fiona is green (from step 4), but we also know that she is round (from step 6). We have the rule \"If something is rough and green then it is round.\" This rule does not create a contradiction with the previous conclusions.\n\nHowever, we do have the rule \"All nice things are blue.\" Since Fiona is not nice, we cannot conclude that she is blue.\n\nThe statement \"Fiona is not green\" is false because we have concluded that Fiona is green.\n\nHowever, there are some additional rules that could potentially change the conclusion. Let's analyze those rules.\n\nWe have the rule \"All round things are green.\" This rule does not create a contradiction with the previous conclusion that Fiona is round and green.\n\nWe have the rule \"Round things are green.\" This rule does not create a contradiction with the previous conclusion that Fiona is round and green.\n\nWe have the rule \"All blue things are rough.\" This rule is still irrelevant to Fiona since we don't know if she is blue.\n\nWe have the rule \"Rough, nice things are blue.\" This rule does not apply to Fiona since she is not nice.\n\nWe have the rule \"Quiet things are green.\" Since Fiona is quiet, we can conclude that she is green.\n\nWe have the rule \"If something is round and blue then it is rough.\" This rule is still irrelevant to Fiona since we don't know if she is blue.\n\nWe have the rule \"All smart things are round.\" This rule is still irrelevant to Fiona.\n\nWe have the rule \"All round things are green.\" This rule does not create a contradiction with the previous conclusion that Fiona is round and green.\n\nWe have the rule \"Round things are green.\" This rule does not create a contradiction with the previous conclusion that Fiona is round and green.\n\nGiven the rules and the analysis above, we can conclude that the statement \"Fiona is not green\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is quiet. (Given)\n2. Quiet things are green. (From given information)\n   So, Fiona is green. (From step 2)\n\nNow we have a direct conclusion about Fiona's color.\n\nTo check if our conclusion might be influenced by the color green, we need to consider more information about colors. \n\n3. Round things are green. (From given information)\n4. If something is rough and green then it is round. (From given information)\n   From step 3, we know round things are green. From step 4, we know that if something is rough and green then it is round. This doesn't directly influence our conclusion about Fiona, but we can continue analyzing.\n\n5. Fiona is not nice. (Given)\n6. All nice things are blue. (From given information)\n   So, Fiona is not blue. (From step 6)\n\n7. All blue things are rough. (From given information)\n   So, Fiona is not rough. (From step 7)\n\nNow we know Fiona is not rough and not blue, but we already concluded that Fiona is green. \n\n8. Quiet things are green. (From given information)\n   We already concluded Fiona is green in step 2.\n\nSo, our previous conclusion that Fiona is green doesn't get influenced by the information that quiet things are green.\n\nNow we need to consider more information about colors. \n\n9. Round things are green. (From given information)\n10. If something is round and blue then it is rough. (From given information)\n   This information doesn't directly influence our conclusion about Fiona, but we can continue analyzing.\n\n11. All smart things are round. (From given information)\n12. All rough, nice things are blue. (From given information)\n   All rough things are not nice (from step 5) and all nice things are blue (from step 6). So, all rough things are not blue. \n13. All blue things are rough. (From given information)\n   All blue things are not rough (from step 12). This statement is false.\n\nWe've now established that the statement \"All blue things are rough\" is false. So, we can conclude that the statement \"All round things are green\" is true.\n\nSo, Fiona is green. (From step 2)\n\nSo, the statement \"Fiona is not green\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether Fiona is not green, we need to analyze the given information and the properties of Fiona.\n\n1. Fiona is not nice. \n   - This information is given directly.\n\n2. Fiona is quiet. \n   - This information is given directly.\n\n3. Fiona is rough. \n   - This information is given directly.\n\nFrom the given information, we have the following rules:\n- Quiet things are green. \n- Round things are green.\n\nWe can infer that Fiona is round or green because quiet things are green.\n\nNow, we have two possibilities for Fiona: round or green.\n\n1. If Fiona is round:\n   - Round things are green (given rule).\n   - All blue things are rough (given rule).\n   - If something is round and blue then it is rough (given rule).\n   - Since we know Fiona is rough and round, and all blue things are rough, Fiona must be blue because it is round and rough.\n\n   However, this leads to a contradiction:\n   - All nice things are blue (given rule).\n   - Fiona is not nice (given information).\n   - If Fiona is blue, then it should be nice, which is a contradiction.\n\n   Therefore, Fiona cannot be round and blue.\n\n2. If Fiona is green:\n   - Quiet things are green (given rule).\n   - Fiona is quiet (given information).\n   - Therefore, Fiona is green.\n\n   However, this information contradicts the given rule that if something is rough and green then it is round.\n\n   Let's examine the possibilities for green and rough:\n   - If Fiona is green and rough:\n     - If something is rough and green then it is round (given rule).\n     - Therefore, Fiona is round.\n\n   This leads to a contradiction:\n   - All blue things are rough (given rule).\n   - If something is round and blue then it is rough (given rule).\n   - Since we know Fiona is round, and all blue things are rough, Fiona must be blue because it is round and rough.\n\n   However, this leads to a contradiction:\n   - All nice things are blue (given rule).\n   - Fiona is not nice (given information).\n   - If Fiona is blue, then it should be nice, which is a contradiction.\n\n   Therefore, Fiona cannot be green and rough.\n\nNow we have exhausted all possibilities for Fiona. We have found that if Fiona is round, it must be blue, which is a contradiction because Fiona is not nice. We have also found that if Fiona is green, it must be round, which is a contradiction because Fiona is rough and green things that are rough cannot be round.\n\nHowever, we can also look at the statement \"Rough, nice things are quiet.\" and the statement \"Quiet things are green.\" Since Fiona is not nice, then the statement \"Rough, nice things are quiet.\" does not apply to her.\n\nHowever, we also know that Fiona is quiet. Since \"Quiet things are green,\" this tells us that Fiona is green.\n\nTherefore, since we have found that Fiona is green, we can conclude that the statement \"Fiona is not green\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not green\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nGiven statements:\n1. Fiona is not nice.\n2. Fiona is quiet.\n3. Fiona is rough.\n4. If something is rough and green, then it is round.\n5. All smart things are round.\n6. If something is round and blue, then it is rough.\n7. All blue things are rough.\n8. Quiet things are green.\n9. Round things are green.\n10. All nice things are blue.\n11. All rough, nice things are blue.\n12. Rough, nice things are quiet.\n\nFrom statement 8, we know that quiet things are green. Since Fiona is quiet, we can conclude that Fiona is green (8).\n\nNow, we have a conflict. Statement 3 says Fiona is rough, and statement 4 says if something is rough and green, then it is round. If we assume Fiona is both rough and green, we can conclude that Fiona is round (4).\n\nHowever, we also know that Fiona is quiet, and from statement 8, we know that quiet things are green. Then, from statement 9, we know that round things are green. This implies that Fiona is both round and green. Since Fiona is round, and from statement 10, we know that all blue things are rough, and statement 7 says all blue things are rough, we can conclude that Fiona is rough and blue.\n\nNow, let's analyze the statements related to blue things. Statement 10 says all nice things are blue, but statement 1 says Fiona is not nice. Therefore, Fiona cannot be blue based on statement 10. However, we have a conflict here, because we previously concluded that Fiona is blue.\n\nWe can resolve this conflict by considering statement 11, which says all rough, nice things are blue. Since Fiona is not nice, we cannot conclude that Fiona is blue based on this statement. However, statement 6 says if something is round and blue, then it is rough. Since we previously concluded that Fiona is both round and green, we cannot conclude that Fiona is blue based on this statement either.\n\nHowever, we know that Fiona is both round and green. From statement 9, we know that round things are green. We also know that Fiona is not nice (1), so Fiona cannot be blue (10). We also know that all blue things are rough (7). However, we have a conflict here, because we previously concluded that Fiona is rough and green.\n\nLet's re-analyze the statements. From statement 8, we know that quiet things are green. Since Fiona is quiet, we can conclude that Fiona is green (8).\n\nWe also know that Fiona is rough (3). Statement 4 says if something is rough and green, then it is round. This does not necessarily mean that Fiona is round, because we cannot conclude that Fiona is both rough and green.\n\nHowever, we know that Fiona is both round and green. From statement 9, we know that round things are green. We also know that Fiona is not nice (1), so Fiona cannot be blue (10). We also know that all blue things are rough (7). We cannot conclude that Fiona is blue based on these statements.\n\nLet's analyze the statements related to round things. Statement 5 says all smart things are round. We do not have any information about Fiona being smart or not. Therefore, we cannot conclude that Fiona is round based on this statement.\n\nHowever, we know that Fiona is round (3, 4, 9). We also know that Fiona is not nice (1), so Fiona cannot be blue (10). We also know that all blue things are rough (7). We cannot conclude that Fiona is blue based on these statements.\n\nNow, we have a conflict. We know that Fiona is both round and green, but we cannot conclude that Fiona is blue. Let's analyze the statements related to blue things. Statement 10 says all nice things are blue, but statement 1 says Fiona is not nice. Therefore, Fiona cannot be blue based on statement 10.\n\nHowever, statement 6 says if something is round and blue, then it is rough. We know that Fiona is round (3, 4, 9), but we cannot conclude that Fiona is blue.\n\nNow, we can conclude that the statement \"Fiona is not green\" is false.",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not green\" is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\nFrom the given statements:\n\n1. Fiona is not nice (Fiona is not nice. Fiona is quiet.)\n2. Fiona is quiet (Fiona is quiet.)\n3. Quiet things are green (Quiet things are green.)\n4. Fiona is rough (Fiona is rough.)\n\nNow, we will try to deduce whether Fiona is green or not.\n\nFrom statement 3, we know that quiet things are green. Since Fiona is quiet (statement 2), we can conclude that Fiona is green.\n\nSo, based on our analysis, we can say that the statement \"Fiona is not green\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\nGiven information:\n\n1. Fiona is not nice. (Fiona is nice is false)\n2. Fiona is quiet. \n3. Fiona is rough.\n4. If something is rough and green then it is round. (This implies that rough and green is a subset of round)\n5. All smart things are round. (This is not directly related to Fiona, so we'll ignore it for now)\n6. If something is round and blue then it is rough. (This implies that round and blue is a subset of rough)\n7. All blue things are rough. (This implies that blue is a subset of rough)\n8. Quiet things are green.\n9. Round things are green.\n10. All nice things are blue.\n11. All rough, nice things are blue.\n12. Rough, nice things are quiet.\n\nFrom (8), we know that quiet things are green. Since Fiona is quiet (from 2), Fiona must be green.\n\nHowever, we also have (9), which states that round things are green. And from (3), we know Fiona is rough.\n\nNow we need to consider the implications of Fiona being rough and green. From (4), we know that if something is rough and green, then it is round. But we already know Fiona is rough and green. This does not directly tell us whether Fiona is round or not, but we know that if Fiona is round, then it must be green, which it is.\n\nNow let's consider Fiona's color. We know that Fiona is rough and green, which would make it round according to (4). But we also know that if Fiona is round and blue, then it is rough (from 6). We know that all blue things are rough (from 7) and all nice things are blue (from 10). But we also know that Fiona is not nice (from 1). However, we have (11) which states that all rough, nice things are blue. This implies that rough things which are not nice cannot be blue. Therefore, it is possible for Fiona to be rough and not blue.\n\nNow we need to find a possible color for Fiona. From (3), we know Fiona is rough. We also know that quiet things are green (from 8) and round things are green (from 9). But we also know that Fiona is not blue, because it is not nice. \n\nHowever, we also have (12) which states that rough, nice things are quiet. This implies that rough things which are not nice cannot be quiet. Since Fiona is not nice, we cannot conclude that Fiona is quiet. But we do know that Fiona is quiet (from 2). \n\nFrom (2), we know that Fiona is quiet. From (8), we know that quiet things are green. This means that Fiona must be green.\n\nTherefore, the statement \"Fiona is not green\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is quiet. (Given)\n2. Quiet things are green. (Given)\n   - From this, we can conclude that Fiona is green. (Because quiet things are green)\n\nNow, let's analyze the statement \"Fiona is not green\" in light of this conclusion.\n\nSince we have concluded that Fiona is green from the given information, the statement \"Fiona is not green\" is false.\n\nHowever, to ensure we have considered all information, let's analyze one more statement.\n\n3. If something is rough and green then it is round. (Given)\n4. Fiona is not nice. (Inferred from \"Erin is nice\" and \"Fiona is not nice\")\n5. All nice things are blue. (Given)\n   - This implies that non-nice things are not blue. (Since all blue things are not nice)\n6. Fiona is rough. (Given)\n7. Quiet things are green. (Given)\n   - We already concluded that Fiona is green.\n8. All rough, nice things are blue. (Given)\n   - This implies that non-nice, rough things are not blue. (Since all blue things are not nice)\n9. Round things are green. (Given)\n   - Since we already concluded that Fiona is green, and it's given that round things are green, we can conclude that Fiona is round.\n\nNow, let's analyze the statement \"Fiona is not green\" again.\n\nWe have concluded that Fiona is both green and round. Since the given information states that \"If something is rough and green then it is round,\" and we have concluded that Fiona is round and green, it implies that Fiona is also rough.\n\nSince Fiona is green and round, and it's given that \"If something is round and blue then it is rough,\" it implies that Fiona is not blue.\n\nNow, let's analyze the statement \"Fiona is not green\" again.\n\nSince we have concluded that Fiona is green, the statement \"Fiona is not green\" is false.\n\nSo, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is quiet. (From the given information)\n2. Quiet things are green. (From the given information)\n   Therefore, Fiona is green.\n\nNow, we can directly conclude that the statement \"Fiona is not green\" is false because we have determined that Fiona is indeed green.\n\nSo, the answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is not nice. (Given)\n\n2. All nice things are blue. (Given)\n   Therefore, Fiona is not blue. (From step 1 and step 2)\n\n3. All blue things are rough. (Given)\n   Since Fiona is not blue (from step 2), it does not necessarily mean she is not rough.\n\n4. Fiona is rough. (Given)\n\n5. All rough, nice things are blue. (Given)\n   Since Fiona is not nice (from step 1), it does not necessarily mean she is not rough, nice. However, since she is not nice (from step 1), she cannot be blue (from step 2), and therefore she cannot be a \"rough, nice thing\". This information is actually irrelevant to our conclusion.\n\n6. Quiet things are green. (Given)\n   Fiona is quiet. (Given)\n   Therefore, Fiona is green. (From step 6)\n\nNow, let's re-evaluate the original statement: \"Fiona is not green.\"\n\nBased on our analysis, we found that Fiona is indeed green (from step 6). Therefore, the statement \"Fiona is not green\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "not nice(fiona)",
+          "z3_formula": "not nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_fiona, green_fiona), round_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_fiona, blue_fiona), rough_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_fiona, rough_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_fiona, green_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_fiona, green_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_fiona, blue_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_fiona, nice_fiona), blue_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_fiona, nice_fiona), quiet_fiona)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_fiona, green_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_fiona, green_fiona), round_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(fiona)",
+          "z3_formula": "not nice_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_fiona, blue_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_fiona, green_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_fiona, rough_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_fiona, blue_fiona), rough_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_fiona, nice_fiona), blue_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_fiona, green_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_fiona, green_fiona), round_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_fiona, green_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> green(X)",
+          "z3_formula": "Implies(And(round_fiona, quiet_fiona), green_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_fiona, green_fiona)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_fiona, round_fiona)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> green(X)",
+          "z3_formula": "Implies(And(round_fiona, rough_fiona), green_fiona)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not green(fiona)",
+          "z3_formula": "not green_fiona == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not nice(fiona)",
+          "z3_formula": "not_nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_fiona, green_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(round_fiona, green_fiona), round_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_fiona, green_fiona), round_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_fiona, rough_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_fiona, blue_fiona), rough_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_fiona, nice_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_fiona, nice_fiona), blue_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_fiona, nice_fiona), quiet_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == False",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not nice(fiona)",
+          "z3_formula": "not nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_fiona, nice_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_fiona, rough_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_fiona, rough_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_fiona, green_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_fiona, green_fiona), round_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_fiona, green_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_fiona, nice_fiona), blue_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not green(fiona)",
+          "z3_formula": "Not(green_fiona) == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_fiona, green_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_fiona, green_fiona), round_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(fiona)",
+          "z3_formula": "not nice_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_fiona, blue_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(fiona)",
+          "z3_formula": "not blue_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_fiona, rough_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(fiona)",
+          "z3_formula": "not rough_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_fiona, green_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_fiona, blue_fiona), rough_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_fiona, round_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "rough(X) -> not nice(X)",
+          "z3_formula": "Implies(rough_fiona, not nice_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_fiona, blue_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(X) -> not rough(X)",
+          "z3_formula": "Implies(not blue_fiona, not rough_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_fiona, rough_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not (blue(X) -> rough(X))",
+          "z3_formula": "Not(Implies(blue_fiona, rough_fiona))",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_fiona, green_fiona)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not nice(fiona)",
+          "z3_formula": "not nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_fiona, green_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_fiona, green_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_fiona, blue_fiona), rough_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_fiona, rough_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_fiona, blue_fiona), rough_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_fiona, blue_fiona), rough_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_fiona, nice_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not nice(fiona)",
+          "z3_formula": "not nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_fiona, green_fiona), round_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_fiona, round_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_fiona, blue_fiona), rough_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_fiona, rough_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_fiona, green_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_fiona, green_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_fiona, rough_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_fiona, blue_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_fiona, nice_fiona), blue_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_fiona, nice_fiona), quiet_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not green(fiona)",
+          "z3_formula": "not green_fiona == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not nice(fiona)",
+          "z3_formula": "not_nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_fiona, green_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not nice(fiona)",
+          "z3_formula": "not nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_fiona, green_fiona), round_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_fiona, blue_fiona), rough_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_fiona, rough_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_fiona, green_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_fiona, green_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_fiona, blue_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_fiona, nice_fiona), blue_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_fiona, nice_fiona), quiet_fiona)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_fiona, green_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(fiona)",
+          "z3_formula": "not nice_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_X, nice_X)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(X)",
+          "z3_formula": "not blue_X == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> green(X)",
+          "z3_formula": "Implies(green_fiona, green_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_fiona, nice_fiona), blue_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_fiona, green_fiona), rough_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_fiona, blue_fiona), rough_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(fiona)",
+          "z3_formula": "not blue_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not green(fiona)",
+          "z3_formula": "not green_fiona == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_fiona, green_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not nice(fiona)",
+          "z3_formula": "not nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_fiona, blue_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(fiona)",
+          "z3_formula": "not blue_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_fiona, rough_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_fiona, nice_fiona), blue_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_fiona, green_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 9
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 144,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 24
+    },
+    "maxsat_stats": {
+      "satisfied": 22,
+      "excluded": 2,
+      "total_weight": 139,
+      "solve_time_ms": 1.1189337819814682
+    },
+    "timing": {
+      "trace_gen_s": 10.96,
+      "extraction_s": 22.144,
+      "dedup_s": 0.677,
+      "maxsat_s": 0.003,
+      "total_s": 33.784
+    }
+  }
+}

@@ -1,0 +1,833 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-437_Q1",
+    "problem": "The cow is not blue. The cow is green. The cow visits the mouse. The lion does not eat the mouse. The lion sees the cow. The lion visits the mouse. The mouse is blue. The mouse is red. The squirrel is red. The squirrel visits the mouse. If something eats the squirrel then the squirrel visits the cow. If the cow eats the mouse and the cow eats the squirrel then the squirrel visits the cow. If something is red and big then it eats the lion. If something visits the cow then it does not visit the squirrel. If something sees the mouse then the mouse eats the squirrel. If something sees the lion then it sees the mouse. If something is red and it visits the lion then it does not eat the cow. If something is blue then it sees the lion.\n\nDetermine whether the following statement is true, false, or unknown:\nThe squirrel visits the mouse.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nGreen($x, bool) ::: Is x green?\nRed($x, bool) ::: Is x red?\nBig($x, bool) ::: Is x big?\nVisits($x, $y, bool) ::: Does x visit y?\nEats($x, $y, bool) ::: Does x eat y?\nSees($x, $y, bool) ::: Does x see y?\n\nFacts:\nBlue(Cow, False) ::: The cow is not blue.\nGreen(Cow, True) ::: The cow is green.\nVisits(Cow, Mouse, True) ::: The cow visits the mouse.\nEats(Lion, Mouse, False) ::: The lion does not eat the mouse.\nSees(Lion, Cow, True) ::: The lion sees the cow.\nVisits(Lion, Mouse, True) ::: The lion visits the mouse.\nBlue(Mouse, True) ::: The mouse is blue.\nRed(Mouse, True) ::: The mouse is red.\nRed(Squirrel, True) ::: The squirrel is red.\nVisits(Squirrel, Mouse, True) ::: The squirrel visits the mouse.\n\nRules:\nEats($x, Squirrel, True) >>> Visits(Squirrel, Cow, True) ::: If something eats the squirrel then the squirrel visits the cow.\nEats(Cow, Mouse, True) && Eats(Cow, Squirrel, True) >>> Visits(Squirrel, Cow, True) ::: If the cow eats the mouse and the cow eats the squirrel then the squirrel visits the cow.\nRed($x, True) && Big($x, True) >>> Eats($x, Lion, True) ::: If something is red and big then it eats the lion.\nVisits($x, Cow, True) >>> Visits($x, Squirrel, False) ::: If something visits the cow then it does not visit the squirrel.\nSees($x, Mouse, True) >>> Eats(Mouse, Squirrel, True) ::: If something sees the mouse then the mouse eats the squirrel.\nSees($x, Lion, True) >>> Sees($x, Mouse, True) ::: If something sees the lion then it sees the mouse.\nRed($x, True) && Visits($x, Lion, True) >>> Eats($x, Cow, False) ::: If something is red and it visits the lion then it does not eat the cow.\nBlue($x, True) >>> Sees($x, Lion, True) ::: If something is blue then it sees the lion.\n\nQuery:\nVisits(Squirrel, Mouse, True) ::: The squirrel visits the mouse."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 58.0,
+      "True": 27.0,
+      "Unknown": 80.5
+    },
+    "answer_counts": {
+      "True": 2,
+      "Unknown": 3,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The squirrel visits the mouse\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the information: \"The squirrel is red\" and \"The squirrel visits the mouse is red\" and \"The squirrel is red\", we get that the squirrel is indeed red.\n\n2. The statement \"If something is red and big then it eats the lion\" is given. However, we do not have enough information about whether the squirrel is big or not, so we cannot conclude that the squirrel eats the lion based on this statement.\n\n3. We are given that \"If something is red and it visits the lion then it does not eat the cow.\" However, we do not know if the squirrel visits the lion or not.\n\n4. We are given that \"The squirrel visits the mouse.\" However, we need to check if this is consistent with the other information.\n\n5. From the statement \"The squirrel is red\" and \"The squirrel visits the mouse is red\", we get that the squirrel is indeed red. \n\n6. Now let's consider the statement \"The mouse is blue.\" and \"The mouse is red.\" This statement is contradictory. However, we cannot use this statement to conclude anything about the squirrel visiting the mouse because it is contradictory.\n\n7. Since we do not have enough information about whether the squirrel visits the lion or not, we cannot determine if the squirrel eats the cow or not. \n\n8. We are given that \"If something sees the lion then it sees the mouse.\" We do not have enough information to determine if the squirrel sees the lion or not. However, we know that the lion sees the cow and the lion visits the mouse. We cannot determine the relationship between the squirrel and the lion.\n\n9. We are given that \"If something is blue then it sees the lion.\" We know that \"The mouse is blue\" but we do not have enough information to determine if the mouse sees the lion or not.\n\n10. We are given that \"If something visits the cow then it does not visit the squirrel.\" However, we cannot determine if the squirrel visits the cow or not.\n\nBased on the above analysis, we can see that the statement \"The squirrel visits the mouse\" is not directly supported or refuted by the given information. However, the statement is also not refuted by the given information.\n\nSince we cannot determine the relationship between the squirrel and the mouse using the given information, we can conclude that the statement is \"unknown\".",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given information into rules and analyze the relationships between the statements. \n\nRules:\n\n1. The cow is green.\n2. The mouse is blue.\n3. The mouse is red.\n4. The squirrel is red.\n5. The squirrel visits the mouse.\n6. If something eats the squirrel, then the squirrel visits the cow.\n7. If the cow eats the mouse and the cow eats the squirrel, then the squirrel visits the cow.\n8. If something is red and big, then it eats the lion.\n9. If something visits the cow, then it does not visit the squirrel.\n10. If something sees the mouse, then the mouse eats the squirrel.\n11. If something sees the lion, then it sees the mouse.\n12. If something is red and it visits the lion, then it does not eat the cow.\n13. If something is blue, then it sees the lion.\n\nNow, let's analyze the statement \"The squirrel visits the mouse.\"\n\nGiven information:\n\n- The squirrel is red (rule 4).\n- The mouse is red (rule 3).\n- The squirrel visits the mouse (rule 5).\n\nHowever, there is no direct rule that states if a red thing visits another red thing, it cannot visit the mouse or it cannot visit a red mouse. \n\nHowever, there is a rule that states if something is red and it visits the lion, then it does not eat the cow (rule 12). But this rule does not apply to the given situation because it does not say anything about visiting the mouse. \n\nAnother rule states that if something sees the lion, then it sees the mouse (rule 11). This rule implies that if something sees the lion, it has a relationship with the mouse. However, there is no rule that says if a red thing sees the lion, it cannot visit a red mouse or if it visits a red mouse, then it cannot visit the squirrel.\n\nThe only relevant rule that can be applied is rule 9, which states that if something visits the cow, then it does not visit the squirrel. However, this rule does not apply to the situation because it does not say anything about visiting the mouse. \n\nBut there is another rule that states that if something is red and big, then it eats the lion (rule 8). Since the lion sees the mouse (rule 11), this rule implies that the red and big thing sees the mouse. However, rule 10 states that if something sees the mouse, then the mouse eats the squirrel. \n\nSince the squirrel is red (rule 4) and the mouse is red (rule 3), this situation implies that if something sees the lion, then the mouse eats the squirrel. However, there is no rule that states if a red thing sees the lion, it eats the mouse or if it eats the mouse, then it cannot visit the mouse.\n\nHowever, the rule that says if the cow is green and the cow visits the mouse then the mouse is not eaten (this is not a given rule but a conclusion we can derive from the given rules) and if the cow visits the squirrel then the squirrel visits the cow (rule 6 or 7). The squirrel visits the mouse (rule 5), so the cow must visit the squirrel and the squirrel must visit the cow. \n\nTherefore, the squirrel visits the cow, not the mouse.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the squirrel visits the mouse, we need to analyze the given statements and their implications.\n\n1. The cow is not blue. \n   - This statement does not provide any information about the squirrel or the mouse.\n\n2. The cow is green.\n   - This statement does not provide any information about the squirrel or the mouse.\n\n3. The cow visits the mouse.\n   - This statement does not provide any information about the squirrel.\n\n4. The lion does not eat the mouse.\n   - This statement does not provide any information about the squirrel.\n\n5. The lion sees the cow.\n   - This statement does not provide any information about the squirrel or the mouse.\n\n6. The lion visits the mouse.\n   - This statement does not provide any information about the squirrel.\n\n7. The mouse is blue.\n   - This statement does not provide any information about the squirrel visiting the mouse.\n\n8. The mouse is red.\n   - This statement does not provide any information about the squirrel visiting the mouse.\n\n9. The squirrel is red.\n   - This statement does not provide any information about the squirrel visiting the mouse.\n\n10. The squirrel visits the mouse.\n    - This is the statement we are trying to determine. However, we have not enough information to determine if this is true or false.\n\n11. If something eats the squirrel then the squirrel visits the cow.\n    - This statement does not provide any information about the squirrel visiting the mouse.\n\n12. If the cow eats the mouse and the cow eats the squirrel then the squirrel visits the cow.\n    - This statement does not provide any information about the squirrel visiting the mouse.\n\n13. If something is red and big then it eats the lion.\n    - This statement does not provide any information about the squirrel visiting the mouse.\n\n14. If something visits the cow then it does not visit the squirrel.\n    - This statement does not provide any information about the squirrel visiting the mouse.\n\n15. If something sees the mouse then the mouse eats the squirrel.\n    - This statement does not provide any information about the squirrel visiting the mouse.\n\n16. If something sees the lion then it sees the mouse.\n    - This statement does not provide any information about the squirrel visiting the mouse.\n\n17. If something is red and it visits the lion then it does not eat the cow.\n    - This statement does not provide any information about the squirrel visiting the mouse.\n\n18. If something is blue then it sees the lion.\n    - This statement does not provide any information about the squirrel visiting the mouse.\n\nHowever, from statement 10, it directly states that \"The squirrel visits the mouse.\" Since this statement is already given in the problem, we don't need to deduce it from other statements. Therefore, the answer to whether the squirrel visits the mouse is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel visits the mouse\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse is blue. The mouse is red. \n   This statement tells us that the mouse is both blue and red. However, it does not provide any information about its color in relation to the other objects.\n\n2. The squirrel is red. The squirrel visits the mouse. \n   We know the squirrel is red, but we still need to analyze if it visits the mouse.\n\n3. If something eats the squirrel then the squirrel visits the cow. \n   This statement implies that if the squirrel is eaten, it will visit the cow, but it does not provide any information about the squirrel visiting the mouse.\n\n4. If the cow eats the mouse and the cow eats the squirrel then the squirrel visits the cow. \n   This statement also does not provide any information about the squirrel visiting the mouse.\n\n5. If something is red and big then it eats the lion. \n   This statement is irrelevant to determining whether the squirrel visits the mouse.\n\n6. If something visits the cow then it does not visit the squirrel. \n   This statement is also irrelevant to determining whether the squirrel visits the mouse.\n\n7. If something sees the mouse then the mouse eats the squirrel. \n   This statement is also irrelevant to determining whether the squirrel visits the mouse.\n\n8. If something sees the lion then it sees the mouse. \n   This statement does not provide any information about the squirrel visiting the mouse.\n\n9. If something is red and it visits the lion then it does not eat the cow. \n   This statement is also irrelevant to determining whether the squirrel visits the mouse.\n\n10. If something is blue then it sees the lion.\n    This statement is also irrelevant to determining whether the squirrel visits the mouse.\n\nHowever, we have the following relevant statements:\n- The squirrel is red.\n- The mouse is both blue and red.\n- The squirrel visits the mouse. \n\nHowever, we can see that the statement \"The squirrel visits the mouse\" directly conflicts with the statement \"The mouse is blue\" and \"The mouse is red.\" \n\nHowever, given the rules, there is no direct rule that the squirrel does not visit the mouse. Therefore, we cannot conclude the statement as true or false based on given rules.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel visits the mouse\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. The squirrel is red. (Statement 8)\n2. The mouse is blue. (Statement 5)\n3. The mouse is red. (Statement 7)\n4. The squirrel visits the mouse. (Statement to be evaluated)\n\nFrom Statement 8, we know that the squirrel is red. \n\nFrom Statement 10, if something is red and big then it eats the lion. However, this does not provide any information about the squirrel visiting the mouse.\n\nHowever, Statement 11 says: If something visits the cow then it does not visit the squirrel. But we don't have any information about the squirrel visiting the cow.\n\nStatement 2 says: The mouse is blue. \nStatement 6 says: The lion sees the mouse.\nStatement 9 says: If something sees the lion then it sees the mouse. However, this does not provide any information about the squirrel visiting the mouse.\n\nStatement 4 says: The cow visits the mouse.\nStatement 14 says: If something sees the lion then it sees the mouse. However, this does not provide any information about the squirrel visiting the mouse.\n\nHowever, Statement 12 says: If something is red and it visits the lion then it does not eat the cow. Since the squirrel is red, it can visit the lion without eating the cow. However, this does not provide any information about the squirrel visiting the mouse.\n\nHowever, Statement 13 says: If something is blue then it sees the lion. Since the mouse is blue, it sees the lion. Statement 6 says: The lion sees the mouse. Statement 9 says: If something sees the lion then it sees the mouse. Since the mouse sees the lion, it can eat the squirrel. Statement 3 says: The mouse is red. Statement 1 says: The squirrel is red. Statement 4 says: The mouse visits the squirrel is not given, but the mouse eats the squirrel is given.\n\nSince the mouse eats the squirrel, Statement 15 says: If the mouse eats the squirrel then the squirrel visits the cow. However, this does not provide any information about the squirrel visiting the mouse.\n\nHowever, Statement 16 says: If the cow eats the mouse and the cow eats the squirrel then the squirrel visits the cow. Since we don't have any information about the cow eating the mouse and the squirrel, this does not provide any information about the squirrel visiting the mouse.\n\nHowever, Statement 3 says: The mouse is red. Statement 1 says: The squirrel is red. Statement 8 says: The squirrel visits the mouse is not given, but the mouse and the squirrel are both red.\n\nStatement 17 says: The squirrel visits the mouse. This is the statement we are trying to evaluate.\n\nHowever, Statement 8 says: The squirrel is red. Statement 3 says: The mouse is red. Statement 10 says: If something is red and big then it eats the lion. However, this does not provide any information about the squirrel visiting the mouse.\n\nHowever, Statement 11 says: If something visits the cow then it does not visit the squirrel. But we don't have any information about the squirrel visiting the cow.\n\nSince the mouse eats the squirrel, Statement 15 says: If the mouse eats the squirrel then the squirrel visits the cow. However, this does not provide any information about the squirrel visiting the mouse.\n\nHowever, Statement 16 says: If the cow eats the mouse and the cow eats the squirrel then the squirrel visits the cow. Since we don't have any information about the cow eating the mouse and the squirrel, this does not provide any information about the squirrel visiting the mouse.\n\nHowever, Statement 4 says: The cow visits the mouse. Statement 13 says: If something is blue then it sees the lion. Since the mouse is blue, it sees the lion. Statement 6 says: The lion sees the mouse. Statement 9 says: If something sees the lion then it sees the mouse. Since the mouse sees the lion, it can eat the squirrel. Statement 3 says: The mouse is red. Statement 1 says: The squirrel is red. Statement 4 says: The mouse visits the squirrel is not given, but the mouse eats the squirrel is given.\n\nSince the mouse eats the squirrel, Statement 15 says: If the mouse eats the squirrel then the squirrel visits the cow. However, this does not provide any information about the squirrel visiting the mouse.\n\nHowever, Statement 17 says: The squirrel visits the mouse. However, this is the statement we are trying to evaluate.\n\nHowever, Statement 3 says: The mouse is red. Statement 1 says: The squirrel is red. Statement 9 says: If something sees the lion then it sees the mouse. However, this does not provide any information about the squirrel visiting the mouse.\n\nHowever, Statement 11 says: If something visits the cow then it does not visit the squirrel. But we don't have any information about the squirrel visiting the cow.\n\nHowever, Statement 13 says: If something is blue then it sees the lion. Since the mouse is blue, it sees the lion. Statement 6 says: The lion sees the mouse. Statement 9 says: If something sees the lion then it sees the mouse. Since the mouse sees the lion, it can eat the squirrel. Statement 3 says: The mouse is red. Statement 1 says: The squirrel is red. Statement 4 says: The mouse visits the squirrel is not given, but the mouse eats the squirrel is given.\n\nSince the mouse eats the squirrel, Statement 15 says: If the mouse eats the squirrel then the squirrel visits the cow. However, this does not provide any information about the squirrel visiting the mouse.\n\nHowever, Statement 17 says: The squirrel visits the mouse. However, this is the statement we are trying to evaluate.\n\nHowever, Statement 3 says: The mouse is red. Statement 1 says: The squirrel is red. Statement 9 says: If something sees the lion then it sees the mouse. However, this does not provide any information about the squirrel visiting the mouse.\n\nHowever, Statement 11 says: If something visits the cow then it does not visit the squirrel. But we don't have any information about the squirrel visiting the cow.\n\nHowever, Statement 13 says: If something is blue then it sees the lion. Since the mouse is blue, it sees the lion. Statement 6 says: The lion sees the mouse. Statement 9 says: If something sees the lion then it sees the mouse. Since the mouse sees the lion, it can eat the squirrel. Statement 3 says: The mouse is red. Statement 1 says: The squirrel is red. Statement 4 says: The mouse visits the squirrel is not given, but the mouse eats the squirrel is given.\n\nSince the mouse eats the squirrel, Statement 15 says: If the mouse eats the squirrel then the squirrel visits the cow. However, this does not provide any information about the squirrel visiting the mouse.\n\nHowever, Statement 17 says: The squirrel visits the mouse. However, this is the statement we are trying to evaluate.\n\nHowever, Statement 8 says: The squirrel is red. Statement 3 says: The mouse is red. Statement 10 says: If something is red and big then it eats the lion. However, this does not provide any information about the squirrel visiting the mouse.\n\nHowever, Statement 11 says: If something visits the cow then it does not visit the squirrel. But we don't have any information about the squirrel visiting the cow.\n\nSince the mouse eats the squirrel, Statement 15 says: If the mouse eats the squirrel then the squirrel visits the cow. However, this does not provide any information about the squirrel visiting the mouse.\n\nHowever, Statement 16 says: If the cow eats the mouse and the cow eats the squirrel then the squirrel visits the cow. Since we don't have any information about the cow eating the mouse and the squirrel, this does not provide any information about the squirrel visiting the mouse.\n\nHowever, Statement 4 says: The cow visits the mouse. Statement 13 says: If something is blue then it sees the lion. Since the mouse is blue, it sees the lion. Statement 6 says: The lion sees the mouse. Statement 9 says: If something sees the lion then it sees the mouse. Since the mouse sees the lion, it can eat the squirrel. Statement 3 says: The mouse is red. Statement 1 says: The squirrel is red. Statement 4 says: The mouse visits the squirrel is not given, but the mouse eats the squirrel is given.\n\nSince the mouse eats the squirrel, Statement 15 says: If the mouse eats the squirrel then the squirrel visits the cow. However, this does not provide any information about the squirrel visiting the mouse.\n\nHowever, Statement 17 says: The squirrel visits the mouse. However, this is the statement we are trying to evaluate.\n\nHowever, Statement 8 says: The squirrel is red. Statement 3 says: The mouse is red. Statement 11 says: If something visits the cow then it does not visit the squirrel. However, this does not provide any information about the squirrel visiting the mouse.\n\nHowever, Statement 13 says: If something is blue then it sees the lion. Since the mouse is blue, it sees the lion. Statement 6 says: The lion sees the mouse. Statement 9 says: If something sees the lion then it sees the mouse. Since the mouse sees the lion, it can eat the squirrel. Statement 3 says: The mouse is red. Statement 1 says: The squirrel is red. Statement 4 says: The mouse visits the squirrel is not given, but the mouse eats the squirrel is given.\n\nSince the mouse eats the squirrel, Statement 15 says: If the mouse eats the squirrel then the squirrel visits the cow. However, this does",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and deduce the possible relationships between the animals.\n\n1. The cow is not blue. \n2. The cow is green. \n3. The cow visits the mouse. \n4. The lion does not eat the mouse. \n5. The lion sees the cow. \n6. The lion visits the mouse. \n7. The mouse is blue. \n8. The mouse is red. \n9. The squirrel is red. \n10. The squirrel visits the mouse. \n11. If something eats the squirrel then the squirrel visits the cow. \n12. If the cow eats the mouse and the cow eats the squirrel then the squirrel visits the cow. \n13. If something is red and big then it eats the lion. \n14. If something visits the cow then it does not visit the squirrel. \n15. If something sees the mouse then the mouse eats the squirrel. \n16. If something sees the lion then it sees the mouse. \n17. If something is red and it visits the lion then it does not eat the cow. \n18. If something is blue then it sees the lion.\n\nWe are asked to determine whether the statement \"The squirrel visits the mouse\" is true, false, or unknown.\n\nFrom statement 10, we directly know that the squirrel visits the mouse.\n\nHowever, we need to consider other statements that might affect this relationship.\n\nStatement 14 says that if something visits the cow then it does not visit the squirrel. However, this statement does not directly affect the relationship between the squirrel and the mouse.\n\nStatement 11 and 12 imply that if the cow eats the squirrel, then the squirrel visits the cow. However, these statements do not affect the relationship between the squirrel and the mouse.\n\nStatement 15 says that if something sees the mouse then the mouse eats the squirrel. However, this statement does not directly affect the relationship between the squirrel and the mouse.\n\nStatement 16 implies that if something sees the lion then it sees the mouse. However, this statement does not directly affect the relationship between the squirrel and the mouse.\n\nStatement 17 says that if something is red and it visits the lion then it does not eat the cow. However, this statement does not directly affect the relationship between the squirrel and the mouse.\n\nStatement 18 says that if something is blue then it sees the lion. However, this statement does not directly affect the relationship between the squirrel and the mouse.\n\nConsidering all the statements, we can conclude that the statement \"The squirrel visits the mouse\" is directly supported by statement 10. There are no other statements that contradict or affect this relationship.\n\nTherefore, the statement \"The squirrel visits the mouse\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we'll use logical deductions based on the given statements.\n\n1. The cow is not blue. (This statement doesn't provide any direct information about the squirrel visiting the mouse, so we'll ignore it for now.)\n\n2. The cow is green. (Similarly, this statement doesn't provide any direct information about the squirrel visiting the mouse.)\n\n3. The cow visits the mouse. (This statement implies that the cow is visiting the mouse, but it doesn't directly state that the squirrel visits the mouse.)\n\n4. The lion does not eat the mouse. (This statement doesn't provide any direct information about the squirrel visiting the mouse.)\n\n5. The lion sees the cow. (This statement implies that the lion is aware of the cow's presence, but it doesn't provide any direct information about the squirrel visiting the mouse.)\n\n6. The lion visits the mouse. (This statement implies that the lion is interacting with the mouse, but it doesn't directly state that the squirrel visits the mouse.)\n\n7. The mouse is blue. (This statement is in conflict with statement 8, which says the mouse is red. We'll have to resolve this conflict later.)\n\n8. The mouse is red. (This statement is in conflict with statement 7. This is an inconsistency, and based on the information given, we cannot determine the color of the mouse.)\n\n9. The squirrel is red. (This statement provides some information about the color of the squirrel, but it doesn't directly state that the squirrel visits the mouse.)\n\n10. The squirrel visits the mouse. (This is the statement we're trying to determine is true, false, or unknown. We'll come back to this statement later.)\n\n11. If something eats the squirrel then the squirrel visits the cow. (This statement doesn't provide any direct information about the squirrel visiting the mouse.)\n\n12. If the cow eats the mouse and the cow eats the squirrel then the squirrel visits the cow. (This statement doesn't provide any direct information about the squirrel visiting the mouse.)\n\n13. If something is red and big then it eats the lion. (This statement doesn't provide any direct information about the squirrel visiting the mouse.)\n\n14. If something visits the cow then it does not visit the squirrel. (This statement doesn't provide any direct information about the squirrel visiting the mouse.)\n\n15. If something sees the mouse then the mouse eats the squirrel. (This statement doesn't provide any direct information about the squirrel visiting the mouse.)\n\n16. If something sees the lion then it sees the mouse. (This statement doesn't provide any direct information about the squirrel visiting the mouse.)\n\n17. If something is red and it visits the lion then it does not eat the cow. (This statement doesn't provide any direct information about the squirrel visiting the mouse.)\n\n18. If something is blue then it sees the lion. (This statement doesn't provide any direct information about the squirrel visiting the mouse.)\n\nNow that we've gone through all the statements, let's resolve the conflict between statements 7 and 8. We cannot determine the color of the mouse based on the information given. However, we can try to deduce some information about the statement \"The squirrel visits the mouse\" using the other statements.\n\nFrom statement 10, we know that the squirrel visits the mouse. However, this statement is not directly supported by any other statement in the problem. We can try to deduce some information using the other statements.\n\nFrom statement 9, we know that the squirrel is red. From statement 16, if something sees the lion then it sees the mouse. However, we don't know if the lion sees the squirrel.\n\nFrom statement 13, if something is red and big then it eats the lion. We don't know if the squirrel is big, but if it is red, then it might be big.\n\nHowever, from statement 17, if something is red and it visits the lion then it does not eat the cow. This statement doesn't provide any direct information about the squirrel visiting the mouse.\n\nFrom statement 14, if something visits the cow then it does not visit the squirrel. However, this statement doesn't provide any direct information about the squirrel visiting the mouse.\n\nFrom statement 7 and 8, we know that the mouse is both blue and red. However, we cannot determine the color of the mouse based on the information given.\n\nBased on the information given, we cannot determine whether the squirrel visits the mouse or not. Therefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the squirrel visits the mouse, we need to analyze the given statements and apply them to the situation.\n\nGiven statements:\n1. The cow is not blue.\n2. The cow is green.\n3. The cow visits the mouse.\n4. The lion does not eat the mouse.\n5. The lion sees the cow.\n6. The lion visits the mouse.\n7. The mouse is blue.\n8. The mouse is red.\n9. The squirrel is red.\n10. The squirrel visits the mouse.\n11. If something eats the squirrel then the squirrel visits the cow.\n12. If the cow eats the mouse and the cow eats the squirrel then the squirrel visits the cow.\n13. If something is red and big then it eats the lion.\n14. If something visits the cow then it does not visit the squirrel.\n15. If something sees the mouse then the mouse eats the squirrel.\n16. If something sees the lion then it sees the mouse.\n17. If something is red and it visits the lion then it does not eat the cow.\n18. If something is blue then it sees the lion.\n\nWe can ignore statement 10 because it contradicts the statement we're trying to determine, which is \"The squirrel visits the mouse.\"\n\nWe can use statement 14, which says that if something visits the cow then it does not visit the squirrel. This tells us that the squirrel does not visit the cow because the squirrel visits the mouse. However, this does not directly tell us if the squirrel visits the mouse.\n\nWe can use statement 16, which says that if something sees the lion then it sees the mouse. The lion sees the cow (statement 5), so the cow sees the mouse. However, this does not directly tell us if the squirrel visits the mouse.\n\nWe can use statement 15, which says that if something sees the mouse then the mouse eats the squirrel. The cow sees the mouse (as determined above), but the cow does not eat the squirrel (statement 3). The lion sees the mouse (statement 6), but the lion does not eat the squirrel (statement 4). The statement about the mouse eating the squirrel is relevant to the question of whether the squirrel visits the mouse, but it is not directly applicable. \n\nThe only relevant statement left is statement 11, which says that if something eats the squirrel then the squirrel visits the cow. This statement does not directly tell us if the squirrel visits the mouse.\n\nHowever, we can use a process of elimination to determine if the squirrel visits the mouse. Statement 14 tells us that if the squirrel visits the cow, then the squirrel does not visit the mouse. Statement 11 tells us that if something eats the squirrel, then the squirrel visits the cow. Since the squirrel is red (statement 9), and the statement about the lion eating the squirrel is not relevant (because it does not affect the situation), we can conclude that if something is red and big then it eats the lion. \n\nHowever, we have no information that tells us if the lion is big. So, we cannot conclude that the lion eats the squirrel, and we cannot conclude that the squirrel visits the cow. \n\nHowever, the process of elimination tells us that the only way for the statement to be true is if the statement \"The lion sees the mouse\" is true. This is because if the lion does not see the mouse, then statement 16 does not apply, and we cannot determine if the squirrel visits the mouse.\n\nFrom statement 5, we know that the lion sees the cow. From statement 16, we know that if the lion sees the cow, then the lion sees the mouse. So, statement 16 is true.\n\nFrom statement 16, we know that the lion sees the mouse. From statement 6, we know that the lion visits the mouse.\n\nFrom statement 6, we know that the lion visits the mouse. From statement 15, we know that if the lion sees the mouse then the mouse eats the squirrel.\n\nFrom statement 15, we know that the mouse eats the squirrel. This means that the statement \"The squirrel visits the mouse\" is false.\n\nTherefore, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel visits the mouse\" is true, false, or unknown, we need to analyze the given information step by step and apply the rules to the available information.\n\nGiven information:\n1. The cow is not blue. (Not relevant to the statement)\n2. The cow is green. (Not relevant to the statement)\n3. The cow visits the mouse. (Not relevant to the statement)\n4. The lion does not eat the mouse. (Not relevant to the statement)\n5. The lion sees the cow. (Not relevant to the statement)\n6. The lion visits the mouse. (Not relevant to the statement)\n7. The mouse is blue. (Not relevant to the statement)\n8. The mouse is red. (Not relevant to the statement)\n9. The squirrel is red. (Not relevant to the statement)\n10. The squirrel visits the mouse. (This is the statement we are evaluating)\n11. If something eats the squirrel then the squirrel visits the cow. (Not relevant to the statement)\n12. If the cow eats the mouse and the cow eats the squirrel then the squirrel visits the cow. (Not relevant to the statement)\n13. If something is red and big then it eats the lion. (Not relevant to the statement)\n14. If something visits the cow then it does not visit the squirrel. (Not relevant to the statement)\n15. If something sees the mouse then the mouse eats the squirrel. (Not relevant to the statement)\n16. If something sees the lion then it sees the mouse. (Not relevant to the statement)\n17. If something is red and it visits the lion then it does not eat the cow. (Not relevant to the statement)\n18. If something is blue then it sees the lion. (Not relevant to the statement)\n\nHowever, rules 14 and 16 can potentially provide information. Let's re-examine them more closely.\n\n14. If something visits the cow then it does not visit the squirrel.\n16. If something sees the lion then it sees the mouse.\n\nGiven information and inferences:\n- From rule 10, we are evaluating the statement that the squirrel visits the mouse.\n- From rule 14, if the squirrel visits the cow, it does not visit the squirrel. But this is not our concern here; our concern is whether the squirrel visits the mouse or not.\n- From rule 16, if something sees the lion, then it sees the mouse. However, this is also not relevant because there is no information provided that the squirrel sees the lion.\n\nHowever, rule 16 can provide information when combined with other rules. Since there's no information that the squirrel sees the lion, we can't directly apply rule 16. Nonetheless, we can infer that if the lion sees the mouse, then something sees the lion (rule 16), and this information is linked to rule 8 (The mouse is red) and rule 9 (The squirrel is red), and rule 17 (If something is red and it visits the lion then it does not eat the cow).\n\nHowever, the information that the squirrel visits the mouse is explicitly given in the problem as statement 10. This directly answers the question, and no additional analysis is required.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel visits the mouse\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. The squirrel is red. (Given)\n2. The squirrel visits the mouse. (Statement to be evaluated)\n\nFrom statement 1, we know the squirrel is red.\n\n3. The squirrel is red. (Given)\n4. If something is red and big then it eats the lion. (Given)\nThis statement implies that a red and big entity eats the lion, but it does not directly relate to the squirrel visiting the mouse.\n\n5. The squirrel visits the mouse. (Statement to be evaluated)\nHowever, we cannot directly conclude this from the given statements. We need more information.\n\n6. The squirrel visits the mouse. (Statement to be evaluated)\nFrom the statement \"If something visits the cow then it does not visit the squirrel,\" we cannot directly conclude that the squirrel visits the mouse.\n\n7. The squirrel is red. (Given)\n8. The mouse is red. (Given)\nFrom these statements, we cannot determine whether the squirrel visits the mouse.\n\n9. The mouse is blue. (Given)\n10. The mouse is red. (Given)\nThis statement implies that the mouse is both blue and red. However, this does not affect the evaluation of the statement \"The squirrel visits the mouse.\"\n\n11. The squirrel visits the mouse. (Statement to be evaluated)\nFrom the statement \"If something sees the mouse then the mouse eats the squirrel,\" we cannot directly conclude that the squirrel visits the mouse.\n\n12. The lion sees the mouse. (Given)\n13. If something sees the lion then it sees the mouse. (Given)\nThis statement implies that something that sees the lion sees the mouse, but it does not directly relate to the squirrel visiting the mouse.\n\n14. The mouse is blue. (Given)\n15. If something is blue then it sees the lion. (Given)\nThis statement implies that the blue mouse sees the lion, but it does not directly relate to the squirrel visiting the mouse.\n\nSince we have not found any direct or indirect implications that can confirm or deny the statement \"The squirrel visits the mouse,\" we must conclude that the statement is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel visits the mouse\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nFrom the given information:\n\n1. The squirrel is red. (Squirrel is red)\n2. The mouse is red. (Mouse is red)\n3. If something is red and big then it eats the lion. (Big and red implies eating lion)\n4. The lion sees the mouse. (Lion sees the mouse)\n5. If something sees the lion then it sees the mouse. (Seeing lion implies seeing mouse)\n6. The squirrel visits the mouse is not directly stated, but we can use other information to deduce it.\n\nNow, let's analyze the statement \"If something eats the squirrel then the squirrel visits the cow.\" We can break this down further:\n\n- If something eats the squirrel, it must be big and red (from statement 3).\n- If something is big and red, it sees the lion (from statement 3).\n- If something sees the lion, it sees the mouse (from statement 5).\n- The lion sees the mouse (from statement 4).\n\nHowever, this does not directly imply that the squirrel visits the mouse. Instead, we need to use another rule:\n\n- If the cow eats the mouse and the cow eats the squirrel then the squirrel visits the cow. (This is not relevant to our current scenario)\n- If something visits the cow then it does not visit the squirrel. (This implies that visiting the cow and visiting the squirrel are mutually exclusive)\n- The cow is green. (This is not relevant to our current scenario)\n- The cow visits the mouse. (This is not relevant to our current scenario)\n- The lion does not eat the mouse. (This is not relevant to our current scenario)\n\nHowever, we have another rule that might be useful:\n\n- The mouse is blue. (Mouse is blue)\n- The mouse is red. (Mouse is red) \n- If something is blue then it sees the lion. (Blue implies seeing lion)\n- The lion sees the mouse. (Lion sees the mouse)\n- If something sees the lion then it sees the mouse. (Seeing lion implies seeing mouse)\n- The squirrel is red. (Squirrel is red)\n- The squirrel visits the mouse.\n\nNow, we know that the mouse is both blue and red. And, we have a rule that if something is blue then it sees the lion. We also know that the lion sees the mouse. We can deduce that the mouse sees the lion because it sees the mouse (from rule 5). Now, since the mouse is blue, it sees the lion.\n\nHowever, there's a rule that says if something is red and it visits the lion then it does not eat the cow. But, this rule is not relevant to our current scenario. Instead, we need to use another rule:\n\n- The squirrel is red. (Squirrel is red)\n- The squirrel visits the mouse. (Squirrel visits the mouse)\n\nUsing the rule \"If something visits the cow then it does not visit the squirrel\" we cannot infer that the squirrel visits the mouse from the given information. However, we have a rule that says \"The lion sees the mouse\" and \"The lion does not eat the mouse\" from the given information. But, we also have another rule that says \"If something sees the lion then it sees the mouse\" and \"The lion sees the mouse\" and we cannot deduce that the squirrel sees the lion.\n\nHowever, we can use another rule to determine whether the statement \"The squirrel visits the mouse\" is true, false, or unknown:\n\n- The squirrel visits the mouse. (Squirrel visits the mouse)\n\nHowever, we also have another rule that says \"If something visits the cow then it does not visit the squirrel.\" We cannot deduce that the squirrel visits the mouse from the given information.\n\nHowever, we can use another rule to determine whether the statement \"The squirrel visits the mouse\" is true, false, or unknown:\n\n- The mouse is red. (Mouse is red)\n- The mouse is blue. (Mouse is blue)\n- If something is red and it visits the lion then it does not eat the cow. (Red and lion implies not eating cow)\n- The lion sees the mouse. (Lion sees the mouse)\n- If something sees the lion then it sees the mouse. (Seeing lion implies seeing mouse)\n- The squirrel is red. (Squirrel is red)\n- If something is blue then it sees the lion. (Blue implies seeing lion)\n- The lion does not eat the mouse. (Lion does not eat mouse)\n- The squirrel visits the mouse.\n\nNow, we can use a different approach to determine whether the statement \"The squirrel visits the mouse\" is true, false, or unknown:\n\n- The squirrel is red. (Squirrel is red)\n- The squirrel visits the mouse. (Squirrel visits the mouse)\n\nHowever, we cannot deduce that the squirrel visits the mouse from the given information. However, we can use another rule to determine whether the statement \"The squirrel visits the mouse\" is true, false, or unknown:\n\n- The mouse is blue. (Mouse is blue)\n- If something is blue then it sees the lion. (Blue implies seeing lion)\n- The lion sees the mouse. (Lion sees the mouse)\n- If something sees the lion then it sees the mouse. (Seeing lion implies seeing mouse)\n- The squirrel is red. (Squirrel is red)\n- If something is red and big then it eats the lion. (Big and red implies eating lion)\n- The lion does not eat the mouse. (Lion does not eat mouse)\n\nHowever, we cannot deduce that the squirrel visits the mouse from the given information. However, we can use another rule to determine whether the statement \"The squirrel visits the mouse\" is true, false, or unknown:\n\n- The squirrel is red. (Squirrel is red)\n- The mouse is red. (Mouse is red)\n- The lion does not eat the mouse. (Lion does not eat mouse)\n- If something is red and big then it eats the lion. (Big and red implies eating lion)\n- The lion sees the mouse. (Lion sees the mouse)\n- If something sees the lion then it sees the mouse. (Seeing lion implies seeing mouse)\n- The squirrel visits the mouse. (Squirrel visits the mouse)\n\nUsing the rule \"If something sees the lion then it sees the mouse\" we cannot deduce that the squirrel visits the mouse from the given information. However, we have another rule that says \"The lion does not eat the mouse\" and \"The lion sees the mouse\" and we cannot deduce that the squirrel sees the lion.\n\nHowever, we can use another rule to determine whether the statement \"The squirrel visits the mouse\" is true, false, or unknown:\n\n- The lion does not eat the mouse. (Lion does not eat mouse)\n- The lion sees the mouse. (Lion sees the mouse)\n- If something sees the lion then it sees the mouse. (Seeing lion implies seeing mouse)\n- The squirrel is red. (Squirrel is red)\n- The mouse is red. (Mouse is red)\n- The squirrel visits the mouse. (Squirrel visits the mouse)\n\nHowever, we cannot deduce that the squirrel visits the mouse from the given information. However, we can use another rule to determine whether the statement \"The squirrel visits the mouse\" is true, false, or unknown:\n\n- The squirrel is red. (Squirrel is red)\n- The mouse is red. (Mouse is red)\n- The lion sees the mouse. (Lion sees the mouse)\n- If something sees the lion then it sees the mouse. (Seeing lion implies seeing mouse)\n- The squirrel visits the mouse. (Squirrel visits the mouse)\n\nHowever, we cannot deduce that the squirrel visits the mouse from the given information. However, we can use another rule to determine whether the statement \"The squirrel visits the mouse\" is true, false, or unknown:\n\n- The squirrel is red. (Squirrel is red)\n- The mouse is red. (Mouse is red)\n- The lion sees the mouse. (Lion sees the mouse)\n- If something sees the lion then it sees the mouse. (Seeing lion implies seeing mouse)\n- The squirrel visits the mouse. (Squirrel visits the mouse)\n\nHowever, we cannot deduce that the squirrel visits the mouse from the given information. However, we can use another rule to determine whether the statement \"The squirrel visits the mouse\" is true, false, or unknown:\n\n- The lion does not eat the mouse. (Lion does not eat mouse)\n- The lion sees the mouse. (Lion sees the mouse)\n- If something sees the lion then it sees the mouse. (Seeing lion implies seeing mouse)\n- The squirrel is red. (Squirrel is red)\n- The mouse is red. (Mouse is red)\n- The squirrel visits the mouse. (Squirrel visits the mouse)\n\nHowever, we cannot deduce that the squirrel visits the mouse from the given information. However, we can use another rule to determine whether the statement \"The squirrel visits the mouse\" is true, false, or unknown:\n\n- The squirrel is red. (Squirrel is red)\n- The mouse is red. (Mouse is red)\n- The lion sees the mouse. (Lion sees the mouse)\n- If something sees the lion then it sees the mouse. (Seeing lion implies seeing mouse)\n- The squirrel visits the mouse. (Squirrel visits the mouse)\n\nHowever, we cannot deduce that the squirrel visits the mouse from the given information.\n\nHowever, we can use another rule to determine whether the statement \"The squirrel visits the mouse\" is true, false, or unknown:\n\n- The mouse is blue. (Mouse is blue)\n- The mouse is red. (Mouse is red)\n- If something is blue then",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel visits the mouse\" is true, false, or unknown, we need to analyze the given statements and apply them to the situation.\n\n1. The squirrel is red. (From the statement: The squirrel is red.)\n2. The mouse is blue. (From the statement: The mouse is blue.)\n3. The mouse is red. (From the statement: The mouse is red.)\n4. The squirrel visits the mouse. (The statement we need to determine is true or false.)\n\nHowever, we can derive some information from other statements.\n\n5. If something is red and big then it eats the lion. (This statement does not apply directly to the squirrel and mouse.)\n6. If something is red and it visits the lion then it does not eat the cow. (This statement does not apply directly to the squirrel and mouse.)\n7. The lion sees the mouse. (From the statement: The lion sees the mouse.)\n8. If something sees the lion then it sees the mouse. (This implies that the lion sees the mouse, which is already given.)\n9. The lion does not eat the mouse. (From the statement: The lion does not eat the mouse.)\n10. The cow visits the mouse. (From the statement: The cow visits the mouse.)\n11. If something visits the cow then it does not visit the squirrel. (This implies that the cow does not visit the squirrel.)\n\nFrom the above statements, we can see that the cow visits the mouse, but it does not necessarily mean that the squirrel visits the mouse.\n\nHowever, we can find information from another statement:\n\n12. The squirrel is red. (From the statement: The squirrel is red.)\n13. The mouse is red. (From the statement: The mouse is red.)\n14. The squirrel visits the mouse. (The statement we need to determine is true or false.)\n\nWe still cannot determine the truth value of this statement.\n\nLet's consider another statement:\n\n15. The mouse is blue. (From the statement: The mouse is blue.)\n16. If something is blue then it sees the lion. (This implies that the mouse sees the lion.)\n17. The lion sees the mouse. (From the statement: The lion sees the mouse.)\n\nWe still cannot determine the truth value of this statement.\n\nHowever, we can find information from another statement:\n\n18. The squirrel is red. (From the statement: The squirrel is red.)\n19. The squirrel visits the mouse. (The statement we need to determine is true or false.)\n20. The squirrel visits the mouse. (The statement we need to determine is true or false.)\n\nWe still cannot determine the truth value of this statement.\n\nLet's consider another statement:\n\n21. If the cow eats the mouse and the cow eats the squirrel then the squirrel visits the cow. (This implies that the cow eats the mouse and the squirrel, but it does not necessarily mean that the squirrel visits the mouse.)\n\nWe still cannot determine the truth value of this statement.\n\nHowever, we can find information from another statement:\n\n22. The squirrel is red. (From the statement: The squirrel is red.)\n23. The squirrel visits the mouse. (The statement we need to determine is true or false.)\n24. The squirrel is red. (From the statement: The squirrel is red.)\n25. The mouse is red. (From the statement: The mouse is red.)\n\nWe still cannot determine the truth value of this statement.\n\nLet's consider another statement:\n\n26. If something eats the squirrel then the squirrel visits the cow. (This implies that the squirrel visits the cow, but it does not necessarily mean that the squirrel visits the mouse.)\n\nWe still cannot determine the truth value of this statement.\n\nHowever, we can find information from another statement:\n\n27. The squirrel visits the mouse. (The statement we need to determine is true or false.)\n\nWe still cannot determine the truth value of this statement.\n\nLet's consider another statement:\n\n28. The squirrel is red. (From the statement: The squirrel is red.)\n29. The mouse is blue. (From the statement: The mouse is blue.)\n30. The mouse is red. (From the statement: The mouse is red.)\n\nWe still cannot determine the truth value of this statement.\n\nHowever, we can find information from another statement:\n\n31. The squirrel is red. (From the statement: The squirrel is red.)\n32. The squirrel visits the mouse. (The statement we need to determine is true or false.)\n33. The squirrel visits the mouse. (The statement we need to determine is true or false.)\n\nWe still cannot determine the truth value of this statement.\n\nAfter analyzing the given statements and applying them to the situation, we cannot determine whether the statement \"The squirrel visits the mouse\" is true, false, or unknown. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel) & red(squirrel)",
+          "z3_formula": "And(red_squirrel, red_squirrel) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> eats(X, lion)",
+          "z3_formula": "Implies(And(red_squirrel, big_squirrel), eats_squirrel_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & visits(X, lion) -> not(visits(X, cow))",
+          "z3_formula": "Implies(And(red_squirrel, visits_squirrel_lion), Not(visits_squirrel_cow))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, mouse)",
+          "z3_formula": "visits_squirrel_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(mouse) & red(mouse)",
+          "z3_formula": "And(blue_mouse, red_mouse) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> sees(X, lion)",
+          "z3_formula": "Implies(blue_mouse, sees_mouse_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> not(visits(X, squirrel))",
+          "z3_formula": "Implies(visits_squirrel_cow, Not(visits_squirrel_squirrel))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, mouse)",
+          "z3_formula": "visits_squirrel_mouse == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, mouse)",
+          "z3_formula": "visits_squirrel_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> eats(X, lion)",
+          "z3_formula": "Implies(And(red_squirrel, big_squirrel), eats_squirrel_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> sees(X, mouse)",
+          "z3_formula": "Implies(sees_squirrel_lion, sees_squirrel_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> eats(mouse, squirrel)",
+          "z3_formula": "Implies(sees_squirrel_mouse, eats_mouse_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> not visits(X, squirrel)",
+          "z3_formula": "Implies(visits_cow, not visits_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> visits(X, cow)",
+          "z3_formula": "Implies(eats_cow_squirrel, visits_cow)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) & eats(X, squirrel) -> visits(X, cow)",
+          "z3_formula": "Implies(And(eats_cow_mouse, eats_cow_squirrel), visits_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, cow)",
+          "z3_formula": "visits_squirrel_cow == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not visits(squirrel, mouse)",
+          "z3_formula": "not visits_squirrel_mouse == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, mouse)",
+          "z3_formula": "visits_squirrel_mouse == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(mouse) & red(mouse)",
+          "z3_formula": "And(blue_mouse, red_mouse) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, mouse)",
+          "z3_formula": "visits_squirrel_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> visits(X, cow)",
+          "z3_formula": "Implies(eats_something_squirrel, visits_something_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(cow, mouse) & eats(cow, squirrel) -> visits(squirrel, cow)",
+          "z3_formula": "Implies(And(eats_cow_mouse, eats_cow_squirrel), visits_squirrel_cow)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> eats(X, lion)",
+          "z3_formula": "Implies(And(red_X, big_X), eats_X_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> not(visits(X, squirrel))",
+          "z3_formula": "Implies(visits_X_cow, Not(visits_X_squirrel))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> eats(mouse, squirrel)",
+          "z3_formula": "Implies(sees_X_mouse, eats_mouse_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> sees(X, mouse)",
+          "z3_formula": "Implies(sees_X_lion, sees_X_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & visits(X, lion) -> not(eats(X, cow))",
+          "z3_formula": "Implies(And(red_X, visits_X_lion), Not(eats_X_cow))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> sees(X, lion)",
+          "z3_formula": "Implies(blue_X, sees_X_lion)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> eats(X, lion)",
+          "z3_formula": "Implies(And(red_squirrel, big_squirrel), eats_squirrel_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> !visits(X, squirrel)",
+          "z3_formula": "Implies(visits_cow_squirrel, !visits_squirrel_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> sees(X, mouse)",
+          "z3_formula": "Implies(sees_mouse_lion, sees_mouse_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, mouse)",
+          "z3_formula": "visits_cow_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> sees(X, mouse)",
+          "z3_formula": "Implies(sees_mouse_lion, sees_mouse_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & visits(X, lion) -> !eats(X, cow)",
+          "z3_formula": "Implies(And(red_squirrel, visits_squirrel_lion), !eats_squirrel_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "eats(mouse, squirrel)",
+          "z3_formula": "eats_mouse_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> visits(X, cow)",
+          "z3_formula": "Implies(eats_mouse_squirrel, visits_mouse_cow)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) & eats(X, Z) -> visits(X, cow)",
+          "z3_formula": "Implies(And(eats_mouse_squirrel, eats_mouse_squirrel), visits_mouse_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, mouse)",
+          "z3_formula": "visits_cow_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> sees(X, lion)",
+          "z3_formula": "Implies(blue_mouse, sees_mouse_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, mouse)",
+          "z3_formula": "sees_lion_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> sees(X, mouse)",
+          "z3_formula": "Implies(sees_mouse_lion, sees_mouse_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, cow)",
+          "z3_formula": "visits_squirrel_cow == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, mouse)",
+          "z3_formula": "visits_squirrel_mouse == Unknown",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, mouse)",
+          "z3_formula": "visits_squirrel_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> !visits(X, squirrel)",
+          "z3_formula": "Implies(visits_squirrel_cow, !visits_squirrel_squirrel)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> visits(X, cow)",
+          "z3_formula": "Implies(eats_cow_squirrel, visits_cow_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & eats(X, cow) -> visits(X, cow)",
+          "z3_formula": "Implies(And(eats_cow_squirrel, eats_cow_cow), visits_cow_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> eats(mouse, squirrel)",
+          "z3_formula": "Implies(sees_mouse_mouse, eats_mouse_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> sees(X, mouse)",
+          "z3_formula": "Implies(sees_lion_lion, sees_lion_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> eats(X, lion)",
+          "z3_formula": "Implies(And(red_squirrel, big_squirrel), eats_squirrel_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & visits(X, lion) -> !eats(X, cow)",
+          "z3_formula": "Implies(And(red_squirrel, visits_squirrel_lion), !eats_squirrel_cow)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> sees(X, lion)",
+          "z3_formula": "Implies(blue_mouse, sees_mouse_lion)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not blue(cow)",
+          "z3_formula": "Not(blue_cow) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(cow)",
+          "z3_formula": "green_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, mouse)",
+          "z3_formula": "visits_cow_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(lion, mouse)",
+          "z3_formula": "Not(eats_lion_mouse) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cow)",
+          "z3_formula": "sees_lion_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, mouse)",
+          "z3_formula": "visits_lion_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, mouse)",
+          "z3_formula": "visits_squirrel_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> visits(X, cow)",
+          "z3_formula": "Implies(eats_X_squirrel, visits_X_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(cow, mouse) & visits(cow, squirrel) -> visits(squirrel, cow)",
+          "z3_formula": "Implies(And(visits_cow_mouse, visits_cow_squirrel), visits_squirrel_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> eats(X, lion)",
+          "z3_formula": "Implies(And(red_X, big_X), eats_X_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> not visits(X, squirrel)",
+          "z3_formula": "Implies(visits_X_cow, Not(visits_X_squirrel))",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> eats(mouse, squirrel)",
+          "z3_formula": "Implies(sees_X_mouse, eats_mouse_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> sees(X, mouse)",
+          "z3_formula": "Implies(sees_X_lion, sees_X_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & visits(X, lion) -> not eats(X, cow)",
+          "z3_formula": "Implies(And(red_X, visits_X_lion), Not(eats_X_cow))",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> sees(X, lion)",
+          "z3_formula": "Implies(blue_X, sees_X_lion)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not blue(cow)",
+          "z3_formula": "not blue_cow",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(cow)",
+          "z3_formula": "green_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, mouse)",
+          "z3_formula": "visits_cow_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(lion, mouse)",
+          "z3_formula": "not eats_lion_mouse",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cow)",
+          "z3_formula": "sees_lion_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, mouse)",
+          "z3_formula": "visits_lion_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, mouse)",
+          "z3_formula": "visits_squirrel_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> visits(X, cow)",
+          "z3_formula": "Implies(eats_X_squirrel, visits_X_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) & eats(X, squirrel) -> visits(X, cow)",
+          "z3_formula": "Implies(And(eats_X_mouse, eats_X_squirrel), visits_X_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "(red(X) & big(X)) -> eats(X, lion)",
+          "z3_formula": "Implies(And(red_X, big_X), eats_X_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> not visits(X, squirrel)",
+          "z3_formula": "Implies(visits_X_cow, not visits_X_squirrel)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> eats(mouse, squirrel)",
+          "z3_formula": "Implies(sees_X_mouse, eats_mouse_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> sees(X, mouse)",
+          "z3_formula": "Implies(sees_X_lion, sees_X_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & visits(X, lion) -> not eats(X, cow)",
+          "z3_formula": "Implies(And(red_X, visits_X_lion), not eats_X_cow)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> sees(X, lion)",
+          "z3_formula": "Implies(blue_X, sees_X_lion)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, mouse)",
+          "z3_formula": "visits_squirrel_mouse == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, mouse)",
+          "z3_formula": "visits_squirrel_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> eats(X, lion)",
+          "z3_formula": "Implies(And(red_squirrel, big_squirrel), eats_squirrel_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> not visits(X, squirrel)",
+          "z3_formula": "Implies(visits_squirrel_cow, not visits_squirrel_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> sees(X, lion)",
+          "z3_formula": "Implies(blue_mouse, sees_mouse_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> sees(X, mouse)",
+          "z3_formula": "Implies(sees_mouse_lion, sees_mouse_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, mouse)",
+          "z3_formula": "sees_lion_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> sees(X, lion)",
+          "z3_formula": "Implies(blue_mouse, sees_mouse_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(visits_squirrel_mouse == True) & Not(visits_squirrel_mouse == False)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> eats(X, lion)",
+          "z3_formula": "Implies(And(red_squirrel, big_squirrel), eats_squirrel_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, mouse)",
+          "z3_formula": "sees_lion_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> sees(X, mouse)",
+          "z3_formula": "Implies(sees_X_lion, sees_X_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_eat(lion, mouse)",
+          "z3_formula": "does_not_eat_lion_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> sees(X, lion)",
+          "z3_formula": "Implies(blue_mouse, sees_mouse_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, mouse)",
+          "z3_formula": "visits_squirrel_mouse == True",
+          "source_step": 8
+        }
+      ],
+      []
+    ],
+    "constraints_stats": {
+      "total_extracted": 117,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 43
+    },
+    "maxsat_stats": {
+      "satisfied": 42,
+      "excluded": 1,
+      "total_weight": 106,
+      "solve_time_ms": 1.1630179360508919
+    },
+    "timing": {
+      "trace_gen_s": 24.842,
+      "extraction_s": 43.775,
+      "dedup_s": 1.013,
+      "maxsat_s": 0.004,
+      "total_s": 69.634
+    }
+  }
+}

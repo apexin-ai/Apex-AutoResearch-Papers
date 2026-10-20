@@ -1,0 +1,582 @@
+{
+  "pid": "folio_164",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "gives_out_roses_on_tv(rose, bachelor)",
+          "z3_formula": "gives_out_roses_on_tv_rose_bachelor == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "on_tv(bachelor)",
+          "z3_formula": "on_tv_bachelor == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "portrays_real_people(bachelor)",
+          "z3_formula": "portrays_real_people_bachelor == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "reality_tv_show(real_people)",
+          "z3_formula": "reality_tv_show_real_people == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(reality_tv_show(breaking_bad))",
+          "z3_formula": "not_reality_tv_show_breaking_bad == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "on_mondays_at_8pm(rose)",
+          "z3_formula": "on_mondays_at_8pm_rose == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "on_mondays_at_8pm(rose) -> on_bachelor(rose)",
+          "z3_formula": "Implies(on_mondays_at_8pm_rose, on_bachelor_rose)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "on_bachelor(rose) -> on_bachelor(X)",
+          "z3_formula": "Implies(on_bachelor_rose, on_bachelor_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "on_bachelor(X) -> reality_tv_show(X)",
+          "z3_formula": "Implies(on_bachelor_X, reality_tv_show_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "reality_tv_show(X) -> reality_tv_show(X)",
+          "z3_formula": "Implies(reality_tv_show_X, reality_tv_show_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "reality_tv_show(breaking_bad) == False",
+          "z3_formula": "reality_tv_show_breaking_bad == False",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "on_tv(rose, monday, 8)",
+          "z3_formula": "on_tv_rose_monday_8 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "on_tv(rose, X, Y) -> on_bachelor(rose)",
+          "z3_formula": "Implies(on_tv_rose_monday_8, on_bachelor_rose)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "on_bachelor(rose) -> on_bachelor(X)",
+          "z3_formula": "Implies(on_bachelor_rose, on_bachelor_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "on_bachelor(X) -> reality_tv_show(X)",
+          "z3_formula": "Implies(on_bachelor_X, reality_tv_show_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "reality_tv_show(X) -> reality_tv_show(Y)",
+          "z3_formula": "Implies(reality_tv_show_X, reality_tv_show_Y)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(reality_tv_show(breaking_bad))",
+          "z3_formula": "not_reality_tv_show_breaking_bad == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(on_bachelor(breaking_bad))",
+          "z3_formula": "not_on_bachelor_breaking_bad == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(on_tv(breaking_bad, monday, 8))",
+          "z3_formula": "not_on_tv_breaking_bad_monday_8 == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "given_out_on_tv(rose, monday, 8)",
+          "z3_formula": "given_out_on_tv_rose_monday_8 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "given_out_on_tv(rose, X, Y) -> on_bachelor(X, Y)",
+          "z3_formula": "Implies(given_out_on_tv_rose_monday_8, on_bachelor_monday_8)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "on_bachelor(monday, 8)",
+          "z3_formula": "on_bachelor_monday_8 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "on_bachelor(X, Y) -> reality_tv_show(X, Y)",
+          "z3_formula": "Implies(on_bachelor_monday_8, reality_tv_show_monday_8)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "reality_tv_show(X, Y) -> reality_tv_show(X, Y)",
+          "z3_formula": "Implies(reality_tv_show_monday_8, reality_tv_show_monday_8)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "reality_tv_show(X, Y) -> reality_tv_show(X, Y)",
+          "z3_formula": "Implies(reality_tv_show_monday_8, reality_tv_show_monday_8)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not reality_tv_show(breaking_bad)",
+          "z3_formula": "not reality_tv_show_breaking_bad == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not on_bachelor(breaking_bad, monday, 8)",
+          "z3_formula": "not on_bachelor_breaking_bad_monday_8 == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "rose_given_on_tv",
+          "z3_formula": "rose_given_on_tv == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rose_given_on_tv -> on_bachelor",
+          "z3_formula": "Implies(rose_given_on_tv, on_bachelor)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "on_bachelor -> real_people",
+          "z3_formula": "Implies(on_bachelor, real_people)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "real_people -> reality_tv",
+          "z3_formula": "Implies(real_people, reality_tv)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not_reality_tv_breaking_bad",
+          "z3_formula": "not_reality_tv_breaking_bad == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "on_tv(rose, monday, 8)",
+          "z3_formula": "on_tv_rose_monday_8 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "on_tv(rose, X, Y) -> on_bachelor(rose)",
+          "z3_formula": "Implies(on_tv_rose_monday_8, on_bachelor_rose)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "on_bachelor(X) -> reality_tv_show(X)",
+          "z3_formula": "Implies(on_bachelor_rose, reality_tv_show_rose)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "reality_tv_show(X) -> reality_tv_show",
+          "z3_formula": "Implies(reality_tv_show_rose, reality_tv_show)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not reality_tv_show(breaking_bad)",
+          "z3_formula": "not reality_tv_show_breaking_bad == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not on_bachelor(breaking_bad)",
+          "z3_formula": "not on_bachelor_breaking_bad == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not on_monday_at_8(breaking_bad)",
+          "z3_formula": "not on_monday_at_8_breaking_bad == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "on_tv(rose, bachelor)",
+          "z3_formula": "on_tv_rose_bachelor == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "on_tv(rose, bachelor)",
+          "z3_formula": "on_tv_rose_bachelor == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "on_tv(bachelor, monday_8pm)",
+          "z3_formula": "on_tv_bachelor_monday_8pm == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "on_tv(X, bachelor) -> on_tv(X, monday_8pm)",
+          "z3_formula": "Implies(on_tv_rose_bachelor, on_tv_rose_monday_8pm)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "on_tv(X, monday_8pm) -> on_tv(X, monday_8pm)",
+          "z3_formula": "Implies(on_tv_rose_monday_8pm, on_tv_rose_monday_8pm)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "reality_tv(shows_real_people)",
+          "z3_formula": "reality_tv_shows_real_people == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "reality_tv(shows_real_people)",
+          "z3_formula": "reality_tv_shows_real_people == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "on_tv(X, bachelor) -> reality_tv(X)",
+          "z3_formula": "Implies(on_tv_rose_bachelor, reality_tv_rose)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "reality_tv(X) -> reality_tv(X)",
+          "z3_formula": "Implies(reality_tv_rose, reality_tv_rose)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not reality_tv(breaking_bad)",
+          "z3_formula": "not reality_tv_breaking_bad == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not on_tv(breaking_bad, monday_8pm)",
+          "z3_formula": "not on_tv_breaking_bad_monday_8pm == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "given_out_on_tv(rose, monday, 8)",
+          "z3_formula": "given_out_on_tv_rose_monday_8 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "given_out_on_tv(rose, X, Y) -> on_bachelor(rose)",
+          "z3_formula": "Implies(given_out_on_tv_rose_monday_8, on_bachelor_rose)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "on_bachelor(rose)",
+          "z3_formula": "on_bachelor_rose == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "on_bachelor(rose) -> portrays_real_people(rose)",
+          "z3_formula": "Implies(on_bachelor_rose, portrays_real_people_rose)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "portrays_real_people(rose)",
+          "z3_formula": "portrays_real_people_rose == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "portrays_real_people(rose) -> reality_tv_show(rose)",
+          "z3_formula": "Implies(portrays_real_people_rose, reality_tv_show_rose)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "reality_tv_show(rose)",
+          "z3_formula": "reality_tv_show_rose == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not reality_tv_show(breaking_bad)",
+          "z3_formula": "not reality_tv_show_breaking_bad == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "on_monday_at_8_pm(rose)",
+          "z3_formula": "on_monday_at_8_pm_rose == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "on_monday_at_8_pm(rose) -> on_bachelor(rose)",
+          "z3_formula": "Implies(on_monday_at_8_pm_rose, on_bachelor_rose)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "on_bachelor(rose) -> on_bachelor(X)",
+          "z3_formula": "Implies(on_bachelor_rose, on_bachelor_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "on_bachelor(X) -> portrays_real_people(X)",
+          "z3_formula": "Implies(on_bachelor_X, portrays_real_people_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "portrays_real_people(X) -> reality_tv_show(X)",
+          "z3_formula": "Implies(portrays_real_people_X, reality_tv_show_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "reality_tv_show(X) -> reality_tv_show(Breaking_Bad)",
+          "z3_formula": "Implies(reality_tv_show_X, reality_tv_show_Breaking_Bad)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "reality_tv_show(Breaking_Bad) == False",
+          "z3_formula": "reality_tv_show_Breaking_Bad == False",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "on_monday_at_8_pm(Breaking_Bad) == False",
+          "z3_formula": "Not(Or(And(on_monday_at_8_pm_rose, on_bachelor_rose), And(on_bachelor_rose, portrays_real_people_rose), And(portrays_real_people_rose, reality_tv_show_rose), And(reality_tv_show_rose, reality_tv_show_Breaking_Bad))) == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "given_out_on_tv(rose, monday, 8)",
+          "z3_formula": "given_out_on_tv_rose_monday_8 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "given_out_on_tv(X, Y, Z) -> bachelor(X, Y, Z)",
+          "z3_formula": "Implies(given_out_on_tv_rose_monday_8, bachelor_rose_monday_8)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "bachelor(X, Y, Z) -> portrays_real_people(X, Y, Z)",
+          "z3_formula": "Implies(bachelor_rose_monday_8, portrays_real_people_rose_monday_8)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "portrays_real_people(X, Y, Z) -> reality_tv_show(X, Y, Z)",
+          "z3_formula": "Implies(portrays_real_people_rose_monday_8, reality_tv_show_rose_monday_8)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not reality_tv_show(breaking_bad)",
+          "z3_formula": "not_reality_tv_show_breaking_bad == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not bachelor(monday, 8)",
+          "z3_formula": "not_bachelor_monday_8 == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "given_out_on_tv(rose, monday, 8)",
+          "z3_formula": "given_out_on_tv_rose_monday_8 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "given_out_on_tv(X, Y, Z) -> on_bachelor(X, Y, Z)",
+          "z3_formula": "Implies(given_out_on_tv_rose_monday_8, on_bachelor_rose_monday_8)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "on_bachelor(X, Y, Z) -> reality_tv_show(X, Y, Z)",
+          "z3_formula": "Implies(on_bachelor_rose_monday_8, reality_tv_show_rose_monday_8)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "reality_tv_show(X, Y, Z) -> portrays_real_people(X, Y, Z)",
+          "z3_formula": "Implies(reality_tv_show_rose_monday_8, portrays_real_people_rose_monday_8)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "portrays_real_people(X, Y, Z) -> reality_tv_show(X, Y, Z)",
+          "z3_formula": "Implies(portrays_real_people_rose_monday_8, reality_tv_show_rose_monday_8)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not reality_tv_show(breaking_bad)",
+          "z3_formula": "not reality_tv_show_breaking_bad == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(monday, 8, breaking_bad)",
+          "z3_formula": "unknown_monday_8_breaking_bad == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "on_tv(rose, monday, 8)",
+          "z3_formula": "on_tv_rose_monday_8 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "on_tv(rose, X, Y) -> on_bachelor(rose)",
+          "z3_formula": "Implies(on_tv_rose_monday_8, on_bachelor_rose)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "on_bachelor(rose) -> reality_tv(rose)",
+          "z3_formula": "Implies(on_bachelor_rose, reality_tv_rose)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "reality_tv(rose) -> reality_tv_show",
+          "z3_formula": "Implies(reality_tv_rose, reality_tv_show)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(reality_tv(breaking_bad))",
+          "z3_formula": "not_reality_tv_breaking_bad == True",
+          "source_step": 5
+        }
+      ]
+    }
+  ]
+}

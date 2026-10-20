@@ -1,0 +1,4 @@
+Script: /root/symb_invariant_consensus/run_cross_dataset_replication.py
+Args: --dataset proofwriter/logiqa --data-path PATH --k 12 --vllm-port PORT --methods sc,sica,abstention --output PATH
+Features: SC, SICA, Selective Abstention (entropy, multiple thresholds), McNemar test, resume, checkpoint
+Dry-run: PASSED (3 ProofWriter problems, K=4, port 8020)

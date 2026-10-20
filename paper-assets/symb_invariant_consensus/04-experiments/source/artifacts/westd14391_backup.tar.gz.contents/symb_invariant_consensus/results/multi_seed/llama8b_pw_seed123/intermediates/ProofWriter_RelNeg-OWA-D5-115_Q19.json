@@ -1,0 +1,1456 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-115_Q19",
+    "problem": "The bald eagle is blue. The bald eagle is red. The bald eagle likes the lion. The bald eagle needs the bear. The bald eagle needs the dog. The bear is not blue. The bear is nice. The bear needs the dog. The dog chases the bald eagle. The dog is red. The dog does not need the bear. The lion does not like the bear. If something likes the lion and it is not red then it chases the lion. If something is red and it needs the bald eagle then the bald eagle needs the lion. If something is round then it does not like the dog. If the bald eagle needs the dog then the dog is round. If something likes the dog then it likes the bald eagle. If something chases the lion and the lion likes the dog then the dog does not like the lion. If the bear likes the lion then the lion likes the dog. If something likes the bear then the bear likes the lion. If something is round then it likes the bear.\n\nDetermine whether the following statement is true, false, or unknown:\nThe dog does not need the dog.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nRed($x, bool) ::: Is x red?\nLikes($x, $y, bool) ::: Does x like y?\nNeeds($x, $y, bool) ::: Does x need y?\nChases($x, $y, bool) ::: Does x chase y?\nNice($x, bool) ::: Is x nice?\nRound($x, bool) ::: Is x round?\n\nFacts:\nBlue(BaldEagle, True) ::: The bald eagle is blue.\nRed(BaldEagle, True) ::: The bald eagle is red.\nLikes(BaldEagle, Lion, True) ::: The bald eagle likes the lion.\nNeeds(BaldEagle, Bear, True) ::: The bald eagle needs the bear.\nNeeds(BaldEagle, Dog, True) ::: The bald eagle needs the dog.\nBlue(Bear, False) ::: The bear is not blue.\nNice(Bear, True) ::: The bear is nice.\nNeeds(Bear, Dog, True) ::: The bear needs the dog.\nChases(Dog, BaldEagle, True) ::: The dog chases the bald eagle.\nRed(Dog, True) ::: The dog is red.\nNeeds(Dog, Bear, False) ::: The dog does not need the bear.\nLikes(Lion, Bear, False) ::: The lion does not like the bear.\n\nRules:\nLikes($x, Lion, True) && Red($x, False) >>> Chases($x, Lion, True) ::: If something likes the lion and it is not red then it chases the lion.\nRed($x, True) && Needs($x, BaldEagle, True) >>> Needs(BaldEagle, Lion, True) ::: If something is red and it needs the bald eagle then the bald eagle needs the lion.\nRound($x, True) >>> Likes($x, Dog, False) ::: If something is round then it does not like the dog.\nNeeds(BaldEagle, Dog, True) >>> Round(Dog, True) ::: If the bald eagle needs the dog then the dog is round.\nLikes($x, Dog, True) >>> Likes($x, BaldEagle, True) ::: If something likes the dog then it likes the bald eagle.\nChases($x, Lion, True) && Likes(Lion, Dog, True) >>> Likes(Dog, Lion, False) ::: If something chases the lion and the lion likes the dog then the dog does not like the lion.\nLikes(Bear, Lion, True) >>> Likes(Lion, Dog, True) ::: If the bear likes the lion then the lion likes the dog.\nLikes($x, Bear, True) >>> Likes(Bear, Lion, True) ::: If something likes the bear then the bear likes the lion.\nRound($x, True) >>> Likes($x, Bear, True) ::: If something is round then it likes the bear.\n\nQuery:\nNeeds(Dog, Dog, False) ::: The dog does not need the dog."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 111.0,
+      "Unknown": 198.5
+    },
+    "answer_counts": {
+      "Unknown": 9,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine if the statement is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement in question is: \"The dog does not need the dog.\"\n2. We have the following information: \n   - The bald eagle likes the lion.\n   - If something likes the lion and it is not red then it chases the lion. \n   - We don't have any information about the bald eagle's color or whether it chases the lion.\n3. We have the following information about the colors and relations:\n   - The bald eagle is blue.\n   - The bald eagle is red.\n   - We can conclude that the bald eagle is both blue and red, but this is not useful in this context.\n   - The dog is red.\n4. We have the following information about needs:\n   - The bald eagle needs the bear.\n   - The bald eagle needs the dog.\n   - The bear needs the dog.\n   - The dog does not need the bear.\n5. We have the following information about likes and dislikes:\n   - The bear is nice.\n   - The lion does not like the bear.\n   - The dog chases the bald eagle.\n   - If something likes the dog then it likes the bald eagle.\n   - If something likes the bear then the bear likes the lion.\n   - If something likes the bear then the bear likes the lion.\n   - If something is round then it likes the bear.\n   - If the bear likes the lion then the lion likes the dog.\n   - If the dog is round then the dog is round and it likes the bear, which implies that the bear likes the lion, and the lion likes the dog.\n\nFrom the given information, we can deduce the following:\n- The bald eagle needs the dog.\n- The bald eagle needs the bear.\n- The bear needs the dog.\n- The bear is not blue.\n- The bear is nice.\n- The dog is red.\n- The dog chases the bald eagle.\n\nHowever, we cannot directly determine whether the dog needs the dog or not. We cannot conclude the truth or falsity of the statement \"The dog does not need the dog\" from the given information.\n\nTherefore, the answer is: \n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The dog does not need the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle needs the dog. (Given)\n\n2. If the bald eagle needs the dog, then the dog is round. (From the rule: If the bald eagle needs the dog then the dog is round)\n\n   Since the dog is round, we can apply the next rule:\n   \n3. If something is round, then it likes the bear. (From the rule: If something is round then it likes the bear)\n\n   So, the dog likes the bear.\n\n4. The bear needs the dog. (Given)\n\n5. The bear is nice. (Given)\n\n6. The bear does not like the dog. (This is a contradiction with step 3, so we cannot directly conclude that the bear likes or dislikes the dog. However, we can continue to analyze the other statements.)\n\n7. The dog chases the bald eagle. (Given)\n\n8. The dog does not need the bear. (Given)\n\n9. The lion does not like the bear. (Given)\n\n10. The bear likes the lion. (If the bear likes the lion then the lion likes the dog. However, since the lion does not like the bear, we cannot conclude that the bear likes the lion. Therefore, this statement is unknown.)\n\n11. The lion does not like the bear. (Given)\n\n12. The dog is red. (Given)\n\n13. If something is red and it needs the bald eagle then the bald eagle needs the lion. (From the rule: If something is red and it needs the bald eagle then the bald eagle needs the lion)\n\n   Since the dog is red and the bald eagle needs the dog, we can conclude that the bald eagle needs the lion.\n\n14. Since the bald eagle needs the lion, we can apply the rule that if something likes the lion and it is not red, then it chases the lion. However, we cannot determine whether the bald eagle likes the lion or not, so we cannot conclude that the bald eagle chases the lion. Therefore, this is unknown.\n\nNow, let's go back to the original statement: \"The dog does not need the dog.\"\n\nFrom the given information, we know that the bald eagle needs the dog (step 1). However, we cannot determine whether the dog needs the dog or not. Therefore, the statement \"The dog does not need the dog\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to find the relationships between the given statements and use them to determine the truth of the given statement.\n\nFrom the given statements:\n\n1. The bald eagle is blue.\n2. The bald eagle is red. \n   - Since the bald eagle is both blue and red, it seems like a contradiction, but we will continue to analyze the statements.\n\n3. The bald eagle likes the lion.\n4. The bald eagle needs the bear.\n5. The bald eagle needs the dog.\n   - We will combine this information later.\n\n6. The bear is not blue.\n7. The bear is nice.\n8. The bear needs the dog.\n   - From this, we can conclude that the bear needs the dog, but the dog is nice to the bear.\n\n9. The dog chases the bald eagle.\n10. The dog is red.\n   - From this, we can conclude that the dog is red, but this contradicts the initial statement that the bald eagle is red. This is a contradiction, but we will continue to analyze the statements.\n\n11. The dog does not need the bear.\n12. The lion does not like the bear.\n\nNow, we will analyze the given conditions:\n\n13. If something likes the lion and it is not red then it chases the lion.\n   - Since we do not know if something likes the lion and it is not red, we cannot determine if it chases the lion.\n\n14. If something is red and it needs the bald eagle then the bald eagle needs the lion.\n   - Since the bald eagle is red and needs the dog, it implies that the bald eagle needs the lion. However, this contradicts the initial statement that the bald eagle likes the lion.\n\n15. If something is round then it does not like the dog.\n   - We do not know if something is round.\n\n16. If the bald eagle needs the dog then the dog is round.\n   - Since the bald eagle needs the dog, it implies that the dog is round.\n\n17. If something likes the dog then it likes the bald eagle.\n   - Since the bear likes the dog, it implies that the bear likes the bald eagle.\n\n18. If something chases the lion and the lion likes the dog then the dog does not like the lion.\n   - Since we do not know if something chases the lion, we cannot determine if the dog likes the lion.\n\n19. If the bear likes the lion then the lion likes the dog.\n   - Since the bear is nice and needs the dog, we can conclude that the bear likes the lion, and thus the lion likes the dog.\n\n20. If something likes the bear then the bear likes the lion.\n   - Since the bear is nice, we can conclude that the bear likes the lion.\n\n21. If something is round then it likes the bear.\n   - Since the dog is round, we can conclude that the dog likes the bear.\n\nNow, we can use the given conditions and the conclusions we have made to determine the truth of the given statement.\n\nFrom the given statement \"The dog does not need the dog.\":\n\n- Since the bald eagle needs the dog, it implies that the dog is round (from condition 16).\n- Since the dog is round, it implies that the dog likes the bear (from condition 21).\n- Since the bear is nice and needs the dog, we can conclude that the bear likes the lion (from condition 19).\n- Since the bear likes the lion, it implies that the lion likes the dog (from condition 19).\n- Since the lion likes the dog and the dog chases the bald eagle, it implies that the dog does not like the lion (from condition 18).\n- Since the dog does not like the lion, it is unknown whether the statement \"The dog does not need the dog\" is true or false.\n\nHowever, we cannot conclude that the statement is true or false, but we can conclude that it is not false. \n\nSince we cannot determine if the statement is true or false, we conclude that it is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given statements and deduce the information step by step.\n\n1. The bald eagle is blue.\n2. The bald eagle is red. \n   Since we have two statements that the bald eagle is blue and red, this creates a contradiction. However, since blue and red are not mutually exclusive colors, we can't conclude anything about the bald eagle's color.\n\n3. The bald eagle likes the lion.\n4. The bald eagle needs the bear.\n5. The bald eagle needs the dog.\n\nFrom statement 4, we know the bald eagle needs the bear.\n\n6. The bear is not blue.\n7. The bear is nice.\n\n8. The bear needs the dog.\n   We already know that the bald eagle needs the dog (statement 5). The fact that the bear needs the dog is consistent with the given information.\n\n9. The dog chases the bald eagle.\n10. The dog is red.\n   From statement 10, we know the dog is red.\n\n11. The dog does not need the bear.\n    This statement is consistent with the given information.\n\n12. The lion does not like the bear.\n\n13. If something likes the lion and it is not red then it chases the lion.\n14. If something is red and it needs the bald eagle then the bald eagle needs the lion.\n15. If something is round then it does not like the dog.\n16. If the bald eagle needs the dog then the dog is round.\n17. If something likes the dog then it likes the bald eagle.\n18. If something chases the lion and the lion likes the dog then the dog does not like the lion.\n19. If the bear likes the lion then the lion likes the dog.\n20. If something likes the bear then the bear likes the lion.\n21. If something is round then it likes the bear.\n\nSince we have contradictions from statements 1 and 2, we should ignore the color statements for now.\n\nFrom statement 3, the bald eagle likes the lion. We do not know if the bald eagle is red or blue, but we do know the bald eagle needs the bear (statement 4).\n\nThe bear needs the dog (statement 8), which is consistent with the given information. The bear is not blue (statement 6) and is nice (statement 7).\n\nStatement 9 indicates that the dog chases the bald eagle, which is not consistent with the fact that the bald eagle likes the lion (statement 3). However, we have a conditional statement (statement 13) that if something likes the lion and it is not red then it chases the lion. The bald eagle likes the lion (statement 3), but we do not know if it is red or blue.\n\nFrom statement 5, we know the bald eagle needs the dog. We also know the dog is red (statement 10). We need to check if the given conditions are met for statement 14 (If something is red and it needs the bald eagle then the bald eagle needs the lion). However, we cannot determine if the bald eagle is red or blue. We should ignore the color statements for now.\n\nWe know that the bald eagle likes the lion (statement 3). We also know that the bear is nice (statement 7) and that the bear is not blue (statement 6).\n\nFrom statement 18, we know that if something chases the lion and the lion likes the dog, then the dog does not like the lion. However, we cannot determine if the lion likes the dog.\n\nFrom statement 19, we know that if the bear likes the lion then the lion likes the dog. We do not know if the bear likes the lion.\n\nFrom statement 20, we know that if something likes the bear then the bear likes the lion. We do not know if something likes the bear.\n\nFrom statement 21, we know that if something is round then it likes the bear. We do not know if the dog is round.\n\nWe have the following statements that are relevant to the problem: \n- The dog is red (statement 10)\n- The dog chases the bald eagle (statement 9)\n- The bald eagle needs the dog (statement 5)\n- The bald eagle likes the lion (statement 3)\n- The bear needs the dog (statement 8)\n- The bear is nice (statement 7)\n- The bear is not blue (statement 6)\n\nFrom statement 16, if the bald eagle needs the dog, then the dog is round. We already know that the bald eagle needs the dog (statement 5). Therefore, the dog is round.\n\nFrom statement 15, if something is round then it does not like the dog. Since the dog is round, the dog does not like the dog.\n\nFrom statement 17, if something likes the dog then it likes the bald eagle. The bear needs the dog (statement 8) and is nice (statement 7). Therefore, the bear likes the dog. Since the bear likes the dog, the bear likes the bald eagle.\n\nFrom statement 20, if something likes the bear then the bear likes the lion. Since the bear likes the bald eagle (statement 17), and the bald eagle likes the lion (statement 3), the bear likes the lion.\n\nFrom statement 19, if the bear likes the lion then the lion likes the dog. Since the bear likes the lion (statement 20), the lion likes the dog.\n\nFrom statement 18, if something chases the lion and the lion likes the dog then the dog does not like the lion. Since the dog chases the lion (statement 9) and the lion likes the dog (statement 19), the dog does not like the lion.\n\nFrom statement 13, if something likes the lion and it is not red then it chases the lion. Since the bald eagle likes the lion (statement 3) and it is not red, the bald eagle chases the lion.\n\nWe have a contradiction here. The dog chases the lion (statement 9), and the bald eagle chases the lion (statement 13). However, we also know that the lion likes the dog (statement 19).\n\nSince we have a contradiction, we cannot determine if the statement \"The dog does not need the dog\" is true, false, or unknown.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we will analyze the given statements and their implications step by step.\n\n1. The bald eagle is blue.\n2. The bald eagle is red. (This statement contradicts statement 1, so we cannot determine the color of the bald eagle. However, we can conclude that the bald eagle is both blue and red at the same time is not possible, but since it's not explicitly stated that the bald eagle cannot be both, we will continue.)\n\n3. The bald eagle likes the lion.\n4. The bald eagle needs the bear.\n5. The bald eagle needs the dog.\n6. The bear is not blue.\n7. The bear is nice.\n8. The bear needs the dog.\n9. The dog chases the bald eagle.\n10. The dog is red.\n11. The dog does not need the bear.\n12. The lion does not like the bear.\n\nFrom statement 5, we know the bald eagle needs the dog. From statement 2, we know the bald eagle is red.\n\nStatement 13: If something is red and it needs the bald eagle then the bald eagle needs the lion.\n\nSince the bald eagle is red (statement 2) and needs the dog (statement 5), we can conclude that the bald eagle needs the lion.\n\nNow let's analyze the remaining statements:\n\nStatement 14: If something likes the lion and it is not red then it chases the lion.\n\nWe know the bald eagle likes the lion (statement 3) and is red (statement 2), so it does not meet the condition of this statement.\n\nStatement 15: If something is round then it does not like the dog.\n\nStatement 16: If the bald eagle needs the dog then the dog is round.\n\nSince the bald eagle needs the dog (statement 5), we can conclude that the dog is round.\n\nNow, let's use statement 15: If something is round then it does not like the dog.\n\nSince the dog is round (statement 16), the dog does not like the dog.\n\nHowever, we need to determine whether the statement \"The dog does not need the dog\" is true, false, or unknown. We know the dog does not like the dog, but this does not necessarily imply that the dog does not need the dog.\n\nFrom statement 11, we know the dog does not need the bear. We cannot directly determine whether the dog needs the dog based on the given statements.\n\nTherefore, the statement \"The dog does not need the dog\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The dog does not need the dog\" is true, false, or unknown, we need to analyze the given information and the provided rules step by step.\n\n1. The bald eagle needs the dog. (Given statement)\n2. The dog chases the bald eagle. (Given statement)\n3. If the bald eagle needs the dog, then the dog is round. (Rule)\n   - From (1) and (3), we conclude that the dog is round.\n\n4. If something is round, then it does not like the dog. (Rule)\n   - From (3) and (4), we conclude that the dog does not like the dog.\n\nHowever, to determine if the dog needs the dog or not, we need to find the conclusion from the information we've analyzed so far.\n\nNow, let's look at the statement we are trying to evaluate: \"The dog does not need the dog.\"\n\n5. The dog does not need the bear. (Given statement)\n6. The bear needs the dog. (Given statement)\n7. If something is red and it needs the bald eagle then the bald eagle needs the lion. (Rule)\n   - We do not have any information that the dog is red or that the bald eagle needs the lion. \n8. We do not have any information that the dog needs the dog directly from the given statements.\n\nWe need to look at the statement \"The dog does not need the bear\" and the statement \"The bear needs the dog\" to see if there is a connection. \n\nSince the dog does not need the bear, and the bear needs the dog, it suggests a reciprocal relationship, but it does not directly tell us if the dog needs the dog.\n\nHowever, we can see that the dog is red (from the statement \"The dog is red\"), and it needs the bald eagle (from the statement \"The bald eagle needs the dog\"). Since the dog is red and it needs the bald eagle, we can apply the rule: \"If something is red and it needs the bald eagle then the bald eagle needs the lion.\" However, we do not have any information that the bald eagle needs the lion, so we cannot make any conclusions based on this rule.\n\nSince we cannot conclude whether the dog needs the dog or not, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we will break it down step by step based on the given statements.\n\n1. The bald eagle is blue.\n   - We don't know about the color of the bald eagle yet, so we'll keep this in mind.\n\n2. The bald eagle is red.\n   - We now know that the bald eagle is red, not blue.\n\n3. The bald eagle likes the lion.\n   - We know that the bald eagle likes the lion.\n\n4. The bald eagle needs the bear.\n   - We know that the bald eagle needs the bear.\n\n5. The bald eagle needs the dog.\n   - We now know that the bald eagle needs the dog.\n\n6. The bear is not blue.\n   - We don't know about the color of the bear yet, so we'll keep this in mind.\n\n7. The bear is nice.\n   - We now know that the bear is nice.\n\n8. The bear needs the dog.\n   - We now know that the bear needs the dog.\n\n9. The dog chases the bald eagle.\n   - We now know that the dog chases the bald eagle.\n\n10. The dog is red.\n    - We now know that the dog is red.\n\n11. The dog does not need the bear.\n    - We now know that the dog does not need the bear.\n\n12. The lion does not like the bear.\n    - We now know that the lion does not like the bear.\n\nNow, we will analyze the statement \"The dog does not need the dog.\"\n\nFrom the given statements, we have:\n\n- The bald eagle needs the dog (statement 5).\n- The bear needs the dog (statement 8).\n- The dog does not need the bear (statement 11).\n\nWe can conclude that the dog does not need the bear, but we can't conclude whether the dog needs itself or not. Therefore, we cannot determine if the statement \"The dog does not need the dog\" is true or false, so it is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to break down the information given and apply the rules to the statement \"The dog does not need the dog.\"\n\n1. The bald eagle needs the dog. (Given)\n2. The dog does not need the bear. (Given)\n3. If the bald eagle needs the dog, then the dog is round. (Rule 5)\n4. If something is round, then it likes the bear. (Rule 9)\n5. The bear is nice. (Given)\n6. The bear is not blue. (Given)\n7. The bear needs the dog. (Given)\n8. If something is round, then it does not like the dog. (Rule 7)\n\nFrom rules 3 and 6, we can conclude that the dog is round because the bald eagle needs the dog, and being round is a condition that can be used to determine the dog's properties.\n\nNow, let's analyze the statement \"The dog does not need the dog.\" We need to find a relationship between the dog and the fact that it needs or does not need something.\n\nThe statement \"The dog does not need the dog\" can be broken down into two parts: \"The dog needs something\" and \"The dog does not need the dog.\"\n\nFrom the given information, we know that:\n- The bald eagle needs the dog. (From 1)\n- The bear needs the dog. (From 7)\n\nWe can now analyze the two parts of the statement:\n\n- \"The dog needs something\": From the information above, the dog is needed by the bald eagle and the bear.\n- \"The dog does not need the dog\": This part cannot be directly concluded from the given information. The information given only states that the bear does not need the dog, but it does not state anything about the dog needing itself.\n\nHowever, we can conclude that the dog is round because it is needed by the bald eagle, and being round is a condition that can be used to determine the dog's properties.\n\nNow, if the dog is round, then it likes the bear (From rule 9). But there is no information that suggests the bear likes the dog, so the dog does not like the bear.\n\nHowever, there is no information that suggests the dog likes the lion or does not like the lion.\n\nConsidering the rules, we cannot conclude whether the dog does or does not need the dog. The information given does not provide enough evidence to determine the truth value of the statement.\n\nTherefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use logical deductions.\n\n1. The bald eagle is blue. (Statement 1)\n2. The bald eagle is red. (Statement 2)\n   From statement 2, we can conclude that statement 1 is false since something cannot be both blue and red at the same time.\n\n3. The bald eagle likes the lion. (Statement 3)\n4. The bald eagle needs the bear. (Statement 4)\n5. The bald eagle needs the dog. (Statement 5)\n   We cannot directly conclude any information from these statements.\n\n6. The bear is not blue. (Statement 6)\n7. The bear is nice. (Statement 7)\n8. The bear needs the dog. (Statement 8)\n   From statement 8 and statement 5, we can conclude that the bald eagle needs the dog, so the dog is round.\n\n9. The dog chases the bald eagle. (Statement 9)\n10. The dog is red. (Statement 10)\n    From statement 10, we can conclude that statement 2 is false since the dog is red and the bald eagle is also red.\n\n11. The dog does not need the bear. (Statement 11)\n12. The lion does not like the bear. (Statement 12)\n13. If something likes the lion and it is not red then it chases the lion. (Statement 13)\n14. If something is red and it needs the bald eagle then the bald eagle needs the lion. (Statement 14)\n15. If something is round then it does not like the dog. (Statement 15)\n16. If the bald eagle needs the dog then the dog is round. (Statement 16)\n   From statement 5 and statement 16, we can conclude that the dog is round.\n   From statement 15 and statement 16, we can conclude that the dog does not like itself since it is round.\n\nNow we can conclude that the statement \"The dog does not need the dog.\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The dog does not need the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the statement: The bald eagle likes the lion.\n   No information about the color or roundness of the lion is given, so we cannot conclude anything about the lion's color or roundness from this statement.\n\n2. From the statement: If something likes the lion and it is not red then it chases the lion.\n   We don't have enough information about the color of the lion, so we cannot conclude whether the statement about the lion's color applies or not.\n\n3. From the statement: The dog chases the lion.\n   Since the dog chases the lion, and it is given that if something chases the lion and the lion likes the dog then the dog does not like the lion, \n   we can conclude that the lion does not like the dog. \n\n4. From the statement: If something likes the lion then the lion likes the dog.\n   Since the bear likes the lion (from the statement: The bear is nice. The bear likes the lion), we can conclude that the lion likes the dog.\n\n5. From the statement: If something chases the lion and the lion likes the dog then the dog does not like the lion.\n   Since the dog chases the lion and the lion likes the dog, this statement applies. However, it does not tell us anything about the dog's need for itself.\n\n6. From the statement: The dog does not like the lion.\n   We already concluded that the lion likes the dog, so this is consistent with our previous conclusion.\n\n7. From the statement: The bear is not blue.\n   No information is given about the bear's need for the dog.\n\n8. From the statement: The bear is nice. The bear likes the lion.\n   We already concluded that the lion likes the dog, so this statement is consistent with our previous conclusion.\n\n9. From the statement: The bear needs the dog. \n   Since the bear needs the dog and the bear is nice, we can conclude that the bear likes the lion (from the statement: The bear is nice. The bear likes the lion).\n\n10. From the statement: The dog is red.\n   No information is given about the dog's need for itself.\n\n11. From the statement: If the bald eagle needs the dog then the dog is round.\n    We already concluded that the bear needs the dog. We cannot conclude anything about the dog's roundness or the bald eagle's need for the dog from this statement.\n\n12. From the statement: The dog is red.\n    We already concluded that the dog is red, so this statement is consistent with our previous conclusion.\n\n13. From the statement: The bald eagle is blue. The bald eagle is red.\n    The bald eagle is both blue and red, but this does not tell us anything about the dog's need for itself.\n\n14. From the statement: The bald eagle likes the lion.\n    We already concluded that the lion likes the dog, but this does not tell us anything about the dog's need for itself.\n\n15. From the statement: The bald eagle needs the bear. \n    Since the bald eagle needs the bear and the bear needs the dog, we can conclude that the bald eagle needs the dog.\n\n16. From the statement: If something is red and it needs the bald eagle then the bald eagle needs the lion.\n    Since the dog is red and it needs the bald eagle, we can conclude that the bald eagle needs the lion.\n\n17. From the statement: The bald eagle needs the lion.\n    We already concluded that the lion likes the dog, but this does not tell us anything about the dog's need for itself.\n\n18. From the statement: If something likes the dog then it likes the bald eagle.\n    We already concluded that the bear likes the lion, but this does not tell us anything about the dog's need for itself.\n\n19. From the statement: If something is round then it does not like the dog.\n    We already concluded that the bear needs the dog, but this does not tell us anything about the dog's need for itself.\n\n20. From the statement: The bear needs the dog.\n    We already concluded that the bear needs the dog, so this statement is consistent with our previous conclusion.\n\nBased on the given information, the bald eagle needs the dog, but we cannot conclude anything about the dog's need for itself from the given statements. Therefore, the statement \"The dog does not need the dog\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The dog does not need the dog\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nFrom the given statements:\n\n1. The bald eagle needs the dog.\n2. The dog chases the bald eagle.\n3. The dog is red.\n4. The bear is not blue.\n5. The bear is nice.\n6. The bear needs the dog.\n7. The dog does not need the bear.\n8. The lion does not like the bear.\n\nNow, let's analyze the statements one by one to deduce the relationship between the dog and itself.\n\nWe know that the bald eagle needs the dog (Statement 1). Since the dog chases the bald eagle (Statement 2), we can't directly conclude anything about the dog needing itself from this information alone.\n\nHowever, since the dog is red (Statement 3), we need to find a connection between the dog's color and its relationship with the bald eagle.\n\nFrom Statement 5, we know that the bear is nice, and from Statement 6, we know that the bear needs the dog. \n\nAlso, since the bear needs the dog, we can use the statement \"If something is round then it likes the bear\" and \"If the bald eagle needs the dog then the dog is round\" to infer that the dog is round because the bear needs the dog.\n\nNow, since the dog is round (inferred from Statement 6), we can conclude that the dog likes the bear (Statement 14).\n\nWe also know that if something likes the bear, then the bear likes the lion (Statement 15). Therefore, the bear likes the lion.\n\nNow, since the bear likes the lion, we can use the statement \"If something likes the lion and it is not red then it chases the lion\" to conclude that the bear chases the lion.\n\nWe also know that the lion does not like the bear (Statement 8). Therefore, the lion does not like the dog.\n\nSince the lion does not like the dog, we can use the statement \"If the lion likes the dog then the dog does not like the lion\" to conclude that the dog likes the lion.\n\nNow, since the dog likes the lion, we can conclude that the dog chases the lion because the dog likes the lion and it is not red.\n\nWe also know that the lion does not like the bear. So, the statement \"If something likes the lion and it is not red then it chases the lion\" does not apply here.\n\nFrom Statement 11, we know that the dog does not need the bear. This does not directly tell us whether the dog needs itself.\n\nHowever, we can use the statement \"If something is red and it needs the bald eagle then the bald eagle needs the lion\" to conclude that the dog does not need the lion. Since the dog is red, this statement does not apply here.\n\nWe can also use the statement \"If something is red and it needs the lion then the bald eagle needs the lion\" to conclude that the dog does not need the lion. This statement also does not apply here.\n\nHowever, we know that the bald eagle needs the dog (Statement 1). We also know that the dog is red (Statement 3).\n\nSince the dog is red, we can use the statement \"If something is red and it needs the bald eagle then the bald eagle needs the lion\" to conclude that the bald eagle needs the lion.\n\nWe know that the bald eagle needs the lion, and the bald eagle needs the dog. This does not directly tell us whether the dog needs itself.\n\nHowever, we know that the dog is red (Statement 3). This does not help us determine whether the dog needs itself.\n\nWe also know that the dog chases the bald eagle (Statement 2). This does not directly tell us whether the dog needs itself.\n\nHowever, we can use the statement \"If the bald eagle needs the dog then the dog is round\" to conclude that the dog is round.\n\nWe know that the dog is round, and from Statement 14, we know that the dog likes the bear.\n\nWe also know that the bear needs the dog (Statement 6). This does not directly tell us whether the dog needs itself.\n\nHowever, we can use the statement \"If something likes the dog then it likes the bald eagle\" to conclude that the bear likes the bald eagle.\n\nWe also know that the bear likes the bald eagle. This does not directly tell us whether the dog needs itself.\n\nHowever, we can use the statement \"If something likes the bear then the bear likes the lion\" to conclude that the bear likes the lion.\n\nWe also know that the bear likes the lion. This does not directly tell us whether the dog needs itself.\n\nHowever, we can use the statement \"If the bear likes the lion then the lion likes the dog\" to conclude that the lion likes the dog.\n\nWe also know that the lion likes the dog. This does not directly tell us whether the dog needs itself.\n\nHowever, we can use the statement \"If something likes the lion and it is not red then it chases the lion\" to conclude that the bear chases the lion.\n\nWe also know that the bear chases the lion. This does not directly tell us whether the dog needs itself.\n\nHowever, we can use the statement \"If the lion likes the dog then the dog does not like the lion\" to conclude that the dog does not like the lion.\n\nWe also know that the dog does not like the lion. This does not directly tell us whether the dog needs itself.\n\nHowever, we can use the statement \"If something is round then it likes the bear\" to conclude that the dog likes the bear.\n\nWe also know that the dog likes the bear. This does not directly tell us whether the dog needs itself.\n\nHowever, we can use the statement \"If something likes the bear then the bear likes the lion\" to conclude that the bear likes the lion.\n\nWe also know that the bear likes the lion. This does not directly tell us whether the dog needs itself.\n\nHowever, we can use the statement \"If the bear likes the lion then the lion likes the dog\" to conclude that the lion likes the dog.\n\nWe also know that the lion likes the dog. This does not directly tell us whether the dog needs itself.\n\nHowever, we can use the statement \"If something likes the dog then it likes the bald eagle\" to conclude that the lion likes the bald eagle.\n\nWe also know that the lion likes the bald eagle. This does not directly tell us whether the dog needs itself.\n\nHowever, we can use the statement \"If the lion likes the bald eagle then the bald eagle needs the lion\" to conclude that the bald eagle needs the lion.\n\nWe also know that the bald eagle needs the lion. This does not directly tell us whether the dog needs itself.\n\nHowever, we can use the statement \"If the bald eagle needs the lion then the lion needs the dog\" to conclude that the lion needs the dog.\n\nWe also know that the lion needs the dog. This does not directly tell us whether the dog needs itself.\n\nHowever, we can use the statement \"If something needs the dog then it is round\" to conclude that the lion is round.\n\nWe also know that the lion is round. This does not directly tell us whether the dog needs itself.\n\nHowever, we can use the statement \"If something is round then it likes the bear\" to conclude that the lion likes the bear.\n\nWe also know that the lion likes the bear. This does not directly tell us whether the dog needs itself.\n\nHowever, we can use the statement \"If something likes the bear then the bear likes the lion\" to conclude that the bear likes the lion.\n\nWe also know that the bear likes the lion. This does not directly tell us whether the dog needs itself.\n\nHowever, we can use the statement \"If the bear likes the lion then the lion likes the dog\" to conclude that the lion likes the dog.\n\nWe also know that the lion likes the dog. This does not directly tell us whether the dog needs itself.\n\nHowever, we can use the statement \"If something likes the dog then it likes the bald eagle\" to conclude that the lion likes the bald eagle.\n\nWe also know that the lion likes the bald eagle. This does not directly tell us whether the dog needs itself.\n\nHowever, we can use the statement \"If the lion likes the bald eagle then the bald eagle needs the lion\" to conclude that the bald eagle needs the lion.\n\nWe also know that the bald eagle needs the lion. This does not directly tell us whether the dog needs itself.\n\nHowever, we can use the statement \"If the bald eagle needs the lion then the lion needs the dog\" to conclude that the lion needs the dog.\n\nWe also know that the lion needs the dog. This does not directly tell us whether the dog needs itself.\n\nHowever, we can use the statement \"If something needs the dog then it is round\" to conclude that the lion is round.\n\nWe also know that the lion is round. This does not directly tell us whether the dog needs itself.\n\nHowever, we can use the statement \"If something is round then it likes the bear\" to conclude that the lion likes the bear.\n\nWe also know that the lion likes the bear. This does not directly tell us whether the dog needs itself.\n\nHowever, we can use the statement \"If something likes the bear then the bear likes the lion\" to conclude that the bear likes the lion.\n\nWe also know that the bear likes the lion. This does not directly tell us whether the dog needs itself.\n\nHowever, we can use the statement \"If the bear likes the lion then the lion likes the dog\" to conclude that the lion likes the dog.\n\nWe also know that the lion likes the dog. This does not directly tell us whether the dog needs itself.\n\nHowever, we can use the statement \"If something likes the dog then it likes the bald eagle\" to conclude that the lion likes the bald eagle",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The dog does not need the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement to be evaluated: The dog does not need the dog.\n\nFrom the given information:\n- The bald eagle needs the bear.\n- The bald eagle needs the dog.\n- The bear is nice.\n- The bear needs the dog.\n- The dog chases the bald eagle.\n- The dog is red.\n- The dog does not need the bear.\n- The lion does not like the bear.\n\nWe can establish the following relationships:\n- The bald eagle needs the dog, and the bear needs the dog.\n- The dog is red, and it chases the bald eagle.\n\nHowever, the given information does not directly state whether the dog needs the dog or not. We need to use the given rules to make inferences.\n\nFrom the given rules:\n- If something likes the lion and it is not red then it chases the lion. (rule 1)\n- If something is red and it needs the bald eagle then the bald eagle needs the lion. (rule 2)\n- If something is round then it does not like the dog. (rule 3)\n- If the bald eagle needs the dog then the dog is round. (rule 4)\n- If something likes the dog then it likes the bald eagle. (rule 5)\n- If something chases the lion and the lion likes the dog then the dog does not like the lion. (rule 6)\n- If the bear likes the lion then the lion likes the dog. (rule 7)\n- If something likes the bear then the bear likes the lion. (rule 8)\n- If something is round then it likes the bear. (rule 9)\n\nWe can start analyzing the relationships between the entities using the given information and the rules. Since the dog does not need the bear, and the bear needs the dog, we can infer that the dog and the bear have a mutually dependent relationship. However, the given information does not explicitly state whether the dog needs the dog or not.\n\nFrom rule 4, we know that if the bald eagle needs the dog, then the dog is round. However, we cannot determine whether the bald eagle needs the dog based on the given information.\n\nTo evaluate the statement \"The dog does not need the dog,\" we must consider the information and rules provided. Since we cannot directly determine whether the dog needs the dog or not, we cannot conclusively say that the statement is true or false.\n\nHowever, we can derive some useful information. The statement \"The dog does not need the dog\" can be related to the concept of \"round\" (rule 3). The information about \"round\" is linked to the bald eagle needing the dog (rule 4), which is a given statement. Since the dog chases the bald eagle and the dog is red, we cannot directly use rule 4 to infer that the dog is round.\n\nBased on the analysis of the given information and the rules, we cannot determine whether the dog needs the dog or not with absolute certainty. However, since we cannot conclusively say that the statement is true or false, we can conclude that the statement is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "likes(lion, bald_eagle)",
+          "z3_formula": "likes_lion_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & Not(red(X)) -> chases(X, lion)",
+          "z3_formula": "Implies(And(likes_lion_bald_eagle, Not(red_bald_eagle)), chases_bald_eagle_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bald_eagle)",
+          "z3_formula": "blue_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(bald_eagle)",
+          "z3_formula": "red_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(dog)",
+          "z3_formula": "red_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, bear)",
+          "z3_formula": "needs_bald_eagle_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, dog)",
+          "z3_formula": "needs_bald_eagle_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, dog)",
+          "z3_formula": "needs_bear_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "Not(needs(dog, bear))",
+          "z3_formula": "Not(needs_dog_bear) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bear)",
+          "z3_formula": "nice_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "Not(likes(lion, bear))",
+          "z3_formula": "Not(likes_lion_bear) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bald_eagle)",
+          "z3_formula": "chases_dog_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(likes_dog, likes_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) -> likes(bear, lion)",
+          "z3_formula": "Implies(likes_bear, likes_bear_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> likes(X, bear)",
+          "z3_formula": "Implies(round_dog, likes_dog_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(bear, lion) -> likes(lion, dog)",
+          "z3_formula": "Implies(likes_bear_lion, likes_lion_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(dog) -> And(round(dog), likes(dog, bear))",
+          "z3_formula": "Implies(round_dog, And(round_dog, likes_dog_bear))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bald_eagle, dog)",
+          "z3_formula": "needs_bald_eagle_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bald_eagle, bear)",
+          "z3_formula": "needs_bald_eagle_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bear, dog)",
+          "z3_formula": "needs_bear_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "Not(blue(bear))",
+          "z3_formula": "Not(blue_bear) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "nice(bear)",
+          "z3_formula": "nice_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "red(dog)",
+          "z3_formula": "red_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "chases(dog, bald_eagle)",
+          "z3_formula": "chases_dog_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "Not(needs(dog, dog))",
+          "z3_formula": "Not(needs_dog_dog) == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, dog)",
+          "z3_formula": "needs_bald_eagle_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) -> round(dog)",
+          "z3_formula": "Implies(needs_bald_eagle_dog, round_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> likes(X, bear)",
+          "z3_formula": "Implies(round_dog, likes_dog_bear)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, bear)",
+          "z3_formula": "likes_dog_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, dog)",
+          "z3_formula": "needs_bear_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bear)",
+          "z3_formula": "nice_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, dog)",
+          "z3_formula": "likes_bear_dog == False",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bald_eagle)",
+          "z3_formula": "chases_dog_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, bear)",
+          "z3_formula": "needs_dog_bear == False",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bear)",
+          "z3_formula": "likes_lion_bear == False",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, lion)",
+          "z3_formula": "likes_bear_lion == Unknown",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "red(dog)",
+          "z3_formula": "red_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, bald_eagle) -> needs(bald_eagle, lion)",
+          "z3_formula": "Implies(And(red_dog, needs_dog_bald_eagle), needs_bald_eagle_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bald_eagle, lion)",
+          "z3_formula": "needs_bald_eagle_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & Not(red(X)) -> chases(X, lion)",
+          "z3_formula": "Implies(And(likes_X_lion, Not(red_X)), chases_X_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "chases(bald_eagle, lion)",
+          "z3_formula": "chases_bald_eagle_lion == Unknown",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, dog)",
+          "z3_formula": "needs_dog_dog == Unknown",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bald_eagle)",
+          "z3_formula": "blue_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bald_eagle)",
+          "z3_formula": "red_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, lion)",
+          "z3_formula": "likes_bald_eagle_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, bear)",
+          "z3_formula": "needs_bald_eagle_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, dog)",
+          "z3_formula": "needs_bald_eagle_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(bear)",
+          "z3_formula": "not blue_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bear)",
+          "z3_formula": "nice_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, dog)",
+          "z3_formula": "needs_bear_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bald_eagle)",
+          "z3_formula": "chases_dog_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(dog)",
+          "z3_formula": "red_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(dog, bear)",
+          "z3_formula": "not needs_dog_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(lion, bear)",
+          "z3_formula": "not likes_lion_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & not red(X) -> chases(X, lion)",
+          "z3_formula": "Implies(And(likes_X_lion, not red_X), chases_X_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(bald_eagle, X) -> needs(bald_eagle, lion)",
+          "z3_formula": "Implies(And(red_X, needs_bald_eagle_X), needs_bald_eagle_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> not likes(X, dog)",
+          "z3_formula": "Implies(round_X, not likes_X_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(bald_eagle, dog) -> round(dog)",
+          "z3_formula": "Implies(needs_bald_eagle_dog, round_dog)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(likes_X_dog, likes_X_bald_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & likes(lion, dog) -> not likes(X, lion)",
+          "z3_formula": "Implies(And(chases_X_lion, likes_lion_dog), not likes_X_lion)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "likes(bear, lion) -> likes(lion, dog)",
+          "z3_formula": "Implies(likes_bear_lion, likes_lion_dog)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) -> likes(X, lion)",
+          "z3_formula": "Implies(likes_X_bear, likes_X_lion)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> likes(X, bear)",
+          "z3_formula": "Implies(round_X, likes_X_bear)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(dog, dog)",
+          "z3_formula": "not needs_dog_dog == True",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "color(bald_eagle, blue)",
+          "z3_formula": "color_bald_eagle_blue == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "color(bald_eagle, red)",
+          "z3_formula": "color_bald_eagle_red == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, lion)",
+          "z3_formula": "likes_bald_eagle_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, bear)",
+          "z3_formula": "needs_bald_eagle_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, dog)",
+          "z3_formula": "needs_bald_eagle_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(color(bear, blue))",
+          "z3_formula": "not(color_bear_blue) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bear)",
+          "z3_formula": "nice_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, dog)",
+          "z3_formula": "needs_bear_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bald_eagle)",
+          "z3_formula": "chases_dog_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(dog)",
+          "z3_formula": "red_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not(needs(dog, bear))",
+          "z3_formula": "not(needs_dog_bear) == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & not(red(X)) -> chases(X, lion)",
+          "z3_formula": "Implies(And(likes_bald_eagle_lion, Not(red_bald_eagle)), chases_bald_eagle_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, bald_eagle) -> needs(bald_eagle, lion)",
+          "z3_formula": "Implies(And(red_dog, needs_dog_bald_eagle), needs_bald_eagle_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> not(likes(X, dog))",
+          "z3_formula": "Implies(round_dog, Not(likes_dog_dog))",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(bald_eagle, dog) -> round(dog)",
+          "z3_formula": "Implies(needs_bald_eagle_dog, round_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(likes_bear_dog, likes_bear_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) -> likes(X, lion)",
+          "z3_formula": "Implies(likes_bear_lion, likes_bear_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) -> likes(X, lion)",
+          "z3_formula": "Implies(likes_bear_lion, likes_bear_lion)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> likes(X, bear)",
+          "z3_formula": "Implies(round_dog, likes_dog_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & likes(lion, dog) -> not(likes(dog, lion))",
+          "z3_formula": "Implies(And(chases_dog_lion, likes_lion_dog), Not(likes_dog_lion))",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & not(red(X)) -> chases(X, lion)",
+          "z3_formula": "Implies(And(likes_bald_eagle_lion, Not(red_bald_eagle)), chases_bald_eagle_lion)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "not(likes(dog, dog))",
+          "z3_formula": "Not(likes_dog_dog) == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bear, dog)",
+          "z3_formula": "likes_bear_dog == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bear, bald_eagle)",
+          "z3_formula": "likes_bear_bald_eagle == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bear, lion)",
+          "z3_formula": "likes_bear_lion == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, dog)",
+          "z3_formula": "likes_lion_dog == True",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "not(likes(dog, lion))",
+          "z3_formula": "Not(likes_dog_lion) == True",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "chases(bald_eagle, lion)",
+          "z3_formula": "chases_bald_eagle_lion == True",
+          "source_step": 29
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bald_eagle)",
+          "z3_formula": "blue_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bald_eagle)",
+          "z3_formula": "red_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, lion)",
+          "z3_formula": "likes_bald_eagle_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, bear)",
+          "z3_formula": "needs_bald_eagle_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, dog)",
+          "z3_formula": "needs_bald_eagle_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not_blue(bear)",
+          "z3_formula": "not_blue_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bear)",
+          "z3_formula": "nice_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, dog)",
+          "z3_formula": "needs_bear_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bald_eagle)",
+          "z3_formula": "chases_dog_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(dog)",
+          "z3_formula": "red_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not_needs(bear, dog)",
+          "z3_formula": "not_needs_bear_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not_likes(lion, bear)",
+          "z3_formula": "not_likes_lion_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(Y, X) -> needs(Y, lion)",
+          "z3_formula": "Implies(And(red_bald_eagle, needs_bald_eagle_dog), needs_bald_eagle_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bald_eagle, lion)",
+          "z3_formula": "needs_bald_eagle_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & not_red(X) -> chases(X, lion)",
+          "z3_formula": "Implies(And(likes_bald_eagle_lion, not_red_bald_eagle), chases_bald_eagle_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not_chases(bald_eagle, lion)",
+          "z3_formula": "not_chases_bald_eagle_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> not_likes(X, dog)",
+          "z3_formula": "Implies(round_dog, not_likes_dog_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) -> round(X)",
+          "z3_formula": "Implies(needs_bald_eagle_dog, round_dog)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not_likes(dog, dog)",
+          "z3_formula": "not_likes_dog_dog == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not_needs(dog, dog)",
+          "z3_formula": "not_needs_dog_dog == Unknown",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, dog)",
+          "z3_formula": "needs_bald_eagle_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bald_eagle)",
+          "z3_formula": "chases_dog_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> round(Y)",
+          "z3_formula": "Implies(needs_bald_eagle_dog, round_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> not likes(X, Y)",
+          "z3_formula": "Implies(round_dog, not likes_dog_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(dog, dog)",
+          "z3_formula": "not likes_dog_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(dog, bear)",
+          "z3_formula": "not needs_dog_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, dog)",
+          "z3_formula": "needs_bear_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, Y) -> needs(Y, lion)",
+          "z3_formula": "Implies(And(red_dog, needs_dog_bald_eagle), needs_bald_eagle_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "red(dog)",
+          "z3_formula": "red_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "needs(dog, bald_eagle)",
+          "z3_formula": "needs_dog_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, Y) -> needs(Y, lion)",
+          "z3_formula": "Implies(And(red_dog, needs_dog_bald_eagle), needs_bald_eagle_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(dog, dog)",
+          "z3_formula": "not needs_dog_dog == Unknown",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bald_eagle)",
+          "z3_formula": "blue_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bald_eagle)",
+          "z3_formula": "red_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, lion)",
+          "z3_formula": "likes_bald_eagle_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, bear)",
+          "z3_formula": "needs_bald_eagle_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, dog)",
+          "z3_formula": "needs_bald_eagle_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(bear)",
+          "z3_formula": "not blue_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bear)",
+          "z3_formula": "nice_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, dog)",
+          "z3_formula": "needs_bear_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bald_eagle)",
+          "z3_formula": "chases_dog_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(dog)",
+          "z3_formula": "red_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(dog, bear)",
+          "z3_formula": "not needs_dog_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(lion, bear)",
+          "z3_formula": "not likes_lion_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> needs(X, X)",
+          "z3_formula": "Implies(needs_bald_eagle_dog, needs_bald_eagle_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> needs(X, Z)",
+          "z3_formula": "Implies(needs_bear_dog, needs_bear_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> needs(X, Z)",
+          "z3_formula": "Implies(needs_bald_eagle_bear, needs_bald_eagle_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> needs(X, Z)",
+          "z3_formula": "Implies(needs_bald_eagle_dog, needs_bald_eagle_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(dog, dog)",
+          "z3_formula": "not needs_dog_dog == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, dog)",
+          "z3_formula": "needs_bald_eagle_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(dog, bear)",
+          "z3_formula": "Not(needs_dog_bear) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(bald_eagle, X) -> round(X)",
+          "z3_formula": "Implies(needs_bald_eagle_dog, round_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> likes(X, bear)",
+          "z3_formula": "Implies(round_dog, likes_dog_bear)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> not likes(X, dog)",
+          "z3_formula": "Implies(round_dog, Not(likes_dog_dog))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, dog)",
+          "z3_formula": "needs_bear_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bear)",
+          "z3_formula": "nice_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(bear)",
+          "z3_formula": "Not(blue_bear) == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bald_eagle)",
+          "z3_formula": "blue_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bald_eagle)",
+          "z3_formula": "red_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(bald_eagle)",
+          "z3_formula": "Not(blue_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, lion)",
+          "z3_formula": "likes_bald_eagle_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, bear)",
+          "z3_formula": "needs_bald_eagle_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, dog)",
+          "z3_formula": "needs_bald_eagle_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(bear)",
+          "z3_formula": "Not(blue_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bear)",
+          "z3_formula": "nice_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, dog)",
+          "z3_formula": "needs_bear_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bald_eagle)",
+          "z3_formula": "chases_dog_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(dog)",
+          "z3_formula": "red_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not red(bald_eagle)",
+          "z3_formula": "Not(red_bald_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(dog, bear)",
+          "z3_formula": "Not(needs_dog_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(lion, bear)",
+          "z3_formula": "Not(likes_lion_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X) & not red(X) -> chases(X, lion)",
+          "z3_formula": "Implies(And(likes_X_lion, Not(red_X)), chases_X_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, bald_eagle) -> needs(bald_eagle, lion)",
+          "z3_formula": "Implies(And(red_X, needs_X_bald_eagle), needs_bald_eagle_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> not likes(X, dog)",
+          "z3_formula": "Implies(round_X, Not(likes_X_dog))",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) -> round(X)",
+          "z3_formula": "Implies(needs_X_dog, round_X)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(dog, dog)",
+          "z3_formula": "Not(likes_dog_dog)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(dog, dog)",
+          "z3_formula": "Not(needs_dog_dog)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, lion)",
+          "z3_formula": "likes_bald_eagle_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) & Not(red(X)) -> chases(X, lion)",
+          "z3_formula": "Implies(And(likes_bald_eagle_lion, Not(red_bald_eagle)), chases_bald_eagle_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, lion)",
+          "z3_formula": "chases_dog_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & likes(lion, Y) -> Not(likes(Y, X))",
+          "z3_formula": "Implies(And(chases_dog_lion, likes_lion_dog), Not(likes_dog_lion))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> likes(lion, Y)",
+          "z3_formula": "Implies(likes_bear_lion, likes_lion_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, lion)",
+          "z3_formula": "likes_bear_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & likes(lion, Y) -> Not(likes(Y, X))",
+          "z3_formula": "Implies(And(chases_dog_lion, likes_lion_dog), Not(likes_dog_lion))",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "Not(likes(dog, lion))",
+          "z3_formula": "Not(likes_dog_lion) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "Not(blue(bear))",
+          "z3_formula": "Not(blue_bear) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bear)",
+          "z3_formula": "nice_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> likes(bear, lion)",
+          "z3_formula": "Implies(likes_bear_lion, likes_bear_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, dog)",
+          "z3_formula": "needs_bear_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & nice(X) -> likes(X, lion)",
+          "z3_formula": "Implies(And(needs_bear_dog, nice_bear), likes_bear_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "red(dog)",
+          "z3_formula": "red_dog == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, Y) -> needs(Y, lion)",
+          "z3_formula": "Implies(And(red_dog, needs_dog_bald_eagle), needs_bald_eagle_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, lion)",
+          "z3_formula": "needs_bald_eagle_lion == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, Y) -> needs(Y, lion)",
+          "z3_formula": "Implies(And(red_dog, needs_dog_bald_eagle), needs_bald_eagle_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, lion)",
+          "z3_formula": "needs_bald_eagle_lion == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(likes_bear_dog, likes_bear_bald_eagle)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, dog)",
+          "z3_formula": "needs_bear_dog == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> Not(likes(X, dog))",
+          "z3_formula": "Implies(round_bald_eagle, Not(likes_bald_eagle_dog))",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, dog)",
+          "z3_formula": "needs_bald_eagle_dog == True",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, dog)",
+          "z3_formula": "needs_bald_eagle_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bald_eagle)",
+          "z3_formula": "chases_dog_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(dog)",
+          "z3_formula": "red_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(bear)",
+          "z3_formula": "not_blue_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bear)",
+          "z3_formula": "nice_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, dog)",
+          "z3_formula": "needs_bear_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(dog, bear)",
+          "z3_formula": "not_needs_dog_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(lion, bear)",
+          "z3_formula": "not_likes_lion_bear == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, bear)",
+          "z3_formula": "needs_bald_eagle_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, dog)",
+          "z3_formula": "needs_bald_eagle_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bear)",
+          "z3_formula": "nice_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, dog)",
+          "z3_formula": "needs_bear_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bald_eagle)",
+          "z3_formula": "chases_dog_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(dog)",
+          "z3_formula": "red_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(dog, bear)",
+          "z3_formula": "not needs_dog_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(lion, bear)",
+          "z3_formula": "not likes_lion_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X) & not red(X) -> chases(X, lion)",
+          "z3_formula": "Implies(And(likes_X, not red_X), chases_X_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(bald_eagle, X) -> needs(bald_eagle, lion)",
+          "z3_formula": "Implies(And(red_X, needs_bald_eagle_X), needs_bald_eagle_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> not likes(X, dog)",
+          "z3_formula": "Implies(round_X, not likes_X_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(bald_eagle, dog) -> round(dog)",
+          "z3_formula": "Implies(needs_bald_eagle_dog, round_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(likes_X_dog, likes_X_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & likes(lion, dog) -> not likes(X, lion)",
+          "z3_formula": "Implies(And(chases_X_lion, likes_lion_dog), not likes_X_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) -> likes(X, lion)",
+          "z3_formula": "Implies(likes_X_bear, likes_X_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> likes(X, bear)",
+          "z3_formula": "Implies(round_X, likes_X_bear)",
+          "source_step": 6
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 221,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 70
+    },
+    "maxsat_stats": {
+      "satisfied": 67,
+      "excluded": 3,
+      "total_weight": 211,
+      "solve_time_ms": 1.6710469499230385
+    },
+    "timing": {
+      "trace_gen_s": 24.69,
+      "extraction_s": 38.126,
+      "dedup_s": 2.662,
+      "maxsat_s": 0.005,
+      "total_s": 65.483
+    }
+  }
+}

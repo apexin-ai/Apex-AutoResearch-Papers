@@ -1,0 +1,28 @@
+paper_key: "chen2024usc"
+title: "Universal Self-Consistency for Large Language Model Generation"
+venue: "ICML 2024"
+full_text_available: false
+
+research:
+  baselines: ["standard self-consistency (majority voting)", "execution-based voting"]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "consistency", direction: "higher_better"}
+  datasets:
+    - {name: "mathematical reasoning benchmarks", size: "N/A"}
+    - {name: "code generation benchmarks", size: "N/A"}
+    - {name: "long-context summarization", size: "N/A"}
+    - {name: "open-ended QA", size: "N/A"}
+  ablation_dimensions: ["task type", "number of samples"]
+  training_recipe: {info: "prompting-based, no training"}
+  method_family: "self-consistency"
+
+positioning:
+  core_claim: "LLMs themselves can select the most consistent answer among multiple candidates, extending self-consistency to free-form generation tasks where majority voting is inapplicable"
+  key_results: "Matches standard self-consistency on math; matches execution-based voting on code generation without execution access"
+  limitations: ["N/A"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

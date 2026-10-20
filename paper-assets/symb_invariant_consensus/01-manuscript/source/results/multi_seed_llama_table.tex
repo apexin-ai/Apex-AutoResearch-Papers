@@ -1,0 +1,15 @@
+% LLaMA-3.1-8B × ProofWriter-600, 4 seeds
+% seed42: hardcoded Table 1 canonical (alpha-tiebroken)
+% seed123: raw from results.json (westd-16639)
+% seed456: raw from results.json (westd-30973, llama8b_pw_seed456_v2, n=600)
+% seed789: SICA alpha-corrected 66.17%→66.50% (2 ties fixed), SC raw
+% McNemar p-values: exact binomial test (two-sided)
+%   seed42: p=6.27e-08, seed123: p=7e-06, seed456: p=1.76e-04, seed789: p=9.14e-04
+\midrule
+\multicolumn{6}{l}{\textit{LLaMA-3.1-8B $\times$ ProofWriter-600}} \\
+42  & 72.50 & 65.00 & $-$7.50 & $<$.001 & *** \\
+123  & 71.33 & 64.17 & $-$7.17 & $<$.001 & *** \\
+456  & 71.67 & 66.17 & $-$5.50 & $<$.001 & *** \\
+789  & 71.17 & 66.50 & $-$4.67 & $<$.001 & *** \\
+\addlinespace
+Mean$\pm$Std & 71.67$\pm$0.59 & 65.46$\pm$1.07 & $-$6.21$\pm$1.35 & & \\

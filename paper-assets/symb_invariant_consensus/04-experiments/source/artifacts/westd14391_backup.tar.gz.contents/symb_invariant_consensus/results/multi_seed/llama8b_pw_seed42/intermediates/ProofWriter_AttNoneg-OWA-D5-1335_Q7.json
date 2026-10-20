@@ -1,0 +1,1265 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1335_Q7",
+    "problem": "Anne is cold. Anne is green. Anne is rough. Charlie is kind. Dave is cold. Dave is furry. Dave is kind. Dave is quiet. Dave is red. Erin is kind. Erin is quiet. Erin is red. Furry, rough people are green. Red people are furry. All green people are kind. Kind people are quiet. If someone is cold then they are rough. All furry, rough people are cold. All quiet people are red. All red, quiet people are cold. If Anne is kind then Anne is furry.\n\nDetermine whether the following statement is true, false, or unknown:\nCharlie is furry.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nGreen($x, bool) ::: Is x green?\nRough($x, bool) ::: Is x rough?\nKind($x, bool) ::: Is x kind?\nFurry($x, bool) ::: Is x furry?\nQuiet($x, bool) ::: Is x quiet?\nRed($x, bool) ::: Is x red?\n\nFacts:\nCold(Anne, True) ::: Anne is cold.\nGreen(Anne, True) ::: Anne is green.\nRough(Anne, True) ::: Anne is rough.\nKind(Charlie, True) ::: Charlie is kind.\nCold(Dave, True) ::: Dave is cold.\nFurry(Dave, True) ::: Dave is furry.\nKind(Dave, True) ::: Dave is kind.\nQuiet(Dave, True) ::: Dave is quiet.\nRed(Dave, True) ::: Dave is red.\nKind(Erin, True) ::: Erin is kind.\nQuiet(Erin, True) ::: Erin is quiet.\nRed(Erin, True) ::: Erin is red.\n\nRules:\nFurry($x, True) && Rough($x, True) >>> Green($x, True) ::: Furry, rough people are green.\nRed($x, True) >>> Furry($x, True) ::: Red people are furry.\nGreen($x, True) >>> Kind($x, True) ::: All green people are kind.\nKind($x, True) >>> Quiet($x, True) ::: Kind people are quiet.\nCold($x, True) >>> Rough($x, True) ::: If someone is cold then they are rough.\nFurry($x, True) && Rough($x, True) >>> Cold($x, True) ::: All furry, rough people are cold.\nQuiet($x, True) >>> Red($x, True) ::: All quiet people are red.\nRed($x, True) && Quiet($x, True) >>> Cold($x, True) ::: All red, quiet people are cold.\nKind(Anne, True) >>> Furry(Anne, True) ::: If Anne is kind then Anne is furry.\n\nQuery:\nFurry(Charlie, True) ::: Charlie is furry."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 136.0,
+      "True": 102.0,
+      "Unknown": 169.0
+    },
+    "answer_counts": {
+      "False": 2,
+      "Unknown": 6,
+      "True": 3
+    },
+    "traces": [
+      {
+        "trace": "To determine whether Charlie is furry, we need to analyze the given statements and apply the rules of inference.\n\nGiven statements:\n\n1. Anne is cold.\n2. Anne is green.\n3. Anne is rough.\n4. Charlie is kind.\n5. Dave is cold.\n6. Dave is furry.\n7. Dave is kind.\n8. Dave is quiet.\n9. Dave is red.\n10. Erin is kind.\n11. Erin is quiet.\n12. Erin is red.\n13. Furry, rough people are green.\n14. Red people are furry.\n15. All green people are kind.\n16. Kind people are quiet.\n17. If someone is cold then they are rough.\n18. All furry, rough people are cold.\n19. All quiet people are red.\n20. All red, quiet people are cold.\n21. If Anne is kind then Anne is furry.\n\nFrom statement 21, we can conclude that Anne is furry, because Anne is kind.\n\nNow, let's try to determine if Charlie is furry. We are given that Charlie is kind (statement 4). \n\nWe know that all green people are kind (statement 15) and all furry, rough people are green (statement 13). However, we do not have any information that links Charlie to being furry or rough.\n\nHowever, we know that if Anne is kind, then Anne is furry (statement 21). We also know that Anne is furry (as concluded earlier). But there is no direct relationship between Anne's characteristics and Charlie's characteristics.\n\nWe also know that all red, quiet people are cold (statement 20). Since Charlie is kind (statement 4) and kind people are quiet (statement 16), Charlie must be quiet. We also know that all quiet people are red (statement 19).\n\nFrom this information, we cannot directly conclude that Charlie is furry, but we can conclude that Charlie is red.\n\nTherefore, the statement \"Charlie is furry\" is unknown.",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve the problem, we will analyze the given statements and use the process of elimination to determine whether Charlie is furry or not.\n\n1. Given statements:\n   - Anne is cold.\n   - Anne is green.\n   - Anne is rough.\n   - Charlie is kind.\n   - Dave is cold.\n   - Dave is furry.\n   - Dave is kind.\n   - Dave is quiet.\n   - Dave is red.\n   - Erin is kind.\n   - Erin is quiet.\n   - Erin is red.\n   - Furry, rough people are green.\n   - Red people are furry.\n   - All green people are kind.\n   - Kind people are quiet.\n   - If someone is cold then they are rough.\n   - All furry, rough people are cold.\n   - All quiet people are red.\n   - All red, quiet people are cold.\n   - If Anne is kind then Anne is furry.\n\n2. Analyzing the statements:\n   - Since Anne is green (statement 2), we can conclude that Anne is kind (all green people are kind, statement 13).\n   - From statement 22, if Anne is kind then Anne is furry. Therefore, Anne is furry.\n\n3. Now, we will analyze the given statement 'Charlie is furry'.\n   - Charlie is not furry because there is no direct evidence to support this claim, and we cannot derive it from the given statements.\n\nHowever, we can find out more about Charlie. Since Charlie is kind (statement 4), we can conclude that Charlie is quiet (kind people are quiet, statement 15).\n\nSince Charlie is quiet, we can conclude that Charlie is red (all quiet people are red, statement 17).\n\nThe final answer is \\boxed{False}.",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether Charlie is furry, we need to analyze the given statements and their implications.\n\n1. Charlie is kind.\n2. All green people are kind.\n3. Furry, rough people are green.\n4. If someone is cold then they are rough.\n5. All furry, rough people are cold.\n6. If Anne is kind then Anne is furry. \n\nFrom statement 1, we know Charlie is kind. \nFrom statement 2, we know all green people are kind, but we don't know if Charlie is green yet. \nFrom statement 3, we know furry, rough people are green, but we still don't know if Charlie is furry or rough. \nFrom statement 4, we know if someone is cold then they are rough, but we don't know if Charlie is cold yet.\nFrom statement 5, we know all furry, rough people are cold, but we still don't know if Charlie is furry or rough.\nFrom statement 6, we know if Anne is kind then Anne is furry, but this statement doesn't apply to Charlie because it talks about Anne.\n\nWe don't have any direct information about Charlie being furry or rough, but we can deduce that Charlie is not furry from statement 8, All quiet people are red, and statement 9, All red, quiet people are cold. \nSince Charlie is kind (statement 1), and statement 10, All quiet people are red, statement 9, All red, quiet people are cold, and statement 4, If someone is cold then they are rough, we can conclude Charlie is not furry because if Charlie were furry, he would be cold (statement 5) and thus rough (statement 4), which contradicts the fact that all quiet people are red and all red, quiet people are cold.\n\nHowever, since we don't have any information about Charlie's fur or roughness directly, we cannot conclude that Charlie is not furry based solely on the given information. Therefore, we cannot determine Charlie's fur status based on the given information. Hence, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine if the statement \"Charlie is furry\" is true, false, or unknown, we need to analyze the given information and the relationships between the attributes.\n\n1. Charlie is kind. (This is given)\n\n2. All green people are kind. \n   We know Anne is kind, and from this we can conclude that Anne is green (because all green people are kind).\n\n3. Furry, rough people are green.\n   Since Anne is green and rough, we can conclude that Anne is furry (because furry, rough people are green).\n\n4. If Anne is kind then Anne is furry.\n   We know Anne is kind (from point 2), and this matches with our conclusion in point 3.\n\nFrom this, we can conclude that Anne is furry, and since Anne is furry, Charlie can also be furry (because there's no information that contradicts Charlie being furry).\n\nTherefore, based on the given information, the statement \"Charlie is furry\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is furry\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is kind. (Given)\n2. Kind people are quiet. (Given)\n3. All quiet people are red. (Given)\n4. All red, quiet people are cold. (Given)\n5. If someone is cold then they are rough. (Given)\n6. All furry, rough people are cold. (Given)\n7. All red people are furry. (Given)\n8. If Anne is kind then Anne is furry. (This is a separate statement, not directly related to Charlie, but it gives us a clue about the relationship between kind and furry)\n9. Anne is kind. (Given)\n10. Anne is furry. (From step 8 and step 9)\n\nHowever, step 10 does not directly relate to Charlie. So, let's focus on Charlie again.\n\nFrom step 1, we know Charlie is kind. From step 2, we know kind people are quiet. From step 3, we know all quiet people are red. From step 4, we know all red, quiet people are cold. From step 5, we know if someone is cold then they are rough. But, we don't have any direct information that connects Charlie to being furry.\n\nHowever, from step 7, we know all red people are furry. But, we know Charlie is quiet (from step 2), which implies he is red (from step 3). And from step 4, all red, quiet people are cold, which implies Charlie is cold. From step 5, if someone is cold then they are rough. And from step 6, all furry, rough people are cold. This creates a possibility that Charlie could be furry.\n\nHowever, we have a contradiction here. From step 5 and step 6, we get that all furry, rough people are cold. From step 1 and step 2, we get that Charlie is kind, and from step 2, kind people are quiet. From step 3, quiet people are red, and from step 4, all red, quiet people are cold. This implies Charlie is red and cold. From step 5, if someone is cold then they are rough. And from step 6, all furry, rough people are cold, which creates a possibility that Charlie could be furry. However, it also implies that Charlie is furry and red. From step 7, all red people are furry. This creates a possibility that Charlie could be furry. But this would be a conclusion based on assumption that Charlie is red, which we cannot be sure of.\n\nHowever, from step 8, we know that if Anne is kind then Anne is furry. From step 9, we know Anne is kind. So, from step 8 and step 9, we conclude that Anne is furry. However, we still do not have any direct information about Charlie.\n\nHowever, from step 7, we know all red people are furry. But we do not know if Charlie is red or not. From step 3, quiet people are red, and from step 2, kind people are quiet. From step 1, Charlie is kind, so Charlie is quiet, which implies Charlie is red. But from step 7, we know all red people are furry.\n\nTherefore, based on the given information, we can conclude that Charlie is furry.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether Charlie is furry, we need to analyze the given information and use logical deductions.\n\n1. Charlie is kind. \n2. Kind people are quiet. \n3. All quiet people are red.\n4. All red, quiet people are cold.\n5. All cold people are rough.\n6. If someone is cold then they are rough.\n7. All green people are kind.\n8. If Anne is kind then Anne is furry. (This does not directly apply to Charlie, but it is given information.)\n9. All furry, rough people are cold.\n10. Red people are furry.\n11. Furry, rough people are green.\n\nFrom point 1, we know Charlie is kind.\n\nFrom point 2, we know Charlie is quiet.\n\nFrom point 3, we know Charlie is red.\n\nFrom point 4, we know Charlie is cold.\n\nFrom point 5, we know Charlie is rough.\n\nNow, we have a contradiction. Points 5 and 11 both state that Charlie is rough and green. However, we cannot determine whether Charlie is green or not from the given information.\n\nTherefore, the statement \"Charlie is furry\" is unknown because we have incomplete information to determine whether Charlie is furry or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine if Charlie is furry, we need to analyze the given information and deduce any relationships between the characteristics.\n\n1. From the statement \"All green people are kind,\" we can conclude that Anne is kind since Anne is green.\n\n2. Now, we have a new piece of information: \"If Anne is kind then Anne is furry.\" This allows us to conclude that Anne is furry.\n\n3. However, the problem statement also says \"Dave is furry.\" We cannot determine if Charlie is furry from this information.\n\n4. To further investigate, we need to find any relationships between Charlie's characteristics and the characteristics of furry people. However, we know that \"Red people are furry,\" and \"All red, quiet people are cold.\" We also know that \"Charlie is kind\" and \"All kind people are quiet.\" \n\n5. From \"All red, quiet people are cold,\" and \"All quiet people are red,\" we can conclude that Charlie is red.\n\n6. Since we know that Charlie is red and red people are furry, we can conclude that Charlie is furry.\n\nTherefore, the statement \"Charlie is furry\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether Charlie is furry, we need to analyze the given information step by step.\n\n1. From the statement \"All green people are kind,\" we can infer that since Anne is green and kind, Anne must be kind (as she satisfies both conditions of being green and being kind).\n\n2. From the statement \"If Anne is kind then Anne is furry,\" we can infer that since Anne is kind, Anne must be furry.\n\nHowever, we don't know if Charlie is green or not. We can only analyze the given information about Charlie, which is that \"Charlie is kind.\" \n\n3. From the statement \"All green people are kind,\" we can infer that Charlie can be green, but we cannot conclude that Charlie is green without additional information.\n\n4. Even if Charlie is green, we don't know if the condition \"Furry, rough people are green\" applies to Charlie. We can only infer that if Charlie is green and rough, then Charlie might be furry. However, we don't know if Charlie is rough or not.\n\n5. From the statement \"All furry, rough people are cold,\" we can infer that if Charlie is furry and rough, then Charlie is cold. However, we don't know if Charlie is furry or rough.\n\n6. From the statement \"All quiet people are red,\" we can infer that Charlie might be red, but we don't know if Charlie is quiet or not.\n\n7. From the statement \"All red, quiet people are cold,\" we can infer that if Charlie is red and quiet, then Charlie is cold. However, we don't know if Charlie is red or quiet.\n\nBased on the given information, we cannot determine whether Charlie is furry or not, as we have multiple possible scenarios:\n\n- Charlie is green and rough, which might make Charlie furry.\n- Charlie is red and quiet, which does not provide any information about Charlie being furry.\n\nSince we cannot determine whether Charlie is furry or not, our final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we will use a method called resolution. We will break down the given statements into premises and conclusions, then use the given conditions to derive conclusions.\n\nGiven statements:\n1. Anne is cold. \n2. Anne is green. \n3. Anne is rough. \n4. Charlie is kind. \n5. Dave is cold. \n6. Dave is furry. \n7. Dave is kind. \n8. Dave is quiet. \n9. Dave is red. \n10. Erin is kind. \n11. Erin is quiet. \n12. Erin is red. \n13. Furry, rough people are green. \n14. Red people are furry. \n15. All green people are kind. \n16. Kind people are quiet. \n17. If someone is cold then they are rough. \n18. All furry, rough people are cold. \n19. All quiet people are red. \n20. All red, quiet people are cold. \n21. If Anne is kind then Anne is furry.\n\nTo determine whether Charlie is furry, we need to derive a conclusion from the given statements.\n\nStep 1: \nFrom statement 17, we know that if someone is cold then they are rough. \nFrom statement 1, we know that Anne is cold. \nTherefore, from statement 17, we can conclude that Anne is rough.\n\nStep 2: \nFrom statement 3, we know that Anne is rough. \nFrom statement 13, we know that furry, rough people are green. \nFrom statement 2, we know that Anne is green. \nTherefore, we cannot derive any new conclusion from these three statements.\n\nStep 3: \nFrom statement 15, we know that all green people are kind. \nFrom statement 2, we know that Anne is green. \nTherefore, from statement 15, we can conclude that Anne is kind.\n\nStep 4: \nFrom statement 21, we know that if Anne is kind then Anne is furry. \nFrom step 3, we know that Anne is kind. \nTherefore, from statement 21, we can conclude that Anne is furry.\n\nStep 5: \nFrom statement 18, we know that all furry, rough people are cold. \nFrom step 1, we know that Anne is cold. \nFrom step 4, we know that Anne is furry. \nFrom step 3, we know that Anne is kind. \nFrom statement 17, we know that if someone is cold then they are rough. \nTherefore, we cannot derive any new conclusion from these five statements.\n\nStep 6: \nFrom statement 19, we know that all quiet people are red. \nFrom statement 16, we know that kind people are quiet. \nFrom step 3, we know that Anne is kind. \nTherefore, from statement 16, we can conclude that Anne is quiet.\n\nStep 7: \nFrom statement 20, we know that all red, quiet people are cold. \nFrom statement 19, we know that all quiet people are red. \nFrom step 6, we know that Anne is quiet. \nTherefore, from statement 19, we can conclude that Anne is red.\n\nStep 8: \nFrom statement 14, we know that red people are furry. \nFrom step 7, we know that Anne is red. \nTherefore, from statement 14, we can conclude that Anne is furry.\n\nFrom steps 4 and 8, we have two conclusions that Anne is furry. \nTherefore, we can conclude that Charlie is not furry.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is furry\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is kind. (Given statement)\n\nFrom this statement, we can conclude that Charlie is quiet because all kind people are quiet.\n\n2. Charlie is quiet. (Conclusion from the first step)\n\nFrom this statement, we can conclude that Charlie is red because all quiet people are red.\n\n3. Charlie is red. (Conclusion from the second step)\n\nFrom this statement, we can conclude that Charlie is cold because all red, quiet people are cold.\n\n4. Charlie is cold. (Conclusion from the third step)\n\nFrom this statement, we cannot directly determine if Charlie is furry or not. However, we can find a contradiction if we assume Charlie is furry.\n\nIf Charlie is furry, then Charlie is rough because all furry, rough people are cold. (From the given statement)\n\nBut then, Charlie is not rough because Charlie is cold and all cold people are rough. (From the given statement)\n\nThis creates a contradiction, so we cannot conclude that Charlie is furry.\n\nSince we have not found any direct evidence that Charlie is furry and have found a contradiction when assuming Charlie is furry, we cannot conclude that Charlie is furry.\n\nTherefore, the statement \"Charlie is furry\" is **unknown**.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine if the statement \"Charlie is furry\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is kind. (Given)\n2. All green people are kind. (Given)\n   - However, we cannot conclude that Charlie is green from this statement alone, so we cannot determine if Charlie is furry or not based on this information.\n\n3. Anne is green. Anne is rough. (Given)\n   - From \"Furry, rough people are green,\" we can conclude that Anne is furry because Anne is rough and green.\n\n4. If someone is cold then they are rough. All furry, rough people are cold. (Given)\n   - We can conclude that Anne is cold because Anne is furry and rough.\n\n5. If Anne is kind then Anne is furry. (Given)\n   - However, we already know that Anne is furry, so this statement does not provide any new information about Charlie.\n\n6. Dave is cold. Dave is furry. Dave is kind. Dave is quiet. Dave is red. (Given)\n   - We can conclude that Dave is red because Dave is quiet, and all quiet people are red.\n\n7. Erin is kind. Erin is quiet. Erin is red. (Given)\n   - We can conclude that Erin is red because Erin is quiet, and all quiet people are red.\n\n8. All red, quiet people are cold. (Given)\n   - We can conclude that Erin is cold because Erin is red and quiet.\n\nHowever, we still cannot determine if Charlie is furry or not. To do that, we need to analyze the information about Charlie's characteristics.\n\n9. All furry, rough people are cold. (Given)\n   - We know that Anne is cold, furry, and rough, so this statement is true.\n\n10. All green people are kind. (Given)\n    - We know that Charlie is kind, but we still cannot conclude that Charlie is green from this statement alone.\n\n11. All quiet people are red. (Given)\n    - We know that Charlie is not quiet, so we cannot conclude that Charlie is red from this statement.\n\n12. If someone is cold then they are rough. (Given)\n    - We know that Charlie is not cold, so we cannot conclude that Charlie is rough from this statement.\n\n13. All red people are furry. (Given)\n    - We cannot conclude that Charlie is furry or not from this statement alone.\n\n14. Charlie is kind. (Given)\n    - This statement tells us that Charlie is kind, but it does not provide any information about Charlie's fur color.\n\n15. All kind people are quiet. (Given)\n    - We cannot conclude that Charlie is quiet or not from this statement alone.\n\nBased on the given information, we cannot determine if Charlie is furry or not. We cannot conclude that Charlie is furry, so the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we will use the given statements and deduce information step by step.\n\nGiven statements:\n1. Anne is cold.\n2. Anne is green.\n3. Anne is rough.\n4. Charlie is kind.\n5. Dave is cold.\n6. Dave is furry.\n7. Dave is kind.\n8. Dave is quiet.\n9. Dave is red.\n10. Erin is kind.\n11. Erin is quiet.\n12. Erin is red.\n13. Furry, rough people are green.\n14. Red people are furry.\n15. All green people are kind.\n16. Kind people are quiet.\n17. If someone is cold then they are rough.\n18. All furry, rough people are cold.\n19. All quiet people are red.\n20. All red, quiet people are cold.\n21. If Anne is kind then Anne is furry.\n\nFirst, we will determine the color of Charlie. \n\nFrom statement 4, we know Charlie is kind.\nFrom statement 16, we know kind people are quiet.\nSo, Charlie is quiet.\nFrom statement 19, we know all quiet people are red.\nSo, Charlie is red.\n\nNow, we will determine the furiness of Charlie.\n\nFrom statement 19, we know all quiet people are red.\nFrom statement 20, we know all red, quiet people are cold.\nFrom statement 17, we know if someone is cold then they are rough.\nFrom statement 18, we know all furry, rough people are cold.\nSince we cannot confirm that Charlie is cold or furry from these statements, the statement \"Charlie is furry\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(green_X, furry_X, rough_X), kind_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_X, furry_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> kind(X)",
+          "z3_formula": "Implies(kind_X, kind_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_X, quiet_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_X, rough_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_X, rough_X), cold_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> red(X)",
+          "z3_formula": "Implies(quiet_X, red_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_X, quiet_X), cold_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "kind(anne) -> furry(anne)",
+          "z3_formula": "Implies(kind_anne, furry_anne)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_anne, kind_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_anne, furry_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_charlie, quiet_charlie)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_anne, rough_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_dave, rough_dave), cold_dave)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> red(X)",
+          "z3_formula": "Implies(quiet_charlie, red_charlie)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_erin, quiet_erin), cold_erin)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_charlie, kind_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> green(X)",
+          "z3_formula": "Implies(And(furry_charlie, rough_charlie), green_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_charlie, rough_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_charlie, rough_charlie), cold_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(anne) -> furry(anne)",
+          "z3_formula": "Implies(kind_anne, furry_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_charlie, quiet_charlie), cold_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_charlie, rough_charlie)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_anne, kind_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(green_anne, rough_anne), furry_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_anne, furry_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_charlie, quiet_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> red(X)",
+          "z3_formula": "Implies(quiet_charlie, red_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_charlie, quiet_charlie), cold_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_charlie, rough_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_charlie, rough_charlie), cold_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_charlie, furry_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_anne, furry_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 11
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_anne, kind_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_anne, furry_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_charlie, quiet_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_charlie, furry_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_charlie, furry_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_charlie, quiet_charlie), cold_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> red(X)",
+          "z3_formula": "Implies(quiet_charlie, red_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & kind(X) -> kind(X)",
+          "z3_formula": "Implies(And(green_anne, kind_anne), kind_anne)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_anne, furry_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_charlie, kind_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> green(X)",
+          "z3_formula": "Implies(green_charlie, green_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> green(X)",
+          "z3_formula": "Implies(And(furry_charlie, rough_charlie), green_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_charlie, rough_charlie), cold_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> red(X)",
+          "z3_formula": "Implies(quiet_charlie, red_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_charlie, quiet_charlie), cold_charlie)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_anne, rough_anne)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_anne, rough_anne), cold_anne)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_anne, kind_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_anne, quiet_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_anne, rough_anne), cold_anne)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> red(X)",
+          "z3_formula": "Implies(quiet_anne, red_anne)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_anne, quiet_anne), cold_anne)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_anne, furry_anne)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == False",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_charlie, quiet_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> red(X)",
+          "z3_formula": "Implies(quiet_charlie, red_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_charlie, quiet_charlie), cold_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_charlie, rough_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_charlie, rough_charlie), cold_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_charlie, rough_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(charlie)",
+          "z3_formula": "Not(furry_charlie)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_charlie, kind_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> green(X)",
+          "z3_formula": "Implies(And(furry_anne, rough_anne), green_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_anne, rough_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_anne, rough_anne), cold_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_anne, furry_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> red(X)",
+          "z3_formula": "Implies(quiet_erin, red_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_erin, quiet_erin), cold_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne) & rough(anne) -> cold(anne)",
+          "z3_formula": "Implies(And(furry_anne, rough_anne), cold_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(anne) -> kind(anne)",
+          "z3_formula": "Implies(green_anne, kind_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) -> red(X)",
+          "z3_formula": "Implies(quiet_charlie, red_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_charlie, rough_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_charlie, furry_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_charlie, quiet_charlie)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> green(X)",
+          "z3_formula": "Implies(And(furry_charlie, rough_charlie), green_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_charlie, furry_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_charlie, kind_charlie)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_charlie, quiet_charlie)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_anne, rough_anne)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_charlie, rough_charlie), cold_charlie)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> red(X)",
+          "z3_formula": "Implies(quiet_charlie, red_charlie)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_charlie, quiet_charlie), cold_charlie)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_charlie, furry_charlie)",
+          "source_step": 21
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 189,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 53
+    },
+    "maxsat_stats": {
+      "satisfied": 52,
+      "excluded": 1,
+      "total_weight": 187,
+      "solve_time_ms": 1.2016454711556435
+    },
+    "timing": {
+      "trace_gen_s": 9.029,
+      "extraction_s": 32.556,
+      "dedup_s": 2.252,
+      "maxsat_s": 0.004,
+      "total_s": 43.841
+    }
+  }
+}

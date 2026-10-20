@@ -1,0 +1,1040 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-586_Q21",
+    "problem": "Erin is smart. Fiona is quiet. Gary is blue. Gary is kind. Gary is quiet. Gary is red. Harry is smart. If Harry is smart then Harry is kind. Quiet, smart things are blue. If something is green and smart then it is not blue. Kind things are quiet. All blue, green things are smart. Red things are furry. If Harry is smart and Harry is blue then Harry is red.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is not kind.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nSmart($x, bool) ::: Is x smart?\nQuiet($x, bool) ::: Is x quiet?\nBlue($x, bool) ::: Is x blue?\nGreen($x, bool) ::: Is x green?\nRed($x, bool) ::: Is x red?\nKind($x, bool) ::: Is x kind?\nFurry($x, bool) ::: Is x furry?\n\nFacts:\nSmart(Erin, True) ::: Erin is smart.\nQuiet(Fiona, True) ::: Fiona is quiet.\nBlue(Gary, True) ::: Gary is blue.\nKind(Gary, True) ::: Gary is kind.\nQuiet(Gary, True) ::: Gary is quiet.\nRed(Gary, True) ::: Gary is red.\nSmart(Harry, True) ::: Harry is smart.\n\nRules:\nSmart(Harry, True) >>> Kind(Harry, True) ::: If Harry is smart then Harry is kind.\nQuiet($x, True) && Smart($x, True) >>> Blue($x, True) ::: Quiet, smart things are blue.\nGreen($x, True) && Smart($x, True) >>> Blue($x, False) ::: If something is green and smart then it is not blue.\nKind($x, True) >>> Quiet($x, True) ::: Kind things are quiet.\nBlue($x, True) && Green($x, True) >>> Smart($x, True) ::: All blue, green things are smart.\nRed($x, True) >>> Furry($x, True) ::: Red things are furry.\nSmart(Harry, True) && Blue(Harry, True) >>> Red(Harry, True) ::: If Harry is smart and Harry is blue then Harry is red.\n\nQuery:\nKind(Erin, False) ::: Erin is not kind."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "Unknown": 144.5
+    },
+    "answer_counts": {
+      "Unknown": 12
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Erin is not kind\" is true, false, or unknown, we need to analyze the given information.\n\n1. Erin is smart. \n2. Fiona is quiet. \n3. Gary is blue. \n4. Gary is kind. \n5. Gary is quiet. \n6. Gary is red. \n7. Harry is smart. \n8. If Harry is smart then Harry is kind. (From 7 and 8, Harry is kind)\n9. Quiet, smart things are blue. \n10. If something is green and smart then it is not blue. \n11. Kind things are quiet. \n12. All blue, green things are smart. \n13. Red things are furry. \n14. If Harry is smart and Harry is blue then Harry is red. \n\nFrom 1, we know Erin is smart. We also know from 11 that kind things are quiet, but we don't have any information about Erin's quietness or kindness.\n\nWe know from 4 that Gary is kind, and from 5 that Gary is quiet. Since Gary is kind, he must be quiet according to 11.\n\nNow let's examine the relationship between blue, green, smart things and red things. From 9, quiet, smart things are blue. However, from 13, red things are furry. \n\nWe also know from 6 that Gary is red. However, from 3, Gary is blue. This seems contradictory. However, we also know from 14 that if Harry is smart and Harry is blue then Harry is red. We do not have any information about Harry's color when he is blue and smart. However, let's assume that Harry is blue and smart and see what happens. \n\nFrom 9, since Harry is smart and quiet, he must be blue. But we already know from 3 that Gary is blue. This does not tell us anything about Erin.\n\nHowever, we can conclude that Erin's color is unknown. \n\nFrom 10, if something is green and smart then it is not blue. We do not know Erin's color, but we do know that Erin is smart. However, we cannot conclude anything about Erin's color because there is no information about Erin's color.\n\nFrom 13, red things are furry. We do not know Erin's fur status or color.\n\nWe know from 4 that Gary is kind. We also know from 8 that Harry is kind. However, we do not know Erin's kindness status.\n\nSince we do not have any information about Erin's quietness or kindness, we cannot conclude whether Erin is kind or not.\n\nTherefore, the statement \"Erin is not kind\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement 'Erin is not kind' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We don't have any information about Erin's characteristics, so we start by analyzing the information about the other characters.\n\n2. From the given information, we have the following statements:\n   - Harry is smart.\n   - Harry is blue.\n   - If Harry is smart and Harry is blue, then Harry is red.\n   - Red things are furry.\n   - Red things can be furry, but that does not mean that all furry things are red.\n\n3. Since Harry is blue and smart, and according to the given statement, if Harry is smart and blue then he is red. This means Harry is also red.\n\n4. Since Harry is red, we can conclude that Harry is furry.\n\n5. Now, let's analyze the information about Gary.\n   - Gary is blue.\n   - Gary is kind.\n   - Gary is quiet.\n   - Gary is red.\n\n6. Since Gary is both blue and red, and from the given statement, we know that things that are blue and green are smart, we can conclude that Gary is not green.\n\n7. Now, let's analyze the information about Erin.\n   - Erin is smart. \n   - We don't have any information about Erin's color or other characteristics.\n\n8. We don't have any information about Erin's kindness. Since 'Erin is not kind' is the statement we are trying to evaluate, we need to analyze the given statements that might relate to Erin's kindness.\n\n9. From the given information, we have the following statements:\n   - Kind things are quiet.\n   - We don't have any information about Erin's quietness.\n   - Since we don't have any information about Erin's quietness, we cannot determine whether Erin is kind or not.\n\n10. Since we cannot determine whether Erin is kind or not, we cannot determine whether the statement 'Erin is not kind' is true or false. Therefore, the answer is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not kind\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. There is no direct information about Erin's characteristics, such as being kind or not. We need to look for indirect clues.\n\n2. Since we have no information about Erin, let's look at other individuals mentioned in the problem.\n\n3. We know that Fiona is quiet, but there is no information about her kind or not being kind nature.\n\n4. We know that Gary is kind, quiet, and red. However, this information doesn't give us any insight into Erin's nature.\n\n5. We know that Harry is smart, but we cannot conclude anything about his kind nature directly. However, it is given that if Harry is smart then Harry is kind. But there is also information stating that if Harry is smart and Harry is blue then Harry is red.\n\n6. We also know that kind things are quiet, which could imply that Erin might be kind, but we need more information to conclude this.\n\n7. There is no information directly related to Erin being kind or not.\n\nConsidering the given information, we cannot directly conclude whether Erin is kind or not. There is no information that links Erin with any of the characteristics such as being kind, quiet, smart, blue, green, red, or furry. Therefore, we cannot determine whether the statement \"Erin is not kind\" is true or false.\n\nThe answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not kind\" is true, false, or unknown, we need to analyze the given information.\n\nFrom the given statements:\n1. Gary is blue.\n2. Gary is kind.\n3. Gary is quiet.\n4. Gary is red. (This statement seems contradictory to statement 1, but we'll keep it in mind)\n5. Harry is smart.\n6. If Harry is smart, then Harry is kind. (From this, we can infer that Harry is kind)\n7. Quiet, smart things are blue. (This implies that the combination of quiet and smart results in something being blue)\n8. If something is green and smart, then it is not blue. (This implies that green and smart are mutually exclusive with blue)\n9. Kind things are quiet. (This implies that kind things are also quiet)\n10. All blue, green things are smart. (This implies that blue and green together result in something being smart)\n11. Red things are furry. (This is an independent fact)\n12. If Harry is smart and Harry is blue, then Harry is red. (This implies that the combination of smart and blue results in something being red)\n\nNow, let's analyze the information about Erin. We have no information about Erin's color, kind, or smartness directly from the given statements. However, since we can't directly determine Erin's kind, we need to use the available information to derive a conclusion about Erin's kind.\n\nFrom statement 6, we know that Harry is smart and therefore Harry is kind. \n\nFrom statement 7, we know that quiet and smart together result in something being blue.\n\nFrom statement 9, we know that kind things are quiet.\n\nFrom statement 11, we know that red things are furry.\n\nFrom statement 12, we know that if Harry is smart and Harry is blue, then Harry is red. However, we don't know Harry's color directly from the given statements. We need to use the available information to derive a conclusion about Harry's color.\n\nFrom statement 1, we know that Gary is blue.\n\nFrom statement 3, we know that Gary is quiet.\n\nFrom statement 5, we know that Harry is smart.\n\nFrom statement 7, we know that quiet, smart things are blue.\n\nSince Harry is smart (from statement 5), and we know that quiet and smart together result in something being blue (from statement 7), we can infer that Harry is blue.\n\nFrom statement 12, we know that if Harry is smart and Harry is blue, then Harry is red. Since Harry is smart (from statement 5) and Harry is blue (from the previous inference), we can infer that Harry is red.\n\nFrom statement 11, we know that red things are furry. Since Harry is red (from the previous inference), we can infer that Harry is furry.\n\nNow, let's analyze the given statements again to see if there's any information about Erin. We still can't find any direct information about Erin.\n\nHowever, we can try to find a connection between Erin and the other characters. Unfortunately, there's no information about Erin that would help us determine her kind.\n\nTherefore, we can conclude that the statement \"Erin is not kind\" is unknown because we have no information about Erin's kind.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not kind\" is true, false, or unknown, we need to analyze the given information.\n\nFrom the given statements, we can form the following conclusions:\n\n1. Quiet, smart things are blue. \n   This implies that if something is quiet and smart, then it is blue.\n\n2. Kind things are quiet. \n   This implies that if something is kind, then it is quiet.\n\n3. All blue, green things are smart. \n   This implies that if something is blue or green, then it is smart.\n\n4. If something is green and smart then it is not blue. \n   This implies that if something is green and smart, then it is not blue.\n\n5. If Harry is smart then Harry is kind. \n   Since Harry is smart, we can conclude that Harry is kind.\n\n6. Gary is kind. \n   Since Gary is kind, we can conclude that Gary is quiet. (From statement 2)\n\n7. Gary is quiet. \n   We already knew this, but it confirms our previous conclusion.\n\n8. Gary is blue. \n   This is the only information we have about Gary's color.\n\n9. Gary is red. \n   This implies that Gary cannot be blue, since Gary is red and blue. However, this statement contradicts statement 8, which says that Gary is blue. Therefore, we can conclude that this statement is false.\n\n10. Red things are furry. \n    We cannot conclude anything about Erin from this statement.\n\n11. If Harry is smart and Harry is blue then Harry is red. \n    We do not have enough information to determine Harry's color, so we cannot conclude anything about Harry's color from this statement.\n\n12. Erin is smart. \n    We do not have any information about Erin's kindness or color, so we cannot conclude anything about Erin from this statement.\n\nFrom the given information, we cannot determine whether Erin is kind or not, since we do not have any information about Erin's kindness or color. Therefore, the statement \"Erin is not kind\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not kind\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. We are given the following premises:\n   - Erin is smart\n   - Fiona is quiet\n   - Gary is blue\n   - Gary is kind\n   - Gary is quiet\n   - Gary is red\n   - Harry is smart\n   - If Harry is smart then Harry is kind\n   - Quiet, smart things are blue\n   - If something is green and smart then it is not blue\n   - Kind things are quiet\n   - All blue, green things are smart\n   - Red things are furry\n   - If Harry is smart and Harry is blue then Harry is red\n\n2. We will analyze each premise to find any relevant information about Erin.\n\n   - From premise 1, we know Erin is smart. However, we cannot determine if she is kind or not.\n   - We don't have any information about Erin's color or if she is quiet or not.\n\n3. We will try to deduce more information using the given premises.\n\n   - From premise 1, we know Gary is kind and Gary is quiet. However, we cannot conclude that Erin is not kind because we don't have any information about Erin's kindness.\n   - From premise 9, we know that kind things are quiet, which we already know about Gary. However, this premise does not give us any information about Erin.\n   - From premise 3, we know that Gary is blue, but we cannot conclude that Erin is not blue because we don't have any information about Erin's color.\n   - From premise 12, we know that red things are furry, but we cannot conclude that Erin is not kind because we don't have any information about Erin's color or furiness.\n\n4. After analyzing all the premises, we cannot find any information that would allow us to conclude that Erin is not kind.\n\nSince we cannot determine whether Erin is kind or not, we cannot conclude that the statement \"Erin is not kind\" is true or false. Therefore, the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not kind\" is true, false, or unknown, we need to analyze the given information and the known characteristics of Erin.\n\nFrom the given information, we know:\n\n1. Quiet, smart things are blue.\n2. Kind things are quiet.\n3. All blue, green things are smart.\n4. If something is green and smart then it is not blue.\n5. Red things are furry.\n6. If Harry is smart and Harry is blue then Harry is red.\n\nWe do not have any information about Erin's characteristics, so we will analyze the characteristics of others and see if we can derive any information about Erin.\n\nFrom the given information, we know:\n\n1. Gary is blue.\n2. Gary is kind.\n3. Gary is quiet.\n4. Gary is red.\n\nWe can derive the following information:\n\n- Gary is blue and kind, so Gary is quiet (since kind things are quiet).\n- Gary is red, but Gary is also blue (a contradiction).\n\nHowever, this contradiction arises from the statement \"Gary is red\" and \"Gary is blue.\" Since Gary cannot be both red and blue, we can conclude that this statement is incorrect.\n\nWe will ignore this contradiction and continue analyzing the information.\n\nFrom the given information, we know:\n\n1. Harry is smart.\n2. Harry is kind.\n3. Harry is blue.\n\nWe can derive the following information:\n\n- Harry is smart, and Harry is blue, so Harry is red (since if Harry is smart and Harry is blue then Harry is red).\n- Harry is red, but this is not directly related to Erin.\n\nWe still do not have any information about Erin's characteristics.\n\nSince we do not have any information about Erin's characteristics, we cannot determine whether the statement \"Erin is not kind\" is true or false. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given statements one by one to the statement \"Erin is not kind.\" \n\n1. We are given that Erin is smart. \n   Statement: Erin is smart. (We don't have any information about Erin being quiet, blue, kind, or red.)\n\n2. Since Erin is smart, we need to find more information about Erin. \n   Statement: If Harry is smart then Harry is kind. (This statement only applies to Harry, not Erin.)\n   We still don't have enough information about Erin.\n\n3. We need to find more information about Erin that is related to the given statements. \n   Statement: Quiet, smart things are blue. (This statement doesn't mention Erin.)\n   Statement: All blue, green things are smart. (This statement doesn't mention Erin.)\n   Statement: If something is green and smart then it is not blue. (This statement doesn't mention Erin.)\n   Statement: Red things are furry. (This statement doesn't mention Erin.)\n   Statement: If Harry is smart and Harry is blue then Harry is red. (This statement only applies to Harry, not Erin.)\n   We still don't have enough information about Erin.\n\n4. Now, we need to find the information that is related to Erin being kind or not kind. \n   Statement: Gary is kind. (We don't know if Erin is Gary.)\n   Statement: Gary is quiet. (We don't know if Erin is Gary.)\n   Statement: Kind things are quiet. (This statement doesn't mention Erin being kind or not kind.)\n   We still don't have enough information about Erin being kind or not kind.\n\n5. We need to analyze the given statements again to see if we can find any information about Erin being kind or not kind. \n   We know that Erin is smart, but we don't know if Erin is quiet, blue, kind, or red.\n   We know that Gary is kind, but we don't know if Erin is Gary.\n   We know that kind things are quiet, but we don't know if Erin is kind or not kind.\n\n6. Since we can't find any information about Erin being kind or not kind, we can conclude that the statement \"Erin is not kind\" is unknown.\n\nHowever, since Erin is smart, we can try to prove that Erin is kind using the following statements: \n   Statement: Erin is smart. \n   Statement: If Harry is smart then Harry is kind. (This statement only applies to Harry, not Erin.)\n   We still can't prove that Erin is kind.\n\nBut we can try to prove that Erin is not kind using the following statements: \n   Statement: If Harry is smart and Harry is blue then Harry is red. (This statement only applies to Harry, not Erin.)\n   Statement: Red things are furry. (This statement doesn't mention Erin being kind or not kind.)\n   We still can't prove that Erin is not kind.\n\nSince we can't prove that Erin is kind or not kind, we can conclude that the statement \"Erin is not kind\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we will use the rules given and try to determine if Erin is not kind. \n\n1. Erin is smart. (Given)\n2. Fiona is quiet. (Given)\n3. Gary is blue. (Given)\n4. Gary is kind. (Given)\n5. Gary is quiet. (Given)\n6. Gary is red. (Given)\n7. Harry is smart. (Given)\n8. If Harry is smart then Harry is kind. (Rule)\n9. Quiet, smart things are blue. (Rule)\n10. If something is green and smart then it is not blue. (Rule)\n11. Kind things are quiet. (Rule)\n12. All blue, green things are smart. (Rule)\n13. Red things are furry. (Rule)\n14. If Harry is smart and Harry is blue then Harry is red. (Rule)\n\nFrom rule 9, we know that if something is quiet and smart, then it is blue. However, this does not tell us anything about Erin.\n\nFrom rule 8, we know that if Harry is smart, then Harry is kind. But this is not about Erin, it's about Harry.\n\nFrom rule 1, we know that Erin is smart.\n\nNow, let's try to find a connection between Erin and the characteristics we know. Since Erin is smart (rule 1), we can't conclude anything about Erin's kind or quiet nature from the given rules.\n\nHowever, we do know that Erin is smart. We do not have any information that links Erin to any other characteristics, like blue, green, or red.\n\nSince we can't determine whether Erin is kind or not from the given rules, the statement \"Erin is not kind\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not kind\" is true, false, or unknown, we need to analyze the given information and apply the rules of logic.\n\n1. From the statement \"Gary is kind,\" we can infer that Gary is quiet, as it is given that \"Kind things are quiet.\"\n\n2. However, this does not provide any information about Erin, so we need to analyze the given information further.\n\n3. The statement \"If Harry is smart then Harry is kind\" implies that if something is smart, it is likely to be kind, but this is not a definitive rule.\n\n4. The information \"Quiet, smart things are blue\" does not provide any information about Erin.\n\n5. The statement \"If something is green and smart then it is not blue\" does not provide any information about Erin.\n\n6. The information \"All blue, green things are smart\" does not provide any information about Erin.\n\n7. The statement \"Red things are furry\" does not provide any information about Erin.\n\n8. The statement \"If Harry is smart and Harry is blue then Harry is red\" provides no information about Erin's color or kindness.\n\n9. From the given information, we can conclude that Erin's characteristics (smart, quiet, kind, etc.) are not explicitly stated. We cannot infer Erin's kindness from the given information.\n\n10. Therefore, we cannot determine whether the statement \"Erin is not kind\" is true or false, as there is no information available about Erin's kindness.\n\nSo, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not kind\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. We are given the following statements:\n   - Erin is smart.\n   - Fiona is quiet.\n   - Gary is blue.\n   - Gary is kind.\n   - Gary is quiet.\n   - Gary is red.\n   - Harry is smart.\n   - If Harry is smart then Harry is kind.\n   - Quiet, smart things are blue.\n   - If something is green and smart then it is not blue.\n   - Kind things are quiet.\n   - All blue, green things are smart.\n   - Red things are furry.\n   - If Harry is smart and Harry is blue then Harry is red.\n\n2. We need to find out if Erin is kind or not. To do this, we should start with the information we have about Erin.\n\n   - Erin is smart.\n\n3. However, there is no direct information about Erin's kindness. We need to find a connection between Erin's characteristics and her kindness.\n\n4. Since Erin is smart, we can look for information related to smart things.\n\n   - If something is green and smart then it is not blue.\n   - All blue, green things are smart.\n\n5. There is no information about Erin being green or blue, so we cannot use this information to determine her kindness.\n\n6. We know that Erin is smart, and there is no information that contradicts her being smart. However, we need to look for information about smart things being kind.\n\n   - If Harry is smart then Harry is kind.\n\n7. We don't have any information about Erin being related to Harry, but we can look for other information about smart things being kind.\n\n   - Kind things are quiet.\n\n8. We don't have any information about Erin being quiet. Since there is no direct connection between Erin's characteristics and her kindness, we cannot determine if she is kind or not.\n\nTherefore, the statement \"Erin is not kind\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether Erin is not kind, we need to analyze the given statements and apply them to Erin. Since Erin is not mentioned in any of the given statements directly, we will try to infer information about her based on the other statements.\n\n1. Erin is smart. (This statement is not given, but it will be assumed for the sake of this problem. However, Erin's smartness will not affect the final answer.)\n\n2. Fiona is quiet. (This statement does not provide any information about Erin.)\n\n3. Gary is blue. Gary is kind. Gary is quiet. Gary is red. \n   - Since Gary is both blue and red, we can infer that the color does not matter in this case.\n\n4. Harry is smart. If Harry is smart then Harry is kind. (This statement does not provide any information about Erin.)\n\n5. Quiet, smart things are blue. (This statement does not provide any information about Erin.)\n\n6. If something is green and smart then it is not blue. (This statement does not provide any information about Erin.)\n\n7. Kind things are quiet. (This statement does not provide any information about Erin.)\n\n8. All blue, green things are smart. (This statement does not provide any information about Erin.)\n\n9. Red things are furry. (This statement does not provide any information about Erin.)\n\n10. If Harry is smart and Harry is blue then Harry is red. (This statement does not provide any information about Erin.)\n\nBased on the given statements, we do not have any direct information about Erin's kindness. Since we cannot infer Erin's kindness or lack thereof from the given statements, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> red(X)",
+          "z3_formula": "Implies(And(smart_harry, blue_harry), red_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_harry, furry_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_gary, green_gary), smart_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not green(gary)",
+          "z3_formula": "Not(green_gary) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_erin, quiet_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(Not(kind_erin)) | Not(kind_erin)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_X, quiet_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(harry) -> kind(harry)",
+          "z3_formula": "Implies(smart_harry, kind_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(harry) & blue(harry) -> red(harry)",
+          "z3_formula": "Implies(And(smart_harry, blue_harry), red_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == Unknown",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_harry, kind_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_gary, smart_gary), blue_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_harry, smart_harry), blue_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> Not(blue(X))",
+          "z3_formula": "Implies(And(green_harry, smart_harry), Not(blue_harry))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_gary, quiet_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_harry, green_harry), smart_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_gary, furry_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> red(X)",
+          "z3_formula": "Implies(And(smart_harry, blue_harry), red_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(erin)",
+          "z3_formula": "Not(kind_erin)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_X, smart_X), blue_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_X, quiet_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) | green(X) -> smart(X)",
+          "z3_formula": "Implies(Or(blue_X, green_X), smart_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> Not(blue(X))",
+          "z3_formula": "Implies(And(green_X, smart_X), Not(blue_X))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_Harry, kind_Harry)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> Not(blue(X))",
+          "z3_formula": "Implies(red_gary, Not(blue_gary))",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "Not(blue(gary))",
+          "z3_formula": "Not(blue_gary) == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_X, furry_X)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_Harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_Harry == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> red(X)",
+          "z3_formula": "Implies(And(smart_Harry, blue_Harry), red_Harry)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "Not(red(harry))",
+          "z3_formula": "Not(red_Harry) == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(harry) -> kind(harry)",
+          "z3_formula": "Implies(smart_harry, kind_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_fiona, smart_fiona), blue_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> Not(blue(X))",
+          "z3_formula": "Implies(And(green_X, smart_X), Not(blue_X))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_gary, quiet_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_X, green_X), smart_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_gary, furry_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(harry) & blue(harry) -> red(harry)",
+          "z3_formula": "Implies(And(smart_harry, blue_harry), red_harry)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_X, smart_X), blue_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_erin, quiet_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_X, green_X), smart_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> Not(blue(X))",
+          "z3_formula": "Implies(And(green_X, smart_X), Not(blue_X))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_X, furry_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> red(X)",
+          "z3_formula": "Implies(And(smart_X, blue_X), red_X)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "Not(kind(erin))",
+          "z3_formula": "Not(kind_erin)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(Harry) -> kind(Harry)",
+          "z3_formula": "Implies(smart_harry, kind_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_X, smart_X), blue_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_X, green_X), smart_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> Not(blue(X))",
+          "z3_formula": "Implies(And(green_X, smart_X), Not(blue_X))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_X, furry_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(Harry) & blue(Harry) -> red(Harry)",
+          "z3_formula": "Implies(And(smart_harry, blue_harry), red_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_X, quiet_X)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "Not(kind(erin))",
+          "z3_formula": "Not(kind_erin)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_harry, kind_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_gary, smart_gary), blue_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> Not(blue(X))",
+          "z3_formula": "Implies(And(green_X, smart_X), Not(blue_X))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_gary, quiet_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_gary, green_gary), smart_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_gary, furry_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> red(X)",
+          "z3_formula": "Implies(And(smart_harry, blue_harry), red_harry)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_gary, quiet_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_harry, kind_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_X, green_X), smart_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) & smart(X) -> Not(blue(X))",
+          "z3_formula": "Implies(And(green_X, smart_X), Not(blue_X))",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_X, green_X), smart_X)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_X, furry_X)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) & smart(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_X, smart_X), red_X)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == Unknown",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(harry) -> kind(harry)",
+          "z3_formula": "Implies(smart_harry, kind_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_fiona, smart_fiona), blue_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> Not(blue(X))",
+          "z3_formula": "Implies(And(green_X, smart_X), Not(blue_X))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_X, green_X), smart_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_gary, quiet_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_X, green_X), smart_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_gary, furry_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "smart(harry) & blue(harry) -> red(harry)",
+          "z3_formula": "Implies(And(smart_harry, blue_harry), red_harry)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_erin, green_erin), smart_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_erin, quiet_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> Not(blue(X))",
+          "z3_formula": "Implies(And(green_erin, smart_erin), Not(blue_erin))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_erin, green_erin), smart_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> red(X)",
+          "z3_formula": "Implies(And(smart_harry, blue_harry), red_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_gary, furry_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "Not(kind(erin))",
+          "z3_formula": "Not(kind_erin)",
+          "source_step": 11
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 152,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 46
+    },
+    "maxsat_stats": {
+      "satisfied": 42,
+      "excluded": 4,
+      "total_weight": 147,
+      "solve_time_ms": 1.7984136939048767
+    },
+    "timing": {
+      "trace_gen_s": 8.216,
+      "extraction_s": 26.995,
+      "dedup_s": 1.598,
+      "maxsat_s": 0.004,
+      "total_s": 36.814
+    }
+  }
+}

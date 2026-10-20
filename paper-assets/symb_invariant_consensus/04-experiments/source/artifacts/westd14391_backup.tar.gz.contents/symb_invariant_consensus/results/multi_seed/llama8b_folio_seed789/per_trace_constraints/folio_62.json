@@ -1,0 +1,407 @@
+{
+  "pid": "folio_62",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "international_student(mike)",
+          "z3_formula": "international_student_mike == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs_cpt(mike)",
+          "z3_formula": "needs_cpt_mike == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "international_student(X) & (F1(X) | J1(X))",
+          "z3_formula": "And(international_student_mike, Or(F1_mike, J1_mike))",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "F1(X) -> (CPT(X) | OPT(X))",
+          "z3_formula": "Implies(F1_mike, Or(CPT_mike, OPT_mike))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs_cpt(X) -> F1(X)",
+          "z3_formula": "Implies(needs_cpt_mike, F1_mike)",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "international_student(mike)",
+          "z3_formula": "international_student_mike == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs_cpt(mike)",
+          "z3_formula": "needs_cpt_mike == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "international_student(mike)",
+          "z3_formula": "international_student_mike == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs_cpt(mike)",
+          "z3_formula": "needs_cpt_mike == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "international_student(X) -> (F1(X) | J1(X))",
+          "z3_formula": "Implies(international_student_mike, Or(F1_mike, J1_mike))",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "F1(X) & needs_cpt(X) -> True",
+          "z3_formula": "Implies(And(F1_mike, needs_cpt_mike), True)",
+          "source_step": 2
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "international_student_in_us_has_f1_or_j1_visa",
+          "z3_formula": "international_student_in_us_has_f1_or_j1_visa == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "international_student_in_us_with_f1_visa_needs_cpt_or_opt",
+          "z3_formula": "international_student_in_us_with_f1_visa_needs_cpt_or_opt == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "mike_has_j1_visa",
+          "z3_formula": "mike_has_j1_visa == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "international_student_in_us(mike)",
+          "z3_formula": "international_student_in_us_mike == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "f1_or_j1_visa(international_student_in_us(mike))",
+          "z3_formula": "f1_or_j1_visa_international_student_in_us_mike == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "f1_visa(X) -> (cpt_or_opt(X) | ~work_in_us(X))",
+          "z3_formula": "Implies(f1_visa_international_student_in_us_mike, Or(cpt_or_opt_international_student_in_us_mike, Not(work_in_us_international_student_in_us_mike)))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "work_in_us(mike)",
+          "z3_formula": "work_in_us_mike == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "f1_visa(mike)",
+          "z3_formula": "f1_visa_international_student_in_us_mike == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "j1_visa(X) -> ~f1_visa(X)",
+          "z3_formula": "Implies(j1_visa_mike, Not(f1_visa_international_student_in_us_mike))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "j1_visa(mike)",
+          "z3_formula": "j1_visa_mike == Unknown",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "international_student(mike)",
+          "z3_formula": "international_student_mike == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs_cpt(mike)",
+          "z3_formula": "needs_cpt_mike == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "(international_student(X) & (F1_visa(X) | J1_visa(X)))",
+          "z3_formula": "Implies(And(international_student_mike, Or(F1_visa_mike, J1_visa_mike)), True)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "international_student(X) & F1_visa(X) -> (needs_cpt(X) | needs_opt(X))",
+          "z3_formula": "Implies(And(international_student_mike, F1_visa_mike), Or(needs_cpt_mike, needs_opt_mike))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "F1_visa(mike)",
+          "z3_formula": "F1_visa_mike == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not J1_visa(mike)",
+          "z3_formula": "Not(J1_visa_mike) == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 7,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "international_student(mike)",
+          "z3_formula": "international_student_mike == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs_cpt(mike)",
+          "z3_formula": "needs_cpt_mike == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "international_student(X) & (F1(X) | J1(X))",
+          "z3_formula": "Implies(And(international_student_mike, Or(F1_mike, J1_mike)), True)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "F1(X) -> (CPT(X) | OPT(X))",
+          "z3_formula": "Implies(F1_mike, Or(CPT_mike, OPT_mike))",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "F1(mike)",
+          "z3_formula": "F1_mike == True",
+          "source_step": 2
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "international_student(mike)",
+          "z3_formula": "international_student_mike == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "f1_or_j1(international_student)",
+          "z3_formula": "f1_or_j1_international_student == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "f1(international_student) -> (cpt_or_opt(international_student) -> works_in_us(international_student))",
+          "z3_formula": "Implies(f1_international_student, Implies(cpt_or_opt_international_student, works_in_us_international_student))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "f1(international_student) -> cpt(international_student)",
+          "z3_formula": "Implies(f1_international_student, cpt_international_student)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "f1(mike)",
+          "z3_formula": "f1_mike == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "j1(mike)",
+          "z3_formula": "j1_mike == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "international_student(mike)",
+          "z3_formula": "international_student_mike == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "f1_or_j1(international_student, us)",
+          "z3_formula": "f1_or_j1_international_student_us == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "f1_or_j1(X, Y) -> (f1(X, Y) | j1(X, Y))",
+          "z3_formula": "Implies(f1_or_j1_international_student_us, Or(f1_international_student_us, j1_international_student_us))",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "f1(X, Y) -> (cpt(X, Y) | opt(X, Y))",
+          "z3_formula": "Implies(f1_international_student_us, Or(cpt_international_student_us, opt_international_student_us))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs_cpt(mike)",
+          "z3_formula": "needs_cpt_mike == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "f1(mike, us)",
+          "z3_formula": "f1_mike_us == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(j1(mike, us))",
+          "z3_formula": "Not(j1_mike_us) == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "international_student(mike)",
+          "z3_formula": "international_student_mike == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs_cpt(mike)",
+          "z3_formula": "needs_cpt_mike == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "international_student(X) & visa_type(X, f1) -> needs_cpt_or_opt(X)",
+          "z3_formula": "Implies(And(international_student_mike, visa_type_mike_f1), needs_cpt_or_opt_mike)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "international_student(X) & visa_type(X, f1) -> needs_cpt(X)",
+          "z3_formula": "Implies(And(international_student_mike, visa_type_mike_f1), needs_cpt_mike)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "visa_type(mike, f1)",
+          "z3_formula": "visa_type_mike_f1 == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not visa_type(mike, j1)",
+          "z3_formula": "Not(visa_type_mike_j1)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "international_student_in_us(mike)",
+          "z3_formula": "international_student_in_us_mike == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "f1_or_j1_visa(mike)",
+          "z3_formula": "f1_or_j1_visa_mike == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "international_student_in_us(X) & f1_visa(X) -> (cpt_or_opt(X) | work_in_us(X))",
+          "z3_formula": "Implies(And(international_student_in_us_mike, f1_visa_mike), Or(cpt_or_opt_mike, work_in_us_mike))",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "j1_visa(mike)",
+          "z3_formula": "j1_visa_mike == False",
+          "source_step": 3
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,354 @@
+- id: R1-C1
+  summary: Method Stage 3 sat() implementation undescribed
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 3
+  resolution: 'Fully formalized: Eq.(1)-(5), Algorithm 1-2, α=0.5 explicit.'
+  resolution_round: 3
+- id: R1-C2
+  summary: Most experiments underpowered (n≤60), no power analysis
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  resolution: Power analysis + Bootstrap CIs added. Larger n conditions (200-600).
+  resolution_round: 3
+- id: R1-C3
+  summary: Oracle/upper-bound experiment missing
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  resolution: 'Dual oracle: FOLIO +14.22pp, ProofWriter +11.50pp.'
+  resolution_round: 3
+- id: R1-C4
+  summary: Huang et al. (ICLR 2024) not cited
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  resolution: Huang, Stechly, Kambhampati all cited and discussed.
+  resolution_round: 2
+- id: R1-C5
+  summary: Critical related work missing
+  category: writing
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  resolution: ~48 citations, 5 Related Work paragraphs.
+  resolution_round: 3
+- id: R1-C9
+  summary: Capability trap novelty unclear
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 3
+  resolution: Reframed as regime-dependent analysis with CJT framework.
+  resolution_round: 3
+- id: R3-N1
+  summary: scoring inconsistent between self-extraction and oracle
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 4
+  resolution: Paper Agent added clarifying sentence in method.tex.
+  resolution_round: 4
+- id: R3-N2
+  summary: alpha value never specified
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 3
+  resolution: alpha=0.5 explicit in Eq.(3) and section 4.1.
+  resolution_round: 3
+- id: R9-W2
+  summary: NLI combo weight parameter w not cross-validated
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 9
+  last_seen_round: 23
+  mentions:
+  - round: 22
+    reviewers: [1]
+    note: 'R22 R1 Q5: DeBERTa w=3 fixed needs w-sensitivity analysis'
+  - round: 23
+    reviewers: []
+    note: 'R23(fresh) not raised independently, but R1-W1 on structural independence vs supervised signal indirectly related'
+- id: R9-W3
+  summary: Capability Gap Hypothesis based on n=6 samples
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 9
+  last_seen_round: 23
+  mentions:
+  - round: 22
+    reviewers: [1, 2]
+    note: 'R22(fresh) R1-W2 + R2 partial REBUT'
+  - round: 23
+    reviewers: [1, 2]
+    note: 'R23(fresh) R1-N2(Must-Fix) + R2-W1: n=6 as Contribution 3 insufficient. Both reviewers agree. R1 suggests downgrade to observation'
+- id: R9-VL1
+  summary: Pages 1-2 consecutive text without display item
+  category: format
+  severity: warning
+  status: in_progress
+  first_raised_round: 9
+  last_seen_round: 23
+  mentions:
+  - round: 23
+    reviewers: []
+    note: 'R23 visual check: Figure 1 on page 2 top. Page 1 is text-only but page 2 has display item immediately. Not a problem'
+- id: R21-W6
+  summary: PRM/learned verification trade-off discussion insufficient
+  category: writing
+  severity: warning
+  status: in_progress
+  first_raised_round: 21
+  last_seen_round: 23
+  mentions:
+  - round: 22
+    reviewers: [1, 2]
+    note: 'R22(fresh) action done but still raised'
+  - round: 23
+    reviewers: [2]
+    note: 'R23(fresh) R2-W2: missing o1/o3, DeepSeek-R1 test-time compute scaling paradigm discussion. Discussion mentions PRM in one sentence, Related Work missing entirely'
+- id: R21-W7
+  summary: Observation 1 uniform constraint yield assumption lacks sensitivity analysis
+  category: method
+  severity: warning
+  status: in_progress
+  first_raised_round: 21
+  last_seen_round: 23
+  mentions:
+  - round: 23
+    reviewers: []
+    note: 'R23(fresh) not raised. Appendix includes per-problem CV histogram (Figure 8, CV median=0.26), partially addressed'
+- id: R21-W8
+  summary: Seed replication (3-4 seeds) weak for null-result claim
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 21
+  last_seen_round: 23
+  mentions:
+  - round: 23
+    reviewers: []
+    note: 'R23(fresh) not raised independently'
+- id: R21-VL1
+  summary: Discussion overflow to page 9
+  category: format
+  severity: warning
+  status: resolved
+  first_raised_round: 21
+  last_seen_round: 22
+  resolution: R22 visual check confirmed no overflow
+  resolution_round: 22
+- id: R21-VL2
+  summary: Figure strategy labels too small (<=6pt)
+  category: format
+  severity: warning
+  status: open
+  first_raised_round: 21
+  last_seen_round: 23
+  mentions:
+  - round: 23
+    reviewers: []
+    note: 'R23 visual check warning: Figure 7 (p.17, appendix) very high info density, small text. Confirm font size >= 7pt'
+- id: R22-N1
+  summary: Few-shot extraction not tested in 27 strategies
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 22
+  last_seen_round: 23
+  mentions:
+  - round: 23
+    reviewers: []
+    note: 'R23(fresh) not raised. Title limits to zero-shot, partially mitigated'
+- id: R22-N2
+  summary: Causal DAG Markov chain assumption questionable
+  category: method
+  severity: critical
+  status: open
+  first_raised_round: 22
+  last_seen_round: 23
+  mentions:
+  - round: 23
+    reviewers: [1]
+    note: 'R23(fresh) R1-N1: Observation 1 near-tautological under source-attribution scoring. Degeneration is direct consequence of scoring design, not surprising discovery about self-extraction'
+- id: R22-N3
+  summary: Title claim vs TOST evidence mismatch (4/11 pass equivalence)
+  category: framing
+  severity: critical
+  status: open
+  first_raised_round: 22
+  last_seen_round: 23
+  mentions:
+  - round: 23
+    reviewers: [1]
+    note: 'R23(fresh) R1-W2: framing may imply stronger conclusion than statistical evidence supports. Need to distinguish no significant effect detected vs SICA is equivalent to SC'
+- id: R22-N4
+  summary: SCB vs CoT confirmation bias novelty separation insufficient
+  category: framing
+  severity: critical
+  status: open
+  first_raised_round: 22
+  last_seen_round: 23
+  mentions:
+  - round: 23
+    reviewers: [2]
+    note: 'R23(fresh) R2-N1: SCB predictable from Huang et al. 2024 / Kamoi et al. 2024. Need clearer distinction from self-correction failure literature'
+- id: R22-VL1
+  summary: Page 30 mostly empty (95% whitespace)
+  category: format
+  severity: warning
+  status: open
+  first_raised_round: 22
+  last_seen_round: 23
+  mentions:
+  - round: 23
+    reviewers: []
+    note: 'R23 visual check warning: AI Assistants declaration only fills ~25% of last page. Suggest merging into previous page'
+- id: R22-VL2
+  summary: Page 8 visual density too high
+  category: format
+  severity: warning
+  status: open
+  first_raised_round: 22
+  last_seen_round: 23
+  mentions:
+  - round: 23
+    reviewers: []
+    note: 'R23 visual check info: Page 8 has Fig5+Fig6+Discussion+Limitations. Utilization ~95%, no clear problem'
+- id: R22-VL3
+  summary: Consecutive text pages without display item
+  category: format
+  severity: warning
+  status: open
+  first_raised_round: 22
+  last_seen_round: 23
+  mentions:
+  - round: 23
+    reviewers: []
+    note: 'R23 visual check info: Pages 1,3 are text-only but separated by page 2 (Figure 1). Overall display density 1.1/page, excellent'
+- id: R23-N1
+  summary: Observation 1 near-tautological under SICA source-attribution scoring design
+  category: method
+  severity: critical
+  status: open
+  first_raised_round: 23
+  last_seen_round: 23
+  mentions:
+  - round: 23
+    reviewers: [1, 2]
+    note: 'R1-N1(Must-Fix): sigma(c,a) based entirely on provenance not logical content. Under variable isolation, degeneration is direct consequence of scoring design. Need content-based scoring alternatives or variable normalization discussion. R2 agrees'
+- id: R23-N2
+  summary: Core novelty limited -- post-hoc extraction inherits bias is predictable
+  category: framing
+  severity: critical
+  status: open
+  first_raised_round: 23
+  last_seen_round: 23
+  mentions:
+  - round: 23
+    reviewers: [1, 2]
+    note: 'R2-N1(Must-Fix): SCB mechanism derivable from Huang et al. 2024 / Kamoi et al. 2024. Observation 1 algebra straightforward. Empirical contribution positioning unclear. R1 agrees core insight is predictable after understanding variable isolation'
+- id: R23-N3
+  summary: Benchmark scope too narrow for claimed generality
+  category: experiment
+  severity: critical
+  status: open
+  first_raised_round: 23
+  last_seen_round: 23
+  mentions:
+  - round: 23
+    reviewers: [2]
+    note: 'R2-N2(Must-Fix): Only FOLIO (n=204) + ProofWriter (n=600), both English logical reasoning. Code generation, math reasoning, non-deductive reasoning uncovered. Abstract/Intro claim scope needs narrowing'
+- id: R23-W1
+  summary: Structural independence vs supervised signal attribution confusion
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 23
+  last_seen_round: 23
+  mentions:
+  - round: 23
+    reviewers: [1]
+    note: 'R1-W1: NLI verifiers fine-tuned on MultiNLI. Cross-model LLM voting (also structurally independent) does not work. Key factor is structural independence + task-relevant supervised signal combination'
+- id: R23-W2
+  summary: SCB naming potentially misleading -- distributional coupling not cognitive bias
+  category: framing
+  severity: warning
+  status: open
+  first_raised_round: 23
+  last_seen_round: 23
+  mentions:
+  - round: 23
+    reviewers: [1]
+    note: 'R1-W3: Permutation test confirms BR reflects trace-count geometry not extraction bias. Constraints are not actively biased but not independently informative. Symbolic redundancy or symbolic distributional coupling may be more accurate'
+- id: R23-W3
+  summary: Variable normalization as most direct fix not tested
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 23
+  last_seen_round: 23
+  mentions:
+  - round: 23
+    reviewers: [1]
+    note: 'R1-W4: None of 27 strategies attempts variable name normalization. If mapped to unified namespace, Z3 could do cross-trace constraint reasoning. Should discuss why infeasible or list as future work'
+- id: R23-W4
+  summary: Constraint extraction too shallow, may limit conclusion applicability
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 23
+  last_seen_round: 23
+  mentions:
+  - round: 23
+    reviewers: [2]
+    note: 'R2-W3: 99% propositional-level, only 1% true quantifiers. System prompt limits to single comparison expressions. Would richer constraint languages change SCB?'
+- id: R23-W5
+  summary: Recent related work missing (SMT 2026, EACL 2026, o1/R1, PRM)
+  category: writing
+  severity: warning
+  status: open
+  first_raised_round: 23
+  last_seen_round: 23
+  mentions:
+  - round: 23
+    reviewers: [2]
+    note: 'R2-W4: Missing Neurosymbolic SMT (2026), Adaptive LLM-Symbolic (EACL 2026), DeepSeek-R1/o1/o3 paradigm, PRM coverage in Related Work'
+- id: R23-W6
+  summary: Confirmatory vs exploratory condition criteria opaque
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 23
+  last_seen_round: 23
+  mentions:
+  - round: 23
+    reviewers: [1]
+    note: 'R1-W5: m=6 confirmatory set selection criteria not stated in main text. Pre-registered? Based on what principle?'
+- id: R23-W7
+  summary: Observation 1 applicability gap under near-degeneration
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 23
+  last_seen_round: 23
+  mentions:
+  - round: 23
+    reviewers: [2]
+    note: 'R2-W5: Most practical conditions are near-degenerate not exact. Is behavior change continuous or phase-transition?'

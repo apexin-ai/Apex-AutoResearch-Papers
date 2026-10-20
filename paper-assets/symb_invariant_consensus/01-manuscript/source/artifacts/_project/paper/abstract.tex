@@ -1,0 +1,11 @@
+\begin{abstract}
+Self-Consistency (SC) improves LLM reasoning via majority voting over chain-of-thought traces.
+A natural extension is to extract formal constraints from these traces and aggregate them with a symbolic solver---but does it work?
+We test this through Symbolic Invariant Consensus Aggregation (SICA), which extracts first-order logic constraints and solves weighted partial MAX-SAT.
+Across six models (7B--32B), four reasoning benchmarks, and over 1,200 instances, SICA produces answers statistically equivalent to SC: no condition shows significant improvement after FDR control.
+We diagnose this failure as \emph{symbolic confirmation bias}: self-extracted constraints systematically confirm their source trace's (potentially incorrect) answer, with bias ratios $1.66$--$4.97\times$ across nine models up to frontier scale.
+We formalize the mechanism through effective ensemble size $K_\text{eff}$ derived from inter-trace agreement $\kappa$, showing that correlated traces collapse nominal $K{=}12$ to $K_\text{eff}$ as low as 1.2---far below the diversity threshold for aggregation gains.
+Twenty-seven training-free remediation strategies across all intervention dimensions fail to break this bottleneck, establishing it as structural to same-model extraction.
+A cross-architecture encoder-only verifier escapes the bias ($+6.67$\,pp, $p < 0.001$), demonstrating that architectural independence restores corrective signal.
+Three zero-cost diagnostics predict failure modes from a single pilot run.
+\end{abstract}

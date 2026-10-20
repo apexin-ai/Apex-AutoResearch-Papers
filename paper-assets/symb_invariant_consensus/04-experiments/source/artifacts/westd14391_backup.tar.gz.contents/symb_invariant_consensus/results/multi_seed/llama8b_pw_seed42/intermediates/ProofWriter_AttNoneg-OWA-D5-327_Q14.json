@@ -1,0 +1,861 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-327_Q14",
+    "problem": "Anne is cold. Anne is furry. Anne is rough. Anne is smart. Anne is white. Bob is nice. Bob is rough. Erin is cold. Erin is furry. Erin is nice. Erin is rough. Erin is smart. Erin is white. Erin is young. Fiona is cold. Fiona is furry. All smart things are cold. If Bob is young and Bob is cold then Bob is furry. Young things are cold. If Fiona is rough and Fiona is cold then Fiona is smart. Cold, furry things are white. All rough, nice things are young. If something is white and furry then it is smart.\n\nDetermine whether the following statement is true, false, or unknown:\nAnne is young.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nFurry($x, bool) ::: Is x furry?\nRough($x, bool) ::: Is x rough?\nSmart($x, bool) ::: Is x smart?\nWhite($x, bool) ::: Is x white?\nNice($x, bool) ::: Is x nice?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nCold(Anne, True) ::: Anne is cold.\nFurry(Anne, True) ::: Anne is furry.\nRough(Anne, True) ::: Anne is rough.\nSmart(Anne, True) ::: Anne is smart.\nWhite(Anne, True) ::: Anne is white.\nNice(Bob, True) ::: Bob is nice.\nRough(Bob, True) ::: Bob is rough.\nCold(Erin, True) ::: Erin is cold.\nFurry(Erin, True) ::: Erin is furry.\nNice(Erin, True) ::: Erin is nice.\nRough(Erin, True) ::: Erin is rough.\nSmart(Erin, True) ::: Erin is smart.\nWhite(Erin, True) ::: Erin is white.\nYoung(Erin, True) ::: Erin is young.\nCold(Fiona, True) ::: Fiona is cold.\nFurry(Fiona, True) ::: Fiona is furry.\n\nRules:\nSmart($x, True) >>> Cold($x, True) ::: All smart things are cold.\nYoung(Bob, True) && Cold(Bob, True) >>> Furry(Bob, True) ::: If Bob is young and Bob is cold then Bob is furry.\nYoung($x, True) >>> Cold($x, True) ::: Young things are cold.\nRough(Fiona, True) && Cold(Fiona, True) >>> Smart(Fiona, True) ::: If Fiona is rough and Fiona is cold then Fiona is smart.\nCold($x, True) && Furry($x, True) >>> White($x, True) ::: Cold, furry things are white.\nRough($x, True) && Nice($x, True) >>> Young($x, True) ::: All rough, nice things are young.\nWhite($x, True) && Furry($x, True) >>> Smart($x, True) ::: If something is white and furry then it is smart.\n\nQuery:\nYoung(Anne, True) ::: Anne is young."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 90.0,
+      "Unknown": 117.5
+    },
+    "answer_counts": {
+      "True": 3,
+      "Unknown": 7
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Anne is young\" is true, false, or unknown, we need to analyze the given information and use the logical rules provided.\n\n1. All smart things are cold. (rule 1)\n2. Anne is smart. (given information)\n3. From rule 1, we can conclude that Anne is cold. (by rule 1)\n\n4. Anne is furry. (given information)\n5. Anne is white. (given information)\n6. From the given information, we cannot directly determine Anne's age. However, we can try to deduce it using the other rules.\n\n7. All rough, nice things are young. (rule 6)\n   - We don't know if Anne is nice or rough, so we cannot directly apply this rule to Anne.\n\n8. Young things are cold. (rule 4)\n   - We already know that Anne is cold (from step 3), but this rule does not provide any new information.\n\n9. Cold, furry things are white. (rule 5)\n   - We already know that Anne is cold and furry (from steps 2 and 4), but this rule does not provide any new information.\n\n10. If something is white and furry then it is smart. (rule 7)\n    - We already know that Anne is white and furry (from steps 5 and 4), so we can conclude that Anne is smart. (by rule 7)\n\n11. From steps 2 and 10, we can confirm that Anne is indeed smart and cold.\n\n12. From step 11, we know Anne is cold, so from rule 4 (Young things are cold), we can conclude that Anne must be young.\n\nTherefore, based on the given information and logical rules, the statement \"Anne is young\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is young\" is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\nGiven statements:\n1. Anne is cold.\n2. Anne is furry.\n3. Anne is rough.\n4. Anne is smart.\n5. Anne is white.\n6. Bob is nice.\n7. Bob is rough.\n8. Erin is cold.\n9. Erin is furry.\n10. Erin is nice.\n11. Erin is rough.\n12. Erin is smart.\n13. Erin is white.\n14. Erin is young.\n15. Fiona is cold.\n16. Fiona is furry.\n17. All smart things are cold.\n18. If Bob is young and Bob is cold then Bob is furry.\n19. Young things are cold.\n20. If Fiona is rough and Fiona is cold then Fiona is smart.\n21. Cold, furry things are white.\n22. All rough, nice things are young.\n23. If something is white and furry then it is smart.\n\nTo determine whether Anne is young, we need to see if we can deduce this from the given information.\n\nFrom statement 19, we know that young things are cold. However, we do not know if Anne is young or not.\n\nFrom statement 3, we know that Anne is rough. \n\nFrom statement 22, we know that all rough, nice things are young. However, we do not have information about Anne being nice, and even if we did, it does not necessarily mean Anne is young because there is no information about Anne being nice.\n\nFrom statement 18, we know that if Bob is young and Bob is cold then Bob is furry. However, we do not have information about Bob's age, so we cannot use this to determine whether Anne is young.\n\nFrom statement 21, we know that cold, furry things are white. However, this does not give us any information about Anne's age.\n\nFrom statement 23, we know that if something is white and furry then it is smart. However, this does not give us any information about Anne's age.\n\nWe can see that none of the given information directly states that Anne is young or that Anne is not young. However, we can use some of the statements to infer that Anne is not young.\n\nFrom statement 19, we know that young things are cold. However, from statement 1, we know that Anne is cold, but this does not necessarily mean Anne is young.\n\nFrom statement 17, we know that all smart things are cold. However, from statement 4, we know that Anne is smart and from statement 1, we know that Anne is cold, which means Anne is indeed cold and smart, but this does not necessarily mean Anne is young.\n\nHowever, we do not have enough information to determine whether Anne is young or not, but we can use some of the statements to infer that Anne is not young.\n\nFrom statement 19, we know that young things are cold. From statement 1, we know that Anne is cold. From statement 19, we also know that young things are cold, and from statement 14, we know that Erin is cold and young. However, this does not necessarily mean Anne is not young because there are other possibilities that are not ruled out.\n\nHowever, we can use some of the statements to infer that Anne is not young.\n\nFrom statement 14, we know that Erin is young. From statement 19, we know that young things are cold. However, from statement 1, we know that Anne is cold, but this does not necessarily mean Anne is young.\n\nFrom statement 14, we know that Erin is young. From statement 19, we know that young things are cold. However, from statement 8, we know that Erin is cold. From statement 14, we know that Erin is young, and from statement 19, we know that young things are cold, and from statement 8, we know that Erin is cold. However, this does not necessarily mean Anne is not young because there are other possibilities that are not ruled out.\n\nHowever, we can use some of the statements to infer that Anne is not young.\n\nFrom statement 14, we know that Erin is young. From statement 19, we know that young things are cold. However, from statement 8, we know that Erin is cold. From statement 14, we know that Erin is young, and from statement 19, we know that young things are cold, and from statement 8, we know that Erin is cold. However, this does not necessarily mean Anne is not young because there are other possibilities that are not ruled out.\n\nHowever, we can use some of the statements to infer that Anne is not young.\n\nFrom statement 1, we know that Anne is cold. From statement 17, we know that all smart things are cold. However, from statement 4, we know that Anne is smart. From statement 1, we know that Anne is cold, and from statement 17, we know that all smart things are cold, and from statement 4, we know that Anne is smart. However, from statement 19, we know that young things are cold. However, this does not necessarily mean Anne is not young because there are other possibilities that are not ruled out.\n\nHowever, we can use some of the statements to infer that Anne is not young.\n\nFrom statement 4, we know that Anne is smart. From statement 17, we know that all smart things are cold. From statement 1, we know that Anne is cold. However, from statement 19, we know that young things are cold. However, this does not necessarily mean Anne is not young because there are other possibilities that are not ruled out.\n\nHowever, we can use some of the statements to infer that Anne is not young.\n\nFrom statement 4, we know that Anne is smart. From statement 17, we know that all smart things are cold. From statement 1, we know that Anne is cold. From statement 4, we know that Anne is smart, and from statement 17, we know that all smart things are cold, and from statement 1, we know that Anne is cold. However, from statement 21, we know that cold, furry things are white. From statement 2, we know that Anne is furry. From statement 21, we know that cold, furry things are white, and from statement 2, we know that Anne is furry. However, this does not necessarily mean Anne is not young because there are other possibilities that are not ruled out.\n\nHowever, we can use some of the statements to infer that Anne is not young.\n\nFrom statement 4, we know that Anne is smart. From statement 17, we know that all smart things are cold. From statement 1, we know that Anne is cold. From statement 4, we know that Anne is smart, and from statement 17, we know that all smart things are cold, and from statement 1, we know that Anne is cold. However, from statement 23, we know that if something is white and furry then it is smart. From statement 5, we know that Anne is white. From statement 2, we know that Anne is furry. From statement 23, we know that if something is white and furry then it is smart, and from statement 5, we know that Anne is white, and from statement 2, we know that Anne is furry. However, this does not necessarily mean Anne is not young because there are other possibilities that are not ruled out.\n\nHowever, we can use some of the statements to infer that Anne is not young.\n\nFrom statement 1, we know that Anne is cold. From statement 17, we know that all smart things are cold. From statement 4, we know that Anne is smart. From statement 1, we know that Anne is cold, and from statement 17, we know that all smart things are cold, and from statement 4, we know that Anne is smart. From statement 2, we know that Anne is furry. From statement 21, we know that cold, furry things are white. From statement 5, we know that Anne is white. From statement 21, we know that cold, furry things are white, and from statement 2, we know that Anne is furry, and from statement 5, we know that Anne is white. From statement 23, we know that if something is white and furry then it is smart. From statement 2, we know that Anne is furry, and from statement 5, we know that Anne is white. From statement 23, we know that if something is white and furry then it is smart, and from statement 2, we know that Anne is furry, and from statement 5, we know that Anne is white. However, from statement 14, we know that Erin is young, and from statement 19, we know that young things are cold, and from statement 8, we know that Erin is cold. From statement 14, we know that Erin is young, and from statement 19, we know that young things are cold, and from statement 8, we know that Erin is cold. However, this does not necessarily mean Anne is not young because there are other possibilities that are not ruled out.\n\nHowever, we can use some of the statements to infer that Anne is not young.\n\nFrom statement 1, we know that Anne is cold. From statement 17, we know that all smart things are cold. From statement 4, we know that Anne is smart. From statement 1, we know that Anne is cold, and from statement 17, we know that all smart things are cold, and from statement 4, we know that Anne is smart. From statement 2, we know that Anne is furry. From statement 21, we know that cold, furry things are white.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement 'Anne is young' is true, false, or unknown, we need to use the given information and the rules provided.\n\nGiven Information:\n1. Anne is cold.\n2. Anne is furry.\n3. Anne is rough.\n4. Anne is smart.\n5. Anne is white.\n6. Bob is nice.\n7. Bob is rough.\n8. Erin is cold.\n9. Erin is furry.\n10. Erin is nice.\n11. Erin is rough.\n12. Erin is smart.\n13. Erin is white.\n14. Erin is young.\n15. Fiona is cold.\n16. Fiona is furry.\n17. All smart things are cold.\n18. If Bob is young and Bob is cold then Bob is furry.\n19. Young things are cold.\n20. If Fiona is rough and Fiona is cold then Fiona is smart.\n21. Cold, furry things are white.\n22. All rough, nice things are young.\n23. If something is white and furry then it is smart.\n\nNow, let's analyze the statement 'Anne is young'.\n\nWe are given that Anne is cold (1), Anne is furry (2), Anne is smart (4), and Anne is white (5).\n\nFrom rule 17, all smart things are cold. Since Anne is smart (4), Anne must be cold, which matches with the given information (1).\n\nFrom rule 21, cold, furry things are white. Since Anne is cold (1) and Anne is furry (2), Anne must be white, which matches with the given information (5).\n\nHowever, we need to determine whether Anne is young or not.\n\nRule 19 states that young things are cold. We know Anne is cold (1), but we cannot conclude that Anne is young because there might be other things that are also cold.\n\nRule 18 states that if Bob is young and Bob is cold then Bob is furry. We don't have information about Bob being young, but we do know that Erin is young (14), and Erin is cold (8). From rule 19, young things are cold, which matches with the given information (8). However, we still cannot conclude that Anne is young because there is no direct connection between Anne and the rule.\n\nFrom rule 22, all rough, nice things are young. We know Anne is rough (3) but we don't know if Anne is nice.\n\nFrom rule 23, if something is white and furry then it is smart. Since Anne is white (5) and Anne is furry (2), Anne must be smart, which matches with the given information (4).\n\nNow, let's look at the information we have about Anne: Anne is cold (1), Anne is furry (2), Anne is smart (4), and Anne is white (5).\n\nFrom rule 17, all smart things are cold. Since Anne is smart (4), Anne must be cold, which matches with the given information (1).\n\nFrom rule 21, cold, furry things are white. Since Anne is cold (1) and Anne is furry (2), Anne must be white, which matches with the given information (5).\n\nFrom rule 23, if something is white and furry then it is smart. Since Anne is white (5) and Anne is furry (2), Anne must be smart, which matches with the given information (4).\n\nHowever, we still cannot conclude that Anne is young.\n\nThe information provided does not contain a direct statement that says Anne is young. Although young things are cold (rule 19), and Anne is cold (1), we cannot conclude that Anne is young because there might be other things that are also cold.\n\nThe information provided does not contain a direct statement that says Anne is nice, but all rough, nice things are young (rule 22). Since Anne is rough (3), if we knew that Anne is nice, then we could conclude that Anne is young. However, we do not have enough information to conclude that Anne is nice.\n\nTherefore, the statement 'Anne is young' is unknown based on the given information and rules. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is young\" is true, false, or unknown, we need to analyze the given information and use the rules provided.\n\nFrom the given information:\n- All smart things are cold.\n- All rough, nice things are young.\n- Cold, furry things are white.\n- If something is white and furry then it is smart.\n- Anne is cold.\n- Anne is furry.\n- Anne is white.\n- Anne is smart.\n\nWe know that Anne is smart, cold, and furry. From the rule \"Cold, furry things are white\" and \"If something is white and furry then it is smart,\" we can confirm that Anne being white and furry indeed makes her smart. \n\nHowever, the statement \"Anne is young\" cannot be determined using the given information directly. There are no direct rules that state \"If Anne is smart, cold, and furry, then Anne is young.\" Since there are no direct rules that connect Anne's characteristics to being young, the truth value of \"Anne is young\" remains unknown.\n\nTherefore, the answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given statements to determine if Anne is young or not. \n\nGiven statements:\n1. All smart things are cold.\n2. If Bob is young and Bob is cold then Bob is furry.\n3. Young things are cold.\n4. If Fiona is rough and Fiona is cold then Fiona is smart.\n5. Cold, furry things are white.\n6. All rough, nice things are young.\n7. If something is white and furry then it is smart.\n8. Anne is cold.\n9. Anne is furry.\n10. Anne is rough.\n11. Anne is smart.\n12. Anne is white.\n13. Bob is nice.\n14. Bob is rough.\n15. Erin is cold.\n16. Erin is furry.\n17. Erin is nice.\n18. Erin is rough.\n19. Erin is smart.\n20. Erin is white.\n21. Erin is young.\n22. Fiona is cold.\n23. Fiona is furry.\n24. Fiona is nice.\n25. Fiona is rough.\n26. Fiona is smart.\n27. Fiona is young.\n\nNow, we will apply these statements to determine if Anne is young or not.\n\nFrom statement 1, we know all smart things are cold. \nSince Anne is smart (Statement 11), Anne is cold (Statement 8).\n\nFrom statement 3, we know young things are cold. \nSince Anne is cold (Statement 8), we cannot directly determine if Anne is young, but we can proceed with other information.\n\nFrom statement 5, we know cold, furry things are white. \nSince Anne is cold (Statement 8) and Anne is furry (Statement 9), Anne is white (Statement 12).\n\nFrom statement 7, we know if something is white and furry then it is smart. \nSince Anne is white (Statement 12) and Anne is furry (Statement 9), Anne is smart (Statement 11), which we already knew.\n\nNow, let's look at statements that involve \"young\" and \"furry.\" \nFrom statement 2, we know if Bob is young and Bob is cold then Bob is furry. \nHowever, we cannot directly apply this to Anne because we don't know if Anne is young.\n\nFrom statement 6, we know all rough, nice things are young. \nSince Anne is rough (Statement 10) and Anne is nice (this is not explicitly stated, but we can infer it from statement 27: Fiona is nice and statement 17: Erin is nice. However, this is an assumption since there is no direct information provided about Anne being nice. Therefore, we cannot apply this statement to Anne directly).\n\nHowever, we can apply another approach. From statement 3, we know young things are cold. \nFrom statement 1, we know all smart things are cold. \nSince Anne is smart (Statement 11), Anne is cold (Statement 8). \nHowever, we cannot directly determine if Anne is young from this information.\n\nBut we can look at the statement 3 from a different perspective: \"Young things are cold.\" \nIf Anne is cold (Statement 8), then Anne is not necessarily young. \nHowever, we can also look at the statement 3 as a way to confirm if Anne is young, but we need more information.\n\nSince we cannot determine if Anne is young or not using the given information and applying the statements directly, we will consider the statement 3, \"Young things are cold.\" \nWe know that all smart things are cold (Statement 1) and Anne is smart (Statement 11). \nTherefore, Anne is cold (Statement 8), which matches the statement 3.\n\nHowever, the statement 3 also says \"Young things are cold.\" \nSince Anne is cold (Statement 8) and we cannot directly apply the statement 3 to determine if Anne is young or not, we need to consider other possibilities.\n\nLet's look at the statement 6, \"All rough, nice things are young.\" \nHowever, as mentioned earlier, we cannot apply this statement to Anne directly.\n\nNow, let's look at the statement 21, \"Erin is young.\" \nFrom statement 17, we know Erin is nice. \nFrom statement 18, we know Erin is rough. \nSince Erin is rough (Statement 18) and Erin is nice (Statement 17), Erin is young (Statement 21). \nHowever, this does not provide any direct information about Anne.\n\nHowever, let's look at statement 23, \"Fiona is furry.\" \nFrom statement 23, we know Fiona is furry. \nFrom statement 22, we know Fiona is cold. \nFrom statement 5, we know cold, furry things are white. \nTherefore, Fiona is white.\n\nSince Fiona is furry (Statement 23) and Fiona is white (Statement 27), we can apply statement 7, \"If something is white and furry then it is smart.\" \nTherefore, Fiona is smart (Statement 26).\n\nHowever, we cannot directly apply this information to Anne.\n\nSince we cannot determine if Anne is young or not using the given information and applying the statements directly, we need to consider other possibilities.\n\nFrom statement 3, \"Young things are cold.\" \nWe know that all smart things are cold (Statement 1) and Anne is smart (Statement 11). \nTherefore, Anne is cold (Statement 8), which matches the statement 3.\n\nHowever, we cannot directly determine if Anne is young or not from this information.\n\nSince we cannot determine if Anne is young or not using the given information and applying the statements directly, we will consider the statement 3, \"Young things are cold.\" \nWe know that all smart things are cold (Statement 1) and Anne is smart (Statement 11). \nTherefore, Anne is cold (Statement 8), which matches the statement 3.\n\nHowever, the statement 3 also says \"Young things are cold.\" \nSince Anne is cold (Statement 8) and we cannot directly apply the statement 3 to determine if Anne is young or not, we need to consider other possibilities.\n\nSince we cannot determine if Anne is young or not using the given information and applying the statements directly, we need to consider the possibilities of the given statements. \n\nFrom statement 1, we know all smart things are cold. \nSince Anne is smart (Statement 11), Anne is cold (Statement 8).\n\nFrom statement 3, we know young things are cold. \nSince Anne is cold (Statement 8), we cannot directly determine if Anne is young or not.\n\nHowever, we can look at the statement 6, \"All rough, nice things are young.\" \nHowever, as mentioned earlier, we cannot apply this statement to Anne directly.\n\nSince we cannot determine if Anne is young or not using the given information and applying the statements directly, we will consider the given statements.\n\nFrom statement 1, we know all smart things are cold. \nSince Anne is smart (Statement 11), Anne is cold (Statement 8).\n\nFrom statement 3, we know young things are cold. \nSince Anne is cold (Statement 8), we cannot directly determine if Anne is young or not.\n\nHowever, we can look at the statement 6, \"All rough, nice things are young.\" \nHowever, as mentioned earlier, we cannot apply this statement to Anne directly.\n\nSince we cannot determine if Anne is young or not using the given information and applying the statements directly, we will consider the statement 1, \"All smart things are cold.\" \nWe know that Anne is smart (Statement 11) and Anne is cold (Statement 8).\n\nHowever, we cannot directly apply this information to determine if Anne is young or not.\n\nTherefore, we cannot determine if Anne is young or not using the given information and applying the statements directly.\n\nSince we cannot determine if Anne is young or not using the given information and applying the statements directly, we cannot conclude if the statement \"Anne is young\" is true, false, or unknown.\n\nHowever, we can look at statement 6, \"All rough, nice things are young.\" \nSince Anne is rough (Statement 10), but we cannot confirm if Anne is nice or not.\n\nFrom statement 21, we know Erin is young. \nFrom statement 17, we know Erin is nice. \nFrom statement 18, we know Erin is rough. \nSince Erin is rough (Statement 18) and Erin is nice (Statement 17), Erin is young (Statement 21). \nHowever, this does not provide any direct information about Anne.\n\nHowever, let's look at statement 24, \"Fiona is nice.\" \nFrom statement 24, we know Fiona is nice. \nFrom statement 25, we know Fiona is rough. \nSince Fiona is rough (Statement 25) and Fiona is nice (Statement 24), Fiona is young (Statement 27). \nHowever, this does not provide any direct information about Anne.\n\nHowever, let's look at statement 6, \"All rough, nice things are young.\" \nSince Anne is rough (Statement 10), but we cannot confirm if Anne is nice or not.\n\nHowever, we can look at statement 6, \"All rough, nice things are young.\" \nSince Anne is rough (Statement 10), but we cannot confirm if Anne is nice or not.\n\nWe cannot determine if Anne is young or not using the given information and applying the statements directly.\n\nHowever, we can look at statement 6, \"All rough, nice things are young.\" \nSince Anne is rough (Statement 10), but we cannot confirm if Anne is nice or not.\n\nSince we cannot determine if Anne is young or not using the given information and applying the statements directly, we will consider the possibilities of the given statements. \n\nHowever, let's look at statement 6, \"All rough, nice things are young.\" \nSince Anne is rough (Statement 10), but we cannot confirm if Anne is",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is young\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. From the statement \"All smart things are cold,\" we know that if something is smart, then it is cold.\n2. From the statement \"If something is white and furry then it is smart,\" we can deduce that Anne is smart since she is white and furry.\n3. From the statement \"All smart things are cold,\" we can then deduce that Anne is cold.\n\n4. There is no rule that states Anne is young or old. However, we can deduce that young things are cold from the statement \"Young things are cold.\"\n5. From the statement \"If Bob is young and Bob is cold then Bob is furry,\" we cannot infer that Anne is young because this rule applies to Bob, not Anne.\n\n6. We also cannot infer that Anne is young from the statement \"All rough, nice things are young\" because Anne is not nice.\n\n7. We cannot determine whether Anne is young or not using the given information and rules.\n\nTherefore, the answer is \\boxed{unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is young\" is true, false, or unknown, we need to use the given information and apply logical deductions.\n\nStep 1:  Analyze the given information about Anne.\n- Anne is cold.\n- Anne is furry.\n- Anne is rough.\n- Anne is smart.\n- Anne is white.\n\nStep 2:  Analyze the given information about the other individuals and general statements.\n- Bob is nice, rough, and cold (but we don't know if he is young or furry).\n- Erin is cold, furry, nice, rough, smart, white, and young.\n- Fiona is cold, furry, and rough.\n- All smart things are cold.\n- Young things are cold.\n- If Bob is young and Bob is cold then Bob is furry.\n- If Fiona is rough and Fiona is cold then Fiona is smart.\n- Cold, furry things are white.\n- All rough, nice things are young.\n- If something is white and furry then it is smart.\n\nStep 3:  Determine if Anne can be young based on the given information.\n- We know that all smart things are cold and all young things are cold, but we cannot conclude that Anne is young just from this information.\n- We also know that Anne is cold, which fits with the statement that young things are cold, but we cannot conclude that Anne is young from this information alone.\n- The only way to conclude that Anne is young is if we can find a logical path that leads to this conclusion.\n\nStep 4:  Find a logical path that might lead to the conclusion that Anne is young.\n- Unfortunately, there is no direct information about Anne being young or any other characteristic that would necessarily lead to her being young.\n\nStep 5:  Analyze the information again to see if there is any other possible path.\n- From the information, we can conclude that all rough, nice things are young, but Anne is not nice.\n- We cannot conclude that Anne is young using the information that all young things are cold because Anne is also cold.\n\nStep 6:  Since there is no direct information or logical path that leads to the conclusion that Anne is young, we cannot determine the truth value of the statement \"Anne is young\" with the given information.\n- Therefore, the truth value of the statement \"Anne is young\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is young\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. All smart things are cold. (Premise 1)\n2. Anne is smart. (Premise 2)\n   Therefore, Anne is cold. (Modus Ponens: If P, then Q; P; therefore Q)\n\n3. Anne is cold. (From Premise 2 and Deduction 1)\n4. All rough, nice things are young. (Premise 3)\n   However, we don't have any information that says Anne is nice or that she is rough. So, we cannot conclude that Anne is young using this rule.\n\n5. Cold, furry things are white. (Premise 4)\n   We know Anne is cold and furry. (From Deductions 1 and 2, and Premise 5) \n   Therefore, Anne is white. (Modus Ponens: If P and Q, then R; P and Q; therefore R)\n\n6. If something is white and furry then it is smart. (Premise 5)\n   We know Anne is white and furry. (From Deductions 2 and 5)\n   Therefore, Anne is smart. (Modus Ponens: If P and Q, then R; P and Q; therefore R)\n\n7. We already know Anne is smart. (Premise 2 and Deductions 6)\n   Young things are cold. (Premise 6)\n   Therefore, we cannot conclude that Anne is young. We cannot make this conclusion because we don't have any information that says Anne is young, we only know that young things are cold.\n\nTherefore, we cannot determine whether the statement \"Anne is young\" is true, false, or unknown because we do not have enough information to make a conclusion.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is young\" is true, false, or unknown, we need to analyze the given information and the provided rules.\n\nRule 1: All smart things are cold. \nRule 2: If Bob is young and Bob is cold then Bob is furry. \nRule 3: Young things are cold.\nRule 4: If Fiona is rough and Fiona is cold then Fiona is smart. \nRule 5: Cold, furry things are white.\nRule 6: All rough, nice things are young.\nRule 7: If something is white and furry then it is smart.\n\nGiven information about Anne:\n- Anne is cold.\n- Anne is furry.\n- Anne is rough.\n- Anne is smart.\n- Anne is white.\n\nGiven information about other individuals:\n- Bob is nice.\n- Bob is rough.\n- Erin is cold.\n- Erin is furry.\n- Erin is nice.\n- Erin is rough.\n- Erin is smart.\n- Erin is white.\n- Erin is young.\n- Fiona is cold.\n- Fiona is furry.\n- Fiona is nice.\n- Fiona is rough.\n- Fiona is smart.\n- Fiona is white.\n- Fiona is young.\n\nNow, let's analyze the given information about Anne to determine whether she is young or not.\n\nFrom Rule 3, we know that young things are cold. We already know that Anne is cold (Rule 1 is not directly applicable here as it doesn't tell us that smart things are young, but rather that all smart things are cold), but we still need to check if she is young or not.\n\nFrom Rule 3, we also know that if something is young then it is cold. Since we know Anne is cold, we can conclude that Anne is young.\n\nHowever, to further confirm this, let's examine other rules.\n\nRule 6 states that all rough, nice things are young. However, Anne is rough but we do not know if she is nice. Therefore, we cannot conclude that Anne is young based on Rule 6.\n\nRule 7 states that if something is white and furry then it is smart. Since we know Anne is white and furry, we can conclude that Anne is smart (which we already knew), but this does not tell us if Anne is young.\n\nFrom the given rules and information, we cannot find any other rule that would help us determine if Anne is young. \n\nHowever, since we already know that Anne is cold (Rule 3 states that young things are cold), and since we cannot find any other information that contradicts this, we can still conclude that Anne is indeed young.\n\nTherefore, the final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement 'Anne is young' is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\nGiven Information:\n\n1. Anne is cold.\n2. Anne is furry.\n3. Anne is rough.\n4. Anne is smart.\n5. Anne is white.\n6. Bob is nice.\n7. Bob is rough.\n8. Erin is cold.\n9. Erin is furry.\n10. Erin is nice.\n11. Erin is rough.\n12. Erin is smart.\n13. Erin is white.\n14. Erin is young.\n15. Fiona is cold.\n16. Fiona is furry.\n17. All smart things are cold.\n18. If Bob is young and Bob is cold then Bob is furry.\n19. Young things are cold.\n20. If Fiona is rough and Fiona is cold then Fiona is smart.\n21. Cold, furry things are white.\n22. All rough, nice things are young.\n23. If something is white and furry then it is smart.\n\nWe are asked to determine whether the statement 'Anne is young' is true, false, or unknown.\n\nFrom the given information, we know that Anne is cold (1), furry (2), rough (3), smart (4), and white (5). To determine whether Anne is young, we need to analyze these characteristics.\n\nFirst, let's analyze the characteristic of being cold. From statement 19, we know that young things are cold. However, we cannot conclude that Anne is young from this statement alone because we do not know if Anne is young or not. But we can use the fact that Anne is cold (1) and all smart things are cold (17) to conclude that Anne is smart (4). However, we cannot directly use the fact that Anne is smart (4) to conclude that Anne is young.\n\nNow, let's analyze the characteristic of being furry. From statement 21, we know that cold, furry things are white. Since Anne is white (5) and furry (2), we can conclude that Anne is cold. \n\nHowever, from statement 19, we know that young things are cold. Since Anne is cold (from the previous conclusion), we can conclude that Anne is young.\n\nTherefore, the statement 'Anne is young' is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement 'Anne is young' is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nGiven Information:\n- Anne is cold.\n- Anne is furry.\n- Anne is rough.\n- Anne is smart.\n- Anne is white.\n\nRules:\n1. All smart things are cold.\n2. If Bob is young and Bob is cold then Bob is furry.\n3. Young things are cold.\n4. If Fiona is rough and Fiona is cold then Fiona is smart.\n5. Cold, furry things are white.\n6. All rough, nice things are young.\n7. If something is white and furry then it is smart.\n\nFirst, let's analyze the information about Anne. We know that Anne is smart (rule 1), and we have a rule that states 'If something is white and furry then it is smart' (rule 7). \n\nUsing rule 7, we can conclude that since Anne is white and furry, it is smart. This does not provide us any direct information about Anne's age.\n\nNow, let's examine rule 3: 'Young things are cold.' Since we know that all smart things are cold (rule 1) and Anne is smart, it follows that Anne is cold. However, we cannot conclude that Anne is young based solely on this information, as there might be other cold things that are not young.\n\nHowever, we can analyze rule 3 further. Rule 3 states that 'Young things are cold.' Given that we know that Anne is cold from rule 1 and Anne is smart, we cannot directly conclude Anne's age from this information alone, as there could be cold things that are not young. But, we also have another rule stating that 'Young things are cold' which is directly linked to 'All smart things are cold' (rule 1), and we know that Anne is smart. \n\nHowever, we can look at other rules that may help us determine Anne's age. There is no direct rule that links Anne's characteristics to her age, but we can look for any indirect connections.\n\nLooking at the given information about Anne, we have not found any direct or indirect connection that links her to being young based on the given rules. However, we have a rule that states 'All rough, nice things are young' (rule 6). Since Anne is rough and does not have any information about being nice, we cannot directly conclude Anne's age from this rule.\n\nTo further investigate Anne's age, we can look at the information about Bob, but we can't directly apply it to Anne. There is a rule stating 'If Bob is young and Bob is cold then Bob is furry' (rule 2). However, this rule is about Bob, not Anne, and does not provide us with any information that we can use to determine Anne's age.\n\nIn conclusion, based on the given information and the provided rules, we cannot determine whether Anne is young, false, or true. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is young\" is true, false, or unknown, we need to analyze the given information and use the logical deductions.\n\nFrom the given statements, we know:\n\n1. Anne is cold.\n2. Anne is furry.\n3. Anne is rough.\n4. Anne is smart.\n5. Anne is white.\n\nWe also have some general statements:\n\n6. All smart things are cold.\n7. If Bob is young and Bob is cold then Bob is furry.\n8. Young things are cold.\n9. If Fiona is rough and Fiona is cold then Fiona is smart.\n10. Cold, furry things are white.\n11. All rough, nice things are young.\n12. If something is white and furry then it is smart.\n\nWe are asked to determine whether \"Anne is young\" is true, false, or unknown.\n\nFirst, let's check if Anne is young using statement 8 (Young things are cold) and statement 1 (Anne is cold). Since Anne is cold, it implies that Anne might be young, but we cannot conclude it with certainty using this statement alone.\n\nNow, let's see if we can find a contradiction or a direct conclusion for Anne's youth using the other statements.\n\nFrom statement 10 (Cold, furry things are white), we know that since Anne is furry and cold, she must be white. This matches our statement 5 (Anne is white).\n\nHowever, we cannot directly conclude Anne's youth from this information.\n\nFrom statement 12 (If something is white and furry then it is smart), we know that since Anne is white and furry, she must be smart, which matches our statement 4 (Anne is smart).\n\nWe still cannot conclude Anne's youth directly.\n\nFrom statement 6 (All smart things are cold), we know that since Anne is smart, she must be cold, which matches our statement 1 (Anne is cold).\n\nWe still cannot conclude Anne's youth directly.\n\nFrom statement 11 (All rough, nice things are young), we know that since we do not have any information about Anne being nice or rough, we cannot conclude her youth using this statement.\n\nFrom statement 7 (If Bob is young and Bob is cold then Bob is furry), we know that this statement is specific to Bob and does not provide any information about Anne.\n\nFrom statement 9 (If Fiona is rough and Fiona is cold then Fiona is smart), we know that this statement is specific to Fiona and does not provide any information about Anne.\n\nWe have analyzed all the given statements and have not found any direct conclusion or contradiction for Anne's youth.\n\nTherefore, based on the given information, we cannot determine whether \"Anne is young\" is true or false, so the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_anne, cold_anne)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_anne, cold_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_anne, furry_anne), white_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_anne, furry_anne), smart_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_anne, cold_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 12
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_anne, cold_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_anne, furry_anne), white_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_anne, furry_anne), smart_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_anne, cold_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_anne, cold_anne), furry_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(rough_anne, nice_anne), young_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == Unknown",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_anne, cold_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_anne, cold_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(rough_anne, nice_anne), young_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == Unknown",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_anne, cold_anne)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_anne, furry_anne), smart_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_anne, cold_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_bob, cold_bob), furry_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(rough_anne, nice_anne), young_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == False",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_anne, cold_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_anne, cold_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(eats_bob_squirrel, red_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_fiona, cold_fiona), smart_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_anne, furry_anne), white_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(rough_bob, nice_bob), young_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_anne, furry_anne), smart_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_anne, cold_anne)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(rough_anne, nice_anne), young_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne) == False",
+          "z3_formula": "rough_anne == False",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne) == False",
+          "z3_formula": "nice_anne == False",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne) == False",
+          "z3_formula": "Not(young_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "white(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_anne, furry_anne), smart_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne) == False",
+          "z3_formula": "Not(young_anne)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_anne, cold_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_anne, cold_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(rough_anne, nice_anne), young_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_anne, furry_anne), smart_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_anne, cold_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_anne, furry_anne), white_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_anne, cold_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_anne, cold_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(rough_anne, nice_anne), young_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_anne, furry_anne), smart_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == Unknown",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_anne, cold_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_anne, cold_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_anne, cold_anne), furry_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_anne, cold_anne), smart_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_anne, furry_anne), white_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_anne, furry_anne), smart_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(rough_anne, nice_anne), young_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_bob, cold_bob), furry_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_fiona, cold_fiona), smart_fiona)",
+          "source_step": 14
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 122,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 34
+    },
+    "maxsat_stats": {
+      "satisfied": 32,
+      "excluded": 2,
+      "total_weight": 119,
+      "solve_time_ms": 1.01559329777956
+    },
+    "timing": {
+      "trace_gen_s": 24.803,
+      "extraction_s": 28.918,
+      "dedup_s": 0.716,
+      "maxsat_s": 0.003,
+      "total_s": 54.441
+    }
+  }
+}

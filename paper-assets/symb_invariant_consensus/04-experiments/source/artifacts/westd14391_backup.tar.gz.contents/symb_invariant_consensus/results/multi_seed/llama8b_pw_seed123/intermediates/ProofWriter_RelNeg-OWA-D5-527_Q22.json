@@ -1,0 +1,1145 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-527_Q22",
+    "problem": "The bald eagle is rough. The bald eagle does not like the lion. The bald eagle sees the mouse. The cat does not eat the lion. The cat sees the mouse. The lion sees the cat. The mouse eats the lion. The mouse likes the bald eagle. The mouse sees the bald eagle. The mouse sees the cat. If someone likes the bald eagle and the bald eagle does not like the cat then the cat does not like the lion. If someone eats the mouse then the mouse is kind. If the lion is not rough then the lion is cold. If someone likes the lion then the lion is green. If someone is kind then they like the lion. If someone eats the lion then the lion eats the mouse. If someone likes the cat then they do not like the bald eagle. If someone is green then they like the bald eagle.\n\nDetermine whether the following statement is true, false, or unknown:\nThe lion is rough.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRough($x, bool) ::: Is x rough?\nLikes($x, $y, bool) ::: Does x like y?\nSees($x, $y, bool) ::: Does x see y?\nEats($x, $y, bool) ::: Does x eat y?\nKind($x, bool) ::: Is x kind?\nCold($x, bool) ::: Is x cold?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nRough(BaldEagle, True) ::: The bald eagle is rough.\nLikes(BaldEagle, Lion, False) ::: The bald eagle does not like the lion.\nSees(BaldEagle, Mouse, True) ::: The bald eagle sees the mouse.\nEats(Cat, Lion, False) ::: The cat does not eat the lion.\nSees(Cat, Mouse, True) ::: The cat sees the mouse.\nSees(Lion, Cat, True) ::: The lion sees the cat.\nEats(Mouse, Lion, True) ::: The mouse eats the lion.\nLikes(Mouse, BaldEagle, True) ::: The mouse likes the bald eagle.\nSees(Mouse, BaldEagle, True) ::: The mouse sees the bald eagle.\nSees(Mouse, Cat, True) ::: The mouse sees the cat.\n\nRules:\nLikes($x, BaldEagle, True) && Likes(BaldEagle, Cat, False) >>> Likes(Cat, Lion, False) ::: If someone likes the bald eagle and the bald eagle does not like the cat then the cat does not like the lion.\nEats($x, Mouse, True) >>> Kind(Mouse, True) ::: If someone eats the mouse then the mouse is kind.\nRough(Lion, False) >>> Cold(Lion, True) ::: If the lion is not rough then the lion is cold.\nLikes($x, Lion, True) >>> Green(Lion, True) ::: If someone likes the lion then the lion is green.\nKind($x, True) >>> Likes($x, Lion, True) ::: If someone is kind then they like the lion.\nEats($x, Lion, True) >>> Eats(Lion, Mouse, True) ::: If someone eats the lion then the lion eats the mouse.\nLikes($x, Cat, True) >>> Likes($x, BaldEagle, False) ::: If someone likes the cat then they do not like the bald eagle.\nGreen($x, True) >>> Likes($x, BaldEagle, True) ::: If someone is green then they like the bald eagle.\n\nQuery:\nRough(Lion, True) ::: The lion is rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 77.5,
+      "True": -0.5,
+      "Unknown": 142.5
+    },
+    "answer_counts": {
+      "Unknown": 7,
+      "False": 1,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The lion is rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given: \n   - The lion sees the cat.\n   - The mouse eats the lion.\n   - If someone eats the lion then the lion eats the mouse.\n\nFrom the above information, we can conclude that the lion eats the mouse.\n\n2. We are given:\n   - The mouse eats the lion.\n   - If someone eats the mouse then the mouse is kind.\n\nFrom the above information, we can conclude that the mouse is kind.\n\n3. We are given:\n   - The mouse is kind.\n   - If someone is kind then they like the lion.\n\nFrom the above information, we can conclude that the mouse likes the lion.\n\n4. We are given:\n   - The mouse likes the lion.\n   - If someone likes the lion then the lion is green.\n\nFrom the above information, we can conclude that the lion is green.\n\n5. We are given:\n   - The lion is green.\n   - If someone is green then they like the bald eagle.\n\nFrom the above information, we can conclude that the lion likes the bald eagle.\n\n6. We are given:\n   - The lion likes the bald eagle.\n   - The bald eagle does not like the cat.\n\nFrom the above information, we can conclude that the lion does not like the cat.\n\n7. We are given:\n   - The lion does not like the cat.\n   - If someone likes the bald eagle and the bald eagle does not like the cat then the cat does not like the lion.\n\nFrom the above information, we cannot conclude anything about the cat's opinion on the lion, as we do not know if someone likes the bald eagle.\n\nHowever, we can conclude that the lion is green and the lion likes the bald eagle, but we do not have enough information to determine whether the lion is rough or not.\n\nTherefore, the answer is: \n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to use logical reasoning and follow the given statements step by step.\n\n1. The bald eagle is rough. \n   - This statement is given, but we need to check if it's true or false based on other statements.\n\n2. The bald eagle does not like the lion.\n   - This statement is given, and we know the bald eagle is rough, but we need more information.\n\n3. The bald eagle sees the mouse.\n   - This statement is given, but it doesn't provide any new information.\n\n4. The cat does not eat the lion.\n   - This statement is given, and we need to keep it in mind.\n\n5. The cat sees the mouse.\n   - This statement is given, but it doesn't provide any new information.\n\n6. The lion sees the cat.\n   - This statement is given, but it doesn't provide any new information.\n\n7. The mouse eats the lion.\n   - This statement is given, and it implies that the mouse is kind and the lion is cold.\n\n8. The mouse likes the bald eagle.\n   - This statement is given, and it implies that the mouse is kind.\n\n9. The mouse sees the bald eagle.\n   - This statement is given, but it doesn't provide any new information.\n\n10. The mouse sees the cat.\n    - This statement is given, but it doesn't provide any new information.\n\nNow, let's analyze the given conditions:\n\n1. If someone likes the bald eagle and the bald eagle does not like the cat then the cat does not like the lion.\n   - We know the mouse likes the bald eagle, and the bald eagle does not like the cat. So, the cat does not like the lion.\n\n2. If someone eats the mouse then the mouse is kind.\n   - We know the mouse eats the lion, so the mouse is kind.\n\n3. If the lion is not rough then the lion is cold.\n   - This statement implies that if the lion is rough, then it's not cold.\n\n4. If someone likes the lion then the lion is green.\n   - We need to check if someone likes the lion.\n\n5. If someone is kind then they like the lion.\n   - We know the mouse is kind, so the mouse likes the lion.\n\n6. If someone eats the lion then the lion eats the mouse.\n   - We know the mouse eats the lion, so the lion eats the mouse.\n\n7. If someone likes the cat then they do not like the bald eagle.\n   - We know the mouse likes the cat, so the mouse does not like the bald eagle.\n\n8. If someone is green then they like the bald eagle.\n   - We need to check if someone is green.\n\nNow, we need to check the statement \"The lion is rough.\" We know the mouse eats the lion, so the lion is cold (based on statement 3). We also know that if the lion is not rough, then it's cold (based on statement 3), but we cannot conclude that the lion is rough based on this information.\n\nHowever, statement 5 implies that if someone likes the lion, then the lion is green. We know the mouse likes the lion, so the lion is green. Statement 8 implies that if someone is green, then they like the bald eagle. We know the lion is green, so the lion likes the bald eagle.\n\nBased on statement 1, we know the bald eagle is rough. Statement 2 implies that the bald eagle does not like the lion. Statement 7 implies that if someone likes the cat, then they do not like the bald eagle. We know the lion likes the bald eagle, so the lion does not like the cat.\n\nStatement 4 implies that the cat does not eat the lion. Statement 6 implies that if someone eats the lion, then the lion eats the mouse. We know the mouse eats the lion, so the lion eats the mouse.\n\nNow, let's check the statement \"The lion is rough.\" We know the lion is green, and statement 8 implies that if someone is green, then they like the bald eagle. Statement 1 implies that the bald eagle is rough. Statement 2 implies that the bald eagle does not like the lion. Statement 7 implies that if someone likes the cat, then they do not like the bald eagle. We know the lion likes the bald eagle, so the lion does not like the cat.\n\nBased on the information above, we cannot determine if the lion is rough or not, so the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications. \n\nGiven statements:\n1. The bald eagle is rough.\n2. The bald eagle does not like the lion.\n3. The bald eagle sees the mouse.\n4. The cat does not eat the lion.\n5. The cat sees the mouse.\n6. The lion sees the cat.\n7. The mouse eats the lion.\n8. The mouse likes the bald eagle.\n9. The mouse sees the bald eagle.\n10. The mouse sees the cat.\n11. If someone likes the bald eagle and the bald eagle does not like the cat then the cat does not like the lion.\n12. If someone eats the mouse then the mouse is kind.\n13. If the lion is not rough then the lion is cold.\n14. If someone likes the lion then the lion is green.\n15. If someone is kind then they like the lion.\n16. If someone eats the lion then the lion eats the mouse.\n17. If someone likes the cat then they do not like the bald eagle.\n18. If someone is green then they like the bald eagle.\n\nStatement to be evaluated: The lion is rough.\n\nFrom statement 1, we know the bald eagle is rough. \n\nLet's assume the lion is rough. \n\nFrom statement 2, the bald eagle does not like the lion. \n\nFrom statement 11, if someone likes the bald eagle and the bald eagle does not like the cat then the cat does not like the lion. However, we do not have information about the cat liking or disliking the lion, so we cannot determine the truth value of this statement.\n\nFrom statement 13, if the lion is not rough then the lion is cold. This statement does not directly affect our assumption about the lion being rough.\n\nFrom statement 14, if someone likes the lion then the lion is green. We do not have information about someone liking the lion, so we cannot determine the truth value of this statement.\n\nFrom statement 16, if someone eats the lion then the lion eats the mouse. However, we do not have information about someone eating the lion, so we cannot determine the truth value of this statement.\n\nFrom statement 17, if someone likes the cat then they do not like the bald eagle. We do not have information about someone liking the cat, so we cannot determine the truth value of this statement.\n\nFrom statement 18, if someone is green then they like the bald eagle. We do not have information about someone being green, so we cannot determine the truth value of this statement.\n\nHowever, we know that the mouse eats the lion from statement 7. \n\nFrom statement 16, if someone eats the lion then the lion eats the mouse. This means that the mouse eats the lion and the lion eats the mouse.\n\nNow, from statement 12, if someone eats the mouse then the mouse is kind. Since the mouse eats the lion, the mouse is kind.\n\nFrom statement 15, if someone is kind then they like the lion. Since the mouse is kind, the mouse likes the lion.\n\nNow, from statement 14, if someone likes the lion then the lion is green. Since the mouse likes the lion, the lion is green.\n\nWe have concluded that the lion is green when we assumed the lion is rough.\n\nHowever, we also know that if someone is green then they like the bald eagle (statement 18). This means that the lion is green, so the lion likes the bald eagle.\n\nNow, from statement 17, if someone likes the cat then they do not like the bald eagle. Since the lion likes the bald eagle, the lion does not like the cat.\n\nFrom statement 6, the lion sees the cat. This is consistent with our conclusion.\n\nHowever, we also know that the cat sees the mouse (statement 5) and the lion sees the cat (statement 6). This means that the lion sees the mouse.\n\nFrom statement 11, if someone likes the bald eagle and the bald eagle does not like the cat then the cat does not like the lion. Since the lion likes the bald eagle and the bald eagle does not like the cat, the cat does not like the lion.\n\nNow, from statement 4, the cat does not eat the lion. This is consistent with our conclusion.\n\nHowever, we also know that the mouse eats the lion (statement 7) and the cat sees the mouse (statement 5). This means that the lion eats the mouse, but the cat does not eat the lion.\n\nFrom statement 3, the bald eagle sees the mouse. This is consistent with our conclusion.\n\nHowever, we also know that the mouse likes the bald eagle (statement 8) and the mouse sees the bald eagle (statement 9). This means that the mouse likes the bald eagle.\n\nFrom statement 11, if someone likes the bald eagle and the bald eagle does not like the cat then the cat does not like the lion. Since the mouse likes the bald eagle and the bald eagle does not like the cat, the cat does not like the lion.\n\nNow, from statement 4, the cat does not eat the lion. This is consistent with our conclusion.\n\nHowever, we also know that the cat sees the mouse (statement 5) and the mouse likes the cat (not directly stated, but we can conclude it from the information given). This means that the cat likes the mouse.\n\nFrom statement 17, if someone likes the cat then they do not like the bald eagle. Since the mouse likes the cat, the mouse does not like the bald eagle.\n\nHowever, we know that the mouse likes the bald eagle (statement 8). This is a contradiction.\n\nSince we have a contradiction, our assumption that the lion is rough must be false.\n\nTherefore, the statement \"The lion is rough\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle does not like the lion. (Statement 2)\n2. The mouse eats the lion. (Statement 7)\n   - From statement 8, if someone eats the mouse then the mouse is kind. \n   - Since the mouse eats the lion, the mouse is kind.\n   - From statement 11, if someone is kind then they like the lion.\n   - Therefore, the mouse likes the lion.\n3. The mouse likes the bald eagle. (Statement 8)\n4. From statement 10, if someone likes the cat then they do not like the bald eagle.\n   - Since the mouse likes the bald eagle, the mouse does not like the cat.\n5. The cat sees the mouse. (Statement 6)\n6. The lion sees the cat. (Statement 7)\n   - From statement 6, the cat sees the mouse.\n   - Since the mouse does not like the cat, the cat cannot see the mouse if it likes the mouse.\n   - The cat and lion see each other, but this does not provide any information about their relationship.\n7. The cat does not eat the lion. (Statement 3)\n8. The mouse eats the lion. (Statement 7)\n   - From statement 8, if someone eats the lion then the lion eats the mouse.\n   - Therefore, the lion eats the mouse.\n9. The lion eats the mouse, but the mouse is kind. (Statements 2 and 8)\n   - The lion eating the mouse does not necessarily mean it's rough or not rough.\n   - To determine whether the lion is rough, we need more information.\n\nHowever, we can use the information provided in statement 5: If the lion is not rough then the lion is cold.\n- We do not have any information about the lion being cold or not.\n\nSince we cannot determine whether the lion is cold or not, and we have no direct information about the lion being rough or not, the statement \"The lion is rough\" is unknown.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the lion is rough, we need to analyze the given statements and use logical deductions.\n\n1. If someone likes the bald eagle and the bald eagle does not like the cat then the cat does not like the lion.\n   - We don't have any information about someone liking the bald eagle, so this statement is not directly applicable.\n\n2. If someone eats the mouse then the mouse is kind.\n   - We don't have any information about someone eating the mouse, so this statement is not directly applicable.\n\n3. If the lion is not rough then the lion is cold.\n   - We need to determine whether the lion is rough or not. If it's not rough, then it must be cold.\n\n4. If someone likes the lion then the lion is green.\n   - We don't have any information about someone liking the lion, so this statement is not directly applicable.\n\n5. If someone is kind then they like the lion.\n   - We don't have any information about someone being kind, so this statement is not directly applicable.\n\n6. If someone eats the lion then the lion eats the mouse.\n   - We don't have any information about someone eating the lion, so this statement is not directly applicable.\n\n7. If someone likes the cat then they do not like the bald eagle.\n   - We don't have any information about someone liking the cat, so this statement is not directly applicable.\n\n8. If someone is green then they like the bald eagle.\n   - We don't have any information about someone being green, so this statement is not directly applicable.\n\nNow, let's look at the given statements again:\n\n- The bald eagle does not like the lion.\n- The lion sees the cat.\n- The mouse eats the lion.\n- The mouse likes the bald eagle.\n- The mouse sees the bald eagle.\n- The mouse sees the cat.\n\nFrom statement 1, we don't have enough information to conclude anything.\n\nFrom statement 2, we don't have enough information to conclude anything.\n\nFrom statement 3, if the lion is not rough, then it must be cold. But we don't know whether the lion is rough or not.\n\nFrom statement 4, we don't have enough information to conclude anything.\n\nFrom statement 5, we don't have enough information to conclude anything.\n\nFrom statement 6, if someone eats the lion (which is the mouse), then the lion eats the mouse. But we don't know whether someone eats the lion or not.\n\nFrom statement 7, we don't have enough information to conclude anything.\n\nFrom statement 8, we don't have enough information to conclude anything.\n\nNow, let's analyze the statement \"The lion is rough.\"\n\n- If the lion is not rough, then it must be cold (statement 3).\n- But we don't have any information to confirm whether the lion is rough or not.\n\nSince we don't have enough information to determine whether the lion is rough or not, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements to determine the truth value of the statement \"The lion is rough.\"\n\nFirst, let's list all the given statements:\n\n1. The bald eagle is rough.\n2. The bald eagle does not like the lion.\n3. The bald eagle sees the mouse.\n4. The cat does not eat the lion.\n5. The cat sees the mouse.\n6. The lion sees the cat.\n7. The mouse eats the lion.\n8. The mouse likes the bald eagle.\n9. The mouse sees the bald eagle.\n10. The mouse sees the cat.\n11. If someone likes the bald eagle and the bald eagle does not like the cat then the cat does not like the lion.\n12. If someone eats the mouse then the mouse is kind.\n13. If the lion is not rough then the lion is cold.\n14. If someone likes the lion then the lion is green.\n15. If someone is kind then they like the lion.\n16. If someone eats the lion then the lion eats the mouse.\n17. If someone likes the cat then they do not like the bald eagle.\n18. If someone is green then they like the bald eagle.\n\nNow, let's start from statement 1: \"The bald eagle is rough.\"\n\nSince statement 1 says that the bald eagle is rough, we need to check if this is consistent with the other statements.\n\nFrom statement 2, we know that the bald eagle does not like the lion.\n\nFrom statement 11, we can conclude that the cat does not like the lion because someone likes the bald eagle and the bald eagle does not like the cat.\n\nNow, let's consider statement 7: \"The mouse eats the lion.\"\n\nSince the mouse eats the lion, from statement 12, we can conclude that the mouse is kind.\n\nFrom statement 15, we can conclude that the mouse likes the lion because someone is kind and they like the lion.\n\nNow, let's consider statement 14: \"If someone likes the lion then the lion is green.\"\n\nSince the mouse likes the lion, we can conclude that the lion is green.\n\nHowever, from statement 18, we know that if someone is green, then they like the bald eagle.\n\nSo, the lion is green and likes the bald eagle.\n\nNow, let's consider statement 2: \"The bald eagle does not like the lion.\"\n\nSince the lion likes the bald eagle, it contradicts statement 2.\n\nTherefore, the bald eagle must like the lion.\n\nNow, let's consider statement 2 again: \"The bald eagle does not like the lion.\"\n\nSince the bald eagle likes the lion, we have a contradiction.\n\nTo resolve this contradiction, we need to find a statement that contradicts statement 1: \"The bald eagle is rough.\"\n\nFrom statement 13, we know that if the lion is not rough, then the lion is cold.\n\nIf the lion is not rough, then the bald eagle is not rough.\n\nHowever, we cannot conclude that the lion is not rough from the given statements.\n\nTherefore, we cannot determine whether the lion is rough or not.\n\nThe final answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. \"If someone is green then they like the bald eagle.\"\n   - This statement tells us nothing about the lion being rough or not.\n\n2. \"If someone likes the cat then they do not like the bald eagle.\"\n   - This statement tells us nothing about the lion being rough or not.\n\n3. \"If someone likes the lion then the lion is green.\"\n   - We do not have any information about someone liking the lion. So, we cannot determine if the lion is green or not.\n\n4. \"If the lion is not rough then the lion is cold.\"\n   - We cannot determine if the lion is rough or not. Therefore, we cannot determine if the lion is cold or not.\n\n5. \"If someone eats the lion then the lion eats the mouse.\"\n   - We do not have any information about someone eating the lion. So, we cannot determine if the lion eats the mouse or not.\n\n6. \"If someone eats the mouse then the mouse is kind.\"\n   - We do not have any information about someone eating the mouse. We also know that the mouse eats the lion, but this does not tell us anything about the mouse being kind.\n\n7. \"If someone is kind then they like the lion.\"\n   - We do not have any information about someone being kind.\n\n8. \"The mouse eats the lion.\"\n   - This statement tells us that someone eats the lion, but we do not know who eats the lion. However, we can conclude that the lion does not eat the mouse since the statement says the mouse eats the lion.\n\n9. \"The lion sees the cat.\"\n   - This statement tells us that the lion is aware of the cat but does not tell us anything about the lion being rough or not.\n\n10. \"The cat sees the mouse.\"\n    - This statement tells us that the cat is aware of the mouse but does not tell us anything about the lion being rough or not.\n\n11. \"The cat does not eat the lion.\"\n    - This statement tells us that the cat does not eat the lion, but we do not know if the cat likes the lion or not.\n\n12. \"If someone likes the bald eagle and the bald eagle does not like the cat then the cat does not like the lion.\"\n    - We know that the mouse likes the bald eagle. We also know that the bald eagle does not like the cat. However, we do not know if the mouse likes the lion or not.\n\nSince we cannot determine if the lion is rough or not using the given statements, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the lion is rough, we need to analyze the given information and the rules provided.\n\n1. The lion sees the cat. (Information)\n2. The mouse eats the lion. (Information)\n3. If the lion is not rough then the lion is cold. (Rule)\n   This rule does not directly provide information about the lion's roughness but gives us an alternative characteristic if it's not rough.\n4. If someone eats the lion then the lion eats the mouse. (Rule)\n   Since the mouse eats the lion (Information 2), we can apply this rule. This means the lion eats the mouse, but this information doesn't tell us about the lion's roughness.\n5. The statement to evaluate is: The lion is rough.\n\nFrom the given information and rules, we cannot directly conclude whether the lion is rough or not. However, we can analyze the possible implications.\n\nSince the mouse eats the lion, and if someone eats the lion then the lion eats the mouse (Rule 4), the lion eats the mouse. But this does not provide any information about the lion's roughness.\n\nThe rule that states \"If the lion is not rough then the lion is cold\" (Rule 3) gives us an alternative characteristic if the lion is not rough. However, we have no information to directly conclude whether the lion is rough or not.\n\nTherefore, based on the given information and rules, we cannot determine whether the lion is rough or not. The answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications.\n\n1. The bald eagle is rough.\n2. The bald eagle does not like the lion.\n3. The bald eagle sees the mouse.\n4. The cat does not eat the lion.\n5. The cat sees the mouse.\n6. The lion sees the cat.\n7. The mouse eats the lion.\n8. The mouse likes the bald eagle.\n9. The mouse sees the bald eagle.\n10. The mouse sees the cat.\n11. If someone likes the bald eagle and the bald eagle does not like the cat then the cat does not like the lion.\n12. If someone eats the mouse then the mouse is kind.\n13. If the lion is not rough then the lion is cold.\n14. If someone likes the lion then the lion is green.\n15. If someone is kind then they like the lion.\n16. If someone eats the lion then the lion eats the mouse.\n17. If someone likes the cat then they do not like the bald eagle.\n18. If someone is green then they like the bald eagle.\n\nFrom statement 7, we know the mouse eats the lion. Therefore, from statement 16, the lion eats the mouse.\n\nNow let's find out if the lion is rough. To do this, we need to find out if the lion is cold. We can do this by analyzing statements 13 and 7.\n\nIf the lion is not rough (statement 13), then the lion is cold. However, we do not know if the lion is rough or not. Therefore, we cannot conclude if the lion is cold or not from this information alone.\n\nHowever, from statement 13, if the lion is not rough, then it is cold. But we do not know if the lion is not rough, so we cannot conclude if the lion is cold or not from this information alone.\n\nNow let's look at statement 14. It says that if someone likes the lion, then the lion is green. However, we do not know if anyone likes the lion. Therefore, we cannot conclude if the lion is green or not.\n\nNow let's look at statement 15. It says that if someone is kind, then they like the lion. However, we do not know if anyone is kind or not. We only know that the mouse eats the lion (statement 7), which makes the mouse kind (statement 12). But we do not know if the mouse likes the lion.\n\nFrom statement 11, if someone likes the bald eagle and the bald eagle does not like the cat, then the cat does not like the lion. We do not know if the bald eagle likes anyone, but we do know that the mouse likes the bald eagle (statement 8). However, we do not know if the mouse likes the cat or not.\n\nFrom statement 17, if someone likes the cat, then they do not like the bald eagle. However, we do not know if anyone likes the cat. We only know that the cat sees the mouse (statement 5).\n\nFrom statement 18, if someone is green, then they like the bald eagle. However, we do not know if anyone is green or not.\n\nFrom statement 14, if someone likes the lion, then the lion is green. However, we do not know if anyone likes the lion.\n\nHowever, we can conclude that the lion eats the mouse from statement 7 and statement 16.\n\nNow let's analyze the relationship between the lion and the mouse. From statement 7, the mouse eats the lion. From statement 16, if someone eats the lion, then the lion eats the mouse. Therefore, the lion eats the mouse. However, this is a contradiction with the fact that the mouse eats the lion.\n\nFrom statement 16, if someone eats the lion, then the lion eats the mouse. However, we know that the mouse eats the lion. Therefore, from this statement, we can conclude that the lion eats the mouse. However, this is a contradiction with the fact that the mouse eats the lion.\n\nThis contradiction implies that we cannot conclude that the lion eats the mouse or the mouse eats the lion. Therefore, we cannot conclude if the lion is rough or not from this information alone.\n\nHowever, from statement 13, if the lion is not rough, then it is cold. However, we do not know if the lion is not rough, so we cannot conclude if the lion is cold or not from this information alone.\n\nHowever, we can analyze the relationship between the lion and the cat. From statement 6, the lion sees the cat. From statement 11, if someone likes the bald eagle and the bald eagle does not like the cat, then the cat does not like the lion. However, we do not know if the bald eagle likes anyone, but we do know that the mouse likes the bald eagle (statement 8). However, we do not know if the mouse likes the cat or not.\n\nFrom statement 17, if someone likes the cat, then they do not like the bald eagle. However, we do not know if anyone likes the cat. We only know that the cat sees the mouse (statement 5).\n\nFrom statement 6, the lion sees the cat. From statement 11, if someone likes the bald eagle and the bald eagle does not like the cat, then the cat does not like the lion. However, we do not know if the bald eagle likes anyone, but we do know that the mouse likes the bald eagle (statement 8). However, we do not know if the mouse likes the cat or not.\n\nHowever, we can conclude that the lion sees the cat from statement 6.\n\nNow let's analyze the relationship between the lion and the cat. From statement 4, the cat does not eat the lion. From statement 11, if someone likes the bald eagle and the bald eagle does not like the cat, then the cat does not like the lion. However, we do not know if the bald eagle likes anyone, but we do know that the mouse likes the bald eagle (statement 8). However, we do not know if the mouse likes the cat or not.\n\nFrom statement 4, the cat does not eat the lion. However, we do not know if the cat likes the lion or not.\n\nHowever, we can conclude that the cat does not eat the lion from statement 4.\n\nNow let's analyze the relationship between the lion and the cat. From statement 11, if someone likes the bald eagle and the bald eagle does not like the cat, then the cat does not like the lion. However, we do not know if the bald eagle likes anyone, but we do know that the mouse likes the bald eagle (statement 8). However, we do not know if the mouse likes the cat or not.\n\nFrom statement 6, the lion sees the cat. However, we do not know if the lion likes the cat or not.\n\nHowever, we can conclude that the lion sees the cat from statement 6.\n\nNow let's analyze the relationship between the lion and the cat. From statement 4, the cat does not eat the lion. From statement 6, the lion sees the cat. However, we do not know if the lion likes the cat or not.\n\nHowever, we can conclude that the cat does not eat the lion from statement 4.\n\nNow let's analyze the relationship between the lion and the cat. From statement 6, the lion sees the cat. However, we do not know if the lion likes the cat or not.\n\nHowever, we can conclude that the lion sees the cat from statement 6.\n\nNow let's analyze the relationship between the lion and the cat. From statement 6, the lion sees the cat. However, we do not know if the lion likes the cat or not.\n\nHowever, we can conclude that the lion sees the cat from statement 6.\n\nNow let's analyze the relationship between the lion and the cat. From statement 6, the lion sees the cat. However, we do not know if the lion likes the cat or not.\n\nHowever, we can conclude that the lion sees the cat from statement 6.\n\nNow let's analyze the relationship between the lion and the cat. From statement 6, the lion sees the cat. However, we do not know if the lion likes the cat or not.\n\nHowever, we can conclude that the lion sees the cat from statement 6.\n\nNow let's analyze the relationship between the lion and the cat. From statement 6, the lion sees the cat. However, we do not know if the lion likes the cat or not.\n\nHowever, we can conclude that the lion sees the cat from statement 6.\n\nNow let's analyze the relationship between the lion and the cat. From statement 6, the lion sees the cat. However, we do not know if the lion likes the cat or not.\n\nHowever, we can conclude that the lion sees the cat from statement 6.\n\nNow let's analyze the relationship between the lion and the cat. From statement 6, the lion sees the cat. However, we do not know if the lion likes the cat or not.\n\nHowever, we can conclude that the lion sees the cat from statement 6.\n\nNow let's analyze the relationship between the lion and the cat. From statement 6, the lion sees the cat. However, we do not know if the lion likes the cat or not.\n\nHowever, we can conclude that the lion sees the cat from statement 6.\n\nNow let's analyze the relationship between the lion and the cat. From statement 6, the lion sees the cat. However, we do not know if the lion likes the cat or not.\n\nHowever, we can conclude that the lion sees the cat from statement 6.\n\nNow let's analyze the relationship between the lion and the cat. From statement 6, the lion sees the cat. However, we do not know if the lion likes the cat or not.\n\nHowever, we can conclude that the lion",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we'll analyze the given statements step by step and determine the properties of the animals.\n\n1. The bald eagle is rough. \n   We know this but we need to determine if the lion is rough or not.\n\n2. The bald eagle does not like the lion. \n   No additional information is gained here.\n\n3. The bald eagle sees the mouse. \n   No additional information is gained here.\n\n4. The cat does not eat the lion. \n   No additional information is gained here.\n\n5. The cat sees the mouse. \n   No additional information is gained here.\n\n6. The lion sees the cat. \n   No additional information is gained here.\n\n7. The mouse eats the lion. \n   This statement is a bit counterintuitive but it implies the lion is eaten by the mouse, not the other way around.\n\n8. The mouse likes the bald eagle. \n   This implies the mouse is kind because it eats the mouse, but we'll address this later.\n\n9. The mouse sees the bald eagle. \n   No additional information is gained here.\n\n10. The mouse sees the cat. \n    No additional information is gained here.\n\nNow, we'll analyze the given implications:\n\n1. If someone likes the bald eagle and the bald eagle does not like the cat then the cat does not like the lion. \n   We have no evidence that someone likes the bald eagle, so we can't determine if the cat likes the lion or not.\n\n2. If someone eats the mouse then the mouse is kind. \n   This statement is false because we have evidence that the mouse eats the lion, but we're not told if it's kind or not.\n\n3. If the lion is not rough then the lion is cold. \n   We don't know if the lion is rough or not, so we can't determine its temperature.\n\n4. If someone likes the lion then the lion is green. \n   We have no evidence that someone likes the lion, so we can't determine its color.\n\n5. If someone is kind then they like the lion. \n   This implies that the lion is liked by the mouse because it eats the mouse, but we're not told if it's kind or not.\n\n6. If someone eats the lion then the lion eats the mouse. \n   This statement is false because we have evidence that the mouse eats the lion, not the other way around.\n\n7. If someone likes the cat then they do not like the bald eagle. \n   We have no evidence that someone likes the cat, so we can't determine if they like the bald eagle or not.\n\n8. If someone is green then they like the bald eagle. \n   We have no evidence that someone is green, so we can't determine if they like the bald eagle or not.\n\nNow, let's analyze the statement we're trying to determine: \nThe lion is rough.\n\nIf the lion is not rough, then it is cold (statement 3). We have no evidence that the lion is cold or not.\n\nHowever, we do know that if the lion is not rough then it is cold. This statement implies that the lion's roughness is the only property that is not determined.\n\nWe have evidence that the mouse eats the lion (statement 7). This implies that the mouse is kind because it eats the mouse (statement 2 is false, but if the mouse eats the lion, then it's kind). \n\nIf the mouse is kind, then it likes the lion (statement 5). This implies that the lion is liked by the mouse because it's kind.\n\nHowever, if the lion is liked by the mouse, then it's green (statement 4). We have no evidence that the lion is green or not.\n\nSince we have a contradiction (the lion can't be both liked by the mouse and not rough), the only way for this statement to be true is if the lion is rough.\n\nTherefore, the lion is rough.\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to use a combination of logical reasoning and the given statements. \n\nLet's start by breaking down the given statements into smaller pieces of information:\n\n1. If someone likes the bald eagle and the bald eagle does not like the cat then the cat does not like the lion.\n   - This statement implies that if the bald eagle and someone else both like the bald eagle, and the bald eagle dislikes the cat, then the cat must dislike the lion.\n\n2. If someone eats the mouse then the mouse is kind.\n   - This statement implies that the mouse is kind, but it does not provide any information about the lion.\n\n3. If the lion is not rough then the lion is cold.\n   - This statement implies that if the lion is not rough, it is cold. However, it does not provide any information about the lion's roughness.\n\n4. If someone likes the lion then the lion is green.\n   - This statement implies that the lion is green if someone likes it.\n\n5. If someone is kind then they like the lion.\n   - This statement implies that if someone is kind, they must like the lion.\n\n6. If someone eats the lion then the lion eats the mouse.\n   - This statement implies that if someone eats the lion, the lion eats the mouse.\n\n7. If someone likes the cat then they do not like the bald eagle.\n   - This statement implies that if someone likes the cat, they cannot like the bald eagle.\n\n8. If someone is green then they like the bald eagle.\n   - This statement implies that if someone is green, they must like the bald eagle.\n\nNow, let's analyze the problem to determine whether the lion is rough.\n\nFrom statement 3, if the lion is not rough, it is cold. However, we have no information about the lion's roughness. To determine whether the lion is rough, we need to look at the other statements.\n\nFrom statement 1, we know that if the bald eagle dislikes the cat, the cat must dislike the lion. However, we do not know if the bald eagle dislikes the cat.\n\nFrom statement 7, we know that if someone likes the cat, they cannot like the bald eagle. However, we do not know if someone likes the cat.\n\nFrom statement 8, we know that if someone is green, they must like the bald eagle. However, we do not know if someone is green.\n\nFrom statement 6, we know that if someone eats the lion, the lion eats the mouse. However, we do not know if someone eats the lion.\n\nFrom statement 2, we know that if someone eats the mouse, the mouse is kind. However, we do not know if someone eats the mouse.\n\nFrom statement 5, we know that if someone is kind, they must like the lion. However, we do not know if someone is kind.\n\nFrom statement 4, we know that if someone likes the lion, the lion is green. However, we do not know if someone likes the lion.\n\nFrom statement 1, we know that the cat does not like the lion. However, we do not know why the cat does not like the lion.\n\nFrom statement 6, we know that if someone eats the lion, the lion eats the mouse. However, we do not know if someone eats the lion.\n\nThe mouse eats the lion (from statement 6), so the lion eats the mouse. However, this does not provide any information about the lion's roughness.\n\nThe cat sees the mouse (from statement 3), but this does not provide any information about the lion's roughness.\n\nThe bald eagle sees the mouse (from statement 4), but this does not provide any information about the lion's roughness.\n\nThe lion sees the cat (from statement 5), but this does not provide any information about the lion's roughness.\n\nThe cat does not eat the lion (from statement 6), but this does not provide any information about the lion's roughness.\n\nThe mouse likes the bald eagle (from statement 7), but this does not provide any information about the lion's roughness.\n\nThe lion is not described as rough, cold, green, or kind in the statements. However, we do not have enough information to conclude whether the lion is rough or not.\n\nTherefore, the statement \"The lion is rough\" is unknown.",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle is rough.\n   - This statement alone does not provide any information about the lion.\n\n2. The bald eagle does not like the lion.\n   - This statement alone does not provide any information about the lion's roughness.\n\n3. The bald eagle sees the mouse.\n   - This statement alone does not provide any information about the lion's roughness.\n\n4. The cat does not eat the lion.\n   - This statement alone does not provide any information about the lion's roughness.\n\n5. The cat sees the mouse.\n   - This statement alone does not provide any information about the lion's roughness.\n\n6. The lion sees the cat.\n   - This statement alone does not provide any information about the lion's roughness.\n\n7. The mouse eats the lion.\n   - This statement alone does not provide any information about the lion's roughness.\n\n8. The mouse likes the bald eagle.\n   - This statement alone does not provide any information about the lion's roughness.\n\n9. The mouse sees the bald eagle.\n   - This statement alone does not provide any information about the lion's roughness.\n\n10. The mouse sees the cat.\n    - This statement alone does not provide any information about the lion's roughness.\n\n11. If someone likes the bald eagle and the bald eagle does not like the cat then the cat does not like the lion.\n    - This is a conditional statement. It does not provide any information about the lion's roughness.\n\n12. If someone eats the mouse then the mouse is kind.\n    - This is a conditional statement. It does not provide any information about the lion's roughness.\n\n13. If the lion is not rough then the lion is cold.\n    - This is a conditional statement. It implies that the lion is cold if and only if the lion is not rough. However, it does not provide any information about the lion's roughness.\n\n14. If someone likes the lion then the lion is green.\n    - This is a conditional statement. It does not provide any information about the lion's roughness.\n\n15. If someone is kind then they like the lion.\n    - This is a conditional statement. It does not provide any information about the lion's roughness.\n\n16. If someone eats the lion then the lion eats the mouse.\n    - This is a conditional statement. It does not provide any information about the lion's roughness.\n\n17. If someone likes the cat then they do not like the bald eagle.\n    - This is a conditional statement. It does not provide any information about the lion's roughness.\n\n18. If someone is green then they like the bald eagle.\n    - This is a conditional statement. It does not provide any information about the lion's roughness.\n\nHowever, we have the following statements:\n- The lion is not rough then the lion is cold (statement 13).\n- If someone eats the lion then the lion eats the mouse (statement 16).\n- The mouse eats the lion (statement 7).\n\nFrom statement 16, we know that if someone eats the lion, the lion eats the mouse.\nFrom statement 7, we know that the mouse eats the lion.\nTherefore, from these two statements, we can conclude that the mouse eats the lion and the lion eats the mouse. This is a contradiction. However, this contradiction is not relevant to the statement \"The lion is rough.\"\n\nThe statement \"The lion is not rough then the lion is cold\" (statement 13) implies that the lion is cold if and only if the lion is not rough. However, it does not provide any information about the lion's roughness.\n\nSince we do not have any information that directly states the lion is rough or not, we cannot determine whether the statement \"The lion is rough\" is true or false. Therefore, the answer is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "sees(lion, cat)",
+          "z3_formula": "sees_lion_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, lion)",
+          "z3_formula": "eats_mouse_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> lion_eats(X)",
+          "z3_formula": "Implies(eats_mouse_lion, lion_eats_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "lion_eats(mouse)",
+          "z3_formula": "lion_eats_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, lion)",
+          "z3_formula": "eats_mouse_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> kind(X)",
+          "z3_formula": "Implies(eats_mouse_lion, kind_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> likes(X, lion)",
+          "z3_formula": "Implies(kind_mouse, likes_mouse_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, lion)",
+          "z3_formula": "likes_mouse_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, lion)",
+          "z3_formula": "likes_mouse_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> green(X)",
+          "z3_formula": "Implies(likes_mouse_lion, green_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> likes(X, eagle)",
+          "z3_formula": "Implies(green_lion, likes_lion_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, eagle)",
+          "z3_formula": "likes_lion_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, eagle)",
+          "z3_formula": "likes_lion_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(eagle, cat)",
+          "z3_formula": "Not(likes_eagle_cat) == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, eagle) & not likes(eagle, Y) -> not likes(X, Y)",
+          "z3_formula": "Implies(And(likes_lion_eagle, Not(likes_eagle_cat)), Not(likes_lion_cat))",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(lion, cat)",
+          "z3_formula": "Not(likes_lion_cat) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, mouse)",
+          "z3_formula": "sees_bald_eagle_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(cat, lion)",
+          "z3_formula": "Not(eats_cat_lion) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, mouse)",
+          "z3_formula": "sees_cat_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cat)",
+          "z3_formula": "sees_lion_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, lion)",
+          "z3_formula": "eats_mouse_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, bald_eagle)",
+          "z3_formula": "likes_mouse_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, bald_eagle)",
+          "z3_formula": "sees_mouse_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cat)",
+          "z3_formula": "sees_mouse_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) & not likes(bald_eagle, cat) -> not likes(cat, lion)",
+          "z3_formula": "Implies(And(likes_mouse_bald_eagle, Not(likes_bald_eagle_cat)), Not(likes_cat_lion))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> kind(X)",
+          "z3_formula": "Implies(eats_mouse_lion, kind_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "not rough(X) -> cold(X)",
+          "z3_formula": "Implies(Not(rough_lion), cold_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> green(X)",
+          "z3_formula": "Implies(likes_lion_lion, green_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> likes(X, lion)",
+          "z3_formula": "Implies(kind_lion, likes_lion_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> eats(lion, X)",
+          "z3_formula": "Implies(eats_mouse_lion, eats_lion_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> not likes(X, bald_eagle)",
+          "z3_formula": "Implies(likes_cat_lion, Not(likes_lion_bald_eagle))",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(green_lion, likes_lion_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(lion)",
+          "z3_formula": "Not(rough_lion)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, bald_eagle)",
+          "z3_formula": "likes_lion_bald_eagle",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(lion, cat)",
+          "z3_formula": "Not(likes_lion_cat)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "eats(lion, mouse)",
+          "z3_formula": "eats_lion_mouse",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(mouse, bald_eagle)",
+          "z3_formula": "Not(likes_mouse_bald_eagle)",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(bald_eagle, lion)",
+          "z3_formula": "Not(likes_bald_eagle_lion) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) & not likes(bald_eagle, Y) -> not likes(Y, lion)",
+          "z3_formula": "Implies(And(likes_X_bald_eagle, Not(likes_bald_eagle_Y)), Not(likes_Y_lion))",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, lion)",
+          "z3_formula": "likes_mouse_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> green(X)",
+          "z3_formula": "Implies(likes_X_lion, green_X)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(green_X, likes_X_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bald_eagle)",
+          "z3_formula": "likes_lion_bald_eagle == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) & not likes(bald_eagle, Y) -> not likes(Y, lion)",
+          "z3_formula": "Implies(And(likes_X_bald_eagle, Not(likes_bald_eagle_Y)), Not(likes_Y_lion))",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(cat, lion)",
+          "z3_formula": "Not(eats_cat_lion) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, lion)",
+          "z3_formula": "eats_mouse_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> eats(lion, X)",
+          "z3_formula": "Implies(eats_X_lion, eats_lion_X)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, mouse)",
+          "z3_formula": "eats_lion_mouse == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, mouse)",
+          "z3_formula": "sees_bald_eagle_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, bald_eagle)",
+          "z3_formula": "likes_mouse_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) & not likes(bald_eagle, Y) -> not likes(Y, lion)",
+          "z3_formula": "Implies(And(likes_X_bald_eagle, Not(likes_bald_eagle_Y)), Not(likes_Y_lion))",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(cat, lion)",
+          "z3_formula": "Not(eats_cat_lion) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, mouse)",
+          "z3_formula": "sees_cat_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cat)",
+          "z3_formula": "sees_lion_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> not likes(X, bald_eagle)",
+          "z3_formula": "Implies(likes_X_cat, Not(likes_X_bald_eagle))",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bald_eagle)",
+          "z3_formula": "likes_lion_bald_eagle == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, mouse)",
+          "z3_formula": "sees_lion_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) & not likes(bald_eagle, Y) -> not likes(Y, lion)",
+          "z3_formula": "Implies(And(likes_X_bald_eagle, Not(likes_bald_eagle_Y)), Not(likes_Y_lion))",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(mouse, bald_eagle)",
+          "z3_formula": "Not(likes_mouse_bald_eagle) == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> not likes(X, bald_eagle)",
+          "z3_formula": "Implies(likes_X_cat, Not(likes_X_bald_eagle))",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(mouse, bald_eagle)",
+          "z3_formula": "Not(likes_mouse_bald_eagle) == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, bald_eagle)",
+          "z3_formula": "likes_mouse_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(lion)",
+          "z3_formula": "Not(rough_lion) == True",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not likes(bald_eagle, lion)",
+          "z3_formula": "not likes_bald_eagle_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, lion)",
+          "z3_formula": "eats_mouse_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> kind(X)",
+          "z3_formula": "Implies(eats_mouse_lion, kind_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> Implies(kind(X), likes(X, lion))",
+          "z3_formula": "Implies(eats_mouse_lion, Implies(kind_mouse, likes_mouse_lion))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> not likes(X, cat)",
+          "z3_formula": "Implies(likes_mouse_lion, not likes_mouse_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, mouse)",
+          "z3_formula": "sees_cat_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cat)",
+          "z3_formula": "sees_lion_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> Implies(not likes(X, mouse), not sees(X, mouse))",
+          "z3_formula": "Implies(sees_cat_mouse, Implies(not likes_mouse_cat, not sees_cat_mouse))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(cat, lion)",
+          "z3_formula": "not eats_cat_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> eats(lion, X)",
+          "z3_formula": "Implies(eats_mouse_lion, eats_lion_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "not rough(X) -> cold(X)",
+          "z3_formula": "Implies(not rough_lion, cold_lion)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, lion) == False",
+          "z3_formula": "likes_bald_eagle_lion == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cat)",
+          "z3_formula": "sees_lion_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, lion)",
+          "z3_formula": "eats_mouse_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, bald_eagle)",
+          "z3_formula": "likes_mouse_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, bald_eagle)",
+          "z3_formula": "sees_mouse_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cat)",
+          "z3_formula": "sees_mouse_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> not likes(X, bald_eagle)",
+          "z3_formula": "Implies(likes_lion, not likes_lion_bald_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not rough(X) -> cold(X)",
+          "z3_formula": "Implies(Not(rough_lion), cold_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == Unknown",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(bald_eagle, lion)",
+          "z3_formula": "not likes_bald_eagle_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) & not likes(bald_eagle, Y) -> not likes(Y, lion)",
+          "z3_formula": "Implies(And(likes_X_bald_eagle, not likes_bald_eagle_Y), not likes_Y_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, lion)",
+          "z3_formula": "eats_mouse_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> kind(Y)",
+          "z3_formula": "Implies(eats_X_Y, kind_Y)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> likes(X, lion)",
+          "z3_formula": "Implies(kind_X, likes_X_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, lion)",
+          "z3_formula": "likes_mouse_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> green(X)",
+          "z3_formula": "Implies(likes_X_lion, green_X)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(green_X, likes_X_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, bald_eagle)",
+          "z3_formula": "likes_lion_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "not likes(bald_eagle, lion)",
+          "z3_formula": "not likes_bald_eagle_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(lion, bald_eagle)",
+          "z3_formula": "not likes_lion_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "not rough(X) -> cold(X)",
+          "z3_formula": "Implies(not rough_X, cold_X)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(lion)",
+          "z3_formula": "not rough_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(bald_eagle)",
+          "z3_formula": "not rough_bald_eagle == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == Unknown",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "green(X) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(green_lion, likes_lion_bald_eagle)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> not likes(X, bald_eagle)",
+          "z3_formula": "Implies(likes_lion_cat, not likes_lion_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> green(X)",
+          "z3_formula": "Implies(likes_someone_lion, green_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "not rough(X) -> cold(X)",
+          "z3_formula": "Implies(not rough_lion, cold_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> eats_lion_mouse",
+          "z3_formula": "Implies(eats_someone_lion, eats_lion_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> kind(X)",
+          "z3_formula": "Implies(eats_someone_mouse, kind_someone)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> likes(X, lion)",
+          "z3_formula": "Implies(kind_someone, likes_someone_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, lion)",
+          "z3_formula": "eats_mouse_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not eats_lion_mouse",
+          "z3_formula": "not eats_lion_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cat)",
+          "z3_formula": "sees_lion_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, mouse)",
+          "z3_formula": "sees_cat_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(cat, lion)",
+          "z3_formula": "not eats_cat_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) & not likes(X, cat) -> not likes(X, lion)",
+          "z3_formula": "Implies(And(likes_mouse_bald_eagle, not likes_mouse_cat), not likes_mouse_lion)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(lion, cat)",
+          "z3_formula": "sees_lion_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, lion)",
+          "z3_formula": "eats_mouse_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "Not(rough(X)) -> cold(X)",
+          "z3_formula": "Implies(Not(rough_lion), cold_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(Y, lion) -> eats(lion, Y)",
+          "z3_formula": "Implies(eats_mouse_lion, eats_lion_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == Unknown",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(lion, bald_eagle)",
+          "z3_formula": "not likes_lion_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, mouse)",
+          "z3_formula": "sees_bald_eagle_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(cat, lion)",
+          "z3_formula": "not eats_cat_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, mouse)",
+          "z3_formula": "sees_cat_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cat)",
+          "z3_formula": "sees_lion_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, lion)",
+          "z3_formula": "eats_mouse_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, bald_eagle)",
+          "z3_formula": "likes_mouse_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, bald_eagle)",
+          "z3_formula": "sees_mouse_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cat)",
+          "z3_formula": "sees_mouse_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) & not likes(bald_eagle, Y) -> not likes(Y, lion)",
+          "z3_formula": "Implies(And(likes_mouse_bald_eagle, not likes_bald_eagle_cat), not likes_cat_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> kind(mouse)",
+          "z3_formula": "Implies(eats_mouse_lion, kind_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "not rough(X) -> cold(X)",
+          "z3_formula": "Implies(not rough_lion, cold_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> green(X)",
+          "z3_formula": "Implies(likes_lion_bald_eagle, green_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> likes(X, lion)",
+          "z3_formula": "Implies(kind_mouse, likes_mouse_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> eats(lion, X)",
+          "z3_formula": "Implies(eats_mouse_lion, eats_lion_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> not likes(X, bald_eagle)",
+          "z3_formula": "Implies(likes_cat_mouse, not likes_mouse_bald_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(green_lion, likes_lion_bald_eagle)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 11
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, lion) == False",
+          "z3_formula": "likes_bald_eagle_lion == False",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, mouse)",
+          "z3_formula": "sees_bald_eagle_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, lion) == False",
+          "z3_formula": "eats_cat_lion == False",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, mouse)",
+          "z3_formula": "sees_cat_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cat)",
+          "z3_formula": "sees_lion_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, lion)",
+          "z3_formula": "eats_mouse_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, bald_eagle)",
+          "z3_formula": "likes_mouse_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, bald_eagle)",
+          "z3_formula": "sees_mouse_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cat)",
+          "z3_formula": "sees_mouse_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) & ~likes(bald_eagle, Y) -> ~likes(Y, lion)",
+          "z3_formula": "Implies(And(likes_X_bald_eagle, Not(likes_bald_eagle_Y)), Not(likes_Y_lion))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> kind(mouse)",
+          "z3_formula": "Implies(eats_X_mouse, kind_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "Not(rough(X)) -> cold(X)",
+          "z3_formula": "Implies(Not(rough_lion), cold_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> green(X)",
+          "z3_formula": "Implies(likes_X_lion, green_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> likes(X, lion)",
+          "z3_formula": "Implies(kind_X, likes_X_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> eats(lion, Y)",
+          "z3_formula": "Implies(eats_X_lion, eats_lion_Y)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> ~likes(X, bald_eagle)",
+          "z3_formula": "Implies(likes_X_cat, Not(likes_X_bald_eagle))",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(green_X, likes_X_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == Implies(Not(rough_lion), cold_lion)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "eats(lion, mouse)",
+          "z3_formula": "eats_lion_mouse == Implies(eats_mouse_lion, eats_lion_mouse)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == Unknown",
+          "source_step": 21
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 169,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 59
+    },
+    "maxsat_stats": {
+      "satisfied": 57,
+      "excluded": 2,
+      "total_weight": 150,
+      "solve_time_ms": 1.5713106840848923
+    },
+    "timing": {
+      "trace_gen_s": 24.544,
+      "extraction_s": 46.234,
+      "dedup_s": 2.06,
+      "maxsat_s": 0.005,
+      "total_s": 72.842
+    }
+  }
+}

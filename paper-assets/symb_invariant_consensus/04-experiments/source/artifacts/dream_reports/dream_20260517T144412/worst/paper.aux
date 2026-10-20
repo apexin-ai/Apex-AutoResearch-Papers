@@ -1,0 +1,102 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wang2023selfconsistency}
+\citation{pan2023logiclm,olausson2023linc}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{wang2023selfconsistency}
+\citation{chen2023universal}
+\citation{taubenfeld2024weighted}
+\citation{pan2023logiclm}
+\citation{olausson2023linc}
+\citation{cobbe2021gsm8k,lightman2023process}
+\citation{reynolds2021prompt}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Self-Consistency and majority voting.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Symbolic reasoning for LLMs.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Process and outcome reward models.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Negative results in NLP.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method: SICA Pipeline}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method: SICA Pipeline}{section.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{1.\ Trace generation.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{2.\ Answer extraction.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{3.\ Constraint extraction.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{4.\ Deduplication.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{5.\ MAX-SAT aggregation.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{$C_0$ metric.}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{3}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Domains.}{3}{section*.12}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Main results: SICA vs.\ Self-Consistency (SC) across models and domains. $C_0$: fraction of problems with multiple candidate answers. $\Delta $: SICA $-$ SC in percentage points. $p$: McNemar's exact test. Best per-row result in \textbf  {bold}.}}{4}{table.caption.15}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:main}{{1}{4}{Main results: SICA vs.\ Self-Consistency (SC) across models and domains. $C_0$: fraction of problems with multiple candidate answers. $\Delta $: SICA $-$ SC in percentage points. $p$: McNemar's exact test. Best per-row result in \textbf {bold}}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {paragraph}{Default configuration.}{4}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Statistical testing.}{4}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{4}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Main Results}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:main}{{5.1}{4}{Main Results}{subsection.5.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Constraint precision on multi-candidate problems (Qwen-14B, PW+FOLIO, $n{=}307$). Precision measures the fraction of extracted constraints that correctly discriminate the ground-truth answer from alternatives. Random baseline: 0.33 for 3-class, 0.50 for binary.}}{5}{table.caption.16}\protected@file@percent }
+\newlabel{tab:quality}{{2}{5}{Constraint precision on multi-candidate problems (Qwen-14B, PW+FOLIO, $n{=}307$). Precision measures the fraction of extracted constraints that correctly discriminate the ground-truth answer from alternatives. Random baseline: 0.33 for 3-class, 0.50 for binary}{table.caption.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Constraint ablation (Qwen-14B, PW+FOLIO, $n{=}804$, $T{=}0.7$). MAX-SAT: full SICA pipeline. Count-only: constraints weighted equally, no satisfiability reasoning. Random-weight: constraints with random weights. SC: standard majority voting.}}{5}{table.caption.17}\protected@file@percent }
+\newlabel{tab:ablation}{{3}{5}{Constraint ablation (Qwen-14B, PW+FOLIO, $n{=}804$, $T{=}0.7$). MAX-SAT: full SICA pipeline. Count-only: constraints weighted equally, no satisfiability reasoning. Random-weight: constraints with random weights. SC: standard majority voting}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Constraint Quality Analysis}{5}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:quality}{{5.2}{5}{Constraint Quality Analysis}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Mechanism Ablation}{5}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:ablation}{{5.3}{5}{Mechanism Ablation}{subsection.5.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Tiebreak accuracy on tied questions (Qwen-14B, $K{=}12$, $n_{\text  {tied}}{=}5$ of 60). Tie fraction: 8.3\%.}}{6}{table.caption.18}\protected@file@percent }
+\newlabel{tab:tiebreak}{{4}{6}{Tiebreak accuracy on tied questions (Qwen-14B, $K{=}12$, $n_{\text {tied}}{=}5$ of 60). Tie fraction: 8.3\%}{table.caption.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Temperature ablation (Qwen-14B, D012, $n{=}60$, $K{=}12$). Default operating condition is $T{=}0.7$. Extraction rate: fraction of traces yielding parseable constraints. Coherence: fraction of traces producing coherent, complete outputs.}}{6}{table.caption.19}\protected@file@percent }
+\newlabel{tab:temperature}{{5}{6}{Temperature ablation (Qwen-14B, D012, $n{=}60$, $K{=}12$). Default operating condition is $T{=}0.7$. Extraction rate: fraction of traces yielding parseable constraints. Coherence: fraction of traces producing coherent, complete outputs}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Tiebreak Analysis}{6}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:tiebreak}{{5.4}{6}{Tiebreak Analysis}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Boundary Conditions: Temperature}{6}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:temperature}{{5.5}{6}{Boundary Conditions: Temperature}{subsection.5.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces $C_0$ clusters and corresponding SICA-SC gaps. Low-$C_0$ cluster: reasoning models and high-confidence domains. High-$C_0$ cluster: instruction-scale models on challenging domains.}}{7}{table.caption.20}\protected@file@percent }
+\newlabel{tab:c0_summary}{{6}{7}{$C_0$ clusters and corresponding SICA-SC gaps. Low-$C_0$ cluster: reasoning models and high-confidence domains. High-$C_0$ cluster: instruction-scale models on challenging domains}{table.caption.20}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}$C_0$ as Operating Regime Indicator}{7}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:c0}{{5.6}{7}{$C_0$ as Operating Regime Indicator}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{7}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{7}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{The capability trap as descriptive pattern.}{7}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical guidelines.}{8}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The $T{=}1.0$ exception and its limits.}{8}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Alternative aggregation directions.}{8}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A}$K$ Sensitivity Analysis}{9}{appendix.A}\protected@file@percent }
+\newlabel{app:k_ablation}{{A}{9}{$K$ Sensitivity Analysis}{appendix.A}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces $K$ ablation (Qwen-14B, D012, $n{=}60$, $T{=}0.7$). Tiebreak rate: fraction of problems producing exact ties at this $K$.}}{9}{table.caption.26}\protected@file@percent }
+\newlabel{tab:k_ablation}{{7}{9}{$K$ ablation (Qwen-14B, D012, $n{=}60$, $T{=}0.7$). Tiebreak rate: fraction of problems producing exact ties at this $K$}{table.caption.26}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Overhead Analysis}{9}{appendix.B}\protected@file@percent }
+\newlabel{app:overhead}{{B}{9}{Overhead Analysis}{appendix.B}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Per-question wall-time breakdown (Qwen-14B, $n{=}804$, $T{=}0.7$).}}{9}{table.caption.27}\protected@file@percent }
+\newlabel{tab:overhead}{{8}{9}{Per-question wall-time breakdown (Qwen-14B, $n{=}804$, $T{=}0.7$)}{table.caption.27}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Weighted SC Baselines}{9}{appendix.C}\protected@file@percent }
+\newlabel{app:weightedsc}{{C}{9}{Weighted SC Baselines}{appendix.C}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Weighted SC variants (Qwen-14B, PW+FOLIO, $n{=}804$, $T{=}0.7$).}}{10}{table.caption.28}\protected@file@percent }
+\newlabel{tab:weighted_sc}{{9}{10}{Weighted SC variants (Qwen-14B, PW+FOLIO, $n{=}804$, $T{=}0.7$)}{table.caption.28}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Logic-LM Comparison}{10}{appendix.D}\protected@file@percent }
+\newlabel{app:logiclm}{{D}{10}{Logic-LM Comparison}{appendix.D}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Logic-LM $\times $ $K$ vs.\ SICA vs.\ SC on FOLIO ($n{=}204$, $K{=}12$).}}{10}{table.caption.29}\protected@file@percent }
+\newlabel{tab:logiclm}{{10}{10}{Logic-LM $\times $ $K$ vs.\ SICA vs.\ SC on FOLIO ($n{=}204$, $K{=}12$)}{table.caption.29}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {E}GSM8K Pilot}{10}{appendix.E}\protected@file@percent }
+\newlabel{app:gsm8k}{{E}{10}{GSM8K Pilot}{appendix.E}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {F}Constraint Case Studies}{10}{appendix.F}\protected@file@percent }
+\newlabel{app:case_studies}{{F}{10}{Constraint Case Studies}{appendix.F}{}}
+\bibstyle{plainnat}
+\bibcite{wang2023selfconsistency}{{1}{2023}{{Wang et~al.}}{{}}}
+\bibcite{chen2023universal}{{2}{2023}{{Chen et~al.}}{{}}}
+\bibcite{pan2023logiclm}{{3}{2023}{{Pan et~al.}}{{}}}
+\bibcite{olausson2023linc}{{4}{2023}{{Olausson et~al.}}{{}}}
+\bibcite{cobbe2021gsm8k}{{5}{2021}{{Cobbe et~al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {G}$C_0$ Diagnostic Full Data}{11}{appendix.G}\protected@file@percent }
+\newlabel{app:c0_data}{{G}{11}{$C_0$ Diagnostic Full Data}{appendix.G}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces All (model/condition, domain, $C_0$, SICA-SC gap) data points.}}{11}{table.caption.30}\protected@file@percent }
+\newlabel{tab:c0_full}{{11}{11}{All (model/condition, domain, $C_0$, SICA-SC gap) data points}{table.caption.30}{}}
+\bibcite{lightman2023process}{{6}{2023}{{Lightman et~al.}}{{}}}
+\bibcite{taubenfeld2024weighted}{{7}{2024}{{Taubenfeld et~al.}}{{}}}
+\bibcite{reynolds2021prompt}{{8}{2021}{{Reynolds and McDonell}}{{}}}
+\gdef \@abspage@last{12}

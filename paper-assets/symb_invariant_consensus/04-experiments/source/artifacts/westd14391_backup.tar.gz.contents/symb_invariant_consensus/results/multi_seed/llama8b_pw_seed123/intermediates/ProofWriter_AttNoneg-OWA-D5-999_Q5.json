@@ -1,0 +1,1192 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-999_Q5",
+    "problem": "Anne is big. Anne is furry. Bob is blue. Bob is green. Bob is young. Charlie is furry. Charlie is green. Charlie is red. Gary is furry. Gary is green. Gary is young. Furry, green things are blue. All big things are green. Red, furry things are blue. All big, blue things are nice. If Bob is nice and Bob is big then Bob is red. If Gary is furry then Gary is blue. All nice, big things are young. All nice things are young. Blue, young things are red.\n\nDetermine whether the following statement is true, false, or unknown:\nGary is red.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nFurry($x, bool) ::: Is x furry?\nBlue($x, bool) ::: Is x blue?\nGreen($x, bool) ::: Is x green?\nRed($x, bool) ::: Is x red?\nNice($x, bool) ::: Is x nice?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nBig(Anne, True) ::: Anne is big.\nFurry(Anne, True) ::: Anne is furry.\nBlue(Bob, True) ::: Bob is blue.\nGreen(Bob, True) ::: Bob is green.\nYoung(Bob, True) ::: Bob is young.\nFurry(Charlie, True) ::: Charlie is furry.\nGreen(Charlie, True) ::: Charlie is green.\nRed(Charlie, True) ::: Charlie is red.\nFurry(Gary, True) ::: Gary is furry.\nGreen(Gary, True) ::: Gary is green.\nYoung(Gary, True) ::: Gary is young.\n\nRules:\nFurry($x, True) && Green($x, True) >>> Blue($x, True) ::: Furry, green things are blue.\nBig($x, True) >>> Green($x, True) ::: All big things are green.\nRed($x, True) && Furry($x, True) >>> Blue($x, True) ::: Red, furry things are blue.\nBig($x, True) && Blue($x, True) >>> Nice($x, True) ::: All big, blue things are nice.\nNice(Bob, True) && Big(Bob, True) >>> Red(Bob, True) ::: If Bob is nice and Bob is big then Bob is red.\nFurry(Gary, True) >>> Blue(Gary, True) ::: If Gary is furry then Gary is blue.\nNice($x, True) && Big($x, True) >>> Young($x, True) ::: All nice, big things are young.\nNice($x, True) >>> Young($x, True) ::: All nice things are young.\nBlue($x, True) && Young($x, True) >>> Red($x, True) ::: Blue, young things are red.\n\nQuery:\nRed(Gary, True) ::: Gary is red."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 174.0,
+      "Unknown": 93.0
+    },
+    "answer_counts": {
+      "True": 10,
+      "Unknown": 1
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to use logical reasoning and apply the given rules to the statements.\n\n1. All big things are green.\n2. Furry, green things are blue.\n3. Gary is furry.\n4. Gary is green.\n5. If Gary is furry then Gary is blue.\n6. All nice things are young.\n7. All nice, big things are young.\n8. Blue, young things are red.\n9. Gary is young.\n\nNow, let's analyze the given information:\n\nFrom statement 3 and 5, we can conclude that Gary is blue.\n\nFrom statement 4, we can conclude that Gary is green.\n\nFrom statement 9, we can conclude that Gary is young.\n\nNow, let's analyze the conclusion from statement 5: If Gary is furry then Gary is blue.\nSince Gary is furry (statement 3), Gary is blue.\n\nStatement 8 says Blue, young things are red. We know Gary is blue and Gary is young (statements 5 and 9), so we can conclude that Gary is red.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Anne is big. Anne is furry.\n   - Bob is blue. Bob is green. Bob is young.\n   - Charlie is furry. Charlie is green. Charlie is red.\n   - Gary is furry. Gary is green. Gary is young.\n   - Furry, green things are blue.\n   - All big things are green.\n   - Red, furry things are blue.\n   - All big, blue things are nice.\n   - If Bob is nice and Bob is big then Bob is red.\n   - If Gary is furry then Gary is blue.\n   - All nice, big things are young.\n   - All nice things are young.\n   - Blue, young things are red.\n\n2. Analyzing the given information:\n   - From the statement \"If Gary is furry then Gary is blue,\" we can conclude that Gary is blue because Gary is furry.\n   - From the statement \"Gary is blue,\" we can conclude that Gary is young because \"Blue, young things are red.\"\n   - From the statement \"Gary is young,\" we can conclude that Gary is nice because \"All nice things are young.\"\n   - From the statement \"Gary is nice and Gary is blue,\" we cannot conclude anything directly. However, we know that Gary is blue and Gary is young.\n\n3. Finding a contradiction:\n   - From the statement \"All big things are green,\" we cannot conclude that Gary is big. However, we know that Gary is nice and Gary is blue.\n   - From the statement \"All big, blue things are nice,\" we cannot conclude that Gary is big. However, we know that Gary is nice and Gary is blue.\n   - From the statement \"If Bob is nice and Bob is big then Bob is red,\" we cannot conclude that Gary is red. However, we know that Gary is nice and Gary is blue.\n\n4. Using the statement \"Blue, young things are red\":\n   - We know that Gary is blue and Gary is young. Therefore, we can conclude that Gary is red.\n\nTherefore, the statement \"Gary is red\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether Gary is red, we need to analyze the given statements and use logical reasoning to deduce the truth value of the statement.\n\nGiven statements:\n1. Anne is big. \n2. Anne is furry. \n3. Bob is blue. \n4. Bob is green. \n5. Bob is young. \n6. Charlie is furry. \n7. Charlie is green. \n8. Charlie is red. \n9. Gary is furry. \n10. Gary is green. \n11. Gary is young. \n12. Furry, green things are blue. \n13. All big things are green. \n14. Red, furry things are blue. \n15. All big, blue things are nice. \n16. If Bob is nice and Bob is big then Bob is red. \n17. If Gary is furry then Gary is blue. \n18. All nice, big things are young. \n19. All nice things are young. \n20. Blue, young things are red.\n\nTo determine if Gary is red, we need to consider statements 9, 10, and 17.\n\nFrom statement 9, we know Gary is furry.\nFrom statement 10, we know Gary is green.\nFrom statement 17, if Gary is furry then Gary is blue.\n\nSince we know Gary is furry and Gary is green, and from statement 17 we know that if Gary is furry then Gary is blue, it means Gary is blue.\n\nNow, we need to consider the properties of blue, young things (from statement 20). If Gary is blue and young (from statement 11), then from statement 20 we can conclude that Gary is red.\n\nTherefore, based on the given statements, the statement \"Gary is red\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Gary is furry. (Given)\n2. Gary is green. (Given)\n3. Gary is young. (Given)\n4. Furry, green things are blue. (Given)\nFrom step 4, we can conclude that Gary is blue, since Gary is furry and green.\n\n5. Gary is blue. (Derived from step 4)\n6. If Gary is furry then Gary is blue. (This is a separate given statement, not a conclusion from previous steps, but it is given so we have it in the reasoning)\nSince we already concluded Gary is blue in step 5, this does not add any new information.\n\n7. Blue, young things are red. (Given)\nSince Gary is blue (step 5) and young (step 3), we can conclude that Gary is red.\n\n8. Gary is red. (Derived from step 7)\n\nTherefore, the statement \"Gary is red\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is red\" is true, false, or unknown, we will analyze the given information step by step.\n\n1. Given facts:\n   - Anne is big. \n   - Anne is furry. \n   - Bob is blue. \n   - Bob is green. \n   - Bob is young. \n   - Charlie is furry. \n   - Charlie is green. \n   - Charlie is red. \n   - Gary is furry. \n   - Gary is green. \n   - Gary is young. \n   - Furry, green things are blue. \n   - All big things are green. \n   - Red, furry things are blue. \n   - All big, blue things are nice. \n   - If Bob is nice and Bob is big then Bob is red. \n   - If Gary is furry then Gary is blue. \n   - All nice, big things are young. \n   - All nice things are young. \n   - Blue, young things are red.\n\n2. Analyzing Gary's characteristics:\n   - Gary is furry. \n   - Gary is green. \n   - Gary is young.\n\n3. From the given information, we know:\n   - Furry, green things are blue. (So Gary is blue, as he is furry and green.)\n   - If Gary is furry then Gary is blue. (This further confirms that Gary is blue.)\n\n4. Since Gary is blue and young, we can use the following information to analyze:\n   - Blue, young things are red.\n\n5. This information implies that Gary is red, as he is blue and young.\n\nBased on the analysis, we can conclude that the statement \"Gary is red\" is **true**.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given information into a set of rules and apply them step by step.\n\nGiven information:\n1. Anne is big. Anne is furry.\n2. Bob is blue. Bob is green. Bob is young.\n3. Charlie is furry. Charlie is green. Charlie is red.\n4. Gary is furry. Gary is green. Gary is young.\n5. Furry, green things are blue.\n6. All big things are green.\n7. Red, furry things are blue.\n8. All big, blue things are nice.\n9. If Bob is nice and Bob is big then Bob is red.\n10. If Gary is furry then Gary is blue.\n11. All nice, big things are young.\n12. All nice things are young.\n13. Blue, young things are red.\n\nWe are trying to determine whether the statement \"Gary is red\" is true, false, or unknown.\n\nFrom rule 4, we know Gary is young.\n\nFrom rule 10, we know that since Gary is furry, Gary is blue.\n\nNow we have two pieces of information about Gary: Gary is young and Gary is blue.\n\nFrom rule 13, we know that blue, young things are red.\n\nTherefore, since Gary is blue and young, Gary is red.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is red\" is true, false, or unknown, we need to analyze the given statements and their logical implications.\n\n1. Gary is furry.\n2. Gary is green.\n3. Gary is young.\n4. Furry, green things are blue. (This implies that Gary is blue.)\n5. All big things are green. (We don't know if Gary is big, but we will consider this statement later.)\n6. Red, furry things are blue. (This statement is irrelevant to Gary since we already know Gary is blue.)\n7. If Bob is nice and Bob is big then Bob is red. (This statement does not provide any information about Gary.)\n8. If Gary is furry then Gary is blue. (This statement confirms that Gary is blue, which we already deduced from statement 4.)\n9. All nice, big things are young. (We don't know if Gary is nice or big, so this statement is irrelevant.)\n10. All nice things are young. (We don't know if Gary is nice, so this statement is irrelevant.)\n11. Blue, young things are red. (This statement could potentially be relevant to Gary, but we need more information.)\n\nNow, let's consider the statement \"Gary is red.\" From the given statements, we know the following:\n\n* Gary is blue (from statement 4 and 8).\n* Gary is young (from statement 3).\n* Blue, young things are red (from statement 11).\n\nSince Gary is blue and young, and blue, young things are red, we can conclude that Gary is indeed red.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement 'Gary is red' is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\n1. Given information:\n   - Anne is big and furry.\n   - Bob is blue, green, and young.\n   - Charlie is furry and green.\n   - Gary is furry, green, and young.\n   - Furry, green things are blue.\n   - All big things are green.\n   - Red, furry things are blue.\n   - All big, blue things are nice.\n   - If Bob is nice and Bob is big then Bob is red.\n   - If Gary is furry then Gary is blue.\n   - All nice, big things are young.\n   - All nice things are young.\n   - Blue, young things are red.\n\n2. Analyzing the given information:\n   - From 'Furry, green things are blue', we can infer that Gary is blue because Gary is furry and green.\n   - From 'Gary is furry then Gary is blue', we have the same conclusion as above.\n   - Since Gary is blue, we can use the information 'Blue, young things are red' to conclude that Gary is red.\n\nBased on the given information and logical deductions, we can conclude that the statement 'Gary is red' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Gary is furry. (Given)\n2. Gary is green. (Given)\n3. Furry, green things are blue. (Given)\n   - This means Gary is blue.\n\n4. Gary is young. (Given)\n5. Gary is furry. (From step 1)\n   - From step 5 and step 3, Gary is blue.\n\n6. Gary is blue. (From step 3 and step 5)\n   - From step 4 and step 6, Gary is a blue, young thing.\n\n7. Blue, young things are red. (Given)\n   - This means Gary is red.\n\nSo, based on the given information, we can conclude that the statement \"Gary is red\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is red\" is true, false, or unknown, we need to analyze the given premises and apply logical deductions.\n\n1. Gary is furry. (Given)\n2. Gary is green. (Given)\n3. Gary is young. (Given)\n\nFrom the premises, we know:\n- Furry, green things are blue. (Premise)\n- All big things are green. (Premise)\n- Red, furry things are blue. (Premise)\n- All big, blue things are nice. (Premise)\n- If Bob is nice and Bob is big then Bob is red. (Premise)\n- If Gary is furry then Gary is blue. (Premise)\n- All nice, big things are young. (Premise)\n- All nice things are young. (Premise)\n- Blue, young things are red. (Premise)\n\nWe can start by using the first three premises to determine Gary's color. From (1) and (2), we have \"Gary is furry\" and \"Gary is green.\" Now, we can use premise (5) which states that \"If Gary is furry then Gary is blue.\" However, premise (4) states \"All big things are green,\" which does not necessarily mean Gary is big, but we can use this information to check our answer later.\n\nNow, we have \"Gary is blue\" from premise (5). We also know \"Gary is young\" from premise (3). Now, we can use premise (8) which states \"Blue, young things are red.\" This tells us that since Gary is both blue and young, Gary must be red.\n\nHowever, this contradicts premise (6) which states that \"If Bob is nice and Bob is big then Bob is red.\" This premise implies that being red is a characteristic of big and nice things, not necessarily blue and young things. But we already found out that Gary is blue and young. \n\nSince premise (8) states that blue, young things are red, and we know that Gary is blue and young, we can conclude that Gary is indeed red.",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether Gary is red, we need to break down the given information and use logical deductions.\n\n1. Gary is furry.\n2. Gary is green.\n3. Gary is young.\n\nFrom the given statements, we know that:\n\n- All furry, green things are blue.\n- All red, furry things are blue.\n- If Gary is furry, then Gary is blue.\n- All nice, big things are young.\n- All nice things are young.\n- Blue, young things are red.\n\nWe can start by examining statement 5. Since Gary is young, we know that Gary is nice (from statement 8).\n\nNow, let's consider statement 4. Since Gary is furry and Gary is blue (from statement 5), we can conclude that Gary is also red (from statement 7). \n\nHowever, there's a catch. We also know that Gary is blue (from statement 5), and all blue, young things are red (from statement 10). But this conclusion is based on the assumption that Gary is blue because it's young. We've also established that Gary is blue because it's furry (from statement 5). \n\nWe can't conclude that Gary is red solely based on statement 5 (Gary is furry) because it could be either red due to its youth or due to its fur. However, the statement \"Blue, young things are red\" is not applicable in this situation because \"All red, furry things are blue\" and \"All furry, green things are blue\" both apply. \n\nSince there's a conflict, we cannot conclude that Gary is red based on the given information. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is red\" is true, false, or unknown, we'll analyze the given information step by step.\n\n1. Gary is furry. (Given)\n2. Gary is green. (Given)\n3. Gary is young. (Given)\n\nFrom the given information:\n- Furry, green things are blue. (This implies that Gary is blue since he's furry and green.)\n- All big things are green. (This implies that Gary is not big, or else he would be green because all big things are green.)\n- Red, furry things are blue. (This does not apply to Gary since he's green, not red.)\n- If Bob is nice and Bob is big then Bob is red. (This does not apply to Gary since we don't know if Gary is nice or big.)\n- If Gary is furry then Gary is blue. (This implies that Gary is blue since he's furry.)\n- All nice, big things are young. (This does not apply to Gary since we don't know if Gary is nice or big.)\n- All nice things are young. (This does not apply to Gary since we don't know if Gary is nice.)\n- Blue, young things are red. (This implies that blue, young things can be red.)\n\nHowever, we already established that Gary is blue (from step 4) and young (from step 3), so this implies that Gary could be red. But, we also know that Gary is blue because he's furry and green (from step 4 and step 2).\n\nThe key to solving this is understanding the relationship between blue and red for young things (from step 8). Since Gary is both blue and young, we can conclude that he might be red. \n\nGiven that Gary is blue (from step 4), and blue, young things are red (from step 8), we can conclude that Gary is red.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(X) -> green(X)",
+          "z3_formula": "Implies(big_gary, green_gary)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(furry_gary, green_gary), blue_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_gary, blue_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(X) -> young(X)",
+          "z3_formula": "Implies(nice_gary, young_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_gary, big_gary), young_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_gary, young_gary), red_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(furry_gary, green_gary), blue_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> green(X)",
+          "z3_formula": "Implies(big_anne, green_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_charlie, furry_charlie), blue_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_anne, blue_anne), nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_anne, big_anne), young_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> young(X)",
+          "z3_formula": "Implies(nice_anne, young_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_gary, young_gary), red_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(furry_charlie, green_charlie), blue_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> green(X)",
+          "z3_formula": "Implies(big_anne, green_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_charlie, furry_charlie), blue_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_anne, blue_anne), nice_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_anne, big_anne), young_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> young(X)",
+          "z3_formula": "Implies(nice_anne, young_anne)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_gary, young_gary), red_gary)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_gary, blue_gary)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(furry_gary, green_gary), blue_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_gary, blue_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_gary, young_gary), red_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(furry_gary, green_gary), blue_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> green(X)",
+          "z3_formula": "Implies(big_anne, green_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_charlie, furry_charlie), blue_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_anne, blue_anne), nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_bob, big_bob), red_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_gary, blue_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_gary, young_gary), red_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(furry_X, green_X), blue_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> green(X)",
+          "z3_formula": "Implies(big_X, green_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_X, furry_X), blue_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_X, blue_X), nice_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_X, big_X), red_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_X, blue_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> young(X)",
+          "z3_formula": "Implies(nice_X, young_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> young(X)",
+          "z3_formula": "Implies(nice_X, young_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_X, young_X), red_X)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(furry_gary, green_gary), blue_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> green(X)",
+          "z3_formula": "Implies(big_gary, green_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_gary, furry_gary), blue_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_bob, big_bob), red_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_gary, blue_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_gary, big_gary), young_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> young(X)",
+          "z3_formula": "Implies(nice_gary, young_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_gary, young_gary), red_gary)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(furry_gary, green_gary), blue_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> green(X)",
+          "z3_formula": "Implies(big_anne, green_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_gary, furry_gary), blue_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_bob, blue_bob), nice_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_anne, big_anne), young_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> young(X)",
+          "z3_formula": "Implies(nice_bob, young_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_gary, young_gary), red_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(furry_gary, green_gary), blue_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "blue(gary) & young(gary)",
+          "z3_formula": "And(blue_gary, young_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_gary, young_gary), red_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(furry_gary, green_gary), blue_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> green(X)",
+          "z3_formula": "Implies(big_gary, green_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_gary, furry_gary), blue_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_gary, blue_gary), nice_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_gary, big_gary), red_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_gary, blue_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> young(X)",
+          "z3_formula": "Implies(And(big_gary, blue_gary), young_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> young(X)",
+          "z3_formula": "Implies(nice_gary, young_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_gary, young_gary), red_gary)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(furry_gary, green_gary), blue_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_gary, furry_gary), blue_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_gary, blue_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_gary, big_gary), young_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> young(X)",
+          "z3_formula": "Implies(nice_gary, young_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_gary, young_gary), red_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == Unknown",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(furry_gary, green_gary), blue_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> green(X)",
+          "z3_formula": "Implies(big_gary, green_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_gary, furry_gary), blue_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_gary, big_gary), red_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_gary, blue_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_gary, big_gary), young_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> young(X)",
+          "z3_formula": "Implies(nice_gary, young_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_gary, young_gary), red_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 12
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 177,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 44
+    },
+    "maxsat_stats": {
+      "satisfied": 44,
+      "excluded": 0,
+      "total_weight": 177,
+      "solve_time_ms": 1.2178923934698105
+    },
+    "timing": {
+      "trace_gen_s": 5.632,
+      "extraction_s": 26.991,
+      "dedup_s": 1.416,
+      "maxsat_s": 0.004,
+      "total_s": 34.042
+    }
+  }
+}

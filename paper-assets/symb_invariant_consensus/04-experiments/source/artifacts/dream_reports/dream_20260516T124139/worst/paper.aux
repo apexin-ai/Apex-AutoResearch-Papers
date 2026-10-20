@@ -1,0 +1,98 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wang2023selfconsistency}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background}{2}{section.2}\protected@file@percent }
+\newlabel{sec:background}{{2}{2}{Background}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Self-Consistency.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{SICA.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multi-candidate rate ($C_0$).}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Phase 1: Trace generation.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Phase 2: Constraint extraction.}{2}{section*.5}\protected@file@percent }
+\citation{han2022folio}
+\citation{tafjord2021proofwriter}
+\citation{cobbe2021gsm8k}
+\@writefile{toc}{\contentsline {paragraph}{Phase 3: MAX-SAT aggregation.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{3}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Datasets.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Configuration.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{3}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{3}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Main Results: SICA Does Not Improve Over SC at Scale}{3}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:main_results}{{5.1}{3}{Main Results: SICA Does Not Improve Over SC at Scale}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Tiebreak Analysis: SICA's Advantage Vanishes at Scale}{3}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:tiebreak}{{5.2}{3}{Tiebreak Analysis: SICA's Advantage Vanishes at Scale}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Main results with Qwen2.5-14B-Instruct ($K=12$, $T=0.7$). Accuracy in \%. $p$-values from 10K bootstrap resampling. No result is statistically significant.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:main}{{1}{4}{Main results with Qwen2.5-14B-Instruct ($K=12$, $T=0.7$). Accuracy in \%. $p$-values from 10K bootstrap resampling. No result is statistically significant}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Tiebreak win rates across methods. ``(E)'' denotes expected value. SICA does not significantly outperform random tiebreaking at scale.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:tiebreak}{{2}{4}{Tiebreak win rates across methods. ``(E)'' denotes expected value. SICA does not significantly outperform random tiebreaking at scale}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}K Sensitivity: Gains Are Tiebreak Frequency Artifacts}{4}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:k_sensitivity}{{5.3}{4}{K Sensitivity: Gains Are Tiebreak Frequency Artifacts}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Constraint Ablation: MAX-SAT Adds No Value}{4}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:constraint_ablation}{{5.4}{4}{Constraint Ablation: MAX-SAT Adds No Value}{subsection.5.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces K sensitivity on D012 pilot (60 questions, Qwen2.5-14B). SICA's gap correlates with tiebreak count, not $C_0$.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:k_sensitivity}{{3}{5}{K sensitivity on D012 pilot (60 questions, Qwen2.5-14B). SICA's gap correlates with tiebreak count, not $C_0$}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Constraint ablation on 804 instances. MAX-SAT satisfiability checking provides no advantage over simple constraint counting.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:constraint_ablation}{{4}{5}{Constraint ablation on 804 instances. MAX-SAT satisfiability checking provides no advantage over simple constraint counting}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Cross-Model and Cross-Family Analysis}{5}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:cross_model}{{5.5}{5}{Cross-Model and Cross-Family Analysis}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Instruction models.}{5}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reasoning models.}{5}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Within-family scaling.}{5}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-domain: GSM8K.}{5}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}$C_0$ as a Diversity Diagnostic}{5}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:c0_diagnostic}{{5.6}{5}{$C_0$ as a Diversity Diagnostic}{subsection.5.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Cross-model results. All $\Delta $ values are in percentage points. No SICA--SC gap is statistically significant. inst = instruction-tuned, reas = reasoning-trained, DS-R1 = DeepSeek-R1-Distill-LLaMA.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:cross_model}{{5}{6}{Cross-model results. All $\Delta $ values are in percentage points. No SICA--SC gap is statistically significant. inst = instruction-tuned, reas = reasoning-trained, DS-R1 = DeepSeek-R1-Distill-LLaMA}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces $C_0$ diagnostic validation. $C_0$ separates model types but does not predict SICA gain magnitude within instruction models.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:c0_diagnostic}{{6}{6}{$C_0$ diagnostic validation. $C_0$ separates model types but does not predict SICA gain magnitude within instruction models}{table.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Continuous prediction fails.}{6}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Binary classification succeeds---but trivially.}{6}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Constraint Quality Analysis}{6}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:constraint_quality}{{5.7}{6}{Constraint Quality Analysis}{subsection.5.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Constraint quality analysis across 8 representative problems. Most constraints lack discriminative power.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:constraint_quality}{{7}{7}{Constraint quality analysis across 8 representative problems. Most constraints lack discriminative power}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Reasoning vs.\ instruction models. Same LLaMA-8B base, different training: instruction tuning yields $C_0=30\%$, reasoning distillation yields $C_0=5\%$.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:reasoning_models}{{8}{7}{Reasoning vs.\ instruction models. Same LLaMA-8B base, different training: instruction tuning yields $C_0=30\%$, reasoning distillation yields $C_0=5\%$}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Reasoning vs.\ Instruction Model Behavior}{7}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:reasoning_taxonomy}{{5.8}{7}{Reasoning vs.\ Instruction Model Behavior}{subsection.5.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Overhead Analysis}{7}{subsection.5.9}\protected@file@percent }
+\newlabel{sec:overhead}{{5.9}{7}{Overhead Analysis}{subsection.5.9}{}}
+\citation{wang2023selfconsistency}
+\citation{chen2023universal}
+\citation{pan2023logiclm,ye2023satlm}
+\citation{rogers2020primer}
+\citation{li2024common}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Per-question wall-time breakdown for SICA with Qwen2.5-14B-Instruct.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:overhead}{{9}{8}{Per-question wall-time breakdown for SICA with Qwen2.5-14B-Instruct}{table.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{8}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Why does constraint extraction fail?}{8}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{$C_0$ and epistemic uncertainty.}{8}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for future consensus methods.}{8}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The small-sample trap.}{8}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Related Work}{8}{section.7}\protected@file@percent }
+\newlabel{sec:related}{{7}{8}{Related Work}{section.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Self-Consistency and extensions.}{8}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Formal methods for LLM reasoning.}{8}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Negative results in NLP.}{8}{section*.22}\protected@file@percent }
+\bibcite{chen2023universal}{{1}{2023}{{Chen et~al.}}{{}}}
+\bibcite{cobbe2021gsm8k}{{2}{2021}{{Cobbe et~al.}}{{}}}
+\bibcite{han2022folio}{{3}{2022}{{Han et~al.}}{{}}}
+\bibcite{li2024common}{{4}{2024}{{Li et~al.}}{{}}}
+\bibcite{pan2023logiclm}{{5}{2023}{{Pan et~al.}}{{}}}
+\bibcite{rogers2020primer}{{6}{2020}{{Rogers}}{{}}}
+\bibcite{tafjord2021proofwriter}{{7}{2021}{{Tafjord et~al.}}{{}}}
+\bibcite{wang2023selfconsistency}{{8}{2023}{{Wang et~al.}}{{}}}
+\bibcite{ye2023satlm}{{9}{2023}{{Ye et~al.}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{Output diversity in LLMs.}{9}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{9}{section.8}\protected@file@percent }
+\newlabel{sec:conclusion}{{8}{9}{Conclusion}{section.8}{}}
+\gdef \@abspage@last{9}

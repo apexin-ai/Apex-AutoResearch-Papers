@@ -1,0 +1,1036 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-203_Q21",
+    "problem": "Charlie is cold. Charlie is young. Dave is cold. Erin is white. Fiona is nice. Fiona is white. Fiona is young. All blue things are white. If something is nice and blue then it is white. All young, blue things are not green. If something is white then it is nice. If something is nice then it is round. If Charlie is round then Charlie is white. All blue things are young. If something is cold and green then it is young. Round things are blue.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is not cold.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nYoung($x, bool) ::: Is x young?\nWhite($x, bool) ::: Is x white?\nNice($x, bool) ::: Is x nice?\nBlue($x, bool) ::: Is x blue?\nGreen($x, bool) ::: Is x green?\nRound($x, bool) ::: Is x round?\n\nFacts:\nCold(Charlie, True) ::: Charlie is cold.\nYoung(Charlie, True) ::: Charlie is young.\nCold(Dave, True) ::: Dave is cold.\nWhite(Erin, True) ::: Erin is white.\nNice(Fiona, True) ::: Fiona is nice.\nWhite(Fiona, True) ::: Fiona is white.\nYoung(Fiona, True) ::: Fiona is young.\n\nRules:\nBlue($x, True) >>> White($x, True) ::: All blue things are white.\nNice($x, True) && Blue($x, True) >>> White($x, True) ::: If something is nice and blue then it is white.\nYoung($x, True) && Blue($x, True) >>> Green($x, False) ::: All young, blue things are not green.\nWhite($x, True) >>> Nice($x, True) ::: If something is white then it is nice.\nNice($x, True) >>> Round($x, True) ::: If something is nice then it is round.\nRound(Charlie, True) >>> White(Charlie, True) ::: If Charlie is round then Charlie is white.\nBlue($x, True) >>> Young($x, True) ::: All blue things are young.\nCold($x, True) && Green($x, True) >>> Young($x, True) ::: If something is cold and green then it is young.\nRound($x, True) >>> Blue($x, True) ::: Round things are blue.\n\nQuery:\nCold(Fiona, False) ::: Fiona is not cold."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 81.0,
+      "True": 72.0,
+      "Unknown": 138.0
+    },
+    "answer_counts": {
+      "Unknown": 8,
+      "False": 1,
+      "True": 3
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to use logical deductions based on the given statements.\n\n1. Let's start by analyzing the statement \"Fiona is not cold.\"\n   To determine this, we need to find out if we can conclude that Fiona is cold or not.\n\n2. From the given statements, we know:\n   - Fiona is white.\n   - Fiona is young.\n   - All blue things are white. (So, Fiona is blue.)\n   - All blue things are young. (This is already known from Fiona is young.)\n   - All young, blue things are not green. (This statement doesn't directly help us, but it's good to know.)\n   - If something is white then it is nice. (So, Fiona is nice.)\n   - If something is nice then it is round. (So, Fiona is round.)\n   - Round things are blue. (So, Fiona is blue, which we already knew.)\n\n3. Now, let's analyze the statement \"Charlie is cold.\"\n   From the given statements, we know:\n   - Charlie is young.\n   - If something is cold and green then it is young. (This statement doesn't directly help us, but it's good to know.)\n   - We don't have any direct information about Charlie being cold or green, so we can't conclude this.\n\n4. We also know that:\n   - If Charlie is round then Charlie is white. (We don't know if Charlie is round or not.)\n   - We can't conclude if Charlie is cold or not, but we can conclude that if Charlie is round, then Charlie is white.\n\n5. Now, let's analyze the statement \"Dave is cold.\"\n   We don't have any direct information about Dave being cold or not, so we can't conclude this.\n\n6. Now, let's go back to the statement \"Fiona is not cold.\"\n   We don't have any direct information about Fiona being cold or not, so we can't conclude this.\n\nHowever, we can make an indirect conclusion using the given statements. We know that:\n- Fiona is white.\n- If something is white then it is nice.\n- If something is nice then it is round.\n- Round things are blue.\n- All blue things are young.\n- If something is white, then it is nice. (So, Fiona is nice.)\n- All blue things are white. (So, Fiona is white.)\n\nGiven the above information, we can't conclude if Fiona is cold or not, but we can conclude that if Fiona is cold, then Fiona is young (because all cold things are young, and we don't have any other information about Fiona being old). However, we already know that Fiona is young.\n\nSince we can't conclude if Fiona is cold or not, we can conclude that the statement \"Fiona is not cold\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is not cold' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. 'Fiona is white.' (Given information)\n2. 'If something is white, then it is nice.' (Given information)\n   From step 1 and this rule, we can conclude that 'Fiona is nice.' (Derived information)\n\n3. 'If something is nice, then it is round.' (Given information)\n   From step 2 and this rule, we can conclude that 'Fiona is round.' (Derived information)\n\n4. 'Round things are blue.' (Given information)\n   From step 3 and this rule, we can conclude that 'Fiona is blue.' (Derived information)\n\n5. 'All young, blue things are not green.' (Given information)\n   We don't know whether Fiona is young or not yet, but we can conclude that 'Fiona is not green.' (Derived information)\n\n6. 'All blue things are young.' (Given information)\n   From step 4 and this rule, we can conclude that 'Fiona is young.' (Derived information)\n\nNow we have concluded that 'Fiona is young' from step 6.\n\n7. 'If Charlie is round then Charlie is white.' (Given information)\n   We don't know whether Charlie is round or not yet, but this rule is not relevant to Fiona.\n\n8. 'All blue things are white.' (Given information)\n   From step 4 and this rule, we can conclude that 'Fiona is white.' (Derived information)\n   We already concluded this in step 1.\n\n9. 'Fiona is not cold.' (Statement to be determined)\n   To determine this, we need to find information about whether Fiona is cold or not. \n   There is no information about Fiona being cold or not, but we can use the information about Charlie being cold and young (from the given information) to derive something about Fiona.\n\n10. 'Charlie is cold.' (Given information)\n   'Charlie is young.' (Given information)\n   'If something is cold and green then it is young.' (Given information)\n   From this, we cannot directly conclude that Charlie is green because Charlie is not green, we don't have information about Charlie being green. However we can use the rule that 'All young, blue things are not green' to derive that Charlie is not blue.\n\n11. 'Fiona is young.' (Derived information from step 6)\n   We know that Charlie is young and Fiona is young. \n\n12. 'All young, blue things are not green.' (Given information)\n   From this rule and the derived information that Charlie is not blue (from step 10), we cannot conclude that Charlie is not young. However, we can use this rule to derive that Fiona is not blue (from step 4 and step 6), which we already concluded that Fiona is blue (step 4). This is a contradiction, and our previous conclusion about Fiona being blue was incorrect.\n\nHowever, we can still derive that 'Fiona is not green' (from step 5), but this information is not relevant to determine whether Fiona is cold or not.\n\n13. Since we concluded that 'Fiona is blue' (step 4), we can use the rule that 'All blue things are young' (step 6) to derive that 'All blue things are cold.' (Derived information)\n   We know that Fiona is blue, so 'Fiona is cold.' (Derived information)\n\nNow we have concluded that 'Fiona is cold.' (step 13), and therefore 'Fiona is not not cold.' (Negation)\n\nThe statement 'Fiona is not cold' is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not cold\" is true, false, or unknown, we need to analyze the given statements and use logical reasoning to deduce the properties of Fiona.\n\n1. All blue things are white. \n   - This means that if something is blue, it must also be white.\n\n2. If something is nice and blue then it is white. \n   - This statement is essentially redundant since we already know that all blue things are white.\n\n3. Fiona is nice. Fiona is white. Fiona is young. \n   - We already know that Fiona is white (from statement 2), and now we know she is also young.\n\n4. All young, blue things are not green. \n   - Since Fiona is young, this statement is relevant to her, but we don't know if she is blue yet.\n\n5. If something is white then it is nice. \n   - This statement is also redundant since we already know that Fiona is nice (from statement 3) and white (from statement 3).\n\n6. If something is nice then it is round. \n   - Since Fiona is nice, she must be round.\n\n7. If Charlie is round then Charlie is white. \n   - This statement is irrelevant to Fiona.\n\n8. All blue things are young. \n   - This statement is relevant to Fiona because we already know she is young (from statement 3).\n\n9. If something is cold and green then it is young. \n   - This statement is irrelevant to Fiona since we don't know if she is cold or green.\n\n10. Round things are blue.\n    - Since Fiona is round (from statement 6), this statement is relevant to her.\n\nFrom the statements, we know that Fiona is young (from statement 3), round (from statement 6), and white (from statement 3). We also know that all blue things are young (from statement 8) and that round things are blue (from statement 10). Since Fiona is round and young, she must be blue.\n\nWe now know that Fiona is blue, young, and white. However, we don't have any information about her temperature (whether she is cold or not). Therefore, we cannot conclude whether the statement \"Fiona is not cold\" is true or false. The answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Fiona is white. \n   Reasoning: From the information, we have \"Fiona is white.\"\n\n2. We also know that all white things are nice. \n   Reasoning: From the information, we have \"If something is white then it is nice.\"\n\n3. Therefore, Fiona is nice. \n   Reasoning: Using the information from steps 1 and 2, we can conclude that Fiona is nice.\n\n4. Additionally, we know that all blue things are young. \n   Reasoning: From the information, we have \"All blue things are young.\"\n\n5. We also know that all blue things are white. \n   Reasoning: From the information, we have \"All blue things are white.\"\n\n6. From steps 4 and 5, we can conclude that all white things are young. \n   Reasoning: Combining the information from steps 4 and 5, we can conclude that all white things are young.\n\n7. Since Fiona is white, we can conclude that Fiona is young. \n   Reasoning: Using the information from steps 1 and 6, we can conclude that Fiona is young.\n\n8. Furthermore, we know that if something is young and blue, then it is not green. \n   Reasoning: From the information, we have \"All young, blue things are not green.\"\n\n9. We also know that round things are blue. \n   Reasoning: From the information, we have \"Round things are blue.\"\n\n10. From the information, we have \"If something is nice then it is round.\" \n    Reasoning: From the information, we have \"If something is nice then it is round.\"\n\n11. We have already concluded that Fiona is nice (step 3).\n    Reasoning: Using the information from steps 3 and 10, we can conclude that Fiona is round.\n\n12. Since Fiona is round, we can conclude that Fiona is blue. \n    Reasoning: Using the information from steps 9 and 11, we can conclude that Fiona is blue.\n\n13. Now, we need to analyze the statement \"Fiona is not cold.\" \n    Reasoning: This is the statement we are trying to evaluate.\n\n14. We know that if something is cold and green, then it is young. \n    Reasoning: From the information, we have \"If something is cold and green then it is young.\"\n\n15. We also know that Fiona is not green, but we do not have any information about Fiona being green. \n    Reasoning: From the information, we have \"All young, blue things are not green.\" We cannot directly conclude that Fiona is not green from the given information, but we can conclude that if Fiona were green, then she would be young.\n\n16. However, we do not have any information about Charlie being green, cold, or young. \n    Reasoning: This statement is not relevant to the evaluation of the statement \"Fiona is not cold.\"\n\n17. We cannot directly conclude that Fiona is not cold from the given information. \n    Reasoning: Since we do not have any information about Fiona being cold, we cannot directly conclude that Fiona is not cold.\n\n18. However, we can conclude that if Fiona were cold, then she would be young. \n    Reasoning: We can use the information from step 14, but we cannot directly conclude that Fiona is not cold.\n\nSince we cannot directly conclude that Fiona is not cold from the given information, the statement \"Fiona is not cold\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information, we know that Fiona is white (Fiona is white).\n2. We are also given that if something is white then it is nice (If something is white then it is nice). Therefore, Fiona is nice (Fiona is white \u2192 Fiona is nice).\n3. From the given information, we know that all young, blue things are not green (All young, blue things are not green).\n4. We are also given that all blue things are young (All blue things are young). Since Fiona is blue (Round things are blue, and Fiona is round), Fiona is young (All blue things are young).\n5. We know that Fiona is nice and young. Now, we need to determine whether Fiona is cold or not.\n\n6. We are given that if something is nice and blue then it is white (If something is nice and blue then it is white). Since Fiona is nice and blue, Fiona is white (Fiona is nice and blue \u2192 Fiona is white).\n7. However, we already know that Fiona is white (Fiona is white). This does not provide any new information. We can safely say that Fiona is indeed white.\n8. Now, we need to find out whether Fiona is cold or not. We know that if something is white then it is nice (If something is white then it is nice), and we already determined that Fiona is nice.\n9. We also know that if something is nice then it is round (If something is nice then it is round), and we know that Fiona is round.\n10. Now, we are given that if Charlie is round then Charlie is white (If Charlie is round then Charlie is white). However, this information is irrelevant to Fiona.\n11. We know that Fiona is white, nice, and round.\n12. We are given that all blue things are white (All blue things are white), and we also know that Round things are blue (Round things are blue). So, Fiona is blue.\n13. We know that Fiona is blue and young (All blue things are young). Now we need to find out whether Fiona is cold or not.\n14. We are given that if something is cold and green then it is young (If something is cold and green then it is young). However, this information does not tell us anything about Fiona's coldness.\n15. We are given that Charlie is young (Charlie is young) and Dave is cold (Dave is cold). However, this information does not tell us anything about Fiona.\n16. We are given that Erin is white (Erin is white). However, this information does not tell us anything about Fiona.\n17. We know that Fiona is blue, young, nice, and round.\n18. We are given that if something is nice then it is round (If something is nice then it is round). However, we already know that Fiona is round.\n19. Now, we need to find out whether Fiona is cold or not.\n20. We are given that all blue things are young (All blue things are young). However, we already know that Fiona is young.\n21. We know that if something is white then it is nice (If something is white then it is nice), and we know that Fiona is nice.\n22. We are given that Charlie is cold (Charlie is cold). However, this information does not tell us anything about Fiona.\n23. Now, we need to find out whether Fiona is cold or not.\n24. We are given that all blue things are white (All blue things are white), and we know that Fiona is blue. However, we already know that Fiona is white.\n25. We know that Fiona is blue, young, nice, and round.\n26. We are given that all blue things are young (All blue things are young). However, we already know that Fiona is young.\n27. We are given that if something is cold and green then it is young (If something is cold and green then it is young). However, this information does not tell us anything about Fiona.\n28. We know that Fiona is nice, young, and round.\n29. We are given that if something is nice and blue then it is white (If something is nice and blue then it is white). However, we already know that Fiona is white.\n30. We are given that if something is white then it is nice (If something is white then it is nice). However, we already know that Fiona is nice.\n31. Now, we need to find out whether Fiona is cold or not.\n32. We are given that all blue things are white (All blue things are white). However, we already know that Fiona is white.\n33. We are given that if something is nice then it is round (If something is nice then it is round). However, we already know that Fiona is round.\n34. We know that Fiona is young, nice, and round.\n35. We are given that if something is white then it is nice (If something is white then it is nice). However, we already know that Fiona is nice.\n36. We are given that all young, blue things are not green (All young, blue things are not green). However, this information does not tell us anything about Fiona's coldness.\n37. We know that Fiona is young and nice.\n38. We are given that all blue things are young (All blue things are young). However, we already know that Fiona is young.\n39. We are given that if something is cold and green then it is young (If something is cold and green then it is young). However, this information does not tell us anything about Fiona.\n40. We know that Fiona is nice, young, and round.\n\nHowever, from the given information, we cannot directly determine whether Fiona is cold or not. The statement \"Fiona is not cold\" is unknown because we do not have enough information to determine Fiona's coldness.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether Fiona is not cold, we need to analyze the given information step by step.\n\n1. Fiona is white. (From the given statements)\n2. All blue things are white. (From the given statements)\n3. All blue things are young. (From the given statements)\n4. Round things are blue. (From the given statements)\n5. If something is nice and blue then it is white. (From the given statements)\n6. Fiona is nice. (From the given statements)\n7. Fiona is young. (From the given statements)\n\nFrom step 4, we know that round things are blue. \nFrom step 7, we know that Fiona is young.\nFrom step 3, we know that all blue things are young.\n\nCombining these statements, we can infer that Fiona is blue, as round things are blue and Fiona is young.\n\nNow, using the fact that Fiona is blue, we can conclude that Fiona is white from step 2.\nUsing the fact that Fiona is white, we can conclude that Fiona is nice from step 1.\n\nFrom step 5, we know that if something is nice and blue then it is white. \nSince Fiona is nice and blue, we can conclude that Fiona is white, which we already know.\n\nNow, using the fact that Fiona is nice, we can conclude that Fiona is round from step 8.\n\nNow, we have a contradiction: if Fiona is round then Charlie is white, as stated in the original problem, but we are not given any information that connects Charlie's roundness to Fiona.\n\nHowever, we can infer that Charlie is not round because Fiona is round, and we know that round things are blue from step 4. \nSince all blue things are young from step 3, and Charlie is young, we can conclude that Charlie is not blue.\n\nNow, we know that Charlie is not blue and Charlie is young. \nWe are also given that Charlie is cold.\n\nFrom the given statements, we know that all young, blue things are not green. \nSince Charlie is not blue and Charlie is young, we can conclude that Charlie is green.\n\nNow, we can use the fact that Charlie is cold and green. \nFrom the given statements, we know that if something is cold and green then it is young. \nSince Charlie is young, this statement is true for Charlie.\n\nHowever, we are trying to determine whether Fiona is not cold.\n\nFrom the given statements, we know that all blue things are white. \nWe also know that round things are blue. \nSince Fiona is round, we can conclude that Fiona is blue.\n\nNow, we can use the fact that Fiona is blue. \nFrom the given statements, we know that all blue things are white. \nSince Fiona is white, we can conclude that Fiona is not cold.\n\nTherefore, the final answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not cold\" is true, false, or unknown, we need to use the given premises and deduce the conclusion step by step.\n\n1. All blue things are white. \n   This implies that if something is blue, it is white.\n\n2. Fiona is white. \n   From premise 1, we can infer that Fiona is blue, as all blue things are white.\n\n3. Fiona is young. \n   From premise 2, we can conclude that Fiona is blue, and from premise 6, we can infer that Fiona is young, as all blue things are young.\n\n4. Round things are blue. \n   This implies that if something is round, it is blue.\n\n5. If something is nice and blue then it is white. \n   This implies that if something is nice and blue, it is white.\n\n6. Fiona is nice. \n   We cannot directly infer this from the given premises. This part of the statement is unknown.\n\nHowever, considering the information we have and the premises given, we can make some assumptions about the statement \"Fiona is not cold\". \n\n7. If Charlie is round then Charlie is white. \n   This premise does not directly relate to Fiona. However, it might help us understand the relationship between being round and being white.\n\n8. All young, blue things are not green. \n   This implies that if something is young and blue, it is not green.\n\n9. If something is cold and green then it is young. \n   This implies that if something is cold, it is either young or not green.\n\n10. Round things are blue. \n    This implies that if something is round, it is blue.\n\nConsidering the premises we have about Fiona, we can see that Fiona is white (from premise 2) and young (from premise 3). However, we still do not know if Fiona is cold or not.\n\nBut, let's analyze the information we have about blue things. Since Fiona is white (from premise 2), and all blue things are white, we can infer that Fiona is blue.\n\nWe also know that all young, blue things are not green (from premise 8). Since Fiona is young and blue, we can infer that Fiona is not green.\n\nNow, we need to find out if Fiona is cold or not. If Fiona is cold, then it must be either young or not green (from premise 9). However, we already know that Fiona is young, and we can infer that Fiona is not green.\n\nConsidering all the information, we can see that Fiona is young, not green, and blue. However, we still do not know if Fiona is cold or not.\n\nSo, the statement \"Fiona is not cold\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that:\n   - All blue things are white.\n   - If something is nice and blue then it is white.\n   - All young, blue things are not green.\n   - If something is white then it is nice.\n   - If something is nice then it is round.\n   - If Charlie is round then Charlie is white.\n   - All blue things are young.\n   - If something is cold and green then it is young.\n   - Round things are blue.\n\n2. We are also given the following statements:\n   - Fiona is nice.\n   - Fiona is white.\n   - Fiona is young.\n\nFrom the statements above, we can conclude that Fiona is blue because:\n   - Fiona is white (given).\n   - All blue things are white (given).\n   - All young, blue things are not green (given), which means Fiona cannot be green.\n   - All young things are either blue or green (by elimination), so Fiona must be blue.\n\n3. Now, we can conclude that Fiona is round because:\n   - Fiona is blue (deduced).\n   - Round things are blue (given).\n\n4. Now, we can conclude that Fiona is nice because:\n   - Fiona is white (given).\n   - If something is white then it is nice (given).\n   - Fiona is round (deduced).\n   - If something is nice then it is round (given).\n\n5. Since we know that Fiona is round and round things are blue (given), we can conclude that Fiona is blue (as deduced earlier).\n\n6. Since we know that Fiona is blue and all blue things are young (given), we can conclude that Fiona is young (as given).\n\n7. To determine whether Fiona is cold, we need to look at the given information about Charlie and the fact that Charlie is young and cold. We are given that:\n   - Charlie is young and cold.\n   - If something is cold and green then it is young.\n\nHowever, we know that Charlie is not green because:\n   - Charlie is young and blue (by elimination).\n   - All young things are either blue or green (by elimination).\n   - All blue things are young (given).\n\nSo, we can conclude that Charlie is blue. Now, we can conclude that Charlie is white because:\n   - Charlie is blue (deduced).\n   - All blue things are white (given).\n\nHowever, we are given that if Charlie is round then Charlie is white. We know that Charlie is white (deduced), but we also know that Charlie is young (given) and all blue things are young (given). Since we know that Charlie is blue (deduced), we can conclude that Charlie is young and blue. However, we also know that all blue things are white (given) and if Charlie is round then Charlie is white (given). Since we know that Charlie is white (deduced), this implies that Charlie must be round.\n\nNow, we can conclude that Fiona is not cold because:\n   - Fiona is not Charlie.\n   - We don't know anything about the relationship between Fiona and Charlie's temperature.\n\nSince we cannot determine whether Fiona is cold or not based on the given information, we can conclude that the statement \"Fiona is not cold\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether Fiona is not cold, we need to find out if Fiona is cold. \n\nFrom the given statements, we can infer the following:\n\n1. All blue things are white. (Statement 1)\n2. Fiona is white. (Statement 4)\n3. All blue things are young. (Statement 8)\n4. Fiona is young. (Statement 5)\n5. Round things are blue. (Statement 9)\n6. If something is round then it is nice. (Statement 7)\n7. If something is nice then it is round. (Statement 6)\n8. If something is nice then it is round. (Statement 6)\n9. If Charlie is round then Charlie is white. (Statement 10)\n10. All young, blue things are not green. (Statement 11)\n11. If something is cold and green then it is young. (Statement 12)\n12. All blue things are white. (Statement 1)\n13. Fiona is nice. (From 6 and 7, since Fiona is round and thus nice)\n14. Fiona is white. (Statement 4)\n15. If something is white then it is nice. (Statement 3)\n\nFrom statements 1 and 13, since Fiona is nice and blue (because round and thus blue, and thus young, from statements 6, 7, 9, 10, and 4), Fiona is white.\n\nHowever, we need to determine if Fiona is cold. \n\nIf something is cold and green then it is young. (Statement 12)\nSince Fiona is young (Statement 4), this statement does not directly help us determine if Fiona is cold.\n\nFrom statements 1 and 13, we know that Fiona is blue, and from statement 8, we know that all blue things are young. However, from statement 3, all blue things are white, and statement 4 states that Fiona is white. Therefore, Fiona is indeed blue (because blue and white are synonymous in this context), which means Fiona is young.\n\nNow we have a problem because the statements \"All young, blue things are not green\" and \"If something is cold and green then it is young\" seem to imply that cold and green things are young, but we can't directly apply this information to Fiona.\n\nFrom statement 1, we know that blue things are white, and from statement 3, we know that if something is white then it is nice. However, we also know that Fiona is white (Statement 4) and from statement 3, if something is white then it is nice. Therefore, Fiona is indeed white.\n\nHowever, we still cannot directly determine if Fiona is cold.\n\nFrom statement 4, we know that Fiona is young, and from statement 8, we know that all blue things are young. But we cannot conclude that Fiona is blue based on this information alone. However, from statement 3, we know that all blue things are white, and statement 4 states that Fiona is white.\n\nNow we have to look at the statement \"Fiona is white\" from a different angle. From statement 3, if something is white then it is nice. But we already know that Fiona is nice (From 6 and 7, since Fiona is round and thus nice).\n\nHowever, from statement 4, we know that Fiona is white, and from statement 3, if something is white then it is nice. However, we also know that Fiona is nice (From 6 and 7, since Fiona is round and thus nice).\n\nNow let's look at statement 1. We know that all blue things are white. But we also know that all young, blue things are not green. Since Fiona is young (Statement 4), we can conclude that Fiona is not green.\n\nHowever, we still cannot determine if Fiona is cold.\n\nFrom statement 12, we know that if something is cold and green then it is young. But since Fiona is not green (From statement 10, since Fiona is young and blue, and thus not green), we cannot apply this information to Fiona.\n\nNow let's look at statement 6. We know that if something is round then it is nice. But we also know that if something is nice then it is round. Therefore, we can conclude that Fiona is round.\n\nHowever, we still cannot determine if Fiona is cold.\n\nFrom statement 10, we know that all young, blue things are not green. Since Fiona is young (Statement 4) and blue (From statement 8, since all blue things are young), we can conclude that Fiona is not green.\n\nHowever, we still cannot determine if Fiona is cold.\n\nFrom statement 12, we know that if something is cold and green then it is young. But since Fiona is not green (From statement 10, since Fiona is young and blue, and thus not green), we cannot apply this information to Fiona.\n\nNow let's look at statement 6. We know that if something is round then it is nice. But we also know that if something is nice then it is round. Therefore, we can conclude that Fiona is round.\n\nHowever, we still cannot determine if Fiona is cold.\n\nFrom statement 8, we know that all blue things are young. Since Fiona is blue (From statement 1, since all blue things are white, and statement 4, since Fiona is white), we can conclude that Fiona is young.\n\nHowever, we still cannot determine if Fiona is cold.\n\nFrom statement 10, we know that all young, blue things are not green. Since Fiona is young (Statement 4) and blue (From statement 8, since all blue things are young), we can conclude that Fiona is not green.\n\nHowever, we still cannot determine if Fiona is cold.\n\nFrom statement 12, we know that if something is cold and green then it is young. But since Fiona is not green (From statement 10, since Fiona is young and blue, and thus not green), we cannot apply this information to Fiona.\n\nNow let's look at statement 6. We know that if something is round then it is nice. But we also know that if something is nice then it is round. Therefore, we can conclude that Fiona is round.\n\nHowever, we still cannot determine if Fiona is cold.\n\nFrom statement 8, we know that all blue things are young. Since Fiona is blue (From statement 1, since all blue things are white, and statement 4, since Fiona is white), we can conclude that Fiona is young.\n\nHowever, we still cannot determine if Fiona is cold.\n\nFrom statement 10, we know that all young, blue things are not green. Since Fiona is young (Statement 4) and blue (From statement 8, since all blue things are young), we can conclude that Fiona is not green.\n\nHowever, we still cannot determine if Fiona is cold.\n\nFrom statement 12, we know that if something is cold and green then it is young. But since Fiona is not green (From statement 10, since Fiona is young and blue, and thus not green), we cannot apply this information to Fiona.\n\nNow let's look at statement 6. We know that if something is round then it is nice. But we also know that if something is nice then it is round. Therefore, we can conclude that Fiona is round.\n\nHowever, we still cannot determine if Fiona is cold.\n\nNow let's analyze our previous results.\n\nFrom statement 1, we know that all blue things are white. From statement 4, we know that Fiona is white. From statement 3, we know that all blue things are white. From statement 4, we know that Fiona is white.\n\nHowever, we still cannot determine if Fiona is cold.\n\nFrom statement 6, we know that if something is round then it is nice. From statement 7, we know that if something is nice then it is round. Therefore, we can conclude that Fiona is round.\n\nHowever, we still cannot determine if Fiona is cold.\n\nFrom statement 8, we know that all blue things are young. From statement 4, we know that Fiona is young.\n\nHowever, we still cannot determine if Fiona is cold.\n\nFrom statement 10, we know that all young, blue things are not green. From statement 4, we know that Fiona is young. From statement 8, we know that all blue things are young.\n\nHowever, we still cannot determine if Fiona is cold.\n\nFrom statement 12, we know that if something is cold and green then it is young. However, we already know that Fiona is not green (From statement 10, since Fiona is young and blue, and thus not green).\n\nHowever, we still cannot determine if Fiona is cold.\n\nNow let's look at statement 1. We know that all blue things are white. From statement 4, we know that Fiona is white. From statement 3, we know that all blue things are white. From statement 4, we know that Fiona is white.\n\nHowever, we still cannot determine if Fiona is cold.\n\nHowever, we can determine that Fiona is not cold by contradiction. We can conclude that Fiona is not cold because Fiona is not green (From statement 10, since Fiona is young and blue, and thus not green), and thus, there is no information in the statements that would indicate that Fiona is cold.\n\nTherefore, the statement \"Fiona is not cold\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is not cold' is true, false, or unknown, we need to analyze the given information and apply it to Fiona's characteristics.\n\n1. Fiona is nice (from 'Fiona is nice')\n2. All blue things are young (from 'All blue things are young')\n3. All blue things are white (from 'All blue things are white')\n4. Fiona is white (from 'Fiona is white')\n5. Fiona is young (from 'Fiona is young')\n6. If something is white then it is nice (from 'If something is white then it is nice')\n7. If something is nice then it is round (from 'If something is nice then it is round')\n8. Round things are blue (from 'Round things are blue')\n9. If something is blue then it is young (from 'All blue things are young')\n10. If something is cold and green then it is young (from 'If something is cold and green then it is young')\n\nFrom steps 1 and 7, we can conclude that Fiona is round because she is nice.\nFrom step 8, we know that round things are blue.\nFrom step 9, we know that blue things are young, and since Fiona is round (and therefore blue), Fiona is young.\n\nNow, let's consider the statement 'Fiona is not cold'. To determine this, we need to find information about Fiona's temperature.\n\nFrom the given information, we know that Charlie is cold, but we do not have any information about Fiona's temperature.\n\nSince we do not have any information about Fiona's temperature, we cannot conclude whether the statement 'Fiona is not cold' is true or false. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not cold\" is true, false, or unknown, we need to analyze the given statements and apply logical reasoning.\n\n1. All blue things are white. (Statement 1)\n2. If something is nice and blue then it is white. (Statement 2)\n3. Fiona is nice. (Statement 3)\n4. Fiona is white. (Statement 4)\n5. Fiona is blue. (From Statement 1 and 4)\n6. All blue things are young. (Statement 5)\n7. Fiona is young. (From Statement 6)\n\nNow we can analyze the statement \"Fiona is not cold.\"\n\n1. If something is cold and green then it is young. (Statement 6)\n2. Since we don't have any information that Fiona is green, we cannot conclude that Fiona is young using this statement.\n\nHowever, we already know that Fiona is young from Statement 6.\n\nNow let's analyze the statement \"Fiona is not cold\" using the information that we have.\n\n1. If Charlie is round then Charlie is white. (Statement 7)\n2. All round things are blue. (Statement 8)\n3. All blue things are white. (Statement 1)\n4. If something is nice then it is round. (Statement 9)\n5. If something is white then it is nice. (Statement 10)\n6. Fiona is nice. (Statement 3)\n7. Fiona is white. (Statement 4)\n8. Fiona is round. (From Statement 9 and 10)\n9. Fiona is blue. (From Statement 1 and 8)\n10. All blue things are young. (Statement 5)\n11. Fiona is young. (From Statement 10)\n\nNow we can analyze the statement \"Fiona is not cold.\"\n\n1. We have no information about Fiona's color being green.\n2. We have no information about Charlie's color being green or blue.\n3. We have no information about Dave's color or age.\n\nGiven the information we have, we cannot conclude that Fiona is cold or not cold. Therefore, the statement \"Fiona is not cold\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not cold\" is true, false, or unknown, we need to analyze the given premises and apply logical deductions.\n\n1. All blue things are white. (Premise)\n2. Fiona is white. (Premise)\n3. Fiona is young. (Premise)\n4. All blue things are young. (Premise)\n5. Round things are blue. (Premise)\n6. If something is nice and blue then it is white. (Premise)\n7. Fiona is nice. (Implicit from Fiona being white, since all white things are nice)\n8. If something is blue then it is young. (Implicit from Fiona being young and blue)\n9. If something is nice then it is round. (Premise)\n10. Fiona is round. (Implicit from Fiona being nice and round)\n11. All young, blue things are not green. (Premise)\n12. If something is cold and green then it is young. (Premise)\n13. Dave is cold. (Premise)\n14. Charlie is cold. (Premise)\n15. Charlie is young. (Premise)\n16. Erin is white. (Premise)\n17. If Charlie is round then Charlie is white. (Premise)\n\nFrom premises 1 and 10, we can infer that Fiona is blue (since round things are blue).\n\nNow, let's examine the statement \"Fiona is not cold.\"\n\nSince Fiona is blue (from inference 18), we can use premises 4 and 13 to determine if Fiona is cold. However, we cannot directly conclude that Fiona is cold from these premises.\n\nHowever, we can use the following argument: \n\nDave is cold, Charlie is cold, and Charlie is young. (Premise 13, 14, and 15)\nIf Charlie is round then Charlie is white. (Premise 17)\nIf something is white then it is nice. (Implicit from all white things being nice)\nIf something is nice then it is round. (Premise 9)\nIf Charlie is round then Charlie is white. (Premise 17)\nIf Charlie is white then Charlie is nice. (Implicit from all white things being nice)\nCharlie is round. (Implicit from Charlie being nice and round)\nCharlie is white. (Implicit from Charlie being round)\nCharlie is young. (Premise 15)\nAll young, blue things are not green. (Premise 11)\nAll blue things are young. (Premise 4)\nAll blue things are white. (Premise 1)\nFiona is blue. (Inference 18)\nFiona is young. (Premise 3)\nFiona is white. (Premise 2)\nFiona is nice. (Implicit from Fiona being white)\nFiona is round. (Implicit from Fiona being nice and round)\nIf something is blue then it is young. (Implicit from Fiona being young and blue)\nFiona is young. (Premise 3)\nFiona is blue. (Inference 18)\nIf something is blue then it is young. (Implicit from Fiona being young and blue)\nFiona is white. (Premise 2)\nAll white things are nice. (Implicit from all white things being nice)\nFiona is nice. (Implicit from Fiona being white)\nFiona is round. (Implicit from Fiona being nice and round)\nAll blue things are young. (Premise 4)\nFiona is blue. (Inference 18)\nIf something is blue then it is young. (Implicit from Fiona being young and blue)\nFiona is young. (Premise 3)\nFiona is round. (Implicit from Fiona being nice and round)\nAll round things are blue. (Premise 5)\nFiona is blue. (Inference 18)\nFiona is white. (Premise 2)\nAll blue things are white. (Premise 1)\nFiona is young. (Premise 3)\nAll blue things are young. (Premise 4)\nFiona is young. (Premise 3)\nAll white things are nice. (Implicit from all white things being nice)\nFiona is nice. (Implicit from Fiona being white)\nIf something is blue then it is young. (Implicit from Fiona being young and blue)\nFiona is round. (Implicit from Fiona being nice and round)\nFiona is nice. (Implicit from Fiona being white)\nFiona is round. (Implicit from Fiona being nice and round)\nFiona is blue. (Inference 18)\nFiona is white. (Premise 2)\nAll blue things are white. (Premise 1)\nFiona is white. (Premise 2)\nAll blue things are young. (Premise 4)\nFiona is young. (Premise 3)\nFiona is young. (Premise 3)\nAll young, blue things are not green. (Premise 11)\nFiona is young. (Premise 3)\nFiona is blue. (Inference 18)\nFiona is not green. (Implicit from Fiona being young and blue)\nFiona is not cold. (Implicit from Fiona not being green and cold)\nSince Fiona is not green, we can infer that Fiona is not cold from premise 12.\n\nTherefore, the statement \"Fiona is not cold\" is **TRUE**.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_fiona, white_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_fiona, young_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & blue(X) -> not green(X)",
+          "z3_formula": "Implies(And(young_fiona, blue_fiona), Not(green_fiona))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_fiona, nice_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> round(X)",
+          "z3_formula": "Implies(nice_fiona, round_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_fiona, blue_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_fiona, white_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(fiona)",
+          "z3_formula": "Not(cold_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona) -> young(fiona)",
+          "z3_formula": "Implies(cold_fiona, young_fiona)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_fiona, nice_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> round(X)",
+          "z3_formula": "Implies(nice_fiona, round_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_fiona, blue_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_fiona, young_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(cold_charlie, green_charlie), young_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not green(charlie)",
+          "z3_formula": "Not(green_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & blue(X) -> not green(X)",
+          "z3_formula": "Implies(And(young_charlie, blue_charlie), Not(green_charlie))",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(charlie)",
+          "z3_formula": "Not(blue_charlie)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_charlie, young_charlie)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "all blue(X) -> cold(X)",
+          "z3_formula": "Implies(ForAll(X, blue(X)), cold(X))",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(fiona)",
+          "z3_formula": "Not(cold_fiona)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_X, white_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(nice_X, blue_X), white_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & blue(X) -> not green(X)",
+          "z3_formula": "Implies(And(young_X, blue_X), Not(green_X))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_X, nice_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> round(X)",
+          "z3_formula": "Implies(nice_X, round_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> white(X)",
+          "z3_formula": "Implies(round_X, white_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_X, blue_X)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_X, young_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(cold_X, green_X), young_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_X, blue_X)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == Unknown",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_fiona, nice_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_X, young_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_X, white_X)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_X, young_X)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & blue(X) -> not green(X)",
+          "z3_formula": "Implies(And(young_X, blue_X), Not(green_X))",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_X, blue_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> round(X)",
+          "z3_formula": "Implies(nice_X, round_X)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(cold_X, green_X), young_X)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(fiona)",
+          "z3_formula": "Not(cold_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona) -> young(fiona)",
+          "z3_formula": "Implies(cold_fiona, young_fiona)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not green(fiona)",
+          "z3_formula": "Not(green_fiona)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(fiona)",
+          "z3_formula": "Not(cold_fiona)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona) -> young(fiona)",
+          "z3_formula": "Implies(cold_fiona, young_fiona)",
+          "source_step": 18
+        }
+      ],
+      [],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_X, white_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_fiona, blue_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(nice_fiona, blue_fiona), white_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> white(X)",
+          "z3_formula": "Implies(round_charlie, white_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & blue(X) -> Not(green(X))",
+          "z3_formula": "Implies(And(young_fiona, blue_fiona), Not(green_fiona))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(cold_fiona, green_fiona), young_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_fiona, blue_fiona)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round_fiona",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_fiona, white_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & blue(X) -> Not(green(X))",
+          "z3_formula": "Implies(And(young_fiona, blue_fiona), Not(green_fiona))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_fiona, nice_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> round(X)",
+          "z3_formula": "Implies(nice_fiona, round_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_fiona, blue_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_fiona, young_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(cold_charlie, green_charlie), young_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young_charlie",
+          "z3_formula": "young_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold_charlie",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green_charlie == False",
+          "z3_formula": "Not(green_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "blue_charlie",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_charlie, white_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> white(X)",
+          "z3_formula": "Implies(round_charlie, white_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "white_charlie",
+          "z3_formula": "white_charlie == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "blue_fiona",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "round_fiona",
+          "z3_formula": "round_fiona == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "nice_fiona",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "young_fiona",
+          "z3_formula": "young_fiona == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "Not(cold_fiona)",
+          "z3_formula": "Not(cold_fiona)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_fiona, blue_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_fiona, nice_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_fiona, nice_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_fiona, white_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_fiona, young_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & blue(X) -> not green(X)",
+          "z3_formula": "Implies(And(young_fiona, blue_fiona), not_green_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(cold_fiona, green_fiona), young_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(fiona)",
+          "z3_formula": "not cold_fiona == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_fiona, young_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_fiona, white_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_fiona, nice_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> round(X)",
+          "z3_formula": "Implies(nice_fiona, round_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_fiona, blue_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_fiona, young_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(cold_charlie, green_charlie), young_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(fiona)",
+          "z3_formula": "Not(cold_fiona)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_X, white_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(nice_X, blue_X), white_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_X, young_X)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> white(X)",
+          "z3_formula": "Implies(round_charlie, white_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_X, blue_X)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_X, white_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> round(X)",
+          "z3_formula": "Implies(nice_X, round_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_X, nice_X)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_X, young_X)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_fiona, blue_fiona)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_fiona, young_fiona)",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> not green(X)",
+          "z3_formula": "Implies(young_fiona, not_green_fiona)",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "not green(fiona)",
+          "z3_formula": "not_green_fiona == True",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(cold_fiona, green_fiona), young_fiona)",
+          "source_step": 23
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(fiona)",
+          "z3_formula": "not_cold_fiona == True",
+          "source_step": 24
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 151,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 46
+    },
+    "maxsat_stats": {
+      "satisfied": 44,
+      "excluded": 2,
+      "total_weight": 148,
+      "solve_time_ms": 1.184496097266674
+    },
+    "timing": {
+      "trace_gen_s": 23.291,
+      "extraction_s": 34.851,
+      "dedup_s": 1.311,
+      "maxsat_s": 0.004,
+      "total_s": 59.457
+    }
+  }
+}

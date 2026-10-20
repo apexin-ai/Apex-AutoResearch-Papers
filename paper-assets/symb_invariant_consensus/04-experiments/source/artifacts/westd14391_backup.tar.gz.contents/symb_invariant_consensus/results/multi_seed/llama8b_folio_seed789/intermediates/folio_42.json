@@ -1,0 +1,975 @@
+{
+  "problem": {
+    "id": "folio_42",
+    "problem": "Given the following premises:\nIf a player is ranked highly by the Women's Tennis Association, then they are among the most active players in major tennis.  Everyone who lost to Iga \u015awi\u0105tek is ranked highly by the Women's Tennis Association. All female tennis players at Roland Garros 2022 lost to Iga \u015awi\u0105tek. Either female tennis players at Roland Garros 2022 or male tennis players at Roland Garros 2022.  All male tennis players at Roland Garros 2022 lost to Rafael Nadal. If Coco Gauff is a player who is ranked highly by the Women's Tennis Association or a player who lost to Rafael Nadal, then Coco Gauff is not a male tennis player at Roland Garros 2022.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nCoco Gauff is among the most active players in major tennis.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (RankedHighlyByWomenTennisAssociation(x) \u2192 AmongMostActivePlayersInMajorTennis(x))",
+      "\u2200x (LostToIga\u015awi\u0105tek(x) \u2192 RankedHighlyByWomenTennisAssociation(x))",
+      "\u2200x (FemaleTennisPlayersAtRolandGarros2022(x) \u2192 LostToIga\u015awi\u0105tek(x)) ",
+      "\u2200x (FemaleTennisPlayersAtRolandGarros2022(x) \u2228 MaleTennisPlayersAtRolandGarros2022(x)) ",
+      "\u2200x (MaleTennisPlayersAtRolandGarros2022(x) \u2192 LostToRafaelNadal(x))",
+      "RankedHighlyByWomenTennisAssociation(cocoGauff) \u2228 LostToRafaelNadal(cocoGauff) \u2192 \u00acMaleTennisPlayersAtRolandGarros2022(cocoGauff)"
+    ],
+    "conclusion_fol": "AmongMostActivePlayersInMajorTennis(cocoGauff)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 81.0,
+      "Unknown": 76.0
+    },
+    "answer_counts": {
+      "True": 7,
+      "Unknown": 4
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and use logical reasoning.\n\nPremise 1: If a player is ranked highly by the Women's Tennis Association, then they are among the most active players in major tennis.\n\nPremise 2: Everyone who lost to Iga \u015awi\u0105tek is ranked highly by the Women's Tennis Association.\n\nPremise 3: All female tennis players at Roland Garros 2022 lost to Iga \u015awi\u0105tek.\n\nPremise 4: Either female tennis players at Roland Garros 2022 or male tennis players at Roland Garros 2022.\n\nPremise 5: All male tennis players at Roland Garros 2022 lost to Rafael Nadal.\n\nPremise 6: If Coco Gauff is a player who is ranked highly by the Women's Tennis Association or a player who lost to Rafael Nadal, then Coco Gauff is not a male tennis player at Roland Garros 2022.\n\nConclusion: Coco Gauff is among the most active players in major tennis.\n\nTo determine whether the conclusion is true, we need to analyze the premises and see if we can deduce that Coco Gauff is among the most active players in major tennis.\n\nFrom Premise 2, we know that everyone who lost to Iga \u015awi\u0105tek is ranked highly by the Women's Tennis Association.\n\nFrom Premise 3, we know that all female tennis players at Roland Garros 2022 lost to Iga \u015awi\u0105tek. Therefore, all female tennis players at Roland Garros 2022 are ranked highly by the Women's Tennis Association.\n\nFrom Premise 4, we know that either female tennis players at Roland Garros 2022 or male tennis players at Roland Garros 2022.\n\nFrom Premise 6, we know that if Coco Gauff is a player who is ranked highly by the Women's Tennis Association or a player who lost to Rafael Nadal, then Coco Gauff is not a male tennis player at Roland Garros 2022.\n\nNow, let's consider two possible cases:\n\nCase 1: Coco Gauff is a female tennis player at Roland Garros 2022.\n\nIn this case, from Premise 3, we know that Coco Gauff lost to Iga \u015awi\u0105tek and is therefore ranked highly by the Women's Tennis Association. From Premise 1, we know that if a player is ranked highly by the Women's Tennis Association, then they are among the most active players in major tennis. Therefore, Coco Gauff is among the most active players in major tennis.\n\nCase 2: Coco Gauff is a male tennis player at Roland Garros 2022.\n\nIn this case, from Premise 5, we know that Coco Gauff lost to Rafael Nadal. From Premise 6, we know that if Coco Gauff is a player who is ranked highly by the Women's Tennis Association or a player who lost to Rafael Nadal, then Coco Gauff is not a male tennis player at Roland Garros 2022. This is a contradiction, so we can conclude that Coco Gauff is not a male tennis player at Roland Garros 2022.\n\nHowever, in Case 1, we already concluded that Coco Gauff is among the most active players in major tennis. Therefore, we can conclude that the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether Coco Gauff is among the most active players in major tennis, we need to analyze the given premises step by step.\n\nPremise 1: If a player is ranked highly by the Women's Tennis Association, then they are among the most active players in major tennis.\nPremise 2: Everyone who lost to Iga \u015awi\u0105tek is ranked highly by the Women's Tennis Association.\nPremise 3: All female tennis players at Roland Garros 2022 lost to Iga \u015awi\u0105tek.\nPremise 4: Either female tennis players at Roland Garros 2022 or male tennis players at Roland Garros 2022.\nPremise 5: All male tennis players at Roland Garros 2022 lost to Rafael Nadal.\nPremise 6: If Coco Gauff is a player who is ranked highly by the Women's Tennis Association or a player who lost to Rafael Nadal, then Coco Gauff is not a male tennis player at Roland Garros 2022.\n\nWe need to use the premises to determine whether Coco Gauff is among the most active players in major tennis. \n\nFrom premise 2 and premise 3, we can conclude that all female tennis players at Roland Garros 2022 are ranked highly by the Women's Tennis Association. Since Coco Gauff is a female tennis player at Roland Garros 2022 (from premise 4), she is ranked highly by the Women's Tennis Association.\n\nNow, we can use premise 1 to conclude that Coco Gauff is among the most active players in major tennis.\n\nHowever, we need to consider premise 6. Since Coco Gauff is ranked highly by the Women's Tennis Association, we can also say that Coco Gauff is a player who is ranked highly by the Women's Tennis Association. According to premise 6, if Coco Gauff is a player who is ranked highly by the Women's Tennis Association, then she is not a male tennis player at Roland Garros 2022. This does not affect our conclusion, but it does confirm that Coco Gauff is a female tennis player.\n\nTherefore, considering all the premises, the conclusion that Coco Gauff is among the most active players in major tennis is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we'll break it down step by step using the given premises.\n\nPremise 1: If a player is ranked highly by the Women's Tennis Association, then they are among the most active players in major tennis.\n\nPremise 2: Everyone who lost to Iga \u015awi\u0105tek is ranked highly by the Women's Tennis Association.\n\nPremise 3: All female tennis players at Roland Garros 2022 lost to Iga \u015awi\u0105tek.\n\nPremise 4: Either female tennis players at Roland Garros 2022 or male tennis players at Roland Garros 2022.\n\nPremise 5: All male tennis players at Roland Garros 2022 lost to Rafael Nadal.\n\nPremise 6: If Coco Gauff is a player who is ranked highly by the Women's Tennis Association or a player who lost to Rafael Nadal, then Coco Gauff is not a male tennis player at Roland Garros 2022.\n\nConclusion: Coco Gauff is among the most active players in major tennis.\n\nTo determine if the conclusion is true, false, or uncertain, we need to analyze the premises and the conclusion.\n\nFrom Premise 3, we know that all female tennis players at Roland Garros 2022 lost to Iga \u015awi\u0105tek. \n\nSince Coco Gauff is a player who is ranked highly by the Women's Tennis Association (from Premise 2), we can conclude that Coco Gauff is among the female tennis players at Roland Garros 2022.\n\nNow, let's analyze Premise 6. We know that Coco Gauff is ranked highly by the Women's Tennis Association, which makes her either a player who is ranked highly by the Women's Tennis Association or a player who lost to Rafael Nadal. \n\nSince Coco Gauff is a female tennis player at Roland Garros 2022 (from the analysis above), and all male tennis players at Roland Garros 2022 lost to Rafael Nadal (from Premise 5), we can conclude that Coco Gauff is not a male tennis player at Roland Garros 2022.\n\nNow, let's go back to Premise 1. If a player is ranked highly by the Women's Tennis Association, then they are among the most active players in major tennis. Since Coco Gauff is ranked highly by the Women's Tennis Association (from Premise 2), we can conclude that Coco Gauff is among the most active players in major tennis.\n\nTherefore, based on the given premises, the conclusion is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\n1. If a player is ranked highly by the Women's Tennis Association, then they are among the most active players in major tennis. (Premise 1)\n\n2. Everyone who lost to Iga \u015awi\u0105tek is ranked highly by the Women's Tennis Association. (Premise 2)\n\n3. All female tennis players at Roland Garros 2022 lost to Iga \u015awi\u0105tek. (Premise 3)\n\n4. Either female tennis players at Roland Garros 2022 or male tennis players at Roland Garros 2022. (Premise 4)\n\n5. All male tennis players at Roland Garros 2022 lost to Rafael Nadal. (Premise 5)\n\n6. If Coco Gauff is a player who is ranked highly by the Women's Tennis Association or a player who lost to Rafael Nadal, then Coco Gauff is not a male tennis player at Roland Garros 2022. (Premise 6)\n\nNow, let's analyze the conclusion:\n\nCoco Gauff is among the most active players in major tennis.\n\nFrom Premise 1, we know that being ranked highly by the Women's Tennis Association implies being among the most active players in major tennis.\n\nFrom Premise 2, we know that everyone who lost to Iga \u015awi\u0105tek is ranked highly by the Women's Tennis Association.\n\nFrom Premise 3, we know that all female tennis players at Roland Garros 2022 lost to Iga \u015awi\u0105tek.\n\nNow, let's use the information from Premises 3 and 4. If all female tennis players at Roland Garros 2022 lost to Iga \u015awi\u0105tek, and either female tennis players at Roland Garros 2022 or male tennis players at Roland Garros 2022, then we can conclude that Coco Gauff could be either a female or a male tennis player at Roland Garros 2022.\n\nFrom Premise 5, we know that all male tennis players at Roland Garros 2022 lost to Rafael Nadal.\n\nNow, let's analyze Premise 6. If Coco Gauff is a player who is ranked highly by the Women's Tennis Association or a player who lost to Rafael Nadal, then Coco Gauff is not a male tennis player at Roland Garros 2022. \n\nSince Coco Gauff could be either a female or a male tennis player at Roland Garros 2022, and if she is a player who lost to Rafael Nadal, then she cannot be a male tennis player at Roland Garros 2022. This means that Coco Gauff is likely a female tennis player at Roland Garros 2022.\n\nFrom Premise 3, we know that all female tennis players at Roland Garros 2022 lost to Iga \u015awi\u0105tek. Therefore, Coco Gauff is likely a player who lost to Iga \u015awi\u0105tek.\n\nFrom Premise 2, we know that everyone who lost to Iga \u015awi\u0105tek is ranked highly by the Women's Tennis Association. Therefore, Coco Gauff is likely ranked highly by the Women's Tennis Association.\n\nNow, let's apply Premise 1. If Coco Gauff is ranked highly by the Women's Tennis Association, then she is among the most active players in major tennis.\n\nBased on the given premises and logical reasoning, we can conclude that:\n\nCoco Gauff is among the most active players in major tennis.\n\nTherefore, the conclusion is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: If a player is ranked highly by the Women's Tennis Association, then they are among the most active players in major tennis.\n\nPremise 2: Everyone who lost to Iga \u015awi\u0105tek is ranked highly by the Women's Tennis Association.\n\nPremise 3: All female tennis players at Roland Garros 2022 lost to Iga \u015awi\u0105tek.\n\nPremise 4: Either female tennis players at Roland Garros 2022 or male tennis players at Roland Garros 2022.\n\nPremise 5: All male tennis players at Roland Garros 2022 lost to Rafael Nadal.\n\nPremise 6: If Coco Gauff is a player who is ranked highly by the Women's Tennis Association or a player who lost to Rafael Nadal, then Coco Gauff is not a male tennis player at Roland Garros 2022.\n\nConclusion: Coco Gauff is among the most active players in major tennis.\n\nFrom Premise 2 and Premise 3, we can infer that all female tennis players at Roland Garros 2022 are ranked highly by the Women's Tennis Association, as they all lost to Iga \u015awi\u0105tek.\n\nFrom Premise 4, we know that either female tennis players at Roland Garros 2022 or male tennis players at Roland Garros 2022 participated in the tournament.\n\nFrom Premise 5, we know that all male tennis players at Roland Garros 2022 lost to Rafael Nadal.\n\nNow, let's consider the two possible scenarios for Coco Gauff:\n\nScenario 1: Coco Gauff is a female tennis player at Roland Garros 2022.\n\nIn this case, from Premise 3, we know that Coco Gauff lost to Iga \u015awi\u0105tek. From Premise 2, we know that Coco Gauff is ranked highly by the Women's Tennis Association.\n\nScenario 2: Coco Gauff is a male tennis player at Roland Garros 2022.\n\nIn this case, from Premise 5, we know that Coco Gauff lost to Rafael Nadal.\n\nNow, let's examine the conclusion. We can rewrite the conclusion as: \"Coco Gauff is ranked highly by the Women's Tennis Association.\"\n\nFrom Premise 1, we know that if a player is ranked highly by the Women's Tennis Association, then they are among the most active players in major tennis.\n\nWe can see that Scenario 1 satisfies the conclusion, as Coco Gauff is ranked highly by the Women's Tennis Association.\n\nHowever, we cannot conclude that Coco Gauff is among the most active players in major tennis based on Scenario 2, as there is no information linking male tennis players at Roland Garros 2022 to being among the most active players in major tennis.\n\nTherefore, the conclusion is uncertain, as we cannot determine whether Coco Gauff is among the most active players in major tennis based on the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: If a player is ranked highly by the Women's Tennis Association, then they are among the most active players in major tennis.\n\nPremise 2: Everyone who lost to Iga \u015awi\u0105tek is ranked highly by the Women's Tennis Association.\n\nPremise 3: All female tennis players at Roland Garros 2022 lost to Iga \u015awi\u0105tek.\n\nPremise 4: Either female tennis players at Roland Garros 2022 or male tennis players at Roland Garros 2022.\n\nPremise 5: All male tennis players at Roland Garros 2022 lost to Rafael Nadal.\n\nPremise 6: If Coco Gauff is a player who is ranked highly by the Women's Tennis Association or a player who lost to Rafael Nadal, then Coco Gauff is not a male tennis player at Roland Garros 2022.\n\nNow, we need to analyze the given conclusion:\nCoco Gauff is among the most active players in major tennis.\n\nFrom Premise 2, we know that everyone who lost to Iga \u015awi\u0105tek is ranked highly by the Women's Tennis Association. From Premise 3, we can infer that all female tennis players at Roland Garros 2022 are ranked highly by the Women's Tennis Association, as they lost to Iga \u015awi\u0105tek.\n\nFrom Premise 4, we know that either female tennis players at Roland Garros 2022 or male tennis players at Roland Garros 2022 are present. However, from Premise 5, we know that all male tennis players at Roland Garros 2022 lost to Rafael Nadal. Therefore, we can conclude that Coco Gauff is either a female tennis player at Roland Garros 2022 (Premise 3) or a male tennis player at Roland Garros 2022 (Premise 4).\n\nFrom Premise 6, if Coco Gauff is a player who is ranked highly by the Women's Tennis Association or a player who lost to Rafael Nadal, then Coco Gauff is not a male tennis player at Roland Garros 2022. We know that Coco Gauff lost to Iga \u015awi\u0105tek (Premise 3), which means she is ranked highly by the Women's Tennis Association (Premise 2). Therefore, from Premise 6, we can conclude that Coco Gauff is not a male tennis player at Roland Garros 2022.\n\nHowever, Premise 3 does not explicitly state that Coco Gauff lost to Iga \u015awi\u0105tek, but we can infer from the given information that Coco Gauff is likely a female tennis player at Roland Garros 2022. If we assume that Coco Gauff is a female tennis player at Roland Garros 2022, then from Premise 1, we can conclude that she is among the most active players in major tennis.\n\nTherefore, the conclusion \"Coco Gauff is among the most active players in major tennis\" is uncertain.",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to apply logical reasoning using the given premises. We will break down the information into steps:\n\nPremise 1: If a player is ranked highly by the Women's Tennis Association, then they are among the most active players in major tennis.\n\nPremise 2: Everyone who lost to Iga \u015awi\u0105tek is ranked highly by the Women's Tennis Association.\n\nPremise 3: All female tennis players at Roland Garros 2022 lost to Iga \u015awi\u0105tek.\n\nPremise 4: Either female tennis players at Roland Garros 2022 or male tennis players at Roland Garros 2022.\n\nPremise 5: All male tennis players at Roland Garros 2022 lost to Rafael Nadal.\n\nPremise 6: If Coco Gauff is a player who is ranked highly by the Women's Tennis Association or a player who lost to Rafael Nadal, then Coco Gauff is not a male tennis player at Roland Garros 2022.\n\nConclusion: Coco Gauff is among the most active players in major tennis.\n\nStep 1: From Premise 2 and Premise 3, we can infer that all female tennis players at Roland Garros 2022 are ranked highly by the Women's Tennis Association.\n\nStep 2: Since Coco Gauff is a female tennis player at Roland Garros 2022 (from Premise 3), she is ranked highly by the Women's Tennis Association (from Step 1).\n\nStep 3: From Premise 1, if a player is ranked highly by the Women's Tennis Association, they are among the most active players in major tennis. Since Coco Gauff is ranked highly by the Women's Tennis Association (from Step 2), she is among the most active players in major tennis.\n\nHowever, we need to consider the information given in Premise 6. If Coco Gauff is a player who is ranked highly by the Women's Tennis Association or a player who lost to Rafael Nadal, then Coco Gauff is not a male tennis player at Roland Garros 2022. We have already established that Coco Gauff is ranked highly by the Women's Tennis Association (from Step 2), so this implies that Coco Gauff is not a male tennis player at Roland Garros 2022.\n\nStep 4: From Premise 5, all male tennis players at Roland Garros 2022 lost to Rafael Nadal. Since Coco Gauff is not a male tennis player at Roland Garros 2022 (from Step 3), we cannot conclude that Coco Gauff lost to Rafael Nadal.\n\nStep 5: From Premise 6, since Coco Gauff is ranked highly by the Women's Tennis Association (from Step 2) and we cannot conclude that Coco Gauff lost to Rafael Nadal (from Step 4), we cannot conclude that Coco Gauff is a player who is ranked highly by the Women's Tennis Association or a player who lost to Rafael Nadal.\n\nConclusion: Since we cannot conclude that Coco Gauff is a player who is ranked highly by the Women's Tennis Association or a player who lost to Rafael Nadal (from Step 5), we cannot conclude that Coco Gauff is not a male tennis player at Roland Garros 2022. Therefore, we cannot determine whether Coco Gauff is among the most active players in major tennis.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given premises and use logical reasoning to determine the validity of the conclusion.\n\nPremise 1: If a player is ranked highly by the Women's Tennis Association, then they are among the most active players in major tennis.\n\nPremise 2: Everyone who lost to Iga \u015awi\u0105tek is ranked highly by the Women's Tennis Association.\n\nPremise 3: All female tennis players at Roland Garros 2022 lost to Iga \u015awi\u0105tek.\n\nPremise 4: Either female tennis players at Roland Garros 2022 or male tennis players at Roland Garros 2022.\n\nPremise 5: All male tennis players at Roland Garros 2022 lost to Rafael Nadal.\n\nPremise 6: If Coco Gauff is a player who is ranked highly by the Women's Tennis Association or a player who lost to Rafael Nadal, then Coco Gauff is not a male tennis player at Roland Garros 2022.\n\nConclusion: Coco Gauff is among the most active players in major tennis.\n\nLet's analyze the premises and conclusion step by step:\n\n1. From Premise 2 and Premise 3, we can infer that all female tennis players at Roland Garros 2022 are ranked highly by the Women's Tennis Association. This is because everyone who lost to Iga \u015awi\u0105tek is ranked highly by the Women's Tennis Association, and all female tennis players at Roland Garros 2022 lost to Iga \u015awi\u0105tek.\n\n2. From Premise 4, we know that either female tennis players at Roland Garros 2022 or male tennis players at Roland Garros 2022 are among the players at Roland Garros 2022. However, this premise does not provide any specific information about Coco Gauff.\n\n3. From Premise 5, we know that all male tennis players at Roland Garros 2022 lost to Rafael Nadal. This does not provide any specific information about Coco Gauff.\n\n4. From Premise 6, we know that if Coco Gauff is a player who is ranked highly by the Women's Tennis Association or a player who lost to Rafael Nadal, then Coco Gauff is not a male tennis player at Roland Garros 2022. This premise is crucial in determining the conclusion.\n\nNow, let's consider the possible scenarios for Coco Gauff:\n\nScenario 1: Coco Gauff is a female tennis player at Roland Garros 2022.\n\n* From Premise 3, we know that all female tennis players at Roland Garros 2022 lost to Iga \u015awi\u0105tek.\n* From Premise 2, we know that everyone who lost to Iga \u015awi\u0105tek is ranked highly by the Women's Tennis Association.\n* Therefore, Coco Gauff is ranked highly by the Women's Tennis Association, and she is among the most active players in major tennis.\n\nScenario 2: Coco Gauff is a male tennis player at Roland Garros 2022.\n\n* From Premise 6, we know that Coco Gauff is not a male tennis player at Roland Garros 2022 if she is a player who is ranked highly by the Women's Tennis Association or a player who lost to Rafael Nadal. However, we cannot conclude this with certainty because there might be other possibilities.\n* From Premise 5, we know that all male tennis players at Roland Garros 2022 lost to Rafael Nadal. However, we cannot conclude that Coco Gauff is among the most active players in major tennis based on this premise alone.\n\nBased on the analysis, we can conclude that the conclusion \"Coco Gauff is among the most active players in major tennis\" is uncertain in Scenario 2. In Scenario 1, the conclusion is true. However, the premises do not provide sufficient information to conclude that Coco Gauff is a female tennis player at Roland Garros 2022 with certainty.\n\nTherefore, the final answer is:\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether Coco Gauff is among the most active players in major tennis, we need to analyze the given premises step by step.\n\nPremise 1: If a player is ranked highly by the Women's Tennis Association, then they are among the most active players in major tennis.\n\nThis premise establishes a relationship between being ranked highly by the Women's Tennis Association and being among the most active players in major tennis. However, it does not directly relate to Coco Gauff.\n\nPremise 2: Everyone who lost to Iga \u015awi\u0105tek is ranked highly by the Women's Tennis Association.\n\nThis premise links losing to Iga \u015awi\u0105tek with being ranked highly by the Women's Tennis Association. However, it does not provide any information about Coco Gauff.\n\nPremise 3: All female tennis players at Roland Garros 2022 lost to Iga \u015awi\u0105tek.\n\nThis premise provides information about female tennis players at Roland Garros 2022. However, it does not directly relate to Coco Gauff.\n\nPremise 4: Either female tennis players at Roland Garros 2022 or male tennis players at Roland Garros 2022.\n\nThis premise establishes an \"or\" relationship between female and male tennis players at Roland Garros 2022.\n\nPremise 5: All male tennis players at Roland Garros 2022 lost to Rafael Nadal.\n\nThis premise provides information about male tennis players at Roland Garros 2022 and their relationship with Rafael Nadal.\n\nPremise 6: If Coco Gauff is a player who is ranked highly by the Women's Tennis Association or a player who lost to Rafael Nadal, then Coco Gauff is not a male tennis player at Roland Garros 2022.\n\nThis premise creates a conditional statement about Coco Gauff. To determine whether Coco Gauff is among the most active players in major tennis, we need to analyze this premise.\n\nLet's break down Premise 6:\n\n- If Coco Gauff is a player who is ranked highly by the Women's Tennis Association, then she is not a male tennis player at Roland Garros 2022 (by Premise 2).\n- If Coco Gauff is a player who lost to Rafael Nadal, then she is not a male tennis player at Roland Garros 2022 (by Premise 5).\n\nSince we don't have any direct information about Coco Gauff's relationship with Rafael Nadal, let's focus on Premise 2 and the fact that we don't have any information about Coco Gauff losing to Iga \u015awi\u0105tek.\n\nGiven that Premise 2 states everyone who lost to Iga \u015awi\u0105tek is ranked highly by the Women's Tennis Association, and we don't have any information about Coco Gauff losing to Iga \u015awi\u0105tek, we cannot conclude that Coco Gauff is ranked highly by the Women's Tennis Association.\n\nHowever, Premise 6 states that if Coco Gauff is a player who is ranked highly by the Women's Tennis Association or a player who lost to Rafael Nadal, then Coco Gauff is not a male tennis player at Roland Garros 2022. We know that Coco Gauff is not a male tennis player at Roland Garros 2022 because we can conclude that Coco Gauff is a female tennis player at Roland Garros 2022.\n\nPremise 3 states all female tennis players at Roland Garros 2022 lost to Iga \u015awi\u0105tek. Since Coco Gauff is a female tennis player at Roland Garros 2022, we can conclude that Coco Gauff lost to Iga \u015awi\u0105tek.\n\nNow, let's go back to Premise 2, which states everyone who lost to Iga \u015awi\u0105tek is ranked highly by the Women's Tennis Association. Since Coco Gauff lost to Iga \u015awi\u0105tek, we can conclude that Coco Gauff is ranked highly by the Women's Tennis Association.\n\nNow that we have established that Coco Gauff is ranked highly by the Women's Tennis Association, we can go back to Premise 1, which states that if a player is ranked highly by the Women's Tennis Association, then they are among the most active players in major tennis. Since Coco Gauff is ranked highly by the Women's Tennis Association, we can conclude that Coco Gauff is among the most active players in major tennis.\n\nTherefore, the conclusion is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we will use logical deductions based on the given premises.\n\nPremise 1: If a player is ranked highly by the Women's Tennis Association, then they are among the most active players in major tennis.\n\nPremise 2: Everyone who lost to Iga \u015awi\u0105tek is ranked highly by the Women's Tennis Association.\n\nPremise 3: All female tennis players at Roland Garros 2022 lost to Iga \u015awi\u0105tek.\n\nPremise 4: Either female tennis players at Roland Garros 2022 or male tennis players at Roland Garros 2022.\n\nPremise 5: All male tennis players at Roland Garros 2022 lost to Rafael Nadal.\n\nPremise 6: If Coco Gauff is a player who is ranked highly by the Women's Tennis Association or a player who lost to Rafael Nadal, then Coco Gauff is not a male tennis player at Roland Garros 2022.\n\nConclusion: Coco Gauff is among the most active players in major tennis.\n\nLet's analyze the premises and the conclusion step by step:\n\nFrom Premise 3, we know that all female tennis players at Roland Garros 2022 lost to Iga \u015awi\u0105tek. This implies that Coco Gauff, being a female tennis player at Roland Garros 2022, lost to Iga \u015awi\u0105tek. \n\nFrom Premise 2, we know that everyone who lost to Iga \u015awi\u0105tek is ranked highly by the Women's Tennis Association. Since Coco Gauff lost to Iga \u015awi\u0105tek, it implies that Coco Gauff is ranked highly by the Women's Tennis Association.\n\nNow, we will use Premise 1: If a player is ranked highly by the Women's Tennis Association, then they are among the most active players in major tennis. Since Coco Gauff is ranked highly by the Women's Tennis Association, we can conclude that Coco Gauff is among the most active players in major tennis.\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we will use logical reasoning and analyze the given premises step by step.\n\nPremise 1: If a player is ranked highly by the Women's Tennis Association, then they are among the most active players in major tennis.\nPremise 2: Everyone who lost to Iga \u015awi\u0105tek is ranked highly by the Women's Tennis Association.\nPremise 3: All female tennis players at Roland Garros 2022 lost to Iga \u015awi\u0105tek.\nPremise 4: Either female tennis players at Roland Garros 2022 or male tennis players at Roland Garros 2022.\nPremise 5: All male tennis players at Roland Garros 2022 lost to Rafael Nadal.\nPremise 6: If Coco Gauff is a player who is ranked highly by the Women's Tennis Association or a player who lost to Rafael Nadal, then Coco Gauff is not a male tennis player at Roland Garros 2022.\n\nWe need to determine whether the conclusion \"Coco Gauff is among the most active players in major tennis\" is true, false, or uncertain.\n\nFrom Premise 2, we know that everyone who lost to Iga \u015awi\u0105tek is ranked highly by the Women's Tennis Association. From Premise 3, we know that all female tennis players at Roland Garros 2022 lost to Iga \u015awi\u0105tek. Therefore, we can conclude that all female tennis players at Roland Garros 2022 are ranked highly by the Women's Tennis Association.\n\nFrom Premise 4, we know that either female tennis players at Roland Garros 2022 or male tennis players at Roland Garros 2022. Since we have already established that all female tennis players at Roland Garros 2022 are ranked highly by the Women's Tennis Association, we can conclude that male tennis players at Roland Garros 2022 are also ranked highly by the Women's Tennis Association.\n\nFrom Premise 1, we know that if a player is ranked highly by the Women's Tennis Association, then they are among the most active players in major tennis. Therefore, we can conclude that male tennis players at Roland Garros 2022 are among the most active players in major tennis.\n\nHowever, we still need to determine whether Coco Gauff is a male tennis player at Roland Garros 2022. From Premise 6, we know that if Coco Gauff is a player who is ranked highly by the Women's Tennis Association or a player who lost to Rafael Nadal, then Coco Gauff is not a male tennis player at Roland Garros 2022.\n\nWe know that Coco Gauff is ranked highly by the Women's Tennis Association (as established earlier) or lost to Rafael Nadal (from Premise 5). Therefore, from Premise 6, we can conclude that Coco Gauff is not a male tennis player at Roland Garros 2022.\n\nHowever, we do not have any information about whether Coco Gauff is among the most active players in major tennis. We only know that she is a female tennis player at Roland Garros 2022 (as established earlier) or a player who is ranked highly by the Women's Tennis Association (from Premise 2). Therefore, the conclusion \"Coco Gauff is among the most active players in major tennis\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we will use the method of logical deduction based on the given premises.\n\nPremises:\n1. If a player is ranked highly by the Women's Tennis Association, then they are among the most active players in major tennis.\n2. Everyone who lost to Iga \u015awi\u0105tek is ranked highly by the Women's Tennis Association.\n3. All female tennis players at Roland Garros 2022 lost to Iga \u015awi\u0105tek.\n4. Either female tennis players at Roland Garros 2022 or male tennis players at Roland Garros 2022.\n5. All male tennis players at Roland Garros 2022 lost to Rafael Nadal.\n6. If Coco Gauff is a player who is ranked highly by the Women's Tennis Association or a player who lost to Rafael Nadal, then Coco Gauff is not a male tennis player at Roland Garros 2022.\n\nConclusion to be determined:\nCoco Gauff is among the most active players in major tennis.\n\nStep 1: We need to establish a relationship between Coco Gauff and the Women's Tennis Association ranking, as it directly relates to being among the most active players in major tennis.\n\nStep 2: From premise 2, we know that everyone who lost to Iga \u015awi\u0105tek is ranked highly by the Women's Tennis Association. \n\nStep 3: From premise 3, we know that all female tennis players at Roland Garros 2022 lost to Iga \u015awi\u0105tek. \n\nStep 4: From premise 4, we know that either female tennis players at Roland Garros 2022 or male tennis players at Roland Garros 2022. This means that Coco Gauff could be either a female tennis player or a male tennis player at Roland Garros 2022.\n\nStep 5: From premise 5, we know that all male tennis players at Roland Garros 2022 lost to Rafael Nadal.\n\nStep 6: From premise 6, we have a conditional statement: If Coco Gauff is a player who is ranked highly by the Women's Tennis Association or a player who lost to Rafael Nadal, then Coco Gauff is not a male tennis player at Roland Garros 2022.\n\nStep 7: If Coco Gauff is a male tennis player at Roland Garros 2022, then he would have lost to Rafael Nadal (from premise 5).\n\nStep 8: Since Coco Gauff is either a female tennis player or a male tennis player at Roland Garros 2022, and we've established a relationship between being a male tennis player and losing to Rafael Nadal, we need to consider this in premise 6.\n\nStep 9: To determine if Coco Gauff is among the most active players in major tennis, we need to find a connection between Coco Gauff and the Women's Tennis Association ranking.\n\nStep 10: From premise 6, if Coco Gauff is ranked highly by the Women's Tennis Association or lost to Rafael Nadal, then Coco Gauff is not a male tennis player at Roland Garros 2022. \n\nStep 11: From step 7 and premise 5, we know that all male tennis players lost to Rafael Nadal. If Coco Gauff is not a male tennis player, then she could be a female tennis player.\n\nStep 12: From step 3 and premise 2, we know that everyone who lost to Iga \u015awi\u0105tek is ranked highly by the Women's Tennis Association. If Coco Gauff is a female tennis player, she would have lost to Iga \u015awi\u0105tek (from premise 3), making her ranked highly by the Women's Tennis Association.\n\nStep 13: From premise 1, if a player is ranked highly by the Women's Tennis Association, then they are among the most active players in major tennis.\n\nStep 14: Therefore, since Coco Gauff is ranked highly by the Women's Tennis Association (from step 12), she is among the most active players in major tennis.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "ranked_highly_by_wta(coco_gauff)",
+          "z3_formula": "ranked_highly_by_wta_coco_gauff == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(coco_gauff)",
+          "z3_formula": "lost_to_iga_swiatek_coco_gauff == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "ranked_highly_by_wta(X) -> most_active_major_tennis(X)",
+          "z3_formula": "Implies(ranked_highly_by_wta_coco_gauff, most_active_major_tennis_coco_gauff)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(X) -> ranked_highly_by_wta(X)",
+          "z3_formula": "Implies(lost_to_iga_swiatek_coco_gauff, ranked_highly_by_wta_coco_gauff)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(X) -> female_tennis_player(X)",
+          "z3_formula": "Implies(lost_to_iga_swiatek_coco_gauff, female_tennis_player_coco_gauff)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player(X) -> lost_to_iga_swiatek(X)",
+          "z3_formula": "Implies(female_tennis_player_coco_gauff, lost_to_iga_swiatek_coco_gauff)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player(X) & female_tennis_player(X) -> female_tennis_player(X)",
+          "z3_formula": "Implies(And(female_tennis_player_coco_gauff, female_tennis_player_coco_gauff), female_tennis_player_coco_gauff)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player(X) | male_tennis_player(X)",
+          "z3_formula": "Or(female_tennis_player_coco_gauff, male_tennis_player_coco_gauff)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "female_tennis_player(X) -> ranked_highly_by_wta(X)",
+          "z3_formula": "Implies(female_tennis_player_coco_gauff, ranked_highly_by_wta_coco_gauff)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "male_tennis_player(X) & lost_to_rafael_nadal(X) -> ranked_highly_by_wta(X) | lost_to_rafael_nadal(X)",
+          "z3_formula": "Implies(And(male_tennis_player_coco_gauff, lost_to_rafael_nadal_coco_gauff), Or(ranked_highly_by_wta_coco_gauff, lost_to_rafael_nadal_coco_gauff))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "ranked_highly_by_wta(X) | lost_to_rafael_nadal(X) -> ~male_tennis_player(X)",
+          "z3_formula": "Implies(Or(ranked_highly_by_wta_coco_gauff, lost_to_rafael_nadal_coco_gauff), Not(male_tennis_player_coco_gauff))",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "male_tennis_player(X) -> lost_to_rafael_nadal(X)",
+          "z3_formula": "Implies(male_tennis_player_coco_gauff, lost_to_rafael_nadal_coco_gauff)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "most_active_major_tennis(coco_gauff)",
+          "z3_formula": "most_active_major_tennis_coco_gauff == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "highly_ranked(WTA, coco_gauff)",
+          "z3_formula": "highly_ranked_wta_coco_gauff == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "highly_ranked(WTA, X) -> active_major_tennis(X)",
+          "z3_formula": "Implies(highly_ranked_wta_coco_gauff, active_major_tennis_coco_gauff)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(coco_gauff)",
+          "z3_formula": "lost_to_iga_swiatek_coco_gauff == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "lost_to_iga_swiatek(X) -> highly_ranked(WTA, X)",
+          "z3_formula": "Implies(lost_to_iga_swiatek_coco_gauff, highly_ranked_wta_coco_gauff)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_roland_garros_2022(coco_gauff)",
+          "z3_formula": "female_tennis_player_roland_garros_2022_coco_gauff == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_roland_garros_2022(X) | male_tennis_player_roland_garros_2022(X)",
+          "z3_formula": "Or(female_tennis_player_roland_garros_2022_coco_gauff, male_tennis_player_roland_garros_2022_coco_gauff)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "male_tennis_player_roland_garros_2022(X) -> lost_to_rafael_nadal(X)",
+          "z3_formula": "Implies(male_tennis_player_roland_garros_2022_coco_gauff, lost_to_rafael_nadal_coco_gauff)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_rafael_nadal(X) | highly_ranked(WTA, X)",
+          "z3_formula": "Or(lost_to_rafael_nadal_coco_gauff, highly_ranked_wta_coco_gauff)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "highly_ranked(WTA, X) | lost_to_rafael_nadal(X) -> not male_tennis_player_roland_garros_2022(X)",
+          "z3_formula": "Implies(Or(highly_ranked_wta_coco_gauff, lost_to_rafael_nadal_coco_gauff), Not(male_tennis_player_roland_garros_2022_coco_gauff))",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "active_major_tennis(coco_gauff)",
+          "z3_formula": "active_major_tennis_coco_gauff == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "highly_ranked_by_wta(coco_gauff)",
+          "z3_formula": "highly_ranked_by_wta_coco_gauff == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(coco_gauff)",
+          "z3_formula": "lost_to_iga_swiatek_coco_gauff == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_at_roland_garros_2022(coco_gauff)",
+          "z3_formula": "female_tennis_player_at_roland_garros_2022_coco_gauff == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_at_roland_garros_2022_or_male_tennis_player_at_roland_garros_2022",
+          "z3_formula": "female_tennis_player_at_roland_garros_2022_or_male_tennis_player_at_roland_garros_2022 == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_rafael_nadal(coco_gauff)",
+          "z3_formula": "lost_to_rafael_nadal_coco_gauff == False",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "highly_ranked_by_wta(X) -> active_player_in_major_tennis(X)",
+          "z3_formula": "Implies(highly_ranked_by_wta_coco_gauff, active_player_in_major_tennis_coco_gauff)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "highly_ranked_by_wta(X) | lost_to_rafael_nadal(X) -> not_male_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "Implies(Or(highly_ranked_by_wta_coco_gauff, lost_to_rafael_nadal_coco_gauff), not_male_tennis_player_at_roland_garros_2022_coco_gauff)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "active_player_in_major_tennis(coco_gauff)",
+          "z3_formula": "active_player_in_major_tennis_coco_gauff == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not_male_tennis_player_at_roland_garros_2022(coco_gauff)",
+          "z3_formula": "not_male_tennis_player_at_roland_garros_2022_coco_gauff == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "ranked_highly_by_wta(coco_gauff)",
+          "z3_formula": "ranked_highly_by_wta_coco_gauff == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "ranked_highly_by_wta(X) -> among_most_active_players(X)",
+          "z3_formula": "Implies(ranked_highly_by_wta_coco_gauff, among_most_active_players_coco_gauff)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(coco_gauff)",
+          "z3_formula": "lost_to_iga_swiatek_coco_gauff == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "lost_to_iga_swiatek(X) -> ranked_highly_by_wta(X)",
+          "z3_formula": "Implies(lost_to_iga_swiatek_coco_gauff, ranked_highly_by_wta_coco_gauff)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(female_tennis_players_at_roland_garros_2022)",
+          "z3_formula": "lost_to_iga_swiatek_female_tennis_players_at_roland_garros_2022 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_players_at_roland_garros_2022_or_male_tennis_players_at_roland_garros_2022",
+          "z3_formula": "female_tennis_players_at_roland_garros_2022_or_male_tennis_players_at_roland_garros_2022 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_rafael_nadal(male_tennis_players_at_roland_garros_2022)",
+          "z3_formula": "lost_to_rafael_nadal_male_tennis_players_at_roland_garros_2022 == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "ranked_highly_by_wta(X) | lost_to_rafael_nadal(X) -> not_male_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "Implies(Or(ranked_highly_by_wta_coco_gauff, lost_to_rafael_nadal_coco_gauff), Not(male_tennis_player_at_roland_garros_2022_coco_gauff))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_players_at_roland_garros_2022",
+          "z3_formula": "female_tennis_players_at_roland_garros_2022 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "male_tennis_players_at_roland_garros_2022",
+          "z3_formula": "male_tennis_players_at_roland_garros_2022 == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "female_tennis_player_at_roland_garros_2022(coco_gauff)",
+          "z3_formula": "female_tennis_player_at_roland_garros_2022_coco_gauff == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(coco_gauff)",
+          "z3_formula": "lost_to_iga_swiatek_coco_gauff == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "lost_to_iga_swiatek(X) -> ranked_highly_by_wta(X)",
+          "z3_formula": "Implies(lost_to_iga_swiatek_coco_gauff, ranked_highly_by_wta_coco_gauff)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "ranked_highly_by_wta(coco_gauff)",
+          "z3_formula": "ranked_highly_by_wta_coco_gauff == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "ranked_highly_by_wta(X) -> among_most_active_players(X)",
+          "z3_formula": "Implies(ranked_highly_by_wta_coco_gauff, among_most_active_players_coco_gauff)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "among_most_active_players(coco_gauff)",
+          "z3_formula": "among_most_active_players_coco_gauff == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "ranked_highly_by_wta(player)",
+          "z3_formula": "ranked_highly_by_wta_player == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "ranked_highly_by_wta(X) -> active_major_tennis(X)",
+          "z3_formula": "Implies(ranked_highly_by_wta_player, active_major_tennis_player)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(X)",
+          "z3_formula": "lost_to_iga_swiatek_player == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "ranked_highly_by_wta(X) == ranked_highly_by_wta_player",
+          "z3_formula": "ranked_highly_by_wta_player == ranked_highly_by_wta_player",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "female_tennis_player_at_roland_garros_2022_player == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "lost_to_iga_swiatek(X) -> ranked_highly_by_wta(X)",
+          "z3_formula": "Implies(lost_to_iga_swiatek_player, ranked_highly_by_wta_player)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_at_roland_garros_2022(X) == female_tennis_player_at_roland_garros_2022_player",
+          "z3_formula": "female_tennis_player_at_roland_garros_2022_player == female_tennis_player_at_roland_garros_2022_player",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "male_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "male_tennis_player_at_roland_garros_2022_player == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_rafael_nadal(X)",
+          "z3_formula": "lost_to_rafael_nadal_player == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "lost_to_rafael_nadal(X) -> male_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "Implies(lost_to_rafael_nadal_player, male_tennis_player_at_roland_garros_2022_player)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_at_roland_garros_2022(X) | male_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "Or(female_tennis_player_at_roland_garros_2022_player, male_tennis_player_at_roland_garros_2022_player)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "male_tennis_player_at_roland_garros_2022(X) -> lost_to_rafael_nadal(X)",
+          "z3_formula": "Implies(male_tennis_player_at_roland_garros_2022_player, lost_to_rafael_nadal_player)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "ranked_highly_by_wta(X) | lost_to_rafael_nadal(X) -> not_male_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "Implies(Or(ranked_highly_by_wta_player, lost_to_rafael_nadal_player), not_male_tennis_player_at_roland_garros_2022_player)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "active_major_tennis(coco_gauff)",
+          "z3_formula": "active_major_tennis_coco_gauff == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "ranked_highly_by_wta(coco_gauff)",
+          "z3_formula": "ranked_highly_by_wta_coco_gauff == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(coco_gauff)",
+          "z3_formula": "lost_to_iga_swiatek_coco_gauff == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_at_roland_garros_2022(coco_gauff)",
+          "z3_formula": "female_tennis_player_at_roland_garros_2022_coco_gauff == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "male_tennis_player_at_roland_garros_2022(coco_gauff)",
+          "z3_formula": "male_tennis_player_at_roland_garros_2022_coco_gauff == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "ranked_highly_by_wta(X) -> active_player_in_major_tennis(X)",
+          "z3_formula": "Implies(ranked_highly_by_wta_coco_gauff, active_player_in_major_tennis_coco_gauff)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "lost_to_iga_swiatek(X) -> ranked_highly_by_wta(X)",
+          "z3_formula": "Implies(lost_to_iga_swiatek_coco_gauff, ranked_highly_by_wta_coco_gauff)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "female_tennis_player_at_roland_garros_2022(X) -> ranked_highly_by_wta(X)",
+          "z3_formula": "Implies(female_tennis_player_at_roland_garros_2022_coco_gauff, ranked_highly_by_wta_coco_gauff)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "lost_to_rafael_nadal(X) | ranked_highly_by_wta(X) -> not male_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "Implies(Or(lost_to_rafael_nadal_coco_gauff, ranked_highly_by_wta_coco_gauff), Not(male_tennis_player_at_roland_garros_2022_coco_gauff))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "active_player_in_major_tennis(coco_gauff)",
+          "z3_formula": "active_player_in_major_tennis_coco_gauff == Unknown",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "ranked_highly_by_wta(female_tennis_player_at_roland_garros_2022)",
+          "z3_formula": "ranked_highly_by_wta_female_tennis_player_at_roland_garros_2022 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "ranked_highly_by_wta(X) -> among_most_active_players_in_major_tennis(X)",
+          "z3_formula": "Implies(ranked_highly_by_wta_X, among_most_active_players_in_major_tennis_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(female_tennis_player_at_roland_garros_2022)",
+          "z3_formula": "lost_to_iga_swiatek_female_tennis_player_at_roland_garros_2022 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_at_roland_garros_2022",
+          "z3_formula": "female_tennis_player_at_roland_garros_2022 == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "ranked_highly_by_wta(female_tennis_player_at_roland_garros_2022)",
+          "z3_formula": "ranked_highly_by_wta_female_tennis_player_at_roland_garros_2022 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_at_roland_garros_2022",
+          "z3_formula": "female_tennis_player_at_roland_garros_2022 == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "ranked_highly_by_wta(X) -> among_most_active_players_in_major_tennis(X)",
+          "z3_formula": "Implies(ranked_highly_by_wta_X, among_most_active_players_in_major_tennis_X)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "among_most_active_players_in_major_tennis(female_tennis_player_at_roland_garros_2022)",
+          "z3_formula": "among_most_active_players_in_major_tennis_female_tennis_player_at_roland_garros_2022 == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_at_roland_garros_2022 == coco_gauff",
+          "z3_formula": "female_tennis_player_at_roland_garros_2022 == coco_gauff",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "ranked_highly_by_wta(coco_gauff)",
+          "z3_formula": "ranked_highly_by_wta_coco_gauff == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "ranked_highly_by_wta(X) | lost_to_rafael_nadal(X) -> not_male_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "Implies(Or(ranked_highly_by_wta_X, lost_to_rafael_nadal_X), not_male_tennis_player_at_roland_garros_2022_X)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not_male_tennis_player_at_roland_garros_2022(coco_gauff)",
+          "z3_formula": "not_male_tennis_player_at_roland_garros_2022_coco_gauff == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "male_tennis_player_at_roland_garros_2022 == coco_gauff",
+          "z3_formula": "male_tennis_player_at_roland_garros_2022 == coco_gauff",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not male_tennis_player_at_roland_garros_2022(coco_gauff)",
+          "z3_formula": "not_male_tennis_player_at_roland_garros_2022_coco_gauff == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_rafael_nadal(male_tennis_player_at_roland_garros_2022)",
+          "z3_formula": "lost_to_rafael_nadal_male_tennis_player_at_roland_garros_2022 == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "male_tennis_player_at_roland_garros_2022",
+          "z3_formula": "male_tennis_player_at_roland_garros_2022 == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not lost_to_rafael_nadal(coco_gauff)",
+          "z3_formula": "not_lost_to_rafael_nadal_coco_gauff == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "ranked_highly_by_wta(X) | lost_to_rafael_nadal(X) -> not_male_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "Implies(Or(ranked_highly_by_wta_X, lost_to_rafael_nadal_X), not_male_tennis_player_at_roland_garros_2022_X)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not (ranked_highly_by_wta(coco_gauff) | lost_to_rafael_nadal(coco_gauff))",
+          "z3_formula": "Not(Or(ranked_highly_by_wta_coco_gauff, lost_to_rafael_nadal_coco_gauff))",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not not_male_tennis_player_at_roland_garros_2022(coco_gauff)",
+          "z3_formula": "Not(not_male_tennis_player_at_roland_garros_2022_coco_gauff)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "male_tennis_player_at_roland_garros_2022(coco_gauff)",
+          "z3_formula": "male_tennis_player_at_roland_garros_2022_coco_gauff == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "male_tennis_player_at_roland_garros_2022 == coco_gauff",
+          "z3_formula": "male_tennis_player_at_roland_garros_2022 == coco_gauff",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "among_most_active_players_in_major_tennis(coco_gauff)",
+          "z3_formula": "among_most_active_players_in_major_tennis_coco_gauff == Unknown",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "highly_ranked_by_wta(Coco_Gauff)",
+          "z3_formula": "highly_ranked_by_wta_coco_gauff == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(Coco_Gauff)",
+          "z3_formula": "lost_to_iga_swiatek_coco_gauff == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(X) -> highly_ranked_by_wta(X)",
+          "z3_formula": "Implies(lost_to_iga_swiatek_coco_gauff, highly_ranked_by_wta_coco_gauff)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(X) -> female_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "Implies(lost_to_iga_swiatek_coco_gauff, female_tennis_player_at_roland_garros_2022_coco_gauff)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_at_roland_garros_2022(X) -> highly_ranked_by_wta(X)",
+          "z3_formula": "Implies(female_tennis_player_at_roland_garros_2022_coco_gauff, highly_ranked_by_wta_coco_gauff)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_at_roland_garros_2022(X) | male_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "Or(female_tennis_player_at_roland_garros_2022_coco_gauff, male_tennis_player_at_roland_garros_2022_coco_gauff)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "male_tennis_player_at_roland_garros_2022(X) -> lost_to_rafael_nadal(X)",
+          "z3_formula": "Implies(male_tennis_player_at_roland_garros_2022_coco_gauff, lost_to_rafael_nadal_coco_gauff)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "highly_ranked_by_wta(X) | lost_to_rafael_nadal(X) -> not male_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "Implies(Or(highly_ranked_by_wta_coco_gauff, lost_to_rafael_nadal_coco_gauff), Not(male_tennis_player_at_roland_garros_2022_coco_gauff))",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "highly_ranked_by_wta(X) -> among_most_active_players_in_major_tennis(X)",
+          "z3_formula": "Implies(highly_ranked_by_wta_coco_gauff, among_most_active_players_in_major_tennis_coco_gauff)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "among_most_active_players_in_major_tennis(Coco_Gauff)",
+          "z3_formula": "among_most_active_players_in_major_tennis_coco_gauff == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "ranked_highly_by_WTA(X) -> most_active_in_major_tennis(X)",
+          "z3_formula": "Implies(ranked_highly_by_WTA, most_active_in_major_tennis)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(X) -> ranked_highly_by_WTA(X)",
+          "z3_formula": "Implies(lost_to_iga_swiatek, ranked_highly_by_WTA)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_at_roland_garros_2022(X) -> lost_to_iga_swiatek(X)",
+          "z3_formula": "Implies(female_tennis_player_at_roland_garros_2022, lost_to_iga_swiatek)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_at_roland_garros_2022(X) | male_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "Or(female_tennis_player_at_roland_garros_2022, male_tennis_player_at_roland_garros_2022)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "male_tennis_player_at_roland_garros_2022(X) -> lost_to_rafael_nadal(X)",
+          "z3_formula": "Implies(male_tennis_player_at_roland_garros_2022, lost_to_rafael_nadal)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "ranked_highly_by_WTA(X) | lost_to_rafael_nadal(X) -> not male_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "Implies(Or(ranked_highly_by_WTA, lost_to_rafael_nadal), Not(male_tennis_player_at_roland_garros_2022))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "female_tennis_player_at_roland_garros_2022(coco_gauff)",
+          "z3_formula": "female_tennis_player_at_roland_garros_2022_coco_gauff == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "lost_to_iga_swiatek(coco_gauff)",
+          "z3_formula": "lost_to_iga_swiatek_coco_gauff == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "ranked_highly_by_WTA(coco_gauff)",
+          "z3_formula": "ranked_highly_by_WTA_coco_gauff == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "most_active_in_major_tennis(coco_gauff)",
+          "z3_formula": "most_active_in_major_tennis_coco_gauff == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "highly_ranked_by_wta(X) -> among_most_active_players(X)",
+          "z3_formula": "Implies(highly_ranked_by_wta_X, among_most_active_players_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(X) -> highly_ranked_by_wta(X)",
+          "z3_formula": "Implies(lost_to_iga_swiatek_X, highly_ranked_by_wta_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_at_roland_garros_2022(X) -> lost_to_iga_swiatek(X)",
+          "z3_formula": "Implies(female_tennis_player_at_roland_garros_2022_X, lost_to_iga_swiatek_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_at_roland_garros_2022(X) | male_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "Or(female_tennis_player_at_roland_garros_2022_X, male_tennis_player_at_roland_garros_2022_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "male_tennis_player_at_roland_garros_2022(X) -> lost_to_rafael_nadal(X)",
+          "z3_formula": "Implies(male_tennis_player_at_roland_garros_2022_X, lost_to_rafael_nadal_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "highly_ranked_by_wta(X) | lost_to_rafael_nadal(X) -> not male_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "Implies(Or(highly_ranked_by_wta_X, lost_to_rafael_nadal_X), Not(male_tennis_player_at_roland_garros_2022_X))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "among_most_active_players(coco_gauff)",
+          "z3_formula": "among_most_active_players_coco_gauff == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "ranked_highly_by_wta(X) -> among_most_active_players(X)",
+          "z3_formula": "Implies(ranked_highly_by_wta_X, among_most_active_players_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(X) -> ranked_highly_by_wta(X)",
+          "z3_formula": "Implies(lost_to_iga_swiatek_X, ranked_highly_by_wta_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(X)",
+          "z3_formula": "lost_to_iga_swiatek_X == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_at_roland_garros_2022(X) -> lost_to_iga_swiatek(X)",
+          "z3_formula": "Implies(female_tennis_player_at_roland_garros_2022_X, lost_to_iga_swiatek_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "female_tennis_player_at_roland_garros_2022_X == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "female_tennis_player_at_roland_garros_2022(X) -> ranked_highly_by_wta(X)",
+          "z3_formula": "Implies(female_tennis_player_at_roland_garros_2022_X, ranked_highly_by_wta_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_at_roland_garros_2022(X) | male_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "Or(female_tennis_player_at_roland_garros_2022_X, male_tennis_player_at_roland_garros_2022_X)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "male_tennis_player_at_roland_garros_2022(X) -> ranked_highly_by_wta(X)",
+          "z3_formula": "Implies(male_tennis_player_at_roland_garros_2022_X, ranked_highly_by_wta_X)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "male_tennis_player_at_roland_garros_2022(X) -> among_most_active_players(X)",
+          "z3_formula": "Implies(male_tennis_player_at_roland_garros_2022_X, among_most_active_players_X)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "male_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "male_tennis_player_at_roland_garros_2022_X == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "among_most_active_players(X)",
+          "z3_formula": "among_most_active_players_X == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_rafael_nadal(X) -> ranked_highly_by_wta(X) | lost_to_rafael_nadal(X)",
+          "z3_formula": "Implies(lost_to_rafael_nadal_X, Or(ranked_highly_by_wta_X, lost_to_rafael_nadal_X))",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_rafael_nadal(X)",
+          "z3_formula": "lost_to_rafael_nadal_X == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "lost_to_rafael_nadal(X) | ranked_highly_by_wta(X)",
+          "z3_formula": "Or(lost_to_rafael_nadal_X, ranked_highly_by_wta_X)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "ranked_highly_by_wta(X) | lost_to_rafael_nadal(X)",
+          "z3_formula": "Or(ranked_highly_by_wta_X, lost_to_rafael_nadal_X)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "coco_gauff -> not male_tennis_player_at_roland_garros_2022(coco_gauff)",
+          "z3_formula": "Implies(coco_gauff, Not(male_tennis_player_at_roland_garros_2022_coco_gauff))",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "coco_gauff",
+          "z3_formula": "coco_gauff == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not male_tennis_player_at_roland_garros_2022(coco_gauff)",
+          "z3_formula": "Not(male_tennis_player_at_roland_garros_2022_coco_gauff) == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "among_most_active_players(coco_gauff)",
+          "z3_formula": "among_most_active_players_coco_gauff == Unknown",
+          "source_step": 19
+        }
+      ],
+      []
+    ],
+    "constraints_stats": {
+      "total_extracted": 140,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 103
+    },
+    "maxsat_stats": {
+      "satisfied": 98,
+      "excluded": 5,
+      "total_weight": 134,
+      "solve_time_ms": 1.9502704963088036
+    },
+    "timing": {
+      "trace_gen_s": 10.922,
+      "extraction_s": 54.314,
+      "dedup_s": 3.632,
+      "maxsat_s": 0.007,
+      "total_s": 68.875
+    }
+  }
+}

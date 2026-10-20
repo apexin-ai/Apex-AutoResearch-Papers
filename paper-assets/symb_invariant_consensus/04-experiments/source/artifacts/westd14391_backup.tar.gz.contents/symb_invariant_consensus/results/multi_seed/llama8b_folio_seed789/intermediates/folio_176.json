@@ -1,0 +1,427 @@
+{
+  "problem": {
+    "id": "folio_176",
+    "problem": "Given the following premises:\n[BG] The Olympic games is a sporting event.  The last Olympic games was in Tokyo. The United States won the most medals in Tokyo.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nThe world championships is a sporting event.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "SportingEvent(olympics)",
+      "LastOlympics(tokyo)",
+      "MostMedals(unitedStates, tokyo)"
+    ],
+    "conclusion_fol": "SportingEvent(champs)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "Unknown": 45.5,
+      "uncertain but leaning towards true": 12.0
+    },
+    "answer_counts": {
+      "Unknown": 9,
+      "uncertain but leaning towards true": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: [BG] The Olympic games is a sporting event.\nThis premise directly states that the Olympic games is a sporting event. Therefore, we can conclude that any event that is an Olympic game is indeed a sporting event.\n\nPremise 2: The last Olympic games was in Tokyo.\nThis premise provides information about the location of the last Olympic games but does not provide any information about the nature of the Olympic games. It is still a sporting event.\n\nPremise 3: The United States won the most medals in Tokyo.\nThis premise provides information about the outcome of the Olympic games in Tokyo but does not provide any information about the nature of the Olympic games. It is still a sporting event.\n\nNow, let's analyze the conclusion:\n\"The world championships is a sporting event.\"\n\nTo determine whether this conclusion is true, false, or uncertain, we need to consider the premises. The conclusion is not directly related to the Olympic games, but we can still apply the information from the premises.\n\nSince the Olympic games is a sporting event (Premise 1), we can infer that any event with a similar nature might also be a sporting event. However, the premises do not provide any information about the world championships.\n\nGiven the information from the premises, we cannot make a direct conclusion about the world championships being a sporting event. Therefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises step by step.\n\nPremise 1: The Olympic games is a sporting event.\nThis premise directly tells us that the Olympic games is a sporting event. This conclusion is true.\n\nPremise 2: The last Olympic games was in Tokyo.\nThis premise provides information about the location of the last Olympic games. However, it does not have any direct relation to the conclusion about the world championships being a sporting event. This conclusion is uncertain.\n\nPremise 3: The United States won the most medals in Tokyo.\nThis premise provides information about the performance of the United States in the Olympic games held in Tokyo. However, it also does not have any direct relation to the conclusion about the world championships being a sporting event. This conclusion is uncertain.\n\nNow, let's analyze the conclusion: \n\"The world championships is a sporting event.\"\n\nTo determine whether this conclusion is true, false, or uncertain, we need to see if the premises provide any information that directly supports or contradicts this conclusion. \n\nBased on the premises, we can see that the Olympic games is a sporting event (Premise 1), but we do not have any direct information about the world championships. However, the word \"world championships\" is similar to \"Olympic games\", which is a sporting event. \n\nWithout any information that directly contradicts the conclusion that the world championships is a sporting event, we can infer that the conclusion is likely to be true, given the similarity in the names and the fact that the Olympic games is a sporting event. However, this is an inference and not a direct conclusion from the premises.\n\nTherefore, the conclusion is uncertain but leaning towards being true.\n\n\\boxed{uncertain but leaning towards true}",
+        "answer": "uncertain but leaning towards true",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they provide any information about the world championships.\n\nPremise [BG] states: \n\"The Olympic games is a sporting event. The last Olympic games was in Tokyo. The United States won the most medals in Tokyo.\"\n\nFrom this premise, we can infer that the Olympic games is a sporting event. However, the Olympic games and the world championships are two separate entities. The fact that the Olympic games is a sporting event does not necessarily imply that the world championships is also a sporting event.\n\nThere is no information in the given premises that directly connects the world championships to the Olympic games or states that the world championships is a sporting event. Therefore, based on the given premises, we cannot conclude whether the world championships is a sporting event or not.\n\nHence, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and see if they provide any relevant information about the conclusion.\n\nPremise 1: The Olympic games is a sporting event.\n- This premise directly states that the Olympic games is a sporting event, which is relevant to the conclusion.\n\nPremise 2: The last Olympic games was in Tokyo.\n- This premise provides specific information about the location of the last Olympic games but does not provide any direct information about the conclusion.\n\nPremise 3: The United States won the most medals in Tokyo.\n- This premise provides specific information about the outcome of the last Olympic games in Tokyo but does not provide any direct information about the conclusion.\n\nThe conclusion: The world championships is a sporting event.\n\nGiven the premises, we cannot directly determine whether the world championships is a sporting event or not. There is no information provided about the world championships in any of the premises. The Olympic games being a sporting event does not necessarily imply that the world championships is also a sporting event.\n\nHowever, we can make an educated guess that the world championships is likely a sporting event, given the context of the Olympic games being a sporting event. But based on the information given in the premises, we cannot be certain about the conclusion.\n\nTherefore, the conclusion is uncertain.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine the validity of the conclusion, let's analyze the given premises and the conclusion step by step.\n\n1. Premise: [BG] The Olympic games is a sporting event.\n   - This premise directly states that the Olympic games is a sporting event, which is true.\n\n2. Premise: The last Olympic games was in Tokyo.\n   - This premise provides information about a specific Olympic games being held in Tokyo, but it does not directly relate to the conclusion about the world championships.\n\n3. Premise: The United States won the most medals in Tokyo.\n   - This premise also provides information about the Olympic games in Tokyo but does not relate to the conclusion about the world championships.\n\nNow, let's examine the conclusion:\n\nConclusion: The world championships is a sporting event.\n\nBased on the given premises, there is no direct or indirect information that relates to the world championships. The premises only discuss the Olympic games and its specifics. Therefore, the conclusion cannot be determined as true or false based on the given premises.\n\nHowever, since the first premise [BG] states that the Olympic games is a sporting event, which is a type of sporting event, we can infer that the Olympic games is indeed a sporting event. But this does not provide any information about the world championships.\n\nTherefore, the conclusion is uncertain because it cannot be determined as true or false based on the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: The Olympic games is a sporting event.\nThis premise directly supports the conclusion that the world championships is a sporting event, but the conclusion is not directly related to the Olympic games. \n\nPremise 2: The last Olympic games was in Tokyo.\nThis premise provides additional information about the Olympic games but does not provide any information about the world championships.\n\nPremise 3: The United States won the most medals in Tokyo.\nThis premise is irrelevant to determining whether the world championships is a sporting event.\n\nBased on the premises, we cannot directly determine whether the world championships is a sporting event. However, we can infer that the world championships is likely to be a sporting event, given that the Olympic games, which are also a sporting event, share similar characteristics.\n\nTherefore, the conclusion is uncertain because we cannot directly prove or disprove it based on the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they provide any information that can help us conclude about the world championships.\n\nPremise 1: The Olympic games is a sporting event.\nThis premise tells us that the Olympic games is a sporting event, but it doesn't tell us anything about the world championships.\n\nPremise 2: The last Olympic games was in Tokyo.\nThis premise provides information about the location of the last Olympic games, but it still doesn't tell us anything about the world championships.\n\nPremise 3: The United States won the most medals in Tokyo.\nThis premise provides information about the performance of the United States in the Olympic games, but it still doesn't tell us anything about the world championships.\n\nNow, let's look at the conclusion:\nThe world championships is a sporting event.\n\nTo determine if this conclusion is true, false, or uncertain, we need to see if any of the premises provide information that can help us conclude about the world championships. However, none of the premises provide any information about the world championships.\n\nTherefore, the conclusion is uncertain because we cannot determine whether it is true or false based on the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they logically lead to the conclusion.\n\nPremise 1: [BG] The Olympic games is a sporting event. \nThis premise directly states that the Olympic games is a sporting event, which is a clear and definite statement.\n\nPremise 2: The last Olympic games was in Tokyo.\nThis premise provides additional information about the Olympic games, but it does not directly relate to the conclusion about the world championships.\n\nPremise 3: The United States won the most medals in Tokyo.\nThis premise provides more information about the Olympic games in Tokyo, but like premise 2, it does not directly relate to the conclusion about the world championships.\n\nNow, let's examine the conclusion:\n\"The world championships is a sporting event.\"\n\nTo determine the validity of the conclusion, we need to see if the premises logically lead to it. In this case, there is no direct connection between the Olympic games and the world championships. The premises only talk about the Olympic games, and there is no information about the world championships.\n\nSince the premises do not provide any information about the world championships, we cannot logically conclude that it is a sporting event based on the given premises.\n\nTherefore, the conclusion is uncertain because we cannot determine its truth value based on the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and see if they provide any information about the conclusion.\n\nPremise 1: [BG] The Olympic games is a sporting event. \nThis premise tells us that the Olympic games is a sporting event. However, it does not tell us anything about the world championships.\n\nPremise 2: The last Olympic games was in Tokyo.\nThis premise provides information about the location of the last Olympic games, but it does not provide any information about the world championships.\n\nPremise 3: The United States won the most medals in Tokyo.\nThis premise provides information about the performance of the United States in the Olympic games, but it does not provide any information about the world championships.\n\nFrom the premises, we can see that they only talk about the Olympic games, and there is no direct or indirect information about the world championships. Therefore, we cannot conclude anything about the world championships.\n\nConclusion: The world championships is a sporting event.\nSince we cannot determine whether the conclusion is true or false based on the premises, the conclusion is uncertain.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and their relationship to the conclusion.\n\nPremise 1: [BG] The Olympic games is a sporting event.\nThis premise directly states that the Olympic games are a sporting event, which is a relevant piece of information for our conclusion.\n\nPremise 2: The last Olympic games was in Tokyo.\nThis premise provides additional context about the Olympic games but does not directly relate to the conclusion. It is an irrelevant detail for determining whether the world championships is a sporting event.\n\nPremise 3: The United States won the most medals in Tokyo.\nThis premise is also an irrelevant detail for determining whether the world championships is a sporting event. It provides information about the outcome of a specific Olympic games but does not relate to the nature of the world championships.\n\nNow, let's analyze the conclusion: The world championships is a sporting event.\n\nFrom Premise 1, we know that the Olympic games are a sporting event. However, the Olympic games and the world championships are two distinct events. The information provided does not establish a direct connection between the Olympic games and the world championships.\n\nGiven the information provided, we cannot conclude that the world championships is a sporting event. The premises do not contain any information that directly relates to the nature of the world championships.\n\nTherefore, the conclusion is uncertain because we do not have enough information to determine its truth value.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and see if they provide any information about the conclusion.\n\nPremise 1: [BG] The Olympic games is a sporting event.\nThis premise tells us that the Olympic games is a sporting event, but it does not provide any information about the world championships.\n\nPremise 2: The last Olympic games was in Tokyo.\nThis premise tells us the location of the last Olympic games, but it does not provide any information about the world championships.\n\nPremise 3: The United States won the most medals in Tokyo.\nThis premise tells us the result of the last Olympic games, but it does not provide any information about the world championships.\n\nSince none of the premises provide any information about the world championships, we cannot determine whether the conclusion is true or false. However, we can say that it is uncertain.\n\nThe conclusion is: \"The world championships is a sporting event.\"\n\nSince we don't have enough information to determine whether the world championships is a sporting event, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if we can derive a conclusion about the world championships.\n\nPremise 1: The Olympic games is a sporting event.\n\nThis premise tells us that the Olympic games is a sporting event, which gives us some information about what a sporting event is. However, it doesn't give us any information about the world championships.\n\nPremise 2: The last Olympic games was in Tokyo.\n\nThis premise tells us that the Olympic games took place in Tokyo, but it still doesn't give us any information about the world championships.\n\nPremise 3: The United States won the most medals in Tokyo.\n\nThis premise tells us that the United States won the most medals in the last Olympic games, which took place in Tokyo. Again, this doesn't give us any information about the world championships.\n\nNow, let's look at the conclusion we need to evaluate: \"The world championships is a sporting event.\"\n\nTo determine whether this conclusion is true, false, or uncertain, we need to see if we can derive it from the premises. However, the premises only give us information about the Olympic games, not the world championships.\n\nThere is no logical connection between the Olympic games and the world championships in the given premises. Therefore, we cannot conclude that the world championships is a sporting event based on the information provided.\n\nSince we cannot derive a conclusion about the world championships from the premises, we must classify the conclusion as uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "olympic_games_sporting_event == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "olympic_game(X) -> sporting_event(X)",
+          "z3_formula": "Implies(olympic_games, olympic_games_sporting_event)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "olympic_games(tokyo)",
+          "z3_formula": "olympic_games_tokyo == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "us_won_most_medals(tokyo)",
+          "z3_formula": "us_won_most_medals_tokyo == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "sporting_event(world_championships)",
+          "z3_formula": "world_championships_sporting_event == Unknown",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "sporting_event_olympic_games == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "olympic_games_in_tokyo",
+          "z3_formula": "olympic_games_in_tokyo == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "united_states_won_most_medals",
+          "z3_formula": "united_states_won_most_medals == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sporting_event(world_championships)",
+          "z3_formula": "sporting_event_world_championships == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "sporting_event_olympic_games == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "last_games_in_tokyo",
+          "z3_formula": "last_games_in_tokyo == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "us_won_most_medals_in_tokyo",
+          "z3_formula": "us_won_most_medals_in_tokyo == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "sporting_event_olympic_games == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sporting_event(X) -> sporting_event(Y)",
+          "z3_formula": "Implies(sporting_event_olympic_games, sporting_event_world_championships)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "sporting_event(world_championships)",
+          "z3_formula": "sporting_event_world_championships == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "sporting_event_olympic_games == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "last_olympic_games_location(tokyo)",
+          "z3_formula": "last_olympic_games_location_tokyo == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "united_states_won_most_medals_in_tokyo",
+          "z3_formula": "united_states_won_most_medals_in_tokyo == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sporting_event(world_championships)",
+          "z3_formula": "sporting_event_world_championships == Unknown",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "sporting_event_olympic_games == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "olympic_games_in_tokyo",
+          "z3_formula": "olympic_games_in_tokyo == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "us_won_most_medals_tokyo",
+          "z3_formula": "us_won_most_medals_tokyo == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sporting_event(world_championships)",
+          "z3_formula": "sporting_event_world_championships == Unknown",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "olympic_games_sporting_event == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sporting_event(X) -> sporting_event(world_championships)",
+          "z3_formula": "Implies(olympic_games_sporting_event, world_championships_sporting_event)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "olympic_games_location(tokyo)",
+          "z3_formula": "tokyo_olympic_games_location == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "united_states_medals(tokyo)",
+          "z3_formula": "united_states_tokyo_medals == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "olympic_games_sporting_event == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "last_olympic_games_in_tokyo",
+          "z3_formula": "last_olympic_games_in_tokyo == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "united_states_won_most_medals_in_tokyo",
+          "z3_formula": "united_states_won_most_medals_in_tokyo == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sporting_event(world_championships)",
+          "z3_formula": "world_championships_sporting_event == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "sporting_event_olympic_games == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "olympic_games_in_tokyo",
+          "z3_formula": "olympic_games_in_tokyo == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "us_won_most_medals_in_tokyo",
+          "z3_formula": "us_won_most_medals_in_tokyo == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sporting_event(world_championships)",
+          "z3_formula": "sporting_event_world_championships == Unknown",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "sporting_event_olympic_games == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "last_olympic_games_in_tokyo",
+          "z3_formula": "last_olympic_games_in_tokyo == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "united_states_won_most_medals_in_tokyo",
+          "z3_formula": "united_states_won_most_medals_in_tokyo == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sporting_event(world_championships)",
+          "z3_formula": "sporting_event_world_championships == Unknown",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "olympic_games_sporting_event == True",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "olympic_games_sporting_event == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "location(last_olympic_games, tokyo)",
+          "z3_formula": "last_olympic_games_location_tokyo == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "result(last_olympic_games, united_states)",
+          "z3_formula": "last_olympic_games_result_united_states == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sporting_event(world_championships)",
+          "z3_formula": "world_championships_sporting_event == Unknown",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "olympic_games_sporting_event == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "sporting_event(world_championships)",
+          "z3_formula": "world_championships_sporting_event == Unknown",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sporting_event(world_championships) == True",
+          "z3_formula": "world_championships_sporting_event == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "sporting_event(world_championships) == False",
+          "z3_formula": "world_championships_sporting_event == False",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "sporting_event(world_championships) == Unknown",
+          "z3_formula": "world_championships_sporting_event == Unknown",
+          "source_step": 6
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 49,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 22
+    },
+    "maxsat_stats": {
+      "satisfied": 21,
+      "excluded": 1,
+      "total_weight": 48,
+      "solve_time_ms": 0.7706871256232262
+    },
+    "timing": {
+      "trace_gen_s": 4.342,
+      "extraction_s": 9.788,
+      "dedup_s": 0.338,
+      "maxsat_s": 0.002,
+      "total_s": 14.47
+    }
+  }
+}

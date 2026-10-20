@@ -1,0 +1,112 @@
+[
+  {
+    "idx": 1,
+    "id": "folio_000",
+    "label": "True",
+    "unique": 1,
+    "multi": false,
+    "dist": "True:6",
+    "answers": ["True", "True", "True", "True", "True", "True"],
+    "fails": 0,
+    "elapsed": 203.28
+  },
+  {
+    "idx": 2,
+    "id": "folio_002",
+    "label": "True",
+    "unique": 1,
+    "multi": false,
+    "dist": "True:6",
+    "answers": ["True", "True", "True", "True", "True", "True"],
+    "fails": 0,
+    "elapsed": 199.63
+  },
+  {
+    "idx": 3,
+    "id": "folio_004",
+    "label": "True",
+    "unique": 1,
+    "multi": false,
+    "dist": "False:4, FAIL:2",
+    "answers": ["FAIL", "FAIL", "False", "False", "False", "False"],
+    "fails": 2,
+    "elapsed": 213.99
+  },
+  {
+    "idx": 4,
+    "id": "folio_010",
+    "label": "False",
+    "unique": 1,
+    "multi": false,
+    "dist": "False:6",
+    "answers": ["False", "False", "False", "False", "False", "False"],
+    "fails": 0,
+    "elapsed": 45.26
+  },
+  {
+    "idx": 5,
+    "id": "folio_012",
+    "label": "False",
+    "unique": 1,
+    "multi": false,
+    "dist": "False:6",
+    "answers": ["False", "False", "False", "False", "False", "False"],
+    "fails": 0,
+    "elapsed": 171.58
+  },
+  {
+    "idx": 6,
+    "id": "folio_014",
+    "label": "False",
+    "unique": 1,
+    "multi": false,
+    "dist": "False:6",
+    "answers": ["False", "False", "False", "False", "False", "False"],
+    "fails": 0,
+    "elapsed": 202.54
+  },
+  {
+    "idx": 7,
+    "id": "folio_020",
+    "label": "Unknown",
+    "unique": 1,
+    "multi": false,
+    "dist": "Unknown:6",
+    "answers": ["Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown"],
+    "fails": 0,
+    "elapsed": 89.42
+  },
+  {
+    "idx": 8,
+    "id": "folio_022",
+    "label": "Unknown",
+    "unique": 1,
+    "multi": false,
+    "dist": "Unknown:6",
+    "answers": ["Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown"],
+    "fails": 0,
+    "elapsed": 203.97
+  },
+  {
+    "idx": 9,
+    "id": "folio_024",
+    "label": "Unknown",
+    "unique": 1,
+    "multi": false,
+    "dist": "Unknown:6",
+    "answers": ["Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown"],
+    "fails": 0,
+    "elapsed": 47.39
+  },
+  {
+    "idx": 10,
+    "id": "folio_026",
+    "label": "Unknown",
+    "unique": 1,
+    "multi": false,
+    "dist": "Unknown:6",
+    "answers": ["Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown"],
+    "fails": 0,
+    "elapsed": 89.35
+  }
+]

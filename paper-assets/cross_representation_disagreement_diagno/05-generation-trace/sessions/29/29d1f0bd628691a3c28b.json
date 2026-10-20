@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29d1f0bd628691a3c28b",
+  "project": "cross_representation_disagreement_diagno",
+  "kind": "result",
+  "title": "analysis v4 progress check",
+  "task_key": "worker_analysis_v4_progress_check_20260514T142258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_v4_progress_check_20260514T142258_result.json",
+    "occurrence": 1,
+    "bytes": 882,
+    "sha256": "8e5aafe4467b63e03d38ce74a58df16b3fa9d8583fc192d51999565b1792d9ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## V4 Pipeline 中间结果摘要 (79/204)\n\n**进度**：79/204 (38.7%)，已运行 3h21m，约 5.4h 后完成（~明晨 03:40）\n\n**C 指标全部达标**：\n\n| 指标 | 值 | 阈值 | 状态 |\n|------|-----|------|------|\n| C1 Disagree rate | 31.1% | ≥10% | ✅ |\n| C2 One-side correct | 87.0% | ≥40% | ✅ |\n| C3 Targeted > blind | +36.3pp | +5pp | ✅ |\n| C4 Localization (FOL wins) | 78.3% | ≥60% | ✅ |\n\n**关键发现**：\n- **Code Unknown 36.7%**，较上次 46.3% 显著下降，v4 truncation fix 有效\n- **FOL 压倒性优势**：disagree 中 FOL 正确 78.3% vs Code 仅 8.7%\n- **Targeted repair code 成功率 81.8%**，远超 blind 45.5%\n- FOL accuracy 81.0% vs Code 63.3%，差距 17.7pp\n- agree_wrong 6 例 (7.6%) 是 disagreement 方法的盲区\n\n样本量 79 置信度中等，需完整 204 确认。report.md 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-v4-progress-check.md"
+}

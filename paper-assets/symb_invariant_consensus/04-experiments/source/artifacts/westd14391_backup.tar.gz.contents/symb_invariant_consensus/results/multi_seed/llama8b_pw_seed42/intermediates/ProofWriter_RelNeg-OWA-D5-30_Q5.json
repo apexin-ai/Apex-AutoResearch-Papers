@@ -1,0 +1,837 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-30_Q5",
+    "problem": "The bald eagle does not chase the mouse. The bald eagle chases the squirrel. The bald eagle needs the mouse. The bald eagle does not see the dog. The bald eagle sees the squirrel. The dog is not red. The dog needs the squirrel. The mouse does not chase the squirrel. The mouse is red. The mouse needs the dog. The mouse does not need the squirrel. The mouse sees the bald eagle. The mouse sees the dog. The squirrel is cold. The squirrel is red. The squirrel is round. If something is round and red then it chases the dog. If something chases the bald eagle then it sees the mouse. If something needs the mouse and the mouse needs the bald eagle then it does not see the squirrel. If something needs the mouse then the mouse does not see the squirrel. If something is blue and it needs the dog then it is cold. If something chases the dog then it chases the bald eagle. If the bald eagle chases the squirrel and the bald eagle sees the squirrel then the squirrel is red. If something sees the mouse and the mouse needs the dog then the dog chases the bald eagle. If something sees the squirrel and the squirrel is cold then it is blue.\n\nDetermine whether the following statement is true, false, or unknown:\nThe squirrel chases the bald eagle.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChase($x, $y, bool) ::: Does x chase y?\nNeed($x, $y, bool) ::: Does x need y?\nSee($x, $y, bool) ::: Does x see y?\nRed($x, bool) ::: Is x red?\nCold($x, bool) ::: Is x cold?\nRound($x, bool) ::: Is x round?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nChase(BaldEagle, Mouse, False) ::: The bald eagle does not chase the mouse.\nChase(BaldEagle, Squirrel, True) ::: The bald eagle chases the squirrel.\nNeed(BaldEagle, Mouse, True) ::: The bald eagle needs the mouse.\nSee(BaldEagle, Dog, False) ::: The bald eagle does not see the dog.\nSee(BaldEagle, Squirrel, True) ::: The bald eagle sees the squirrel.\nRed(Dog, False) ::: The dog is not red.\nNeed(Dog, Squirrel, True) ::: The dog needs the squirrel.\nChase(Mouse, Squirrel, False) ::: The mouse does not chase the squirrel.\nRed(Mouse, True) ::: The mouse is red.\nNeed(Mouse, Dog, True) ::: The mouse needs the dog.\nNeed(Mouse, Squirrel, False) ::: The mouse does not need the squirrel.\nSee(Mouse, BaldEagle, True) ::: The mouse sees the bald eagle.\nSee(Mouse, Dog, True) ::: The mouse sees the dog.\nCold(Squirrel, True) ::: The squirrel is cold.\nRed(Squirrel, True) ::: The squirrel is red.\nRound(Squirrel, True) ::: The squirrel is round.\n\nRules:\nRound($x, True) && Red($x, True) >>> Chase($x, Dog, True) ::: If something is round and red then it chases the dog.\nChase($x, BaldEagle, True) >>> See($x, Mouse, True) ::: If something chases the bald eagle then it sees the mouse.\nNeed($x, Mouse, True) && Need(Mouse, BaldEagle, True) >>> See($x, Squirrel, False) ::: If something needs the mouse and the mouse needs the bald eagle then it does not see the squirrel.\nNeed($x, Mouse, True) >>> See(Mouse, Squirrel, False) ::: If something needs the mouse then the mouse does not see the squirrel.\nBlue($x, True) && Need($x, Dog, True) >>> Cold($x, True) ::: If something is blue and it needs the dog then it is cold.\nChase($x, Dog, True) >>> Chase($x, BaldEagle, True) ::: If something chases the dog then it chases the bald eagle.\nChase(BaldEagle, Squirrel, True) && See(BaldEagle, Squirrel, True) >>> Red(Squirrel, True) ::: If the bald eagle chases the squirrel and the bald eagle sees the squirrel then the squirrel is red.\nSee($x, Mouse, True) && Need(Mouse, Dog, True) >>> Chase(Dog, BaldEagle, True) ::: If something sees the mouse and the mouse needs the dog then the dog chases the bald eagle.\nSee($x, Squirrel, True) && Cold(Squirrel, True) >>> Blue($x, True) ::: If something sees the squirrel and the squirrel is cold then it is blue.\n\nQuery:\nChase(Squirrel, BaldEagle, True) ::: The squirrel chases the bald eagle."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 109.0,
+      "Unknown": 73.0
+    },
+    "answer_counts": {
+      "True": 10,
+      "Unknown": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine if the statement \"The squirrel chases the bald eagle\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The bald eagle chases the squirrel. \n2. The bald eagle sees the squirrel.\n3. The squirrel is cold.\n4. The squirrel is round.\n5. The squirrel is red.\n\nFrom rule 1, we know that the bald eagle chases the squirrel, not the other way around. This means the statement \"The squirrel chases the bald eagle\" is false based on the given information.\n\nHowever, let's also consider rule 9: \"If something is round and red then it chases the dog.\" Since the squirrel is both round and red, this rule applies to the squirrel. \n\nBut rule 9 also implies that if something is round and red, it does not necessarily chase the bald eagle, because it chases the dog instead. This does not directly confirm or deny the statement \"The squirrel chases the bald eagle.\"\n\nHowever, we can also use rule 7: \"If something is blue and it needs the dog then it is cold.\" Since the squirrel is cold, it does not fit the criteria of this rule. But we also know from rule 5 that the squirrel is red, not blue.\n\nFrom rule 10: \"If something chases the dog then it chases the bald eagle,\" and rule 9: \"If something is round and red then it chases the dog,\" we can infer that the squirrel chases the dog because it is round and red. This implies that the squirrel chases the bald eagle, as it chases the dog.\n\nTherefore, based on the given information and the rules provided, the statement \"The squirrel chases the bald eagle\" is:\n\n\\boxed{true}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel chases the bald eagle\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle chases the squirrel. (Given)\n2. The bald eagle sees the squirrel. (Given)\n3. If the bald eagle chases the squirrel and the bald eagle sees the squirrel, then the squirrel is red. (From rule 7)\n   From rule 3, we can conclude that the squirrel is red.\n\n4. The squirrel is cold. (Given)\n5. The squirrel is round. (Given)\n6. The squirrel is red. (From step 3)\n7. If something is round and red, then it chases the dog. (From rule 1)\n   From rule 7, we can conclude that the squirrel chases the dog.\n\n8. If something chases the dog, then it chases the bald eagle. (From rule 5)\n   From rule 8, we can conclude that the squirrel chases the bald eagle.\n\nSince we have found that the squirrel chases the bald eagle through the given rules, the statement \"The squirrel chases the bald eagle\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel chases the bald eagle\" is true, false, or unknown, we will break it down using the given premises.\n\n1. The bald eagle does not chase the mouse.\n2. The bald eagle chases the squirrel.\n3. The bald eagle needs the mouse.\n4. The bald eagle does not see the dog.\n5. The bald eagle sees the squirrel.\n6. The dog is not red.\n7. The dog needs the squirrel.\n8. The mouse does not chase the squirrel.\n9. The mouse is red.\n10. The mouse needs the dog.\n11. The mouse does not need the squirrel.\n12. The mouse sees the bald eagle.\n13. The mouse sees the dog.\n14. The squirrel is cold.\n15. The squirrel is red.\n16. The squirrel is round.\n\nWe are given the following rules:\n\n1. If something is round and red then it chases the dog.\n2. If something chases the bald eagle then it sees the mouse.\n3. If something needs the mouse and the mouse needs the bald eagle then it does not see the squirrel.\n4. If something needs the mouse then the mouse does not see the squirrel.\n5. If something is blue and it needs the dog then it is cold.\n6. If something chases the dog then it chases the bald eagle.\n7. If the bald eagle chases the squirrel and the bald eagle sees the squirrel then the squirrel is red.\n8. If something sees the mouse and the mouse needs the dog then the dog chases the bald eagle.\n9. If something sees the squirrel and the squirrel is cold then it is blue.\n\nWe are looking to determine whether the statement \"The squirrel chases the bald eagle\" is true, false, or unknown.\n\nFrom rules 7 and 15, we can infer that the squirrel is red because the bald eagle chases the squirrel and the bald eagle sees the squirrel.\n\nFrom rules 1 and 16, we can infer that the squirrel chases the dog because the squirrel is round and red.\n\nFrom rule 6, we can infer that the squirrel chases the bald eagle because the squirrel chases the dog.\n\nHowever, we have the original statement that the bald eagle chases the squirrel (rule 2), and from rule 5, if the squirrel chases the bald eagle, then it must see the mouse. But rule 4 states that if something needs the mouse then the mouse does not see the squirrel. We do not have any information that directly states the squirrel needs the mouse, so we cannot directly apply rule 4.\n\nBut we can use rule 3, which states that if something needs the mouse and the mouse needs the bald eagle then it does not see the squirrel. We do not have any information that directly states the squirrel needs the mouse, but we can look at the other premises.\n\nFrom rule 10, the mouse needs the dog. From rule 11, the mouse does not need the squirrel. From rule 12, the mouse sees the bald eagle. From rule 13, the mouse sees the dog.\n\nWe can see that the mouse needs the dog and sees the dog, so the dog must chase the bald eagle from rule 8.\n\nFrom rule 7, if the dog chases the bald eagle, then the squirrel is red. But we already know the squirrel is red from rule 7 and 15.\n\nFrom rule 6, if the squirrel chases the dog, then the squirrel chases the bald eagle. But we already know the squirrel chases the bald eagle from rule 6 and the inference above.\n\nTherefore, based on the given premises, we can conclude that \"The squirrel chases the bald eagle\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given premises and use logical deductions.\n\n1. The bald eagle does not chase the mouse. \n2. The bald eagle chases the squirrel. \n3. The bald eagle needs the mouse. \n4. The bald eagle does not see the dog. \n5. The bald eagle sees the squirrel. \n6. The dog is not red. \n7. The dog needs the squirrel. \n8. The mouse does not chase the squirrel. \n9. The mouse is red. \n10. The mouse needs the dog. \n11. The mouse does not need the squirrel. \n12. The mouse sees the bald eagle. \n13. The mouse sees the dog. \n14. The squirrel is cold. \n15. The squirrel is red. \n16. The squirrel is round.\n\nNow let's apply the given rules:\n\n1. If something is round and red then it chases the dog. (This rule will be useful later)\n2. If something chases the bald eagle then it sees the mouse. \n3. If something needs the mouse and the mouse needs the bald eagle then it does not see the squirrel. \n4. If something needs the mouse then the mouse does not see the squirrel. \n5. If something is blue and it needs the dog then it is cold. \n6. If something chases the dog then it chases the bald eagle. \n7. If the bald eagle chases the squirrel and the bald eagle sees the squirrel then the squirrel is red. \n8. If something sees the mouse and the mouse needs the dog then the dog chases the bald eagle. \n9. If something sees the squirrel and the squirrel is cold then it is blue.\n\nTo determine if the squirrel chases the bald eagle, we need to check the rules related to the squirrel. Rule 7 states that if the bald eagle chases the squirrel and the bald eagle sees the squirrel, then the squirrel is red. Since we know the squirrel is red (rule 15), this rule doesn't provide any new information.\n\nHowever, rule 2 states that if something chases the bald eagle, then it sees the mouse. To determine if the squirrel chases the bald eagle, we need to check if there is any rule that implies the squirrel chases the bald eagle.\n\nRule 1 states that if something is round and red, then it chases the dog. Since the squirrel is round (rule 16) and red (rule 15), we can apply this rule. However, this rule only tells us that the squirrel chases the dog, not the bald eagle.\n\nNow let's check if there is any rule that links the squirrel to the bald eagle. Rule 6 states that if something chases the dog, then it chases the bald eagle. However, this rule does not directly apply to the squirrel.\n\nHowever, we can use rule 6 indirectly. We know that the squirrel chases the dog (from rule 1), so we can apply rule 6 to conclude that the squirrel chases the bald eagle. But this is incorrect because we're using the squirrel's relationship with the dog to infer the squirrel's relationship with the bald eagle.\n\nWe must consider another approach. From rule 6, if the squirrel chases the dog, then it must chase the bald eagle. But if the squirrel chases the dog, then the squirrel is round and red (rule 1). \n\nHowever, we can use rule 6 to conclude that if the squirrel chases the dog, then the squirrel sees the mouse because rule 2 states that if something chases the bald eagle, then it sees the mouse. \n\nHowever, if the squirrel chases the dog, then the squirrel must be round and red (rule 1). Then, rule 6 implies that the squirrel chases the bald eagle. But rule 2 implies that the squirrel sees the mouse. \n\nThe problem is that we cannot determine if the squirrel chases the dog because we don't know the squirrel's relationship with the dog, we only know the squirrel's relationship with the bald eagle. \n\nHowever, we can use rule 6 to conclude that if the squirrel chases the dog, then the squirrel chases the bald eagle. But we cannot determine if the squirrel chases the dog.\n\nNow let's consider another approach. We know that if the squirrel chases the bald eagle, then it must see the mouse (rule 2).\n\nHowever, we also know that if the squirrel chases the dog, then it must chase the bald eagle (rule 6). \n\nWe also know that if the squirrel is round and red, then it chases the dog (rule 1).\n\nWe also know that the squirrel is round (rule 16) and red (rule 15).\n\nTherefore, if the squirrel chases the dog, then it must chase the bald eagle (rule 6).\n\nBut we cannot determine if the squirrel chases the dog. \n\nHowever, we can use rule 6 to conclude that if the squirrel chases the dog, then the squirrel chases the bald eagle. \n\nBut we cannot determine if the squirrel chases the dog.\n\nHowever, we can conclude that the squirrel chases the bald eagle if the squirrel chases the dog. \n\nBut we cannot determine if the squirrel chases the dog.\n\nHowever, we can conclude that the squirrel chases the bald eagle if the squirrel is round and red.\n\nAnd we know that the squirrel is round (rule 16) and red (rule 15).\n\nTherefore, the squirrel is round and red.\n\nTherefore, the squirrel chases the dog (rule 1).\n\nTherefore, the squirrel chases the bald eagle (rule 6).\n\nTherefore, the squirrel chases the bald eagle.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel chases the bald eagle\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle chases the squirrel. (Given)\n2. The bald eagle sees the squirrel. (Given)\n3. If the bald eagle chases the squirrel and the bald eagle sees the squirrel then the squirrel is red. (Given)\n   From step 2 and step 3, we can conclude that the squirrel is red.\n\n4. The squirrel is red. (From step 3)\n5. The squirrel is round. (Given)\n6. If something is round and red then it chases the dog. (Given)\n   From step 4 and step 5, we cannot conclude that the squirrel chases the dog. The conclusion is that the squirrel is red, but we don't have enough information to determine if the squirrel chases the dog.\n\n7. The squirrel is red. (From step 4)\n8. The bald eagle chases the squirrel. (From step 1)\n9. If something chases the dog then it chases the bald eagle. (Given)\n   From step 8, we can conclude that if the squirrel chases the dog, it would chase the bald eagle. However, we don't know if the squirrel chases the dog.\n\n10. The squirrel chases the bald eagle.\n   We need to determine if the squirrel chases the bald eagle based on the information provided.\n\nSince the squirrel is red (step 4) and round (step 5), we can use the rule from step 6. However, the rule only tells us that something round and red chases the dog, not the bald eagle.\n\nThe only way to conclude that the squirrel chases the bald eagle is if the squirrel chases the dog and the dog chases the bald eagle (from step 9). However, we don't have enough information to determine if the squirrel chases the dog.\n\nThe statement \"The squirrel chases the bald eagle\" is unknown based on the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel chases the bald eagle\" is true, false, or unknown, we need to analyze the given information and the provided rules.\n\nFrom the given information:\n1. The bald eagle chases the squirrel.\n2. The bald eagle sees the squirrel.\n3. The squirrel is red.\n4. The squirrel is round.\n5. The squirrel is cold.\n\nWe can use the rules to deduce the following information:\n1. If something is round and red, then it chases the dog. (Rule 1)\n   - Since the squirrel is round and red, we can deduce that it chases the dog. (Rule 1)\n\n2. If something chases the bald eagle, then it sees the mouse. (Rule 2)\n   - We know that the bald eagle sees the squirrel, so we need to find out if the squirrel chases the bald eagle.\n   - If the squirrel chases the bald eagle, then it sees the mouse.\n\n3. If something needs the mouse and the mouse needs the bald eagle, then it does not see the squirrel. (Rule 3)\n   - We are not given any information about the squirrel needing the mouse, so we cannot use this rule.\n\n4. If something needs the mouse, then the mouse does not see the squirrel. (Rule 4)\n   - We are not given any information about the squirrel needing the mouse, so we cannot use this rule.\n\n5. If something is blue and it needs the dog, then it is cold. (Rule 5)\n   - We are not given any information about something being blue and needing the dog, so we cannot use this rule.\n\n6. If something chases the dog, then it chases the bald eagle. (Rule 6)\n   - We know that the squirrel chases the dog, so we can deduce that it chases the bald eagle. (Rule 6)\n\n7. If the bald eagle chases the squirrel and the bald eagle sees the squirrel, then the squirrel is red. (Rule 7)\n   - This rule is already used in the given information.\n\n8. If something sees the mouse and the mouse needs the dog, then the dog chases the bald eagle. (Rule 8)\n   - We are not given any information about the mouse needing the dog, so we cannot use this rule.\n\n9. If something sees the squirrel and the squirrel is cold, then it is blue. (Rule 9)\n   - We are not given any information about something seeing the squirrel and the squirrel being cold, so we cannot use this rule.\n\nNow, let's analyze the statement \"The squirrel chases the bald eagle\".\n\nFrom the given information and the rules, we can deduce that:\n- The squirrel chases the dog (Rule 1)\n- The squirrel chases the dog -> The squirrel chases the bald eagle (Rule 6)\n\nTherefore, the statement \"The squirrel chases the bald eagle\" is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel chases the bald eagle\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nFrom the given statements:\n\n1. The bald eagle chases the squirrel.\n2. The bald eagle sees the squirrel.\n3. If the bald eagle chases the squirrel and the bald eagle sees the squirrel then the squirrel is red. (From statement 1 and 2)\n\nFrom statement 3, we can conclude that the squirrel is red.\n\nNow, we need to find a connection between the squirrel and the bald eagle that can help us determine if the squirrel chases the bald eagle.\n\nFrom the given statements:\n\n4. If something is round and red then it chases the dog.\n5. The squirrel is round and red (From statement 4 and the fact that the squirrel is red).\n\nHowever, this information does not directly help us determine if the squirrel chases the bald eagle.\n\nLet's look for other connections:\n\n6. If something chases the bald eagle then it sees the mouse.\n7. The mouse sees the bald eagle.\n\nFrom statement 6 and 7, we can conclude that the mouse chases the bald eagle.\n\nHowever, this information does not directly help us determine if the squirrel chases the bald eagle.\n\nNow, let's look at the statements that mention chasing the dog:\n\n8. If something chases the dog then it chases the bald eagle.\n9. The mouse is red. (From statement 9, we cannot conclude that the mouse chases the dog, but we can use this information later.)\n\nFrom statement 8, we know that if something chases the dog, it chases the bald eagle. However, we do not have enough information to determine if the squirrel chases the dog.\n\nFrom the given statements:\n\n10. The dog is not red.\n11. The mouse is red.\n\nFrom statement 10 and 11, we can conclude that the dog is not red.\n\nNow, let's use the information from statement 5:\n\n5. If something is round and red then it chases the dog.\n\nSince the squirrel is round and red (From statement 4 and 5), we can conclude that the squirrel chases the dog (From statement 5).\n\nNow, we can use the information from statement 8:\n\n8. If something chases the dog then it chases the bald eagle.\n\nSince the squirrel chases the dog, we can conclude that the squirrel chases the bald eagle (From statement 8).\n\nHowever, we need to check if there are any other statements that contradict this conclusion.\n\nFrom the given statements:\n\n12. If something sees the squirrel and the squirrel is cold then it is blue.\n\nHowever, we do not have enough information to determine if the squirrel is cold.\n\nFrom the given statements:\n\n13. The squirrel is round.\n14. The squirrel is red.\n\nHowever, we do not have enough information to determine if the squirrel chases the bald eagle based on this information.\n\nFrom the given statements:\n\n15. If something is round and red then it chases the dog.\n\nHowever, we have already concluded that the squirrel chases the bald eagle.\n\nFrom the given statements:\n\n16. If something chases the bald eagle then it sees the mouse.\n\nHowever, we do not have enough information to determine if the squirrel chases the bald eagle based on this information.\n\nNow, let's look at the statements that mention the mouse and the dog:\n\n17. The mouse needs the dog.\n\nHowever, we do not have enough information to determine if the squirrel chases the bald eagle based on this information.\n\nFrom the given statements:\n\n18. If something needs the mouse and the mouse needs the bald eagle then it does not see the squirrel.\n\nHowever, we do not have enough information to determine if the squirrel chases the bald eagle based on this information.\n\nFrom the given statements:\n\n19. If something needs the mouse then the mouse does not see the squirrel.\n\nHowever, we do not have enough information to determine if the squirrel chases the bald eagle based on this information.\n\nFrom the given statements:\n\n20. The dog needs the squirrel.\n\nHowever, we do not have enough information to determine if the squirrel chases the bald eagle based on this information.\n\nFrom the given statements:\n\n21. The mouse sees the dog.\n\nHowever, we do not have enough information to determine if the squirrel chases the bald eagle based on this information.\n\nFrom the given statements:\n\n22. The mouse sees the bald eagle.\n\nHowever, we do not have enough information to determine if the squirrel chases the bald eagle based on this information.\n\nFrom the given statements:\n\n23. The mouse is red.\n\nHowever, we do not have enough information to determine if the squirrel chases the bald eagle based on this information.\n\nFrom the given statements:\n\n24. The mouse does not chase the squirrel.\n\nHowever, we do not have enough information to determine if the squirrel chases the bald eagle based on this information.\n\nFrom the given statements:\n\n25. The bald eagle does not chase the mouse.\n\nHowever, we do not have enough information to determine if the squirrel chases the bald eagle based on this information.\n\nFrom the given statements:\n\n26. The mouse does not need the squirrel.\n\nHowever, we do not have enough information to determine if the squirrel chases the bald eagle based on this information.\n\nFrom the given statements:\n\n27. The bald eagle sees the squirrel.\n\nHowever, we do not have enough information to determine if the squirrel chases the bald eagle based on this information.\n\nFrom the given statements:\n\n28. The squirrel is cold.\n\nHowever, we do not have enough information to determine if the squirrel chases the bald eagle based on this information.\n\nFrom the given statements:\n\n29. The squirrel is round.\n\nHowever, we do not have enough information to determine if the squirrel chases the bald eagle based on this information.\n\nFrom the given statements:\n\n30. The squirrel is red.\n\nHowever, we do not have enough information to determine if the squirrel chases the bald eagle based on this information.\n\nFrom the given statements:\n\n31. The bald eagle does not see the dog.\n\nHowever, we do not have enough information to determine if the squirrel chases the bald eagle based on this information.\n\nFrom the given statements:\n\n32. The dog is not red.\n\nHowever, we do not have enough information to determine if the squirrel chases the bald eagle based on this information.\n\nNow, let's analyze the given statements again and look for any other connections.\n\nFrom the given statements:\n\n33. The squirrel chases the dog.\n\nWe can use the information from statement 8:\n\n8. If something chases the dog then it chases the bald eagle.\n\nSince the squirrel chases the dog, we can conclude that the squirrel chases the bald eagle (From statement 8).\n\nHowever, we need to check if there are any other statements that contradict this conclusion.\n\nSince we have already analyzed all the given statements and have concluded that the squirrel chases the bald eagle, our final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel chases the bald eagle\" is true, false, or unknown, we'll use the given information and the given rules.\n\n1. The bald eagle chases the squirrel. (Premise)\n2. The bald eagle sees the squirrel. (Premise)\n3. If the bald eagle chases the squirrel and the bald eagle sees the squirrel then the squirrel is red. (Rule 7)\n   Since the squirrel is indeed red (Squirrel is red), this rule is satisfied.\n\n4. The squirrel is cold. (Premise)\n5. The squirrel is red. (From rule 3)\n6. The squirrel is round. (Premise)\n\nHowever, we need to check if something being round and red implies that it chases the dog. \n\n7. If something is round and red then it chases the dog. (Rule 1)\n   Since the squirrel is round and red, this rule implies that the squirrel chases the dog.\n\n8. The dog chases the bald eagle. (From Rule 5: If something chases the dog then it chases the bald eagle)\n   Since the dog chases the bald eagle, it means the bald eagle is seen by the dog.\n\n9. However, the squirrel chases the dog. (From rule 7)\n   Since the squirrel chases the dog, we need to check if the squirrel sees the mouse.\n\n10. The mouse is red. (Premise)\n    The mouse does not need the squirrel. (Premise)\n    The mouse sees the bald eagle. (Premise)\n    The mouse sees the dog. (Premise)\n\n11. If something sees the mouse and the mouse needs the dog then the dog chases the bald eagle. (Rule 10)\n    Since the mouse sees the dog, and the mouse needs the dog, this rule implies that the dog chases the bald eagle. This is not relevant to our question.\n\n12. The squirrel chases the dog. (From rule 7)\n   However, we need to check if the squirrel sees the mouse. \n\n13. The mouse sees the bald eagle. (Premise)\n    The mouse needs the dog. (Premise)\n    The mouse is red. (Premise)\n\n14. If something needs the mouse and the mouse needs the bald eagle then it does not see the squirrel. (Rule 4)\n    Since the mouse needs the bald eagle, and the mouse needs the dog, this rule implies that the dog does not see the squirrel. This is not relevant to our question.\n\nHowever, we still need to check if the squirrel sees the mouse.\n\n15. The mouse sees the dog. (Premise)\n    The mouse sees the bald eagle. (Premise)\n\n16. The squirrel chases the dog. (From rule 7)\n    However, the squirrel is not directly related to the mouse through a rule that states the squirrel sees the mouse.\n\n17. The squirrel does not see the mouse. (Not directly implied by the rules)\n\nHowever, there is a rule that states if something sees the squirrel and the squirrel is cold then it is blue. We can use this rule to infer that something sees the squirrel and the squirrel is cold, but we cannot determine who that something is.\n\n18. If the squirrel is cold then something sees the squirrel. (Rule 13)\n   Since the squirrel is indeed cold, this rule implies that something sees the squirrel.\n\nHowever, this rule does not directly help us to determine whether the squirrel chases the bald eagle.\n\n19. The squirrel is red. (From rule 3)\n   The squirrel is round. (Premise)\n   The squirrel is cold. (Premise)\n\nHowever, none of the rules directly state that the squirrel chases the bald eagle.\n\nBut we have the following rule: If something chases the bald eagle then it sees the mouse. (Rule 2)\n\n20. The squirrel chases the dog. (From rule 7)\n    However, the squirrel is not directly related to the bald eagle through a rule that states the squirrel chases the bald eagle.\n\nHowever, we have the following rule: If something chases the dog then it chases the bald eagle. (Rule 5)\n\n21. The squirrel chases the dog. (From rule 7)\n    This implies that the squirrel chases the bald eagle. (From rule 5)\n\nTherefore, we have found a path that implies the squirrel chases the bald eagle. \n\nThe statement \"The squirrel chases the bald eagle\" is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel chases the bald eagle\" is true, false, or unknown, we need to analyze the given information and apply the logical rules.\n\nFrom the information given, we know:\n1. The bald eagle chases the squirrel. \n2. The bald eagle sees the squirrel. \n3. If the bald eagle chases the squirrel and the bald eagle sees the squirrel then the squirrel is red. (This rule is satisfied because the squirrel is indeed red.)\n\nNow, let's examine the possible implications of the given information:\n- If the squirrel is red, then we have no direct information about it chasing the bald eagle. \n- However, we have the following rules that might be useful:\n  * If something is round and red then it chases the dog. (This does not directly apply to the squirrel, but it tells us something about the properties of red objects.)\n  * If something chases the bald eagle then it sees the mouse. (This rule does not apply to the squirrel, but it gives us some information about the behavior of the entities that chase the bald eagle.)\n\nNow, let's analyze the given information in relation to the statement:\n- The statement \"The squirrel chases the bald eagle\" is not directly supported or refuted by any of the given information.\n\nHowever, we can use the information that the squirrel is round and red to see if it fits the rule that something is round and red then it chases the dog.\n- If the squirrel is round and red, then it should chase the dog according to the rule.\n- However, the statement we are examining is whether the squirrel chases the bald eagle, not the dog.\n\nSince the information about the squirrel chases the bald eagle is not directly provided or refuted by any of the given information, we cannot conclude that the statement is true or false.\n\nTherefore, the answer is:\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel chases the bald eagle\" is true, false, or unknown, we need to use the given rules and information.\n\nRule 1: If something is round and red then it chases the dog.\n- We know that the squirrel is round and red, but this rule does not directly tell us whether it chases the bald eagle or not.\n\nRule 2: If something chases the bald eagle then it sees the mouse.\n- This rule does not help us determine whether the squirrel chases the bald eagle or not.\n\nRule 3: If something needs the mouse and the mouse needs the bald eagle then it does not see the squirrel.\n- We do not have any information about the squirrel needing the mouse, so we cannot use this rule.\n\nRule 4: If something needs the mouse then the mouse does not see the squirrel.\n- We do not have any information about the squirrel needing the mouse, so we cannot use this rule.\n\nRule 5: If something is blue and it needs the dog then it is cold.\n- We do not have any information about the squirrel being blue, so we cannot use this rule.\n\nRule 6: If something chases the dog then it chases the bald eagle.\n- Since we do not know whether the squirrel chases the dog or not, we cannot use this rule.\n\nRule 7: If the bald eagle chases the squirrel and the bald eagle sees the squirrel then the squirrel is red.\n- We already know that the squirrel is red, so this rule does not help us determine whether the squirrel chases the bald eagle or not.\n\nRule 8: If something sees the mouse and the mouse needs the dog then the dog chases the bald eagle.\n- We do not have any information about the mouse needing the dog, so we cannot use this rule.\n\nRule 9: If something sees the squirrel and the squirrel is cold then it is blue.\n- We know that the squirrel is cold, but this rule does not help us determine whether the squirrel chases the bald eagle or not.\n\nGiven Information:\n- The bald eagle does not chase the mouse.\n- The bald eagle chases the squirrel.\n- The bald eagle sees the squirrel.\n- The squirrel is cold.\n- The squirrel is red.\n- The squirrel is round.\n\nFrom Rule 1, we know that if something is round and red, then it chases the dog. The squirrel is round and red, so it chases the dog. \n\nFrom Rule 6, if something chases the dog, then it chases the bald eagle. Since the squirrel chases the dog, it chases the bald eagle.\n\nTherefore, based on the given information and the rules, we can conclude that the statement \"The squirrel chases the bald eagle\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we will use the given premises and infer the conclusion step by step.\n\n1. The bald eagle chases the squirrel. (Premise)\n2. The bald eagle sees the squirrel. (Premise)\n3. If the bald eagle chases the squirrel and the bald eagle sees the squirrel then the squirrel is red. (Premise)\n   - From 1 and 2, we can conclude that the squirrel is red. (Modus Ponens)\n\n4. The squirrel is red. (From step 3)\n5. The squirrel is round. (Premise)\n6. If something is round and red then it chases the dog. (Premise)\n   - From 4 and 5, we can conclude that the squirrel chases the dog. (Modus Ponens)\n\n7. The squirrel chases the dog. (From step 6)\n8. If something chases the dog then it chases the bald eagle. (Premise)\n   - From 7, we can conclude that the squirrel chases the bald eagle. (Modus Ponens)\n\nTherefore, the statement \"The squirrel chases the bald eagle\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel chases the bald eagle\" is true, false, or unknown, we need to analyze the given information and the provided rules.\n\n1. The bald eagle chases the squirrel.\n2. The bald eagle sees the squirrel.\n3. If the bald eagle chases the squirrel and the bald eagle sees the squirrel then the squirrel is red. (This rule is already satisfied since we know the squirrel is red from rule 8, which states \"The squirrel is red.\")\n\nHowever, to determine if the squirrel chases the bald eagle, we need to analyze the rules that are relevant to this situation. \n\n4. If something is round and red then it chases the dog.\n5. The squirrel is round.\n6. The squirrel is red.\n\nFrom rules 4, 5, and 6, we know the squirrel chases the dog. But we need to see if this implies that the squirrel chases the bald eagle.\n\n7. If something chases the dog then it chases the bald eagle.\n\nFrom rule 7, since the squirrel chases the dog, we can conclude that the squirrel also chases the bald eagle.\n\nTherefore, the statement \"The squirrel chases the bald eagle\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, squirrel)",
+          "z3_formula": "chases_bald_eagle_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, squirrel)",
+          "z3_formula": "sees_bald_eagle_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> !chases(Y, X)",
+          "z3_formula": "Implies(chases_bald_eagle_squirrel, Not(chases_squirrel_bald_eagle))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> chases(X, dog)",
+          "z3_formula": "Implies(And(round_squirrel, red_squirrel), chases_squirrel_dog)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> !chases(X, bald_eagle)",
+          "z3_formula": "Implies(And(round_squirrel, red_squirrel), Not(chases_squirrel_bald_eagle))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & needs(X, dog) -> cold(X)",
+          "z3_formula": "Implies(And(blue_squirrel, needs_squirrel_dog), cold_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(chases_squirrel_dog, chases_squirrel_bald_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, squirrel)",
+          "z3_formula": "chases_bald_eagle_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, squirrel)",
+          "z3_formula": "sees_bald_eagle_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) & sees(X, Y) -> red(Y)",
+          "z3_formula": "Implies(And(chases_bald_eagle_squirrel, sees_bald_eagle_squirrel), red_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> chases(X, dog)",
+          "z3_formula": "Implies(And(round_squirrel, red_squirrel), chases_squirrel_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, dog)",
+          "z3_formula": "chases_squirrel_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(chases_squirrel_dog, chases_squirrel_bald_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == True",
+          "source_step": 7
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, squirrel)",
+          "z3_formula": "chases_bald_eagle_squirrel == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, mouse)",
+          "z3_formula": "chases_bald_eagle_mouse == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, mouse)",
+          "z3_formula": "needs_bald_eagle_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bald_eagle)",
+          "z3_formula": "needs_mouse_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, dog)",
+          "z3_formula": "needs_mouse_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, bald_eagle)",
+          "z3_formula": "sees_mouse_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, dog)",
+          "z3_formula": "sees_mouse_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> chases(X, dog)",
+          "z3_formula": "Implies(And(round_squirrel, red_squirrel), chases_squirrel_dog)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bald_eagle) -> sees(X, mouse)",
+          "z3_formula": "Implies(chases_bald_eagle_X, sees_X_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) & needs(mouse, bald_eagle) -> not sees(X, squirrel)",
+          "z3_formula": "Implies(And(needs_X_mouse, needs_mouse_bald_eagle), Not(sees_X_squirrel))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> Not sees(X, squirrel)",
+          "z3_formula": "Implies(needs_X_mouse, Not(sees_X_squirrel))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & needs(X, dog) -> cold(X)",
+          "z3_formula": "Implies(And(blue_X, needs_X_dog), cold_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(chases_X_dog, chases_X_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(bald_eagle, squirrel) & sees(bald_eagle, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(And(chases_bald_eagle_squirrel, sees_bald_eagle_squirrel), red_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & needs(mouse, dog) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(And(sees_X_mouse, needs_mouse_dog), chases_X_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(squirrel, squirrel) & cold(squirrel) -> blue(squirrel)",
+          "z3_formula": "Implies(And(sees_squirrel_squirrel, cold_squirrel), blue_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, squirrel)",
+          "z3_formula": "chases_bald_eagle_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, squirrel)",
+          "z3_formula": "sees_bald_eagle_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) & sees(X, Y) -> red(Y)",
+          "z3_formula": "Implies(And(chases_bald_eagle_squirrel, sees_bald_eagle_squirrel), red_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> chases(X, dog)",
+          "z3_formula": "Implies(And(round_squirrel, red_squirrel), chases_squirrel_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, dog)",
+          "z3_formula": "chases_squirrel_dog == Unknown",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, squirrel)",
+          "z3_formula": "chases_bald_eagle_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(chases_squirrel_dog, chases_squirrel_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == Unknown",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, squirrel)",
+          "z3_formula": "chases_bald_eagle_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, squirrel)",
+          "z3_formula": "sees_bald_eagle_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> chases(X, dog)",
+          "z3_formula": "Implies(And(round_squirrel, red_squirrel), chases_squirrel_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bald_eagle) -> sees(X, mouse)",
+          "z3_formula": "Implies(chases_squirrel_bald_eagle, sees_squirrel_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) & needs(mouse, bald_eagle) -> Not(sees(X, squirrel))",
+          "z3_formula": "Implies(And(needs_squirrel_mouse, needs_mouse_bald_eagle), Not(sees_squirrel_squirrel))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> Not(sees(X, squirrel))",
+          "z3_formula": "Implies(needs_squirrel_mouse, Not(sees_squirrel_squirrel))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & needs(X, dog) -> cold(X)",
+          "z3_formula": "Implies(And(blue_X, needs_X_dog), cold_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(chases_squirrel_dog, chases_squirrel_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(bald_eagle, squirrel) & sees(bald_eagle, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(And(chases_bald_eagle_squirrel, sees_bald_eagle_squirrel), red_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & needs(mouse, dog) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(And(sees_squirrel_mouse, needs_mouse_dog), chases_squirrel_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & cold(squirrel) -> blue(X)",
+          "z3_formula": "Implies(And(sees_X_squirrel, cold_squirrel), blue_X)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, dog)",
+          "z3_formula": "chases_squirrel_dog == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, squirrel)",
+          "z3_formula": "chases_bald_eagle_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, squirrel)",
+          "z3_formula": "sees_bald_eagle_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) & sees(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(And(chases_bald_eagle_squirrel, sees_bald_eagle_squirrel), red_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> chases(X, dog)",
+          "z3_formula": "Implies(And(round_squirrel, red_squirrel), chases_squirrel_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, dog)",
+          "z3_formula": "chases_squirrel_dog == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(chases_squirrel_dog, chases_squirrel_bald_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, squirrel)",
+          "z3_formula": "chases_bald_eagle_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, squirrel)",
+          "z3_formula": "sees_bald_eagle_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) & sees(X, Y) -> red(Y)",
+          "z3_formula": "Implies(And(chases_bald_eagle_squirrel, sees_bald_eagle_squirrel), red_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> chases(X, dog)",
+          "z3_formula": "Implies(And(round_squirrel, red_squirrel), chases_squirrel_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, dog)",
+          "z3_formula": "chases_squirrel_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(chases_squirrel_dog, chases_squirrel_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, squirrel)",
+          "z3_formula": "chases_bald_eagle_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, squirrel)",
+          "z3_formula": "sees_bald_eagle_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) & sees(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(And(chases_bald_eagle_squirrel, sees_bald_eagle_squirrel), red_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> chases(X, dog)",
+          "z3_formula": "Implies(And(round_squirrel, red_squirrel), chases_squirrel_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bald_eagle) -> sees(X, mouse)",
+          "z3_formula": "Implies(chases_X_bald_eagle, sees_X_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(And(And(red_squirrel, round_squirrel), Implies(red_squirrel, chases_squirrel_bald_eagle))) | Not(And(And(red_squirrel, round_squirrel), Implies(round_squirrel, chases_squirrel_bald_eagle)))",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> chases(X, dog)",
+          "z3_formula": "Implies(And(round_squirrel, red_squirrel), chases_squirrel_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(chases_squirrel_dog, chases_squirrel_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, squirrel)",
+          "z3_formula": "chases_bald_eagle_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, squirrel)",
+          "z3_formula": "sees_bald_eagle_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) & sees(X, Y) -> red(Y)",
+          "z3_formula": "Implies(And(chases_bald_eagle_squirrel, sees_bald_eagle_squirrel), red_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> chases(X, dog)",
+          "z3_formula": "Implies(And(round_squirrel, red_squirrel), chases_squirrel_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, dog)",
+          "z3_formula": "chases_squirrel_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(chases_squirrel_dog, chases_squirrel_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, squirrel)",
+          "z3_formula": "chases_bald_eagle_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, squirrel)",
+          "z3_formula": "sees_bald_eagle_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) & sees(X, Y) -> red(Y)",
+          "z3_formula": "Implies(And(chases_bald_eagle_squirrel, sees_bald_eagle_squirrel), red_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> chases(X, dog)",
+          "z3_formula": "Implies(And(round_squirrel, red_squirrel), chases_squirrel_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(chases_squirrel_dog, chases_squirrel_bald_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == True",
+          "source_step": 8
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 118,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 35
+    },
+    "maxsat_stats": {
+      "satisfied": 32,
+      "excluded": 3,
+      "total_weight": 114,
+      "solve_time_ms": 1.4254767447710037
+    },
+    "timing": {
+      "trace_gen_s": 17.352,
+      "extraction_s": 28.615,
+      "dedup_s": 0.723,
+      "maxsat_s": 0.003,
+      "total_s": 46.694
+    }
+  }
+}

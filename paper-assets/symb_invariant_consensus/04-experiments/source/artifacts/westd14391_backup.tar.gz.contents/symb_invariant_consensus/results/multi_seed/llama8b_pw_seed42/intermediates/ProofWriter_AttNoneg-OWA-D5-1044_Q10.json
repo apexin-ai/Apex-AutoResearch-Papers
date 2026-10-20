@@ -1,0 +1,1253 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1044_Q10",
+    "problem": "Bob is blue. Bob is white. Charlie is green. Charlie is quiet. Charlie is round. Charlie is white. Erin is blue. Erin is cold. Erin is green. Gary is big. Gary is blue. Gary is cold. Gary is green. Gary is quiet. Gary is round. Gary is white. White things are cold. If something is blue then it is white. If something is cold then it is round. If something is green then it is quiet. All round, big things are green. If Bob is round then Bob is big. All white, quiet things are big. If something is big then it is cold. If something is blue and quiet then it is cold.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is not green.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nWhite($x, bool) ::: Is x white?\nGreen($x, bool) ::: Is x green?\nQuiet($x, bool) ::: Is x quiet?\nRound($x, bool) ::: Is x round?\nCold($x, bool) ::: Is x cold?\nBig($x, bool) ::: Is x big?\n\nFacts:\nBlue(Bob, True) ::: Bob is blue.\nWhite(Bob, True) ::: Bob is white.\nGreen(Charlie, True) ::: Charlie is green.\nQuiet(Charlie, True) ::: Charlie is quiet.\nRound(Charlie, True) ::: Charlie is round.\nWhite(Charlie, True) ::: Charlie is white.\nBlue(Erin, True) ::: Erin is blue.\nCold(Erin, True) ::: Erin is cold.\nGreen(Erin, True) ::: Erin is green.\nBig(Gary, True) ::: Gary is big.\nBlue(Gary, True) ::: Gary is blue.\nCold(Gary, True) ::: Gary is cold.\nGreen(Gary, True) ::: Gary is green.\nQuiet(Gary, True) ::: Gary is quiet.\nRound(Gary, True) ::: Gary is round.\nWhite(Gary, True) ::: Gary is white.\n\nRules:\nWhite($x, True) >>> Cold($x, True) ::: White things are cold.\nBlue($x, True) >>> White($x, True) ::: If something is blue then it is white.\nCold($x, True) >>> Round($x, True) ::: If something is cold then it is round.\nGreen($x, True) >>> Quiet($x, True) ::: If something is green then it is quiet.\nRound($x, True) && Big($x, True) >>> Green($x, True) ::: All round, big things are green.\nRound(Bob, True) >>> Big(Bob, True) ::: If Bob is round then Bob is big.\nWhite($x, True) && Quiet($x, True) >>> Big($x, True) ::: All white, quiet things are big.\nBig($x, True) >>> Cold($x, True) ::: If something is big then it is cold.\nBlue($x, True) && Quiet($x, True) >>> Cold($x, True) ::: If something is blue and quiet then it is cold.\n\nQuery:\nGreen(Bob, False) ::: Bob is not green."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 161.0,
+      "True": 122.5,
+      "Unknown": 111.0
+    },
+    "answer_counts": {
+      "Unknown": 3,
+      "False": 4,
+      "True": 2
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and the conditions provided.\n\n1. Bob is blue. \n2. Bob is white. \n3. Charlie is green. \n4. Charlie is quiet. \n5. Charlie is round. \n6. Charlie is white. \n7. Erin is blue. \n8. Erin is cold. \n9. Erin is green. \n10. Gary is big. \n11. Gary is blue. \n12. Gary is cold. \n13. Gary is green. \n14. Gary is quiet. \n15. Gary is round. \n16. Gary is white. \n17. White things are cold. \n18. If something is blue then it is white. \n19. If something is cold then it is round. \n20. If something is green then it is quiet. \n21. All round, big things are green. \n22. If Bob is round then Bob is big. \n23. All white, quiet things are big. \n24. If something is big then it is cold. \n25. If something is blue and quiet then it is cold.\n\nWe need to determine if the statement \"Bob is not green\" is true, false, or unknown.\n\nFrom the given statements, we know that:\n- Bob is blue (Statement 1).\n- If something is blue then it is white (Statement 18).\n- If something is blue then it is white (Statement 18) and we already know that Bob is blue, so we can conclude that Bob is white.\n- Charlie is green (Statement 3).\n- Charlie is quiet (Statement 4).\n- If something is green then it is quiet (Statement 20).\n- Gary is green (Statement 13).\n- Gary is quiet (Statement 14).\n- If something is green then it is quiet (Statement 20).\n\nNow let's consider the statement \"Bob is not green\". \n\nSince we don't have any direct information about Bob being green or not green, we need to check the conditions provided.\n\nFrom Statement 20, we know that if something is green then it is quiet. However, we don't have any information that says Bob is quiet.\n\nTo find out if Bob is green, we need to check the statements related to green. We know Charlie and Gary are green (Statements 3 and 13), but we don't have any information about Bob being green.\n\nHowever, we do have information about Bob being blue (Statement 1). Since we know from Statement 18 that if something is blue then it is white, we can conclude that Bob is white.\n\nNow let's analyze the conditions that might affect the color of Bob.\n\nWe know from Statement 21 that all round, big things are green. However, we also know that if Bob is round then Bob is big (Statement 22) and if Bob is big then Bob is cold (Statement 24). But we also know that if something is blue then it is white (Statement 18), and we know Bob is blue.\n\nHowever, we also know that Bob is white (Statement 2). If something is white and quiet, it is big (Statement 23). But if something is big, it is cold (Statement 24).\n\nNow let's analyze the conditions that might affect the quietness of Bob.\n\nWe know from Statement 20 that if something is green then it is quiet. However, we also know that if something is blue and quiet then it is cold (Statement 25). \n\nNow let's combine all the information.\n\nFrom Statement 1, we know that Bob is blue.\nFrom Statement 18, we know that if something is blue then it is white.\nFrom Statement 2, we know that Bob is white.\n\nHowever, we also know from Statement 17 that white things are cold, and from Statement 24 that if something is big then it is cold. \n\nBut we also know from Statement 23 that if something is white and quiet, it is big.\n\nHowever, we don't have any information that says Bob is quiet or not quiet.\n\nSo, we can't conclude that Bob is green or not green based on the given information.\n\nTherefore, the statement \"Bob is not green\" is unknown. \n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Bob is blue.\n   - Bob is white.\n   - Charlie is green.\n   - Charlie is quiet.\n   - Charlie is round.\n   - Charlie is white.\n   - Erin is blue.\n   - Erin is cold.\n   - Erin is green.\n   - Gary is big.\n   - Gary is blue.\n   - Gary is cold.\n   - Gary is green.\n   - Gary is quiet.\n   - Gary is round.\n   - Gary is white.\n   - White things are cold.\n   - If something is blue then it is white.\n   - If something is cold then it is round.\n   - If something is green then it is quiet.\n   - All round, big things are green.\n   - If Bob is round then Bob is big.\n   - All white, quiet things are big.\n   - If something is big then it is cold.\n   - If something is blue and quiet then it is cold.\n\n2. We need to determine whether Bob is green or not.\n   - Since Bob is blue, we know that Bob is white (given information).\n   - We also know that white things are cold (given information).\n   - However, we cannot directly conclude that Bob is green or not from the given information.\n   - We know that Charlie is green and quiet, and Charlie is round.\n   - But, we cannot conclude that all quiet things are green because there is no information that states this.\n\n3. To determine whether Bob is green or not, we need to check the conditions for being green.\n   - If something is green then it is quiet (given information).\n   - However, we do not know if Bob is quiet or not.\n   - We know that Bob is blue, and if something is blue then it is white (given information).\n   - So, Bob is white.\n   - But we also know that Gary is big, blue, cold, green, quiet, and round.\n   - This means that Bob being blue does not necessarily mean that he is green.\n\n4. Since we cannot conclude that Bob is green or not based on the given information, we will assume that the statement \"Bob is not green\" is unknown.\n\nHowever, let's look at the last condition given - If something is blue and quiet then it is cold.\nBob is blue and quiet. This means that Bob must be cold.\n\nGiven that white things are cold and Bob is white, then Bob must be cold.\n\nGiven that all round, big things are green and that all cold things are round, then Bob must be round.\n\nGiven that Bob is round and all round, big things are green, then Bob must be big.\n\nGiven that all white, quiet things are big and Bob is white and quiet, then Bob must be big.\n\nWe know that all big things are cold and that Bob is big, then Bob must be cold.\n\nWe know that if something is blue and quiet then it is cold and that Bob is blue and quiet, then Bob must be cold.\n\nWe know that if something is big then it is cold and that Bob is big, then Bob must be cold.\n\nGiven that all white, quiet things are big and that Bob is white and quiet, then Bob must be big.\n\nGiven that Bob is round, then Bob must be big.\n\nGiven that all round, big things are green and that Bob is round and big, then Bob must be green.\n\nTherefore, we have concluded that Bob is green.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to use the given information and rules to determine the truth value of the statement \"Bob is not green.\"\n\nStep 1: Analyze the given information about Bob.\n- Bob is blue.\n- Bob is white.\n\nStep 2: Apply the given rules.\n- If something is blue then it is white. (Rule 2)\n  Since Bob is blue, it can be inferred that Bob is white, which is already given.\n\nStep 3: Analyze the given information about Charlie and Erin.\n- Charlie is green.\n- Erin is blue.\n- Erin is cold.\n\nStep 4: Apply the given rules to Charlie and Erin.\n- If something is green then it is quiet. (Rule 4)\n  Since Charlie is green, it can be inferred that Charlie is quiet.\n\nStep 5: Analyze the given information about Gary.\n- Gary is big.\n- Gary is blue.\n- Gary is cold.\n- Gary is green.\n- Gary is quiet.\n- Gary is round.\n- Gary is white.\n\nStep 6: Apply the given rules to Gary.\n- If something is blue then it is white. (Rule 2)\n  Since Gary is blue, it can be inferred that Gary is white, which is already given.\n\n- If something is cold then it is round. (Rule 3)\n  Since Gary is cold, it can be inferred that Gary is round, which is already given.\n\n- If something is green then it is quiet. (Rule 4)\n  Since Gary is green, it can be inferred that Gary is quiet, which is already given.\n\n- All white, quiet things are big. (Rule 7)\n  Since Gary is white and quiet, it can be inferred that Gary is big, which is already given.\n\nStep 7: Determine the relationship between being blue and being quiet.\n- If something is blue and quiet then it is cold. (Rule 9)\n\nHowever, there is a more general rule that states: If something is green then it is quiet. (Rule 4)\nThis rule has a higher priority than Rule 9, as it applies to a more specific case (green things being quiet) rather than a more general case (blue and quiet things being cold).\n\nStep 8: Analyze the given statement \"Bob is not green.\"\nTo determine the truth value of this statement, we need to check if Bob is green or not.\n\nStep 9: Apply the given rules to Bob.\n- If something is blue then it is white. (Rule 2)\n  Since Bob is blue, it can be inferred that Bob is white.\n\nHowever, there is a rule that states: All round, big things are green. (Rule 6)\nTo apply this rule, we need to check if Bob is round and big.\n\n- If Bob is round then Bob is big. (Rule 5)\n  Since Bob is blue, and we don't have any information that contradicts this, we can infer that Bob is round. (Rule 5)\n  Now, we can apply the rule that states: All round, big things are green. (Rule 6)\n  Since Bob is round and big, it can be inferred that Bob is green.\n\nConclusion: Since Bob is green, the statement \"Bob is not green\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to determine if Bob is green or not. \n\nFirst, we need to consider the given statements:\n- Bob is blue.\n- Bob is white.\n- If something is blue then it is white.\nFrom these statements, we can conclude that Bob is white because it is given that Bob is blue, and it is also given that if something is blue then it is white. Since Bob is white, we can use the statement \"White things are cold\" to conclude that Bob is cold.\n\nNow, let's analyze the given statements to determine if Bob is green:\n- Charlie is green.\n- Erin is green.\n- Gary is green.\n- Gary is blue, Gary is cold, Gary is green, Gary is quiet, Gary is round, Gary is white.\n- If something is green then it is quiet.\nFrom these statements, we can see that green things are quiet. However, we don't have any direct information that says Bob is quiet or not quiet. But we can use the given statement \"If Bob is round then Bob is big\" and \"All round, big things are green\" to infer that Bob might be green if he is round. \n\nHowever, we don't have any information that says Bob is round or not round. But we can use the given statement \"If Bob is blue then it is white\" to conclude that Bob is white and also from the statement \"If something is blue then it is white\" and \"White things are cold\" we can conclude that Bob is cold. But we can also use the statement \"If Bob is round then Bob is big\" and \"All white, quiet things are big\" to infer that Bob might be big if he is white and quiet. \n\nHowever, we don't have any information that says Bob is quiet or not quiet. But we can use the given statement \"If something is blue and quiet then it is cold\" to conclude that if Bob is quiet then Bob is cold. However, this does not provide information about whether Bob is green or not.\n\nNow, let's analyze the given statements to determine if Bob is big:\n- If Bob is round then Bob is big.\n- All white, quiet things are big.\n- Bob is white.\n- Bob is cold.\n- If something is big then it is cold.\nFrom these statements, we can see that if Bob is white and quiet then Bob is big, and since Bob is white and cold, we can conclude that Bob is big.\n\nNow, let's analyze the given statements to determine if Bob is quiet:\n- If something is blue and quiet then it is cold.\n- Bob is blue.\n- Bob is cold.\nFrom these statements, we can see that if Bob is blue and quiet then Bob is cold, and since Bob is blue and cold, we can conclude that Bob is quiet.\n\nNow, we have the information that Bob is big, Bob is quiet, and Bob is cold. Since \"All green things are quiet\" and \"If something is quiet then it is green\", we can conclude that Bob is green.\n\nHowever, we must note that the conclusion that Bob is green relies on the statement \"All green things are quiet\" which is derived from the statement \"If something is green then it is quiet\". But this is the same information used to conclude that Bob is green. However, we have concluded that Bob is quiet and the given statement \"If something is green then it is quiet\" to conclude that Bob is green.\n\nSince we have concluded that Bob is green and we were asked to determine if the statement \"Bob is not green\" is true, false, or unknown, we can conclude that the statement \"Bob is not green\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to follow the given statements and the conditions. \n\nWe are given the following statements:\n1. Bob is blue.\n2. Bob is white.\n3. Charlie is green.\n4. Charlie is quiet.\n5. Charlie is round.\n6. Charlie is white.\n7. Erin is blue.\n8. Erin is cold.\n9. Erin is green.\n10. Gary is big.\n11. Gary is blue.\n12. Gary is cold.\n13. Gary is green.\n14. Gary is quiet.\n15. Gary is round.\n16. Gary is white.\n17. White things are cold.\n18. If something is blue then it is white.\n19. If something is cold then it is round.\n20. If something is green then it is quiet.\n21. All round, big things are green.\n22. If Bob is round then Bob is big.\n23. All white, quiet things are big.\n24. If something is big then it is cold.\n25. If something is blue and quiet then it is cold.\n\nNow we need to determine whether the statement \"Bob is not green\" is true, false, or unknown.\n\nFrom statement 3, we know Charlie is green. \nFrom statement 20, we know that if something is green then it is quiet. \nFrom statement 4, we know Charlie is quiet. \nSo, Charlie is green and quiet. \n\nNow, we need to find the relationship between green and quiet for Bob.\nFrom statement 1, we know Bob is blue. \nFrom statement 18, we know that if something is blue then it is white. \nSo, Bob is blue and white.\n\nFrom statement 2, we know Bob is white. \nFrom statement 20, we know that if something is green then it is quiet. \nWe can't directly conclude that Bob is not green because Bob is blue, not green.\n\nHowever, from statement 1, we know Bob is blue. \nFrom statement 18, we know that if something is blue then it is white. \nFrom statement 2, we know Bob is white. \nFrom statement 3, we know Charlie is green. \nWe can't conclude that Bob is green because Bob is blue, not green.\n\nHowever, from statement 1, we know Bob is blue. \nFrom statement 18, we know that if something is blue then it is white. \nSo, Bob is blue and white.\n\nNow, we need to find the relationship between blue and quiet for Bob.\nFrom statement 1, we know Bob is blue. \nFrom statement 22, we know that if Bob is round then Bob is big. \nFrom statement 5, we know Charlie is round. \nFrom statement 21, we know all round, big things are green. \nSo, Charlie is round and big, but we can't conclude that Bob is round because Bob is blue and Charlie is green.\n\nHowever, from statement 1, we know Bob is blue. \nFrom statement 18, we know that if something is blue then it is white. \nSo, Bob is blue and white.\n\nNow, we need to find the relationship between big and cold for Bob.\nFrom statement 3, we know Charlie is green. \nFrom statement 21, we know all round, big things are green. \nSo, Charlie is round and big, but we can't conclude that Bob is big because Bob is blue and Charlie is green.\n\nHowever, from statement 1, we know Bob is blue. \nFrom statement 18, we know that if something is blue then it is white. \nSo, Bob is blue and white.\n\nFrom statement 2, we know Bob is white. \nFrom statement 17, we know white things are cold. \nHowever, we can't conclude that Bob is cold because Bob is blue.\n\nHowever, from statement 1, we know Bob is blue. \nFrom statement 18, we know that if something is blue then it is white. \nSo, Bob is blue and white.\n\nNow, we need to find the relationship between blue and quiet for Bob.\nFrom statement 1, we know Bob is blue. \nFrom statement 25, we know that if something is blue and quiet then it is cold. \nFrom statement 5, we know Charlie is round. \nFrom statement 19, we know that if something is cold then it is round. \nSo, Charlie is round and cold, but we can't conclude that Bob is cold because Bob is blue.\n\nHowever, from statement 1, we know Bob is blue. \nFrom statement 18, we know that if something is blue then it is white. \nSo, Bob is blue and white.\n\nNow, we need to find the relationship between blue and quiet for Bob.\nFrom statement 1, we know Bob is blue. \nFrom statement 25, we know that if something is blue and quiet then it is cold. \nHowever, we can't conclude that Bob is quiet because Bob is blue.\n\nHowever, from statement 1, we know Bob is blue. \nFrom statement 18, we know that if something is blue then it is white. \nSo, Bob is blue and white.\n\nNow, we need to find the relationship between white and quiet for Bob.\nFrom statement 2, we know Bob is white. \nFrom statement 23, we know that all white, quiet things are big. \nSo, Bob is white and quiet. \n\nHowever, we can't conclude that Bob is big because Bob is blue and Charlie is green.\n\nHowever, from statement 1, we know Bob is blue. \nFrom statement 18, we know that if something is blue then it is white. \nSo, Bob is blue and white.\n\nNow, we need to find the relationship between white and quiet for Bob.\nFrom statement 2, we know Bob is white. \nFrom statement 20, we know that if something is green then it is quiet. \nHowever, we can't conclude that Bob is quiet because Bob is white.\n\nHowever, from statement 1, we know Bob is blue. \nFrom statement 18, we know that if something is blue then it is white. \nSo, Bob is blue and white.\n\nNow, we need to find the relationship between blue and quiet for Bob.\nFrom statement 1, we know Bob is blue. \nFrom statement 25, we know that if something is blue and quiet then it is cold. \nHowever, we can't conclude that Bob is quiet because Bob is blue.\n\nHowever, from statement 1, we know Bob is blue. \nFrom statement 18, we know that if something is blue then it is white. \nSo, Bob is blue and white.\n\nNow, we need to find the relationship between white and quiet for Bob.\nFrom statement 2, we know Bob is white. \nFrom statement 20, we know that if something is green then it is quiet. \nHowever, we can't conclude that Bob is quiet because Bob is white.\n\nHowever, from statement 1, we know Bob is blue. \nFrom statement 18, we know that if something is blue then it is white. \nSo, Bob is blue and white.\n\nNow, we need to find the relationship between blue and quiet for Bob.\nFrom statement 1, we know Bob is blue. \nFrom statement 20, we know that if something is green then it is quiet. \nHowever, we can't conclude that Bob is quiet because Bob is blue.\n\nHowever, from statement 1, we know Bob is blue. \nFrom statement 18, we know that if something is blue then it is white. \nSo, Bob is blue and white.\n\nNow, we need to find the relationship between white and quiet for Bob.\nFrom statement 2, we know Bob is white. \nFrom statement 23, we know that all white, quiet things are big. \nHowever, we can't conclude that Bob is quiet because Bob is white.\n\nHowever, from statement 1, we know Bob is blue. \nFrom statement 18, we know that if something is blue then it is white. \nSo, Bob is blue and white.\n\nNow, we need to find the relationship between blue and quiet for Bob.\nFrom statement 1, we know Bob is blue. \nFrom statement 20, we know that if something is green then it is quiet. \nHowever, we can't conclude that Bob is quiet because Bob is blue.\n\nHowever, from statement 1, we know Bob is blue. \nFrom statement 18, we know that if something is blue then it is white. \nSo, Bob is blue and white.\n\nNow, we need to find the relationship between blue and quiet for Bob.\nFrom statement 1, we know Bob is blue. \nFrom statement 25, we know that if something is blue and quiet then it is cold. \nHowever, we can't conclude that Bob is quiet because Bob is blue.\n\nHowever, from statement 1, we know Bob is blue. \nFrom statement 18, we know that if something is blue then it is white. \nSo, Bob is blue and white.\n\nNow, we need to find the relationship between white and quiet for Bob.\nFrom statement 2, we know Bob is white. \nFrom statement 20, we know that if something is green then it is quiet. \nHowever, we can't conclude that Bob is quiet because Bob is white.\n\nHowever, from statement 1, we know Bob is blue. \nFrom statement 18, we know that if something is blue then it is white. \nSo, Bob is blue and white.\n\nNow, we need to find the relationship between blue and quiet for Bob.\nFrom statement 1, we know Bob is blue. \nFrom statement 20, we know that if something is green then it is quiet. \nHowever, we can't conclude that Bob is quiet because Bob is blue.\n\nHowever, from",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not green\" is true, false, or unknown, we need to analyze the given information.\n\n1. Bob is blue. (From the problem statement)\n2. Bob is white. (From the problem statement)\n3. If something is blue then it is white. (From the problem statement)\n   - This means that Bob is white because he is blue. However, this does not directly tell us anything about his color (green or not).\n\n4. If something is green then it is quiet. (From the problem statement)\n   - This information does not tell us anything about Bob's color (green or not).\n\n5. Gary is blue, Gary is green, and Gary is green. (From the problem statement)\n   - This tells us that Gary is green, but does not tell us anything about Bob's color.\n\n6. All green things are quiet. (From the problem statement)\n   - This information does not tell us anything about Bob's color (green or not).\n\n7. Bob is not green because he is blue. (From the problem statement)\n   - Since \"If something is blue then it is white,\" and \"If something is green then it is quiet,\" we can say that Bob cannot be green. Therefore, the statement \"Bob is not green\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given statements:\n   - Bob is blue. (1)\n   - Bob is white. (2)\n   - If something is blue then it is white. (3)\n   From (1) and (3), we can conclude that since Bob is blue, he is also white.\n\n   Since Bob is white (2) and white (2) is given to be cold (4), we can conclude that Bob is cold.\n\n2. We need to determine if Bob is green. \n   - Charlie is green. (5)\n   - Erin is green. (6)\n   - Gary is green. (7)\n   We cannot conclude that Bob is green based on the given information.\n\n   To determine if Bob is not green, let's analyze the given conditions:\n   - If something is green then it is quiet. (8)\n   - We don't have any information that says Bob is quiet or not quiet.\n\n3. We still need to determine if Bob is quiet or not quiet. \n   - Charlie is quiet. (9)\n   - Erin is not mentioned as quiet or not quiet.\n   - Gary is quiet. (10)\n   We cannot conclude that Bob is quiet or not quiet based on the given information.\n\nHowever, since Charlie is green (5) and Charlie is quiet (9), we can conclude that since Charlie is green (5), Charlie is quiet (9), which aligns with the given condition (8) that if something is green, then it is quiet.\n\nBased on the given conditions:\n- If something is blue then it is white. (3)\n- If something is white then it is cold. (4)\n- If something is blue then it is cold. (11)\n- All round, big things are green. (12)\n- If Bob is round then Bob is big. (13)\n- All white, quiet things are big. (14)\n- If something is big then it is cold. (15)\n- If something is blue and quiet then it is cold. (16)\n\nFrom (1), Bob is blue and from (2), Bob is white. We can conclude that Bob is cold from (4) and (15).\n\nHowever, we do not have enough information to conclude that Bob is round or not round. \n\nBut, we do know that if something is round, it is big, and if something is big, it is cold. Therefore, if Bob is round, then Bob is big and Bob is cold.\n\nFrom (8), if something is green, then it is quiet. But we cannot conclude that Bob is green or not green.\n\nNow, let's consider the statement \"Bob is not green.\" \nTo prove that this statement is true or false, we need to find out if Bob is green or not.\n\nBased on the given information:\n- Bob is blue (1) and blue things are white (3).\n- Bob is white (2) and white things are cold (4).\n- Bob is blue (1) and blue things are cold (11).\n- All round, big things are green (12) but we cannot conclude that Bob is round or not round.\n- If Bob is round then Bob is big (13) and if Bob is big then Bob is cold (15).\n\nHowever, since Bob is blue (1) and white (2) and blue things are white (3), Bob is white, which makes him cold (4).\n\nWe cannot conclude that Bob is green or not green.\n\nHowever, we can conclude that Bob is not quiet. \nIf Bob is not quiet, then we cannot conclude that Bob is green or not green.\n\nNow, let's analyze the statement \"Bob is not green\" with the given conditions:\n- If something is green then it is quiet. (8)\n- Since Bob is not quiet, we cannot conclude that Bob is green or not green.\n\nHowever, we do have enough information to conclude that Bob is not big. \nIf Bob is not big then we cannot conclude that Bob is cold.\n\nBut, based on the given conditions:\n- If something is big then it is cold. (15)\n- If Bob is not big, then Bob is not cold.\n\nHowever, we do know that Bob is cold because:\n- Bob is white (2) and white things are cold (4).\n- Bob is blue (1) and blue things are cold (11).\n\nTherefore, we can conclude that the statement \"Bob is not big\" is false.\n\nHowever, the statement \"Bob is not green\" can be proved false if we can conclude that Bob is green.\n\nWe cannot conclude that Bob is green or not green based on the given information.\n\nHowever, if we can conclude that Bob is round, then we can conclude that Bob is big and Bob is cold.\n\nIf Bob is big then Bob is cold (15). But, we already know that Bob is cold.\n\nHowever, if Bob is not big, then we cannot conclude that Bob is green or not green.\n\nHowever, we cannot conclude that Bob is not green. \n\nTherefore, the statement \"Bob is not green\" is unknown.",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that:\n   - Bob is blue.\n   - Blue things are white. (Therefore, Bob is white.)\n\n2. We also know that:\n   - Erin is cold. \n   - White things are cold. (Therefore, Bob is cold.)\n\n3. Since Bob is blue, we can conclude that Bob is white, and since Bob is white, we can conclude that Bob is cold.\n\n4. Now, we have two conclusions: Bob is blue, and Bob is cold.\n\n5. We also know that:\n   - All round, big things are green.\n   - If Bob is round then Bob is big.\n   - All white, quiet things are big.\n   - If something is blue and quiet then it is cold.\n\n   Since we know that Bob is blue and white, and white things are cold, we can conclude that Bob must be quiet (because all white things are big, and if Bob is big, then Bob is cold).\n\n6. Since Bob is blue, quiet, and cold, we can conclude that Bob is green (because if something is blue and quiet, then it is cold, and all round, big things are green).\n\nHowever, we also know that if Bob is round, then Bob is big. And since we know that Bob is white, we can conclude that Bob is big (because all white, quiet things are big).\n\n7. Since Bob is big, we can conclude that Bob is round (because all round, big things are green).\n\n8. We now have a contradiction: Bob is green, but Bob is blue. We know that Bob is blue, and if something is blue, then it is white.\n\n9. We also know that if something is blue and quiet, then it is cold. But since we know that Bob is quiet, cold, and white, we cannot conclude that Bob is green.\n\nTherefore, the statement \"Bob is not green\" is unknown, because we have two conflicting conclusions: Bob is green, and Bob is blue.",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Bob is blue. (This statement is given directly)\n2. Bob is white. (This statement is given directly)\n3. If something is blue then it is white. (This rule is given directly)\n   - From rule 3, we can infer that since Bob is blue, he is white (which we already know). However, this rule alone does not tell us about Bob's color directly, but since we already know he's blue, this rule is redundant in this context.\n\n4. Erin is blue. Erin is cold. Erin is green. (These statements are given directly)\n   - We can see that Erin is both blue and green. However, this does not directly relate to Bob.\n\n5. If something is blue and quiet then it is cold. (This rule is given directly)\n   - This rule does not directly apply to Bob, as we do not know if Bob is quiet.\n\n6. Bob is round. (This statement is not given directly, but we can derive it using other rules)\n   - If Bob is round then Bob is big. (This rule is given directly)\n   - All round, big things are green. (This rule is given directly)\n   - This means that since Bob is round, he must be big, and since he's big, he must be green.\n\nHowever, we also know that:\n7. If something is green then it is quiet. (This rule is given directly)\n   - Since Bob is green, he must be quiet.\n\nNow, we can re-evaluate the statement \"Bob is not green.\"\n- Based on our analysis, we found that Bob is green (derived from rule 6 and rule 7).\n- Therefore, the statement \"Bob is not green\" is FALSE.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not green\" is true, false, or unknown, we need to analyze the given information and the conditions that apply to Bob.\n\nFrom the given information, we know the following about Bob:\n\n1. Bob is blue.\n2. Bob is white.\n\nWe also know the following conditions:\n\n1. If something is blue then it is white. (Condition 1)\n2. If something is green then it is quiet. (Condition 2)\n3. All round, big things are green. (Condition 3)\n4. If Bob is round then Bob is big. (Condition 4)\n5. All white, quiet things are big. (Condition 5)\n6. If something is big then it is cold. (Condition 6)\n7. If something is blue and quiet then it is cold. (Condition 7)\n\nFrom Condition 1, we know that since Bob is blue, he is also white.\n\nWe need to determine if Bob is green. If Bob is green, then he would be quiet (Condition 2). However, we don't know if Bob is quiet.\n\nIf Bob is quiet, then he would be cold (Condition 6). But if Bob is blue, then he would be cold (Condition 7), regardless of whether he is quiet or not.\n\nHowever, from Condition 3, we know that all round, big things are green. We also know that if Bob is round, then he is big (Condition 4). Therefore, if Bob is round, then he would be green.\n\nBut from Condition 5, we know that all white, quiet things are big. Since Bob is white, if he is quiet, then he would be big. And if he is big, then he would be cold (Condition 6).\n\nWe are given that \"White things are cold.\" However, we cannot determine if Bob is cold or not, because we don't know if Bob is round.\n\nTherefore, we cannot conclude whether Bob is green or not, because the conditions that apply to Bob are contradictory.\n\nSo, the statement \"Bob is not green\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and use logical reasoning to determine whether the statement \"Bob is not green\" is true, false, or unknown.\n\nStep 1: Analyze the given information about Bob.\n\n- Bob is blue.\n- Bob is white.\n\nStep 2: Analyze the given information about Charlie.\n\n- Charlie is green.\n- Charlie is quiet.\n- Charlie is round.\n- Charlie is white.\n\nStep 3: Analyze the given information about Erin.\n\n- Erin is blue.\n- Erin is cold.\n- Erin is green.\n\nStep 4: Analyze the given information about Gary.\n\n- Gary is big.\n- Gary is blue.\n- Gary is cold.\n- Gary is green.\n- Gary is quiet.\n- Gary is round.\n- Gary is white.\n\nStep 5: Analyze the given logical rules.\n\n- If something is blue then it is white.\n- If something is cold then it is round.\n- If something is green then it is quiet.\n- All round, big things are green.\n- If Bob is round then Bob is big.\n- All white, quiet things are big.\n- If something is big then it is cold.\n- If something is blue and quiet then it is cold.\n\nStep 6: Apply the given logical rules to the information about Bob.\n\n- Since Bob is blue, then Bob is white. (Rule 1)\n- Since Bob is white, then Bob is big. (Rule 6)\n- Since Bob is big, then Bob is cold. (Rule 7)\n- Since Bob is blue, Bob is white, and Bob is cold, we can conclude that Bob is not quiet, as being blue and quiet would imply Bob is cold, but Bob is not quiet because he is cold and white. (Rule 5 and Rule 8)\n\nStep 7: Evaluate the statement \"Bob is not green.\"\n\nSince we know Bob is blue, white, and cold, and based on the given rules, we cannot directly conclude whether Bob is green or not. However, if Bob were green, then he would be quiet, but since Bob is cold, we can conclude that Bob is not green because if Bob were green, then he would be quiet, and being blue and quiet would imply Bob is cold, but Bob is not quiet because he is cold and white.\n\nSince we have enough information to conclude that Bob is not green, the statement \"Bob is not green\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the statements, we know that:\n   - Bob is blue.\n   - Bob is white.\n   - If something is blue, then it is white.\n   - If something is blue and quiet, then it is cold.\n   - If something is blue, then it is white. (already mentioned above)\n   - We do not have any information that directly states Bob is green or not.\n\n2. Now, we need to check if we can deduce that Bob is green or not using the given information.\n\n   - Charlie is green. (This does not give any information about Bob.)\n   - Erin is green. (This does not give any information about Bob.)\n   - Gary is green. (This does not give any information about Bob.)\n   - All green things are quiet. (This does not give any information about Bob.)\n   - We do not have any direct information that connects Bob to being green.\n\nHowever, we do know that Bob is blue and white.\n\nNow, let's check if being green is incompatible with being blue or white.\n\n   - We do not have any information that says Bob is green, but we do know that Bob is blue and white. \n   - We also know that if something is blue, then it is white. This means Bob being blue and white is consistent with the given information.\n\nBut we also have the following information:\n   - If something is blue, then it is white.\n   - We do not have any information that says all blue things are green.\n\nTherefore, we can conclude that Bob being blue and white is not incompatible with being not green.\n\nSo, we cannot directly prove that Bob is not green or that Bob is green from the given information.\n\nTherefore, the answer is:\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_bob, white_bob)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_charlie, quiet_charlie)",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_gary, quiet_gary)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> green(X)",
+          "z3_formula": "Implies(And(round_gary, big_gary), green_gary)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_gary, big_gary)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_gary, cold_gary)",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_bob, white_bob)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> big(X)",
+          "z3_formula": "Implies(And(white_bob, quiet_bob), big_bob)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_bob, cold_bob)",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(blue_bob, quiet_bob), cold_bob)",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_bob, cold_bob)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(bob_green)",
+          "z3_formula": "Not(Or(And(blue_bob, Not(green_bob)), And(Not(blue_bob), green_bob))) == True",
+          "source_step": 26
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_X, cold_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_X, white_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_X, round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_X, quiet_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> green(X)",
+          "z3_formula": "Implies(And(round_X, big_X), green_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_X, big_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> big(X)",
+          "z3_formula": "Implies(And(white_X, quiet_X), big_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_X, cold_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(blue_X, quiet_X), cold_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_bob, white_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_bob, big_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & round(X) -> green(X)",
+          "z3_formula": "Implies(And(big_bob, round_bob), green_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_bob, white_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_bob, cold_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_bob, big_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> big(X)",
+          "z3_formula": "Implies(And(white_bob, quiet_bob), big_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_bob, cold_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(blue_bob, quiet_bob), cold_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_bob, quiet_bob)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_bob, big_bob)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> green(X)",
+          "z3_formula": "Implies(And(round_bob, big_bob), green_bob)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not green(bob)",
+          "z3_formula": "Not(green_bob) == False",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_X, cold_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_X, white_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_X, round_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_X, quiet_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> green(X)",
+          "z3_formula": "Implies(And(round_X, big_X), green_X)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_X, big_X)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> big(X)",
+          "z3_formula": "Implies(And(white_X, quiet_X), big_X)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_X, cold_X)",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(blue_X, quiet_X), cold_X)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "not green(bob)",
+          "z3_formula": "Not(green_bob)",
+          "source_step": 26
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_bob, white_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_bob, quiet_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_gary, quiet_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_gary, quiet_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_gary, quiet_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_gary, quiet_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_gary, quiet_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_bob, white_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_bob, quiet_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not green(bob)",
+          "z3_formula": "Not(green_bob) == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_bob, white_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_bob, cold_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_bob, cold_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> green(X)",
+          "z3_formula": "Implies(And(round_bob, big_bob), green_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_bob, big_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> big(X)",
+          "z3_formula": "Implies(And(white_bob, quiet_bob), big_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_bob, cold_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(blue_bob, quiet_bob), cold_bob)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 17
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_bob, white_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(blue_erin, quiet_erin), cold_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_bob, big_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> green(X)",
+          "z3_formula": "Implies(And(round_bob, big_bob), green_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_bob, quiet_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_bob, white_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_bob, quiet_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> green(X)",
+          "z3_formula": "Implies(And(round_bob, big_bob), green_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_bob, big_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> big(X)",
+          "z3_formula": "Implies(And(white_bob, quiet_bob), big_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_bob, cold_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(blue_bob, quiet_bob), cold_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == Unknown",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_bob, white_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> big(X)",
+          "z3_formula": "Implies(white_bob, big_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_bob, cold_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> Not(quiet(X))",
+          "z3_formula": "Implies(And(blue_bob, cold_bob), Not(quiet_bob))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_charlie, round_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_charlie, quiet_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> green(X)",
+          "z3_formula": "Implies(And(round_charlie, big_charlie), green_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_charlie, big_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> big(X)",
+          "z3_formula": "Implies(And(white_charlie, quiet_charlie), big_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_charlie, cold_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(blue_charlie, quiet_charlie), cold_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "Not(quiet(bob))",
+          "z3_formula": "Not(quiet_bob) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "Not(green(bob))",
+          "z3_formula": "Not(green_bob) == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_bob, white_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(blue_bob, quiet_bob), cold_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_bob, white_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_X, quiet_X)",
+          "source_step": 9
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 187,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 57
+    },
+    "maxsat_stats": {
+      "satisfied": 54,
+      "excluded": 3,
+      "total_weight": 182,
+      "solve_time_ms": 1.9951807335019112
+    },
+    "timing": {
+      "trace_gen_s": 24.375,
+      "extraction_s": 40.399,
+      "dedup_s": 2.266,
+      "maxsat_s": 0.005,
+      "total_s": 67.045
+    }
+  }
+}

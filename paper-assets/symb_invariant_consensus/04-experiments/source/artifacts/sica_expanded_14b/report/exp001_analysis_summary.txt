@@ -1,0 +1,11 @@
+Report path: /root/symb_invariant_consensus/results/exp001_analysis.md
+
+Key metrics:
+- Overall (804): SICA 76.49% vs SC 76.24% (+0.25pp, p=0.7433, 95%CI [-1.12, +1.62])
+- ProofWriter D5 (600): 75.50% vs 75.17% (+0.33pp)
+- FOLIO (204): 79.41% vs 79.41% (0.00pp)
+- Disagreements: 31/804 (3.9%), SICA wins 16, SC wins 14, both wrong 1
+- Tie-break pattern: 20/31 (65%) disagreements are SC ties (e.g. 6:6)
+- Multi-candidate advantage: +0.65pp, unanimous: 0pp
+- Avg unique constraints: 21.5/problem
+- D012 +3.3pp → full-scale +0.25pp = small sample noise confirmed

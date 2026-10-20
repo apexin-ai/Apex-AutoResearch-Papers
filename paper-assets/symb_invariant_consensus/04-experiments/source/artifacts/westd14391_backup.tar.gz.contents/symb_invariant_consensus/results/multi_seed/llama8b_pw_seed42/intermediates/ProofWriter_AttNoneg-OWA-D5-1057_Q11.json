@@ -1,0 +1,1212 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1057_Q11",
+    "problem": "Bob is kind. Bob is quiet. Bob is white. Charlie is quiet. Erin is furry. Erin is quiet. Erin is white. Fiona is blue. Fiona is furry. Fiona is kind. Fiona is quiet. All kind, rough people are furry. Green, furry people are quiet. If someone is rough then they are kind. If someone is quiet and kind then they are rough. If someone is white then they are quiet. If someone is blue and white then they are kind. If someone is white then they are blue. If Charlie is quiet then Charlie is white.\n\nDetermine whether the following statement is true, false, or unknown:\nCharlie is furry.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nQuiet($x, bool) ::: Is x quiet?\nWhite($x, bool) ::: Is x white?\nFurry($x, bool) ::: Is x furry?\nGreen($x, bool) ::: Is x green?\nBlue($x, bool) ::: Is x blue?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nKind(Bob, True) ::: Bob is kind.\nQuiet(Bob, True) ::: Bob is quiet.\nWhite(Bob, True) ::: Bob is white.\nQuiet(Charlie, True) ::: Charlie is quiet.\nFurry(Erin, True) ::: Erin is furry.\nQuiet(Erin, True) ::: Erin is quiet.\nWhite(Erin, True) ::: Erin is white.\nBlue(Fiona, True) ::: Fiona is blue.\nFurry(Fiona, True) ::: Fiona is furry.\nKind(Fiona, True) ::: Fiona is kind.\nQuiet(Fiona, True) ::: Fiona is quiet.\n\nRules:\nKind($x, True) && Rough($x, True) >>> Furry($x, True) ::: All kind, rough people are furry.\nGreen($x, True) && Furry($x, True) >>> Quiet($x, True) ::: Green, furry people are quiet.\nRough($x, True) >>> Kind($x, True) ::: If someone is rough then they are kind.\nQuiet($x, True) && Kind($x, True) >>> Rough($x, True) ::: If someone is quiet and kind then they are rough.\nWhite($x, True) >>> Quiet($x, True) ::: If someone is white then they are quiet.\nBlue($x, True) && White($x, True) >>> Kind($x, True) ::: If someone is blue and white then they are kind.\nWhite($x, True) >>> Blue($x, True) ::: If someone is white then they are blue.\nQuiet(Charlie, True) >>> White(Charlie, True) ::: If Charlie is quiet then Charlie is white.\n\nQuery:\nFurry(Charlie, True) ::: Charlie is furry."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "False": 121.5,
+      "True": 151.5,
+      "Unknown": 151.0
+    },
+    "answer_counts": {
+      "True": 5,
+      "False": 2,
+      "Unknown": 5
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Charlie is furry\" is true, false, or unknown, we need to analyze the given statements and use the rules to deduce the characteristics of Charlie.\n\n1. Charlie is quiet. \n   This statement is given.\n\n2. If someone is quiet and kind then they are rough. \n   Since we do not know if Charlie is kind or not, we cannot conclude if Charlie is rough or not from this rule.\n\n3. If Charlie is quiet then Charlie is white. \n   This statement is given and matches rule 1. So, Charlie is white.\n\n4. If someone is white then they are quiet. \n   Since we already know Charlie is quiet (rule 1) and Charlie is white (rule 3), this rule is already satisfied.\n\n5. If someone is white then they are blue. \n   Since Charlie is white (rule 3), this rule applies to Charlie, and we can conclude that Charlie is blue.\n\n6. If someone is blue and white then they are kind. \n   Since Charlie is blue (rule 5) and white (rule 3), this rule applies to Charlie. So, Charlie is kind.\n\n7. If someone is kind then they are rough. \n   Since Charlie is kind (rule 6), this rule applies to Charlie. So, Charlie is rough.\n\n8. All kind, rough people are furry. \n   Since Charlie is kind (rule 6) and rough (rule 7), this rule applies to Charlie. So, Charlie is furry.\n\nTherefore, based on the given statements and rules, the statement \"Charlie is furry\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether Charlie is furry, we need to analyze the given statements and apply logical reasoning.\n\nFrom the given statements:\n1. Charlie is quiet. \n2. If someone is quiet then they are white. (Statement 7)\n   Since Charlie is quiet, Charlie is white. \n\nFrom the given statements:\n1. If someone is white then they are white. (Statement 1 and 2) This is tautology and not informative.\n2. If someone is white then they are quiet. (Statement 7)\n3. If someone is white then they are blue. (Statement 8)\n   Since Charlie is white, Charlie is blue. \n\nFrom the given statements:\n1. If someone is blue and white then they are kind. (Statement 5)\n   Since Charlie is blue and white, Charlie is kind.\n\nFrom the given statements:\n1. If someone is kind then they are not furry (All kind, rough people are furry, so kind people cannot be furry) (Statement 3)\n   Since Charlie is kind, Charlie is not furry.\n\nFrom the given statements:\n1. Erin is furry. Erin is quiet. Erin is white. (Statement 4)\n   From this we know that furry, quiet, and white are not mutually exclusive.\n\nFrom the given statements:\n1. If someone is quiet and kind then they are rough. (Statement 4)\n   This is an if-then statement, and it does not mean that all quiet people are kind, or that all rough people are quiet and kind.\n\nBased on our analysis, we can conclude that Charlie is not furry.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is furry\" is true, false, or unknown, we need to analyze the given statements and the conditions.\n\n1. We know that Bob is quiet and Bob is white. So, we can conclude that being quiet implies being white (from the statement \"If someone is white then they are quiet\").\n2. We also know that Charlie is quiet. Using the previous conclusion, we can deduce that Charlie is white (from \"Charlie is quiet then Charlie is white\").\n3. Since Charlie is white, we can apply the rule \"If someone is white then they are quiet\" again. This time, it's a tautology (i.e., a statement that is always true) because we already know Charlie is quiet. \n4. We know that Erin is white and Erin is quiet. However, we cannot directly conclude that Charlie is furry using this information. We need to find another rule that relates to Charlie's fur or roughness.\n5. Since Charlie is quiet, we can apply the rule \"If someone is quiet and kind then they are rough.\" However, we do not have any information that Charlie is kind, so we cannot conclude this statement is true.\n6. Now, we can look for the given statement that relates to Charlie being rough. We know that \"All kind, rough people are furry.\" If we can prove that Charlie is rough, then we can conclude Charlie is furry.\n7. To check if Charlie is rough, we need to check if Charlie is kind. If Charlie is kind, then Charlie is rough. However, we do not have any information that Charlie is kind. We can only conclude that Charlie is rough if we know Charlie is kind. Therefore, we cannot conclude Charlie is rough using the given information.\n8. Since Charlie is white and white people are quiet (as mentioned earlier), we can use the rule \"All kind, rough people are furry\" to check if Charlie is kind. We know that Charlie is quiet and white. If Charlie is kind, then Charlie is rough. But if Charlie is rough, then Charlie is furry (because all kind, rough people are furry). Therefore, we can conclude that Charlie is furry if Charlie is kind.\n9. Now, we need to check if Charlie is kind. We know that \"If someone is blue and white then they are kind.\" However, we do not have any information that Charlie is blue. Therefore, we cannot use this rule to conclude that Charlie is kind.\n10. We also know that \"If someone is blue then they are white.\" Since we already know Charlie is white, we can apply this rule. We can conclude that Charlie is blue.\n11. Using the rule \"If someone is blue and white then they are kind,\" we can conclude that Charlie is kind.\n12. Since Charlie is kind, we can use the rule \"All kind, rough people are furry\" to conclude that Charlie is furry.\n\nTherefore, we have concluded that Charlie is furry.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine if the statement \"Charlie is furry\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is quiet. (Given)\n2. If Charlie is quiet, then Charlie is white. (Given)\n   So, Charlie is white. (Inferred)\n\n3. If someone is white, then they are quiet. (Given)\n   We already know Charlie is quiet, and now we know Charlie is white, which confirms this inference.\n\n4. If someone is white, then they are blue. (Given)\n   So, Charlie is blue. (Inferred)\n\n5. If someone is blue and white, then they are kind. (Given)\n   We already know Charlie is both blue and white, so Charlie is kind. (Inferred)\n\nNow, we have established that Charlie is quiet, white, blue, and kind. We can also use the given information to infer more about Charlie's characteristics.\n\n6. All kind, rough people are furry. (Given)\n   We know Charlie is kind, but we cannot determine if Charlie is rough or not. This information is unknown.\n\n7. If someone is quiet and kind then they are rough. (Given)\n   We know Charlie is quiet and kind, but we still cannot determine if Charlie is rough or not. This information is unknown.\n\n8. Erin is furry, quiet, and white. (Given)\n   Charlie is not directly related to Erin's characteristics, but this information doesn't help us determine if Charlie is furry or not.\n\n9. Fiona is blue, furry, kind, and quiet. (Given)\n   Charlie is not directly related to Fiona's characteristics, but this information doesn't help us determine if Charlie is furry or not.\n\n10. If someone is rough then they are kind. (Given)\n   This information is not useful in determining if Charlie is furry, but it does confirm that Charlie is kind, which we already inferred.\n\nNow, we have to consider the information given about Erin and Fiona. We are trying to determine if Charlie is furry, and we know that:\n\n- All kind, rough people are furry.\n- Green, furry people are quiet.\n- If someone is rough then they are kind.\n\nBut the problem does not state that Charlie is green, nor does it state that Charlie is rough. We can only conclude that Charlie is kind from the previous inferences.\n\nSince we know Charlie is kind, but we cannot determine if Charlie is rough or not, and since the information about green, furry people is irrelevant, we cannot conclude that Charlie is furry based on the given information.\n\nTherefore, the statement \"Charlie is furry\" is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether Charlie is furry, we need to use the given premises and apply them logically.\n\n1. Bob is kind. Bob is quiet. Bob is white. \n   - We don't know if Bob is furry, so this statement does not provide any information about fur.\n\n2. Charlie is quiet. \n   - This statement is given.\n\n3. Erin is furry. Erin is quiet. Erin is white. \n   - We don't know if Erin is kind or rough, but we know she is furry and quiet.\n\n4. Fiona is blue. Fiona is furry. Fiona is kind. Fiona is quiet. \n   - We know Fiona is furry and kind.\n\n5. All kind, rough people are furry. \n   - From this, we can deduce that if someone is rough, they are furry.\n\n6. Green, furry people are quiet. \n   - We don't have any information about green people, so this statement does not provide any information about fur.\n\n7. If someone is rough then they are kind. \n   - This statement does not provide any information about fur.\n\n8. If someone is quiet and kind then they are rough. \n   - We don't have any information about Charlie's roughness or kindness.\n\n9. If someone is white then they are quiet. \n   - This statement does not provide any information about Charlie's fur.\n\n10. If someone is blue and white then they are kind. \n    - We don't know if Charlie is blue or white, so this statement does not provide any information about Charlie's fur.\n\n11. If someone is white then they are blue. \n    - We can use this statement to deduce that if Charlie is white, then Charlie is blue.\n\n12. If Charlie is quiet then Charlie is white. \n    - We already know Charlie is quiet, so this statement tells us that Charlie is white.\n\nFrom statement 12, we know that Charlie is white. Then from statement 11, we can deduce that Charlie is blue. Then from statement 10, we can deduce that Charlie is kind.\n\nNow, from statement 5, we know that if someone is rough, then they are furry. But from statement 8, we also know that if someone is quiet and kind, then they are rough. Since we know Charlie is quiet and kind, we can deduce that Charlie is rough.\n\nFrom statement 5, we can now conclude that Charlie is furry.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether Charlie is furry, we need to analyze the given information step by step and use logical deductions.\n\n1. Charlie is quiet. (Given)\n2. If someone is quiet, then they are white. (Given)\n   Therefore, Charlie is white. (From rule 1 and rule 6)\n\n3. If someone is white, then they are blue. (Given)\n   Therefore, Charlie is blue. (From rule 2)\n\n4. If someone is blue and white, then they are kind. (Given)\n   However, we don't know if Charlie is white and blue at the same time yet. \n   Therefore, we cannot conclude that Charlie is kind based on this rule.\n\n5. If Charlie is white, then Charlie is blue. (From step 2 and step 3)\n   This implies that Charlie is both white and blue, which satisfies the condition in rule 4.\n   Therefore, Charlie is kind. (From rule 4 and step 5)\n\n6. If someone is kind, then they are not rough. (Implicit from the given rules)\n   Since Charlie is kind (from step 5), Charlie is not rough.\n\n7. If someone is rough, then they are kind. (Given)\n   However, we know that Charlie is not rough (from step 6).\n   Therefore, we cannot conclude that Charlie is kind based on this rule.\n\n8. If someone is quiet and kind, then they are rough. (Given)\n   However, we know that Charlie is quiet (from rule 1) and kind (from step 5).\n   Therefore, Charlie is rough. (From rule 8 and the fact that Charlie is quiet and kind)\n\n9. All kind, rough people are furry. (Given)\n   Since Charlie is kind (from step 5) and rough (from step 8), Charlie satisfies this condition.\n   Therefore, Charlie is furry. (From rule 9)\n\nFinal Answer: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is furry\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Bob is kind, quiet, and white.\n   - Charlie is quiet.\n   - Erin is furry, quiet, and white.\n   - Fiona is blue, furry, kind, and quiet.\n   - All kind, rough people are furry.\n   - Green, furry people are quiet.\n   - If someone is rough then they are kind.\n   - If someone is quiet and kind then they are rough.\n   - If someone is white then they are quiet.\n   - If someone is blue and white then they are kind.\n   - If someone is white then they are blue.\n   - If Charlie is quiet then Charlie is white.\n\n2. From the given information, we can derive the following conclusions:\n   - Since Charlie is quiet, then Charlie is white (from the last given statement).\n   - Since Charlie is white, then Charlie is quiet (from the 9th given statement).\n   - Since Charlie is white, then Charlie is blue (from the 10th given statement).\n   - Since Charlie is blue and white, then Charlie is kind (from the 8th given statement).\n\n3. Now we need to determine whether Charlie is furry or not.\n   - Since Charlie is kind, we cannot directly conclude that Charlie is furry from the given statements.\n   - However, we can check if there's any information that contradicts the statement \"Charlie is furry.\"\n   - We have information that all kind, rough people are furry, but we don't know if Charlie is rough.\n   - We also have information that green, furry people are quiet, but we don't have any information about green people.\n\n4. From the given information, we cannot conclude that Charlie is furry. We can only conclude that Charlie is kind, but we cannot determine if Charlie is rough or not.\n   Therefore, the statement \"Charlie is furry\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is furry\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Charlie is quiet (from the problem statement).\n\n2. We have two rules related to being quiet:\n   - If someone is quiet and kind then they are rough. (This rule is not relevant to our case since we don't know if Charlie is kind or not.)\n   - If someone is white then they are quiet. (This rule does not provide any new information since we already know Charlie is quiet.)\n\n3. We have a rule related to Charlie being quiet:\n   - If Charlie is quiet then Charlie is white. (This rule provides new information that Charlie is white.)\n\n4. We have a rule related to being white:\n   - If someone is white then they are quiet. (This rule is not relevant to our case since we already know Charlie is white and quiet.)\n\n5. We have a rule related to being white:\n   - If someone is white then they are blue. (This rule provides new information that Charlie is blue.)\n\n6. We have a rule related to being blue and white:\n   - If someone is blue and white then they are kind. (This rule does not provide any new information since we don't know if Charlie is furry or not.)\n\n7. We have a rule related to being blue:\n   - We do not have any information about Charlie being blue that would lead us to know if Charlie is furry or not.\n\n8. We have a rule related to being kind, rough, and furry:\n   - All kind, rough people are furry. (We do not know if Charlie is kind or rough, so we cannot apply this rule.)\n\n9. We have a rule related to being green and furry:\n   - Green, furry people are quiet. (This rule is not relevant to our case since we are trying to determine if Charlie is furry, not quiet.)\n\n10. We have a rule related to being rough:\n    - If someone is rough then they are kind. (This rule is not relevant to our case since we don't know if Charlie is rough or not.)\n\nSince we have found that Charlie is blue (from step 5), and we have a rule related to being blue and furry (Fiona is blue, Fiona is furry), we cannot conclude if Charlie is furry or not using the given information.\n\nTherefore, the final answer is:\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether Charlie is furry, we need to analyze the given statements and use the rules to find a conclusion.\n\n1. Charlie is quiet. (Given)\n2. If someone is quiet and kind then they are rough. (Rule)\nHowever, we do not know if Charlie is kind. Therefore, we cannot conclude that Charlie is rough.\n\n3. Charlie is quiet. (Given)\n4. If someone is quiet then they are white. (Rule)\nTherefore, Charlie is white.\n\n5. If someone is white then they are blue. (Rule)\nHowever, this rule implies that being white is a subset of being blue, which contradicts the previous rule \"If someone is blue and white then they are kind\" because it is not a subset. Therefore, it creates a contradiction, and we cannot conclude that Charlie is blue.\n\n6. We do not know if Charlie is furry or not because we do not have any direct information about Charlie being furry, and the rules do not provide enough information to conclude it.\n\nHowever, we can try to use the given rules in a different way. \n\n1. If someone is quiet and kind then they are rough. (Rule)\nHowever, we do not know if Charlie is kind. Therefore, we cannot conclude that Charlie is rough.\n\n2. If someone is white then they are quiet. (Rule)\nWe already know that Charlie is quiet and white.\n\n3. Erin is furry. Erin is quiet. Erin is white. (Given)\nThis implies that being white and quiet does not necessarily imply being furry.\n\n4. Charlie is white. (Conclusion)\nHowever, we cannot conclude that Charlie is furry.\n\n5. Fiona is furry. Fiona is kind. Fiona is quiet. Fiona is blue. (Given)\nThis implies that being furry and kind does not necessarily imply being blue or white.\n\n6. If someone is rough then they are kind. (Rule)\nHowever, we do not know if Charlie is rough.\n\n7. Charlie is quiet. (Given)\nHowever, being quiet does not necessarily imply being furry.\n\n8. Charlie is white. (Conclusion)\nHowever, we cannot conclude that Charlie is furry.\n\n9. If someone is quiet and kind then they are rough. (Rule)\nHowever, we do not know if Charlie is kind. Therefore, we cannot conclude that Charlie is rough.\n\n10. Charlie is quiet. (Given)\nHowever, being quiet does not necessarily imply being furry.\n\n11. Charlie is white. (Conclusion)\nHowever, we cannot conclude that Charlie is furry.\n\n12. If someone is blue and white then they are kind. (Rule)\nHowever, we do not know if Charlie is kind.\n\n13. If someone is white then they are blue. (Rule)\nHowever, we already know that being white does not necessarily imply being blue.\n\n14. Charlie is white. (Conclusion)\nHowever, we cannot conclude that Charlie is furry.\n\nIn conclusion, we cannot determine whether Charlie is furry or not because we do not have enough information to make a conclusion.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is furry\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. Charlie is quiet. (Given)\n2. If someone is quiet and white then they are rough. (Rule 4) But, this rule does not apply here. \n3. If someone is white then they are quiet. (Rule 7) This is a given fact here. \n4. If Charlie is quiet then Charlie is white. (Rule 9) This rule directly applies to Charlie. \n5. If someone is white then they are quiet. (Rule 7) This rule is given, which is already known.\n6. If someone is white then they are quiet. (Rule 7) As a result of rule 9, Charlie is white, then we know Charlie is quiet. \n\nThe only rules that can apply to the fact of Charlie being white are rule 4, 7 and 9. We already know that rule 7 and 9 apply. Let's look for other rules that can apply to Charlie being quiet.\n \n7. Charlie is quiet. (Given) \n8. Erin is quiet. (Given) \n9. If someone is quiet and kind then they are rough. (Rule 5) This rule does not apply here. \n10. Erin is quiet. (Given) \n11. Erin is white. (Given) \n12. If someone is white then they are quiet. (Rule 7) This is a given fact here. \n13. If someone is white then they are quiet. (Rule 7) This rule is given, which is already known. \n14. If someone is quiet then they are white. (Rule 3) This rule is given, which is already known. \n15. All kind, rough people are furry. (Rule 1) This rule does not apply here.\n16. Green, furry people are quiet. (Rule 6) This rule does not apply here.\n17. If someone is blue and white then they are kind. (Rule 8) This rule does not apply here.\n18. If someone is white then they are blue. (Rule 10) This rule does not apply here.\n19. If someone is rough then they are kind. (Rule 2) This rule does not apply here.\n\nNow let's look at the statements about Charlie being furry:\n \n1. Charlie is quiet. (Given)\n2. Charlie is white. (Rule 9) As a result of rule 9, Charlie is quiet then we know Charlie is white.\n3. If someone is white then they are blue. (Rule 10) This rule does not apply here.\n4. If someone is blue and white then they are kind. (Rule 8) This rule does not apply here.\n5. Fiona is blue. (Given) \n6. Fiona is furry. (Given)\n7. Fiona is kind. (Given)\n8. Fiona is quiet. (Given)\n9. All kind, rough people are furry. (Rule 1) This rule does not apply here.\n10. Green, furry people are quiet. (Rule 6) This rule does not apply here.\n11. If someone is blue and white then they are kind. (Rule 8) This rule does not apply here.\n12. If someone is white then they are blue. (Rule 10) This rule does not apply here.\n13. If someone is white then they are quiet. (Rule 7) This rule is given, which is already known. \n14. If someone is quiet then they are white. (Rule 3) This rule is given, which is already known.\n15. Erin is quiet. (Given) \n16. Erin is white. (Given) \n17. If someone is white then they are quiet. (Rule 7) This rule is given, which is already known.\n18. Erin is furry. (Given)\n19. If someone is rough then they are kind. (Rule 2) This rule does not apply here.\n20. If someone is quiet and kind then they are rough. (Rule 5) This rule does not apply here.\n\nNow let's look at the statements about Charlie being furry:\n \n1. Charlie is quiet. (Given)\n2. Charlie is white. (Rule 9) As a result of rule 9, Charlie is quiet then we know Charlie is white.\n3. If someone is white then they are blue. (Rule 10) This rule does not apply here.\n4. If someone is blue and white then they are kind. (Rule 8) This rule does not apply here.\n5. Fiona is blue. (Given) \n6. Fiona is furry. (Given)\n7. Fiona is kind. (Given)\n8. Fiona is quiet. (Given)\n9. If someone is blue and white then they are kind. (Rule 8) This rule does not apply here.\n10. If someone is white then they are blue. (Rule 10) This rule does not apply here.\n11. If someone is white then they are quiet. (Rule 7) This rule is given, which is already known. \n12. If someone is quiet then they are white. (Rule 3) This rule is given, which is already known.\n13. Erin is quiet. (Given) \n14. Erin is white. (Given) \n15. If someone is white then they are quiet. (Rule 7) This rule is given, which is already known.\n16. Erin is furry. (Given)\n17. If someone is rough then they are kind. (Rule 2) This rule does not apply here.\n18. If someone is quiet and kind then they are rough. (Rule 5) This rule does not apply here.\n19. Since Charlie is white and white people are quiet, we cannot conclude that Charlie is furry because we do not know if quiet people are furry.\n\nBased on the given information and the rules provided, we cannot determine whether Charlie is furry or not. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is furry\" is true, false, or unknown, we need to analyze the given statements and apply the rules of logic.\n\nFrom the given statements, we have the following information about Charlie:\n\n1. Charlie is quiet.\n2. If someone is quiet then they are white. (Rule 6)\n3. If Charlie is quiet then Charlie is white. (Rule 11, this is redundant information but it still supports rule 6)\n\nFrom the information above, we can conclude that Charlie is white.\n\nNow, we need to determine if Charlie is furry. To do this, we'll use the given rules and information about Charlie.\n\n1. If someone is white then they are quiet. (Rule 6, this rule supports that Charlie is quiet as we already know this)\n2. If someone is quiet then they are white. (Rule 6, this rule supports that Charlie is white as we already know this)\n3. If someone is white then they are blue. (Rule 10)\n4. If someone is blue and white then they are kind. (Rule 9)\n5. Fiona is white and blue. (Information from the problem)\n6. Fiona is kind. (Information from the problem)\n7. Charlie is white. (Conclusion from above)\n\nFrom the information above, we can conclude that Charlie is white and blue.\n\nNow, we need to determine if Charlie is furry. To do this, we'll use the given rules and information about Charlie.\n\n1. If someone is blue and white then they are kind. (Rule 9)\n2. Charlie is blue and white. (Conclusion from above)\n3. Charlie is kind. (Rule 9 supports that Charlie is kind)\n\nNow, we need to determine if Charlie is furry. To do this, we'll use the given rules and information about Charlie.\n\n1. If someone is kind then they are furry. (Rule 5)\n2. Charlie is kind. (Conclusion from above)\n3. Charlie is furry. (Rule 5 supports that Charlie is furry)\n\nTherefore, based on the given statements and the rules of logic, we can conclude that the statement \"Charlie is furry\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is furry\" is true, false, or unknown, we need to use the given information and logical deductions.\n\nFrom the given information:\n- Charlie is quiet.\n- If someone is quiet and white, then they are quiet. However, this statement is unnecessary as it does not provide any new information.\n- If Charlie is quiet then Charlie is white.\n\nGiven that Charlie is quiet, we can conclude that Charlie is white from the last point.\n\nFrom the given information:\n- Erin is white.\n- If someone is white, then they are quiet. This means Erin is quiet.\n- Fiona is white.\n- If someone is white, then they are quiet. This means Fiona is quiet.\n\nSince we have multiple people being white and quiet, we need to look at the other given information for further deductions.\n\nFrom the given information:\n- All kind, rough people are furry.\n- If someone is quiet and kind, then they are rough.\n- If someone is rough then they are kind.\n- Fiona is quiet, kind, and furry (this statement can be derived from the given information).\n- Erin is quiet, white, and furry (this statement can be derived from the given information).\n\nHowever, we still need to determine Charlie's characteristics.\n\nFrom the given information:\n- If someone is white, then they are blue.\n- Fiona is blue.\n- If someone is blue and white, then they are kind.\n- Fiona is white, blue, and kind.\n\nSince Charlie is white, we can conclude that Charlie is blue from the given information.\n\nFrom the given information:\n- Erin is blue.\n- Fiona is blue.\n- Charlie is blue.\n\nHowever, we still need to determine Charlie's fur characteristic.\n\nFrom the given information:\n- Green, furry people are quiet.\n- Fiona is furry, but this does not provide any new information about Charlie.\n- All kind, rough people are furry.\n- If someone is quiet and kind, then they are rough.\n- If someone is rough then they are kind.\n\nWe do not have enough information to determine Charlie's fur characteristic directly, but we can try to deduce it from the given information.\n\nFrom the given information:\n- Erin is furry and quiet.\n- If someone is quiet and furry, this statement can be derived from the given information.\n\nHowever, this does not provide any new information about Charlie.\n\nFrom the given information:\n- Charlie is white, blue, and quiet.\n- If someone is white, then they are quiet.\n- If someone is blue and white, then they are kind.\n- If someone is quiet and kind, then they are rough.\n- All kind, rough people are furry.\n\nWe still cannot determine Charlie's fur characteristic directly from the given information.\n\nHowever, we can conclude that Charlie is not furry because we do not have any information that directly supports Charlie being furry.\n\nTherefore, the statement \"Charlie is furry\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_charlie, kind_charlie), rough_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> white(X)",
+          "z3_formula": "Implies(quiet_charlie, white_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_charlie, quiet_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_charlie, blue_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_charlie, white_charlie), kind_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_charlie, rough_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_charlie, rough_charlie), furry_charlie)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> white(X)",
+          "z3_formula": "Implies(quiet_charlie, white_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> white(X)",
+          "z3_formula": "Implies(white_charlie, white_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_charlie, blue_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_charlie, white_charlie), kind_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> Not(furry(X))",
+          "z3_formula": "Implies(kind_charlie, Not(furry_charlie))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "Not(furry(charlie))",
+          "z3_formula": "Not(furry_charlie) == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_charlie, quiet_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_charlie, kind_charlie), rough_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_charlie, rough_charlie), furry_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_charlie, white_charlie), kind_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_charlie, white_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> white(X)",
+          "z3_formula": "Implies(quiet_charlie, white_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_charlie, quiet_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_charlie, blue_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_charlie, white_charlie), kind_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_charlie, rough_charlie), furry_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_charlie, kind_charlie), rough_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona) & furry(fiona) & kind(fiona) & quiet(fiona)",
+          "z3_formula": "And(blue_fiona, furry_fiona, kind_fiona, quiet_fiona) == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_charlie, kind_charlie)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_X, rough_X), furry_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_X, furry_X), quiet_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_X, kind_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_X, kind_X), rough_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_X, quiet_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_X, white_X), kind_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_X, blue_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> white(X)",
+          "z3_formula": "Implies(quiet_X, white_X)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> white(X)",
+          "z3_formula": "Implies(quiet_charlie, white_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_charlie, blue_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_charlie, white_charlie), kind_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> Not(rough(X))",
+          "z3_formula": "Implies(kind_charlie, Not(rough_charlie))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_charlie, kind_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_charlie, kind_charlie), rough_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_charlie, rough_charlie), furry_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_X, rough_X), furry_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_X, furry_X), quiet_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_X, kind_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_X, kind_X), rough_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_X, quiet_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_X, white_X), kind_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_X, blue_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(charlie) -> white(charlie)",
+          "z3_formula": "Implies(quiet_charlie, white_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == Unknown",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_charlie, kind_charlie), rough_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_charlie, quiet_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(charlie) -> white(charlie)",
+          "z3_formula": "Implies(quiet_charlie, white_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_charlie, blue_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_charlie, white_charlie), kind_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_charlie, furry_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_charlie, rough_charlie), furry_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_charlie, furry_charlie), quiet_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_charlie, kind_charlie)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_charlie, kind_charlie), rough_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == Unknown",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> white(X)",
+          "z3_formula": "Implies(quiet_charlie, white_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_charlie, blue_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == Unknown",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_charlie, white_charlie), kind_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == Unknown",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_charlie, blue_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == Unknown",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == Unknown",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_charlie, quiet_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> white(X)",
+          "z3_formula": "Implies(quiet_charlie, white_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_charlie, blue_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_charlie, white_charlie), kind_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "fiona == kind",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "fiona == furry",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "fiona == blue",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "erin == furry",
+          "z3_formula": "furry_erin == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "erin == white",
+          "z3_formula": "white_erin == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "erin == quiet",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_charlie, rough_charlie), furry_charlie)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_charlie, kind_charlie), rough_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == Unknown",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> white(X)",
+          "z3_formula": "Implies(quiet_charlie, white_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona) & blue(fiona)",
+          "z3_formula": "And(white_fiona, blue_fiona) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & blue(X) -> kind(X)",
+          "z3_formula": "Implies(And(white_fiona, blue_fiona), kind_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_charlie, furry_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & white(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_charlie, white_charlie), white_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> white(X)",
+          "z3_formula": "Implies(quiet_charlie, white_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_erin, quiet_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_fiona, quiet_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_fiona, white_fiona), kind_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_fiona, kind_fiona), rough_fiona)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_fiona, kind_fiona)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_fiona, rough_fiona), furry_fiona)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_charlie, white_charlie), kind_charlie)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_charlie, kind_charlie), rough_charlie)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_charlie, kind_charlie)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_charlie, rough_charlie), furry_charlie)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_fiona, furry_fiona), quiet_fiona)",
+          "source_step": 24
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X)",
+          "z3_formula": "Implies(And(quiet_fiona, furry_fiona), True)",
+          "source_step": 26
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> True",
+          "z3_formula": "Implies(And(quiet_charlie, furry_charlie), True)",
+          "source_step": 27
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_charlie, rough_charlie), furry_charlie)",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(charlie)",
+          "z3_formula": "Not(furry_charlie)",
+          "source_step": 29
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 180,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 55
+    },
+    "maxsat_stats": {
+      "satisfied": 52,
+      "excluded": 3,
+      "total_weight": 176,
+      "solve_time_ms": 1.9861822947859764
+    },
+    "timing": {
+      "trace_gen_s": 15.075,
+      "extraction_s": 36.343,
+      "dedup_s": 1.872,
+      "maxsat_s": 0.005,
+      "total_s": 53.296
+    }
+  }
+}

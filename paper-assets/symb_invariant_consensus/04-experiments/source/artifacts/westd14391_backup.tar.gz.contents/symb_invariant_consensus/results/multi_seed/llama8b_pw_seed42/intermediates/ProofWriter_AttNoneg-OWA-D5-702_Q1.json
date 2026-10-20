@@ -1,0 +1,1054 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-702_Q1",
+    "problem": "Charlie is big. Charlie is cold. Charlie is nice. Charlie is young. Dave is big. Dave is nice. Fiona is big. Fiona is nice. Gary is cold. Gary is nice. All rough, young things are red. All rough, cold things are young. All nice, red things are round. If Charlie is cold and Charlie is rough then Charlie is young. All round, red things are rough. All cold, big things are red. Cold things are big. If Dave is rough then Dave is cold. If Fiona is cold then Fiona is red.\n\nDetermine whether the following statement is true, false, or unknown:\nGary is cold.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nCold($x, bool) ::: Is x cold?\nNice($x, bool) ::: Is x nice?\nYoung($x, bool) ::: Is x young?\nRed($x, bool) ::: Is x red?\nRound($x, bool) ::: Is x round?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nBig(Charlie, True) ::: Charlie is big.\nCold(Charlie, True) ::: Charlie is cold.\nNice(Charlie, True) ::: Charlie is nice.\nYoung(Charlie, True) ::: Charlie is young.\nBig(Dave, True) ::: Dave is big.\nNice(Dave, True) ::: Dave is nice.\nBig(Fiona, True) ::: Fiona is big.\nNice(Fiona, True) ::: Fiona is nice.\nCold(Gary, True) ::: Gary is cold.\nNice(Gary, True) ::: Gary is nice.\n\nRules:\nRough($x, True) && Young($x, True) >>> Red($x, True) ::: All rough, young things are red.\nRough($x, True) && Cold($x, True) >>> Young($x, True) ::: All rough, cold things are young.\nNice($x, True) && Red($x, True) >>> Round($x, True) ::: All nice, red things are round.\nCold(Charlie, True) && Rough(Charlie, True) >>> Young(Charlie, True) ::: If Charlie is cold and Charlie is rough then Charlie is young.\nRound($x, True) && Red($x, True) >>> Rough($x, True) ::: All round, red things are rough.\nCold($x, True) && Big($x, True) >>> Red($x, True) ::: All cold, big things are red.\nCold($x, True) >>> Big($x, True) ::: Cold things are big.\nRough(Dave, True) >>> Cold(Dave, True) ::: If Dave is rough then Dave is cold.\nCold(Fiona, True) >>> Red(Fiona, True) ::: If Fiona is cold then Fiona is red.\n\nQuery:\nCold(Gary, True) ::: Gary is cold."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 131.5,
+      "Unknown": 100.5
+    },
+    "answer_counts": {
+      "True": 8,
+      "Unknown": 3
+    },
+    "traces": [
+      {
+        "trace": "To determine whether Gary is cold, we need to analyze the given statements and apply logical deductions.\n\n1. Charlie is big. Charlie is cold. Charlie is nice. Charlie is young.\n2. Dave is big. Dave is nice.\n3. Fiona is big. Fiona is nice.\n4. Gary is cold. Gary is nice.\n5. All rough, young things are red.\n6. All rough, cold things are young.\n7. All nice, red things are round.\n8. If Charlie is cold and Charlie is rough then Charlie is young.\n9. All round, red things are rough.\n10. All cold, big things are red.\n11. Cold things are big.\n12. If Dave is rough then Dave is cold.\n13. If Fiona is cold then Fiona is red.\n\nFrom statement 11, we know that cold things are big. However, from statement 10, we also know that all cold, big things are red. Since Gary is cold (given in statement 4), we can conclude that Gary is big (using statement 11) and Gary is red (using statement 10).\n\nNow, from statement 8, we know that if Charlie is cold and Charlie is rough, then Charlie is young. However, we cannot directly apply this statement to Gary. \n\nFrom statement 12, we know that if Dave is rough, then Dave is cold. However, we cannot determine whether Dave is rough or not, so we cannot conclude whether Dave is cold or not.\n\nFrom statement 13, we know that if Fiona is cold, then Fiona is red. However, we cannot determine whether Fiona is cold or not.\n\nWe also know that all rough, cold things are young (statement 6). However, we cannot determine whether Gary is rough or not.\n\nNow, let's analyze the statement \"Gary is cold\" from the perspective of all the statements given.\n\nSince we know that Gary is cold, Gary is red, and Gary is big, we can use statement 7 which states that all nice, red things are round. This implies that Gary is round.\n\nUsing statement 9, we know that all round, red things are rough. This implies that Gary is rough.\n\nNow, since we know that Gary is rough and cold, we can use statement 6, which states that all rough, cold things are young. This implies that Gary is young.\n\nFrom statement 3, we know that Gary is not young because Gary is not Charlie, and Charlie is young.\n\nHowever, using statement 6, we can conclude that Gary is young because Gary is rough and cold.\n\nNow, Gary is young, Gary is cold, Gary is big, Gary is round, and Gary is red. We can conclude that Gary is indeed cold.\n\nBut, since we initially stated that Gary is cold and Gary is nice (statement 4), and we found that Gary is young, Gary is rough, and Gary is red, we can now conclude that Gary is indeed cold.\n\nHowever, since we are given that Gary is young, Gary is cold, and Gary is nice, we cannot determine whether Gary is round or not. If Gary is round, then Gary is rough (statement 9), and if Gary is rough, then Gary is young (statement 6).\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is cold\" is true, false, or unknown, we need to analyze the given premises and the given information about Gary.\n\nGiven premises:\n\n1. All rough, young things are red.\n2. All rough, cold things are young.\n3. All nice, red things are round.\n4. If Charlie is cold and Charlie is rough then Charlie is young.\n5. All round, red things are rough.\n6. All cold, big things are red.\n7. Cold things are big.\n8. If Dave is rough then Dave is cold.\n9. If Fiona is cold then Fiona is red.\n\nGiven information about Gary:\n\n1. Gary is cold.\n2. Gary is nice.\n3. Gary is cold. (Given premise 7)\n\nFrom premise 7, we know that cold things are big. Since Gary is cold, we can infer that Gary is big.\n\nFrom premise 6, we know that all cold, big things are red. Since Gary is cold and big, we can infer that Gary is red.\n\nFrom premise 1, we know that all rough, young things are red. Since Gary is red, we can infer that Gary is either rough or young.\n\nFrom premise 2, we know that all rough, cold things are young. Since Gary is cold and rough (or young), we can infer that Gary is young.\n\nNow, let's examine the given information about Gary. We know that Gary is cold, Gary is nice, and Gary is cold. We can use this information to determine whether the statement \"Gary is cold\" is true, false, or unknown.\n\nFrom premise 4, we know that if Charlie is cold and Charlie is rough then Charlie is young. We can't apply this premise to Gary since Gary is not mentioned in this premise. However, we can use the information about Gary to check if it contradicts any of the given premises.\n\nSince we have already determined that Gary is young, we can use premise 1 to check if it contradicts any of the given premises. From premise 1, we know that all rough, young things are red. We already know that Gary is red and young, so this premise does not contradict any of the given information about Gary.\n\nHowever, we still need to check if the statement \"Gary is cold\" is true or false. We already know that Gary is cold, so we need to check if this contradicts any of the given premises.\n\nFrom premise 8, we know that if Dave is rough then Dave is cold. This premise does not apply to Gary since it mentions Dave.\n\nFrom premise 9, we know that if Fiona is cold then Fiona is red. This premise does not apply to Gary since it mentions Fiona.\n\nSince none of the premises contradict the given information about Gary, we can conclude that the statement \"Gary is cold\" is true.\n\nTherefore, the answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Gary is cold. Gary is nice. (Given statement)\n2. Gary is cold. (From statement 1)\n3. Gary is cold. Gary is nice. (From statement 1)\n4. All cold, big things are red. (Given statement)\n5. Cold things are big. (Given statement)\n6. Gary is cold. (From statement 2)\n7. Gary is big. (From statement 5 and statement 6)\n8. Gary is big. Gary is cold. (From statement 7 and statement 6)\n9. All big, cold things are red. (From statement 4 and statement 5)\n10. Gary is big. Gary is cold. (From statement 8)\n11. Gary is red. (From statement 9 and statement 10)\n12. All rough, young things are red. (Given statement)\n13. All nice, red things are round. (Given statement)\n14. Gary is red. Gary is nice. (From statement 1 and statement 11)\n15. Gary is round. (From statement 13 and statement 14)\n16. All round, red things are rough. (Given statement)\n17. Gary is round. Gary is red. (From statement 11 and statement 15)\n18. Gary is rough. (From statement 16 and statement 17)\n19. All rough, cold things are young. (Given statement)\n20. Gary is rough. Gary is cold. (From statement 8 and statement 18)\n21. Gary is young. (From statement 19 and statement 20)\n\nSince we were able to determine that Gary is young, we can conclude that the statement \"Gary is cold\" is true because all rough, cold things are young, and we know Gary is young.\n\nTherefore, the final answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we will use a series of logical deductions based on the given statements. We will break down the statements into smaller parts and then combine them to determine the final answer.\n\nFrom the statements, we can deduce the following:\n\n1. Charlie is big. Charlie is cold. Charlie is nice. Charlie is young. (Statement)\n2. Dave is big. Dave is nice. (Statement)\n3. Fiona is big. Fiona is nice. (Statement)\n4. Gary is cold. Gary is nice. (Statement)\n5. All rough, young things are red. (Statement)\n6. All rough, cold things are young. (Statement)\n7. All nice, red things are round. (Statement)\n8. If Charlie is cold and Charlie is rough then Charlie is young. (Statement)\n9. All round, red things are rough. (Statement)\n10. All cold, big things are red. (Statement)\n11. Cold things are big. (Statement)\n12. If Dave is rough then Dave is cold. (Statement)\n13. If Fiona is cold then Fiona is red. (Statement)\n\nFrom statement 11, we can conclude that cold things are big. \n\nUsing statement 10, we can conclude that all cold things are red. \n\nNow, we can apply this to Gary, who is cold (statement 4). Since Gary is cold, we can conclude that Gary is red.\n\nNow, let's go back to statement 8. It says that if Charlie is cold and Charlie is rough then Charlie is young. However, this does not apply to Gary since it specifically mentions Charlie.\n\nNow, we can use statement 5, which says that all rough, young things are red. However, this does not apply to Gary since it is not young.\n\nNow, let's go back to statement 6. It says that all rough, cold things are young. However, this does not apply to Gary since it is not rough.\n\nNow, we can use statement 12, which says that if Dave is rough then Dave is cold. However, this does not apply to Gary since it specifically mentions Dave.\n\nNow, we can use statement 13, which says that if Fiona is cold then Fiona is red. However, this does not apply to Gary since it specifically mentions Fiona.\n\nWe know that Gary is cold (statement 4) and Gary is red. We also know that all red things are either round or cold, big (statements 7 and 10).\n\nSince we do not have any information about Gary being round, we cannot conclude that Gary is young. However, we can conclude that Gary is cold.\n\nTherefore, the statement \"Gary is cold\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given rules and premises to the statement \"Gary is cold.\"\n\n1. From the statement \"Gary is cold. Gary is nice.,\" we know that Gary is cold and nice.\n2. From the premise \"All cold, big things are red,\" and \"Cold things are big,\" we can infer that Gary is red.\n3. From the premise \"All rough, cold things are young,\" we know that cold things are young. However, we do not know if Gary is rough or not.\n4. Since we do not know if Gary is rough or not, we cannot conclude if Gary is young or not.\n5. From the premise \"All nice, red things are round,\" we know that red things are round. However, we do not know if Gary is round or not.\n6. From the premise \"All round, red things are rough,\" we know that round, red things are rough. However, we do not know if Gary is round or not.\n7. Since we do not know if Gary is round or not, we cannot conclude if Gary is rough or not.\n8. From the premise \"If Fiona is cold then Fiona is red,\" we know that Fiona being cold does not necessarily mean Gary is cold, because this premise is only about Fiona, not Gary.\n\nFrom the above steps, we cannot conclude that Gary is cold with certainty. However, we can conclude that if Gary is cold, then Gary must be red, but we cannot determine if Gary is young or not.\n\nTherefore, the statement \"Gary is cold\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\nGiven information:\n1. All rough, young things are red.\n2. All rough, cold things are young.\n3. All nice, red things are round.\n4. If Charlie is cold and Charlie is rough then Charlie is young.\n5. All round, red things are rough.\n6. All cold, big things are red.\n7. Cold things are big.\n8. If Dave is rough then Dave is cold.\n9. If Fiona is cold then Fiona is red.\n10. Gary is cold. Gary is nice. Gary is nice.\n\nNow, we will use the given information to determine whether the statement \"Gary is cold\" is true, false, or unknown.\n\nFrom statement 7, we know that cold things are big.\nFrom statement 6, we know that all cold, big things are red.\nSince Gary is cold (from the statement we are trying to evaluate), it means Gary is also big (because cold things are big).\n\nNow, we have:\nGary is cold and Gary is big.\n\nFrom statement 6, we know that all cold, big things are red.\nSo, Gary is red.\n\nWe also know that Gary is nice (from the given information).\nFrom statement 3, we know that all nice, red things are round.\nTherefore, Gary is round.\n\nNow, we have:\nGary is red, Gary is round, and Gary is nice.\n\nFrom statement 1, we know that all rough, young things are red.\nBut we don't know if Gary is rough or young.\n\nFrom statement 2, we know that all rough, cold things are young.\nWe know that Gary is cold, but we don't know if Gary is rough or young.\n\nHowever, from statement 5, we know that all round, red things are rough.\nWe know that Gary is red and round.\nSo, Gary is rough.\n\nNow, we have:\nGary is cold, Gary is big, Gary is red, Gary is round, and Gary is rough.\n\nFrom statement 4, we know that if Charlie is cold and Charlie is rough then Charlie is young.\nHowever, this is not relevant to Gary.\n\nFrom statement 8, we know that if Dave is rough then Dave is cold.\nHowever, this is not relevant to Gary.\n\nFrom statement 9, we know that if Fiona is cold then Fiona is red.\nHowever, this is not relevant to Gary.\n\nTherefore, we have determined that Gary is cold, Gary is big, Gary is red, Gary is round, and Gary is rough.\n\nSo, the statement \"Gary is cold\" is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply them step by step to determine whether Gary is cold.\n\n1. Charlie is big. Charlie is cold. Charlie is nice. Charlie is young.\n   This statement does not provide any information about Gary.\n\n2. Dave is big. Dave is nice.\n   This statement does not provide any information about Gary.\n\n3. Fiona is big. Fiona is nice.\n   This statement does not provide any information about Gary.\n\n4. Gary is cold. Gary is nice.\n   We can't conclude anything from this statement as it is given as a fact.\n\n5. All rough, young things are red.\n   This statement does not provide any information about Gary.\n\n6. All rough, cold things are young.\n   This statement does not provide any information about Gary.\n\n7. All nice, red things are round.\n   This statement does not provide any information about Gary.\n\n8. If Charlie is cold and Charlie is rough then Charlie is young.\n   We can't conclude anything from this statement as there's no information about Charlie being rough.\n\n9. All round, red things are rough.\n   We can't conclude anything from this statement as there's no information about round or red things.\n\n10. All cold, big things are red.\n    This statement does not provide any information about Gary.\n\n11. Cold things are big.\n    This statement does not provide any information about Gary.\n\n12. If Gary is cold then Gary is big.\n    We can't conclude anything from this statement as it's not given that Gary is cold.\n\n13. Gary is cold. Gary is nice.\n    We still can't conclude anything from this statement as it's given as a fact.\n\n14. If Dave is rough then Dave is cold.\n    We don't have any information about Dave being rough.\n\n15. If Fiona is cold then Fiona is red.\n    We don't have any information about Fiona being cold.\n\n16. All rough, young things are red.\n    We can't conclude anything from this statement as we don't have any information about rough, young things.\n\n17. All rough, cold things are young.\n    We can't conclude anything from this statement as we don't have any information about rough, cold things.\n\n18. All nice, red things are round.\n    We can't conclude anything from this statement as we don't have any information about nice, red things.\n\n19. All round, red things are rough.\n    We can't conclude anything from this statement as we don't have any information about round, red things.\n\n20. All cold, big things are red.\n    We can't conclude anything from this statement as we don't have any information about cold, big things.\n\n21. Cold things are big.\n    We can't conclude anything from this statement as we don't have any information about cold things.\n\n22. Gary is cold.\n    We still can't conclude anything from this statement as it's given as a fact.\n\nHowever, we can combine some of the statements to conclude something.\n\nFrom statement 4, we know Gary is cold and Gary is nice.\nFrom statement 6, we know all rough, cold things are young.\nBut we don't have enough information to conclude that Gary is young.\n\nNow, let's look at statement 14: If Dave is rough then Dave is cold. \nWe can't conclude anything from this statement as we don't have any information about Dave being rough.\n\nHowever, we can look at statement 15: If Fiona is cold then Fiona is red.\nWe can't conclude anything from this statement as we don't have any information about Fiona being cold.\n\nNow, let's look at statement 8: If Charlie is cold and Charlie is rough then Charlie is young.\nWe can't conclude anything from this statement as there's no information about Charlie being rough.\n\nHowever, we can look at statement 16: All rough, young things are red.\nWe can't conclude anything from this statement as we don't have any information about rough, young things.\n\nHowever, we can look at statement 22: Gary is cold.\nThis statement is given as a fact and we can use it to conclude that Gary is indeed cold.\n\nSo, the final answer is: \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Gary is cold. Gary is nice. \n   - Since Gary is cold, we can infer that Gary is big (from the information \"All cold, big things are red\" and \"Cold things are big\").\n   - However, we don't know if Gary is red or not. \n\n2. Since we know Gary is cold and big, and from \"All cold, big things are red,\" we can infer that Gary is red.\n\n3. Now, we can apply the information that all rough, cold things are young. Since Gary is cold, we can infer that Gary is young.\n\n4. Since Gary is young and all rough, young things are red, we can infer that Gary is red.\n\n5. Given that Gary is young and red, we can apply the information that all round, red things are rough. This implies that Gary is rough.\n\n6. Now, we can infer that Gary is young, red, and rough.\n\nFrom the given information, we can conclude that Gary is indeed cold, big, young, red, and rough.\n\nSo, the statement \"Gary is cold\" is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is cold\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. We are given the following information:\n   - Charlie is big. Charlie is cold. Charlie is nice. Charlie is young.\n   - Dave is big. Dave is nice.\n   - Fiona is big. Fiona is nice.\n   - Gary is cold. Gary is nice.\n   - All rough, young things are red.\n   - All rough, cold things are young.\n   - All nice, red things are round.\n   - If Charlie is cold and Charlie is rough then Charlie is young.\n   - All round, red things are rough.\n   - All cold, big things are red.\n   - Cold things are big.\n   - If Dave is rough then Dave is cold.\n   - If Fiona is cold then Fiona is red.\n\n2. We need to determine whether \"Gary is cold\" is true, false, or unknown.\n\nGiven the information \"Gary is cold\" and \"Gary is nice\", we can conclude that \"Gary is red\" from the rule \"All nice, red things are round\".\n\nHowever, we have multiple statements that involve \"red\" and \"rough\" and we need to analyze them to see if \"Gary is rough\" can be concluded.\n\nGiven that \"All round, red things are rough\", if we can determine that \"Gary is round\" then we can conclude that \"Gary is rough\".\n\nBut we are not given any direct information about Gary being round or not.\n\nHowever, we can see that \"Cold things are big\" and \"All cold, big things are red\" and \"Gary is cold\", so we can conclude that \"Gary is big\".\n\nWe cannot conclude that Gary is round from this information alone.\n\nHowever, we can also see that \"Gary is cold\" and \"Gary is big\", so we can conclude that \"Gary is red\" from the rule \"All cold, big things are red\".\n\nWe have concluded that Gary is red. However, we still cannot conclude that Gary is rough from this information alone.\n\nHowever, given that \"All rough, cold things are young\" and \"Gary is cold\", we can conclude that \"Gary is young\".\n\nHowever, we cannot conclude that Gary is rough from this information alone.\n\nHowever, we can see that \"All rough, young things are red\" and we have already concluded that \"Gary is young\" and \"Gary is red\", so we can conclude that \"Gary is rough\".\n\nHowever, we have concluded that \"Gary is rough\" and \"Gary is cold\", so we can conclude that \"Gary is young\" from the rule \"If Charlie is cold and Charlie is rough then Charlie is young\".\n\nHowever, we cannot conclude that Gary is young from the rule \"All rough, young things are red\" alone because we have concluded that Gary is rough and young from the other rules.\n\nHowever, we have concluded that \"Gary is cold\", \"Gary is rough\", \"Gary is young\" and \"Gary is red\" and we cannot conclude any more information.\n\nTherefore, the statement \"Gary is cold\" is true.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether Gary is cold, we need to analyze the given statements and their implications.\n\n1. All rough, young things are red.\n2. All rough, cold things are young.\n3. All nice, red things are round.\n4. If Charlie is cold and Charlie is rough then Charlie is young.\n5. All round, red things are rough.\n6. All cold, big things are red.\n7. Cold things are big.\n8. If Dave is rough then Dave is cold.\n9. If Fiona is cold then Fiona is red.\n\nFrom statement 8, if Dave is rough, then Dave is cold. But we are given that Dave is nice and big, not rough. So we cannot conclude that Dave is cold.\n\nFrom statement 7, cold things are big. And statement 6 says all cold, big things are red. Therefore, if Charlie is cold and big (which is not given but since Charlie is big and cold, it implies that Charlie is red because of statement 6), then Charlie is red.\n\nFrom statement 9, if Fiona is cold then Fiona is red. But we are given that Fiona is big and nice, not cold. So we cannot conclude that Fiona is red.\n\nFrom statement 4, if Charlie is cold and Charlie is rough then Charlie is young. We are given that Charlie is cold, but not rough. So we cannot conclude that Charlie is young.\n\nNow, let's analyze the statement \"Gary is cold\". From statement 7, we know that cold things are big. We are given that Gary is cold, but this statement does not provide information about Gary's size. However, statement 6 says all cold, big things are red. Since we do not know Gary's size, we cannot conclude that Gary is red.\n\nFrom statement 1, all rough, young things are red. And statement 2 says all rough, cold things are young. Therefore, if Gary is rough, then Gary is young. But we cannot conclude that Gary is rough or young from the given information.\n\nHowever, we do know that Gary is cold (given statement) and Gary is nice (given statement). But we do not have enough information to conclude whether Gary is red or not.\n\nFrom statement 5, all round, red things are rough. But we do not know whether Gary is round or red.\n\nSince we do not have enough information to conclude whether Gary is cold, red, young, rough, or big, we cannot determine whether the statement \"Gary is cold\" is true or false.\n\nTherefore, the final answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is cold\" is true, false, or unknown, we need to analyze the given premises and their implications.\n\n1. Given premises:\n   - All rough, young things are red.\n   - All rough, cold things are young.\n   - All nice, red things are round.\n   - If Charlie is cold and Charlie is rough then Charlie is young.\n   - All round, red things are rough.\n   - All cold, big things are red.\n   - Cold things are big.\n   - If Dave is rough then Dave is cold.\n   - If Fiona is cold then Fiona is red.\n\n2. We know:\n   - Gary is cold.\n   - Gary is nice.\n   - Gary is nice.\n\n3. From \"Gary is cold\" and \"Cold things are big,\" we can conclude that Gary is big.\n\n4. From \"Gary is big\" and \"Cold things are big,\" we can conclude that Gary is red.\n\n5. Now, we know that Gary is red and Gary is nice. From \"All nice, red things are round,\" we can conclude that Gary is round.\n\n6. Since we know that Gary is round and Gary is red, we can conclude that Gary is rough using \"All round, red things are rough.\"\n\n7. Now, we know that Gary is rough and Gary is cold. From \"All rough, cold things are young,\" we can conclude that Gary is young.\n\nSo, given the premises, we can conclude that Gary is young.\n\nTherefore, the statement \"Gary is cold\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is cold\" is true, false, or unknown, we need to analyze the given information step by step:\n\n1. Gary is cold. Gary is nice. (Given)\n2. Gary is cold. (From step 1)\n3. All cold, big things are red. (Given)\n4. Gary is cold. (From step 2)\n5. Cold things are big. (Given)\n6. Gary is big. (From step 4 and step 5)\n7. Fiona is big. Fiona is nice. (Given)\n8. All big, nice things are red. (From step 3 and step 6)\n9. Fiona is red. (From step 7 and step 8)\n10. If Fiona is cold then Fiona is red. (Given)\n11. Fiona is red. (From step 9)\n12. From step 10 and step 11, it is not explicitly given that Fiona is cold, but we do know that Fiona is red. If Fiona is red, then we cannot directly conclude that Fiona is cold.\n\nHowever, from step 10, we can conclude that if Fiona is cold, then Fiona is red. Since Fiona is red, it does not necessarily mean that Fiona is cold.\n\n13. Gary is cold. Gary is nice. (Given)\n14. All nice, red things are round. (Given)\n15. If Fiona is red then Fiona is round. (From step 9 and step 14)\n16. Fiona is round. (From step 15)\n17. Gary is cold. Gary is nice. (From step 13)\n18. Gary is red. (From step 6 and step 7, and the fact that Gary is cold and nice)\n\nNow, we have that Gary is red, but we don't know if Gary is round.\n\n19. All round, red things are rough. (Given)\n20. Gary is red. (From step 18)\n21. If Gary is round then Gary is rough. (From step 19 and step 20)\n22. Gary is rough. (From step 21)\n23. All rough, young things are red. (Given)\n24. All rough, cold things are young. (Given)\n25. Gary is cold. (From step 2)\n26. If Gary is cold then Gary is young. (From step 24 and step 25)\n27. Gary is young. (From step 26)\n\nNow, we have that Gary is young, but we still don't know if Gary is cold.\n\n28. All cold, big things are red. (Given)\n29. Cold things are big. (Given)\n30. Gary is cold. (From step 2)\n31. Gary is big. (From step 6)\n32. Gary is red. (From step 18)\n\nNow, we have that Gary is cold and big and red, and we still don't know if Gary is cold.\n\nHowever, we can conclude that Gary is red and young, but we still don't know if Gary is cold.\n\nSince we cannot conclude that Gary is cold from the given information, the statement \"Gary is cold\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_gary, big_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> red(X)",
+          "z3_formula": "Implies(And(cold_gary, big_gary), red_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_gary, red_gary), rough_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(rough_gary, cold_gary), young_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> Not(young_charlie)",
+          "z3_formula": "Implies(young_gary, Not(young_charlie))",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_gary, big_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> red(X)",
+          "z3_formula": "Implies(And(cold_gary, big_gary), red_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_gary, young_gary), red_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(rough_gary, cold_gary), young_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_gary, red_gary), rough_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> red(X)",
+          "z3_formula": "Implies(And(cold_gary, big_gary), red_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_gary, big_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_gary, cold_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_gary, red_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_gary, big_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(big_gary, cold_gary), red_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> rough(X)",
+          "z3_formula": "Implies(red_gary, rough_gary)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(rough_gary, cold_gary), young_gary)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_charlie, young_charlie), red_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(rough_charlie, cold_charlie), young_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_charlie, red_charlie), rough_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_gary, red_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_gary, big_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_dave, cold_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_fiona, red_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> red(X)",
+          "z3_formula": "Implies(And(cold_gary, big_gary), red_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_gary, big_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_gary, young_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(rough_gary, cold_gary), young_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & red(X) -> round(X)",
+          "z3_formula": "Implies(And(nice_gary, red_gary), round_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_gary, red_gary), rough_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == Unknown",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == Unknown",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == Unknown",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_fiona, red_fiona)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_gary, big_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> red(X)",
+          "z3_formula": "Implies(And(cold_gary, big_gary), red_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_gary, red_gary), rough_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_gary, young_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_gary, big_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_gary, big_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> red(X)",
+          "z3_formula": "Implies(And(cold_gary, big_gary), red_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_gary, young_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> red(X)",
+          "z3_formula": "Implies(And(young_gary, rough_gary), red_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_gary, red_gary), rough_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_charlie, young_charlie), red_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_charlie, red_charlie), rough_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_gary, big_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> red(X)",
+          "z3_formula": "Implies(And(cold_gary, big_gary), red_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_gary, red_gary), rough_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_gary, young_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_gary, young_gary), red_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_charlie, big_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> red(X)",
+          "z3_formula": "Implies(And(cold_charlie, big_charlie), red_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_charlie, red_charlie), rough_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_charlie, young_charlie)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_dave, big_dave)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_fiona, big_fiona)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> red(X)",
+          "z3_formula": "Implies(And(cold_dave, big_dave), red_dave)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> red(X)",
+          "z3_formula": "Implies(And(cold_fiona, big_fiona), red_fiona)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_dave, red_dave), rough_dave)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_fiona, red_fiona), rough_fiona)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_dave, young_dave)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_fiona, young_fiona)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_dave, young_dave), red_dave)",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_fiona, young_fiona), red_fiona)",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_gary, big_gary)",
+          "source_step": 26
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> red(X)",
+          "z3_formula": "Implies(And(cold_gary, big_gary), red_gary)",
+          "source_step": 27
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_gary, red_gary), rough_gary)",
+          "source_step": 28
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_gary, young_gary)",
+          "source_step": 29
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_gary, young_gary), red_gary)",
+          "source_step": 30
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 31
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 32
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 33
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 34
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_gary, big_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> red(X)",
+          "z3_formula": "Implies(And(cold_gary, big_gary), red_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_gary, young_gary), red_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(rough_gary, cold_gary), young_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_gary, red_gary), rough_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(Or(And(cold_gary, big_gary), And(rough_gary, young_gary), And(round_gary, red_gary), And(cold_gary, big_gary), And(rough_gary, cold_gary), And(rough_gary, young_gary)))",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_gary, cold_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_gary, big_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_gary, big_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_charlie, young_charlie), red_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(rough_gary, cold_gary), young_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_gary, red_gary), rough_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> rough(X)",
+          "z3_formula": "Implies(red_gary, rough_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(rough_gary, cold_gary), young_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_gary, big_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_gary, smart_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_gary, cold_gary), white_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(big_gary, cold_gary), red_gary)",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 27
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 154,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 53
+    },
+    "maxsat_stats": {
+      "satisfied": 51,
+      "excluded": 2,
+      "total_weight": 152,
+      "solve_time_ms": 2.0118625834584236
+    },
+    "timing": {
+      "trace_gen_s": 10.374,
+      "extraction_s": 32.995,
+      "dedup_s": 1.371,
+      "maxsat_s": 0.005,
+      "total_s": 44.746
+    }
+  }
+}

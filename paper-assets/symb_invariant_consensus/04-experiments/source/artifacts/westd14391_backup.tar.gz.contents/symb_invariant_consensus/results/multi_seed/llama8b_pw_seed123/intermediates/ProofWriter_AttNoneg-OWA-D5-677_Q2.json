@@ -1,0 +1,593 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-677_Q2",
+    "problem": "Bob is furry. Bob is green. Charlie is furry. Charlie is kind. Charlie is young. Erin is green. Erin is kind. Fiona is blue. Fiona is furry. Fiona is smart. All young people are kind. Furry, cold people are young. Furry, blue people are smart. If someone is kind and furry then they are blue. If Bob is smart then Bob is furry. All furry, blue people are kind. If someone is furry then they are cold. If someone is young and furry then they are green.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is not kind.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nFurry($x, bool) ::: Is x furry?\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\nYoung($x, bool) ::: Is x young?\nBlue($x, bool) ::: Is x blue?\nSmart($x, bool) ::: Is x smart?\nCold($x, bool) ::: Is x cold?\n\nFacts:\nFurry(Bob, True) ::: Bob is furry.\nGreen(Bob, True) ::: Bob is green.\nFurry(Charlie, True) ::: Charlie is furry.\nKind(Charlie, True) ::: Charlie is kind.\nYoung(Charlie, True) ::: Charlie is young.\nGreen(Erin, True) ::: Erin is green.\nKind(Erin, True) ::: Erin is kind.\nBlue(Fiona, True) ::: Fiona is blue.\nFurry(Fiona, True) ::: Fiona is furry.\nSmart(Fiona, True) ::: Fiona is smart.\n\nRules:\nYoung($x, True) >>> Kind($x, True) ::: All young people are kind.\nFurry($x, True) && Cold($x, True) >>> Young($x, True) ::: Furry, cold people are young.\nFurry($x, True) && Blue($x, True) >>> Smart($x, True) ::: Furry, blue people are smart.\nKind($x, True) && Furry($x, True) >>> Blue($x, True) ::: If someone is kind and furry then they are blue.\nSmart(Bob, True) >>> Furry(Bob, True) ::: If Bob is smart then Bob is furry.\nFurry($x, True) && Blue($x, True) >>> Kind($x, True) ::: All furry, blue people are kind.\nFurry($x, True) >>> Cold($x, True) ::: If someone is furry then they are cold.\nYoung($x, True) && Furry($x, True) >>> Green($x, True) ::: If someone is young and furry then they are green.\n\nQuery:\nKind(Erin, False) ::: Erin is not kind."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 68.0,
+      "True": 56.0,
+      "Unknown": 0.0
+    },
+    "answer_counts": {
+      "False": 9,
+      "True": 1,
+      "Unknown": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Erin is not kind\" is true, false, or unknown, we need to analyze the given information and the conditions that affect Erin.\n\nGiven information:\n- Erin is green.\n- Erin is kind.\n\nConditions that affect Erin:\n- All young people are kind.\n- If someone is kind and furry then they are blue.\n- If someone is young and furry then they are green.\n\nSince Erin is kind, we cannot directly conclude that Erin is young or furry. However, the given conditions help us narrow down Erin's characteristics.\n\nSince Erin is kind, we can use the condition \"If someone is kind and furry then they are blue\" to conclude that Erin is not furry because if Erin were furry, she would be blue, and there is no condition that links blue people to green people. \n\nHowever, we know that Erin is green, and we also know that \"If someone is young and furry then they are green.\" This condition implies that Erin is not young because if Erin were young and furry, she would be green. But we already know that Erin is green, so we cannot conclude that Erin is not young based on this condition alone. \n\nHowever, since Erin is green, and there is no condition that links green people to kind people directly, we cannot directly conclude that Erin is not kind based on her color. \n\nHowever, we can use the condition \"If someone is young and furry then they are green\" to conclude that Erin is not young and furry because if Erin were young and furry, she would be green. \n\nNow, since Erin is kind, we can use the condition \"All young people are kind\" to conclude that Erin is not young because if Erin were young, she would be kind. But we already know that Erin is kind.\n\nHowever, we know that all furry, blue people are kind, and if someone is kind and furry then they are blue. So, Erin is not furry because if Erin were furry, she would be blue, and then she would be kind.\n\nSince we know that all furry, blue people are kind, and Erin is kind, we can conclude that Erin is not blue because if Erin were blue, she would be furry, and then she would be kind.\n\nSince we know that all furry people are cold, and Erin is not furry, we can conclude that Erin is not cold.\n\nSince we know that all furry, blue people are kind, and Erin is not furry, blue, we can conclude that Erin is not kind because there is no other condition that links Erin to being kind.\n\nHowever, this is a contradiction. We already know that Erin is kind. Therefore, our conclusion that Erin is not kind is incorrect.\n\nTherefore, the statement \"Erin is not kind\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether Erin is kind or not, we need to break down the given information and use the given rules to infer Erin's characteristics.\n\n1. We are given that Erin is green. \n2. Erin is green, and we know that all young people are kind, but we don't know Erin's age yet. \n3. We also know that if someone is young and furry then they are green. However, we cannot determine Erin's age or furiness from this rule alone.\n\nHowever, if we consider the rule 'If someone is kind and furry then they are blue' and 'All furry, blue people are kind', we can infer that if Erin is furry, then she must be blue, and if Erin is blue, then she must be kind. \n\nNow we need to check the other rules related to Erin's characteristics.\n\n4. If someone is furry then they are cold. We still don't know if Erin is furry or not, but we know Erin is green, which could be true for both furry and non-furry people.\n5. From the rule 'If someone is young and furry then they are green', we can't directly determine Erin's age, but if Erin is furry, then she must be green and young. Since we know Erin is green, this could be true for Erin.\n\nHowever, we have another rule that 'All furry, blue people are kind', which means if Erin is blue (which is possible if Erin is furry and kind), then Erin is kind.\n\nNow let's analyze the given statement 'Erin is not kind'. To determine if this statement is true, false, or unknown, we need to check if Erin is kind or not based on the information we have.\n\nFrom the above analysis, we can see that Erin is green and if Erin is furry, then Erin is green, young, and blue (and therefore kind). However, we cannot confirm Erin's furiness or blueness based on the given information alone.\n\nBut we do know that Erin is green, and we also know that Erin is kind from the rule 'All young people are kind', which means Erin must be young to be kind, and from the rule 'If someone is young and furry then they are green', this means Erin is furry, which in turn makes Erin blue and kind.\n\nSo, considering all the above points, we can conclude that Erin is indeed kind.\n\nTherefore, the statement 'Erin is not kind' is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement 'Erin is not kind' is true, false, or unknown, we need to analyze the given information step by step.\n\nGiven statements:\n1. Erin is green.\n2. Erin is kind.\n\nFrom statement 6: All young people are kind. \nHowever, there's no direct information about Erin's age, but we can infer from other statements.\n\nStatement 3: Charlie is young. \nStatement 7: If someone is young and furry then they are green.\nStatement 9: If someone is furry then they are cold.\nStatement 2: Erin is green.\nFrom statement 7, we can infer that Erin is young and furry, since Erin is green and young people who are furry are green.\n\nNow that we know Erin is young and furry, we can use statement 6: All young people are kind.\nThis means Erin is kind.\n\nSince we have already deduced that Erin is kind from statement 6, the given statement 'Erin is not kind' is false.\n\n\\boxed{false}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we will use the given statements and the rules to determine whether Erin is kind or not.\n\nGiven statements:\n1. Bob is furry.\n2. Bob is green.\n3. Charlie is furry.\n4. Charlie is kind.\n5. Charlie is young.\n6. Erin is green.\n7. Erin is kind.\n8. Fiona is blue.\n9. Fiona is furry.\n10. Fiona is smart.\n11. All young people are kind.\n12. Furry, cold people are young.\n13. Furry, blue people are smart.\n14. If someone is kind and furry then they are blue.\n15. If Bob is smart then Bob is furry.\n16. All furry, blue people are kind.\n17. If someone is furry then they are cold.\n18. If someone is young and furry then they are green.\n\nStatement to be evaluated: Erin is not kind.\n\nLet's analyze the given statements and the rules to evaluate the truth of the statement \"Erin is not kind.\"\n\nFrom statement 6, we know that Erin is green.\n\nFrom statement 7, we know that Erin is kind.\n\nHowever, we need to consider the other given statements and the rules to confirm whether Erin is indeed kind.\n\nFrom statement 17, we know that if someone is furry then they are cold. \nHowever, from statement 17 we also know that if someone is furry then they are cold, and from statement 12, we can conclude that furry, cold people are young. This implies that Erin must be young.\n\nFrom statement 18, we know that if someone is young and furry then they are green. We already know that Erin is green and young, so Erin must be furry.\n\nFrom statement 14, we know that if someone is kind and furry then they are blue. We know that Erin is kind and furry, so Erin must be blue.\n\nFrom statement 16, we know that all furry, blue people are kind. Since Erin is blue and furry, we can conclude that Erin is indeed kind.\n\nTherefore, based on the given statements and the rules, we can determine that Erin is kind, which means the statement \"Erin is not kind\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not kind\" is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\n1. All young people are kind.\n2. Erin is young.\n   Therefore, Erin is kind. (From 1 and 2)\n\nSince we've already found out that Erin is kind, the statement \"Erin is not kind\" must be false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether Erin is not kind, we need to analyze the given statements and use the rules of inference.\n\n1. Erin is green. (Given)\n2. Erin is kind. (Given)\n3. All young people are kind. (Given)\n4. Erin is not mentioned to be young. However, we can derive information from the following statements:\n   a. If someone is young and furry then they are green. (Given)\n   b. Erin is green. (Given)\n\nFrom (a) and (b), we can infer that Erin is not necessarily young because she is green, but we do not have enough information to confirm this directly.\n\nHowever, we can use another piece of information to determine if Erin is kind or not:\n5. Furry, cold people are young. (Given)\n6. Furry people are cold. (Given)\n7. Erin is green. (Given)\n8. If someone is furry then they are cold. (Given)\n9. If someone is young and furry then they are green. (Given)\n\nFrom (9), we can infer that Erin is not necessarily young because she is green. But we can still use (8) and (7) to derive that Erin is cold.\n\nHowever, since Erin is not mentioned to be furry directly, we cannot directly apply the rule that \"If someone is kind and furry then they are blue\" to Erin.\n\n10. All furry, blue people are kind. (Given)\n11. If someone is kind and furry then they are blue. (Given)\n\nWe can now use the rule that \"If someone is kind and furry then they are blue\" and \"All furry, blue people are kind\" to derive that Erin is not kind because Erin is green, not blue.\n\nHowever, we've already established that Erin is kind. Therefore, we must use the fact that \"If someone is young and furry then they are green\" to determine if Erin is young or not.\n\n12. If someone is kind and furry then they are blue. (Given)\n13. Erin is kind. (Given)\n14. Erin is not blue. (From 12 and the fact that Erin is not kind)\n15. Erin is green. (Given)\n16. Erin is not necessarily young because she is green. However, we can now derive that Erin is not necessarily young.\n\nSince we cannot derive that Erin is young, we cannot directly apply the rule that \"All young people are kind\" to Erin.\n\nHowever, we can derive that Erin is not kind because we have established that Erin is green, not blue, and Erin is not necessarily young.\n\nGiven that we have established that Erin is not kind and cannot derive that Erin is young, we can conclude that the statement \"Erin is not kind\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not kind\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Erin is green. (Given)\n2. Erin is kind. (Given)\n\nFrom the given information, we know that Erin is green and kind. Now, let's look at the rules:\n\n3. All young people are kind. (Rule)\n4. Furry, cold people are young. (Rule)\n5. If someone is furry then they are cold. (Rule)\n6. If someone is young and furry then they are green. (Rule)\n\nFrom rule 5, we know that Erin is cold since she is furry (rule 1). From rule 4, we know that Erin is young since she is cold and furry. \n\nNow, since Erin is young, we can apply rule 3, which states that all young people are kind. This directly contradicts the statement that Erin is not kind.\n\nHowever, we need to further analyze the rules to see if there are any conditions that might affect Erin's kindness.\n\n7. If someone is kind and furry then they are blue. (Rule)\n8. All furry, blue people are kind. (Rule)\n9. Fiona is blue. Fiona is furry. Fiona is smart. (Given)\n10. If someone is young and furry then they are green. (Rule)\n11. Erin is green. Erin is furry. (From given information and rule 10)\n\nFrom rule 7, we know that if someone is kind and furry, they are blue. Since Erin is furry (from rule 10), we need to determine if Erin is kind. We already found that Erin is young (from rules 4 and 5), and since Erin is young, we know from rule 3 that Erin is kind.\n\nHowever, this leads to a contradiction with rule 7, which states that if someone is kind and furry then they are blue. If Erin is kind and furry, then she should be blue (rule 7), but we know that Erin is green (given).\n\nTo resolve this contradiction, we need to analyze the rules further.\n\n12. If Bob is smart then Bob is furry. (Rule)\n\nSince we do not have any information about Bob's kindness or age, we cannot directly apply this rule to Erin. However, let's analyze the rule \"If someone is kind and furry then they are blue\" (rule 7) and \"All furry, blue people are kind\" (rule 8).\n\nFrom rule 7, we know that if someone is kind and furry then they are blue. However, rule 8 states that all furry, blue people are kind. This creates a loop, and we cannot determine if Erin is kind or not using these rules.\n\nHowever, we can use the rule \"If someone is furry then they are cold\" (rule 5) and \"Furry, cold people are young\" (rule 4) to determine Erin's age.\n\nSince Erin is furry (rule 10), we know that Erin is cold (rule 5). From rule 4, we know that Erin is young.\n\nNow, since Erin is young (from rule 4), we know that Erin is kind (rule 3).\n\nHowever, this leads to a contradiction with rule 7, which states that if someone is kind and furry then they are blue. If Erin is kind and furry, then she should be blue (rule 7), but we know that Erin is green (given).\n\nTo resolve this contradiction, we need to analyze the rules further.\n\nSince we have a contradiction, we cannot determine whether Erin is kind or not using the given information and rules.\n\nTherefore, the statement \"Erin is not kind\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not kind\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Erin is green. (Given)\n2. Erin is kind. (Given)\n3. All young people are kind. (Given)\n4. If someone is young and furry then they are green. (Given)\n5. If someone is furry then they are cold. (Given)\n6. Furry, cold people are young. (Given)\n\nFrom steps 1 and 2, we know Erin is green and kind.\n\nFrom step 4, we can infer that Erin is young because Erin is green and furry (although it's not explicitly stated, we can derive it from the information given).\n\nNow, we need to determine whether Erin's youth implies she is kind. From step 3, all young people are kind. Since Erin is young, it is true that Erin is kind.\n\nHowever, we need to analyze the other given information to see if it contradicts or supports this conclusion.\n\nFrom step 2, we know Erin is kind.\n\nFrom step 7, If someone is kind and furry then they are blue. We don't know if Erin is furry, but we do know Erin is green (step 1) and kind (step 2).\n\nFrom step 8, All furry, blue people are kind. This statement is irrelevant to Erin's kind nature since we don't know if Erin is furry or blue.\n\nFrom step 9, If someone is furry then they are cold. We don't know if Erin is furry, but we do know Erin is cold because Erin is furry (if we assume Erin is furry, then Erin is cold).\n\nFrom step 10, Furry, cold people are young. Since Erin is cold and furry, we can infer Erin is young.\n\nNow, from step 4, we know that young and furry people are green, and from step 1, we know Erin is green. However, this doesn't help us determine if Erin is kind or not.\n\nFrom step 5, we know Erin is furry because Erin is cold and furry (if we assume Erin is furry, then Erin is cold).\n\nFrom step 6, we know Erin is young because Erin is furry and cold.\n\nHowever, we already determined that Erin is young in step 3. This information does not change our conclusion that Erin is kind.\n\nWe can now conclude that the statement \"Erin is not kind\" is false because Erin is indeed kind.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not kind\" is true, false, or unknown, we need to use the given information and logical deductions.\n\n1. Given information:\n- Erin is green.\n- Erin is kind.\n\n2. From the given information and logical deductions:\n- All young people are kind. (No information about Erin's age, so we cannot conclude that Erin is young.)\n- If someone is kind and furry then they are blue. (No information about Erin being furry.)\n- If someone is young and furry then they are green. (This statement is about the color green, not the color blue, but we know Erin is green, so it might be related to Erin's age or fur, but we need more information.)\n- If someone is furry then they are cold. (No information about Erin being furry, so we cannot conclude that Erin is cold.)\n- Erin is green. Erin is kind. (Given information)\n\n3. Analyze the information about Erin:\n- Erin is green, which means she might be young and furry, but we cannot conclude that she is young or furry.\n- Erin is kind. (Given information)\n\n4. Conclusion:\nSince we cannot conclude that Erin is not kind based on the given information, the statement \"Erin is not kind\" is unknown.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not kind\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Erin is green. Erin is kind. (Given statements)\n2. All young people are kind. (Given statement)\n3. If someone is young and furry then they are green. (Given statement)\n   - Since Erin is green and furry, we can conclude that Erin is young. (From statement 3)\n   - Therefore, Erin is kind. (From statement 2)\n   \nHowever, we are given a new statement to evaluate: \"Erin is not kind.\" \n\nGiven that Erin is kind (from the above deduction), we can determine that the statement \"Erin is not kind\" is:\n   \n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and use logical deductions to determine the truth value of the statement \"Erin is not kind.\"\n\nGiven information:\n\n1. Bob is furry. \n2. Bob is green. \n3. Charlie is furry. \n4. Charlie is kind. \n5. Charlie is young. \n6. Erin is green. \n7. Erin is kind. \n8. Fiona is blue. \n9. Fiona is furry. \n10. Fiona is smart. \n11. All young people are kind. \n12. Furry, cold people are young. \n13. Furry, blue people are smart. \n14. If someone is kind and furry then they are blue. \n15. If Bob is smart then Bob is furry. \n16. All furry, blue people are kind. \n17. If someone is furry then they are cold. \n18. If someone is young and furry then they are green. \n\nNow, let's analyze the statement \"Erin is not kind.\"\n\nSince we are given that Erin is kind (statement 7), we can directly conclude that the statement \"Erin is not kind\" is false.\n\nHowever, we need to verify that this conclusion is consistent with the given information. \n\nFrom statement 7, we know Erin is kind. \nFrom statement 6, we know Erin is green. \nFrom statement 18, we know that if someone is young and furry then they are green. \nHowever, from statement 7, we know Erin is kind, but we don't know whether Erin is young or not. We need to use other information to determine whether Erin is young or not.\n\nFrom statement 12, we know that furry, cold people are young. \nFrom statement 17, we know that if someone is furry then they are cold. \nHowever, from statement 6, we know Erin is green, and from statement 18, we know that if someone is young and furry then they are green. This suggests that Erin might be young.\n\nHowever, we need to verify whether this is consistent with the given information.\n\nFrom statement 13, we know that furry, blue people are smart. \nFrom statement 14, we know that if someone is kind and furry then they are blue. \nFrom statement 16, we know that all furry, blue people are kind. \n\nNow, let's analyze Erin's characteristics:\n\n1. Erin is green (statement 6).\n2. Erin is kind (statement 7).\n3. Erin is not blue (since Erin is green, not blue).\n\nHowever, from statement 14, we know that if someone is kind and furry then they are blue. \nSince Erin is kind (statement 7), but not blue (since Erin is green), this suggests that Erin is not furry.\n\nHowever, from statement 17, we know that if someone is furry then they are cold. \nFrom statement 18, we know that if someone is young and furry then they are green. \nHowever, from statement 6, we know Erin is green, but we don't know whether Erin is furry or not.\n\nNow, let's analyze the statement \"Erin is not young\" assuming Erin is furry.\n\nFrom statement 17, we know that if someone is furry then they are cold. \nFrom statement 18, we know that if someone is young and furry then they are green. \nHowever, from statement 6, we know Erin is green, and from statement 17, we know that if someone is furry then they are cold. This suggests that Erin is young.\n\nHowever, from statement 12, we know that furry, cold people are young. \nFrom statement 17, we know that if someone is furry then they are cold. \nHowever, from statement 18, we know that if someone is young and furry then they are green. \nHowever, from statement 6, we know Erin is green, but we don't know whether Erin is furry or not.\n\nNow, let's analyze the statement \"Erin is not young\" assuming Erin is not furry.\n\nFrom statement 12, we know that furry, cold people are young. \nHowever, from statement 17, we know that if someone is furry then they are cold. \nFrom statement 18, we know that if someone is young and furry then they are green. \nHowever, from statement 6, we know Erin is green, but we don't know whether Erin is furry or not.\n\nNow, let's analyze the statement \"Erin is young\".\n\nFrom statement 12, we know that furry, cold people are young. \nHowever, from statement 17, we know that if someone is furry then they are cold. \nHowever, from statement 6, we know Erin is green, and from statement 18, we know that if someone is young and furry then they are green.\n\nFrom statement 11, we know that all young people are kind. \nFrom statement 7, we know Erin is kind.\n\nNow, let's analyze the statement \"Erin is young\" assuming Erin is not green.\n\nFrom statement 12, we know that furry, cold people are young. \nHowever, from statement 17, we know that if someone is furry then they are cold. \nHowever, from statement 18, we know that if someone is young and furry then they are green. \nHowever, this assumption is inconsistent with the given information.\n\nNow, let's analyze the statement \"Erin is young\" assuming Erin is not kind.\n\nFrom statement 11, we know that all young people are kind. \nHowever, this assumption is inconsistent with the given information.\n\nNow, let's analyze the statement \"Erin is not young\" assuming Erin is not green.\n\nFrom statement 18, we know that if someone is young and furry then they are green. \nHowever, from statement 6, we know Erin is green, but we don't know whether Erin is young or not.\n\nNow, let's analyze the statement \"Erin is not young\" assuming Erin is not kind.\n\nFrom statement 11, we know that all young people are kind. \nHowever, from statement 7, we know Erin is kind. \n\nSince we have analyzed all possible cases, we can conclude that Erin is young.\n\nNow, let's analyze the statement \"Erin is not kind\".\n\nFrom statement 7, we know Erin is kind. \n\nSince we have analyzed all possible cases, we can conclude that the statement \"Erin is not kind\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not kind\" is true, false, or unknown, we need to analyze the given information and derive conclusions from it.\n\n1. Erin is green.\n2. Erin is kind.\n\nFrom the given information, we can directly see that Erin is kind. This means we don't need to derive any conclusions from the other statements.\n\nThe statement \"Erin is not kind\" is directly contradicted by statement 2. Therefore, the statement \"Erin is not kind\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_erin, kind_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_erin, furry_erin), blue_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(young_erin, furry_erin), green_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(erin)",
+          "z3_formula": "Not(furry_erin) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(erin)",
+          "z3_formula": "Not(blue_erin) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(erin)",
+          "z3_formula": "Not(cold_erin) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not young(erin)",
+          "z3_formula": "Not(young_erin) == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(erin)",
+          "z3_formula": "Not(kind_erin) == False",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_erin, kind_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(young_erin, furry_erin), green_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_erin, furry_erin), blue_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> kind(X)",
+          "z3_formula": "Implies(blue_erin, kind_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_erin, cold_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_erin, kind_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(young_charlie, furry_charlie), green_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_charlie, cold_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin) & furry(erin)",
+          "z3_formula": "And(young_erin, furry_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(erin)",
+          "z3_formula": "Not(kind_erin)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_erin, cold_erin)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_erin, young_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(young_erin, furry_erin), green_erin)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_erin, furry_erin), blue_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> kind(X)",
+          "z3_formula": "Implies(And(furry_erin, blue_erin), kind_erin)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_erin, kind_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(erin)",
+          "z3_formula": "Not(kind_erin) == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_erin, kind_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(young_erin, furry_erin), green_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_erin, cold_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(young_erin, furry_erin), green_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_erin, cold_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_erin, furry_erin), blue_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> kind(X)",
+          "z3_formula": "Implies(And(furry_erin, blue_erin), kind_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(erin)",
+          "z3_formula": "Not(kind_erin) == True",
+          "source_step": 17
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_erin, kind_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(young_erin, furry_erin), green_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_erin, cold_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(furry_erin, cold_erin), young_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_erin, kind_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_erin, furry_erin), blue_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(young_erin, furry_erin), green_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_erin, cold_erin)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_erin, kind_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(young_erin, furry_erin), green_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(young_erin, furry_erin), green_erin)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_erin, cold_erin)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(young_erin, furry_erin), green_erin)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(furry_erin, cold_erin), young_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_erin, kind_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(erin)",
+          "z3_formula": "Not(kind_erin) == True",
+          "source_step": 25
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 2
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 77,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 20
+    },
+    "maxsat_stats": {
+      "satisfied": 17,
+      "excluded": 3,
+      "total_weight": 71,
+      "solve_time_ms": 0.9206747636198997
+    },
+    "timing": {
+      "trace_gen_s": 16.041,
+      "extraction_s": 29.915,
+      "dedup_s": 0.348,
+      "maxsat_s": 0.002,
+      "total_s": 46.306
+    }
+  }
+}

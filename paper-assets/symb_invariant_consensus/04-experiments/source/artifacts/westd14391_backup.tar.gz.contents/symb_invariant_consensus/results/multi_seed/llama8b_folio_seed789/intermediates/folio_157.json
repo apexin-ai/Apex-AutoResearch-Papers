@@ -1,0 +1,946 @@
+{
+  "problem": {
+    "id": "folio_157",
+    "problem": "Given the following premises:\nNo students who work in the library are from the computer science department.  All students who have part-time jobs offered by the university are students who work in the library.  All students who take the database course are from the computer science department.  All students instructed by professor David are taking the database course.  All students working in the lab are instructed by professor David.  James is a student working in the lab.  Jack neither has a part-time job offered by the university nor works in the lab.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nJames has a part-time job offered by the university.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (WorkLibrary(x) \u2192 \u00acComputerScience(x))",
+      "\u2200x (PartTime(x) \u2192 WorkLibrary(x))",
+      "\u2200x (Database(x) \u2192 ComputerScience(x))",
+      "\u2200x (ProfessorDavid(x) \u2192 Database(x))",
+      "\u2200x (WorkInLab(x) \u2192 ProfessorDavid(x))",
+      "WorkInLab(james)",
+      "\u00acPartTime(jack) \u2227 \u00acWorkInLab(jack)"
+    ],
+    "conclusion_fol": "PartTime(james)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 41.5,
+      "Unknown": 103.5
+    },
+    "answer_counts": {
+      "False": 2,
+      "Unknown": 10
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and use logical reasoning.\n\nPremise 1: No students who work in the library are from the computer science department.\n\nPremise 2: All students who have part-time jobs offered by the university are students who work in the library.\n\nPremise 3: All students who take the database course are from the computer science department.\n\nPremise 4: All students instructed by professor David are taking the database course.\n\nPremise 5: All students working in the lab are instructed by professor David.\n\nPremise 6: James is a student working in the lab.\n\nPremise 7: Jack neither has a part-time job offered by the university nor works in the lab.\n\nFrom Premise 6, we know that James works in the lab.\n\nFrom Premise 5, we know that all students working in the lab are instructed by professor David.\n\nFrom Premise 4, we know that all students instructed by professor David are taking the database course.\n\nTherefore, James is taking the database course.\n\nFrom Premise 3, we know that all students who take the database course are from the computer science department.\n\nTherefore, James is from the computer science department.\n\nNow, we need to determine if James has a part-time job offered by the university.\n\nFrom Premise 2, we know that all students who have part-time jobs offered by the university are students who work in the library.\n\nWe do not have any information that directly links James to the library, but we do know that James is from the computer science department (which is a separate fact from working in the library).\n\nHowever, we can use a process of elimination to infer that James might not have a part-time job offered by the university.\n\nFrom Premise 1, we know that no students who work in the library are from the computer science department.\n\nIf James had a part-time job offered by the university (which means he works in the library), then he would not be from the computer science department, which contradicts the fact that James is from the computer science department.\n\nTherefore, James cannot have a part-time job offered by the university.\n\nConclusion: The statement \"James has a part-time job offered by the university\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\n1. No students who work in the library are from the computer science department.\n2. All students who have part-time jobs offered by the university are students who work in the library.\n3. All students who take the database course are from the computer science department.\n4. All students instructed by professor David are taking the database course.\n5. All students working in the lab are instructed by professor David.\n6. James is a student working in the lab.\n7. Jack neither has a part-time job offered by the university nor works in the lab.\n\nFrom premise 5, we know that all students working in the lab are instructed by professor David.\nFrom premise 6, we know that James is a student working in the lab. Therefore, James must be instructed by professor David.\n\nNow, from premise 4, we know that all students instructed by professor David are taking the database course. This means James is taking the database course.\n\nFrom premise 3, we know that all students who take the database course are from the computer science department. Therefore, James is from the computer science department.\n\nWe don't have any direct information about whether students from the computer science department have part-time jobs offered by the university. However, we know from premise 2 that all students who have part-time jobs offered by the university are students who work in the library. We also know from premise 1 that no students who work in the library are from the computer science department. This means that students from the computer science department are not students who work in the library and have part-time jobs offered by the university.\n\nHowever, we cannot conclude that James does not have a part-time job offered by the university. We can only say that if James has a part-time job offered by the university, it cannot be because he is a student working in the library. But we have no information that would exclude him from having a part-time job offered by the university through other means.\n\nSo, based on the given premises, we cannot determine with certainty whether James has a part-time job offered by the university.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether James has a part-time job offered by the university, we need to analyze the given premises step by step.\n\n1. No students who work in the library are from the computer science department. \n   This premise does not provide any information about James. We don't know if he works in the library or not.\n\n2. All students who have part-time jobs offered by the university are students who work in the library.\n   This premise implies that if a student works in the library, then they must have a part-time job offered by the university. However, it does not provide any information about the reverse - if a student has a part-time job offered by the university, then they must work in the library.\n\n3. All students who take the database course are from the computer science department.\n   This premise does not provide any information about James. We don't know if he takes the database course or not.\n\n4. All students instructed by professor David are taking the database course.\n   This premise does not provide any information about James. We don't know if he is instructed by professor David or not.\n\n5. All students working in the lab are instructed by professor David.\n   This premise tells us that since James works in the lab, he must be instructed by professor David.\n\n6. All students instructed by professor David are taking the database course.\n   Using the information from premise 5, we can conclude that since James is instructed by professor David, he must be taking the database course.\n\n7. All students who take the database course are from the computer science department.\n   Using the information from premise 6, we can conclude that since James is taking the database course, he must be from the computer science department.\n\n8. No students who work in the library are from the computer science department.\n   If James is from the computer science department (conclusion from premise 7), then he cannot work in the library, since working in the library and being from the computer science department are mutually exclusive (premise 1).\n\n9. All students who have part-time jobs offered by the university are students who work in the library.\n   Since James does not work in the library (conclusion from premise 8), he cannot have a part-time job offered by the university, according to premise 2.\n\nHowever, we need to consider premise 9 again.  The premise only tells us that if a student has a part-time job offered by the university, then they must work in the library.  But it does not tell us that if a student does not work in the library, then they cannot have a part-time job offered by the university.  We cannot conclude that Jack cannot have a part-time job offered by the university because he does not work in the lab, but premise 9 does not help us conclude whether James can have a part-time job offered by the university.\n\n10. Jack neither has a part-time job offered by the university nor works in the lab.\n   This premise does not provide any information about James. We don't know if James has a part-time job offered by the university or not.\n\nHowever, we can analyze the premises again to see if we missed anything.  We know that James works in the lab, and all students working in the lab are instructed by professor David.  We also know that all students instructed by professor David are taking the database course.  We know that all students who take the database course are from the computer science department.  We know that James is not working in the library, and all students who work in the library have a part-time job offered by the university.  We know that James is a student working in the lab.  We know that Jack does not have a part-time job offered by the university nor does he work in the lab.\n\nSince we know that James works in the lab, and all students working in the lab are instructed by professor David, we can conclude that James is instructed by professor David.  We also know that all students instructed by professor David are taking the database course.  Therefore, we can conclude that James is taking the database course.\n\nSince James is taking the database course, and all students who take the database course are from the computer science department, we can conclude that James is from the computer science department.\n\nHowever, we cannot conclude whether James has a part-time job offered by the university or not.  We can only say that James is not working in the library, but this does not provide any information about whether he has a part-time job offered by the university.\n\nSo, based on the given premises, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether James has a part-time job offered by the university, let's analyze the given premises step by step:\n\n1. No students who work in the library are from the computer science department. \n   This premise doesn't give us any information about James, but it helps us understand the relationship between the library and the computer science department.\n\n2. All students who have part-time jobs offered by the university are students who work in the library.\n   This premise tells us that if a student has a part-time job offered by the university, they must work in the library.\n\n3. All students who take the database course are from the computer science department.\n   This premise doesn't give us any information about James, but it helps us understand the relationship between the database course and the computer science department.\n\n4. All students instructed by professor David are taking the database course.\n   This premise tells us that if a student is instructed by professor David, they must be taking the database course.\n\n5. All students working in the lab are instructed by professor David.\n   This premise tells us that if a student works in the lab, they must be instructed by professor David.\n\n6. James is a student working in the lab.\n   This premise tells us that James is a student working in the lab. From premise 5, we can conclude that James is instructed by professor David.\n\n7. All students instructed by professor David are taking the database course.\n   This premise tells us that James, being instructed by professor David, must be taking the database course.\n\n8. All students who take the database course are from the computer science department.\n   This premise tells us that James, being a student who takes the database course, must be from the computer science department.\n\n9. Jack neither has a part-time job offered by the university nor works in the lab.\n   This premise doesn't give us any information about James, but it helps us understand the characteristics of Jack.\n\nNow, let's try to find a connection between James and the part-time job offered by the university. From premise 2, we know that all students who have part-time jobs offered by the university are students who work in the library. But we also know that no students who work in the library are from the computer science department (premise 1). Since we concluded that James is from the computer science department (premise 8), we can conclude that James is not a student who works in the library.\n\nTherefore, since James is not a student who works in the library, he cannot have a part-time job offered by the university (premise 2). \n\nThe conclusion that James has a part-time job offered by the university is false. \n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "Let's break down the information given and analyze the conclusion step by step.\n\n1. No students who work in the library are from the computer science department. \n   - This means that working in the library and being from the computer science department are mutually exclusive.\n\n2. All students who have part-time jobs offered by the university are students who work in the library.\n   - This means that having a part-time job offered by the university and working in the library are equivalent.\n\n3. All students who take the database course are from the computer science department.\n   - This means that taking the database course and being from the computer science department are equivalent.\n\n4. All students instructed by professor David are taking the database course.\n   - This means that being instructed by professor David and taking the database course are equivalent.\n\n5. All students working in the lab are instructed by professor David.\n   - This means that working in the lab and being instructed by professor David are equivalent.\n\n6. James is a student working in the lab.\n   - Therefore, James is instructed by professor David (from point 5) and taking the database course (from point 4).\n\n7. Jack neither has a part-time job offered by the university nor works in the lab.\n   - We can't determine anything about Jack's situation in relation to James.\n\nNow, let's analyze the conclusion:\n\"James has a part-time job offered by the university.\"\n\nFrom point 2, we know that having a part-time job offered by the university is equivalent to working in the library. But from point 1, we know that working in the library and being from the computer science department are mutually exclusive. \n\nFrom point 6, we know that James is instructed by professor David and taking the database course. \n\nFrom point 3, we know that taking the database course is equivalent to being from the computer science department. \n\nTherefore, we can conclude that James is from the computer science department.\n\nNow, we have a conflict between the fact that James is from the computer science department (which is mutually exclusive with working in the library) and the fact that having a part-time job offered by the university is equivalent to working in the library.\n\nSo, based on the premises, we can conclude that the conclusion is uncertain, because we have a conflict between the information given. \n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether James has a part-time job offered by the university, we need to analyze the given premises and the information provided about James.\n\nPremise 1: No students who work in the library are from the computer science department.\n\nPremise 2: All students who have part-time jobs offered by the university are students who work in the library.\n\nPremise 3: All students who take the database course are from the computer science department.\n\nPremise 4: All students instructed by professor David are taking the database course.\n\nPremise 5: All students working in the lab are instructed by professor David.\n\nPremise 6: James is a student working in the lab.\n\nPremise 7: Jack neither has a part-time job offered by the university nor works in the lab.\n\nFrom Premise 6, we know that James works in the lab. \n\nFrom Premise 5, we know that all students working in the lab are instructed by professor David. Therefore, James is also instructed by professor David.\n\nFrom Premise 4, we know that all students instructed by professor David are taking the database course. Therefore, James is taking the database course.\n\nFrom Premise 3, we know that all students who take the database course are from the computer science department. Therefore, James is from the computer science department.\n\nNow, we need to determine if James has a part-time job offered by the university. \n\nFrom Premise 2, we know that all students who have part-time jobs offered by the university are students who work in the library. \n\nHowever, from Premise 1, we know that no students who work in the library are from the computer science department, but we already know James is from the computer science department. \n\nSince there is no information stating that James works in the library or that he doesn't work in the library, we cannot conclude whether James has a part-time job offered by the university or not. The information provided is insufficient to make a conclusion.\n\nTherefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether James has a part-time job offered by the university, we need to analyze the given premises step by step.\n\nPremise 1: No students who work in the library are from the computer science department.\n\nPremise 2: All students who have part-time jobs offered by the university are students who work in the library.\n\nPremise 3: All students who take the database course are from the computer science department.\n\nPremise 4: All students instructed by professor David are taking the database course.\n\nPremise 5: All students working in the lab are instructed by professor David.\n\nPremise 6: James is a student working in the lab.\n\nFrom Premise 5 and Premise 6, we can conclude that James is instructed by professor David (since all students working in the lab are instructed by professor David).\n\nFrom Premise 4, we can conclude that James is taking the database course (since all students instructed by professor David are taking the database course).\n\nFrom Premise 3, we can conclude that James is from the computer science department (since all students who take the database course are from the computer science department).\n\nNow, we have the following information about James:\n- James is from the computer science department.\n- James is taking the database course.\n- James is instructed by professor David.\n- James works in the lab.\n\nWe do not have any information that directly states James has a part-time job offered by the university. However, Premise 2 states that all students who have part-time jobs offered by the university are students who work in the library. This implies that having a part-time job offered by the university is not related to taking the database course or being from the computer science department.\n\nHowever, Premise 1 states that no students who work in the library are from the computer science department. Since we know James is from the computer science department and Premise 6 states that James works in the lab, we can infer that James does not work in the library. \n\nGiven that James does not work in the library, we cannot conclude that James has a part-time job offered by the university, as the premises state that all students who have part-time jobs offered by the university are students who work in the library.\n\nTherefore, the conclusion is uncertain, as there is no direct information in the premises that states James has a part-time job offered by the university.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's break down the information given and analyze the relationships between the different groups of students.\n\n1. No students who work in the library are from the computer science department.\n\n   This implies that students in the library are not computer science students.\n\n2. All students who have part-time jobs offered by the university are students who work in the library.\n\n   This implies that students with part-time jobs offered by the university work in the library.\n\n3. All students who take the database course are from the computer science department.\n\n   This implies that students who take the database course are computer science students.\n\n4. All students instructed by professor David are taking the database course.\n\n   This implies that students instructed by professor David are computer science students, as they are taking the database course.\n\n5. All students working in the lab are instructed by professor David.\n\n   This implies that students working in the lab are students instructed by professor David, and therefore computer science students.\n\n6. James is a student working in the lab.\n\n   This implies that James is a computer science student, as he works in the lab and is instructed by professor David.\n\n7. Jack neither has a part-time job offered by the university nor works in the lab.\n\n   This implies that Jack does not work in the library, as he does not have a part-time job offered by the university (which requires working in the library) or work in the lab.\n\nNow, let's analyze the conclusion:\n\nJames has a part-time job offered by the university.\n\nFrom the information given, we know that:\n- Students who have part-time jobs offered by the university work in the library.\n- James works in the lab, which is not the same as working in the library.\n- Working in the lab does not necessarily imply having a part-time job offered by the university.\n\nHowever, we also know that:\n- James is a computer science student (from statement 6).\n- Students who take the database course are computer science students (from statement 3).\n- Students instructed by professor David are taking the database course (from statement 4).\n- Students working in the lab are instructed by professor David (from statement 5).\n\nThis implies that James is a student who takes the database course, which means he is a student from the computer science department.\n\nHowever, we cannot determine whether James has a part-time job offered by the university based on the given information. The premises do not establish a direct connection between being a computer science student and having a part-time job offered by the university.\n\nTherefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether James has a part-time job offered by the university, we need to analyze the given premises step by step:\n\n1. No students who work in the library are from the computer science department. \n   This means that if a student works in the library, they are not from the computer science department.\n\n2. All students who have part-time jobs offered by the university are students who work in the library. \n   This implies that if a student has a part-time job offered by the university, they must work in the library.\n\n3. All students who take the database course are from the computer science department. \n   This indicates that if a student takes the database course, they are from the computer science department.\n\n4. All students instructed by professor David are taking the database course. \n   This means that if a student is instructed by professor David, they must be taking the database course.\n\n5. All students working in the lab are instructed by professor David. \n   This indicates that if a student works in the lab, they are instructed by professor David.\n\n6. James is a student working in the lab. \n   Given this premise, we can conclude from premise 5 that James is instructed by professor David.\n\n7. All students instructed by professor David are taking the database course (premise 4). \n   Since James is instructed by professor David, he must be taking the database course.\n\n8. All students who take the database course are from the computer science department (premise 3). \n   Since James is taking the database course, he must be from the computer science department.\n\nNow, we need to analyze the premises related to part-time jobs and the library to determine James' status:\n\n9. No students who work in the library are from the computer science department (premise 1). \n   This means that if a student works in the library, they cannot be from the computer science department. However, it does not directly imply anything about students from the computer science department working in the lab.\n\n10. All students who have part-time jobs offered by the university are students who work in the library (premise 2). \n    This implies that if a student has a part-time job offered by the university, they must work in the library.\n\nHowever, we do not have any direct information that links James to having a part-time job offered by the university or working in the library. We know that James works in the lab, which is instructed by professor David, and he is taking the database course, both of which are associated with the computer science department. But we do not have any information that directly connects James to working in the library or having a part-time job offered by the university.\n\nSince we cannot directly determine James' status regarding having a part-time job offered by the university, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, let's break it down step by step:\n\n1. From the premise \"No students who work in the library are from the computer science department,\" we can infer that students working in the library are not from the computer science department.\n\n2. The premise \"All students who have part-time jobs offered by the university are students who work in the library\" implies that if a student has a part-time job offered by the university, then that student must work in the library.\n\n3. The premise \"All students who take the database course are from the computer science department\" tells us that students taking the database course must be from the computer science department.\n\n4. The premise \"All students instructed by professor David are taking the database course\" implies that if a student is instructed by professor David, then that student must be taking the database course.\n\n5. The premise \"All students working in the lab are instructed by professor David\" implies that if a student works in the lab, then that student is instructed by professor David.\n\n6. Given that \"James is a student working in the lab,\" we can use the information from premise 5 to conclude that James is instructed by professor David.\n\n7. Since James is instructed by professor David, we can use the information from premise 4 to conclude that James must be taking the database course.\n\n8. Using the information from premise 3, we know that students taking the database course must be from the computer science department, so James must be from the computer science department.\n\n9. Now, we can use the information from premise 1 to conclude that since James is not from the computer science department, he cannot work in the library.\n\n10. However, the premise \"All students who have part-time jobs offered by the university are students who work in the library\" implies that if a student has a part-time job offered by the university, then that student must work in the library. This does not necessarily mean that a student working in the library has a part-time job offered by the university.\n\n11. Since we concluded in step 9 that James cannot work in the library, we cannot conclude that he has a part-time job offered by the university.\n\nTherefore, the conclusion \"James has a part-time job offered by the university\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether James has a part-time job offered by the university, we need to analyze the given premises step by step.\n\n1. No students who work in the library are from the computer science department.\n   - This premise does not provide any direct information about James, but it's essential to keep in mind for later analysis.\n\n2. All students who have part-time jobs offered by the university are students who work in the library.\n   - This premise implies that if someone has a part-time job offered by the university, they must work in the library.\n\n3. All students who take the database course are from the computer science department.\n   - This premise does not provide any direct information about James, but it's essential to keep in mind for later analysis.\n\n4. All students instructed by professor David are taking the database course.\n   - This premise implies that if someone is instructed by professor David, they must be taking the database course.\n\n5. All students working in the lab are instructed by professor David.\n   - This premise implies that if someone works in the lab, they must be instructed by professor David.\n\n6. James is a student working in the lab.\n   - This premise directly connects James to the lab and, by extension, professor David.\n\n7. Jack neither has a part-time job offered by the university nor works in the lab.\n   - This premise does not provide any direct information about James, but it's essential to keep in mind for later analysis.\n\nNow, let's analyze the premises to determine whether James has a part-time job offered by the university:\n\n- We know that James works in the lab (Premise 6).\n- We also know that all students working in the lab are instructed by professor David (Premise 5).\n- Therefore, James must be instructed by professor David.\n- We know that all students instructed by professor David are taking the database course (Premise 4).\n- Therefore, James must be taking the database course.\n- We also know that all students taking the database course are from the computer science department (Premise 3).\n- Therefore, James must be from the computer science department.\n\nHowever, we don't know whether James works in the library or not. If James works in the library, then he wouldn't be from the computer science department (contradiction with the above conclusion). But if James doesn't work in the library, then we can't conclude that he has a part-time job offered by the university.\n\nBased on the premises provided, we can conclude that James is taking the database course and is from the computer science department, but we cannot conclude whether James has a part-time job offered by the university.\n\nTherefore, the conclusion \"James has a part-time job offered by the university\" is **uncertain**.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "Let's break down the information step by step:\n\n1. No students who work in the library are from the computer science department. \n   This can be written as: \n   Library \u2285 \u00acComputerScience\n\n2. All students who have part-time jobs offered by the university are students who work in the library.\n   This can be written as:\n   PartTimeUniversity \u2286 Library\n\n3. All students who take the database course are from the computer science department.\n   This can be written as:\n   Database \u2286 ComputerScience\n\n4. All students instructed by professor David are taking the database course.\n   This can be written as:\n   David \u2286 Database\n\n5. All students working in the lab are instructed by professor David.\n   This can be written as:\n   Lab \u2286 David\n\n6. James is a student working in the lab.\n   This can be written as:\n   James \u2286 Lab\n\nFrom (5) and (6), we know James is also instructed by professor David, so:\n   James \u2286 David\n\nFrom (4) and the fact that James is instructed by David, we know James is taking the database course, so:\n   James \u2286 Database\n\nFrom (3), we know that since James is taking the database course, James must be from the computer science department, so:\n   James \u2286 ComputerScience\n\nNow, from (2) we know that all students who have part-time jobs offered by the university are students who work in the library. We want to determine whether James has a part-time job offered by the university, i.e., James \u2208 PartTimeUniversity.\n\nSince James is not necessarily working in the library (we only know he works in the lab), we can't conclude that James has a part-time job offered by the university.\n\nHowever, given that Jack neither has a part-time job offered by the university nor works in the lab and that there is no information that would suggest otherwise for James, we can conclude that James has a part-time job offered by the university is uncertain because there is no definitive evidence to prove or disprove the statement.\n\nTherefore, the conclusion is uncertain.\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "not library_computer_science",
+          "z3_formula": "Not(library_computer_science) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "library_part_time_university",
+          "z3_formula": "library_part_time_university == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "database_computer_science",
+          "z3_formula": "database_computer_science == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "david_database",
+          "z3_formula": "david_database == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "lab_david",
+          "z3_formula": "lab_david == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "lab_james",
+          "z3_formula": "lab_james == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not lab_part_time_university_jack",
+          "z3_formula": "Not(lab_part_time_university_jack) == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "lab(X) -> david(X)",
+          "z3_formula": "Implies(lab_james, david_james)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "david(X) -> database(X)",
+          "z3_formula": "Implies(david_james, database_james)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "database(X) -> computer_science(X)",
+          "z3_formula": "Implies(database_james, computer_science_james)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "database_james",
+          "z3_formula": "database_james == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "computer_science_james",
+          "z3_formula": "computer_science_james == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "library_part_time_university -> library(X)",
+          "z3_formula": "Implies(library_part_time_university, library_james)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "library(X) & computer_science(X) -> False",
+          "z3_formula": "Implies(And(library_james, computer_science_james), False)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not library_james",
+          "z3_formula": "Not(library_james) == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not part_time_university_james",
+          "z3_formula": "Not(part_time_university_james) == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not works_in_library_from_cs",
+          "z3_formula": "not works_in_library_from_cs == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "part_time_university_implies_works_in_library",
+          "z3_formula": "part_time_university_implies_works_in_library == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "database_implies_from_cs",
+          "z3_formula": "database_implies_from_cs == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "david_implies_database",
+          "z3_formula": "david_implies_database == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "lab_implies_david",
+          "z3_formula": "lab_implies_david == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "lab_james",
+          "z3_formula": "lab_james == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not lab_jack_and_part_time_university",
+          "z3_formula": "not lab_jack_and_part_time_university == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "david_james",
+          "z3_formula": "david_james == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "database_james",
+          "z3_formula": "database_james == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "from_cs_james",
+          "z3_formula": "from_cs_james == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not from_cs_jack_and_part_time_university",
+          "z3_formula": "not from_cs_jack_and_part_time_university == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not from_cs_james_and_part_time_university",
+          "z3_formula": "not from_cs_james_and_part_time_university == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not works_in_library(X) & from_department(X, computer_science)",
+          "z3_formula": "Not(And(works_in_library_james, from_department_james_computer_science)) == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "works_in_library(X) -> has_part_time_job(X, university)",
+          "z3_formula": "Implies(works_in_library_james, has_part_time_job_james_university)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "works_in_library(X) -> from_department(X, computer_science)",
+          "z3_formula": "Implies(works_in_library_james, from_department_james_computer_science)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "instructed_by(X, david) -> takes_course(X, database)",
+          "z3_formula": "Implies(instructed_by_james_david, takes_course_james_database)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "works_in_lab(X) -> instructed_by(X, david)",
+          "z3_formula": "Implies(works_in_lab_james, instructed_by_james_david)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "instructed_by(X, david) -> takes_course(X, database)",
+          "z3_formula": "Implies(instructed_by_james_david, takes_course_james_database)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "takes_course(X, database) -> from_department(X, computer_science)",
+          "z3_formula": "Implies(takes_course_james_database, from_department_james_computer_science)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not works_in_library(X) & has_part_time_job(X, university)",
+          "z3_formula": "Not(And(Not(works_in_library_james), has_part_time_job_james_university)) == False",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "has_part_time_job(X, university) -> works_in_library(X)",
+          "z3_formula": "Implies(has_part_time_job_james_university, works_in_library_james)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not has_part_time_job(X, university) | works_in_library(X)",
+          "z3_formula": "Or(Not(has_part_time_job_james_university), works_in_library_james)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not works_in_library(student_from_computer_science)",
+          "z3_formula": "Not(works_in_library_and_student_from_computer_science) == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "part_time_job_university(X) -> works_in_library(X)",
+          "z3_formula": "Implies(part_time_job_university, works_in_library)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "takes_database_course(student_from_computer_science)",
+          "z3_formula": "takes_database_course_and_student_from_computer_science == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "instructed_by_david(X) -> takes_database_course(X)",
+          "z3_formula": "Implies(instructed_by_david, takes_database_course)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "works_in_lab(james)",
+          "z3_formula": "works_in_lab_james == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "works_in_lab(X) -> instructed_by_david(X)",
+          "z3_formula": "Implies(works_in_lab, instructed_by_david)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "instructed_by_david(james)",
+          "z3_formula": "instructed_by_david_james == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "instructed_by_david(X) -> takes_database_course(X)",
+          "z3_formula": "Implies(instructed_by_david_james, takes_database_course_james)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "takes_database_course(james)",
+          "z3_formula": "takes_database_course_james == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "takes_database_course(student_from_computer_science)",
+          "z3_formula": "takes_database_course_and_student_from_computer_science == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "student_from_computer_science(james)",
+          "z3_formula": "student_from_computer_science_james == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "part_time_job_university(X) -> works_in_library(X)",
+          "z3_formula": "Implies(part_time_job_university, works_in_library)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not works_in_library(james)",
+          "z3_formula": "Not(works_in_library_james) == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not part_time_job_university(james)",
+          "z3_formula": "Not(part_time_job_university_james) == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not(library_computer_science)",
+          "z3_formula": "Not(library_computer_science) == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "university_job(X) -> library(X)",
+          "z3_formula": "Implies(university_job, library)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "database_course(X) -> computer_science(X)",
+          "z3_formula": "Implies(database_course, computer_science)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "david_instructor(X) -> database_course(X)",
+          "z3_formula": "Implies(david_instructor, database_course)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "lab(X) -> david_instructor(X)",
+          "z3_formula": "Implies(lab, david_instructor)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "lab(james)",
+          "z3_formula": "lab_james == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "david_instructor(james)",
+          "z3_formula": "david_instructor_james == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "database_course(james)",
+          "z3_formula": "database_course_james == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "computer_science(james)",
+          "z3_formula": "computer_science_james == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "conflict",
+          "z3_formula": "And(Not(library_computer_science), Implies(university_job, library))",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "in_lab(james)",
+          "z3_formula": "in_lab_james == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "instructed_by_david(james)",
+          "z3_formula": "instructed_by_david_james == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "takes_database_course(james)",
+          "z3_formula": "takes_database_course_james == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "from_computer_science(james)",
+          "z3_formula": "from_computer_science_james == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "in_lab(X) -> instructed_by_david(X)",
+          "z3_formula": "Implies(in_lab_james, instructed_by_david_james)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "instructed_by_david(X) -> takes_database_course(X)",
+          "z3_formula": "Implies(instructed_by_david_james, takes_database_course_james)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "takes_database_course(X) -> from_computer_science(X)",
+          "z3_formula": "Implies(takes_database_course_james, from_computer_science_james)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "in_lab(X) & from_computer_science(X) -> False",
+          "z3_formula": "Implies(And(in_lab_james, from_computer_science_james), False)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "has_part_time_job_university(james)",
+          "z3_formula": "has_part_time_job_university_james == Unknown",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not_from_computer_science(library_student)",
+          "z3_formula": "not_from_computer_science_library_student == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "part_time_job_university(X) -> library(X)",
+          "z3_formula": "Implies(part_time_job_university_student, library_student)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "database_course(X) -> from_computer_science(X)",
+          "z3_formula": "Implies(database_course_student, from_computer_science_student)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "instructed_by_david(X) -> database_course(X)",
+          "z3_formula": "Implies(instructed_by_david_student, database_course_student)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "lab(X) -> instructed_by_david(X)",
+          "z3_formula": "Implies(lab_student, instructed_by_david_student)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "lab(james)",
+          "z3_formula": "lab_james == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "instructed_by_david(james)",
+          "z3_formula": "instructed_by_david_james == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "database_course(james)",
+          "z3_formula": "database_course_james == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "from_computer_science(james)",
+          "z3_formula": "from_computer_science_james == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not_from_computer_science(james)",
+          "z3_formula": "not_from_computer_science_james == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not(library(james))",
+          "z3_formula": "not_library_james == True",
+          "source_step": 11
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "not(work_in_library_from_computer_science)",
+          "z3_formula": "Not(work_in_library_from_computer_science) == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "work_in_library(X) -> not(from_computer_science(X))",
+          "z3_formula": "Implies(work_in_library, not(from_computer_science))",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "part_time_job_university_implies_work_in_library",
+          "z3_formula": "Implies(part_time_job_university, work_in_library)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "from_computer_science_implies_database_course",
+          "z3_formula": "Implies(from_computer_science, database_course)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "instructed_by_david_implies_database_course",
+          "z3_formula": "Implies(instructed_by_david, database_course)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "work_in_lab_implies_instructed_by_david",
+          "z3_formula": "Implies(work_in_lab, instructed_by_david)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "instructed_by_david",
+          "z3_formula": "instructed_by_david == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "database_course",
+          "z3_formula": "database_course == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "from_computer_science",
+          "z3_formula": "from_computer_science == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not(part_time_job_university_implies_work_in_library_from_computer_science)",
+          "z3_formula": "Not(Implies(part_time_job_university, work_in_library_from_computer_science))",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "part_time_job_university_implies_work_in_library",
+          "z3_formula": "Implies(part_time_job_university, work_in_library)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not computer_science_department(library_student)",
+          "z3_formula": "Not(computer_science_department_library_student) == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "library_student(X) -> not computer_science_department(X)",
+          "z3_formula": "Implies(library_student, Not(computer_science_department_X))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "university_job(X) -> library_student(X)",
+          "z3_formula": "Implies(university_job, library_student_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "database_course(X) -> computer_science_department(X)",
+          "z3_formula": "Implies(database_course, computer_science_department_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "david_instructor(X) -> database_course(X)",
+          "z3_formula": "Implies(david_instructor, database_course_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "lab_student(X) -> david_instructor(X)",
+          "z3_formula": "Implies(lab_student, david_instructor_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "lab_student(james)",
+          "z3_formula": "lab_student_james == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "david_instructor(james)",
+          "z3_formula": "david_instructor_james == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "database_course(james)",
+          "z3_formula": "database_course_james == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "computer_science_department(james)",
+          "z3_formula": "computer_science_department_james == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not computer_science_department(james)",
+          "z3_formula": "Not(computer_science_department_james) == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "library_student(X) -> university_job(X)",
+          "z3_formula": "Implies(library_student_X, university_job_X)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not university_job(james)",
+          "z3_formula": "Not(university_job_james) == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(university_job(james))",
+          "z3_formula": "uncertain(university_job_james) == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not works_in_library(student_from_cs)",
+          "z3_formula": "Not(works_in_library_student_from_cs)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "works_in_library(X) -> not student_from_cs(X)",
+          "z3_formula": "Implies(works_in_library_student, Not(student_from_cs_student))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "works_in_library(james)",
+          "z3_formula": "works_in_library_james == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "works_in_lab(X) -> works_in_library(X)",
+          "z3_formula": "Implies(works_in_lab_james, works_in_library_james)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "works_in_lab(james)",
+          "z3_formula": "works_in_lab_james == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "works_in_lab(X) -> instructed_by_david(X)",
+          "z3_formula": "Implies(works_in_lab_james, instructed_by_david_james)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "instructed_by_david(X) -> takes_database_course(X)",
+          "z3_formula": "Implies(instructed_by_david_james, takes_database_course_james)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "takes_database_course(james)",
+          "z3_formula": "takes_database_course_james == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "takes_database_course(X) -> student_from_cs(X)",
+          "z3_formula": "Implies(takes_database_course_james, student_from_cs_james)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "student_from_cs(james)",
+          "z3_formula": "student_from_cs_james == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not works_in_lab(jack)",
+          "z3_formula": "Not(works_in_lab_jack)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "works_in_library(X) -> works_in_lab(X)",
+          "z3_formula": "Implies(works_in_library_jack, works_in_lab_jack)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not works_in_library(jack)",
+          "z3_formula": "Not(works_in_library_jack)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "works_in_library(james) | not works_in_library(james)",
+          "z3_formula": "Or(works_in_library_james, Not(works_in_library_james))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not (works_in_library(james) & student_from_cs(james))",
+          "z3_formula": "Not(And(works_in_library_james, student_from_cs_james))",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not has_part_time_job_university(james)",
+          "z3_formula": "Not(has_part_time_job_university_james)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "has_part_time_job_university(james) | not has_part_time_job_university(james)",
+          "z3_formula": "Or(has_part_time_job_university_james, Not(has_part_time_job_university_james))",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "\u00ac(library \u2286 computerScience)",
+          "z3_formula": "Not(library_subset_computerScience)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "library \u2286 partTimeUniversity",
+          "z3_formula": "Implies(library_subset_partTimeUniversity, True)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "database \u2286 computerScience",
+          "z3_formula": "Implies(database_subset_computerScience, True)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "david \u2286 database",
+          "z3_formula": "Implies(david_subset_database, True)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "lab \u2286 david",
+          "z3_formula": "Implies(lab_subset_david, True)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "james \u2286 lab",
+          "z3_formula": "james_subset_lab == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "james \u2286 david",
+          "z3_formula": "james_subset_david == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "james \u2286 database",
+          "z3_formula": "james_subset_database == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "james \u2286 computerScience",
+          "z3_formula": "james_subset_computerScience == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "library \u2286 partTimeUniversity",
+          "z3_formula": "Implies(library_subset_partTimeUniversity, True)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "james \u2208 partTimeUniversity",
+          "z3_formula": "partTimeUniversity_subset_james == True",
+          "source_step": 11
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 135,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 101
+    },
+    "maxsat_stats": {
+      "satisfied": 95,
+      "excluded": 6,
+      "total_weight": 127,
+      "solve_time_ms": 2.817118540406227
+    },
+    "timing": {
+      "trace_gen_s": 11.319,
+      "extraction_s": 34.422,
+      "dedup_s": 3.287,
+      "maxsat_s": 0.008,
+      "total_s": 49.037
+    }
+  }
+}

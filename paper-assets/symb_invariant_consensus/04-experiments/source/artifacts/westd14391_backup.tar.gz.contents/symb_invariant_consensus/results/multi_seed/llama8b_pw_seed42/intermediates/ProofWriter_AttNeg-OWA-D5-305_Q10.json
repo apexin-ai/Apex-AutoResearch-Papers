@@ -1,0 +1,1366 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-305_Q10",
+    "problem": "Anne is quiet. Bob is not rough. Gary is big. Gary is kind. Gary is rough. Gary is young. Harry is young. All big people are furry. Young people are furry. All quiet, kind people are furry. If Harry is furry and Harry is quiet then Harry is round. Rough, kind people are quiet. Young, rough people are kind. All quiet, furry people are round. Furry people are rough.\n\nDetermine whether the following statement is true, false, or unknown:\nHarry is not quiet.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nQuiet($x, bool) ::: Is x quiet?\nRough($x, bool) ::: Is x rough?\nBig($x, bool) ::: Is x big?\nKind($x, bool) ::: Is x kind?\nYoung($x, bool) ::: Is x young?\nFurry($x, bool) ::: Is x furry?\nRound($x, bool) ::: Is x round?\n\nFacts:\nQuiet(Anne, True) ::: Anne is quiet.\nRough(Bob, False) ::: Bob is not rough.\nBig(Gary, True) ::: Gary is big.\nKind(Gary, True) ::: Gary is kind.\nRough(Gary, True) ::: Gary is rough.\nYoung(Gary, True) ::: Gary is young.\nYoung(Harry, True) ::: Harry is young.\n\nRules:\nBig($x, True) >>> Furry($x, True) ::: All big people are furry.\nYoung($x, True) >>> Furry($x, True) ::: Young people are furry.\nQuiet($x, True) && Kind($x, True) >>> Furry($x, True) ::: All quiet, kind people are furry.\nFurry(Harry, True) && Quiet(Harry, True) >>> Round(Harry, True) ::: If Harry is furry and Harry is quiet then Harry is round.\nRough($x, True) && Kind($x, True) >>> Quiet($x, True) ::: Rough, kind people are quiet.\nYoung($x, True) && Rough($x, True) >>> Kind($x, True) ::: Young, rough people are kind.\nQuiet($x, True) && Furry($x, True) >>> Round($x, True) ::: All quiet, furry people are round.\nFurry($x, True) >>> Rough($x, True) ::: Furry people are rough.\n\nQuery:\nQuiet(Harry, False) ::: Harry is not quiet."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 195.0,
+      "Unknown": 177.5
+    },
+    "answer_counts": {
+      "False": 7,
+      "Unknown": 4
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we will use the method of resolution in first-order logic, which is a system of logic for reasoning about mathematical statements.\n\nGiven the premises:\n\n1. Anne is quiet.\n2. Bob is not rough.\n3. Gary is big.\n4. Gary is kind.\n5. Gary is rough.\n6. Gary is young.\n7. Harry is young.\n8. All big people are furry.\n9. Young people are furry.\n10. All quiet, kind people are furry.\n11. If Harry is furry and Harry is quiet then Harry is round.\n12. Rough, kind people are quiet.\n13. Young, rough people are kind.\n14. All quiet, furry people are round.\n15. Furry people are rough.\n\nWe need to determine whether the statement \"Harry is not quiet\" is true, false, or unknown.\n\nStep 1: Analyze the premises to find any useful information about Harry.\n\n- From premises 7 and 8, we know Harry is young and furry.\n- From premise 9, we know young people are furry, which supports this conclusion.\n- From premise 10, we know that all quiet, kind people are furry, but we don't know if Harry is quiet or kind yet.\n\nStep 2: Use the premises to derive new information about Harry.\n\n- From premise 7, we know Harry is young.\n- From premise 15, we know furry people are rough, which supports the fact that Harry is rough.\n- From premise 13, we know young, rough people are kind, which supports the fact that Harry is kind.\n\nStep 3: Analyze the information we have about Harry.\n\n- We know Harry is young, furry, rough, and kind.\n- From premise 10, we know that all quiet, kind people are furry, so Harry must be quiet or not kind.\n- However, from premise 12, we know rough, kind people are quiet, which supports the fact that Harry is quiet.\n- From premise 11, we know that if Harry is furry and Harry is quiet then Harry is round, which means Harry is round.\n\nStep 4: Determine whether the statement \"Harry is not quiet\" is true, false, or unknown.\n\n- We know Harry is quiet from the analysis in step 3, so the statement \"Harry is not quiet\" is false.\n\nTherefore, the answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we will use the rules given in the problem statement to deduce the truth of the statement 'Harry is not quiet'.\n\nStep 1:\nWe know that 'All big people are furry.' However, we do not know if Harry is big or not. So, we cannot conclude anything from this rule about Harry.\n\nStep 2:\nWe also know that 'Young people are furry.' Since we know that 'Harry is young', we can conclude that 'Harry is furry'.\n\nStep 3:\nWe know that 'Furry people are rough.' Since we already concluded that 'Harry is furry', we can also conclude that 'Harry is rough'.\n\nStep 4:\nWe know that 'Rough, kind people are quiet.' However, we do not know if Harry is kind or not. So, we cannot conclude anything from this rule about Harry.\n\nStep 5:\nWe know that 'Young, rough people are kind.' Since we know that 'Harry is young' and 'Harry is rough', we can conclude that 'Harry is kind'.\n\nStep 6:\nWe know that 'All quiet, kind people are furry.' However, we already concluded that 'Harry is kind' and 'Harry is furry'. So, we cannot conclude anything new from this rule about Harry.\n\nStep 7:\nWe know that 'Rough, kind people are quiet.' Since we know that 'Harry is kind' and 'Harry is rough', we can conclude that 'Harry is quiet'.\n\nStep 8:\nWe know that 'Harry is quiet' and 'Harry is furry'. We also know that 'All quiet, furry people are round.' So, we can conclude that 'Harry is round'.\n\nStep 9:\nNow, we are given the statement 'Harry is not quiet.' Since we already concluded that 'Harry is quiet', we can conclude that the statement 'Harry is not quiet' is false.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine the truth value of the statement \"Harry is not quiet,\" we need to analyze the given information step by step and use the process of elimination.\n\n1. Given information:\n   - Anne is quiet.\n   - Bob is not rough.\n   - Gary is big.\n   - Gary is kind.\n   - Gary is rough.\n   - Gary is young.\n   - Harry is young.\n   - All big people are furry.\n   - Young people are furry.\n   - All quiet, kind people are furry.\n   - If Harry is furry and Harry is quiet then Harry is round.\n   - Rough, kind people are quiet.\n   - Young, rough people are kind.\n   - All quiet, furry people are round.\n   - Furry people are rough.\n\n2. From the given information, we can deduce the following:\n   - Gary is furry because he is big and young.\n   - Harry is furry because he is young.\n   - Harry is not rough because furry people are rough, and Harry is furry.\n   - If Harry is furry and quiet, then Harry is round.\n   - Harry is not round because it's an if condition, and we don't know if Harry is quiet or not.\n\n3. Let's analyze the statement \"Harry is not quiet.\"\n   - If Harry is not quiet, then he must be rough because rough, kind people are quiet.\n   - If Harry is rough, then he is not furry because furry people are rough, but Harry is furry.\n   - However, this creates a contradiction, as we already deduced that Harry is furry.\n   - Therefore, if Harry is not quiet, it leads to a contradiction, making the statement \"Harry is not quiet\" false.\n\nBased on the analysis, the statement \"Harry is not quiet\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not quiet\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nGiven information:\n\n1. Harry is young.\n2. All big people are furry.\n3. Young people are furry.\n4. All quiet, kind people are furry.\n5. If Harry is furry and Harry is quiet then Harry is round.\n6. Rough, kind people are quiet.\n7. Young, rough people are kind.\n8. All quiet, furry people are round.\n9. Furry people are rough.\n\nWe are asked to determine whether \"Harry is not quiet\" is true, false, or unknown.\n\nFirst, let's analyze statement 1: \"Harry is young.\"\nFrom statement 3, we know that young people are furry. So, Harry is furry.\n\nNow, let's analyze statement 5: \"If Harry is furry and Harry is quiet then Harry is round.\"\nSince we already know that Harry is furry (from statement 1 and statement 3), if we can determine whether Harry is quiet or not, we can use this statement to conclude something about Harry's roundness.\n\nFrom statement 8, we know that all quiet, furry people are round. If Harry is quiet, then Harry is round (by statement 5).\n\nNow, let's analyze the statement \"Harry is not quiet.\"\nIf Harry is not quiet, then Harry cannot be round (by statement 5).\n\nHowever, we know that Harry is furry (from statement 1 and statement 3). From statement 9, we know that furry people are rough. Since Harry is young (statement 1), we can use statement 7 to conclude that Harry is kind.\n\nNow, let's analyze statement 6: \"Rough, kind people are quiet.\"\nSince Harry is kind (from statement 7) and Harry is rough (from statement 9), Harry is quiet (by statement 6).\n\nSo, we have a contradiction: if Harry is not quiet, then Harry is round, but if Harry is quiet, then Harry is round (by statement 5). This means that the statement \"Harry is not quiet\" leads to a contradiction, and we cannot conclude that it is true.\n\nTherefore, the statement \"Harry is not quiet\" is unknown, as we cannot determine its truth value.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Anne is quiet.\n   - Bob is not rough.\n   - Gary is big.\n   - Gary is kind.\n   - Gary is rough.\n   - Gary is young.\n   - Harry is young.\n   - All big people are furry.\n   - Young people are furry.\n   - All quiet, kind people are furry.\n   - If Harry is furry and Harry is quiet then Harry is round.\n   - Rough, kind people are quiet.\n   - Young, rough people are kind.\n   - All quiet, furry people are round.\n   - Furry people are rough.\n\n2. Analyze the information related to Harry:\n   - Harry is young.\n   - Harry is furry (from \"Young people are furry\").\n   - Since Harry is furry, Harry must be rough (from \"Furry people are rough\").\n   - However, we cannot directly determine Harry's quietness from the given information.\n\n3. Analyze the information related to quiet people:\n   - Anne is quiet.\n   - Rough, kind people are quiet.\n   - Since Gary is rough and kind, Gary is quiet (from \"Rough, kind people are quiet\").\n   - However, this does not provide any information about Harry's quietness.\n\n4. Analyze the information related to round people:\n   - If Harry is furry and Harry is quiet then Harry is round.\n   - Since we do not know if Harry is quiet, we cannot determine if Harry is round.\n\n5. Analyze the information related to furry people:\n   - Furry people are rough.\n   - Since Harry is furry, Harry is rough (from \"Furry people are rough\").\n   - We cannot determine if Harry is quiet from this information.\n\n6. Analyze the information related to quiet and furry people:\n   - All quiet, furry people are round.\n   - Since we do not know if Harry is quiet, we cannot determine if Harry is round.\n\n7. Analyze the information related to kind people:\n   - Young, rough people are kind.\n   - Since Harry is young and rough, Harry is kind (from \"Young, rough people are kind\").\n\n8. Conclusion:\n   - Harry is young.\n   - Harry is furry.\n   - Harry is rough.\n   - Harry is kind.\n   - From the given information, we cannot determine if Harry is quiet or not.\n\nTherefore, the statement \"Harry is not quiet\" is unknown because we cannot determine Harry's quietness from the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is young (from the statement \"Gary is young\" and \"Gary is not mentioned as an exception for Harry being young\").\n2. Young people are furry (from the statement \"Young people are furry\").\n3. Harry is furry (from statement 1 and statement 2).\n4. Furry people are rough (from the statement \"Furry people are rough\").\n5. Harry is rough (from statement 3 and statement 4).\n\nNow let's analyze the given statements related to quietness.\n\n1. Anne is quiet (this statement is not relevant to Harry).\n2. Rough, kind people are quiet (this statement implies that rough people can be quiet if they are also kind).\n3. Young, rough people are kind (from this statement, we can infer that young and rough people can be kind).\n4. Harry is young and rough (from statements 5 and the fact that Harry is young).\n5. Young, rough people are kind (from statement 3).\n6. Harry is kind (from statement 5 and statement 5).\n7. Rough, kind people are quiet (from statement 2).\n8. Harry is quiet (from statements 6 and 7).\n\nHowever, we also have the statement \"If Harry is furry and Harry is quiet then Harry is round.\" We already know that Harry is furry (statement 3), but we do not know if Harry is quiet (statement 8) yet.\n\nHowever, if we follow the initial conclusion that Harry is quiet, then:\n9. All quiet, furry people are round (from the statement).\n10. Harry is round (from statements 3, 8, and statement 9).\n\nHowever, we cannot conclude that Harry is quiet because of the uncertainty of statement 8. We can only conclude that if Harry is quiet, then Harry is round.\n\nThe initial conclusion (that Harry is quiet) was based on the statement \"Rough, kind people are quiet\" and \"Young, rough people are kind.\" However, the statement \"Harry is not quiet\" does not contradict any of the given information. \n\nTherefore, based on the given information, we cannot determine whether Harry is quiet or not, and we cannot conclude that \"Harry is not quiet\" is true or false. \n\nThe answer is: \n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we can use a method called truth table analysis. However, due to the complexity of the problem, we will simplify it by analyzing the given information and the relationships between the statements.\n\nGiven statements:\n\n1. Anne is quiet.\n2. Bob is not rough.\n3. Gary is big.\n4. Gary is kind.\n5. Gary is rough.\n6. Gary is young.\n7. Harry is young.\n8. All big people are furry.\n9. Young people are furry.\n10. All quiet, kind people are furry.\n11. If Harry is furry and Harry is quiet then Harry is round.\n12. Rough, kind people are quiet.\n13. Young, rough people are kind.\n14. All quiet, furry people are round.\n15. Furry people are rough.\n\nFrom statements 8 and 9, we can conclude that since Harry is young, Harry is furry (by the transitive property).\n\nFrom statements 4 and 10, we can conclude that since Gary is kind, Gary is furry.\n\nFrom statement 15, we can conclude that since Gary is furry, Gary is rough.\n\nNow, let's analyze the statement \"Harry is not quiet.\"\n\nIf Harry is not quiet, then we can derive the following:\n\n1. Since Harry is young, Harry is furry (by statement 9).\n2. Since Harry is furry, Harry is rough (by statement 15).\n3. Since Harry is rough and young, Harry is kind (by statement 13).\n4. Since Harry is kind and rough, Harry is quiet (by statement 12).\n\nHowever, we have concluded that Harry is quiet, which contradicts the given statement \"Harry is not quiet.\"\n\nTherefore, the statement \"Harry is not quiet\" is false. \n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not quiet\" is true, false, or unknown, we need to analyze the given premises and their implications.\n\nFrom the given premises:\n\n1. Harry is young. (Premise)\n2. Young people are furry. (Premise)\n3. Furry people are rough. (Premise)\n4. All quiet, furry people are round. (Premise)\n5. If Harry is furry and Harry is quiet then Harry is round. (Premise)\n\nWe need to determine if Harry is quiet or not.\n\nFrom premises 1 and 2, we can conclude that Harry is furry.\n\nFrom premise 3, we can conclude that since Harry is furry, Harry is rough.\n\nNow, we need to determine if Harry is quiet or not.\n\nFrom premise 4, we know that all quiet, furry people are round. However, we cannot directly conclude that Harry is quiet from this premise.\n\nFrom premise 5, we know that if Harry is furry and Harry is quiet, then Harry is round. However, we cannot directly conclude that Harry is quiet from this premise.\n\nNow, let's examine the other premises:\n\n1. Gary is big. (Premise)\n2. Gary is kind. (Premise)\n3. Gary is rough. (Premise)\n4. Gary is young. (Contradicts premise 1)\n5. Harry is young. (Premise)\n6. All big people are furry. (Premise)\n7. Young people are furry. (Premise)\n8. All quiet, kind people are furry. (Premise)\n9. Rough, kind people are quiet. (Premise)\n10. Young, rough people are kind. (Premise)\n\nFrom premise 4, we know that Gary is young, but this contradicts premise 1, which states that Gary is big. This is a contradiction.\n\nHowever, we cannot use this contradiction to directly determine if Harry is quiet or not.\n\nSince we have a contradiction in the premises (Gary is big and Gary is young), we cannot make any conclusions about Harry's quietness.\n\nTherefore, the statement \"Harry is not quiet\" is unknown.",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to use the rules given and apply them to the statement about Harry.\n\n1. We are given the following statements:\n   - Anne is quiet.\n   - Bob is not rough.\n   - Gary is big.\n   - Gary is kind.\n   - Gary is rough.\n   - Gary is young.\n   - Harry is young.\n   - All big people are furry.\n   - Young people are furry.\n   - All quiet, kind people are furry.\n   - If Harry is furry and Harry is quiet then Harry is round.\n   - Rough, kind people are quiet.\n   - Young, rough people are kind.\n   - All quiet, furry people are round.\n   - Furry people are rough.\n\n2. We will apply the rules given to the statement about Harry.\n\nGiven statement: Harry is not quiet.\n\nTo check if this statement is true or false, we need to see if we can deduce whether Harry is quiet or not from the given information.\n\nFrom the rules, we know:\n   - Harry is young.\n   - Young people are furry. (Rule 8)\n   - Furry people are rough. (Rule 14)\n   - So, Harry is rough.\n\nWe also know that:\n   - Harry is young and rough. (From above)\n   - Young, rough people are kind. (Rule 10)\n   - So, Harry is kind.\n\nNow, since Harry is kind and rough:\n   - Rough, kind people are quiet. (Rule 9)\n   - So, Harry is quiet.\n\nThis means the statement \"Harry is not quiet\" is false, because we can deduce that Harry is quiet based on the given information.\n\nThe final answer is: $\\boxed{False}$",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use logical deductions.\n\n1. Anne is quiet.\n2. Bob is not rough.\n3. Gary is big.\n4. Gary is kind.\n5. Gary is rough.\n6. Gary is young.\n7. Harry is young.\n8. All big people are furry.\n9. Young people are furry.\n10. All quiet, kind people are furry.\n11. If Harry is furry and Harry is quiet then Harry is round.\n12. Rough, kind people are quiet.\n13. Young, rough people are kind.\n14. All quiet, furry people are round.\n15. Furry people are rough.\n\nFirst, let's eliminate some possibilities based on the given statements:\n\nFrom statement 8, we can deduce that Gary is furry because Gary is big.\nFrom statement 9, we can deduce that Harry is furry because Harry is young.\n\nFrom statement 11, we can deduce that Harry is round because Harry is furry and quiet. However, we do not know if Harry is quiet yet.\n\nNow, let's analyze the statement \"Harry is not quiet.\"\nIf Harry is not quiet, then the conclusion that Harry is round based on statement 11 is invalid.\n\nHowever, we can still deduce that Harry is furry because Harry is young (statement 9).\n\nUsing the deduction from statement 14, we can conclude that if Harry is furry and not quiet, then Harry is not round.\n\nNow, let's analyze the given statement \"Harry is not quiet.\"\nIf Harry is not quiet, then Harry is not round (based on the previous conclusion).\n\nWe also know that Harry is furry (based on statement 9).\n\nUsing the deduction from statement 15, we can conclude that Harry is rough because Harry is furry.\n\nNow, let's analyze the statements 6 and 7. We know that Gary is young and rough (statements 5 and 6). Using statement 13, we can conclude that Gary is kind.\n\nUsing statement 12, we can conclude that Gary is quiet because Gary is rough and kind.\n\nNow, let's analyze the statement \"Harry is not quiet.\"\nIf Harry is not quiet, then we can deduce that Harry is not round.\n\nHowever, we can also deduce that Harry is young, furry, and rough.\n\nFrom statement 13, we can conclude that Harry is kind because Harry is young and rough.\n\nUsing statement 12, we can conclude that Harry is quiet because Harry is kind and rough.\n\nHowever, this conclusion contradicts the given statement \"Harry is not quiet.\"\n\nTherefore, based on the logical deductions, we can conclude that the statement \"Harry is not quiet\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to use logical deductions based on the given statements.\n\nGiven statements:\n\n1. Anne is quiet.\n2. Bob is not rough.\n3. Gary is big.\n4. Gary is kind.\n5. Gary is rough.\n6. Gary is young.\n7. Harry is young.\n8. All big people are furry.\n9. Young people are furry.\n10. All quiet, kind people are furry.\n11. If Harry is furry and Harry is quiet then Harry is round.\n12. Rough, kind people are quiet.\n13. Young, rough people are kind.\n14. All quiet, furry people are round.\n15. Furry people are rough.\n\nWe are asked to determine whether the statement \"Harry is not quiet\" is true, false, or unknown.\n\nStep 1: Analyze statement 7 (Harry is young) and statement 9 (Young people are furry).\nBased on these two statements, we can conclude that Harry is furry.\n\nStep 2: Analyze statement 15 (Furry people are rough).\nBased on this statement and the conclusion from step 1, we can conclude that Harry is rough.\n\nStep 3: Analyze statement 7 (Harry is young) and statement 13 (Young, rough people are kind).\nBased on these two statements, we can conclude that Harry is kind.\n\nStep 4: Analyze statement 10 (All quiet, kind people are furry) and the conclusions from steps 1 and 3.\nSince we already know that Harry is furry and kind, we cannot conclude that Harry is quiet or not quiet based on this statement alone.\n\nHowever, we can analyze statement 11 (If Harry is furry and Harry is quiet then Harry is round).\nIf Harry is quiet, then Harry is round. But we don't know if Harry is quiet or not quiet.\n\nStep 5: Analyze statement 14 (All quiet, furry people are round) and the conclusions from steps 1 and 4.\nSince we already know that Harry is furry, if Harry is quiet, then Harry is round. But we don't know if Harry is quiet or not quiet.\n\nStep 6: Analyze statement 2 (Bob is not rough).\nThis statement is not relevant to the conclusion about Harry.\n\nStep 7: Analyze statement 1 (Anne is quiet).\nThis statement is not relevant to the conclusion about Harry.\n\nStep 8: Analyze statement 3 (Gary is big) and statement 5 (Gary is rough).\nThis is not relevant to the conclusion about Harry.\n\nStep 9: Analyze statement 4 (Gary is kind) and statement 12 (Rough, kind people are quiet).\nThis is not relevant to the conclusion about Harry.\n\nStep 10: Analyze statement 6 (Gary is young) and statement 7 (Harry is young).\nThis is not relevant to the conclusion about Harry.\n\nConclusion: Based on the given statements and logical deductions, we cannot determine whether Harry is quiet or not quiet. The statement \"Harry is not quiet\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we can use the rules of logic and inference. \n\n1. Anne is quiet. (This doesn't give us any information about Harry.)\n2. Bob is not rough. (This doesn't give us any information about Harry.)\n3. Gary is big. (This doesn't give us any information about Harry.)\n4. Gary is kind. (This doesn't give us any information about Harry.)\n5. Gary is rough. (This doesn't give us any information about Harry.)\n6. Gary is young. (This doesn't give us any information about Harry.)\n7. Harry is young. (This tells us that Harry is young, but we still need to find out if he is quiet or not.)\n8. All big people are furry. (This doesn't give us any information about Harry.)\n9. Young people are furry. (This tells us that since Harry is young, he must be furry.)\n10. All quiet, kind people are furry. (This doesn't give us any information about Harry yet.)\n11. If Harry is furry and Harry is quiet then Harry is round. (We know Harry is furry, but we still need to find out if he is quiet or not.)\n12. Rough, kind people are quiet. (This doesn't give us any information about Harry yet.)\n13. Young, rough people are kind. (This doesn't give us any information about Harry yet.)\n14. All quiet, furry people are round. (This tells us that if Harry is quiet and furry, he must be round.)\n15. Furry people are rough. (This tells us that since Harry is furry, he must be rough.)\n\nNow, let's analyze the information we have about Harry. We know Harry is young (7), which means he must be furry (9). Since Harry is furry (9), he must be rough (15). \n\nWe are asked to determine if the statement \"Harry is not quiet\" is true, false, or unknown. To determine this, we need to analyze the possible combinations of Harry's characteristics.\n\nSince Harry is young (7), we know he is furry (9), and therefore rough (15). However, we still don't know if Harry is quiet or not.\n\nLet's consider the following possible combinations:\n\n- If Harry is quiet, then he must be furry (11), which means he is rough (15). However, we already know Harry is rough, so this combination doesn't give us any new information.\n- If Harry is not quiet, then he must be furry (9), which means he is rough (15). We already know Harry is rough, so this combination doesn't give us any new information.\n\nNow, let's consider the statement \"All quiet, furry people are round\" (14). If Harry is quiet, furry, and round, then he must be round. However, we don't know if Harry is quiet or not.\n\nSince we don't have enough information to determine if Harry is quiet or not, we can conclude that the statement \"Harry is not quiet\" is unknown.\n\nHowever, let's consider the statement \"Rough, kind people are quiet\" (12) and \"Young, rough people are kind\" (13). \n\nIf Harry is young (7), then he must be rough (15), and therefore kind (13). \n\nSince Harry is rough, kind (13), and therefore quiet (12), we can conclude that Harry is quiet.\n\nSo, the statement \"Harry is not quiet\" is actually false.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(rough(bob))",
+          "z3_formula": "Not(rough_bob) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_harry, furry_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_harry, kind_harry), furry_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & quiet(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_harry, quiet_harry), round_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_harry, kind_harry), quiet_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_harry, rough_harry), kind_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_harry, furry_harry), round_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_harry, rough_harry)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_harry, furry_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_harry, rough_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_harry, rough_harry), kind_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_harry, furry_harry), furry_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_harry, kind_harry), quiet_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_harry, furry_harry), round_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(harry)",
+          "z3_formula": "Not(quiet_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not round(harry)",
+          "z3_formula": "Not(round_harry)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not rough(bob)",
+          "z3_formula": "not_rough_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_gary, furry_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_anne, kind_anne), furry_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & quiet(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_harry, quiet_harry), round_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_gary, kind_gary), quiet_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_gary, rough_gary), kind_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_anne, furry_anne), round_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_harry, rough_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(harry)",
+          "z3_formula": "not_rough_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == Unknown",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == Unknown",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(harry)",
+          "z3_formula": "not_quiet_harry == False",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_harry, furry_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_harry, kind_harry), furry_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & quiet(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_harry, quiet_harry), round_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_harry, kind_harry), quiet_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_harry, rough_harry), kind_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_harry, rough_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_harry, furry_harry), round_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry) == Not(Not(quiet(harry)))",
+          "z3_formula": "round_harry == Not(Not(quiet_harry))",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(rough(bob))",
+          "z3_formula": "Not(rough_bob) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_gary, furry_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_gary, furry_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_gary, kind_gary), furry_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & quiet(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_harry, quiet_harry), round_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_gary, kind_gary), quiet_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_harry, rough_harry), kind_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_harry, rough_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_harry, furry_harry), round_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(quiet(harry))",
+          "z3_formula": "Not(quiet_harry) == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_harry, rough_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_harry, rough_harry), kind_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_harry, kind_harry), quiet_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & quiet(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_harry, quiet_harry), round_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not rough(bob)",
+          "z3_formula": "not_rough_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_gary, furry_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_gary, kind_gary), furry_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_gary, rough_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_gary, rough_gary), kind_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_gary, kind_gary), quiet_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_gary, furry_gary), round_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_gary, rough_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(harry)",
+          "z3_formula": "not_quiet_harry == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(harry)",
+          "z3_formula": "not_quiet_harry == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == False",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 29
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 30
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(harry)",
+          "z3_formula": "not_quiet_harry == False",
+          "source_step": 31
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_harry, rough_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_harry, furry_harry), round_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & quiet(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_harry, quiet_harry), round_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_gary, furry_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_gary, kind_gary), furry_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_gary, kind_gary), quiet_gary)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_gary, rough_gary), kind_gary)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(rough(bob))",
+          "z3_formula": "Not(rough_bob) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_gary, furry_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_gary, kind_gary), furry_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & quiet(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_harry, quiet_harry), round_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_gary, kind_gary), quiet_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_gary, rough_gary), kind_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_gary, furry_gary), round_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_gary, rough_gary)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(rough(bob))",
+          "z3_formula": "Not(rough_bob) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_gary, furry_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_gary, kind_gary), furry_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & quiet(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_harry, quiet_harry), round_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_gary, kind_gary), quiet_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_gary, rough_gary), kind_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_harry, furry_harry), round_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_harry, rough_harry)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_harry, rough_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_harry, rough_harry), kind_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & kind(X) -> furry(X)",
+          "z3_formula": "Implies(And(furry_harry, kind_harry), furry_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & quiet(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_harry, quiet_harry), round_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_harry, furry_harry), round_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == Unknown",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_harry, rough_harry)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_harry, rough_harry)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_harry, rough_harry)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_harry, kind_harry), quiet_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_harry, rough_harry), kind_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_harry, furry_harry), round_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 12
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 206,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 40
+    },
+    "maxsat_stats": {
+      "satisfied": 37,
+      "excluded": 3,
+      "total_weight": 200,
+      "solve_time_ms": 1.3792244717478752
+    },
+    "timing": {
+      "trace_gen_s": 8.749,
+      "extraction_s": 31.859,
+      "dedup_s": 1.793,
+      "maxsat_s": 0.004,
+      "total_s": 42.404
+    }
+  }
+}

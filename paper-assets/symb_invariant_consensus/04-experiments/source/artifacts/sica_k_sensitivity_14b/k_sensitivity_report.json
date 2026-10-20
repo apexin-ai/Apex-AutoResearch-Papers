@@ -1,0 +1,53 @@
+{
+  "experiment": "sica_k_sensitivity_14b",
+  "description": "K-ablation: effect of number of reasoning traces (K) on SICA vs SC accuracy",
+  "model": "Qwen2.5-14B-Instruct",
+  "datasets": ["proofwriter (D5)", "folio"],
+  "n_problems": 60,
+  "exit_code": 129,
+  "exit_signal": "SIGHUP",
+  "completion_status": "COMPLETE (K_ABLATION_DONE marker found in log; SIGHUP received after completion)",
+  "result_files": {
+    "k6": "/root/symb_invariant_consensus/results/k_ablation/k6_results.json",
+    "k8": "/root/symb_invariant_consensus/results/k_ablation/k8_results.json",
+    "k11": "/root/symb_invariant_consensus/results/k_ablation/k11_results.json",
+    "k12": "/root/symb_invariant_consensus/results/k_ablation/k12_results.json",
+    "k16": "/root/symb_invariant_consensus/results/k_ablation/k16_results.json",
+    "k20": "/root/symb_invariant_consensus/results/k_ablation/k20_results.json"
+  },
+  "log_file": "~/runs/symb_invariant_consensus/sica_k_sensitivity_14b.log",
+  "summary_table": [
+    {"K": 6,  "sica_acc": 0.7333, "sc_acc": 0.7333, "sica_correct": 44, "sc_correct": 44, "gap_pp": 0.0,  "unique_constraints": 1127, "total_constraints": 2969,  "wall_time_min": 34.7},
+    {"K": 8,  "sica_acc": 0.7333, "sc_acc": 0.7500, "sica_correct": 44, "sc_correct": 45, "gap_pp": -1.7, "unique_constraints": 1193, "total_constraints": 3971,  "wall_time_min": 42.3},
+    {"K": 11, "sica_acc": 0.7333, "sc_acc": 0.7333, "sica_correct": 44, "sc_correct": 44, "gap_pp": 0.0,  "unique_constraints": 1312, "total_constraints": 5511,  "wall_time_min": 57.0},
+    {"K": 12, "sica_acc": 0.7000, "sc_acc": 0.7500, "sica_correct": 42, "sc_correct": 45, "gap_pp": -5.0, "unique_constraints": 1319, "total_constraints": 6116,  "wall_time_min": 58.6},
+    {"K": 16, "sica_acc": 0.7167, "sc_acc": 0.7500, "sica_correct": 43, "sc_correct": 45, "gap_pp": -3.3, "unique_constraints": 1353, "total_constraints": 8086,  "wall_time_min": 76.9},
+    {"K": 20, "sica_acc": 0.7000, "sc_acc": 0.7333, "sica_correct": 42, "sc_correct": 44, "gap_pp": -3.3, "unique_constraints": 1415, "total_constraints": 10252, "wall_time_min": 96.6}
+  ],
+  "per_dataset": {
+    "proofwriter": [
+      {"K": 6,  "sica": 0.700, "sc": 0.667},
+      {"K": 8,  "sica": 0.700, "sc": 0.667},
+      {"K": 11, "sica": 0.700, "sc": 0.667},
+      {"K": 12, "sica": 0.633, "sc": 0.667},
+      {"K": 16, "sica": 0.667, "sc": 0.667},
+      {"K": 20, "sica": 0.633, "sc": 0.667}
+    ],
+    "folio": [
+      {"K": 6,  "sica": 0.767, "sc": 0.800},
+      {"K": 8,  "sica": 0.767, "sc": 0.833},
+      {"K": 11, "sica": 0.767, "sc": 0.800},
+      {"K": 12, "sica": 0.767, "sc": 0.833},
+      {"K": 16, "sica": 0.767, "sc": 0.833},
+      {"K": 20, "sica": 0.767, "sc": 0.800}
+    ]
+  },
+  "analysis": {
+    "main_finding": "SICA <= SC for ALL K values tested. Gap ranges from 0.0 to -5.0 pp.",
+    "sica_trend": "SICA accuracy is flat or slightly decreasing as K increases (73.3% at K=6 -> 70.0% at K=20)",
+    "sc_trend": "SC accuracy is stable across K (73.3-75.0%)",
+    "constraint_saturation": "Unique constraints saturate: 1127 (K=6) -> 1415 (K=20), only +25% despite 3.5x more total constraints. Diminishing returns on constraint diversity.",
+    "cost_scaling": "Wall time scales roughly linearly with K: 35 min (K=6) -> 97 min (K=20)",
+    "conclusion": "NEGATIVE RESULT: Increasing K does not help SICA. The hypothesis that more reasoning traces would provide richer constraint sets for MaxSAT aggregation is falsified. Constraint extraction saturates, and additional traces produce mostly redundant constraints."
+  }
+}

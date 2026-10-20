@@ -1,0 +1,912 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-81_Q11",
+    "problem": "The cat eats the squirrel. The cat sees the squirrel. The cow eats the squirrel. The cow sees the cat. The rabbit is round. The rabbit sees the cat. The squirrel eats the rabbit. The squirrel is cold. The squirrel needs the rabbit. The squirrel sees the cat. If someone sees the cat and they are not green then they see the cow. If the rabbit is kind and the rabbit sees the squirrel then the squirrel needs the rabbit. Rough people are cold. If someone sees the rabbit then they are not round. If someone sees the squirrel and they are not green then they need the squirrel. If someone eats the cow then they see the rabbit. If someone eats the squirrel then they are rough. If someone is cold then they eat the cow.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cat is not round.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nSees($x, $y, bool) ::: Does x see y?\nRound($x, bool) ::: Is x round?\nCold($x, bool) ::: Is x cold?\nNeeds($x, $y, bool) ::: Does x need y?\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nEats(cat, squirrel, True) ::: The cat eats the squirrel.\nSees(cat, squirrel, True) ::: The cat sees the squirrel.\nEats(cow, squirrel, True) ::: The cow eats the squirrel.\nSees(cow, cat, True) ::: The cow sees the cat.\nRound(rabbit, True) ::: The rabbit is round.\nSees(rabbit, cat, True) ::: The rabbit sees the cat.\nEats(squirrel, rabbit, True) ::: The squirrel eats the rabbit.\nCold(squirrel, True) ::: The squirrel is cold.\nNeeds(squirrel, rabbit, True) ::: The squirrel needs the rabbit.\nSees(squirrel, cat, True) ::: The squirrel sees the cat.\n\nRules:\nSees($x, cat, True) && Green($x, False) >>> Sees($x, cow, True) ::: If someone sees the cat and they are not green then they see the cow.\nKind(rabbit, True) && Sees(rabbit, squirrel, True) >>> Needs(squirrel, rabbit, True) ::: If the rabbit is kind and the rabbit sees the squirrel then the squirrel needs the rabbit.\nRough($x, True) >>> Cold($x, True) ::: Rough people are cold.\nSees($x, rabbit, True) >>> Round($x, False) ::: If someone sees the rabbit then they are not round.\nSees($x, squirrel, True) && Green($x, False) >>> Needs($x, squirrel, True) ::: If someone sees the squirrel and they are not green then they need the squirrel.\nEats($x, cow, True) >>> Sees($x, rabbit, True) ::: If someone eats the cow then they see the rabbit.\nEats($x, squirrel, True) >>> Rough($x, True) ::: If someone eats the squirrel then they are rough.\nCold($x, True) >>> Eats($x, cow, True) ::: If someone is cold then they eat the cow.\n\nQuery:\nRound(cat, False) ::: The cat is not round."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "The statement is true.": 78.0,
+      "True": 109.0,
+      "Unknown": 29.5
+    },
+    "answer_counts": {
+      "True": 8,
+      "Unknown": 1,
+      "The statement is true.": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The cat is not round\" is true, false, or unknown, we need to analyze the given statements and use logical deductions.\n\n1. The rabbit is round. \n   We don't know if the cat is round or not, but we know the rabbit is.\n\n2. If someone sees the cat and they are not green then they see the cow.\n   This statement doesn't give us any information about the cat's shape.\n\n3. If the rabbit is kind and the rabbit sees the squirrel then the squirrel needs the rabbit.\n   We don't know if the rabbit is kind or not.\n\n4. If someone sees the rabbit then they are not round.\n   Since we know the rabbit is round, we can't use this statement yet.\n\n5. If someone sees the squirrel and they are not green then they need the squirrel.\n   We don't know if anyone sees the squirrel and is not green.\n\n6. The cat sees the squirrel.\n   This statement tells us that the cat sees the squirrel, but it doesn't tell us about the cat's shape.\n\n7. If someone eats the cow then they see the rabbit.\n   We don't know if anyone eats the cow.\n\n8. If someone eats the squirrel then they are rough.\n   We don't know if anyone eats the squirrel.\n\n9. The cat eats the squirrel.\n   This statement tells us that the cat eats the squirrel, but it doesn't tell us about the cat's shape.\n\n10. If someone is cold then they eat the cow.\n    We don't know if anyone is cold.\n\n11. The squirrel is cold.\n    This statement tells us that the squirrel is cold, but we don't know if the cat is round or not.\n\n12. If the rabbit is kind and the rabbit sees the squirrel then the squirrel needs the rabbit.\n    We don't know if the rabbit is kind or not.\n\n13. The squirrel needs the rabbit.\n    This statement tells us that the squirrel needs the rabbit, but we don't know if the cat is round or not.\n\n14. If someone sees the rabbit then they are not round.\n    We can use this statement now. Since the cat sees the rabbit, we can conclude that the cat is not round.\n\nTherefore, the final answer is: \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The cat is not round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The rabbit is round. (Given)\n   - We don't have any information about the cat being round yet, so we can't make any conclusions.\n\n2. If someone sees the rabbit then they are not round. (Given)\n   - This rule can be applied to the cat because it sees the rabbit. However, this rule does not directly state that the cat is not round; it only states that whoever sees the rabbit is not round.\n\n3. The cat sees the rabbit. (Given)\n   - From the previous rule, we know that whoever sees the rabbit is not round. Since the cat sees the rabbit, the cat is not round. (However, we still need to check if there's any other information that could contradict this conclusion.)\n\n4. The cat eats the squirrel. (Given)\n   - There's no information that directly links the cat's eating habits to its shape or whether it's round or not.\n\n5. If someone eats the squirrel then they are rough. (Given)\n   - This rule can be applied to the cat because it eats the squirrel. However, this does not provide any information about the cat's shape.\n\n6. If someone eats the squirrel then they are rough. (Given)\n   - As previously mentioned, the cat eats the squirrel, which makes the cat rough. However, this does not provide any information about the cat's shape.\n\n7. The squirrel is cold. (Given)\n   - There's no information that directly links the squirrel's temperature to the cat's shape or whether it's round or not.\n\n8. If someone is cold then they eat the cow. (Given)\n   - This rule can be applied to the squirrel because it is cold. However, this does not provide any information about the cat's shape.\n\n9. The cat sees the squirrel. (Given)\n   - There's no information that directly links the cat's line of sight to its shape.\n\n10. If someone sees the cat and they are not green then they see the cow. (Given)\n    - This rule does not provide any information about the cat's shape, as there's no mention of its color.\n\n11. The cat is not round. (To be determined)\n    - Based on our analysis, we have found that the cat sees the rabbit, and whoever sees the rabbit is not round. Therefore, the cat is not round.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The cat is not round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The rabbit is round. \n   - This statement directly tells us about the rabbit's shape, but it does not provide any information about the cat's shape.\n\n2. If someone sees the cat and they are not green then they see the cow. \n   - This statement does not provide any information about the cat's shape.\n\n3. The rabbit sees the cat. \n   - This statement tells us that the rabbit sees the cat, but it does not provide any information about the cat's shape.\n\n4. If someone sees the rabbit then they are not round. \n   - This statement tells us about the characteristics of people who see the rabbit, but it does not provide any information about the cat's shape.\n\n5. The cat sees the squirrel. \n   - This statement tells us that the cat sees the squirrel, but it does not provide any information about the cat's shape.\n\n6. If the rabbit is kind and the rabbit sees the squirrel then the squirrel needs the rabbit. \n   - This statement does not provide any information about the cat's shape.\n\n7. If someone sees the squirrel and they are not green then they need the squirrel. \n   - This statement does not provide any information about the cat's shape.\n\n8. The squirrel eats the rabbit. \n   - This statement does not provide any information about the cat's shape.\n\n9. The squirrel is cold. \n   - This statement tells us about the squirrel's condition, but it does not provide any information about the cat's shape.\n\n10. The squirrel needs the rabbit. \n    - This statement tells us about the squirrel's need, but it does not provide any information about the cat's shape.\n\n11. The squirrel sees the cat. \n    - This statement tells us that the squirrel sees the cat, but it does not provide any information about the cat's shape.\n\n12. If someone eats the cow then they see the rabbit. \n    - This statement does not provide any information about the cat's shape.\n\n13. If someone eats the squirrel then they are rough. \n    - This statement does not provide any information about the cat's shape.\n\n14. If someone is cold then they eat the cow. \n    - This statement does not provide any information about the cat's shape.\n\nHowever, there is a missing rule that can help determine the cat's shape. This rule is not explicitly stated in the given information, but we can infer it from the statement \"If someone eats the squirrel then they are rough.\" and \"The squirrel eats the rabbit.\" This implies that the squirrel eats the rabbit, which means the rabbit is not rough. Then, the statement \"The rabbit is round\" can be used to find the missing rule.\n\nLet's analyze the statement \"The rabbit is round.\" and the statement \"If someone sees the rabbit then they are not round.\" Using the method of elimination, we can infer that the missing rule is \"If someone is round then they see the rabbit.\" This rule can be inferred from the fact that the rabbit is round and everyone who sees the rabbit is not round.\n\nNow, we have the missing rule. Using this rule, we can analyze the given information again.\n\n1. The rabbit is round. \n   - This statement directly tells us about the rabbit's shape, but it does not provide any information about the cat's shape.\n\n2. If someone sees the rabbit then they are not round. \n   - This statement tells us about the characteristics of people who see the rabbit, but it does not provide any information about the cat's shape.\n\n3. The cat sees the squirrel. \n   - This statement tells us that the cat sees the squirrel, but it does not provide any information about the cat's shape.\n\n4. If someone is round then they see the rabbit. \n   - This statement tells us that people who are round see the rabbit.\n\n5. The cat is not round. \n   - We can infer that the cat is not round because if the cat were round, it would see the rabbit, but the cat sees the squirrel, not the rabbit.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve the problem, we will break it down into smaller steps and use the given statements to determine the truth of the statement \"The cat is not round.\"\n\nGiven Statements:\n\n1. The cat eats the squirrel.\n2. The cat sees the squirrel.\n3. The cow eats the squirrel.\n4. The cow sees the cat.\n5. The rabbit is round.\n6. The rabbit sees the cat.\n7. The squirrel eats the rabbit.\n8. The squirrel is cold.\n9. The squirrel needs the rabbit.\n10. The squirrel sees the cat.\n11. If someone sees the cat and they are not green then they see the cow.\n12. If the rabbit is kind and the rabbit sees the squirrel then the squirrel needs the rabbit.\n13. Rough people are cold.\n14. If someone sees the rabbit then they are not round.\n15. If someone sees the squirrel and they are not green then they need the squirrel.\n16. If someone eats the cow then they see the rabbit.\n17. If someone eats the squirrel then they are rough.\n18. If someone is cold then they eat the cow.\n\nWe need to determine the truth of the statement \"The cat is not round.\"\n\nFrom statement 5, we know that \"The rabbit is round.\"\n\nStatement 14 says that \"If someone sees the rabbit then they are not round.\" This statement is contradictory to statement 5. \n\nHowever, we also know that the cat sees the rabbit (statement 6). \n\nSo, according to statement 14, if the cat sees the rabbit, then the cat is not round.\n\nTherefore, the statement \"The cat is not round\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The cat is not round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The rabbit is round. (This statement gives us information about the rabbit, but we don't know anything about the cat yet.)\n\n2. The cat sees the squirrel. (This statement gives us information about the cat's actions, but we still don't know if the cat is round or not.)\n\n3. The rabbit sees the cat. (This statement tells us that the rabbit sees the cat, but it doesn't provide any information about the cat's shape.)\n\n4. If someone sees the rabbit then they are not round. (This rule will be useful later, but we still don't have enough information about the cat.)\n\n5. The cat eats the squirrel. (This statement gives us more information about the cat's actions, but we still don't know if the cat is round or not.)\n\n6. If someone eats the squirrel then they are rough. (This rule doesn't give us any information about the cat's shape.)\n\n7. The cat sees the cat. (This statement is a tautology and doesn't provide any new information.)\n\n8. The cow sees the cat. (This statement gives us information about the cow's actions, but we still don't know anything about the cat's shape.)\n\n9. The cat is not mentioned in any of the rules that provide information about someone's shape, except for the rules that are not relevant to the cat's shape. \n\nHowever, we can use the rule \"If someone sees the rabbit then they are not round\" and the statement \"The rabbit sees the cat\" to infer that the cat is not round, because the rabbit sees the cat and we know the rabbit is round. Therefore, the cat is not round.\n\nHowever, we can also use the statement \"If the rabbit is kind and the rabbit sees the squirrel then the squirrel needs the rabbit\" and the fact that the rabbit sees the cat to infer that the rabbit is kind. But we do not know if the rabbit is kind or not. However, we can use the statement \"If someone sees the rabbit then they are not round\" and the statement \"The rabbit is round\" to infer that the person who sees the rabbit is not round, but that doesn't tell us if the cat is round or not.\n\nWe can use the rule \"If someone sees the cat and they are not green then they see the cow\" but we don't know if the cat is green or not.\n\nWe can use the rule \"If the rabbit is kind and the rabbit sees the squirrel then the squirrel needs the rabbit\" but we don't know if the rabbit is kind or not.\n\nWe can use the rule \"If someone eats the squirrel then they are rough\" but we don't know if the cat eats the squirrel or not.\n\nHowever, we can use the statement \"The squirrel eats the rabbit\" to infer that the squirrel is rough, and then use the rule \"If someone eats the squirrel then they are rough\" to infer that the rabbit is not rough. But we already knew that the rabbit is round.\n\nWe can use the statement \"The squirrel is cold\" and the rule \"If someone is cold then they eat the cow\" to infer that the squirrel eats the cow. But we already knew that the cat eats the squirrel.\n\nWe can use the rule \"If someone sees the cat and they are not green then they see the cow\" to infer that the cow sees the cat, but we already knew that.\n\nWe can use the statement \"The cow sees the cat\" and the rule \"If someone eats the squirrel then they are rough\" to infer that the cow is not rough, but we already knew that the squirrel is rough.\n\nWe can use the rule \"If someone sees the rabbit then they are not round\" to infer that the cow is not round, but we already knew that the cow sees the cat and the cow is not green.\n\nWe can use the statement \"The rabbit sees the cat\" to infer that the cat is not green, but we already knew that the cat sees the squirrel and the cat is not round.\n\nWe can use the rule \"If the rabbit is kind and the rabbit sees the squirrel then the squirrel needs the rabbit\" to infer that the squirrel needs the rabbit, but we already knew that.\n\nWe can use the rule \"If someone sees the squirrel and they are not green then they need the squirrel\" to infer that the rabbit needs the squirrel, but we already knew that.\n\nWe can use the statement \"The squirrel eats the rabbit\" to infer that the squirrel is not kind, but we already knew that the squirrel is rough.\n\nWe can use the rule \"If someone eats the squirrel then they are rough\" to infer that the cat is rough, but we already knew that the cat eats the squirrel.\n\nWe can use the rule \"If someone eats the squirrel then they are rough\" to infer that the rabbit is rough, but we already knew that the squirrel eats the rabbit.\n\nHowever, we can use the rule \"If the rabbit is kind and the rabbit sees the squirrel then the squirrel needs the rabbit\" and the statement \"The rabbit sees the cat\" to infer that the rabbit is kind, and then use the rule \"If someone sees the cat and they are not green then they see the cow\" to infer that the rabbit sees the cow, but we already knew that.\n\nHowever, we can use the statement \"The rabbit sees the cat\" to infer that the cat is not green, and then use the rule \"If someone sees the rabbit then they are not round\" to infer that the cat is not round.\n\nTherefore, the statement \"The cat is not round\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The cat is not round\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. We are given the statement \"The rabbit is round.\" (Statement 5)\n\nFrom this statement, we can deduce that the rabbit has a specific property (being round), but we don't know anything about the cat's shape.\n\n2. We are given the statement \"If someone sees the rabbit then they are not round.\" (Statement 10)\n\nThis statement is irrelevant to the cat because it doesn't say anything about the cat. The cat is not mentioned in this statement.\n\n3. We are given the statement \"If someone sees the cat and they are not green then they see the cow.\" (Statement 2)\n\nThis statement doesn't provide any information about the cat's shape.\n\n4. We are given the statement \"If someone is cold then they eat the cow.\" (Statement 14)\n\nThis statement doesn't provide any information about the cat's shape.\n\n5. We are given the statement \"The cat eats the squirrel.\" (Statement 1)\n\nThis statement doesn't provide any information about the cat's shape.\n\n6. We are given the statement \"The cat sees the squirrel.\" (Statement 2)\n\nThis statement doesn't provide any information about the cat's shape.\n\n7. We are given the statement \"The rabbit sees the cat.\" (Statement 7)\n\nThis statement doesn't provide any information about the cat's shape.\n\n8. We can make a conclusion from Statement 5 and Statement 10. We know that the rabbit is round and that if someone sees the rabbit, they are not round. So, if the cat sees the rabbit, the cat is not round.\n\nHowever, we don't know whether the cat sees the rabbit. We only know that the rabbit sees the cat.\n\nTherefore, we cannot make a conclusion about the cat's shape based on the given information.\n\nThe final answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The cat is not round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The rabbit is round.\nThis statement provides information about the rabbit's shape but does not directly relate to the cat.\n\n2. The rabbit sees the cat.\nThis statement indicates that the rabbit has some relationship with the cat, but it does not provide any information about the cat's shape.\n\n3. If someone sees the rabbit then they are not round.\nThis statement implies that the rabbit is not round because it sees the rabbit. However, this does not directly apply to the cat, as the cat is the one being seen by the rabbit.\n\n4. The rabbit is kind and the rabbit sees the squirrel then the squirrel needs the rabbit.\nThis statement is irrelevant to determining whether the cat is round.\n\n5. If someone sees the cat and they are not green then they see the cow.\nThis statement is irrelevant to determining whether the cat is round.\n\n6. The cat sees the squirrel.\nThis statement indicates that the cat has some relationship with the squirrel, but it does not provide any information about the cat's shape.\n\n7. The cat eats the squirrel.\nThis statement is also irrelevant to determining whether the cat is round.\n\n8. If someone eats the squirrel then they are rough.\nThis statement implies that the squirrel's eater is rough, but it does not provide any information about the cat's shape.\n\n9. The squirrel eats the rabbit.\nThis statement is irrelevant to determining whether the cat is round.\n\n10. The squirrel is cold.\nThis statement is irrelevant to determining whether the cat is round.\n\n11. The squirrel needs the rabbit.\nThis statement is also irrelevant to determining whether the cat is round.\n\n12. The squirrel sees the cat.\nThis statement indicates that the squirrel has some relationship with the cat, but it does not provide any information about the cat's shape.\n\n13. The cow eats the squirrel.\nThis statement is irrelevant to determining whether the cat is round.\n\n14. The cow sees the cat.\nThis statement indicates that the cow has some relationship with the cat, but it does not provide any information about the cat's shape.\n\n15. If someone sees the squirrel and they are not green then they need the squirrel.\nThis statement is irrelevant to determining whether the cat is round.\n\n16. If the rabbit is kind and the rabbit sees the squirrel then the squirrel needs the rabbit.\nThis statement is also irrelevant to determining whether the cat is round.\n\n17. Rough people are cold.\nThis statement is irrelevant to determining whether the cat is round.\n\n18. If someone eats the cow then they see the rabbit.\nThis statement implies that the cow's eater sees the rabbit, but it does not provide any information about the cat's shape.\n\n19. If someone is cold then they eat the cow.\nThis statement implies that the cat is cold because it eats the squirrel, but it does not provide any information about the cat's shape.\n\n20. The cat eats the squirrel.\nThis statement implies that the cat eats the squirrel, and according to statement 8, if someone eats the squirrel then they are rough. However, it does not provide any information about the cat's shape.\n\nHowever, based on the provided statements, we cannot determine the cat's shape directly. The only statement that seems to relate to the cat's shape is statement 1, which says that \"The rabbit is round.\" However, there is no statement that directly relates to the cat's shape.\n\nTherefore, the statement \"The cat is not round\" is unknown, as there is no direct information about the cat's shape.",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The cat is not round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The rabbit is round. \n   - This statement does not provide any information about the cat.\n\n2. The rabbit sees the cat. \n   - This statement does not provide any information about the cat's shape.\n\n3. The cat sees the squirrel. \n   - This statement does not provide any information about the cat's shape.\n\n4. The cat eats the squirrel. \n   - This statement does not provide any information about the cat's shape.\n\n5. The cow eats the squirrel. \n   - This statement does not provide any information about the cat's shape.\n\n6. The cow sees the cat. \n   - This statement does not provide any information about the cat's shape.\n\n7. If someone sees the cat and they are not green then they see the cow. \n   - This statement does not provide any information about the cat's shape.\n\n8. If the rabbit is kind and the rabbit sees the squirrel then the squirrel needs the rabbit. \n   - We do not know if the rabbit is kind.\n\n9. The squirrel eats the rabbit. \n   - This statement does not provide any information about the cat's shape.\n\n10. The squirrel is cold. \n    - We will analyze this statement later.\n\n11. The squirrel needs the rabbit. \n    - We will analyze this statement later.\n\n12. The squirrel sees the cat. \n    - This statement does not provide any information about the cat's shape.\n\n13. If someone sees the rabbit then they are not round. \n    - Since the rabbit is round, this statement does not provide any information about the cat's shape.\n\n14. If someone sees the squirrel and they are not green then they need the squirrel. \n    - This statement does not provide any information about the cat's shape.\n\n15. If someone eats the cow then they see the rabbit. \n    - We do not know if the cat eats the cow.\n\n16. If someone eats the squirrel then they are rough. \n    - We do not know if the cat eats the squirrel.\n\n17. If someone is cold then they eat the cow. \n    - We will analyze this statement later.\n\nNow, we will analyze the statements that are related to the cat's shape indirectly.\n\nWe know that the cat sees the squirrel (Statement 3) and the squirrel is cold (Statement 10). \n\nSince someone is cold, they eat the cow (Statement 17). \n\nIf the cat eats the squirrel, it is rough (Statement 16), but this does not give us any information about the cat's shape.\n\nIf the cat eats the cow, it sees the rabbit (Statement 15), but this does not give us any information about the cat's shape.\n\nNow, let's analyze the rabbit's properties.\n\nWe know that the rabbit sees the cat (Statement 2), but this does not provide any information about the cat's shape.\n\nSince the rabbit is round (Statement 1) and someone sees the rabbit then they are not round (Statement 13), it implies that the rabbit is the only round individual. \n\nThe statement \"If someone sees the rabbit then they are not round\" does not imply that the cat is not round. However, it does imply that the cat is not round because the cat sees the rabbit (Statement 2) and the rabbit is round.\n\nTherefore, the statement \"The cat is not round\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The cat is not round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The rabbit is round. (Given information)\n\n2. If someone sees the rabbit then they are not round. (Given information)\n   - From this, we can conclude that the cat is not round because it sees the rabbit.\n   - However, we also need to consider other information that might affect this conclusion.\n\n3. The cat sees the squirrel. (Given information)\n   - There's no direct information about the cat's shape from this statement.\n\n4. If someone sees the cat and they are not green then they see the cow. (Given information)\n   - This statement doesn't provide any information about the cat's shape.\n\n5. The cat eats the squirrel. (Given information)\n   - There's no direct information about the cat's shape from this statement.\n\n6. The cat is not round because it sees the rabbit (from statement 2). This conclusion is based on the given information and rules.\n\nBased on the given information and rules, we can conclude that the statement \"The cat is not round\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The cat is not round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The rabbit is round. \n   - This statement gives us information about the rabbit but does not tell us about the cat's shape.\n\n2. If someone sees the rabbit then they are not round.\n   - This rule does not apply to the cat, as it does not see the rabbit.\n\n3. If someone sees the cat and they are not green then they see the cow.\n   - This rule does not provide information about the cat's shape.\n\n4. The cat sees the squirrel.\n   - This statement does not provide information about the cat's shape.\n\n5. The cat eats the squirrel.\n   - This statement does not provide information about the cat's shape.\n\n6. The rabbit sees the cat.\n   - This statement does not provide information about the cat's shape.\n\n7. If the rabbit is kind and the rabbit sees the squirrel then the squirrel needs the rabbit.\n   - The information provided does not tell us about the cat's shape.\n\n8. The squirrel eats the rabbit.\n   - This statement does not provide information about the cat's shape.\n\n9. The squirrel is cold.\n   - This statement does not provide information about the cat's shape.\n\n10. The squirrel needs the rabbit.\n    - This statement does not provide information about the cat's shape.\n\n11. The squirrel sees the cat.\n    - This statement does not provide information about the cat's shape.\n\n12. If someone eats the squirrel then they are rough.\n    - This rule does not apply to the cat, as it eats the squirrel.\n\n13. If someone is cold then they eat the cow.\n    - The squirrel is cold, but this does not tell us about the cat's shape.\n\n14. The squirrel is cold.\n    - This statement was mentioned twice, but we already know it.\n\n15. If someone eats the cow then they see the rabbit.\n    - The cat does not eat the cow, so this rule does not apply to the cat.\n\n16. The cow eats the squirrel.\n    - This statement does not provide information about the cat's shape.\n\n17. The cow sees the cat.\n    - This statement does not provide information about the cat's shape.\n\n18. If someone sees the squirrel and they are not green then they need the squirrel.\n    - This rule does not apply to the cat, as it sees the squirrel.\n\n19. The cow sees the cat.\n    - This statement does not provide information about the cat's shape.\n\n20. If someone sees the cat and they are not green then they see the cow.\n    - This rule does not provide information about the cat's shape.\n\nFrom the given statements, we do not have any information about the cat's shape. Therefore, the statement \"The cat is not round\" is unknown.",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The cat is not round\" is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\n1. The rabbit is round. (Given)\n2. If someone sees the rabbit then they are not round. (Given)\n   From (1) and (2), we can conclude that the cat is not round because the cat sees the rabbit.\n\nHowever, we still need to make sure that there's no other information that contradicts this conclusion.\n\n3. If someone sees the cat and they are not green then they see the cow. (Given)\n   This statement does not provide any information about the cat's shape.\n\n4. If the rabbit is kind and the rabbit sees the squirrel then the squirrel needs the rabbit. (Given)\n   This statement does not provide any information about the cat's shape.\n\n5. If someone sees the rabbit then they are not round. (Given)\n   As mentioned earlier, this statement supports the conclusion that the cat is not round.\n\n6. If someone sees the squirrel and they are not green then they need the squirrel. (Given)\n   This statement does not provide any information about the cat's shape.\n\n7. If someone eats the cow then they see the rabbit. (Given)\n   This statement does not provide any information about the cat's shape.\n\n8. If someone eats the squirrel then they are rough. (Given)\n   This statement does not provide any information about the cat's shape.\n\n9. If someone is cold then they eat the cow. (Given)\n   This statement does not provide any information about the cat's shape.\n\nNow we can conclude that based on the given information, the cat is indeed not round.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to analyze each given statement and use it to determine the properties of the cat.\n\n1. The cat eats the squirrel.\n2. The cat sees the squirrel.\n3. The cow eats the squirrel.\n4. The cow sees the cat.\n5. The rabbit is round.\n6. The rabbit sees the cat.\n7. The squirrel eats the rabbit.\n8. The squirrel is cold.\n9. The squirrel needs the rabbit.\n10. The squirrel sees the cat.\n11. If someone sees the cat and they are not green then they see the cow.\n12. If the rabbit is kind and the rabbit sees the squirrel then the squirrel needs the rabbit.\n13. Rough people are cold.\n14. If someone sees the rabbit then they are not round.\n15. If someone sees the squirrel and they are not green then they need the squirrel.\n16. If someone eats the cow then they see the rabbit.\n17. If someone eats the squirrel then they are rough.\n18. If someone is cold then they eat the cow.\n\nFrom statement 11, we know that the cat sees the cow, but we do not know if the cat is green or not. However, we can infer that the cat is not green from statement 18 because if someone is cold, then they eat the cow. Since the squirrel is cold (statement 8) and the squirrel sees the cat (statement 10), we can infer that the cat is not green.\n\nHowever, to determine if the cat is round or not, we need to look at statement 14. It states that if someone sees the rabbit, then they are not round. Since the rabbit sees the cat (statement 6), we can infer that the cat is not round.\n\nTherefore, the final answer is:\n\\boxed{The statement is true.}",
+        "answer": "The statement is true.",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, squirrel)",
+          "z3_formula": "sees_cat_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & Not(green(X)) -> sees(X, cow)",
+          "z3_formula": "Implies(And(sees_cat_squirrel, Not(green_cat)), sees_cat_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & sees(X, squirrel) -> needs(squirrel, X)",
+          "z3_formula": "Implies(And(kind_rabbit, sees_rabbit_squirrel), needs_squirrel_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> Not(round(X))",
+          "z3_formula": "Implies(sees_rabbit_squirrel, Not(round_rabbit))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & Not(green(X)) -> needs(Y, X)",
+          "z3_formula": "Implies(And(sees_squirrel_X, Not(green_X)), needs_X_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, squirrel)",
+          "z3_formula": "eats_cat_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> sees(X, rabbit)",
+          "z3_formula": "Implies(eats_X_cow, sees_X_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> rough(X)",
+          "z3_formula": "Implies(eats_X_squirrel, rough_X)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> eats(X, cow)",
+          "z3_formula": "Implies(cold_squirrel, eats_squirrel_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(cat))",
+          "z3_formula": "Not(round_cat) == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> not(round(X))",
+          "z3_formula": "Implies(sees_cat_rabbit, not(round_cat))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not(round(cat))",
+          "z3_formula": "not(round_cat) == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> not round(X)",
+          "z3_formula": "Implies(sees_rabbit, not round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, squirrel)",
+          "z3_formula": "sees_cat_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(round_X, sees_X_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not round(cat)",
+          "z3_formula": "not round_cat == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, squirrel)",
+          "z3_formula": "eats_cat_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, squirrel)",
+          "z3_formula": "sees_cat_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, squirrel)",
+          "z3_formula": "eats_cow_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cat)",
+          "z3_formula": "sees_rabbit_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, rabbit)",
+          "z3_formula": "eats_squirrel_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, cat)",
+          "z3_formula": "sees_squirrel_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & Not(green(X)) -> sees(X, cow)",
+          "z3_formula": "Implies(And(sees_cat_squirrel, Not(green_squirrel)), sees_squirrel_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & sees(X, squirrel) -> needs(X, rabbit)",
+          "z3_formula": "Implies(And(kind_rabbit, sees_rabbit_squirrel), needs_rabbit_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> Not(round(X))",
+          "z3_formula": "Implies(sees_rabbit_cat, Not(round_cat))",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & Not(green(X)) -> needs(X, squirrel)",
+          "z3_formula": "Implies(And(sees_squirrel_cat, Not(green_squirrel)), needs_squirrel_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> sees(X, rabbit)",
+          "z3_formula": "Implies(eats_cow_squirrel, sees_squirrel_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> rough(X)",
+          "z3_formula": "Implies(eats_squirrel_rabbit, rough_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> eats(X, cow)",
+          "z3_formula": "Implies(cold_squirrel, eats_squirrel_cow)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, squirrel)",
+          "z3_formula": "sees_cat_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cat)",
+          "z3_formula": "sees_rabbit_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> not(round(X))",
+          "z3_formula": "Implies(sees_X_rabbit, not(round_X))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(round(cat))",
+          "z3_formula": "not(round_cat) == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> Not(round(X))",
+          "z3_formula": "Implies(sees_rabbit_cat, Not(round_cat))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cat)",
+          "z3_formula": "sees_rabbit_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(cat))",
+          "z3_formula": "Not(round_cat) == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "Unknown",
+          "z3_formula": "round_cat == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> Not(round(X))",
+          "z3_formula": "Implies(sees_cat_rabbit, Not(round_cat))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cat)",
+          "z3_formula": "sees_rabbit_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, squirrel)",
+          "z3_formula": "sees_cat_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, squirrel)",
+          "z3_formula": "eats_cat_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> rough(X)",
+          "z3_formula": "Implies(eats_cat_squirrel, rough_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, rabbit)",
+          "z3_formula": "eats_squirrel_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, cat)",
+          "z3_formula": "sees_squirrel_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, squirrel)",
+          "z3_formula": "eats_cow_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & Not(green(X)) -> needs(X, squirrel)",
+          "z3_formula": "Implies(And(sees_squirrel_cat, Not(green_cat)), needs_squirrel_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & sees(X, squirrel) -> needs(X, rabbit)",
+          "z3_formula": "Implies(And(kind_rabbit, sees_rabbit_squirrel), needs_squirrel_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & Not(green(X)) -> needs(X, squirrel)",
+          "z3_formula": "Implies(And(sees_squirrel_cat, Not(green_cat)), needs_squirrel_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & sees(X, squirrel) -> needs(X, rabbit)",
+          "z3_formula": "Implies(And(kind_rabbit, sees_rabbit_squirrel), needs_squirrel_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_cat, cold_cat)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> sees(X, rabbit)",
+          "z3_formula": "Implies(eats_cat_cow, sees_cat_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> eats(X, cow)",
+          "z3_formula": "Implies(cold_cat, eats_cat_cow)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(cat))",
+          "z3_formula": "Not(round_cat)",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cat)",
+          "z3_formula": "sees_rabbit_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> not(round(X))",
+          "z3_formula": "Implies(sees_rabbit_cat, Not(round_cat))",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not(round(cat))",
+          "z3_formula": "Not(round_cat) == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> Not(round(X))",
+          "z3_formula": "Implies(sees_rabbit, Not(round_cat))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, squirrel)",
+          "z3_formula": "sees_cat_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & Not(green(X)) -> sees(X, cow)",
+          "z3_formula": "Implies(And(sees_cat_squirrel, Not(green_cat)), sees_cat_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, squirrel)",
+          "z3_formula": "eats_cat_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(cat))",
+          "z3_formula": "Not(round_cat) == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> Not(round(X))",
+          "z3_formula": "Implies(sees_rabbit_rabbit, Not(round_cat))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & Not(green(X)) -> sees(X, cow)",
+          "z3_formula": "Implies(And(sees_cat_cat, Not(green_cat)), sees_cat_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, squirrel)",
+          "z3_formula": "sees_cat_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, squirrel)",
+          "z3_formula": "eats_cat_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cat)",
+          "z3_formula": "sees_rabbit_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(rabbit) & sees(rabbit, squirrel) -> needs(squirrel, rabbit)",
+          "z3_formula": "Implies(And(kind_rabbit, sees_rabbit_squirrel), needs_squirrel_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, rabbit)",
+          "z3_formula": "eats_squirrel_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, cat)",
+          "z3_formula": "sees_squirrel_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> rough(X)",
+          "z3_formula": "Implies(eats_squirrel_squirrel, rough_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> eats(X, cow)",
+          "z3_formula": "Implies(cold_squirrel, eats_squirrel_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> sees(X, rabbit)",
+          "z3_formula": "Implies(eats_squirrel_cow, sees_squirrel_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, squirrel)",
+          "z3_formula": "eats_cow_squirrel == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & Not(green(X)) -> needs(X, squirrel)",
+          "z3_formula": "Implies(And(sees_cow_squirrel, Not(green_cow)), needs_cow_squirrel)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & Not(green(X)) -> sees(X, cow)",
+          "z3_formula": "Implies(And(sees_cow_cat, Not(green_cow)), sees_cow_cow)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X) -> Not(round(X))",
+          "z3_formula": "Implies(sees_rabbit, Not(round_cat))",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(cat))",
+          "z3_formula": "Not(round_cat) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X) & Not(green(X)) -> sees(cow, X)",
+          "z3_formula": "Implies(And(sees_cat, Not(green_cat)), sees_cow_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & sees(X, squirrel) -> needs(squirrel, X)",
+          "z3_formula": "Implies(And(kind_rabbit, sees_rabbit, sees_rabbit_squirrel), needs_squirrel_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X) -> Not(round(X))",
+          "z3_formula": "Implies(sees_rabbit, Not(round_cat))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & Not(green(X)) -> needs(X, squirrel)",
+          "z3_formula": "Implies(And(sees_squirrel, Not(green_squirrel)), needs_squirrel_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> sees(X, rabbit)",
+          "z3_formula": "Implies(eats_cow_cat, sees_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> rough(X)",
+          "z3_formula": "Implies(eats_squirrel_cat, rough_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> eats(X, cow)",
+          "z3_formula": "Implies(cold_cat, eats_cow_cat)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, squirrel)",
+          "z3_formula": "eats_cat_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, squirrel)",
+          "z3_formula": "sees_cat_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, squirrel)",
+          "z3_formula": "eats_cow_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cat)",
+          "z3_formula": "sees_rabbit_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, rabbit)",
+          "z3_formula": "eats_squirrel_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, cat)",
+          "z3_formula": "sees_squirrel_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & Not(green(X)) -> sees(X, cow)",
+          "z3_formula": "Implies(And(sees_cat_squirrel, Not(green_cat)), sees_cat_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & sees(X, squirrel) -> needs(X, rabbit)",
+          "z3_formula": "Implies(And(kind_rabbit, sees_rabbit_squirrel), needs_rabbit_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_X, cold_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> Not(round(X))",
+          "z3_formula": "Implies(sees_rabbit_cat, Not(round_cat))",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & Not(green(X)) -> needs(X, squirrel)",
+          "z3_formula": "Implies(And(sees_squirrel_cat, Not(green_cat)), needs_cat_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> sees(X, rabbit)",
+          "z3_formula": "Implies(eats_cow_squirrel, sees_rabbit_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> rough(X)",
+          "z3_formula": "Implies(eats_squirrel_rabbit, rough_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> eats(X, cow)",
+          "z3_formula": "Implies(cold_squirrel, eats_squirrel_cow)",
+          "source_step": 18
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 130,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 52
+    },
+    "maxsat_stats": {
+      "satisfied": 51,
+      "excluded": 1,
+      "total_weight": 126,
+      "solve_time_ms": 1.5361253172159195
+    },
+    "timing": {
+      "trace_gen_s": 14.131,
+      "extraction_s": 24.491,
+      "dedup_s": 1.353,
+      "maxsat_s": 0.005,
+      "total_s": 39.98
+    }
+  }
+}

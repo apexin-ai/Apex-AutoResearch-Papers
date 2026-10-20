@@ -1,0 +1,392 @@
+[
+  {
+    "id": "lq30_000_logiqa_169",
+    "problem": "Context: Marx was an indomitable great man, but also a man of flesh and blood. He loves life, is sincere and simple, heavy affection heavy righteousness. Marx and Engels' revolutionary friendship lasted 40 years, as Lenin said; There are all kinds of very moving friendship stories in ancient legends, but the Friendship of Marx and Engels surpasses all the most moving legends of human friendship of the ancients.\n\nQuestion: Based on the above statement, which of the following can be concluded?\n\nA. Some indomitable great men love life and value love and righteousness\nB. The most striking friendships of the ancients generally lasted less than 40 years\nC. Engels also loved life, sincere and simple, heavy on love and righteousness\nD. Lenin was also an indomitable great man and an ordinary man of flesh and blood",
+    "answer": "A",
+    "dataset": "logiqa",
+    "choices": [
+      "A. Some indomitable great men love life and value love and righteousness",
+      "B. The most striking friendships of the ancients generally lasted less than 40 years",
+      "C. Engels also loved life, sincere and simple, heavy on love and righteousness",
+      "D. Lenin was also an indomitable great man and an ordinary man of flesh and blood"
+    ],
+    "context": "Marx was an indomitable great man, but also a man of flesh and blood. He loves life, is sincere and simple, heavy affection heavy righteousness. Marx and Engels' revolutionary friendship lasted 40 years, as Lenin said; There are all kinds of very moving friendship stories in ancient legends, but the Friendship of Marx and Engels surpasses all the most moving legends of human friendship of the ancients."
+  },
+  {
+    "id": "lq30_001_logiqa_148",
+    "problem": "Context: Ecologists predict that the incidence of malaria will increase if global warming continues or if the use of pesticides is not expanded. But the use of pesticides is known to contribute to global warming, so it is inevitable that we will see an increase in malaria in the years to come.\n\nQuestion: The pattern of reasoning in which one of the following is most similar to that in the argument above?\n\nA. The crime rate will increase if the economy does not improve or if we do not increase the number of police officers. But we will be able to hire more police officers if the economy does improve. Ttherefore, the crime rate will not increase.\nB. If global warming continues or if the rate of ozone depletion is not reduced, there will be an increase in the incidence of skin cancer. But reduced use of aerosols ensures both that global warming will not continue and that ozone depletion will be reduced. Thus, the incidence of skin cancer will not increase.\nC. If deforestation continues at the current rate and the use of chemicals is not curtailed, wildlife species will continue to become extinct. But because of increasing population worldwide, it is inevitable that the current rate of deforestation will continue and that the use of chemicals will not be curtailed. Thus, wildlife species will continue to become extinct.\nD. If interest rates increase or demand for consumer goods does not decline, inflation will rise. But if there is a decline in the demand for consumer goods, that will lead to higher interest rates. Ttherefore, inflation will rise.",
+    "answer": "D",
+    "dataset": "logiqa",
+    "choices": [
+      "A. The crime rate will increase if the economy does not improve or if we do not increase the number of police officers. But we will be able to hire more police officers if the economy does improve. Ttherefore, the crime rate will not increase.",
+      "B. If global warming continues or if the rate of ozone depletion is not reduced, there will be an increase in the incidence of skin cancer. But reduced use of aerosols ensures both that global warming will not continue and that ozone depletion will be reduced. Thus, the incidence of skin cancer will not increase.",
+      "C. If deforestation continues at the current rate and the use of chemicals is not curtailed, wildlife species will continue to become extinct. But because of increasing population worldwide, it is inevitable that the current rate of deforestation will continue and that the use of chemicals will not be curtailed. Thus, wildlife species will continue to become extinct.",
+      "D. If interest rates increase or demand for consumer goods does not decline, inflation will rise. But if there is a decline in the demand for consumer goods, that will lead to higher interest rates. Ttherefore, inflation will rise."
+    ],
+    "context": "Ecologists predict that the incidence of malaria will increase if global warming continues or if the use of pesticides is not expanded. But the use of pesticides is known to contribute to global warming, so it is inevitable that we will see an increase in malaria in the years to come."
+  },
+  {
+    "id": "lq30_002_logiqa_178",
+    "problem": "Context: Without rapid economic development, there will be no progress in social undertakings. Now the economic development is fast, So the construction of social undertakings will also achieve remarkable results.\n\nQuestion: Which of the following is the same as the above textual reasoning?\n\nA. Socialist democracy and development complement each other and are indispensable. Democracy is the prerequisite of the legal system, and the legal system is the embodiment of democracy. Now the legal system is constantly improving, so democracy is guaranteed\nB. Benefit and fairness are a contradictory unity. Without fairness, it is difficult to achieve greater benefits. A company's benefits have increased, so the company has also achieved distribution fairness\nC. The higher the degree of socialization, the finer the division of labor. Now the degree of socialization has increased, so the current division of socialization is also finer\nD. Honesty and integrity are the basic requirements for leading cadres. A leading cadre with a decent working style and strict self-discipline is a qualified leading cadre",
+    "answer": "B",
+    "dataset": "logiqa",
+    "choices": [
+      "A. Socialist democracy and development complement each other and are indispensable. Democracy is the prerequisite of the legal system, and the legal system is the embodiment of democracy. Now the legal system is constantly improving, so democracy is guaranteed",
+      "B. Benefit and fairness are a contradictory unity. Without fairness, it is difficult to achieve greater benefits. A company's benefits have increased, so the company has also achieved distribution fairness",
+      "C. The higher the degree of socialization, the finer the division of labor. Now the degree of socialization has increased, so the current division of socialization is also finer",
+      "D. Honesty and integrity are the basic requirements for leading cadres. A leading cadre with a decent working style and strict self-discipline is a qualified leading cadre"
+    ],
+    "context": "Without rapid economic development, there will be no progress in social undertakings. Now the economic development is fast, So the construction of social undertakings will also achieve remarkable results."
+  },
+  {
+    "id": "lq30_003_logiqa_017",
+    "problem": "Context: Mark Twain once listened to a pastor's speech in a church. At first he felt that the pastor was touching and prepared to donate. After ten minutes, the pastor had not finished speaking, and he became a little impatient, so he decided to donate only some change. After another ten minutes, the pastor hadn't finished speaking, so he decided not to donate a penny. In psychology, this phenomenon of excessive stimulation and long-lasting action that caused extreme psychological impatientness or resistance is called over-limit effect. The current Ice Bucket Challenge project aimed at helping patients with amyotrophic lateral sclerosis should also be alert to this effect due to excessive entertainment. Start with the show, but do not end with the show, stay With the true spirit of charity, not just the star video collection, this transnational relay can be considered complete.\n\nQuestion: What is the most accurate summary of this passage?\n\nA. Ice Bucket Challenge should be avoided as a show.\nB. We must weaken the role of celebrities in charity.\nC. We must grasp the scale of charity and entertainment.\nD. Over-limit effect should be prevented in due course.",
+    "answer": "C",
+    "dataset": "logiqa",
+    "choices": [
+      "A. Ice Bucket Challenge should be avoided as a show.",
+      "B. We must weaken the role of celebrities in charity.",
+      "C. We must grasp the scale of charity and entertainment.",
+      "D. Over-limit effect should be prevented in due course."
+    ],
+    "context": "Mark Twain once listened to a pastor's speech in a church. At first he felt that the pastor was touching and prepared to donate. After ten minutes, the pastor had not finished speaking, and he became a little impatient, so he decided to donate only some change. After another ten minutes, the pastor hadn't finished speaking, so he decided not to donate a penny. In psychology, this phenomenon of excessive stimulation and long-lasting action that caused extreme psychological impatientness or resistance is called over-limit effect. The current Ice Bucket Challenge project aimed at helping patients with amyotrophic lateral sclerosis should also be alert to this effect due to excessive entertainment. Start with the show, but do not end with the show, stay With the true spirit of charity, not just the star video collection, this transnational relay can be considered complete."
+  },
+  {
+    "id": "lq30_004_logiqa_061",
+    "problem": "Context: Housing endowment refers to the old man mortgaged his own property to a financial institution, according to the agreed conditions of regular pension and access to the corresponding services of the old - age way. After the old man's death, financial institutions can dispose of the property as agreed and pay the expenses already incurred.\n\nQuestion: Which of the following belongs to the housing endowment?\n\nA. Recently, Mr. Li and his wife put the money from the sale of their house in the bank and lived together in a nearby senior apartment. The monthly interest on their savings was enough to cover all the expenses there.\nB. Mr. Zhang and his wife, who are in their 70s, signed an agreement with the bank. Before their death, they received a monthly pension of 13,000 yuan from the bank; after their death, their property was disposed of by the bank.\nC. Zhao was severely disabled in a car accident. He signed an agreement with his distant nephew at a pawnshop and agreed that his nephew would take care of his daily living. The house in his name would be transferred to his nephew.\nD. After Lao Sun retired, he sold his big house in the city center and bought a second-hand small house. With the monthly pension plus the interest from the house sale, the couple's life was very comfortable.",
+    "answer": "B",
+    "dataset": "logiqa",
+    "choices": [
+      "A. Recently, Mr. Li and his wife put the money from the sale of their house in the bank and lived together in a nearby senior apartment. The monthly interest on their savings was enough to cover all the expenses there.",
+      "B. Mr. Zhang and his wife, who are in their 70s, signed an agreement with the bank. Before their death, they received a monthly pension of 13,000 yuan from the bank; after their death, their property was disposed of by the bank.",
+      "C. Zhao was severely disabled in a car accident. He signed an agreement with his distant nephew at a pawnshop and agreed that his nephew would take care of his daily living. The house in his name would be transferred to his nephew.",
+      "D. After Lao Sun retired, he sold his big house in the city center and bought a second-hand small house. With the monthly pension plus the interest from the house sale, the couple's life was very comfortable."
+    ],
+    "context": "Housing endowment refers to the old man mortgaged his own property to a financial institution, according to the agreed conditions of regular pension and access to the corresponding services of the old - age way. After the old man's death, financial institutions can dispose of the property as agreed and pay the expenses already incurred."
+  },
+  {
+    "id": "lq30_005_logiqa_062",
+    "problem": "Context: Colds are caused by viruses, bacteria, dust, etc., and are not the result of catching a cold. In fact, people don't catch a cold in a very cold place. Because the virus is easy to freeze to death in a very cold place, and stay in a warm stove. It is easy to activate the virus and invade our body.\n\nQuestion: Which of the following options can be inferred?\n\nA. You can catch a cold if you don't catch a cold\nB. The lower the ambient temperature, the less likely it is to catch a cold\nC. Everyone who lives in an environment with a virus has caught a cold\nD. Letting the body catch cold is a reliable way to treat colds",
+    "answer": "A",
+    "dataset": "logiqa",
+    "choices": [
+      "A. You can catch a cold if you don't catch a cold",
+      "B. The lower the ambient temperature, the less likely it is to catch a cold",
+      "C. Everyone who lives in an environment with a virus has caught a cold",
+      "D. Letting the body catch cold is a reliable way to treat colds"
+    ],
+    "context": "Colds are caused by viruses, bacteria, dust, etc., and are not the result of catching a cold. In fact, people don't catch a cold in a very cold place. Because the virus is easy to freeze to death in a very cold place, and stay in a warm stove. It is easy to activate the virus and invade our body."
+  },
+  {
+    "id": "lq30_006_logiqa_006",
+    "problem": "Context: Living gifts refer to the donation of money to children, grandchildren and other relatives when the donor decides to live, or to use it for vacations and the establishment of trust funds.\n\nQuestion: Among the following options, which is a living gift?\n\nA. Mr. Wang made a will before his death, leaving 90% of his property to his only granddaughter.\nB. Chairman Li handed over 80% of his property and the entire group to his daughter, and then lived in the mountain village by himself.\nC. Grandma Wang asked her grandson to get married in her own house and live in a nursing home by herself.\nD. Two years after Mr. Li disappeared, his son inherited his property. One day, he suddenly appeared at home.",
+    "answer": "B",
+    "dataset": "logiqa",
+    "choices": [
+      "A. Mr. Wang made a will before his death, leaving 90% of his property to his only granddaughter.",
+      "B. Chairman Li handed over 80% of his property and the entire group to his daughter, and then lived in the mountain village by himself.",
+      "C. Grandma Wang asked her grandson to get married in her own house and live in a nursing home by herself.",
+      "D. Two years after Mr. Li disappeared, his son inherited his property. One day, he suddenly appeared at home."
+    ],
+    "context": "Living gifts refer to the donation of money to children, grandchildren and other relatives when the donor decides to live, or to use it for vacations and the establishment of trust funds."
+  },
+  {
+    "id": "lq30_007_logiqa_184",
+    "problem": "Context: The tendency of mediocrity in spiritual life is a prominent phenomenon in our real life, which is mainly manifested in the following aspects: lack of spiritual goal, neither traditional support nor ideal guidance; the expansion of utilitarian consciousness leads to the lack of true feelings between people; the mass consumption culture that resorts to the senses is rampant, and the serious culture of the soul is in a dilemma.\n\nQuestion: It can be seen that which of the following is correct?\n\nA. The trend of mediocrity in spiritual life is mainly manifested in the loss of faith, lack of truth and cultural dislocation\nB. The mass consumption culture is full of vitality, while the serious culture is lifeless\nC. People who explore and create independently in spiritual and cultural undertakings are divorced from their time\nD. As the spiritual life tends to be mediocre, it is easy for people to have a sense of loss",
+    "answer": "A",
+    "dataset": "logiqa",
+    "choices": [
+      "A. The trend of mediocrity in spiritual life is mainly manifested in the loss of faith, lack of truth and cultural dislocation",
+      "B. The mass consumption culture is full of vitality, while the serious culture is lifeless",
+      "C. People who explore and create independently in spiritual and cultural undertakings are divorced from their time",
+      "D. As the spiritual life tends to be mediocre, it is easy for people to have a sense of loss"
+    ],
+    "context": "The tendency of mediocrity in spiritual life is a prominent phenomenon in our real life, which is mainly manifested in the following aspects: lack of spiritual goal, neither traditional support nor ideal guidance; the expansion of utilitarian consciousness leads to the lack of true feelings between people; the mass consumption culture that resorts to the senses is rampant, and the serious culture of the soul is in a dilemma."
+  },
+  {
+    "id": "lq30_008_logiqa_191",
+    "problem": "Context: As a positive and effective development model, global tourism emphasizes that the development of tourism adapts to the carrying capacity of resources and environment. By comprehensively optimizing tourism resources, infrastructure, tourism functions, tourism elements and industrial layout, better dredge and reduce the bearing pressure of the core scenic spots, and better protect the core resources and ecological environment. Realizing the rational layout and optimal allocation of facilities, elements and functions in space is of great significance to promote the new pattern of ecological protection.\n\nQuestion: Which of the following options is the most suitable for the title of this passage?\n\nA. Reduce the pressure on scenic spots by global tourism.\nB. Promoting the new pattern of ecological protection with global tourism.\nC. Protecting core resources with the view of gobal tourism resources.\nD. Optimizing industrial layout with the view of global tourism environment.",
+    "answer": "B",
+    "dataset": "logiqa",
+    "choices": [
+      "A. Reduce the pressure on scenic spots by global tourism.",
+      "B. Promoting the new pattern of ecological protection with global tourism.",
+      "C. Protecting core resources with the view of gobal tourism resources.",
+      "D. Optimizing industrial layout with the view of global tourism environment."
+    ],
+    "context": "As a positive and effective development model, global tourism emphasizes that the development of tourism adapts to the carrying capacity of resources and environment. By comprehensively optimizing tourism resources, infrastructure, tourism functions, tourism elements and industrial layout, better dredge and reduce the bearing pressure of the core scenic spots, and better protect the core resources and ecological environment. Realizing the rational layout and optimal allocation of facilities, elements and functions in space is of great significance to promote the new pattern of ecological protection."
+  },
+  {
+    "id": "lq30_009_logiqa_054",
+    "problem": "Context: The formation of technological innovation capability is a process and requires a certain environment. If people consciously and wisely shape an environment conducive to technological innovation, they can stimulate the social potential of technological innovation and reduce the time course from technological innovation to industrial application.\n\nQuestion: According to the above definition, which of the following options is correct?\n\nA. The ability of technological innovation has become the most critical manifestation of national strength\nB. Talent is the most important decisive force for technological innovation\nC. Technological innovation requires adequate financial support\nD. The environment determines the process of technological innovation",
+    "answer": "D",
+    "dataset": "logiqa",
+    "choices": [
+      "A. The ability of technological innovation has become the most critical manifestation of national strength",
+      "B. Talent is the most important decisive force for technological innovation",
+      "C. Technological innovation requires adequate financial support",
+      "D. The environment determines the process of technological innovation"
+    ],
+    "context": "The formation of technological innovation capability is a process and requires a certain environment. If people consciously and wisely shape an environment conducive to technological innovation, they can stimulate the social potential of technological innovation and reduce the time course from technological innovation to industrial application."
+  },
+  {
+    "id": "lq30_010_logiqa_026",
+    "problem": "Context: The primary task of a university is to educate. But to teach well, professors must be informed about new developments in their disciplines, and that requires research. Yet many universities cannot afford to support faculty research adequately. So a lack of funds for research adversely affects the degree to which a university can fulfill its central mission.\n\nQuestion: Which one of the following most accurately expresses the conclusion of the argument?\n\nA. Lack of financial support for faculty research is the root of ineffective teaching at universities.\nB. In order to be able to teach well, university professors must conduct research.\nC. Effective teaching is the primary mission of a university.\nD. Lack of funds for research reduces the quality of education a university provides.",
+    "answer": "D",
+    "dataset": "logiqa",
+    "choices": [
+      "A. Lack of financial support for faculty research is the root of ineffective teaching at universities.",
+      "B. In order to be able to teach well, university professors must conduct research.",
+      "C. Effective teaching is the primary mission of a university.",
+      "D. Lack of funds for research reduces the quality of education a university provides."
+    ],
+    "context": "The primary task of a university is to educate. But to teach well, professors must be informed about new developments in their disciplines, and that requires research. Yet many universities cannot afford to support faculty research adequately. So a lack of funds for research adversely affects the degree to which a university can fulfill its central mission."
+  },
+  {
+    "id": "lq30_011_logiqa_091",
+    "problem": "Context: The era of big data has come, in which case big data has become an intangible resource, but few people know how to realize this kind of assets. For an ordinary enterprise, enterprises not only have valuable customer data, but also have supplier data and internal finance.Data such as design and manufacturing management, and in the past few decades, many Chinese enterprises have completed the information application step by step and various information tools are digitizing the operation of the enterprise.However, few enterprises really get more value information from complex data and become a kind of asset, but it only stays on the surface for a long time.\n\nQuestion: Which of the following options is intended to be explained in this paragraph?\n\nA. Enterprises should use information tools to realize the digitization of operation\nB. Enterprises should further tap the potential value of data assets\nC. Turning data into assets is the main purpose of enterprise big data application\nD. The existing data model is difficult to meet the needs of enterprise operation digitization",
+    "answer": "B",
+    "dataset": "logiqa",
+    "choices": [
+      "A. Enterprises should use information tools to realize the digitization of operation",
+      "B. Enterprises should further tap the potential value of data assets",
+      "C. Turning data into assets is the main purpose of enterprise big data application",
+      "D. The existing data model is difficult to meet the needs of enterprise operation digitization"
+    ],
+    "context": "The era of big data has come, in which case big data has become an intangible resource, but few people know how to realize this kind of assets. For an ordinary enterprise, enterprises not only have valuable customer data, but also have supplier data and internal finance.Data such as design and manufacturing management, and in the past few decades, many Chinese enterprises have completed the information application step by step and various information tools are digitizing the operation of the enterprise.However, few enterprises really get more value information from complex data and become a kind of asset, but it only stays on the surface for a long time."
+  },
+  {
+    "id": "lq30_012_logiqa_073",
+    "problem": "Context: Scientists have found that the immune regulation of mesenchymal stem cells has such a plasticity, that is, it is like a moderator of the inflammatory environment: when the inflammatory response increases, mesenchymal stem cells inhibit the immune response; when the inflammatory response weakens, mesenchymal stem cells may promote the immune response. This characteristic needs to be paid great attention in the process of treating diseases. For example, scientists have found that mesenchymal stem cells entering the human body can significantly alleviate the condition of patients with liver cirrhosis, reduce the inflammatory reaction in the liver, and improve liver function indexes such as bilirubin and albumin. However, dexamethasone can counteract the therapeutic effect of mesenchymal stem cells on liver cirrhosis to a considerable extent. The reason is that when patients receive the combined treatment of dexamethasone and mesenchymal stem cells, the inflammation in the focus of patients with liver cirrhosis will be reduced, resulting in the weakening of the immunosuppressive effect of mesenchymal stem cells and the complete disappearance of the therapeutic effect of mesenchymal stem cells. it may even aggravate the disease.\n\nQuestion: According to this text, which of the following statements is correct?\n\nA. The therapeutic effect of mesenchymal stem cells on liver cirrhosis is better than that of dexamethasone.\nB. Mesenchymal stem cells can counteract the inhibitory effect of dexamethasone on inflammation.\nC. The combined use of mesenchymal stem cells and some drugs may undermine their therapeutic effect on inflammatory diseases.\nD. Scientists can shape the immunomodulatory function of mesenchymal stem cells according to the characteristics of inflammatory environment.",
+    "answer": "C",
+    "dataset": "logiqa",
+    "choices": [
+      "A. The therapeutic effect of mesenchymal stem cells on liver cirrhosis is better than that of dexamethasone.",
+      "B. Mesenchymal stem cells can counteract the inhibitory effect of dexamethasone on inflammation.",
+      "C. The combined use of mesenchymal stem cells and some drugs may undermine their therapeutic effect on inflammatory diseases.",
+      "D. Scientists can shape the immunomodulatory function of mesenchymal stem cells according to the characteristics of inflammatory environment."
+    ],
+    "context": "Scientists have found that the immune regulation of mesenchymal stem cells has such a plasticity, that is, it is like a moderator of the inflammatory environment: when the inflammatory response increases, mesenchymal stem cells inhibit the immune response; when the inflammatory response weakens, mesenchymal stem cells may promote the immune response. This characteristic needs to be paid great attention in the process of treating diseases. For example, scientists have found that mesenchymal stem cells entering the human body can significantly alleviate the condition of patients with liver cirrhosis, reduce the inflammatory reaction in the liver, and improve liver function indexes such as bilirubin and albumin. However, dexamethasone can counteract the therapeutic effect of mesenchymal stem cells on liver cirrhosis to a considerable extent. The reason is that when patients receive the combined treatment of dexamethasone and mesenchymal stem cells, the inflammation in the focus of patients with liver cirrhosis will be reduced, resulting in the weakening of the immunosuppressive effect of mesenchymal stem cells and the complete disappearance of the therapeutic effect of mesenchymal stem cells. it may even aggravate the disease."
+  },
+  {
+    "id": "lq30_013_logiqa_011",
+    "problem": "Context: Many elderly Beijings have never forgotten the unique skills they saw at temple fairs when they were young. Today, these unique skills have more formal names-folk art. However, as the modernization of society accelerates, Chinese folk culture is facing unprecedented crisis. The survival crisis of the city, the continuous change of the urban environment, the rapid diversion and transfer of people's interests and hobbies, and the gradual loss of folk art talents, all of which make the development of folk art face difficulties.\n\nQuestion: Which of the following can be derived from this text?\n\nA. Marketization is the way out for folk art\nB. Folk culture needs rescue protection\nC. Urban construction should highlight cultural characteristics\nD. The social status of folk art talents should be improved",
+    "answer": "B",
+    "dataset": "logiqa",
+    "choices": [
+      "A. Marketization is the way out for folk art",
+      "B. Folk culture needs rescue protection",
+      "C. Urban construction should highlight cultural characteristics",
+      "D. The social status of folk art talents should be improved"
+    ],
+    "context": "Many elderly Beijings have never forgotten the unique skills they saw at temple fairs when they were young. Today, these unique skills have more formal names-folk art. However, as the modernization of society accelerates, Chinese folk culture is facing unprecedented crisis. The survival crisis of the city, the continuous change of the urban environment, the rapid diversion and transfer of people's interests and hobbies, and the gradual loss of folk art talents, all of which make the development of folk art face difficulties."
+  },
+  {
+    "id": "lq30_014_logiqa_180",
+    "problem": "Context: Multiple sclerosis is an autoimmune disease: white blood cells attack the myelin sheath that protects nerve fibers in the spinal cord and brain. Medical science now has a drug that can be used to successfully treat multiple sclerosis, but the path that led medical researchers to this drug was hardly straightforward. Initially, some scientists believed attacks characteristic of multiple sclerosis might be triggered by chronic viral infections. So in 1984 they began testing gamma interferon, one of the body' s own antiviral weapons. To their horror, all the multiple sclerosis patients tested became dramatically worse. The false step proved to be instructive however.\n\nQuestion: Which one of the following is LEAST compatible with the results of the gamma interferon experiment?\n\nA. Gamma interferon stops white blood cells from producing myelin-destroying compounds.\nB. Administering gamma interferon to those without multiple sclerosis causes an increase in the number of white blood cells.\nC. The drug now used to treat multiple sclerosis is known to inhibit the activity of gamma interferon.\nD. Medical researchers have discovered that the gamma interferon level in the cerebrospinal fluid skyrockets just before and during multiple sclerosis attacks.",
+    "answer": "A",
+    "dataset": "logiqa",
+    "choices": [
+      "A. Gamma interferon stops white blood cells from producing myelin-destroying compounds.",
+      "B. Administering gamma interferon to those without multiple sclerosis causes an increase in the number of white blood cells.",
+      "C. The drug now used to treat multiple sclerosis is known to inhibit the activity of gamma interferon.",
+      "D. Medical researchers have discovered that the gamma interferon level in the cerebrospinal fluid skyrockets just before and during multiple sclerosis attacks."
+    ],
+    "context": "Multiple sclerosis is an autoimmune disease: white blood cells attack the myelin sheath that protects nerve fibers in the spinal cord and brain. Medical science now has a drug that can be used to successfully treat multiple sclerosis, but the path that led medical researchers to this drug was hardly straightforward. Initially, some scientists believed attacks characteristic of multiple sclerosis might be triggered by chronic viral infections. So in 1984 they began testing gamma interferon, one of the body' s own antiviral weapons. To their horror, all the multiple sclerosis patients tested became dramatically worse. The false step proved to be instructive however."
+  },
+  {
+    "id": "lq30_015_logiqa_143",
+    "problem": "Context: Element refers to more than 100 basic metallic and non-metallic substances in nature. They are composed of one atom. Each nucleus in its atom has the same number of protons, which cannot be decomposed by general chemical methods, and can form all substances. Atom is an inseparable basic particle in chemical reaction. Atom is inseparable in chemical reaction, but in physical state, it is composed of atomic nucleus and electrons moving around the nucleus. Molecules are composed of atoms. It is the name of a basic particle that constitutes matter. It is a particle that exists alone and maintains the smallest chemical properties.\n\nQuestion: According to the above definition, which of the followings is correct?\n\nA. Atoms are the smallest particles that make up matter.\nB. Air is made up of all kinds of tiny atoms.\nC. Atoms with different numbers of protons are not the same kind of elements.\nD. Carbon monoxide molecule (CO) consists of an oxygen element and a carbon element.",
+    "answer": "C",
+    "dataset": "logiqa",
+    "choices": [
+      "A. Atoms are the smallest particles that make up matter.",
+      "B. Air is made up of all kinds of tiny atoms.",
+      "C. Atoms with different numbers of protons are not the same kind of elements.",
+      "D. Carbon monoxide molecule (CO) consists of an oxygen element and a carbon element."
+    ],
+    "context": "Element refers to more than 100 basic metallic and non-metallic substances in nature. They are composed of one atom. Each nucleus in its atom has the same number of protons, which cannot be decomposed by general chemical methods, and can form all substances. Atom is an inseparable basic particle in chemical reaction. Atom is inseparable in chemical reaction, but in physical state, it is composed of atomic nucleus and electrons moving around the nucleus. Molecules are composed of atoms. It is the name of a basic particle that constitutes matter. It is a particle that exists alone and maintains the smallest chemical properties."
+  },
+  {
+    "id": "lq30_016_logiqa_152",
+    "problem": "Context: In today's economic globalization, western cultural classics and traditions are still surviving and continuing. In the United States, the president is sworn in according to the Bible, and pupils recite the oath of a nation under the protection of God every week. In China, primary school students no longer study the classics, and there are no people to take the oath of office according to the Analects of Confucius. China has become a country that has almost lost all its cultural classics and traditions.\n\nQuestion: Which of the following statements is the hypothesis on which the above argument depends?\n\nA. With the rapid development of science and technology, Western cultural classics and traditions are on the decline\nB. Officials in Chinese history have never taken the oath of office according to a classic\nC. The reading of scriptures by primary school students is a symbol for a country and a nation to maintain its cultural classics and traditions\nD. The cultural classics and traditions of a country and a nation play an irreplaceable role in science",
+    "answer": "C",
+    "dataset": "logiqa",
+    "choices": [
+      "A. With the rapid development of science and technology, Western cultural classics and traditions are on the decline",
+      "B. Officials in Chinese history have never taken the oath of office according to a classic",
+      "C. The reading of scriptures by primary school students is a symbol for a country and a nation to maintain its cultural classics and traditions",
+      "D. The cultural classics and traditions of a country and a nation play an irreplaceable role in science"
+    ],
+    "context": "In today's economic globalization, western cultural classics and traditions are still surviving and continuing. In the United States, the president is sworn in according to the Bible, and pupils recite the oath of a nation under the protection of God every week. In China, primary school students no longer study the classics, and there are no people to take the oath of office according to the Analects of Confucius. China has become a country that has almost lost all its cultural classics and traditions."
+  },
+  {
+    "id": "lq30_017_logiqa_194",
+    "problem": "Context: Professor Edwards must have revealed information that was embarrassing to the university. After all, to have been publicly censured by the head of the university, as Edwards was, a professor must either have revealed information that embarrassed the university or have been guilty of gross professional negligence, and Edwards' professional behavior is impeccable.\n\nQuestion: Which one of the following arguments exhibits a pattern of reasoning most similar to that in the argument above?\n\nA. Anyone who is either awarded a letter of commendation or who receives a bonus must be recommended by a company officer. Simon has been recommended by a company officer and will receive a bonus, so he must not have been awarded a letter of commendation.\nB. To earn a merit salary increase, an employee of TGX must either bring in new clients or develop innovative products. No innovative products were developed at TGX this year, however, so TGX employees must have brought in many new clients.\nC. Any employee of Wilkins, Waddel, and Sloan who discusses a client with a member of the press will be either fired or demoted. But since Wilkins employees never discuss their clients at all, no Wilkins employee will ever be demoted.\nD. Anyone promoted to supervisor must either have worked on the shop floor for three years or have an influential sponsor. Daniels, ttherefore, clearly has an influential sponsor, since he was promoted to supervisor after only one year on the shop floor.",
+    "answer": "D",
+    "dataset": "logiqa",
+    "choices": [
+      "A. Anyone who is either awarded a letter of commendation or who receives a bonus must be recommended by a company officer. Simon has been recommended by a company officer and will receive a bonus, so he must not have been awarded a letter of commendation.",
+      "B. To earn a merit salary increase, an employee of TGX must either bring in new clients or develop innovative products. No innovative products were developed at TGX this year, however, so TGX employees must have brought in many new clients.",
+      "C. Any employee of Wilkins, Waddel, and Sloan who discusses a client with a member of the press will be either fired or demoted. But since Wilkins employees never discuss their clients at all, no Wilkins employee will ever be demoted.",
+      "D. Anyone promoted to supervisor must either have worked on the shop floor for three years or have an influential sponsor. Daniels, ttherefore, clearly has an influential sponsor, since he was promoted to supervisor after only one year on the shop floor."
+    ],
+    "context": "Professor Edwards must have revealed information that was embarrassing to the university. After all, to have been publicly censured by the head of the university, as Edwards was, a professor must either have revealed information that embarrassed the university or have been guilty of gross professional negligence, and Edwards' professional behavior is impeccable."
+  },
+  {
+    "id": "lq30_018_logiqa_060",
+    "problem": "Context: A photograph of the night sky was taken with the camera shutter open for an extended period. The normal motion of stars across the sky caused the images of the stars in the photograph to appear as streaks. However, one bright spot was not streaked. Even if the spot were caused, as astronomers believe, by a celestial object, that object could still have been moving across the sky during the time the shutter was open, since __.\n\nQuestion: Which of the following most logically completes the argument?\n\nA. the spot was not the brightest object in the photograph\nB. the photograph contains many streaks that astronomers can identify as caused by noncelestial objects\nC. the spot could have been caused by an object that emitted a flash that lasted for only a fraction of the time that the camera shutter was open\nD. stars in the night sky do not appear to shift position relative to each other",
+    "answer": "C",
+    "dataset": "logiqa",
+    "choices": [
+      "A. the spot was not the brightest object in the photograph",
+      "B. the photograph contains many streaks that astronomers can identify as caused by noncelestial objects",
+      "C. the spot could have been caused by an object that emitted a flash that lasted for only a fraction of the time that the camera shutter was open",
+      "D. stars in the night sky do not appear to shift position relative to each other"
+    ],
+    "context": "A photograph of the night sky was taken with the camera shutter open for an extended period. The normal motion of stars across the sky caused the images of the stars in the photograph to appear as streaks. However, one bright spot was not streaked. Even if the spot were caused, as astronomers believe, by a celestial object, that object could still have been moving across the sky during the time the shutter was open, since __."
+  },
+  {
+    "id": "lq30_019_logiqa_027",
+    "problem": "Context: Double-trend conflict refers to the simultaneous emergence of two kinds of needs targets that are attractive to the individual, and the motivational conflict that the individual cannot take both actions at the same time because of the constraints.\n\nQuestion: Which of the following options is a double-trend conflict?\n\nA. There's a chaser behind, there's a big river in front of you\nB. Whether to tell patients who have a deeper cancer about the condition\nC. Fish and bear palms cannot be obtained at the same time\nD. Cherries are delicious and trees are hard to plant",
+    "answer": "C",
+    "dataset": "logiqa",
+    "choices": [
+      "A. There's a chaser behind, there's a big river in front of you",
+      "B. Whether to tell patients who have a deeper cancer about the condition",
+      "C. Fish and bear palms cannot be obtained at the same time",
+      "D. Cherries are delicious and trees are hard to plant"
+    ],
+    "context": "Double-trend conflict refers to the simultaneous emergence of two kinds of needs targets that are attractive to the individual, and the motivational conflict that the individual cannot take both actions at the same time because of the constraints."
+  },
+  {
+    "id": "lq30_020_logiqa_129",
+    "problem": "Context: Reverse service refers to the service that enterprises provide to customers to realize the use value of products (services) after products (services) are sold\n\nQuestion: According to the above definition, which of the followings does not belong to reverse service\n\nA. An automobile 4S store provides customers with used car valuation and transfer services\nB. An air conditioning manufacturer provides customers with lifelong free door-to-door service\nC. An online store can return and exchange goods for free within 7 days after exiting the after-sales service\nD. A telecom operator launched a preferential activity of saving phone charges and sending mobile phones",
+    "answer": "A",
+    "dataset": "logiqa",
+    "choices": [
+      "A. An automobile 4S store provides customers with used car valuation and transfer services",
+      "B. An air conditioning manufacturer provides customers with lifelong free door-to-door service",
+      "C. An online store can return and exchange goods for free within 7 days after exiting the after-sales service",
+      "D. A telecom operator launched a preferential activity of saving phone charges and sending mobile phones"
+    ],
+    "context": "Reverse service refers to the service that enterprises provide to customers to realize the use value of products (services) after products (services) are sold"
+  },
+  {
+    "id": "lq30_021_logiqa_137",
+    "problem": "Context: Installing scrubbers in smokestacks and switching to cleaner-burning fuel are the two methods available to Northern Power for reducing harmful emissions from its plants. Scrubbers will reduce harmful emissions more than cleaner-burning fuels will. Ttherefore, by installing scrubbers, Northern Power will be doing the most that can be done to reduce harmful emissions from its plants.\n\nQuestion: Which of the following is an assumption on which the argument depends?\n\nA. Northern Power can choose from among various kinds of scrubbers, some of which are more effective than others.\nB. Harmful emissions from Northern Power's plants cannot be reduced more by using both methods together than by the installation of scrubbers alone.\nC. Aside from harmful emissions from the smokestacks of its plants, the activities of Northern Power do not cause significant air pollution.\nD. Switching to cleaner-burning fuel will not be more expensive than installing scrubbers.",
+    "answer": "B",
+    "dataset": "logiqa",
+    "choices": [
+      "A. Northern Power can choose from among various kinds of scrubbers, some of which are more effective than others.",
+      "B. Harmful emissions from Northern Power's plants cannot be reduced more by using both methods together than by the installation of scrubbers alone.",
+      "C. Aside from harmful emissions from the smokestacks of its plants, the activities of Northern Power do not cause significant air pollution.",
+      "D. Switching to cleaner-burning fuel will not be more expensive than installing scrubbers."
+    ],
+    "context": "Installing scrubbers in smokestacks and switching to cleaner-burning fuel are the two methods available to Northern Power for reducing harmful emissions from its plants. Scrubbers will reduce harmful emissions more than cleaner-burning fuels will. Ttherefore, by installing scrubbers, Northern Power will be doing the most that can be done to reduce harmful emissions from its plants."
+  },
+  {
+    "id": "lq30_022_logiqa_023",
+    "problem": "Context: Psychologist: A study of 436 university students found that those who took short naps throughout the day suffered from insomnia more frequently than those who did not. Moreover, people who work on commercial fishing vessels often have irregular sleep patterns that include frequent napping, and they also suffer from insomnia. So it is very likely that napping tends to cause insomnia.\n\nQuestion: The reasoning in the psychologist's argument is most vulnerable to criticism on the grounds that the argument\n\nA. fails to consider the possibility that frequent daytime napping is an effect rather than a cause of insomnia\nB. presumes, without providing justification, that university students suffer from insomnia more frequently than do members of the general population\nC. presumes, without providing justification, that there is such a thing as a regular sleep pattern for someone working on a commercial fishing vessel\nD. presumes that all instances of insomnia have the same cause",
+    "answer": "A",
+    "dataset": "logiqa",
+    "choices": [
+      "A. fails to consider the possibility that frequent daytime napping is an effect rather than a cause of insomnia",
+      "B. presumes, without providing justification, that university students suffer from insomnia more frequently than do members of the general population",
+      "C. presumes, without providing justification, that there is such a thing as a regular sleep pattern for someone working on a commercial fishing vessel",
+      "D. presumes that all instances of insomnia have the same cause"
+    ],
+    "context": "Psychologist: A study of 436 university students found that those who took short naps throughout the day suffered from insomnia more frequently than those who did not. Moreover, people who work on commercial fishing vessels often have irregular sleep patterns that include frequent napping, and they also suffer from insomnia. So it is very likely that napping tends to cause insomnia."
+  },
+  {
+    "id": "lq30_023_logiqa_100",
+    "problem": "Context: Magazine article: Punishment for crimes is justified if it actually deters people from committing them. But a great deal of carefully assembled and analyzed empirical data show clearly that punishment is not a deterrent. So punishment is never justified.\n\nQuestion: The reasoning in the magazine article's argument is flawed because the argument\n\nA. attempts to be more precise than its subject matter properly allows\nB. ignores the problem of mistakenly punishing the innocent\nC. mistakenly allows the key term punishment to shift in meaning\nD. mistakes being sufficient to justify punishment for being required to justify it",
+    "answer": "D",
+    "dataset": "logiqa",
+    "choices": [
+      "A. attempts to be more precise than its subject matter properly allows",
+      "B. ignores the problem of mistakenly punishing the innocent",
+      "C. mistakenly allows the key term punishment to shift in meaning",
+      "D. mistakes being sufficient to justify punishment for being required to justify it"
+    ],
+    "context": "Magazine article: Punishment for crimes is justified if it actually deters people from committing them. But a great deal of carefully assembled and analyzed empirical data show clearly that punishment is not a deterrent. So punishment is never justified."
+  },
+  {
+    "id": "lq30_024_logiqa_175",
+    "problem": "Context: Loss of inheritance rights refers to the heir's disqualification of inheritance due to certain crimes or other illegal acts against the decedent or other heirs.\n\nQuestion: According to the above definition, which of the following actions will not lead to the loss of inheritance rights?\n\nA. In ordinary small talks, Xiao Zhang mentioned that he is not willing to inherit the inheritance left by his father\nB. In order to monopolize the inheritance, Xie Qiang threatened and insulted his brothers and sisters, forcing them to give up their inheritance rights\nC. On the occasion of his uncle's death, Xu secretly revised the will that his uncle had just made\nD. In order to be able to take control of the family business as soon as possible, Xiao Li poisoned and assassinated his stepfather",
+    "answer": "A",
+    "dataset": "logiqa",
+    "choices": [
+      "A. In ordinary small talks, Xiao Zhang mentioned that he is not willing to inherit the inheritance left by his father",
+      "B. In order to monopolize the inheritance, Xie Qiang threatened and insulted his brothers and sisters, forcing them to give up their inheritance rights",
+      "C. On the occasion of his uncle's death, Xu secretly revised the will that his uncle had just made",
+      "D. In order to be able to take control of the family business as soon as possible, Xiao Li poisoned and assassinated his stepfather"
+    ],
+    "context": "Loss of inheritance rights refers to the heir's disqualification of inheritance due to certain crimes or other illegal acts against the decedent or other heirs."
+  },
+  {
+    "id": "lq30_025_logiqa_070",
+    "problem": "Context: Historian: The revolutionary party has been accused of having many overambitious goals and of having caused great suffering. However, most of the party' s goals were quickly achieved and the party did not have enough power to cause the suffering the critics claim it caused. So it is clear that the party was not overambitious and caused no suffering.\n\nQuestion: The reasoning in the historian's argument is flawed because the argument\n\nA. fails to establish that the revolutionary party caused no suffering\nB. provides no evidence that the revolutionary party's goals were not overambitious\nC. fails to establish that any of the revolutionary party's critics underestimated the party's power\nD. gives mutually inconsistent responses to the two criticisms",
+    "answer": "A",
+    "dataset": "logiqa",
+    "choices": [
+      "A. fails to establish that the revolutionary party caused no suffering",
+      "B. provides no evidence that the revolutionary party's goals were not overambitious",
+      "C. fails to establish that any of the revolutionary party's critics underestimated the party's power",
+      "D. gives mutually inconsistent responses to the two criticisms"
+    ],
+    "context": "Historian: The revolutionary party has been accused of having many overambitious goals and of having caused great suffering. However, most of the party' s goals were quickly achieved and the party did not have enough power to cause the suffering the critics claim it caused. So it is clear that the party was not overambitious and caused no suffering."
+  },
+  {
+    "id": "lq30_026_logiqa_067",
+    "problem": "Context: The notion that one might be justified in behaving irrationally in the service of a sufficiently worthy end is incoherent. For if such an action is justified, then one would be behaving rationally, not irrationally.\n\nQuestion: Which one of the following arguments is most similar in its reasoning to the argument above?\n\nA. One cannot live the good life and be unhappy. If one's own neighbors see that one is unhappy, then they will see that one is not living the good life.\nB. A representative of the law, such as a judge or a police officer, ought not to commit crimes. For if representatives of the law commit crimes, they will be ineffective in preventing crime.\nC. One ought not to have both a cat and a goldfish. The goldfish is the natural prey of the cat, so it is unethical to place it at the cat's disposal.\nD. One cannot intend to spill a glass of water accidentally. Spilling it accidentally means that the act will not have been done intentionally.",
+    "answer": "D",
+    "dataset": "logiqa",
+    "choices": [
+      "A. One cannot live the good life and be unhappy. If one's own neighbors see that one is unhappy, then they will see that one is not living the good life.",
+      "B. A representative of the law, such as a judge or a police officer, ought not to commit crimes. For if representatives of the law commit crimes, they will be ineffective in preventing crime.",
+      "C. One ought not to have both a cat and a goldfish. The goldfish is the natural prey of the cat, so it is unethical to place it at the cat's disposal.",
+      "D. One cannot intend to spill a glass of water accidentally. Spilling it accidentally means that the act will not have been done intentionally."
+    ],
+    "context": "The notion that one might be justified in behaving irrationally in the service of a sufficiently worthy end is incoherent. For if such an action is justified, then one would be behaving rationally, not irrationally."
+  },
+  {
+    "id": "lq30_027_logiqa_080",
+    "problem": "Context: Mario: The field of cognitive science is not a genuinely autonomous discipline since it addresses issues also addressed by the disciplines of computer science, linguistics, and psychology. A genuinely autonomous discipline has a domain of inquiry all its own. Lucy: Nonsense. You' ve always acknowledged that philosophy is a genuinely autonomous discipline and that, like most people, you think of philosophy as addressing issues also addressed by the disciplines of linguistics, mathematics, and psychology. A field of study is a genuinely autonomous discipline by virtue of its having a unique methodology rather than by virtue of its addressing issues that no other field of study addresses.\n\nQuestion: Lucy responds to Mario by\n\nA. establishing that Mario is not a philosopher\nB. questioning Mario's expertise in cognitive science\nC. showing that some of Mario's beliefs are not compatible with the principle on which he bases his conclusion\nD. demonstrating that Mario confuses the notion of a field of study with that of a genuinely autonomous discipline",
+    "answer": "C",
+    "dataset": "logiqa",
+    "choices": [
+      "A. establishing that Mario is not a philosopher",
+      "B. questioning Mario's expertise in cognitive science",
+      "C. showing that some of Mario's beliefs are not compatible with the principle on which he bases his conclusion",
+      "D. demonstrating that Mario confuses the notion of a field of study with that of a genuinely autonomous discipline"
+    ],
+    "context": "Mario: The field of cognitive science is not a genuinely autonomous discipline since it addresses issues also addressed by the disciplines of computer science, linguistics, and psychology. A genuinely autonomous discipline has a domain of inquiry all its own. Lucy: Nonsense. You' ve always acknowledged that philosophy is a genuinely autonomous discipline and that, like most people, you think of philosophy as addressing issues also addressed by the disciplines of linguistics, mathematics, and psychology. A field of study is a genuinely autonomous discipline by virtue of its having a unique methodology rather than by virtue of its addressing issues that no other field of study addresses."
+  },
+  {
+    "id": "lq30_028_logiqa_071",
+    "problem": "Context: After a TV variety show was broadcast, the program director claimed that the program reached the highest level of current similar programs, because the program's ratings are 2% higher than similar programs.\n\nQuestion: Which of the following, if true, can best weaken the above conclusion?\n\nA. The contestants on the show had mixed reviews\nB. The audience loves variety show\nC. The director's microblog had one hundred thousand comments critical of the show\nD. The quality of the show is not necessarily tied to ratings",
+    "answer": "D",
+    "dataset": "logiqa",
+    "choices": [
+      "A. The contestants on the show had mixed reviews",
+      "B. The audience loves variety show",
+      "C. The director's microblog had one hundred thousand comments critical of the show",
+      "D. The quality of the show is not necessarily tied to ratings"
+    ],
+    "context": "After a TV variety show was broadcast, the program director claimed that the program reached the highest level of current similar programs, because the program's ratings are 2% higher than similar programs."
+  },
+  {
+    "id": "lq30_029_logiqa_161",
+    "problem": "Context: Some people think that only by establishing a good institutional mechanism can corruption be fundamentally put an end to. However, in Chinese society, once an atmosphere is formed, even a powerful system will be torn apart by it. righting the hearts of the people and then the world. If we want to solve the problem fundamentally, we must take rectifying the hearts of the people as the foundation. Only when the hearts of the people are upright can the wind of corruption and utilitarianism be eliminated, and can the anti-corruption system be truly established and effectively implemented.\n\nQuestion: Which of the following statements is the hypothesis on which the above argument depends?\n\nA. There is corruption in any society, and no matter what method is used, it can only be weakened but not eradicated\nB. The formation of corruption and utilitarianism is not caused by imperfect system or lax enforcement\nC. The effective way to change customs is to select talents, narrow the gap between the rich and the poor and benefit from righteousness\nD. The system is the foundation of straightening the hearts of the people. with the anti-corruption system and strict implementation, the atmosphere will change",
+    "answer": "B",
+    "dataset": "logiqa",
+    "choices": [
+      "A. There is corruption in any society, and no matter what method is used, it can only be weakened but not eradicated",
+      "B. The formation of corruption and utilitarianism is not caused by imperfect system or lax enforcement",
+      "C. The effective way to change customs is to select talents, narrow the gap between the rich and the poor and benefit from righteousness",
+      "D. The system is the foundation of straightening the hearts of the people. with the anti-corruption system and strict implementation, the atmosphere will change"
+    ],
+    "context": "Some people think that only by establishing a good institutional mechanism can corruption be fundamentally put an end to. However, in Chinese society, once an atmosphere is formed, even a powerful system will be torn apart by it. righting the hearts of the people and then the world. If we want to solve the problem fundamentally, we must take rectifying the hearts of the people as the foundation. Only when the hearts of the people are upright can the wind of corruption and utilitarianism be eliminated, and can the anti-corruption system be truly established and effectively implemented."
+  }
+]

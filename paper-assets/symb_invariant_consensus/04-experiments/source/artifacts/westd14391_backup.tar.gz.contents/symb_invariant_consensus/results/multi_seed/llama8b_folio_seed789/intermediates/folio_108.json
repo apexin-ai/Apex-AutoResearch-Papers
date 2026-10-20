@@ -1,0 +1,818 @@
+{
+  "problem": {
+    "id": "folio_108",
+    "problem": "Given the following premises:\nIf people spill a lot of food on their clothing, then they do not tidy their spaces consistently and enjoy the process of cleaning. All foodies who go out frequently to find new food restaurants to try are people who spill a lot of food on their clothing. If people grew up as only children with no siblings, then they tidy their spaces consistently and enjoy the process of cleaning. If people have parents who are very busy with their regular jobs, then they grew up as only children with no siblings. All households with a high net income have people who have parents who are very busy with their regular jobs. Peter is either both a person who spills a lot of food on his clothing and grew up as an only child with no siblings, or he is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nPeter tidies his space consistently and enjoys the process of cleaning.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (Spill(x) \u2192 \u00acTidy(x))",
+      "\u2200x (Foodie(x) \u2192 Spill(x))",
+      "\u2200x (OnlyChild(x) \u2192 Tidy(x))",
+      "\u2200x (BusyParents(x) \u2192 OnlyChild(x))",
+      "\u2200x (HighIncome(x) \u2192 BusyParents(x))",
+      "(Spill(peter) \u2227 OnlyChild(peter)) \u2228 \u00acSpill(peter) \u2227 \u00acOnlyChild(peter))"
+    ],
+    "conclusion_fol": "Tidy(peter)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 34.5,
+      "Unknown": 70.0
+    },
+    "answer_counts": {
+      "Unknown": 9,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we will use logical reasoning and the given premises. We will break down the problem step by step.\n\n1. From the given premises, we have:\n\n   - If people spill a lot of food on their clothing (P1), then they do not tidy their spaces consistently and enjoy the process of cleaning (P2). (Premise 1)\n   - All foodies who go out frequently to find new food restaurants to try (P3) are people who spill a lot of food on their clothing (P1). (Premise 2)\n   - If people grew up as only children with no siblings (P4), then they tidy their spaces consistently and enjoy the process of cleaning (P2). (Premise 3)\n   - If people have parents who are very busy with their regular jobs (P5), then they grew up as only children with no siblings (P4). (Premise 4)\n   - All households with a high net income (P6) have people who have parents who are very busy with their regular jobs (P5). (Premise 5)\n   - Peter is either both a person who spills a lot of food on his clothing (P1) and grew up as an only child with no siblings (P4), or he is neither a person who spills a lot of food on his clothing (P1) nor grew up as an only child with no siblings (P4). (Premise 6)\n\n2. From Premise 6, we know that Peter is either a person who spills a lot of food on his clothing (P1) and grew up as an only child with no siblings (P4), or he is neither of these.\n\n3. If Peter is a person who spills a lot of food on his clothing (P1) and grew up as an only child with no siblings (P4), then from Premise 1, he does not tidy his space consistently and enjoy the process of cleaning. However, from Premise 4, people who have parents who are very busy with their regular jobs (P5) grew up as only children with no siblings (P4). And from Premise 5, all households with a high net income (P6) have people who have parents who are very busy with their regular jobs (P5). So, if Peter is a person who spills a lot of food on his clothing (P1) and grew up as an only child with no siblings (P4), it means he is likely from a high-income household. This is because his parents are busy with their regular jobs (P5), and his household has a high net income (P6).\n\n4. However, from Premise 2, all foodies who go out frequently to find new food restaurants to try (P3) are people who spill a lot of food on their clothing (P1). This implies that Peter, being a foodie (P3), is a person who spills a lot of food on his clothing (P1). If he is a person who spills a lot of food on his clothing (P1), then from Premise 1, he does not tidy his space consistently and enjoy the process of cleaning.\n\n5. But we are given that Peter is either both a person who spills a lot of food on his clothing (P1) and grew up as an only child with no siblings (P4), or he is neither a person who spills a lot of food on his clothing (P1) nor grew up as an only child with no siblings (P4). \n\n6. However, the conclusion that Peter tidies his space consistently and enjoys the process of cleaning (P2) is the opposite of what we deduced in steps 3 and 4. So, we need to look at the case where Peter is neither a person who spills a lot of food on his clothing (P1) nor grew up as an only child with no siblings (P4).\n\n7. If Peter is neither a person who spills a lot of food on his clothing (P1) nor grew up as an only child with no siblings (P4), then it directly means that he does not tidy his space consistently and enjoy the process of cleaning (P2) is false because it directly contradicts our premise.",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: If people spill a lot of food on their clothing, then they do not tidy their spaces consistently and enjoy the process of cleaning.\nPremise 2: All foodies who go out frequently to find new food restaurants to try are people who spill a lot of food on their clothing.\nPremise 3: If people grew up as only children with no siblings, then they tidy their spaces consistently and enjoy the process of cleaning.\nPremise 4: If people have parents who are very busy with their regular jobs, then they grew up as only children with no siblings.\nPremise 5: All households with a high net income have people who have parents who are very busy with their regular jobs.\nPremise 6: Peter is either both a person who spills a lot of food on his clothing and grew up as an only child with no siblings, or he is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings.\n\nLet's break down the possible scenarios for Peter:\n\n1. Peter is both a person who spills a lot of food on his clothing and grew up as an only child with no siblings.\n\nFrom Premise 1, if Peter spills a lot of food on his clothing, then he does not tidy his spaces consistently and enjoy the process of cleaning. However, from Premise 3, if Peter grew up as an only child with no siblings, then he tidies his space consistently and enjoys the process of cleaning. This creates a contradiction, so this scenario is not possible.\n\n2. Peter is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings.\n\nThis scenario is possible according to Premise 6.\n\nSince the first scenario is not possible, we consider the second scenario:\n\nIf Peter is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings, then we cannot conclude anything about his behavior based on Premise 1 and 3.\n\nHowever, we can analyze Premise 4 and 5: If people have parents who are very busy with their regular jobs, then they grew up as only children with no siblings. All households with a high net income have people who have parents who are very busy with their regular jobs. If Peter is from a household with a high net income, then his parents are likely very busy with their regular jobs. According to Premise 4, if his parents are very busy with their regular jobs, then he grew up as an only child with no siblings.\n\nSince we cannot conclude anything about Peter's behavior based on Premise 1 and 3, but we can conclude that he may have grown up as an only child with no siblings, we can use Premise 3 to determine the conclusion.\n\nPremise 3 states: If people grew up as only children with no siblings, then they tidy their spaces consistently and enjoy the process of cleaning. If Peter grew up as an only child with no siblings, then he tidies his space consistently and enjoys the process of cleaning.\n\nBased on the possible scenarios, we cannot conclude that Peter tidies his space consistently and enjoys the process of cleaning with absolute certainty, but we can conclude that it is possible.\n\nTherefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to break it down into smaller steps using the given premises. \n\nPremise 1: If people spill a lot of food on their clothing, then they do not tidy their spaces consistently and enjoy the process of cleaning.\nPremise 2: All foodies who go out frequently to find new food restaurants to try are people who spill a lot of food on their clothing.\nPremise 3: If people grew up as only children with no siblings, then they tidy their spaces consistently and enjoy the process of cleaning.\nPremise 4: If people have parents who are very busy with their regular jobs, then they grew up as only children with no siblings.\nPremise 5: All households with a high net income have people who have parents who are very busy with their regular jobs.\nPremise 6: Peter is either both a person who spills a lot of food on his clothing and grew up as an only child with no siblings, or he is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings.\n\nWe are asked to determine if the conclusion \"Peter tidies his space consistently and enjoys the process of cleaning\" is true, false, or uncertain.\n\nStep 1: Analyze Premise 6 and determine Peter's possibilities.\nPremise 6 states that Peter is either both a person who spills a lot of food on his clothing and grew up as an only child with no siblings, or he is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings.\n\nStep 2: Break down Premise 6 into two cases.\nCase 1: Peter is both a person who spills a lot of food on his clothing and grew up as an only child with no siblings.\nCase 2: Peter is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings.\n\nStep 3: Analyze Case 1 and its implications.\nPremise 1 states that if people spill a lot of food on their clothing, then they do not tidy their spaces consistently and enjoy the process of cleaning. This implies that people who spill a lot of food on their clothing do not tidy their spaces consistently and enjoy the process of cleaning.\n\nHowever, Premise 3 states that if people grew up as only children with no siblings, then they tidy their spaces consistently and enjoy the process of cleaning. This implies that people who grew up as only children with no siblings do tidy their spaces consistently and enjoy the process of cleaning.\n\nSince Peter is both a person who spills a lot of food on his clothing and grew up as an only child with no siblings, we have a contradiction between Premise 1 and Premise 3. This means that Case 1 is not possible.\n\nStep 4: Analyze Case 2 and its implications.\nPremise 6 states that Peter is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings. This implies that Peter does not spill a lot of food on his clothing and did not grow up as an only child with no siblings.\n\nStep 5: Determine the conclusion based on Case 2.\nSince Peter does not spill a lot of food on his clothing, we cannot conclude that he does not tidy his space consistently and enjoy the process of cleaning.\n\nAlso, since Peter did not grow up as an only child with no siblings, we cannot conclude that he tidies his space consistently and enjoys the process of cleaning.\n\nHowever, we can conclude that Peter may or may not tidy his space consistently and enjoy the process of cleaning.\n\nTherefore, the conclusion \"Peter tidies his space consistently and enjoys the process of cleaning\" is uncertain.\n\nThe final answer is: \\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: If people spill a lot of food on their clothing, then they do not tidy their spaces consistently and enjoy the process of cleaning.\nPremise 2: All foodies who go out frequently to find new food restaurants to try are people who spill a lot of food on their clothing.\nPremise 3: If people grew up as only children with no siblings, then they tidy their spaces consistently and enjoy the process of cleaning.\nPremise 4: If people have parents who are very busy with their regular jobs, then they grew up as only children with no siblings.\nPremise 5: All households with a high net income have people who have parents who are very busy with their regular jobs.\nPremise 6: Peter is either both a person who spills a lot of food on his clothing and grew up as an only child with no siblings, or he is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings.\n\nFrom Premise 2 and Premise 1, we can conclude:\nIf Peter is a foodie who goes out frequently to find new food restaurants to try, then he spills a lot of food on his clothing, and he does not tidy his spaces consistently and enjoy the process of cleaning.\n\nFrom Premise 3, we can conclude:\nIf Peter grew up as an only child with no siblings, then he tidies his spaces consistently and enjoys the process of cleaning.\n\nFrom Premise 4 and Premise 5, we can conclude:\nIf Peter comes from a household with a high net income, then he grew up as an only child with no siblings, and he tidies his spaces consistently and enjoys the process of cleaning.\n\nFrom Premise 6, we can conclude:\nPeter is either both a person who spills a lot of food on his clothing and grew up as an only child with no siblings, or he is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings.\n\nNow, we need to analyze the possible scenarios:\n\nScenario 1: Peter is both a person who spills a lot of food on his clothing and grew up as an only child with no siblings.\nFrom Premise 1, we know that if he spills a lot of food on his clothing, he does not tidy his spaces consistently and enjoy the process of cleaning.\nThis conclusion contradicts the conclusion from Premise 3, which states that if he grew up as an only child with no siblings, he tidies his spaces consistently and enjoys the process of cleaning.\nThis scenario is uncertain, as it creates a contradiction.\n\nScenario 2: Peter is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings.\nFrom Premise 2, we know that if he is a foodie who goes out frequently to find new food restaurants to try, then he spills a lot of food on his clothing.\nSince he is neither a person who spills a lot of food on his clothing, we can conclude that he is not a foodie who goes out frequently to find new food restaurants to try.\nFrom Premise 4 and Premise 5, we know that if he comes from a household with a high net income, then he grew up as an only child with no siblings, and he tidies his spaces consistently and enjoys the process of cleaning.\nHowever, we do not have enough information to determine whether he comes from a household with a high net income or not.\nTherefore, this scenario is uncertain, as it depends on the unknown information.\n\nSince both scenarios are uncertain, the conclusion that Peter tidies his space consistently and enjoys the process of cleaning is also uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: If people spill a lot of food on their clothing, then they do not tidy their spaces consistently and enjoy the process of cleaning. \n\nPremise 2: All foodies who go out frequently to find new food restaurants to try are people who spill a lot of food on their clothing.\n\nPremise 3: If people grew up as only children with no siblings, then they tidy their spaces consistently and enjoy the process of cleaning.\n\nPremise 4: If people have parents who are very busy with their regular jobs, then they grew up as only children with no siblings.\n\nPremise 5: All households with a high net income have people who have parents who are very busy with their regular jobs.\n\nPremise 6: Peter is either both a person who spills a lot of food on his clothing and grew up as an only child with no siblings, or he is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings.\n\nConclusion: Peter tidies his space consistently and enjoys the process of cleaning.\n\nLet's break down the premises to analyze Peter's situation:\n\n1. From premise 2, if Peter is a foodie who goes out frequently, then he spills a lot of food on his clothing.\n2. From premise 6, we know that Peter is either both a person who spills a lot of food on his clothing and grew up as an only child with no siblings, or he is neither.\n\nConsidering the two possibilities:\n\nCase 1: If Peter spills a lot of food on his clothing, then from premise 1, he does not tidy his space consistently and enjoy the process of cleaning. This contradicts the conclusion that Peter tidies his space consistently and enjoys the process of cleaning.\n\nCase 2: If Peter does not spill a lot of food on his clothing, then from premise 6, he did not grow up as an only child with no siblings. In this case, we cannot directly determine whether Peter tidies his space consistently and enjoys the process of cleaning.\n\nHowever, premise 4 states that if people have parents who are very busy with their regular jobs, then they grew up as only children with no siblings. Since premise 5 states that all households with a high net income have people who have parents who are very busy with their regular jobs, we can infer that people with high net income are likely to be only children.\n\nBut we do not know Peter's household income. So, we cannot conclude that Peter did or did not grow up as an only child based on this information.\n\nThe only information we have is that Peter is either both a person who spills a lot of food on his clothing and grew up as an only child with no siblings, or he is neither. We already analyzed the first case, which led to a contradiction with the conclusion. For the second case, we do not have enough information to determine whether Peter tidies his space consistently and enjoys the process of cleaning.\n\nTherefore, the conclusion \"Peter tidies his space consistently and enjoys the process of cleaning\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to break down the premises and apply them step by step.\n\nPremise 1: If people spill a lot of food on their clothing, then they do not tidy their spaces consistently and enjoy the process of cleaning.\n\nPremise 2: All foodies who go out frequently to find new food restaurants to try are people who spill a lot of food on their clothing.\n\nPremise 3: If people grew up as only children with no siblings, then they tidy their spaces consistently and enjoy the process of cleaning.\n\nPremise 4: If people have parents who are very busy with their regular jobs, then they grew up as only children with no siblings.\n\nPremise 5: All households with a high net income have people who have parents who are very busy with their regular jobs.\n\nPremise 6: Peter is either both a person who spills a lot of food on his clothing and grew up as an only child with no siblings, or he is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings.\n\nWe want to determine whether the conclusion \"Peter tidies his space consistently and enjoys the process of cleaning\" is true, false, or uncertain.\n\nFrom Premise 6, we know that Peter is either both a person who spills a lot of food on his clothing and grew up as an only child with no siblings, or he is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings. This gives us two possible scenarios for Peter:\n\nScenario 1: Peter is both a person who spills a lot of food on his clothing and grew up as an only child with no siblings.\n\nFrom Premise 1, if people spill a lot of food on their clothing, then they do not tidy their spaces consistently and enjoy the process of cleaning. This would contradict Premise 3, which states that people who grew up as only children with no siblings tidy their spaces consistently and enjoy the process of cleaning. This creates a contradiction, and we cannot conclude anything about Peter's tidiness based on this scenario.\n\nScenario 2: Peter is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings.\n\nFrom Premise 3, people who grew up as only children with no siblings tidy their spaces consistently and enjoy the process of cleaning. However, Premise 6 states that Peter is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings. This means that Peter did not grow up as an only child with no siblings, and therefore we cannot conclude that he tidies his space consistently and enjoys the process of cleaning based on Premise 3.\n\nFrom Premise 4, if people have parents who are very busy with their regular jobs, then they grew up as only children with no siblings. If Peter's household has a high net income, then from Premise 5, they must have parents who are very busy with their regular jobs, which would imply that Peter grew up as an only child with no siblings. However, this would contradict Premise 6, which states that Peter is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings. This means that Peter's household cannot have a high net income.\n\nBased on the above analysis, we cannot conclude whether Peter tidies his space consistently and enjoys the process of cleaning. The information provided is insufficient to make a definitive conclusion.\n\nTherefore, the final answer is: \n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine the truth of the conclusion, let's analyze the given premises step by step.\n\n1. If people spill a lot of food on their clothing, then they do not tidy their spaces consistently and enjoy the process of cleaning.\n\nThis premise tells us that people who spill a lot of food on their clothing do not meet the conditions for tidying their spaces consistently and enjoying the process of cleaning.\n\n2. All foodies who go out frequently to find new food restaurants to try are people who spill a lot of food on their clothing.\n\nThis premise tells us that foodies are people who spill a lot of food on their clothing. However, it doesn't tell us anything about the relationship between being a foodie and tidying one's space.\n\n3. If people grew up as only children with no siblings, then they tidy their spaces consistently and enjoy the process of cleaning.\n\nThis premise tells us that people who grew up as only children with no siblings tidy their spaces consistently and enjoy the process of cleaning.\n\n4. If people have parents who are very busy with their regular jobs, then they grew up as only children with no siblings.\n\nThis premise tells us that people who have busy parents are likely to have grown up as only children with no siblings.\n\n5. All households with a high net income have people who have parents who are very busy with their regular jobs.\n\nThis premise tells us that high-income households have people with busy parents, which implies that people in these households may have grown up as only children with no siblings.\n\n6. Peter is either both a person who spills a lot of food on his clothing and grew up as an only child with no siblings, or he is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings.\n\nThis premise provides us with two possible scenarios for Peter: either he is a person who spills a lot of food on his clothing and grew up as an only child with no siblings, or he is neither of these.\n\nNow, let's analyze the conclusion: \"Peter tidies his space consistently and enjoys the process of cleaning.\"\n\nFor this conclusion to be true, Peter must either be a person who grew up as an only child with no siblings (premise 3) or be a person who does not spill a lot of food on his clothing (premise 1).\n\nHowever, premise 6 tells us that Peter is either both a person who spills a lot of food on his clothing and grew up as an only child with no siblings, or he is neither of these. This means that we cannot conclude with certainty whether Peter tidies his space consistently and enjoys the process of cleaning.\n\nIf Peter is a person who spills a lot of food on his clothing and grew up as an only child with no siblings (the first part of premise 6), then he does not tidy his space consistently and enjoy the process of cleaning (premise 1).\n\nIf Peter is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings (the second part of premise 6), then we cannot conclude that he tidies his space consistently and enjoys the process of cleaning.\n\nTherefore, the conclusion \"Peter tidies his space consistently and enjoys the process of cleaning\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given premises and apply them to Peter's situation.\n\nPremise 1: If people spill a lot of food on their clothing, then they do not tidy their spaces consistently and enjoy the process of cleaning.\n\nPremise 2: All foodies who go out frequently to find new food restaurants to try are people who spill a lot of food on their clothing.\n\nPremise 3: If people grew up as only children with no siblings, then they tidy their spaces consistently and enjoy the process of cleaning.\n\nPremise 4: If people have parents who are very busy with their regular jobs, then they grew up as only children with no siblings.\n\nPremise 5: All households with a high net income have people who have parents who are very busy with their regular jobs.\n\nPremise 6: Peter is either both a person who spills a lot of food on his clothing and grew up as an only child with no siblings, or he is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings.\n\nNow, let's apply the premises to Peter's situation.\n\nFrom Premise 6, we have two possibilities for Peter:\n\nA. Peter is both a person who spills a lot of food on his clothing and grew up as an only child with no siblings.\nB. Peter is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings.\n\nLet's examine each possibility.\n\nPossibility A: If Peter is both a person who spills a lot of food on his clothing and grew up as an only child with no siblings, then:\n\n- From Premise 1, since Peter spills a lot of food on his clothing, he does not tidy his spaces consistently and enjoy the process of cleaning.\n- But this contradicts Premise 3, which states that people who grew up as only children with no siblings tidy their spaces consistently and enjoy the process of cleaning.\n- Therefore, possibility A is not possible.\n\nPossibility B: If Peter is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings, then:\n\n- From Premise 2, if Peter is a foodie, then he spills a lot of food on his clothing. But since he is not a person who spills a lot of food on his clothing, he is not a foodie.\n- From Premise 4 and Premise 5, if Peter's household has a high net income, then he grew up as an only child with no siblings. But we don't know if Peter's household has a high net income.\n\nHowever, we can conclude that Peter is not a foodie, so we can't say if he tidies his space consistently and enjoys the process of cleaning. The information about Peter's household income and his relationship with his siblings is not relevant to the conclusion.\n\nTherefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine the conclusion, we need to analyze the premises step by step.\n\nPremise 1: If people spill a lot of food on their clothing, then they do not tidy their spaces consistently and enjoy the process of cleaning.\n\nPremise 2: All foodies who go out frequently to find new food restaurants to try are people who spill a lot of food on their clothing.\n\nPremise 3: If people grew up as only children with no siblings, then they tidy their spaces consistently and enjoy the process of cleaning.\n\nPremise 4: If people have parents who are very busy with their regular jobs, then they grew up as only children with no siblings.\n\nPremise 5: All households with a high net income have people who have parents who are very busy with their regular jobs.\n\nPremise 6: Peter is either both a person who spills a lot of food on his clothing and grew up as an only child with no siblings, or he is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings.\n\nNow, let's analyze the premises to determine the conclusion.\n\nFrom Premise 2, we know that if Peter is a foodie who goes out frequently to find new food restaurants to try, then he spills a lot of food on his clothing. \n\nFrom Premise 1, if Peter spills a lot of food on his clothing, then he does not tidy his space consistently and enjoy the process of cleaning. However, Premise 6 states that Peter is either both a person who spills a lot of food on his clothing and grew up as an only child with no siblings, or he is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings. \n\nIf Peter spills a lot of food on his clothing (part of the first option in Premise 6), then he does not tidy his space consistently and enjoy the process of cleaning (from Premise 1), which contradicts the statement in Premise 3 that if people grew up as only children with no siblings, then they tidy their spaces consistently and enjoy the process of cleaning. However, Premise 6 also states that Peter is either both a person who spills a lot of food on his clothing and grew up as an only child with no siblings, or he is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings. If Peter grew up as an only child with no siblings (part of the first option in Premise 6), then he would tidy his space consistently and enjoy the process of cleaning (from Premise 3), which would not contradict Premise 1. \n\nHowever, Premise 6 also states that Peter is either both a person who spills a lot of food on his clothing and grew up as an only child with no siblings, or he is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings. If Peter is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings (part of the second option in Premise 6), then we cannot conclude whether Peter tidies his space consistently and enjoys the process of cleaning.\n\nNow, let's analyze the connection between high net income and Peter's situation. From Premise 5, we know that all households with a high net income have people who have parents who are very busy with their regular jobs. If Peter lives in a household with a high net income, then his parents are very busy with their regular jobs (from Premise 5), which means he grew up as an only child with no siblings (from Premise 4).\n\nIf Peter grew up as an only child with no siblings (from Premise 4), then he tidies his space consistently and enjoys the process of cleaning (from Premise 3). \n\nHowever, Premise 6 states that Peter is either both a person who spills a lot of food on his clothing and grew up as an only child with no siblings, or he is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings. If Peter grew up as an only child with no siblings (part of the first option in Premise 6), then he would tidy his space consistently and enjoy the process of cleaning (from Premise 3), which would not contradict Premise 1.\n\nIn conclusion, based on the premises, we cannot determine whether Peter tidies his space consistently and enjoys the process of cleaning if he is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings (part of the second option in Premise 6). However, if Peter grew up as an only child with no siblings (part of the first option in Premise 6), then he would tidy his space consistently and enjoy the process of cleaning (from Premise 3). \n\nTherefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given premises and determine the relationship between Peter's behavior and the conclusion.\n\nPremise 1: If people spill a lot of food on their clothing, then they do not tidy their spaces consistently and enjoy the process of cleaning. (Let's call this statement A \u2192 ~B)\n\nPremise 2: All foodies who go out frequently to find new food restaurants to try are people who spill a lot of food on their clothing. (Let's call this statement C \u2192 A)\n\nPremise 3: If people grew up as only children with no siblings, then they tidy their spaces consistently and enjoy the process of cleaning. (Let's call this statement D \u2192 B)\n\nPremise 4: If people have parents who are very busy with their regular jobs, then they grew up as only children with no siblings. (Let's call this statement E \u2192 D)\n\nPremise 5: All households with a high net income have people who have parents who are very busy with their regular jobs. (Let's call this statement F \u2192 E)\n\nPremise 6: Peter is either both a person who spills a lot of food on his clothing and grew up as an only child with no siblings, or he is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings. (Let's call this statement G: (A \u2227 D) \u2228 (~A \u2227 ~D))\n\nNow, we need to analyze the conclusion: Peter tidies his space consistently and enjoys the process of cleaning. (Let's call this statement B)\n\nFrom Premise 3, we know that D \u2192 B, which means that if Peter grew up as an only child with no siblings, then he tidies his space consistently and enjoys the process of cleaning.\n\nFrom Premise 6, we know that G: (A \u2227 D) \u2228 (~A \u2227 ~D), which means that Peter is either both a person who spills a lot of food on his clothing and grew up as an only child with no siblings, or he is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings.\n\nSince Premise 1 states that A \u2192 ~B, if Peter is a person who spills a lot of food on his clothing (A), then he does not tidy his space consistently and enjoy the process of cleaning (~B).\n\nHowever, Premise 6 states that Peter is either both a person who spills a lot of food on his clothing and grew up as an only child with no siblings (A \u2227 D), or he is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings (~A \u2227 ~D).\n\nIf Peter is a person who spills a lot of food on his clothing and grew up as an only child with no siblings (A \u2227 D), then from Premise 1, we know that he does not tidy his space consistently and enjoy the process of cleaning (~B).\n\nOn the other hand, if Peter is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings (~A \u2227 ~D), then we cannot determine his behavior from the premises.\n\nTherefore, the conclusion that Peter tidies his space consistently and enjoys the process of cleaning is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to break it down into smaller steps and use logical deductions.\n\n1. From the premises, we have the following statements:\n   - If people spill a lot of food on their clothing (S), then they do not tidy their spaces consistently and enjoy the process of cleaning (T).\n   - All foodies who go out frequently to find new food restaurants (F) are people who spill a lot of food on their clothing (S).\n   - If people grew up as only children with no siblings (O), then they tidy their spaces consistently and enjoy the process of cleaning (T).\n   - If people have parents who are very busy with their regular jobs (B), then they grew up as only children with no siblings (O).\n   - All households with a high net income (H) have people who have parents who are very busy with their regular jobs (B).\n   - Peter is either both a person who spills a lot of food on his clothing (S) and grew up as an only child with no siblings (O), or he is neither a person who spills a lot of food on his clothing (S) nor grew up as an only child with no siblings (O).\n\n2. To determine whether Peter tidies his space consistently and enjoys the process of cleaning, we need to examine the possible scenarios for Peter based on the given premises.\n\n   - Scenario 1: Peter is both a person who spills a lot of food on his clothing (S) and grew up as an only child with no siblings (O).\n     - Based on the premises, if people spill a lot of food on their clothing (S), then they do not tidy their spaces consistently and enjoy the process of cleaning (T). This means that if Peter spills a lot of food on his clothing (S), he does not tidy his space consistently and enjoy the process of cleaning (T).\n     - However, based on the premises, if people grew up as only children with no siblings (O), then they tidy their spaces consistently and enjoy the process of cleaning (T). This means that if Peter grew up as an only child with no siblings (O), he tidies his space consistently and enjoys the process of cleaning (T).\n     - These two conclusions contradict each other. Therefore, the first scenario is not possible.\n\n   - Scenario 2: Peter is neither a person who spills a lot of food on his clothing (S) nor grew up as an only child with no siblings (O).\n     - Based on the premises, if people have parents who are very busy with their regular jobs (B), then they grew up as only children with no siblings (O). This means that if Peter did not grow up as an only child with no siblings (O), then his parents are not very busy with their regular jobs (B).\n     - Based on the premises, all households with a high net income (H) have people who have parents who are very busy with their regular jobs (B). This means that if Peter's household does not have a high net income (H), then his parents are not very busy with their regular jobs (B).\n     - Based on the premises, if people grew up as only children with no siblings (O), then they tidy their spaces consistently and enjoy the process of cleaning (T). This means that if Peter did not grow up as an only child with no siblings (O), then he does not tidy his space consistently and enjoy the process of cleaning (T).\n     - Therefore, based on the second scenario, we can conclude that Peter does not tidy his space consistently and enjoy the process of cleaning.\n\nSince the first scenario is not possible and the second scenario leads to a conclusion that contradicts the statement \"Peter tidies his space consistently and enjoys the process of cleaning,\" we can conclude that the statement is uncertain.\n\nHowever, based on the information provided, we can also conclude that Peter does not tidy his space consistently and enjoy the process of cleaning with certainty.",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and their implications.\n\nPremise 1: If people spill a lot of food on their clothing, then they do not tidy their spaces consistently and enjoy the process of cleaning.\n\nPremise 2: All foodies who go out frequently to find new food restaurants to try are people who spill a lot of food on their clothing.\n\nPremise 3: If people grew up as only children with no siblings, then they tidy their spaces consistently and enjoy the process of cleaning.\n\nPremise 4: If people have parents who are very busy with their regular jobs, then they grew up as only children with no siblings.\n\nPremise 5: All households with a high net income have people who have parents who are very busy with their regular jobs.\n\nPremise 6: Peter is either both a person who spills a lot of food on his clothing and grew up as an only child with no siblings, or he is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings.\n\nWe need to analyze the possible scenarios for Peter based on Premise 6:\n\n1. Peter is both a person who spills a lot of food on his clothing and grew up as an only child with no siblings.\n\nIf this is true, then from Premise 1, we know that people who spill a lot of food on their clothing do not tidy their spaces consistently and enjoy the process of cleaning. This contradicts Premise 3, which states that people who grew up as only children with no siblings tidy their spaces consistently and enjoy the process of cleaning. Therefore, this scenario is uncertain because it creates a contradiction.\n\n2. Peter is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings.\n\nIf this is true, then from Premise 3, we know that Peter does not grow up as an only child with no siblings. This means that from Premise 4, he did not have parents who were very busy with their regular jobs. From Premise 5, we know that households with a high net income have people who have parents who are very busy with their regular jobs. Therefore, Peter's household does not have a high net income.\n\nNow, let's analyze the possible scenarios for Peter based on his household's income:\n\n1. Peter's household has a high net income.\n\nIf this is true, then from Premise 5, we know that his parents are very busy with their regular jobs. From Premise 4, this means that Peter grew up as an only child with no siblings. This contradicts Premise 2, which states that people who spill a lot of food on their clothing are foodies who go out frequently to find new food restaurants to try. However, we do not know if Peter spills a lot of food on his clothing. Therefore, this scenario is uncertain because it creates a contradiction.\n\n2. Peter's household does not have a high net income.\n\nIf this is true, then from Premise 5, we know that his parents are not very busy with their regular jobs. From Premise 4, this means that Peter did not grow up as an only child with no siblings. From Premise 6, we know that Peter is neither a person who spills a lot of food on his clothing nor grew up as an only child with no siblings.\n\nNow, let's analyze the possible scenarios for Peter based on his behavior:\n\n1. Peter is a person who spills a lot of food on his clothing.\n\nIf this is true, then from Premise 1, we know that he does not tidy his space consistently and enjoy the process of cleaning. This is opposite to the conclusion we are trying to determine.\n\n2. Peter is not a person who spills a lot of food on his clothing.\n\nIf this is true, then from Premise 3, we know that Peter grew up as an only child with no siblings. This means that from Premise 4, his parents were very busy with their regular jobs. From Premise 5, we know that his household has a high net income.\n\nNow, let's analyze the possible scenarios for Peter based on his household's income:\n\n1. Peter's household has a high net income.\n\nIf this is true, then from Premise 5, we know that his parents are very busy with their regular jobs. From Premise 4, this means that Peter grew up as an only child with no siblings. From Premise 3, this means that Peter tidies his space consistently and enjoys the process of cleaning.\n\nBased on the analysis, the conclusion is true if Peter's household has a high net income and he is not a person who spills a lot of food on his clothing.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "spills_food_on_clothing(peter)",
+          "z3_formula": "spills_food_on_clothing_peter == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "grew_up_as_only_child(peter)",
+          "z3_formula": "grew_up_as_only_child_peter == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "spills_food_on_clothing(X) -> not tidy_spaces_consistently(X) & enjoys_cleaning(X)",
+          "z3_formula": "Implies(spills_food_on_clothing_peter, And(not tidy_spaces_consistently_peter, enjoys_cleaning_peter))",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "grew_up_as_only_child(X) -> tidy_spaces_consistently(X) & enjoys_cleaning(X)",
+          "z3_formula": "Implies(grew_up_as_only_child_peter, And(tidy_spaces_consistently_peter, enjoys_cleaning_peter))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "has_parents_busy_with_jobs(X) -> grew_up_as_only_child(X)",
+          "z3_formula": "Implies(has_parents_busy_with_jobs_peter, grew_up_as_only_child_peter)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "has_high_net_income(X) -> has_parents_busy_with_jobs(X)",
+          "z3_formula": "Implies(has_high_net_income, has_parents_busy_with_jobs_peter)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "grew_up_as_only_child(X) | not grew_up_as_only_child(X) & not spills_food_on_clothing(X)",
+          "z3_formula": "Or(grew_up_as_only_child_peter, And(Not(grew_up_as_only_child_peter), Not(spills_food_on_clothing_peter)))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "tidy_spaces_consistently(peter) & enjoys_cleaning(peter)",
+          "z3_formula": "And(tidy_spaces_consistently_peter, enjoys_cleaning_peter)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "spills_food_on_clothing(peter)",
+          "z3_formula": "spills_food_on_clothing_peter == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "grew_up_as_only_child(peter)",
+          "z3_formula": "grew_up_as_only_child_peter == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "spills_food_on_clothing(X) -> not tidy_space_consistently(X) & enjoys_cleaning(X)",
+          "z3_formula": "Implies(spills_food_on_clothing_peter, And(not_tidy_space_consistently_peter, enjoys_cleaning_peter))",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "grew_up_as_only_child(X) -> tidy_space_consistently(X) & enjoys_cleaning(X)",
+          "z3_formula": "Implies(grew_up_as_only_child_peter, And(tidy_space_consistently_peter, enjoys_cleaning_peter))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "high_net_income(X) -> busy_parents(X)",
+          "z3_formula": "Implies(high_net_income, busy_parents)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "busy_parents(X) -> grew_up_as_only_child(X)",
+          "z3_formula": "Implies(busy_parents, grew_up_as_only_child_peter)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "high_net_income(X) -> busy_parents(X)",
+          "z3_formula": "Implies(high_net_income, busy_parents)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "foodie(X) -> spills_food_on_clothing(X)",
+          "z3_formula": "Implies(foodie, spills_food_on_clothing_peter)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "goes_out_frequently(X) -> foodie(X)",
+          "z3_formula": "Implies(goes_out_frequently, foodie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "high_net_income(X) -> goes_out_frequently(X)",
+          "z3_formula": "Implies(high_net_income, goes_out_frequently)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not tidy_space_consistently(peter) & enjoys_cleaning(peter)",
+          "z3_formula": "And(not_tidy_space_consistently_peter, enjoys_cleaning_peter)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "tidy_space_consistently(peter) & enjoys_cleaning(peter)",
+          "z3_formula": "And(tidy_space_consistently_peter, enjoys_cleaning_peter)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "tidy_space_consistently(peter) & enjoys_cleaning(peter)",
+          "z3_formula": "And(tidy_space_consistently_peter, enjoys_cleaning_peter)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not tidy_space_consistently(peter) & enjoys_cleaning(peter)",
+          "z3_formula": "And(not_tidy_space_consistently_peter, enjoys_cleaning_peter)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "tidy_space_consistently(peter) & enjoys_cleaning(peter)",
+          "z3_formula": "And(tidy_space_consistently_peter, enjoys_cleaning_peter)",
+          "source_step": 11
+        }
+      ],
+      [],
+      [
+        {
+          "type": "rule",
+          "expression": "foodies(X) & frequent_restaurants(X) -> spill_food(X)",
+          "z3_formula": "Implies(And(foodies_peter, frequent_restaurants_peter), spill_food_peter)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "foodies(peter) & frequent_restaurants(peter)",
+          "z3_formula": "And(foodies_peter, frequent_restaurants_peter) == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "spill_food(X) -> not tidy(X) & enjoy_cleaning(X)",
+          "z3_formula": "Implies(spill_food_peter, And(Not(tidy_peter), enjoy_cleaning_peter))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "only_child(X) -> tidy(X) & enjoy_cleaning(X)",
+          "z3_formula": "Implies(only_child_peter, And(tidy_peter, enjoy_cleaning_peter))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "busy_parents(X) -> only_child(X)",
+          "z3_formula": "Implies(busy_parents_peter, only_child_peter)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "busy_parents(X) -> high_net_income(X)",
+          "z3_formula": "Implies(busy_parents_X, high_net_income_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "high_net_income(X) -> busy_parents(X)",
+          "z3_formula": "Implies(high_net_income_X, busy_parents_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "only_child(X) | not spill_food(X) & not only_child(X)",
+          "z3_formula": "Or(only_child_peter, Not(And(spill_food_peter, Not(only_child_peter))))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "tidy(peter) & enjoy_cleaning(peter)",
+          "z3_formula": "And(tidy_peter, enjoy_cleaning_peter) == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "spills_food_on_clothing(peter)",
+          "z3_formula": "spills_food_on_clothing_peter == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "spills_food_on_clothing(X) -> not tidy(X) & enjoys_cleaning(X)",
+          "z3_formula": "Implies(spills_food_on_clothing_peter, And(not_tidy_peter, enjoys_cleaning_peter))",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "foodies_go_out_frequently(peter)",
+          "z3_formula": "foodies_go_out_frequently_peter == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "foodies_go_out_frequently(X) -> spills_food_on_clothing(X)",
+          "z3_formula": "Implies(foodies_go_out_frequently_peter, spills_food_on_clothing_peter)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "only_child(peter)",
+          "z3_formula": "only_child_peter == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "only_child(X) -> tidy(X) & enjoys_cleaning(X)",
+          "z3_formula": "Implies(only_child_peter, And(tidy_peter, enjoys_cleaning_peter))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "busy_parents(peter)",
+          "z3_formula": "busy_parents_peter == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "busy_parents(X) -> only_child(X)",
+          "z3_formula": "Implies(busy_parents_peter, only_child_peter)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "high_net_income(peter)",
+          "z3_formula": "high_net_income_peter == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "high_net_income(X) -> busy_parents(X)",
+          "z3_formula": "Implies(high_net_income_peter, busy_parents_peter)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not (high_net_income(peter) & only_child(peter))",
+          "z3_formula": "Not(And(high_net_income_peter, only_child_peter))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not tidy(peter) & enjoys_cleaning(peter)",
+          "z3_formula": "And(not_tidy_peter, enjoys_cleaning_peter)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not (only_child(peter) & tidy(peter) & enjoys_cleaning(peter))",
+          "z3_formula": "Not(And(only_child_peter, tidy_peter, enjoys_cleaning_peter))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not tidy(peter) & enjoys_cleaning(peter) | not (only_child(peter) & tidy(peter) & enjoys_cleaning(peter))",
+          "z3_formula": "Or(And(not_tidy_peter, enjoys_cleaning_peter), Not(And(only_child_peter, tidy_peter, enjoys_cleaning_peter)))",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "spills_food_on_clothing(peter)",
+          "z3_formula": "spills_food_on_peter == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "grew_up_as_only_child(peter)",
+          "z3_formula": "grew_up_as_only_child_peter == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "spills_food_on_clothing(X) -> not tidy_space_consistently(X) & not enjoys_cleaning(X)",
+          "z3_formula": "Implies(spills_food_on_peter, And(not_tidy_space_consistently_peter, not_enjoys_cleaning_peter))",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "grew_up_as_only_child(X) -> tidy_space_consistently(X) & enjoys_cleaning(X)",
+          "z3_formula": "Implies(grew_up_as_only_child_peter, And(tidy_space_consistently_peter, enjoys_cleaning_peter))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "has_busy_parents(X) -> grew_up_as_only_child(X)",
+          "z3_formula": "Implies(has_busy_parents_peter, grew_up_as_only_child_peter)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "has_high_net_income(X) -> has_busy_parents(X)",
+          "z3_formula": "Implies(has_high_net_income_peter, has_busy_parents_peter)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "either spills_food_on_clothing(peter) & grew_up_as_only_child(peter) or not spills_food_on_clothing(peter) & not grew_up_as_only_child(peter)",
+          "z3_formula": "Or(And(spills_food_on_peter, grew_up_as_only_child_peter), And(Not(spills_food_on_peter), Not(grew_up_as_only_child_peter)))",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "spills_food_on_clothing(X) -> not tidy_spaces_consistently(X) & enjoys_cleaning(X)",
+          "z3_formula": "Implies(spills_food_on_clothing_peter, And(not tidy_spaces_consistently_peter, enjoys_cleaning_peter))",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "foodies(X) -> spills_food_on_clothing(X)",
+          "z3_formula": "Implies(foodies_peter, spills_food_on_clothing_peter)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "high_net_income(X) -> grew_up_as_only_child(X)",
+          "z3_formula": "Implies(high_net_income_peter, grew_up_as_only_child_peter)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "grew_up_as_only_child(X) -> tidy_spaces_consistently(X) & enjoys_cleaning(X)",
+          "z3_formula": "Implies(grew_up_as_only_child_peter, And(tidy_spaces_consistently_peter, enjoys_cleaning_peter))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "high_net_income(X) -> foodies(X)",
+          "z3_formula": "Implies(high_net_income_peter, foodies_peter)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not (spills_food_on_clothing(peter) & grew_up_as_only_child(peter))",
+          "z3_formula": "Not(And(spills_food_on_clothing_peter, grew_up_as_only_child_peter))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not tidy_spaces_consistently(peter) & enjoys_cleaning(peter)",
+          "z3_formula": "And(not tidy_spaces_consistently_peter, enjoys_cleaning_peter)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not foodies(peter)",
+          "z3_formula": "not foodies_peter",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "Unknown",
+          "z3_formula": "Unknown",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "foodie(peter)",
+          "z3_formula": "foodie_peter == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "foodie(X) -> spills_food_on_clothing(X)",
+          "z3_formula": "Implies(foodie_peter, spills_food_on_clothing_peter)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "spills_food_on_clothing(X) -> not tidy_space_consistently_and_enjoy_cleaning(X)",
+          "z3_formula": "Implies(spills_food_on_clothing_peter, not tidy_space_consistently_and_enjoy_cleaning_peter)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "only_child(X) -> tidy_space_consistently_and_enjoy_cleaning(X)",
+          "z3_formula": "Implies(only_child_peter, tidy_space_consistently_and_enjoy_cleaning_peter)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "busy_parents(X) -> only_child(X)",
+          "z3_formula": "Implies(busy_parents_peter, only_child_peter)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "high_net_income(X) -> busy_parents(X)",
+          "z3_formula": "Implies(high_net_income, busy_parents_peter)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "high_net_income",
+          "z3_formula": "high_net_income == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "(spills_food_on_clothing(X) & only_child(X)) | not (spills_food_on_clothing(X) & only_child(X))",
+          "z3_formula": "Or(And(spills_food_on_clothing_peter, only_child_peter), Not(And(spills_food_on_clothing_peter, only_child_peter)))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "tidy_space_consistently_and_enjoy_cleaning(peter)",
+          "z3_formula": "Or(And(spills_food_on_clothing_peter, only_child_peter), only_child_peter)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "spills_food(X) -> ~tidies_space(X) & enjoys_cleaning(X)",
+          "z3_formula": "Implies(spills_food_peter, And(~tidies_space_peter, enjoys_cleaning_peter))",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "foodies(X) -> spills_food(X)",
+          "z3_formula": "Implies(foodies_peter, spills_food_peter)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "tidies_space(X) & enjoys_cleaning(X) -> ~spills_food(X)",
+          "z3_formula": "Implies(And(tidies_space_peter, enjoys_cleaning_peter), ~spills_food_peter)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "only_child(X) -> tidies_space(X) & enjoys_cleaning(X)",
+          "z3_formula": "Implies(only_child_peter, And(tidies_space_peter, enjoys_cleaning_peter))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "busy_parents(X) -> only_child(X)",
+          "z3_formula": "Implies(busy_parents_peter, only_child_peter)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "high_net_income(X) -> busy_parents(X)",
+          "z3_formula": "Implies(high_net_income_peter, busy_parents_peter)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "(spills_food(X) & only_child(X)) | (~spills_food(X) & ~only_child(X))",
+          "z3_formula": "Or(And(spills_food_peter, only_child_peter), And(~spills_food_peter, ~only_child_peter))",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "spills_food_on_clothing(peter)",
+          "z3_formula": "spills_food_on_clothing_peter == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "grew_up_as_only_child(peter)",
+          "z3_formula": "grew_up_as_only_child_peter == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "spills_food_on_clothing(S) -> not tidy_spaces_consistently_and_enjoy_cleaning(S)",
+          "z3_formula": "Implies(spills_food_on_clothing_peter, not tidy_spaces_consistently_and_enjoy_cleaning_peter)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "grew_up_as_only_child(O) -> tidy_spaces_consistently_and_enjoy_cleaning(O)",
+          "z3_formula": "Implies(grew_up_as_only_child_peter, tidy_spaces_consistently_and_enjoy_cleaning_peter)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "grew_up_as_only_child(O) -> parents_busy_with_regular_jobs(B)",
+          "z3_formula": "Implies(grew_up_as_only_child_peter, parents_busy_with_regular_jobs_peter)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "parents_busy_with_regular_jobs(B) -> high_net_income(H)",
+          "z3_formula": "Implies(parents_busy_with_regular_jobs_peter, high_net_income_peter)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "high_net_income(H) -> parents_busy_with_regular_jobs(B)",
+          "z3_formula": "Implies(high_net_income_peter, parents_busy_with_regular_jobs_peter)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "parents_busy_with_regular_jobs(B) -> not grew_up_as_only_child(O)",
+          "z3_formula": "Implies(parents_busy_with_regular_jobs_peter, not grew_up_as_only_child_peter)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "not grew_up_as_only_child(O) -> not tidy_spaces_consistently_and_enjoy_cleaning(O)",
+          "z3_formula": "Implies(not grew_up_as_only_child_peter, not tidy_spaces_consistently_and_enjoy_cleaning_peter)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not tidy_spaces_consistently_and_enjoy_cleaning(peter)",
+          "z3_formula": "not tidy_spaces_consistently_and_enjoy_cleaning_peter == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "spills_food_on_clothing(X) -> not tidy_space_consistently(X) & enjoys_cleaning(X)",
+          "z3_formula": "Implies(spills_food_on_clothing, And(not_tidy_space_consistently, enjoys_cleaning))",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "foodies(X) -> spills_food_on_clothing(X)",
+          "z3_formula": "Implies(foodies, spills_food_on_clothing)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "only_child(X) -> tidy_space_consistently(X) & enjoys_cleaning(X)",
+          "z3_formula": "Implies(only_child, And(tidy_space_consistently, enjoys_cleaning))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "busy_parents(X) -> only_child(X)",
+          "z3_formula": "Implies(busy_parents, only_child)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "high_net_income(X) -> busy_parents(X)",
+          "z3_formula": "Implies(high_net_income, busy_parents)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "spills_food_on_clothing(peter) & only_child(peter) -> not tidy_space_consistently(peter) & enjoys_cleaning(peter)",
+          "z3_formula": "Implies(And(spills_food_on_clothing_peter, only_child_peter), And(not_tidy_space_consistently_peter, enjoys_cleaning_peter))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not (spills_food_on_clothing(peter) & only_child(peter))",
+          "z3_formula": "Not(And(spills_food_on_clothing_peter, only_child_peter))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not only_child(peter)",
+          "z3_formula": "Not(only_child_peter)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not high_net_income(peter)",
+          "z3_formula": "Not(high_net_income_peter)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "high_net_income(peter) -> busy_parents(peter)",
+          "z3_formula": "Implies(high_net_income_peter, busy_parents_peter)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "busy_parents(peter) -> only_child(peter)",
+          "z3_formula": "Implies(busy_parents_peter, only_child_peter)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "high_net_income(peter) -> only_child(peter)",
+          "z3_formula": "Implies(high_net_income_peter, only_child_peter)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "only_child(peter) -> tidy_space_consistently(peter) & enjoys_cleaning(peter)",
+          "z3_formula": "Implies(only_child_peter, And(tidy_space_consistently_peter, enjoys_cleaning_peter))",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not tidy_space_consistently(peter) & enjoys_cleaning(peter)",
+          "z3_formula": "And(not_tidy_space_consistently_peter, enjoys_cleaning_peter)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not (spills_food_on_clothing(peter) & not tidy_space_consistently(peter) & enjoys_cleaning(peter))",
+          "z3_formula": "Not(And(spills_food_on_clothing_peter, not_tidy_space_consistently_peter, enjoys_cleaning_peter))",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not spills_food_on_clothing(peter)",
+          "z3_formula": "Not(spills_food_on_clothing_peter)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not high_net_income(peter)",
+          "z3_formula": "Not(high_net_income_peter)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not high_net_income(peter) -> not busy_parents(peter)",
+          "z3_formula": "Implies(Not(high_net_income_peter), Not(busy_parents_peter))",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not busy_parents(peter)",
+          "z3_formula": "Not(busy_parents_peter)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not only_child(peter)",
+          "z3_formula": "Not(only_child_peter)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not (not only_child(peter))",
+          "z3_formula": "Not(Not(only_child_peter))",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "only_child(peter)",
+          "z3_formula": "only_child_peter",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "only_child(peter) -> tidy_space_consistently(peter) & enjoys_cleaning(peter)",
+          "z3_formula": "Implies(only_child_peter, And(tidy_space_consistently_peter, enjoys_cleaning_peter))",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "tidy_space_consistently(peter) & enjoys_cleaning(peter)",
+          "z3_formula": "And(tidy_space_consistently_peter, enjoys_cleaning_peter)",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "high_net_income(peter) -> tidy_space_consistently(peter) & enjoys_cleaning(peter)",
+          "z3_formula": "Implies(high_net_income_peter, And(tidy_space_consistently_peter, enjoys_cleaning_peter))",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "True",
+          "z3_formula": "True",
+          "source_step": 26
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 114,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 76
+    },
+    "maxsat_stats": {
+      "satisfied": 67,
+      "excluded": 9,
+      "total_weight": 93,
+      "solve_time_ms": 2.9737288132309914
+    },
+    "timing": {
+      "trace_gen_s": 12.611,
+      "extraction_s": 45.226,
+      "dedup_s": 2.042,
+      "maxsat_s": 0.007,
+      "total_s": 59.887
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "model": "Qwen2.5-14B-Instruct",
+  "source_exp": "exp-001 (folio_204_14b + exp034_qwen25_14b_proofwriter)",
+  "folio": {
+    "n": 204,
+    "k": 12,
+    "k_mean": 12.0,
+    "k_min": 11,
+    "k_max": 12,
+    "n_skipped": 0,
+    "kappa": 0.738,
+    "eff_k": 1.32,
+    "categories": {
+      "True": 42.42,
+      "False": 37.39,
+      "Unknown": 20.19
+    }
+  },
+  "pw600": {
+    "n": 600,
+    "k": 12,
+    "k_mean": 11.97,
+    "k_min": 10,
+    "k_max": 12,
+    "n_skipped": 0,
+    "kappa": 0.6168,
+    "eff_k": 1.54,
+    "categories": {
+      "True": 32.88,
+      "False": 28.75,
+      "Unknown": 38.37
+    }
+  },
+  "combined": {
+    "n": 804,
+    "k_mean": 11.98,
+    "kappa": 0.6561,
+    "eff_k": 1.46
+  }
+}

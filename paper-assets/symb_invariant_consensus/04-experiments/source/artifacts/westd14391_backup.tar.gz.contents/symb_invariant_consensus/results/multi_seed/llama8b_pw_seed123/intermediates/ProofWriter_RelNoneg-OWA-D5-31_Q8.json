@@ -1,0 +1,1048 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-31_Q8",
+    "problem": "The dog chases the squirrel. The lion eats the squirrel. The lion sees the dog. The squirrel chases the dog. The squirrel chases the lion. The squirrel eats the lion. The squirrel is green. The squirrel is rough. The squirrel sees the dog. The squirrel sees the lion. The tiger is rough. If something is blue then it chases the lion. If something chases the lion and it eats the squirrel then the squirrel sees the tiger. If the squirrel eats the lion and the squirrel is green then the lion sees the tiger. If something sees the tiger then it is blue. Rough things are big. If something chases the dog then it chases the tiger.\n\nDetermine whether the following statement is true, false, or unknown:\nThe lion does not chase the lion.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nEats($x, $y, bool) ::: Does x eat y?\nSees($x, $y, bool) ::: Does x see y?\nGreen($x, bool) ::: Is x green?\nRough($x, bool) ::: Is x rough?\nBlue($x, bool) ::: Is x blue?\nBig($x, bool) ::: Is x big?\n\nFacts:\nChases(Dog, Squirrel, True) ::: The dog chases the squirrel.\nEats(Lion, Squirrel, True) ::: The lion eats the squirrel.\nSees(Lion, Dog, True) ::: The lion sees the dog.\nChases(Squirrel, Dog, True) ::: The squirrel chases the dog.\nChases(Squirrel, Lion, True) ::: The squirrel chases the lion.\nEats(Squirrel, Lion, True) ::: The squirrel eats the lion.\nGreen(Squirrel, True) ::: The squirrel is green.\nRough(Squirrel, True) ::: The squirrel is rough.\nSees(Squirrel, Dog, True) ::: The squirrel sees the dog.\nSees(Squirrel, Lion, True) ::: The squirrel sees the lion.\nRough(Tiger, True) ::: The tiger is rough.\n\nRules:\nBlue($x, True) >>> Chases($x, Lion, True) ::: If something is blue then it chases the lion.\nChases($x, Lion, True) && Eats($x, Squirrel, True) >>> Sees(Squirrel, Tiger, True) ::: If something chases the lion and it eats the squirrel then the squirrel sees the tiger.\nEats(Squirrel, Lion, True) && Green(Squirrel, True) >>> Sees(Lion, Tiger, True) ::: If the squirrel eats the lion and the squirrel is green then the lion sees the tiger.\nSees($x, Tiger, True) >>> Blue($x, True) ::: If something sees the tiger then it is blue.\nRough($x, True) >>> Big($x, True) ::: Rough things are big.\nChases($x, Dog, True) >>> Chases($x, Tiger, True) ::: If something chases the dog then it chases the tiger.\n\nQuery:\nChases(Lion, Lion, False) ::: The lion does not chase the lion."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 93.0,
+      "Unknown": 121.0
+    },
+    "answer_counts": {
+      "Unknown": 7,
+      "False": 3
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The lion does not chase the lion\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. There is no direct information that states the lion chases the lion or does not chase the lion.\n2. We can derive some information by analyzing the given rules and the events described in the problem:\n\n   a. The lion eats the squirrel.\n   b. The squirrel chases the lion.\n   c. The squirrel eats the lion.\n   \n   However, these statements do not provide any direct information about the lion chasing the lion.\n\n3. Rule 1: If something is blue then it chases the lion. \n   Since the lion is not described as blue, we cannot apply this rule to determine whether the lion chases the lion.\n\n4. Rule 2: If something chases the lion and it eats the squirrel then the squirrel sees the tiger. \n   This rule is irrelevant to determining whether the lion chases the lion.\n\n5. Rule 3: If the squirrel eats the lion and the squirrel is green then the lion sees the tiger. \n   This rule is also irrelevant to determining whether the lion chases the lion.\n\n6. Rule 4: If something sees the tiger then it is blue. \n   This rule does not provide any information about the lion chasing the lion.\n\n7. Rule 5: Rough things are big.\n   Since the lion is not described as rough, we cannot apply this rule to determine whether the lion chases the lion.\n\n8. Rule 6: If something chases the dog then it chases the tiger. \n   There is no information about the lion chasing the dog, so we cannot apply this rule to determine whether the lion chases the tiger.\n\nGiven the lack of direct information and the irrelevance of the rules to the statement, we cannot conclude whether the lion chases the lion or not. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the given statement is true, false, or unknown, we need to analyze the provided information and apply the rules step by step.\n\n1. The lion eats the squirrel. (Given statement)\n2. The lion sees the dog. (Given statement)\n3. The squirrel chases the dog. (Given statement)\n4. The squirrel chases the lion. (Given statement)\n5. The squirrel eats the lion. (Given statement)\n\nFrom statements 4 and 5, we know that the squirrel chases the lion and then eats it. According to the given rules: \n\"If something chases the lion and it eats the squirrel then the squirrel sees the tiger.\"\n\nHowever, there is a catch. This rule states that the squirrel sees the tiger if it chases the lion and eats the squirrel. But in this case, the squirrel eats the lion, not the other way around.\n\n6. The squirrel is green. (Given statement)\n7. The squirrel eats the lion and the squirrel is green then the lion sees the tiger.\nSince the condition is met, we can conclude that the lion sees the tiger.\n\n8. The tiger is rough. (Given statement)\n9. The squirrel sees the lion. (Given statement)\n10. If something sees the tiger then it is blue.\nHowever, we do not know if the lion sees the tiger based on the rule. We only know that the lion sees the tiger is a possibility if the condition is met.\n\nNow let's analyze the statement \"The lion does not chase the lion.\" The given rule states: \n\"If something is blue then it chases the lion.\"\nIf we assume that the lion is blue (based on rule 10), then it would chase itself. \n\nHowever, based on rule 10, we are not sure if the lion is blue or not. The only information we have is that if something sees the tiger, then it is blue. But we don't know if the lion sees the tiger or not.\n\nTherefore, the information provided does not conclusively determine whether the lion is blue or not. Hence, we cannot conclude if the lion chases the lion or not.\n\nThe final answer is \\boxed{unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to break it down step by step based on the given statements.\n\n1. The lion eats the squirrel.\n2. The lion sees the dog.\n3. The squirrel chases the dog.\n4. The squirrel chases the lion.\n5. The squirrel eats the lion.\n6. The squirrel is green.\n7. The squirrel is rough.\n8. The squirrel sees the dog.\n9. The squirrel sees the lion.\n10. The tiger is rough.\n11. If something is blue then it chases the lion.\n12. If something chases the lion and it eats the squirrel then the squirrel sees the tiger.\n13. If the squirrel eats the lion and the squirrel is green then the lion sees the tiger.\n14. If something sees the tiger then it is blue.\n15. Rough things are big.\n16. If something chases the dog then it chases the tiger.\n\nWe are asked to determine whether the statement \"The lion does not chase the lion\" is true, false, or unknown.\n\nFrom the given statements, we can see that there is no direct statement that says the lion chases the lion. However, we need to consider the given rules to see if we can deduce the answer.\n\nLet's analyze rule 16: \"If something chases the dog then it chases the tiger.\" Since the squirrel chases the dog (statement 3), according to this rule, the squirrel chases the tiger.\n\nNow, let's analyze rule 12: \"If something chases the lion and it eats the squirrel then the squirrel sees the tiger.\" Since the squirrel chases the lion (statement 4), and the squirrel eats the lion (statement 5), according to this rule, the squirrel sees the tiger.\n\nHowever, we don't know if the lion chases the lion. We only know that the lion eats the squirrel (statement 1). We need to check if there is any rule that says the lion chases the lion.\n\nBut we can see that the lion sees the dog (statement 2) and the squirrel sees the dog (statement 8). Since the squirrel is rough (statement 7) and rough things are big (rule 15), the squirrel is big.\n\nFrom rule 11, we can see that if something is blue then it chases the lion. However, we know that the squirrel is green (statement 6) and sees the tiger (from rule 12). But since the lion sees the tiger (from rule 13), we can conclude that the lion sees the tiger.\n\nHowever, the lion sees the tiger because the squirrel is green and eats the lion. But rule 13 says that if the squirrel eats the lion and the squirrel is green, then the lion sees the tiger. We don't have any rule that says the lion chases the lion.\n\nTherefore, based on the given statements and rules, we cannot conclude whether the lion chases the lion or not. Hence, our answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine the truth value of the statement \"The lion does not chase the lion,\" we need to analyze the given premises.\n\n1. There is no direct statement saying the lion chases the lion. \n2. The statement \"The lion eats the squirrel\" indicates that the lion is an eater, not a chaser in this context.\n3. There is no statement saying the lion chases anything. \n\nHowever, we need to consider the premises more thoroughly.\n\n- If something is blue then it chases the lion.\n- If something chases the lion and it eats the squirrel then the squirrel sees the tiger.\n- If the squirrel eats the lion and the squirrel is green then the lion sees the tiger.\n- If something sees the tiger then it is blue.\n\nFrom premise 1, we can infer that the lion is not blue, since there is no statement saying it chases the lion.\n\nFrom premise 2, we can infer that the squirrel is not blue.\n\nFrom premise 3, we can infer that the lion is not green, since there is no statement saying the squirrel eats the lion.\n\nFrom premise 4, we can infer that the tiger is blue, since the tiger is rough and the statement \"If something sees the tiger then it is blue\" is true.\n\nWe are still unable to determine whether the lion chases the lion or not, so we cannot conclude the statement as true or false.\n\nHowever, we can conclude that the statement is true, because there is no statement that says the lion chases the lion, but also there is no statement that says it does not chase the lion.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nRule 1: If something is blue, then it chases the lion.\nRule 2: If something chases the lion and it eats the squirrel, then the squirrel sees the tiger.\nRule 3: If the squirrel eats the lion and the squirrel is green, then the lion sees the tiger.\nRule 4: If something sees the tiger, then it is blue.\nRule 5: Rough things are big.\nRule 6: If something chases the dog, then it chases the tiger.\n\nGiven information:\n- The lion eats the squirrel.\n- The squirrel is green.\n- The tiger is rough.\n\nNow, let's analyze the statement: \"The lion does not chase the lion.\"\n\nWe need to determine if the lion chases the lion or not.\n\nFrom the given information, we know that the lion eats the squirrel, and the squirrel is green. \n\nUsing Rule 3: If the squirrel eats the lion and the squirrel is green, then the lion sees the tiger. \nHowever, this rule is irrelevant to the current problem. But it is still a given fact that the lion is related to the squirrel eating the lion and the squirrel being green.\n\nUsing Rule 4: If something sees the tiger, then it is blue.\nSince the lion sees the tiger, it implies that the lion is blue.\n\nNow, let's examine Rule 1: If something is blue, then it chases the lion.\nSince the lion is blue, it means the lion chases the lion.\n\nTherefore, the statement \"The lion does not chase the lion\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The lion does not chase the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion eats the squirrel. \n   We have no information that the lion chases the squirrel, only that it eats it. This does not imply that the lion chases the lion.\n\n2. The lion sees the dog. \n   This information does not affect the statement about the lion chasing the lion.\n\n3. The squirrel chases the dog. \n   Again, this information does not affect the statement about the lion chasing the lion.\n\n4. The squirrel chases the lion. \n   This is the first statement that involves the lion chasing. However, it is the squirrel, not the lion, that chases the lion.\n\n5. The squirrel eats the lion. \n   As mentioned before, this does not imply that the lion chases the lion.\n\n6. The squirrel is green. \n   This information does not affect the statement about the lion chasing the lion.\n\n7. The squirrel is rough. \n   Since the squirrel is rough, it means the squirrel is big. However, this information does not affect the statement about the lion chasing the lion.\n\n8. The squirrel sees the dog. \n   This information does not affect the statement about the lion chasing the lion.\n\n9. The squirrel sees the lion. \n   As mentioned before, this is the squirrel that sees the lion, not the lion seeing the lion or the lion chasing the lion.\n\n10. The tiger is rough. \n    Since the tiger is rough, it means the tiger is big. However, this information does not affect the statement about the lion chasing the lion.\n\n11. If something is blue then it chases the lion. \n    We do not have any information that the lion is blue.\n\n12. If something chases the lion and it eats the squirrel then the squirrel sees the tiger. \n    This statement is irrelevant to the lion chasing the lion.\n\n13. If the squirrel eats the lion and the squirrel is green then the lion sees the tiger. \n    As mentioned before, this statement does not affect the lion chasing the lion.\n\n14. If something sees the tiger then it is blue. \n    We do not have any information that the lion sees the tiger.\n\n15. Rough things are big. \n    As mentioned before, this statement does not affect the lion chasing the lion.\n\n16. If something chases the dog then it chases the tiger. \n    This statement is irrelevant to the lion chasing the lion.\n\nBased on the given information, we do not have any statement that directly implies the lion chases the lion or does not chase the lion. Therefore, the statement \"The lion does not chase the lion\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications.\n\n1. The lion eats the squirrel.\n2. The lion sees the dog.\n3. The squirrel chases the dog.\n4. The squirrel chases the lion.\n5. The squirrel eats the lion.\n6. The squirrel is green.\n7. The squirrel is rough.\n8. The squirrel sees the dog.\n9. The squirrel sees the lion.\n10. The tiger is rough.\n11. If something is blue then it chases the lion.\n12. If something chases the lion and it eats the squirrel then the squirrel sees the tiger.\n13. If the squirrel eats the lion and the squirrel is green then the lion sees the tiger.\n14. If something sees the tiger then it is blue.\n15. Rough things are big.\n16. If something chases the dog then it chases the tiger.\n\nNow, let's examine the statement \"The lion does not chase the lion.\"\n\nFrom statement 1, we know that the lion eats the squirrel. \n\nHowever, we cannot directly conclude whether the lion chases the lion or not. \n\nWe can start by looking at the implications of the statements:\n\n- From statement 4, we know that the squirrel chases the lion.\n- From statement 5, we know that the squirrel eats the lion. \n- From statement 6, we know that the squirrel is green.\n- From statement 13, we know that if the squirrel eats the lion and the squirrel is green, then the lion sees the tiger.\n\nLet's assume that the lion chases the lion. Then, we have a contradiction because if the lion chases the lion, it means the lion sees the lion (from statement 2), which implies that the lion sees the tiger (from statement 14), but then we cannot determine whether the lion is blue or not.\n\nHowever, from statement 11, we know that if something is blue then it chases the lion. \n\nNow, if the lion sees the tiger (from statement 13), we cannot directly conclude whether the lion is blue or not. However, we can conclude that the lion sees the tiger, and since the lion sees the tiger, it must be the case that the lion is blue (from statement 14).\n\nHowever, from statement 3, we know that the squirrel chases the dog.\nFrom statement 16, we know that if something chases the dog then it chases the tiger.\nTherefore, we can conclude that the squirrel chases the tiger.\n\nFrom statement 5, we know that the squirrel eats the lion. \nFrom statement 12, we know that if something chases the lion and it eats the squirrel then the squirrel sees the tiger. \nSince the squirrel eats the lion and it is the case that the squirrel chases the lion (from statement 4), then we can conclude that the squirrel sees the tiger.\n\nHowever, from statement 14, we know that if something sees the tiger then it is blue.\nTherefore, the squirrel sees the tiger, which means the squirrel is blue.\n\nHowever, from statement 7, we know that the squirrel is rough.\nFrom statement 10, we know that the tiger is rough.\nFrom statement 15, we know that rough things are big.\nTherefore, we can conclude that both the squirrel and the tiger are big.\n\nHowever, the statement \"The lion does not chase the lion\" is a straightforward implication of the statement \"The lion sees the dog\" and the statement \"The lion sees the lion\".",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The lion does not chase the lion\" is true, false, or unknown, we need to analyze the given premises step by step.\n\n1. The lion eats the squirrel.\n2. The lion sees the dog.\n3. The squirrel chases the dog.\n4. The squirrel chases the lion.\n5. The squirrel eats the lion.\n6. The squirrel is green.\n7. The squirrel is rough.\n8. The squirrel sees the dog.\n9. The squirrel sees the lion.\n10. The tiger is rough.\n11. If something is blue then it chases the lion.\n12. If something chases the lion and it eats the squirrel then the squirrel sees the tiger.\n13. If the squirrel eats the lion and the squirrel is green then the lion sees the tiger.\n14. If something sees the tiger then it is blue.\n15. Rough things are big.\n16. If something chases the dog then it chases the tiger.\n\nWe are trying to determine whether the lion chases the lion. Let's break down the information:\n\n- There is no direct statement saying the lion chases the lion.\n- There is no statement saying the lion does not chase the lion.\n\nHowever, we can analyze the given information:\n\nFrom statement 5, the squirrel eats the lion. \nFrom statement 6, the squirrel is green.\nFrom statement 13, if the squirrel eats the lion and the squirrel is green, then the lion sees the tiger.\n\nSince the squirrel eats the lion and the squirrel is green, we can conclude that the lion sees the tiger (from statement 13).\n\nNow, let's examine the statement \"The lion does not chase the lion.\"\n\nIf the lion chases the lion, it contradicts the fact that the lion sees the tiger (from statement 13). However, we cannot conclude that the lion does not chase the lion because there is no direct information stating that the lion does not chase the lion.\n\nTherefore, the statement \"The lion does not chase the lion\" is unknown because we cannot definitively determine whether the lion chases the lion or not based on the given premises.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion eats the squirrel. \nThis tells us that the lion is involved in the squirrel's life, but it doesn't tell us about the lion's behavior towards itself.\n\n2. If something is blue then it chases the lion.\nThis rule does not apply to the lion, as it is not blue.\n\n3. The lion sees the dog. \nThis tells us that the lion is aware of the dog's presence, but again, it does not tell us about the lion's behavior towards itself.\n\n4. The squirrel chases the lion. \nThis tells us that the squirrel is capable of chasing the lion, but it does not tell us about the lion's behavior towards itself.\n\n5. The lion sees the squirrel. \nThis tells us that the lion is aware of the squirrel's presence, but again, it does not tell us about the lion's behavior towards itself.\n\nNow, we are looking for a rule that could apply to the lion. The closest rule we can find is:\n\n6. If something chases the lion and it eats the squirrel then the squirrel sees the tiger.\nHowever, this rule does not apply to the lion as it is not chasing the lion in this rule.\n\nThe only other rule that mentions the lion is:\n\n7. The lion eats the squirrel. \nHowever, this rule does not tell us about the lion's behavior towards itself.\n\nWe are left with no information that directly tells us whether the lion chases itself or not. Therefore, we cannot conclude that the statement is true or false based on the given information. The statement's truth value is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine the truth value of the statement \"The lion does not chase the lion.\"\n\n1. The lion eats the squirrel. \nThis statement does not provide information about the lion chasing anything.\n\n2. The lion sees the dog. \nThis statement also does not provide information about the lion chasing anything.\n\nHowever, we have another statement:\n3. If something chases the lion and it eats the squirrel then the squirrel sees the tiger.\n\nThis statement implies that there is a chain of events where something chases the lion, the lion eats the squirrel, and the squirrel sees the tiger. \n\nBut, from statement 1, we know that the lion eats the squirrel, and from statement 3, we can infer that the squirrel sees the tiger. \n\nHowever, statement 4 implies that if the squirrel sees the tiger then the squirrel is blue. \n\nStatement 6 says that the squirrel is green.\n\nSo, the squirrel is green, not blue.\n\nNow, we have another statement:\n7. If the squirrel eats the lion and the squirrel is green then the lion sees the tiger.\n\nThis statement implies that the lion sees the tiger if the squirrel eats the lion and the squirrel is green. \n\nBut, from statement 1, we know that the lion eats the squirrel, which is green (from statement 6).\n\nStatement 5 says that the lion sees the squirrel, which we know is green.\n\nStatement 7 implies that the lion sees the tiger if the squirrel eats the lion and the squirrel is green. \n\nSince the lion sees the squirrel and the squirrel is green, we can infer that the lion sees the tiger.\n\nNow, we have another statement:\n8. If something sees the tiger then it is blue.\n\nThis statement implies that the lion, which sees the tiger, is blue.\n\nHowever, we have another statement:\n9. The tiger is rough.\n\nStatement 10 says that rough things are big.\n\nSo, the tiger is big.\n\nNow, we have another statement:\n11. If something chases the dog then it chases the tiger.\n\nThis statement implies that the squirrel, which chases the dog (statement 4), chases the tiger.\n\nStatement 8 says that if something sees the tiger then it is blue.\n\nSo, the squirrel, which chases the tiger and sees the tiger, is blue.\n\nNow, we have another statement:\n12. The squirrel is green.\n\nHowever, we already know that the squirrel is blue.\n\nStatement 13 says that the tiger is rough.\n\nStatement 14 says that rough things are big.\n\nSo, the tiger is big.\n\nNow, we have another statement:\n15. The squirrel chases the lion.\n\nStatement 5 says that the lion sees the squirrel.\n\nHowever, statement 15 implies that the lion sees the squirrel while the squirrel is chasing the lion, but we do not know whether the lion chases the lion or not.\n\nNow, we can analyze the statement \"The lion does not chase the lion.\"\n\nStatement 15 implies that the lion sees the squirrel while the squirrel is chasing the lion.\n\nHowever, we have another statement:\n16. If something is blue then it chases the lion.\n\nThis statement implies that the squirrel, which is blue, chases the lion.\n\nStatement 15 implies that the squirrel chases the lion.\n\nNow, statement 16 and statement 15 are contradictory.\n\nThe squirrel is blue (from statement 8), and it chases the lion (from statement 15).\n\nHowever, statement 15 also implies that the squirrel chases the lion, and statement 15 is a statement about the lion, not the squirrel.\n\nSo, we can conclude that the lion chases the lion, which is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply logical reasoning.\n\n1. The lion eats the squirrel.\n2. The lion sees the dog.\n3. The squirrel chases the dog.\n4. The squirrel chases the lion.\n5. The squirrel eats the lion.\n6. The squirrel is green.\n7. The squirrel is rough.\n8. The squirrel sees the dog.\n9. The squirrel sees the lion.\n10. The tiger is rough.\n11. If something is blue then it chases the lion.\n12. If something chases the lion and it eats the squirrel then the squirrel sees the tiger.\n13. If the squirrel eats the lion and the squirrel is green then the lion sees the tiger.\n14. If something sees the tiger then it is blue.\n15. Rough things are big.\n16. If something chases the dog then it chases the tiger.\n\nFrom statement 1, we know that the lion eats the squirrel. \nHowever, from statement 5, we know that the squirrel eats the lion. \nThis creates a paradox since it's not possible for both statements to be true. \nHowever, we cannot determine the truth value of the statement \"The lion does not chase the lion\" directly from the given statements.\n\nFrom statement 11, we can infer that the tiger is blue because the tiger is rough (statement 10). \n\nHowever, we cannot determine whether the lion chases the lion or not. \nWe can conclude that the tiger is blue, but the relationship between the lion and itself is still unknown.\n\nTherefore, the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The lion does not chase the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that the lion eats the squirrel. (Statement 3)\n2. We are given that the squirrel chases the lion. (Statement 5)\n3. From Statement 2, the squirrel chases the lion, and from Statement 1, the lion eats the squirrel. These two pieces of information satisfy the condition in the given rules: \"If something chases the lion and it eats the squirrel then the squirrel sees the tiger.\"\n4. However, this information does not directly tell us that the lion sees the tiger. We need more information to determine this.\n\nHowever, Statement 7 provides more information: \"If the squirrel eats the lion and the squirrel is green then the lion sees the tiger.\" \n5. From Statement 1, the lion eats the squirrel. \n6. Statement 8 states: \"The squirrel is green.\" \n7. Therefore, the condition in Statement 7 is satisfied, and we can conclude that the lion sees the tiger.\n\nNow we have the information that the lion sees the tiger. We can use Statement 9 to determine whether the lion is blue: \"If something sees the tiger then it is blue.\"\n8. Since the lion sees the tiger, we can conclude that the lion is blue.\n\nNow, let's look at the original statement: \"The lion does not chase the lion.\"\n9. We are given that the lion is blue. (From Step 8)\n10. Statement 1 states: \"If something is blue then it chases the lion.\"\n11. Therefore, if the lion is blue, it must chase the lion.\n\nBased on our analysis, the lion chases the lion, which means the statement \"The lion does not chase the lion\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "chases(lion, lion)",
+          "z3_formula": "chases_lion_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, lion)",
+          "z3_formula": "chases_lion_lion == False",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, dog)",
+          "z3_formula": "chases_squirrel_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, lion)",
+          "z3_formula": "eats_squirrel_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & eats(X, squirrel) -> sees(X, tiger)",
+          "z3_formula": "Implies(And(chases_squirrel_lion, eats_squirrel_lion), sees_squirrel_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) & green(X) -> sees(lion, tiger)",
+          "z3_formula": "Implies(And(eats_squirrel_lion, green_squirrel), sees_lion_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(tiger)",
+          "z3_formula": "rough_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, lion)",
+          "z3_formula": "sees_squirrel_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) -> blue(X)",
+          "z3_formula": "Implies(sees_squirrel_tiger, blue_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases(X, lion)",
+          "z3_formula": "Implies(blue_squirrel, chases_squirrel_lion)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, dog)",
+          "z3_formula": "chases_squirrel_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, lion)",
+          "z3_formula": "eats_squirrel_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, dog)",
+          "z3_formula": "sees_squirrel_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, lion)",
+          "z3_formula": "sees_squirrel_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(tiger)",
+          "z3_formula": "rough_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases(X, lion)",
+          "z3_formula": "Implies(blue_X, chases_X_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & eats(X, squirrel) -> sees(X, tiger)",
+          "z3_formula": "Implies(And(chases_X_lion, eats_X_squirrel), sees_X_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) & green(X) -> sees(lion, tiger)",
+          "z3_formula": "Implies(And(eats_X_lion, green_X), sees_lion_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) -> blue(X)",
+          "z3_formula": "Implies(sees_X_tiger, blue_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_X, big_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, tiger)",
+          "z3_formula": "Implies(chases_X_dog, chases_X_tiger)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(lion, lion)",
+          "z3_formula": "chases_lion_lion == False",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> not(chases(X, Z))",
+          "z3_formula": "Implies(eats_lion_squirrel, Not(chases_lion_lion))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "not(chases(X, Z))",
+          "z3_formula": "Not(chases_lion_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & eats(X, squirrel) -> sees(squirrel, tiger)",
+          "z3_formula": "Implies(And(chases_lion_lion, eats_lion_squirrel), sees_squirrel_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(squirrel, lion) & green(squirrel) -> sees(lion, tiger)",
+          "z3_formula": "Implies(And(eats_squirrel_lion, green_squirrel), sees_lion_tiger)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) -> blue(X)",
+          "z3_formula": "Implies(sees_tiger_tiger, blue_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(blue(lion))",
+          "z3_formula": "Not(blue_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(blue(squirrel))",
+          "z3_formula": "Not(blue_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not(green(lion))",
+          "z3_formula": "Not(green_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "blue(tiger)",
+          "z3_formula": "blue_tiger == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(tiger)",
+          "z3_formula": "rough_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases_lion(X)",
+          "z3_formula": "Implies(blue_lion, chases_lion_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases_lion(X) & eats(X, squirrel) -> sees_tiger(X)",
+          "z3_formula": "Implies(And(chases_lion_lion, eats_lion_squirrel), sees_tiger_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(squirrel, lion) & green(squirrel) -> sees_tiger(lion)",
+          "z3_formula": "Implies(And(eats_squirrel_lion, green_squirrel), sees_tiger_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees_tiger(X) -> blue(X)",
+          "z3_formula": "Implies(sees_tiger_lion, blue_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_tiger, big_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases_dog(X) -> chases_tiger(X)",
+          "z3_formula": "Implies(chases_dog_lion, chases_tiger_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "chases_lion(lion)",
+          "z3_formula": "chases_lion_lion == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> sees(X, Y)",
+          "z3_formula": "Implies(chases_lion_lion, sees_lion_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> sees(X, Y)",
+          "z3_formula": "Implies(chases_lion_dog, sees_lion_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, dog)",
+          "z3_formula": "chases_squirrel_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> sees(X, Y)",
+          "z3_formula": "Implies(chases_squirrel_lion, sees_squirrel_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> sees(X, Y)",
+          "z3_formula": "Implies(eats_squirrel_lion, sees_squirrel_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, lion)",
+          "z3_formula": "eats_squirrel_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases(X, lion)",
+          "z3_formula": "Implies(blue_X, chases_X_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & eats(X, squirrel) -> sees(squirrel, tiger)",
+          "z3_formula": "Implies(And(chases_X_lion, eats_X_squirrel), sees_squirrel_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) & green(X) -> sees(lion, tiger)",
+          "z3_formula": "Implies(And(eats_X_lion, green_X), sees_lion_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) -> blue(X)",
+          "z3_formula": "Implies(sees_X_tiger, blue_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_X, big_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, tiger)",
+          "z3_formula": "Implies(chases_X_dog, chases_X_tiger)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "chases(lion, lion)",
+          "z3_formula": "chases_lion_lion == Unknown",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, dog)",
+          "z3_formula": "chases_squirrel_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, lion)",
+          "z3_formula": "eats_squirrel_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "rough(tiger)",
+          "z3_formula": "rough_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases(X, lion)",
+          "z3_formula": "Implies(blue_X, chases_X_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & eats(X, squirrel) -> sees(X, tiger)",
+          "z3_formula": "Implies(And(chases_X_lion, eats_X_squirrel), sees_X_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) & green(X) -> sees(X, tiger)",
+          "z3_formula": "Implies(And(eats_X_lion, green_X), sees_X_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) -> blue(X)",
+          "z3_formula": "Implies(sees_X_tiger, blue_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_X, big_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, tiger)",
+          "z3_formula": "Implies(chases_X_dog, chases_X_tiger)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not(chases(lion, lion))",
+          "z3_formula": "Not(chases_lion_lion)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, dog)",
+          "z3_formula": "chases_squirrel_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, lion)",
+          "z3_formula": "eats_squirrel_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, dog)",
+          "z3_formula": "sees_squirrel_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, lion)",
+          "z3_formula": "sees_squirrel_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(tiger)",
+          "z3_formula": "rough_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases(X, lion)",
+          "z3_formula": "Implies(blue_X, chases_X_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & eats(X, squirrel) -> sees(X, tiger)",
+          "z3_formula": "Implies(And(chases_X_lion, eats_X_squirrel), sees_X_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) & green(X) -> sees(lion, tiger)",
+          "z3_formula": "Implies(And(eats_X_lion, green_X), sees_lion_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) -> blue(X)",
+          "z3_formula": "Implies(sees_X_tiger, blue_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_X, big_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, tiger)",
+          "z3_formula": "Implies(chases_X_dog, chases_X_tiger)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases(X, lion)",
+          "z3_formula": "Implies(blue_X, chases_X_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, squirrel)",
+          "z3_formula": "sees_lion_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & eats(lion, squirrel) -> sees(tiger, squirrel)",
+          "z3_formula": "Implies(And(chases_X_lion, eats_lion_squirrel), sees_tiger_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & eats(X, squirrel) -> sees(squirrel, tiger)",
+          "z3_formula": "Implies(And(chases_X_lion, eats_lion_squirrel), sees_squirrel_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, tiger)",
+          "z3_formula": "sees_squirrel_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(squirrel, tiger) -> blue(squirrel)",
+          "z3_formula": "Implies(sees_squirrel_tiger, blue_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(squirrel, lion) & green(squirrel) -> sees(lion, tiger)",
+          "z3_formula": "Implies(And(eats_squirrel_lion, green_squirrel), sees_lion_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, squirrel)",
+          "z3_formula": "sees_lion_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(squirrel, lion) & green(squirrel) -> sees(lion, tiger)",
+          "z3_formula": "Implies(And(eats_squirrel_lion, green_squirrel), sees_lion_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, tiger)",
+          "z3_formula": "sees_lion_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) -> blue(X)",
+          "z3_formula": "Implies(sees_lion_tiger, blue_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "rough(tiger)",
+          "z3_formula": "rough_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_tiger, big_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, dog)",
+          "z3_formula": "chases_squirrel_dog == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> chases(X, tiger)",
+          "z3_formula": "Implies(chases_squirrel_dog, chases_squirrel_tiger)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) -> blue(X)",
+          "z3_formula": "Implies(sees_squirrel_tiger, blue_squirrel)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "rough(tiger)",
+          "z3_formula": "rough_tiger == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_tiger, big_tiger)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 23
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, squirrel)",
+          "z3_formula": "sees_lion_squirrel == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "chases(lion, lion)",
+          "z3_formula": "chases_lion_lion == True",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases(X, lion)",
+          "z3_formula": "Implies(blue_squirrel, chases_squirrel_lion)",
+          "source_step": 26
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 27
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "chases(lion, lion) == False",
+          "z3_formula": "Not(chases_lion_lion)",
+          "source_step": 29
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, lion)",
+          "z3_formula": "eats_squirrel_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases_lion(X)",
+          "z3_formula": "Implies(blue_tiger, chases_lion_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "(chases_lion(X) & eats_squirrel(X)) -> sees_tiger(X)",
+          "z3_formula": "Implies(And(chases_lion_squirrel, eats_squirrel_lion), sees_tiger_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "(eats_squirrel(X) & green(X)) -> sees_tiger(X)",
+          "z3_formula": "Implies(And(eats_squirrel_lion, green_squirrel), sees_tiger_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees_tiger(X) -> blue(X)",
+          "z3_formula": "Implies(sees_tiger_tiger, blue_tiger)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_tiger, big_tiger)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases_dog(X) -> chases_tiger(X)",
+          "z3_formula": "Implies(chases_dog_squirrel, chases_tiger_squirrel)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & eats(X, squirrel) -> sees(X, tiger)",
+          "z3_formula": "Implies(And(chases_squirrel_lion, eats_lion_squirrel), sees_squirrel_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, lion)",
+          "z3_formula": "eats_squirrel_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, tiger)",
+          "z3_formula": "sees_lion_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) -> blue(X)",
+          "z3_formula": "Implies(sees_lion_tiger, blue_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases(X, lion)",
+          "z3_formula": "Implies(blue_lion, chases_lion_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "chases(lion, lion)",
+          "z3_formula": "chases_lion_lion == True",
+          "source_step": 11
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 153,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 56
+    },
+    "maxsat_stats": {
+      "satisfied": 52,
+      "excluded": 4,
+      "total_weight": 145,
+      "solve_time_ms": 1.9370848312973976
+    },
+    "timing": {
+      "trace_gen_s": 9.315,
+      "extraction_s": 33.885,
+      "dedup_s": 1.636,
+      "maxsat_s": 0.005,
+      "total_s": 44.841
+    }
+  }
+}

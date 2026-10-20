@@ -1,0 +1,855 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-718_Q9",
+    "problem": "Bob is round. Charlie is big. Charlie is furry. Charlie is green. Charlie is round. Charlie is white. Dave is big. Dave is quiet. Gary is green. Gary is quiet. All furry people are white. If someone is big then they are smart. All white, big people are round. If someone is quiet then they are smart. Smart people are big. All big, green people are furry. If someone is smart and round then they are quiet. Green people are smart. All smart, furry people are big.\n\nDetermine whether the following statement is true, false, or unknown:\nGary is white.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRound($x, bool) ::: Is x round?\nBig($x, bool) ::: Is x big?\nFurry($x, bool) ::: Is x furry?\nGreen($x, bool) ::: Is x green?\nWhite($x, bool) ::: Is x white?\nQuiet($x, bool) ::: Is x quiet?\nSmart($x, bool) ::: Is x smart?\n\nFacts:\nRound(Bob, True) ::: Bob is round.\nBig(Charlie, True) ::: Charlie is big.\nFurry(Charlie, True) ::: Charlie is furry.\nGreen(Charlie, True) ::: Charlie is green.\nRound(Charlie, True) ::: Charlie is round.\nWhite(Charlie, True) ::: Charlie is white.\nBig(Dave, True) ::: Dave is big.\nQuiet(Dave, True) ::: Dave is quiet.\nGreen(Gary, True) ::: Gary is green.\nQuiet(Gary, True) ::: Gary is quiet.\n\nRules:\nFurry($x, True) >>> White($x, True) ::: All furry people are white.\nBig($x, True) >>> Smart($x, True) ::: If someone is big then they are smart.\nWhite($x, True) && Big($x, True) >>> Round($x, True) ::: All white, big people are round.\nQuiet($x, True) >>> Smart($x, True) ::: If someone is quiet then they are smart.\nSmart($x, True) >>> Big($x, True) ::: Smart people are big.\nBig($x, True) && Green($x, True) >>> Furry($x, True) ::: All big, green people are furry.\nSmart($x, True) && Round($x, True) >>> Quiet($x, True) ::: If someone is smart and round then they are quiet.\nGreen($x, True) >>> Smart($x, True) ::: Green people are smart.\nSmart($x, True) && Furry($x, True) >>> Big($x, True) ::: All smart, furry people are big.\n\nQuery:\nWhite(Gary, True) ::: Gary is white."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "False": 70.5,
+      "True": 111.0
+    },
+    "answer_counts": {
+      "True": 10,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Gary is white\" is true, false, or unknown, we need to analyze the given information and apply the rules step by step.\n\n1. We are given the following information about Gary:\n   - Gary is green.\n   - Gary is quiet.\n\n2. We are also given the following rules:\n   - All furry people are white.\n   - If someone is big then they are smart.\n   - All white, big people are round.\n   - If someone is quiet then they are smart.\n   - Smart people are big.\n   - All big, green people are furry.\n   - If someone is smart and round then they are quiet.\n   - Green people are smart.\n   - All smart, furry people are big.\n\n3. From the given information, we can infer that:\n   - Gary is green and Gary is quiet, so Gary is smart (rule 6).\n   - Gary is smart, so Gary is big (rule 5).\n   - Gary is big and Gary is green, so Gary is furry (rule 7).\n   - Gary is furry, so Gary is white (rule 1).\n\nBased on the analysis above, we can conclude that the statement \"Gary is white\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is white\" is true, false, or unknown, we need to analyze the given information and apply it to the facts about Gary.\n\n1. Gary is green. (Direct Fact)\n2. Gary is quiet. (Direct Fact)\n\nFrom the given information:\n- All furry people are white. (This does not apply to Gary because we do not know if he is furry)\n- All white, big people are round. (This does not apply to Gary because we do not know if he is white or big)\n- If someone is quiet then they are smart. (We can use this fact to conclude that Gary is smart)\n- Smart people are big. (We can use this fact to conclude that Gary is big)\n- All big, green people are furry. (We can use this fact to conclude that Gary is furry)\n- All furry people are white. (Now that we know Gary is furry, we can conclude that Gary is white)\n\nTherefore, based on the given information and the conclusions we drew, the statement \"Gary is white\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to use the given premises and rules to determine whether Gary is white or not.\n\nFrom the premises:\n\n1. Gary is green. (Premise 1)\n2. Gary is quiet. (Premise 2)\n3. All furry people are white. (Premise 3)\n4. All white, big people are round. (Premise 4)\n5. If someone is big then they are smart. (Premise 5)\n6. All big, green people are furry. (Premise 6)\n7. If someone is smart and round then they are quiet. (Premise 7)\n8. Green people are smart. (Premise 8)\n9. All smart, furry people are big. (Premise 9)\n\nFrom the premises, we can deduce the following:\n\n- Gary is green (Premise 1) and green people are smart (Premise 8), so Gary is smart.\n- Since Gary is quiet (Premise 2), we can infer that Gary is smart and round. But from Premise 1, Gary is green, and green people are smart, but we also know Gary is big because smart people are big (Premise 5), and we also know Gary is big, because Gary is quiet (Premise 2), and all quiet people are smart (Premise 5),  therefore, Gary must be big.\n- Since Gary is big (from the above step) and all furry people are white (Premise 3), we need to determine if Gary is furry. Since Gary is green (Premise 1) and big (from the above step), Gary is furry (Premise 6).\n\nSince Gary is furry, we know that Gary is white (Premise 3).\n\nSo, the statement \"Gary is white\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. All furry people are white.\n   - This statement tells us that people who are furry must be white. However, it doesn't tell us anything about Gary being furry or not.\n\n2. Gary is green.\n   - This statement tells us that Gary is indeed green.\n\n3. All green people are smart.\n   - This statement tells us that people who are green must be smart. Since Gary is green, Gary must be smart.\n\n4. Gary is quiet.\n   - This statement tells us that Gary is indeed quiet.\n\n5. If someone is smart and round then they are quiet.\n   - This statement doesn't apply to Gary, since we don't know if Gary is round.\n\n6. All smart, furry people are big.\n   - This statement tells us that if someone is both smart and furry, they must be big. However, we don't know if Gary is furry or not.\n\n7. All big, green people are furry.\n   - This statement tells us that if someone is both big and green, they must be furry. Since Gary is green and smart, Gary must be big (from the statement \"Smart people are big\"). Therefore, Gary must be furry.\n\n8. All furry people are white.\n   - This statement tells us that people who are furry must be white. Since Gary is furry, Gary must be white.\n\nTherefore, the statement \"Gary is white\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is white\" is true, false, or unknown, we need to analyze the given information and apply it step by step.\n\nFrom the given information:\n\n1. Gary is green. (Direct information)\n2. Gary is quiet. (Direct information)\n3. All furry people are white. (Rule)\n4. All big people are smart. (Rule)\n5. All smart people are big. (Rule)\n6. All quiet people are smart. (Rule)\n7. If someone is smart and round, then they are quiet. (Rule)\n8. All white, big people are round. (Rule)\n9. All big, green people are furry. (Rule)\n10. All smart, furry people are big. (Rule)\n\nWe can deduce the following information from the given rules:\n\n- Since Gary is quiet (rule 6), Gary is smart. (Gary is quiet, so he must be smart because all quiet people are smart.)\n- Since Gary is smart (Gary is quiet, so Gary is smart), Gary must be big (rule 4: all big people are smart, and rule 5: all smart people are big).\n- Since Gary is big (Gary is smart, so Gary is big) and Gary is green (direct information), Gary must be furry (rule 9: all big, green people are furry).\n\nNow, we need to determine if Gary is white or not. Since Gary is furry (Gary is big, green, so Gary is furry) and all furry people are white (rule 3), we can conclude that Gary is white.\n\nTherefore, the statement \"Gary is white\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine if the statement \"Gary is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. All furry people are white.\n   This statement implies that if someone is furry, then they are white.\n\n2. Gary is green. Gary is quiet.\n   These statements tell us that Gary has two characteristics: green and quiet.\n\n3. Gary is not furry, because if he were, we could conclude from statement 1 that he is white. However, we are given that he is green, not white. \n   Gary is green and quiet. \n\n4. We can now conclude that Gary is not white from statement 1 (all furry people are white), because Gary is not furry. \n\n5. All furry people are white, but we cannot conclude that all non-furry people are non-white. We cannot conclude anything about Gary's color from this statement alone.\n\n6. All big, green people are furry. \n   Since Gary is green, we can infer that Gary is not big, because if he were big and green, then he would be furry from this statement.\n\n7. Since Gary is quiet and Gary is not big, we can conclude that Gary is not smart from the given statements, because all quiet people are smart if and only if they are big.\n\n8. Smart people are big. However, we cannot conclude that Gary is not smart from this statement alone.\n\n9. All big, green people are furry. However, we cannot conclude that Gary is not big from this statement alone.\n\n10. If someone is big and round, then they are quiet. We cannot conclude anything about Gary from this statement alone.\n\n11. All white, big people are round. We cannot conclude anything about Gary from this statement alone.\n\n12. Green people are smart. We cannot conclude anything about Gary from this statement alone.\n\n13. All smart, furry people are big. However, we cannot conclude that Gary is not smart from this statement alone.\n\n14. Since Gary is not big, Gary is not smart from statement 7.\n\n15. From statement 4, Gary is not white.\n\n16. Since Gary is not big, Gary is not furry from statement 3.\n\n17. Since Gary is not furry, Gary is not white from statement 1.\n\nSince we have concluded that Gary is not white, the statement \"Gary is white\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is white\" is true, false, or unknown, we need to analyze the given information and the logical deductions we can make from it.\n\n1. Gary is green. (Given)\n2. All green people are smart. (Given)\n3. Smart people are big. (Given)\n4. All big, green people are furry. (Given)\n5. All furry people are white. (Given)\n6. Gary is quiet. (Given)\n7. If someone is smart and round then they are quiet. (Given)\n8. If someone is quiet then they are smart. (Given)\n9. All white, big people are round. (Given)\n10. Charlie is big. (Given)\n11. Charlie is furry. (Given)\n12. Charlie is white. (Given)\n13. Charlie is round. (Given)\n14. Bob is round. (Given)\n\nFrom (8), we know that Gary is smart because he is quiet.\nFrom (3), we know that smart people are big.\nFrom (1) and (3), we know that Gary is big and green.\nFrom (4), we know that all big, green people are furry, so Gary is furry.\nFrom (5), we know that all furry people are white.\nTherefore, Gary is white.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is white\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning step by step.\n\n1. Given information:\n   - Gary is green. (From the problem statement)\n   - Gary is quiet. (From the problem statement)\n   - All furry people are white. (From the problem statement)\n   - If someone is big then they are smart. (From the problem statement)\n   - All white, big people are round. (From the problem statement)\n   - If someone is quiet then they are smart. (From the problem statement)\n   - Smart people are big. (From the problem statement)\n   - All big, green people are furry. (From the problem statement)\n   - If someone is smart and round then they are quiet. (From the problem statement)\n   - Green people are smart. (From the problem statement)\n   - All smart, furry people are big. (From the problem statement)\n\n2. Analyzing the given information:\n   - Since Gary is green, we can deduce that Gary is smart (from \"Green people are smart\").\n   - We know that Gary is quiet and smart, which implies Gary is big (from \"If someone is quiet then they are smart\" and \"Smart people are big\").\n   - Now, we have Gary as a big, green person, which means Gary is furry (from \"All big, green people are furry\").\n\n3. We have found that Gary is furry, but we still need to determine whether Gary is white or not. \n   - We know that Gary is furry, and all furry people are white (from the problem statement).\n   - Therefore, we can conclude that Gary is white.\n\nConclusion: Based on the given information and logical reasoning, the statement \"Gary is white\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is white\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Given information:\n   - All furry people are white.\n   - Gary is green.\n   - Gary is quiet.\n   - Gary is furry.\n\n2. From the given information, we know that Gary is furry and all furry people are white. However, this conclusion can be drawn only if we are certain that Gary is indeed furry.\n\n3. Since we don't have any information that directly contradicts the statement \"Gary is furry,\" we can assume that Gary is furry.\n\n4. Since we know that Gary is furry and all furry people are white, we can conclude that Gary is white.\n\n5. Therefore, the statement \"Gary is white\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement 'Gary is white' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. All furry people are white.\n   From this statement, we can conclude that if someone is furry, then they are white.\n\n2. Gary is green.\n   Since Gary is green, we cannot directly conclude whether he is white or not from statement 1.\n\n3. Gary is quiet.\n   This statement does not provide any direct information about Gary's color.\n\n4. Gary is green. Gary is quiet.\n   From statement 2, we already know that Gary is green. From statement 3, we know he is quiet.\n\n5. All green people are smart.\n   Since Gary is green, we can conclude that he is smart.\n\n6. Gary is smart and Gary is quiet.\n   We already know that Gary is smart from statement 5 and quiet from statement 3.\n\n7. Smart people are big.\n   Since Gary is smart, we can conclude that he is big.\n\n8. Gary is big and Gary is green.\n   We already know that Gary is big from statement 7 and green from statement 2.\n\n9. All big, green people are furry.\n   Since Gary is big and green, we can conclude that he is furry.\n\n10. Gary is furry and Gary is green.\n    We already know that Gary is furry from statement 9 and green from statement 2.\n\n11. All furry people are white.\n    From this statement, we can conclude that if someone is furry, then they are white. Since Gary is furry, we can conclude that he is white.\n\nTherefore, based on the given information and step-by-step analysis, we can conclude that the statement 'Gary is white' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is white\" is true, false, or unknown, we need to analyze the given information and apply it step by step.\n\n1. Gary is green. (Given statement)\n2. Gary is quiet. (Given statement)\n3. All furry people are white. (Given statement)\n4. All green people are smart. (Given statement)\n5. Smart people are big. (Given statement)\n6. All big, green people are furry. (Given statement)\n7. All smart, furry people are big. (Given statement)\n8. If someone is big then they are smart. (Given statement)\n9. If someone is smart and round then they are quiet. (Given statement)\n10. All white, big people are round. (Given statement)\n\nFrom statement 1, we know Gary is green.\nFrom statement 4, we know green people are smart.\nSo, Gary is smart (Gary is green, green people are smart).\n\nFrom statement 5, we know smart people are big.\nSo, Gary is big (Gary is smart, smart people are big).\n\nFrom statement 6, we know all big, green people are furry.\nHowever, we cannot conclude that Gary is furry from this statement because there is another statement (statement 8) that says if someone is big, then they are smart. From this, we can infer that a person can be big without being green.\n\nSince we cannot conclude that Gary is furry from the information given, we cannot conclude that Gary is white using statement 3 (all furry people are white).\n\nHowever, we can conclude that Gary is big, and we know that all white, big people are round (statement 10). But we cannot determine if Gary is white or not.\n\nTherefore, the statement \"Gary is white\" is unknown.",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information, we know:\n   - Gary is green. (Gary is green.)\n   - Gary is quiet. (Gary is quiet.)\n\n2. Since Gary is quiet, we can conclude that Gary is smart because \"If someone is quiet then they are smart.\" (Smart people are quiet.)\n\n3. As Gary is smart, we know that Gary is big because \"Smart people are big.\" (If someone is smart then they are big.)\n\n4. Now, we know that Gary is green and big. We can conclude that Gary is furry because \"All big, green people are furry.\" (All big, green people are furry.)\n\n5. However, we cannot directly conclude that Gary is white because we have not found any information that links Gary to being white.\n\n6. From the given information, we also know that:\n   - All furry people are white. (All furry people are white.)\n   - Gary is furry. (Gary is furry.)\n\n7. Combining steps 6a and 6b, we can conclude that Gary is white because all furry people are white and Gary is furry. (Gary is white.)\n\nTherefore, the statement \"Gary is white\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_gary, white_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_gary, smart_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(white_gary, big_gary), round_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_gary, smart_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> big(X)",
+          "z3_formula": "Implies(smart_gary, big_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(big_gary, green_gary), furry_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & round(X) -> quiet(X)",
+          "z3_formula": "Implies(And(smart_gary, round_gary), quiet_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_gary, smart_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & furry(X) -> big(X)",
+          "z3_formula": "Implies(And(smart_gary, furry_gary), big_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_gary, white_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> round(X)",
+          "z3_formula": "Implies(white_gary, round_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_gary, smart_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> big(X)",
+          "z3_formula": "Implies(smart_gary, big_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(big_gary, green_gary), furry_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_gary, white_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_gary, smart_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_gary, smart_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_gary, big_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_gary, smart_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(big_gary, green_gary), furry_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_gary, white_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_gary, white_gary)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_gary, white_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_gary, smart_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> big(X)",
+          "z3_formula": "Implies(smart_gary, big_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_gary, smart_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & round(X) -> quiet(X)",
+          "z3_formula": "Implies(And(smart_gary, round_gary), quiet_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(white_gary, big_gary), round_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(big_gary, green_gary), furry_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & furry(X) -> big(X)",
+          "z3_formula": "Implies(And(smart_gary, furry_gary), big_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == False",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_gary, white_gary)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "not white(gary)",
+          "z3_formula": "Not(white_gary)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_gary, smart_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(big_gary, green_gary), furry_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not big(gary)",
+          "z3_formula": "Not(big_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_gary, smart_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(gary)",
+          "z3_formula": "Not(smart_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_gary, smart_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not white(gary)",
+          "z3_formula": "Not(white_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(big_gary, green_gary), furry_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(gary)",
+          "z3_formula": "Not(furry_gary)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_gary, white_gary)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "not white(gary)",
+          "z3_formula": "Not(white_gary)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & round(X) -> quiet(X)",
+          "z3_formula": "Implies(And(big_gary, round_gary), quiet_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == False",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(white_gary, big_gary), round_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not round(gary)",
+          "z3_formula": "Not(round_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_gary, smart_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & furry(X) -> big(X)",
+          "z3_formula": "Implies(And(smart_gary, furry_gary), big_gary)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_gary, smart_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> big(X)",
+          "z3_formula": "Implies(smart_gary, big_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(big_gary, green_gary), furry_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_gary, white_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & round(X) -> quiet(X)",
+          "z3_formula": "Implies(And(smart_gary, round_gary), quiet_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_gary, smart_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(white_gary, big_gary), round_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_gary, smart_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_gary, smart_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> big(X)",
+          "z3_formula": "Implies(smart_gary, big_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(big_gary, green_gary), furry_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & round(X) -> quiet(X)",
+          "z3_formula": "Implies(And(smart_gary, round_gary), quiet_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_gary, big_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_gary, big_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_gary, smart_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_gary, big_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(big_gary, green_gary), furry_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_gary, white_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_gary, white_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 6
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_gary, smart_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> big(X)",
+          "z3_formula": "Implies(smart_gary, big_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(big_gary, green_gary), furry_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_gary, smart_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & round(X) -> quiet(X)",
+          "z3_formula": "Implies(And(smart_gary, round_gary), quiet_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(white_gary, big_gary), round_gary)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_gary, smart_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> big(X)",
+          "z3_formula": "Implies(smart_gary, big_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(big_gary, green_gary), furry_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_gary, white_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 8
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 121,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 29
+    },
+    "maxsat_stats": {
+      "satisfied": 24,
+      "excluded": 5,
+      "total_weight": 112,
+      "solve_time_ms": 1.233736053109169
+    },
+    "timing": {
+      "trace_gen_s": 6.018,
+      "extraction_s": 35.924,
+      "dedup_s": 0.688,
+      "maxsat_s": 0.003,
+      "total_s": 42.633
+    }
+  }
+}

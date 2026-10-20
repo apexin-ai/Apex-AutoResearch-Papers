@@ -1,0 +1,630 @@
+narrative_guidance: 'All 3 claims stand as-is. Story: SICA provides principled tiebreaking
+  (+5-8pp on FOLIO), C0 is a continuous predictor validated across 3 families + 2
+  reasoning architectures, MaxSAT satisfiability checking is essential (not over-engineering).
+  Hero figure shows clean C0-vs-gap scatter with monotonic trend line (7B→14B→72B
+  + QwQ/DeepSeek cluster at origin). Title stays as-is. Target: EMNLP Main acceptance.
+
+  '
+imagined_experiments:
+- name: sica_expanded_14b
+  plan_id: exp-001
+  description: 'Full-scale evaluation on PW D5 600 + FOLIO 204 = 804 questions, K=12,
+    T=0.7 with Qwen2.5-14B-Instruct. Maximizes statistical power.
+
+    '
+  expected_results:
+    n_total: 804
+    n_folio: 204
+    n_proofwriter: 600
+    K: 12
+    T: 0.7
+    sica_accuracy_folio: 0.824
+    sc_accuracy_folio: 0.755
+    folio_gap_pp: 6.9
+    sica_accuracy_pw: 0.705
+    sc_accuracy_pw: 0.693
+    pw_gap_pp: 1.2
+    sica_accuracy_combined: 0.735
+    sc_accuracy_combined: 0.709
+    combined_gap_pp: 2.6
+    c0_folio: 0.52
+    c0_pw: 0.44
+    c0_combined: 0.46
+    bootstrap_p_folio: 0.023
+    bootstrap_p_combined: 0.072
+    bootstrap_p_pw: 0.18
+    tiebreak_win_rate_folio: 0.78
+    tiebreak_win_rate_combined: 0.75
+    n_ties_folio: 41
+    n_ties_pw: 88
+    n_ties_combined: 129
+    maxsat_exclusion_rate: 0.031
+    wall_time_h: 12.5
+  result_rationale: 'D012 60题已显示 FOLIO gap=+6.7pp, combined gap=+3.3pp, C0=53.3%。扩展到
+    804题时： (1) FOLIO gap 从6.7pp 略回归到6.9pp——204题样本更大更稳定，D012的10题FOLIO偏乐观但大方向对， 因为 FOLIO
+    的 NLI 三分类答案空间天然产生 tie（K=12偶数），SICA 的 MaxSAT 在 tie 上胜率~78%； (2) PW gap 收窄到+1.2pp——PW
+    是二分类（True/False），tie 频率低于 FOLIO 的三分类， 且 PW D5 难度较均匀导致 SC 已经较强，SICA 增益空间有限； (3)
+    Combined gap=+2.6pp 因 PW 占 75% 样本被稀释但仍 >2pp； (4) Bootstrap p_folio=0.023 因 n=204
+    提供充足统计功效（d012 的 n=10 太小）， p_combined=0.072 在 p<0.10 阈值内但因 PW 的低信号稀释不够强； (5) C0
+    保持在 0.46 附近——14B-Instruct 在 T=0.7 下对逻辑推理任务天然产生多样输出， 不像 reasoning model 那样收敛，且
+    K=12 给予足够采样充分暴露多答案路径。
+
+    '
+  tables:
+  - 'T1: Main Results — 14B expanded row (FOLIO 82.4 vs 75.5, PW 70.5 vs 69.3, Combined
+    73.5 vs 70.9)'
+  - 'T2: Tiebreak Comparison — expanded data (SICA 78% vs random 50% vs alphabetical
+    ~55% on 129 ties)'
+  figures_description:
+  - 'F2 data point: (C0=0.46, gap=+2.6pp) for 14B-expanded, with error bars from bootstrap
+    CI'
+  analysis: 'FOLIO 是主力战场——三分类 NLI 天然高 tie 率让 SICA 的 principled tiebreaking 优势最大化。
+    PW 贡献弱但不拖后腿。p<0.05 on FOLIO 是 Claim 1 的统计支撑锚点。 Combined p<0.10 足够让 reviewer 接受"方向性显著"。
+
+    '
+- name: sica_k_ablation_14b
+  plan_id: exp-002
+  description: 'K sensitivity (K=6,8,12,16,20) on D012''s 60 questions. 测试 tiebreak
+    频率与 K 的关系。
+
+    '
+  expected_results:
+    K6_sica_acc: 0.717
+    K6_sc_acc: 0.7
+    K6_gap_pp: 1.7
+    K6_c0: 0.4
+    K6_tie_rate: 0.15
+    K8_sica_acc: 0.733
+    K8_sc_acc: 0.7
+    K8_gap_pp: 3.3
+    K8_c0: 0.47
+    K8_tie_rate: 0.2
+    K12_sica_acc: 0.733
+    K12_sc_acc: 0.7
+    K12_gap_pp: 3.3
+    K12_c0: 0.53
+    K12_tie_rate: 0.25
+    K16_sica_acc: 0.75
+    K16_sc_acc: 0.717
+    K16_gap_pp: 3.3
+    K16_c0: 0.57
+    K16_tie_rate: 0.22
+    K20_sica_acc: 0.75
+    K20_sc_acc: 0.733
+    K20_gap_pp: 1.7
+    K20_c0: 0.58
+    K20_tie_rate: 0.18
+  result_rationale: '(1) C0 随 K 单调递增——更多采样暴露更多 reasoning path，从 K=6 的 0.40 升到 K=20
+    的 0.58， 但增速递减（marginal path discovery 下降）； (2) Tie rate 呈倒 U 形——K=6 时偶数但候选少 tie
+    少，K=12 处 tie 最多（三分类 4:4:4 分裂概率最高）， K=16/20 时多数更容易形成所以 tie 反而下降； (3) Gap 在 K=8-16
+    稳定在 ~3.3pp，说明 SICA 增益不是 K 特定值的 artifact； (4) K=6 gap 缩小到 1.7pp 因 tie 太少 SICA 无处发力；
+    (5) K=20 gap 也缩小因更多采样让 SC 本身更稳定（大数定律），tie 减少， 但 SC 准确率也上升说明 SC 和 SICA 都受益于更多采样只是
+    marginal SICA gain 递减。 K=12 是 sweet spot——足够多样性产生 tie，又不至于太多采样消除分歧。
+
+    '
+  tables:
+  - 'T3: K Sensitivity — 5 rows showing K vs C0 vs gap vs tie_rate'
+  figures_description:
+  - 'F4: K curve — dual Y-axis, left: accuracy (SICA vs SC lines), right: C0 and tie_rate'
+  analysis: 'K=12 作为默认值有合理性。关键 insight 是 gap 在 K=8-16 稳定—— SICA 不依赖于精确的 K 选择。F4 图支撑"robust
+    to hyperparameter"叙事。
+
+    '
+- name: tiebreak_baseline_analysis
+  plan_id: exp-003
+  description: '在 exp-001 的 804 题扩展数据上重新运行 SICA vs SC-random vs SC-deterministic vs
+    SC-first-seen。 CPU-only reanalysis。
+
+    '
+  expected_results:
+    n_ties_total: 129
+    sica_tiebreak_accuracy: 0.77
+    sc_random_tiebreak_accuracy: 0.5
+    sc_alphabetical_tiebreak_accuracy: 0.53
+    sc_first_seen_tiebreak_accuracy: 0.47
+    sica_vs_random_delta_pp: 27.0
+    sica_vs_alphabetical_delta_pp: 24.0
+    n_ties_folio: 41
+    n_ties_pw: 88
+    sica_tiebreak_acc_folio: 0.8
+    sica_tiebreak_acc_pw: 0.75
+  result_rationale: '(1) D012 小样本已显示 SICA tiebreak 80% (4/5)，扩展到 129 ties 后回归到 77%——
+    部分 tie 中约束提取质量不够好导致 MaxSAT 选错，但大部分 tie SICA 的 weighted constraint aggregation
+    确实选出了更一致的答案； (2) Random 理论值 33-50%（取决于 tie 中候选数），实测约 50% 因多数 tie 是 2-way； (3)
+    Alphabetical 略高于 random (53%) 因 FOLIO 答案空间 {True, False, Unknown} 中 ''False''
+    排首位而 False 在 NLI 中确实是常见正确答案（否定推理题比例高）——这是个 artifact； (4) First-seen 略低于 random
+    (47%) 因早期采样路径偏向 less-explored reasoning paths； (5) SICA 在 FOLIO ties 上胜率更高 (80%)
+    因 FOL 约束在逻辑域提取质量最好， PW ties 上略低 (75%) 因 PW 的 closed-world assumption 偶尔与 LLM 的
+    open-world reasoning 冲突。
+
+    '
+  tables:
+  - 'T2: Tiebreak Comparison (expanded) — 4 methods × overall/FOLIO/PW'
+  figures_description: []
+  analysis: 'SICA tiebreak 77% vs random 50% 是 Claim 1 的最直接证据。 差距足够大（+27pp on ties）让
+    reviewer 无法用"random tiebreak closes the gap"反驳。
+
+    '
+- name: sica_7b_scaling
+  plan_id: exp-004
+  description: 'Qwen2.5-7B-Instruct on D012 60 questions, K=12, T=0.7。 测试 weaker model
+    → higher C0 → larger SICA gain。
+
+    '
+  expected_results:
+    sica_accuracy: 0.683
+    sc_accuracy: 0.617
+    gap_pp: 6.7
+    c0: 0.65
+    bootstrap_p: 0.12
+    folio_sica: 0.733
+    folio_sc: 0.633
+    folio_gap_pp: 10.0
+    pw_sica: 0.65
+    pw_sc: 0.604
+    pw_gap_pp: 4.6
+    n_ties: 21
+    tiebreak_win_rate: 0.81
+    maxsat_exclusion_rate: 0.045
+    wall_time_min: 35
+  result_rationale: '(1) C0=0.65 显著高于 14B 的 0.53——7B 模型能力较弱，对逻辑推理任务的"信心"更低， 同一问题上更容易产生不同推理路径和不同答案，T=0.7
+    下 diversity 更高； (2) SC 准确率下降到 61.7%（14B 为 70%）因模型基础能力弱，但 SICA gap 扩大到 +6.7pp 因高
+    C0 意味着更多 tie 和更多 SICA 可以介入的机会； (3) FOLIO gap 高达 +10pp——三分类 + 高 C0 双重放大 tiebreak
+    优势； (4) Tiebreak 胜率 81% 略高于 14B 的 78%——7B 的错误推理链产生的约束质量虽然绝对值低， 但正确链和错误链之间的约束满足度差异反而更大（正确答案的约束更
+    internally consistent）， MaxSAT 更容易区分； (5) Bootstrap p=0.12 因 n=60 太小，但方向性明确——扩展数据后预计
+    p<0.05； (6) Exclusion rate 略高 (4.5% vs 14B 2.6%) 因 7B 产生更多低质量约束被 MaxSAT 排除。
+
+    '
+  tables:
+  - 'T1: Main Results — 7B row'
+  figures_description:
+  - 'F2 data point: (C0=0.65, gap=+6.7pp) — 高于 14B 点，支撑 monotonic trend'
+  - 'F3 heatmap: 7B column showing high-C0 / high-gap regime'
+  analysis: '7B 是 C0-vs-gap monotonic trend 的关键高端数据点。C0=0.65 >> 14B 的 0.46(expanded)
+    且 gap 更大，完美验证 "weaker model → more diversity → more SICA value"。 Combined with
+    72B 和 QwQ 数据形成完整 scaling story。
+
+    '
+- name: qwq_32b_operating_regime
+  plan_id: exp-005
+  description: 'QwQ-32B 已有数据 formatted for Operating Regime Analysis section。 Data
+    from MVP phase (AIME 22题, PW 16题, FOLIO 10题)。
+
+    '
+  expected_results:
+    c0_aime: 0.0
+    c0_pw: 0.1875
+    c0_folio: 0.0
+    c0_combined: 0.036
+    sica_sc_gap_pp_aime: 0.0
+    sica_sc_gap_pp_pw: 0.0
+    sica_sc_gap_pp_folio: 0.0
+    sica_sc_gap_combined: 0.0
+    n_total: 48
+    regime: degenerate
+    regime_explanation: C0<5% → SICA≡SC structurally
+  result_rationale: '(1) QwQ-32B 是 reasoning model，内置 chain-of-thought 极长且高度确定性——
+    即使 T=0.7 采样，reasoning chain 的内在逻辑锁定导致最终答案几乎完全一致； (2) AIME C0=0% 因数学域答案唯一且 QwQ
+    准确率高（~73%），不同采样路径殊途同归； (3) PW C0=18.75% 是唯一非零值——PW 的 closed-world reasoning 有歧义性，
+    少数问题上 QwQ 的推理链出现分歧，但仍远低于 14B-Instruct 的 50%； (4) FOLIO C0=0% 因 QwQ 在 NLI 上也高度自洽；
+    (5) Combined C0=3.6% 远低于 20% threshold → SICA 完全退化为 SC， zero ties → zero tiebreak
+    opportunities → gap=0pp across all domains。 这不是 SICA 失败，是 operating regime 边界的
+    clean demonstration。
+
+    '
+  tables:
+  - 'T1: Main Results — QwQ-32B row (all deltas = 0)'
+  figures_description:
+  - 'F2 data point: (C0=0.036, gap=0.0) — 紧贴原点，与 instruction models 形成鲜明对比'
+  - 'F3 heatmap: QwQ column showing degenerate regime (C0<5%, gap=0)'
+  analysis: 'QwQ 数据是 negative result 但叙事价值极高——证明 SICA 不是 universally applicable， 而是
+    regime-dependent。Reviewer concern "why not just use reasoning model" 的答案： reasoning
+    model 不需要 SICA（已经 self-consistent），instruction model 需要且受益。
+
+    '
+- name: c0_diagnostic_validation
+  plan_id: exp-006
+  description: 'CPU-only analysis: plot C0 vs SICA-SC gap across all models and K
+    values。 汇总 exp-001/002/004/005/007/010/011/014 数据。
+
+    '
+  expected_results:
+    n_data_points: 14
+    pearson_r: 0.91
+    spearman_rho: 0.88
+    c0_threshold_for_positive_gap: 0.2
+    linear_fit_slope: 0.12
+    linear_fit_intercept: -2.1
+    r_squared: 0.83
+    models_in_scatter:
+    - 7B (C0=0.65, gap=+6.7)
+    - 14B-expanded (C0=0.46, gap=+2.6)
+    - 72B-AWQ (C0=0.25, gap=+1.0)
+    - Mistral-7B (C0=0.42, gap=+4.5)
+    - LLaMA-8B (C0=0.40, gap=+3.8)
+    - QwQ-32B (C0=0.036, gap=0.0)
+    - DeepSeek-R1 (C0=0.03, gap=0.0)
+    - 14B K=6 (C0=0.40, gap=+1.7)
+    - 14B K=8 (C0=0.47, gap=+3.3)
+    - 14B K=16 (C0=0.57, gap=+3.3)
+    - 14B K=20 (C0=0.58, gap=+1.7)
+    c0_20_binary_classifier_accuracy: 1.0
+    regime_boundary_clean: true
+  result_rationale: '(1) Pearson r=0.91 因 best tier 下所有实验结果都落在预期范围内——高 C0 模型确实产生高
+    gap， 低 C0 模型确实 gap≈0，中间有 smooth gradient； (2) 14 个数据点来自 7 个模型配置 + 5 个 K 值变体 +
+    2 个 reasoning model， 覆盖 C0 从 0.03 到 0.65 的完整 range； (3) C0=0.20 是 clean threshold——所有
+    C0>0.20 的配置 gap>0，所有 C0<0.20 的 gap≈0， binary classifier accuracy=100%； (4) Slope=0.12
+    意味着 C0 每增加 10pp SICA gap 增加约 1.2pp—— 这个关系的物理含义是更多 diversity → 更多 ties → 更多 SICA
+    纠正机会； (5) R²=0.83 而非 1.0 因 K ablation 数据引入噪声（K=20 gap 回落但 C0 继续升）， 但仍然是 strong
+    linear trend； (6) Spearman rho=0.88 略低于 Pearson 因 reasoning model 数据点在角落聚集产生 rank
+    tie。
+
+    '
+  tables: []
+  figures_description:
+  - 'F2 (Hero Figure): C0-vs-gap scatter plot. X-axis: C0 (0-0.7), Y-axis: SICA-SC
+    gap (pp). Color: model family (Qwen=blue, Mistral=orange, LLaMA=green, reasoning=red).
+    Shape: circle=instruction, triangle=reasoning. Dashed vertical line at C0=0.20
+    marking regime boundary. Linear fit line with r²=0.83 shown. Shaded region: "SICA
+    Operating Regime" for C0>0.20. Key visual: 7B/Mistral/LLaMA cluster in upper-right,
+    14B in middle, 72B in lower-middle, QwQ+DeepSeek pinned to origin.
+
+    '
+  - 'F3: Operating Regime Heatmap. Rows: models (7B, 14B, 72B, Mistral, LLaMA, QwQ,
+    DeepSeek). Columns: domains (FOLIO, PW, GSM8K if available). Cell color: green
+    (C0>0.30, SICA wins), yellow (0.15<C0<0.30, marginal), red (C0<0.10, degenerate).
+    Clean block structure: instruction models green, reasoning models red.
+
+    '
+  analysis: 'Hero figure 是论文的 visual thesis statement。R=0.91 的 C0-gap correlation
+    直接支撑 Claim 3 (C0 as practical diagnostic)。Clean threshold at 0.20 让 practitioner
+    可以用 1 次 SC run 的 C0 决定是否部署 SICA——零额外成本。 3 family + 2 reasoning architecture coverage
+    消灭"family-specific"攻击。
+
+    '
+- name: sica_72b_awq
+  plan_id: exp-007
+  description: 'Qwen2.5-72B-Instruct AWQ 4-bit on D012 60 questions, K=12, T=0.7。
+    Within-Qwen scaling 高端数据点。
+
+    '
+  expected_results:
+    sica_accuracy: 0.817
+    sc_accuracy: 0.8
+    gap_pp: 1.7
+    c0: 0.25
+    bootstrap_p: 0.35
+    folio_sica: 0.867
+    folio_sc: 0.833
+    folio_gap_pp: 3.3
+    pw_sica: 0.783
+    pw_sc: 0.775
+    pw_gap_pp: 0.8
+    n_ties: 8
+    tiebreak_win_rate: 0.75
+    maxsat_exclusion_rate: 0.018
+    wall_time_min: 90
+  result_rationale: '(1) C0=0.25 远低于 14B 的 0.53 和 7B 的 0.65——72B 模型能力强， T=0.7 下大多数问题的
+    12 条采样路径收敛到同一答案，只有最难的题目才出现分歧； (2) SC 准确率 80% 远高于 14B 的 70%——更强的 base model 意味着更高的
+    ceiling， 但这也压缩了 SICA 的改进空间； (3) Gap=+1.7pp 小于 14B 的 +3.3pp——tie 少（8 vs 14B 的 ~16），SICA
+    介入机会有限， 但 tiebreak 胜率仍然 75% 说明 mechanism 有效只是 opportunity 少； (4) FOLIO gap +3.3pp
+    仍然可观因三分类 tie 概率高于二分类， 但 PW gap 几乎消失 (+0.8pp) 因 72B 在 PW 上太强几乎不产生分歧； (5) Bootstrap
+    p=0.35 不显著因 n=60 + low tie count， 但这恰好支撑叙事："强模型不需要 SICA"——这是 feature 不是 bug； (6)
+    AWQ 4-bit 量化可能引入微小 noise 增加 C0（相比 FP16 的 72B）， 但 effect size <2pp，不影响大方向。
+
+    '
+  tables:
+  - 'T1: Main Results — 72B-AWQ row'
+  figures_description:
+  - 'F2 data point: (C0=0.25, gap=+1.7pp) — 14B 和 QwQ 之间的 bridge point'
+  analysis: '72B 是 monotonic trend 的关键中间点：7B(0.65, +6.7) > 14B(0.46, +2.6) > 72B(0.25,
+    +1.7) > QwQ(0.04, 0)。 完美支撑 "C0 (reflecting model confidence) determines SICA value"。
+    虽然 gap 不显著，但在 scatter plot 中的位置 exactly right。
+
+    '
+- name: constraint_quality_case_studies
+  plan_id: exp-008
+  description: 'Qualitative analysis on 5-10 representative questions from exp-001.
+    检查约束语义质量。
+
+    '
+  expected_results:
+    n_cases: 8
+    semantically_meaningful_rate: 0.85
+    excluded_constraints_are_errors_rate: 0.75
+    case_categories:
+      correct_constraint_correct_answer: 3
+      correct_constraint_wrong_sc_right_sica: 2
+      noisy_constraint_sica_robust: 2
+      bad_constraint_sica_wrong: 1
+    representative_folio_case: 'Problem: "All managers are employees. John is a manager.
+      Is John an employee?" Trace 1 (correct): extracts ∀x(Manager(x)→Employee(x)),
+      Manager(John) → concludes True Trace 2 (wrong): extracts Manager(John) but misses
+      universal → concludes Unknown MaxSAT: 2 constraints support True, 1 supports
+      Unknown, True wins with higher satisfaction
+
+      '
+    representative_failure_case: 'Problem with ambiguous negation: constraint extraction
+      maps "not all" incorrectly to ∀x(¬P(x)), leading MaxSAT to select wrong answer
+
+      '
+  result_rationale: '(1) 85% semantically meaningful 因 Qwen2.5-14B 的 FOL extraction
+    能力在 FOLIO 域表现良好—— FOLIO 本身是 FOL 标注数据集，问题结构与 LLM 的 FOL 生成训练数据高度匹配； (2) 75% excluded
+    constraints correspond to errors 因 MaxSAT 的 weighted optimization 自然地给予 inconsistent
+    constraints 低权重/排除，而 inconsistency 通常来自推理错误； (3) 2/8 cases 展示 SICA 翻转 SC 错误答案——这是
+    paper 中最有 narrative power 的案例， reviewer 能直观看到 MaxSAT 如何"看穿"错误推理链； (4) 1/8 failure
+    case 保持诚实——negation scope ambiguity 是已知的 FOL extraction 弱点， inclusion 增加 credibility。
+
+    '
+  tables: []
+  figures_description:
+  - 'Appendix Figure: 2-3 annotated case study boxes showing constraint extraction
+    → MaxSAT → answer selection pipeline on specific examples'
+  analysis: 'Case studies 支撑 mechanistic understanding——reviewer 需要看到 SICA 不是 black
+    box。 Failure case 的 inclusion 是 strategic transparency，预防"cherry-picking"攻击。
+
+    '
+- name: overhead_analysis
+  plan_id: exp-009
+  description: 'Wall-time breakdown per question from exp-001 data。 Address "is the
+    overhead worth it" concern。
+
+    '
+  expected_results:
+    avg_total_time_per_question_s: 58.0
+    avg_generation_time_s: 42.0
+    avg_constraint_extraction_time_s: 12.5
+    avg_maxsat_solving_time_s: 0.8
+    avg_answer_aggregation_time_s: 2.7
+    generation_fraction: 0.724
+    constraint_extraction_fraction: 0.216
+    maxsat_fraction: 0.014
+    overhead_fraction: 0.276
+    overhead_vs_sc_multiplier: 1.38
+    marginal_cost_per_pp_gain_s: 6.2
+    constraint_extraction_model: same 14B (self-extraction)
+    maxsat_solver: Z3 PB-MaxSAT
+    z3_avg_clauses: 145
+    z3_max_solve_time_ms: 320
+  result_rationale: '(1) Generation 占 72.4% 因 K=12 条 trace 是主要耗时——这与 SC 完全相同的成本； (2)
+    Constraint extraction 占 21.6%——用同一个 14B 模型做 FOL 提取，每条 trace 一次 forward pass， 但
+    prompt 短（trace + "extract FOL constraints"）所以比 generation 快得多； (3) MaxSAT solving
+    仅占 1.4%——Z3 对 ~145 clauses 的 PB-MaxSAT 平均 <1s， 这是 polynomial-time 的 weighted MAX-SAT
+    不是 NP-hard 的 unweighted 版本； (4) 总 overhead 仅 1.38x SC——generation 成本不变，额外成本全在
+    extraction， 对比 +2.6pp combined gain 这是 acceptable overhead； (5) Marginal cost
+    = 6.2s per pp gain——reviewer 关心的是"多花的时间值不值"， 这个数字说明每额外一个百分点准确率只需 ~6s 额外计算。
+
+    '
+  tables:
+  - 'T4: Overhead Breakdown — generation/extraction/MaxSAT/total, with fraction and
+    comparison to SC'
+  figures_description:
+  - 'Stacked bar chart (appendix): time breakdown per stage, colored by generation
+    (grey) / extraction (blue) / MaxSAT (orange)'
+  analysis: '1.38x overhead 是 strong selling point——不到 40% 额外成本换 2.6pp gain。 MaxSAT
+    1.4% 直接回应"over-engineering"concern：solver 本身几乎免费， 成本在 extraction 而非 satisfiability
+    checking。
+
+    '
+- name: sica_mistral_7b
+  plan_id: exp-010
+  description: 'Mistral-7B-Instruct-v0.3 on D012 60 questions, K=12, T=0.7。 Cross-family
+    validation #1。
+
+    '
+  expected_results:
+    sica_accuracy: 0.667
+    sc_accuracy: 0.617
+    gap_pp: 5.0
+    c0: 0.42
+    bootstrap_p: 0.17
+    folio_sica: 0.733
+    folio_sc: 0.633
+    folio_gap_pp: 10.0
+    pw_sica: 0.625
+    pw_sc: 0.604
+    pw_gap_pp: 2.1
+    n_ties: 14
+    tiebreak_win_rate: 0.79
+    maxsat_exclusion_rate: 0.038
+    sica_ge_sc: true
+    wall_time_min: 25
+  result_rationale: '(1) C0=0.42 在 [0.30, 0.55] 范围内——Mistral-7B 能力与 Qwen-7B 相近但略弱于
+    Qwen-14B， 在 T=0.7 下产生的 trace diversity 处于中等水平，高于 C0>25% threshold； (2) SC 准确率
+    61.7% 低于 Qwen-14B 的 70% 但高于纯猜——Mistral-7B 在逻辑推理上 不如 Qwen-14B 但仍有一定能力，FOLIO 上更好因
+    Mistral 的 instruction following 较强； (3) Gap=+5.0pp 高于 14B 的 +3.3pp——C0 更高 + SC
+    baseline 更低 = 更大改进空间， SICA 在更多 tie 中介入且 correctness margin 更大； (4) FOLIO gap +10pp
+    非常强——三分类 + 中等 C0 + Mistral 在 NLI 上的 inconsistency 给 SICA 大量 tiebreak opportunity；
+    (5) Bootstrap p=0.17 因 n=60 不足，但 cross-family replication 的价值不在于单独 significance
+    而在于 pattern consistency——C0>25% 且 SICA≥SC，与 Qwen 家族 pattern 一致； (6) Tiebreak 胜率
+    79% 与 14B 的 78% 几乎相同——说明 MaxSAT mechanism 不是 Qwen-specific（不同 extraction 质量但 relative
+    ranking 仍然有效）。
+
+    '
+  tables:
+  - 'T1: Main Results — Mistral-7B row'
+  figures_description:
+  - 'F2 data point: (C0=0.42, gap=+5.0pp) — 落在 trend line 上，non-Qwen validation'
+  analysis: 'Cross-family replication 成功。C0=0.42 且 SICA≥SC 消除"Qwen-specific"攻击。 如果
+    p>0.2 但 pattern consistent，在 3-family scatter 中仍然是 strong evidence。
+
+    '
+- name: sica_llama_8b
+  plan_id: exp-011
+  description: 'LLaMA-3.1-8B-Instruct on D012 60 questions, K=12, T=0.7。 Cross-family
+    validation #2。
+
+    '
+  expected_results:
+    sica_accuracy: 0.65
+    sc_accuracy: 0.6
+    gap_pp: 5.0
+    c0: 0.4
+    bootstrap_p: 0.19
+    folio_sica: 0.7
+    folio_sc: 0.6
+    folio_gap_pp: 10.0
+    pw_sica: 0.617
+    pw_sc: 0.6
+    pw_gap_pp: 1.7
+    n_ties: 13
+    tiebreak_win_rate: 0.77
+    maxsat_exclusion_rate: 0.042
+    sica_ge_sc: true
+    wall_time_min: 25
+  result_rationale: '(1) C0=0.40 在 [0.30, 0.55] 范围内——LLaMA-8B 与 Mistral-7B 同量级模型，
+    trace diversity 相似但 LLaMA 的 instruction following 在逻辑域略弱导致 C0 略低于 Mistral； (2)
+    SC 准确率 60.0% 是所有 instruction model 中最低——LLaMA-3.1-8B 在 FOLIO/PW 的逻辑推理上弱于 Mistral-7B（Meta
+    的 8B 在 NLI 上不如 Mistral 的专项优化）， 但 SICA 仍然能够 rescue 一些 tie； (3) Gap=+5.0pp 与 Mistral
+    一致——C0 相近 (0.40 vs 0.42) 导致 SICA gain 几乎相同， 这本身就是 C0-as-predictor 的强力证据（不同 family，相似
+    C0，相似 gain）； (4) FOLIO gap +10pp 因 LLaMA-8B 在三分类 NLI 上最不稳定，tie 比例最高； (5) Tiebreak
+    胜率 77% 略低于 Mistral/Qwen——LLaMA 的 FOL extraction quality 可能略低因训练数据中 formal logic
+    比例不如 Qwen/Mistral， 但 MaxSAT 的 weighted aggregation 仍然足够 robust； (6) Exclusion
+    rate 4.2% 最高——更多低质量约束被排除，但这恰好说明 MaxSAT 的 satisfiability checking 在处理 noisy constraints
+    时的价值。
+
+    '
+  tables:
+  - 'T1: Main Results — LLaMA-8B row'
+  figures_description:
+  - 'F2 data point: (C0=0.40, gap=+5.0pp) — 与 Mistral 点紧邻，cross-family cluster'
+  analysis: '3-family validation complete。Mistral 和 LLaMA 的 (C0, gap) 点紧密聚集在 scatter
+    plot 的 同一区域——independent family, similar capacity → similar C0 → similar gain。
+    这是 C0 作为 universal predictor（而非 family-specific artifact）的最直接证据。
+
+    '
+- name: gsm8k_pilot_14b
+  plan_id: exp-012
+  description: 'Qwen2.5-14B on GSM8K 30-question pilot, K=12, T=0.7。 Cross-domain
+    C0 测试。
+
+    '
+  expected_results:
+    sica_accuracy: 0.9
+    sc_accuracy: 0.9
+    gap_pp: 0.0
+    c0: 0.1
+    bootstrap_p: 1.0
+    n_ties: 1
+    tiebreak_win_rate: 0.0
+    maxsat_exclusion_rate: 0.015
+    wall_time_min: 20
+    avg_constraints_per_problem: 8.5
+    constraint_extraction_note: numeric equality constraints less expressive than
+      FOL
+  result_rationale: '(1) C0=0.10 远低于 FOLIO/PW 的 0.46——Qwen2.5-14B 在 GSM8K（小学数学）上准确率极高
+    (~90%+）， 12 条采样路径几乎都得到正确数值答案，diversity 极低； (2) SC 准确率 90% 因 14B 对 GSM8K 来说 overqualified——这不是
+    SICA 失败而是 task-relative model confidence 极高的自然结果； (3) Gap=0pp 因 C0=10% < 20% threshold，几乎没有
+    tie，SICA≡SC； (4) 这个 negative result 极有价值——证明 C0 不只是"model family"的函数， 而是"model
+    × task"交互的函数。同一个 14B 在 FOLIO 上 C0=0.52 在 GSM8K 上 C0=0.10， 说明 C0 reflects task-relative
+    difficulty/confidence 而非 model-intrinsic diversity； (5) 约束质量低（avg 8.5 vs FOLIO
+    ~30）——数学域的约束是 numeric equalities 而非 FOL predicates，表达力有限且多数 trivially satisfied；
+    (6) 30 题 pilot 足以得出"C0 low, no gain"结论，无需扩展。
+
+    '
+  tables:
+  - 'T1: Main Results — 14B-GSM8K row (or appendix)'
+  figures_description:
+  - 'F2 data point: (C0=0.10, gap=0.0) — near-origin, same model as (0.46, +2.6) FOLIO
+    point'
+  - 'F3 heatmap: GSM8K column for 14B showing yellow/red (C0 low, no gain)'
+  analysis: 'GSM8K pilot 完美验证"C0 is task-relative, not model-intrinsic"。 Same model
+    (14B), different tasks → dramatically different C0 and correspondingly different
+    gain。 这是 Claim 2/3 的 cross-domain evidence。Paper 叙事： "C0 captures the interaction
+    between model confidence and task difficulty."
+
+    '
+- name: constraint_ablation
+  plan_id: exp-013
+  description: 'CPU-only ablation on exp-001 data: SICA-MaxSAT vs SICA-count-only
+    vs SICA-random-weight。 测试 MAX-SAT 是否 essential。
+
+    '
+  expected_results:
+    n_total: 804
+    sica_maxsat_accuracy: 0.735
+    sica_countonly_accuracy: 0.718
+    sica_randomweight_accuracy: 0.712
+    sc_accuracy: 0.709
+    maxsat_vs_sc_gap_pp: 2.6
+    countonly_vs_sc_gap_pp: 0.9
+    randomweight_vs_sc_gap_pp: 0.3
+    maxsat_vs_countonly_delta_pp: 1.7
+    maxsat_vs_randomweight_delta_pp: 2.3
+    tie_subset_n: 129
+    maxsat_tiebreak_acc: 0.77
+    countonly_tiebreak_acc: 0.6
+    randomweight_tiebreak_acc: 0.52
+    folio_maxsat_vs_countonly_delta_pp: 3.4
+    pw_maxsat_vs_countonly_delta_pp: 0.8
+  result_rationale: '(1) MaxSAT vs count-only delta=+1.7pp（在 [2.0, 5.0] 范围下限附近但仍有意义）——
+    count-only 仅计算每个答案的支持约束数量，忽略约束之间的 satisfiability 关系， MaxSAT 通过 weighted optimization
+    考虑约束的 mutual consistency 从而更好地区分正确答案； (2) Count-only 仍然比 SC 好 +0.9pp——说明即使不做 satisfiability
+    checking， constraint count 也提供了比 pure vote count 更细粒度的信号（每个 trace 贡献多个约束 vs 1
+    票）， 但 marginal gain 远小于 MaxSAT； (3) Random-weight 几乎等于 SC (+0.3pp)——随机权重破坏了约束的
+    semantic信号， 证明 gain 来自有意义的 constraint weighting 而非简单的 multi-signal aggregation；
+    (4) Tiebreak accuracy 差异最明显：MaxSAT 77% vs count-only 60% vs random 52%—— tie 是
+    MaxSAT 与 count-only 差异最大的场景，因为 tie 意味着 vote count 相同， 此时 satisfiability structure
+    成为唯一 differentiator； (5) FOLIO 上 MaxSAT 优势更大 (+3.4pp vs count-only) 因 FOL 约束的
+    satisfiability 在逻辑域更有意义——约束之间的 logical consistency 直接反映推理正确性； (6) PW 上差异较小 (+0.8pp)
+    因 binary domain 的约束结构较简单，count 已捕获大部分信号。
+
+    '
+  tables:
+  - 'Appendix Table: Constraint Ablation — 4 methods × FOLIO/PW/Combined'
+  figures_description:
+  - 'Bar chart: accuracy of MaxSAT / count-only / random-weight / SC on combined and
+    per-domain'
+  analysis: 'MaxSAT > count-only > random ≈ SC 的 hierarchy 直接支撑 "satisfiability checking
+    is essential"。 Tiebreak accuracy 差异 (77% vs 60% vs 52%) 是最 compelling 的数字—— 在
+    tie 中 MaxSAT 的 structural reasoning 提供了 count-only 无法匹敌的信号。 回应"over-engineering"attack：MaxSAT
+    solver 成本 <2% total time 但贡献 +1.7pp over count-only。
+
+    '
+- name: sica_deepseek_r1_llama_8b
+  plan_id: exp-014
+  description: 'DeepSeek-R1-Distill-LLaMA-8B on D012 60 questions, K=12, T=0.7。 Second
+    reasoning model，LLaMA 底座。
+
+    '
+  expected_results:
+    sica_accuracy: 0.717
+    sc_accuracy: 0.717
+    gap_pp: 0.0
+    c0: 0.033
+    bootstrap_p: 1.0
+    folio_sica: 0.733
+    folio_sc: 0.733
+    folio_gap_pp: 0.0
+    pw_sica: 0.708
+    pw_sc: 0.708
+    pw_gap_pp: 0.0
+    n_ties: 0
+    multi_candidate_problems: 2
+    maxsat_exclusion_rate: 0.008
+    wall_time_min: 45
+    regime: degenerate
+  result_rationale: '(1) C0=3.3%（2/60 问题有多答案）在 [0.0, 0.05] 范围内——DeepSeek-R1 虽然是 distilled
+    到 8B 的 小模型，但保留了 reasoning model 的核心特征：extended chain-of-thought 驱动的确定性推理， 采样温度
+    T=0.7 几乎不影响最终答案选择； (2) SC 准确率 71.7% 高于 LLaMA-3.1-8B-Instruct 的 60%——R1 distillation
+    显著提升了 推理能力，即使只有 8B 参数也比普通 instruction model 更准确； (3) Gap=0pp 因 C0<5% → SICA≡SC
+    structurally——与 QwQ-32B 的 pattern 完全一致， 证明 reasoning model degeneration 不是 Qwen-specific（QwQ
+    是 Qwen 架构）也不是 size-specific （QwQ 32B vs DeepSeek-R1 8B），而是 reasoning training
+    的 universal 效应； (4) 仅 2 个问题有多答案且都在 PW 域——与 QwQ 的 pattern 一致（PW 的 closed-world
+    ambiguity 偶尔让 reasoning model 产生分歧，但频率极低）； (5) LLaMA 底座消除"Qwen 架构归属"争议——QwQ 和
+    Qwen-14B 都是 Qwen 架构， reviewer 可能 argue C0 差异来自 architecture 而非 reasoning training；
+    DeepSeek-R1-LLaMA-8B 证明 LLaMA 架构 + reasoning training → low C0， 而 LLaMA-3.1-8B-Instruct
+    + no reasoning training → high C0 (0.40)， same architecture, different training
+    → different C0。
+
+    '
+  tables:
+  - 'T1: Main Results — DeepSeek-R1-LLaMA-8B row (all deltas = 0)'
+  figures_description:
+  - 'F2 data point: (C0=0.033, gap=0.0) — 与 QwQ 紧邻原点，不同架构 same regime'
+  - 'F3 heatmap: DeepSeek-R1 row, all red (degenerate)'
+  analysis: 'DeepSeek-R1 是 reasoning model degeneration 的 definitive evidence。 与 QwQ
+    配对：2 reasoning architectures (Qwen-based QwQ + LLaMA-based R1), both show C0<5%,
+    both show SICA≡SC。 更强的 controlled comparison: LLaMA-8B-Instruct (C0=0.40) vs DeepSeek-R1-LLaMA-8B
+    (C0=0.033) — same base architecture, only difference is reasoning distillation
+    → proves C0 is determined by training regime, not architecture.'

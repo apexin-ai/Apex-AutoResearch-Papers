@@ -1,0 +1,498 @@
+{
+  "pid": "folio_70",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "badults_is_british_sitcom",
+          "z3_formula": "badults_is_british_sitcom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "members_of_pappys_involved_in_badults",
+          "z3_formula": "members_of_pappys_involved_in_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "badults_piloted_on_bbc_three",
+          "z3_formula": "badults_piloted_on_bbc_three == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "working_title_secret_dude_society",
+          "z3_formula": "working_title_secret_dude_society == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "andrew_collins_script_editor_for_badults",
+          "z3_formula": "andrew_collins_script_editor_for_badults == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "no_members_of_pappys_starred_on_bbc_two_or_three",
+          "z3_formula": "Not(Or(members_of_pappys_starred_on_bbc_two, members_of_pappys_starred_on_bbc_three))",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "is_british_sitcom_series(badults)",
+          "z3_formula": "is_british_sitcom_series_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "stars_members_of_pappys(badults)",
+          "z3_formula": "stars_members_of_pappys_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "piloted_on_bbc_three(badults, 2013, 7)",
+          "z3_formula": "piloted_on_bbc_three_badults_2013_7 == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "stars_members_of_pappys(X) & piloted_on_bbc_two_or_three(X, _, _) -> not stars_members_of_pappys(X)",
+          "z3_formula": "Implies(And(stars_members_of_pappys_badults, piloted_on_bbc_two_or_three_badults, _), Not(stars_members_of_pappys_badults))",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not stars_members_of_pappys(badults) & stars_members_of_pappys(badults)",
+          "z3_formula": "And(Not(stars_members_of_pappys_badults), stars_members_of_pappys_badults)",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "starring_members_of_pappys_in_badults",
+          "z3_formula": "starring_members_of_pappys_in_badults == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "badults_piloted_on_bbc_three",
+          "z3_formula": "badults_piloted_on_bbc_three == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "starring_members_of_pappys_in_show -> show_piloted_on_bbc_two_or_three",
+          "z3_formula": "Implies(starring_members_of_pappys_in_show, show_piloted_on_bbc_two_or_three)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(starring_members_of_pappys_in_show_on_bbc_two)",
+          "z3_formula": "Not(starring_members_of_pappys_in_show_on_bbc_two)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(starring_members_of_pappys_in_show_on_bbc_two_or_three)",
+          "z3_formula": "Not(And(starring_members_of_pappys_in_show_on_bbc_two, starring_members_of_pappys_in_show_on_bbc_three))",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "badults_is_british_sitcom",
+          "z3_formula": "badults_is_british_sitcom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "badults_piloted_on_bbc_three",
+          "z3_formula": "badults_piloted_on_bbc_three == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "badults_is_british_sitcom & badults_piloted_on_bbc_three -> members_of_pappys_starred_on_bbc_three",
+          "z3_formula": "Implies(And(badults_is_british_sitcom, badults_piloted_on_bbc_three), members_of_pappys_starred_on_bbc_three)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "members_of_pappys_starred_on_bbc_three",
+          "z3_formula": "members_of_pappys_starred_on_bbc_three == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "no_members_of_pappys_starred_on_bbc_two_or_three",
+          "z3_formula": "no_members_of_pappys_starred_on_bbc_two_or_three == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "members_of_pappys_starred_in_badults",
+          "z3_formula": "members_of_pappys_starred_in_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "badults_piloted_on_bbc_three",
+          "z3_formula": "badults_piloted_on_bbc_three == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "members_of_pappys_starred_in_badults & badults_piloted_on_bbc_three -> conclusion_false",
+          "z3_formula": "Implies(And(members_of_pappys_starred_in_badults, badults_piloted_on_bbc_three), conclusion_false)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "conclusion_false",
+          "z3_formula": "conclusion_false == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "badults_starred_members_of_pappys",
+          "z3_formula": "badults_starred_members_of_pappys == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "badults_piloted_on_bbc_three",
+          "z3_formula": "badults_piloted_on_bbc_three == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "badults_working_title_was_secret_dude_society",
+          "z3_formula": "badults_working_title_was_secret_dude_society == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "andrew_collins_was_script_editor_for_badults",
+          "z3_formula": "andrew_collins_was_script_editor_for_badults == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "no_members_of_pappys_starred_in_show_piloting_on_bbc_two_or_three",
+          "z3_formula": "Not(Or(badults_starred_members_of_pappys & badults_piloted_on_bbc_three, badults_starred_members_of_pappys & badults_piloted_on_bbc_two)) == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "british_sitcom(badults)",
+          "z3_formula": "british_sitcom_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "stars_members_of_pappys(badults)",
+          "z3_formula": "stars_members_of_pappys_badults == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "piloted_on_bbc_three(badults, 2013, 7)",
+          "z3_formula": "piloted_on_bbc_three_badults_2013_7 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "working_title(badults, \"the_secret_dude_society\")",
+          "z3_formula": "working_title_badults_the_secret_dude_society == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "script_editor(badults, andrew_collins)",
+          "z3_formula": "script_editor_badults_andrew_collins == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "stars_members_of_pappys(X) & piloted_on_bbc_three(X, Y, Z) -> stars_members_of_pappys_on_bbc_three(X)",
+          "z3_formula": "Implies(And(stars_members_of_pappys_badults, piloted_on_bbc_three_badults_2013_7), stars_members_of_pappys_on_bbc_three_badults)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "stars_members_of_pappys_on_bbc_three(badults)",
+          "z3_formula": "stars_members_of_pappys_on_bbc_three_badults == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "members_of_pappys_associated_with_badults",
+          "z3_formula": "members_of_pappys_associated_with_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "badults_piloted_on_bbc_three_in_july_2013",
+          "z3_formula": "badults_piloted_on_bbc_three_in_july_2013 == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "no_members_of_pappys_starred_in_show_piloting_on_bbc_three",
+          "z3_formula": "Not(badults_piloted_on_bbc_three_in_july_2013 == True)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "members_of_pappys_associated_with_badults -> no_members_of_pappys_starred_in_show_piloting_on_bbc_three",
+          "z3_formula": "Implies(members_of_pappys_associated_with_badults, no_members_of_pappys_starred_in_show_piloting_on_bbc_three)",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "members_of_pappys_starred_in_badults",
+          "z3_formula": "members_of_pappys_starred_in_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "badults_piloted_on_bbc_three",
+          "z3_formula": "badults_piloted_on_bbc_three == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "badults_piloted_in_july_2013",
+          "z3_formula": "badults_piloted_in_july_2013 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "working_title_was_secret_dude_society",
+          "z3_formula": "working_title_was_secret_dude_society == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "andrew_collins_was_script_editor",
+          "z3_formula": "andrew_collins_was_script_editor == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "members_of_pappys_starred_in_badults & badults_piloted_on_bbc_three -> conclusion",
+          "z3_formula": "Implies(And(members_of_pappys_starred_in_badults, badults_piloted_on_bbc_three), Not(conclusion))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "conclusion",
+          "z3_formula": "Not(conclusion) == False",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "members_of_pappys_starred_in_badults",
+          "z3_formula": "members_of_pappys_starred_in_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "badults_piloted_on_bbc_three",
+          "z3_formula": "badults_piloted_on_bbc_three == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "members_of_pappys_starred_in_badults & badults_piloted_on_bbc_two_or_three -> conclusion",
+          "z3_formula": "Implies(And(members_of_pappys_starred_in_badults, Or(badults_piloted_on_bbc_two, badults_piloted_on_bbc_three)), conclusion == True)",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "badults_is_british_sitcom",
+          "z3_formula": "badults_is_british_sitcom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pappys_members_starred_badults",
+          "z3_formula": "pappys_members_starred_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "badults_piloted_july_2013",
+          "z3_formula": "badults_piloted_july_2013 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "working_title_secret_dude_society",
+          "z3_formula": "working_title_secret_dude_society == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "andrew_collins_script_editor",
+          "z3_formula": "andrew_collins_script_editor == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "no_members_of_pappys_starred_on_bbc_two",
+          "z3_formula": "no_members_of_pappys_starred_on_bbc_two == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "no_members_of_pappys_starred_on_bbc_three",
+          "z3_formula": "no_members_of_pappys_starred_on_bbc_three == Unknown",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "british_sitcom(badults)",
+          "z3_formula": "british_sitcom_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "piloted_on(badults, bbc_three, 2013)",
+          "z3_formula": "piloted_on_badults_bbc_three_2013 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "working_title(badults, the_secret_dude_society)",
+          "z3_formula": "working_title_badults_the_secret_dude_society == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "script_editor(badults, andrew_collins)",
+          "z3_formula": "script_editor_badults_andrew_collins == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "british_sitcom(X) & piloted_on(X, Y, 2013) & working_title(X, Z) & script_editor(X, W) -> starred_in(X, Y, W)",
+          "z3_formula": "Implies(And(british_sitcom_badults, piloted_on_badults_bbc_three_2013, working_title_badults_the_secret_dude_society, script_editor_badults_andrew_collins), starred_in_badults_bbc_three_andrew_collins)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "starred_in(badults, bbc_three, andrew_collins)",
+          "z3_formula": "starred_in_badults_bbc_three_andrew_collins == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "starred_in(X, Y, W) -> not(starred_in(X, Z, W))",
+          "z3_formula": "Implies(starred_in_badults_bbc_three_andrew_collins, Not(starred_in_badults_bbc_two_andrew_collins))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(starred_in(badults, bbc_two, andrew_collins))",
+          "z3_formula": "Not(starred_in_badults_bbc_two_andrew_collins) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "not(starred_in(X, Y, W)) -> not(starred_in(X, Z, W))",
+          "z3_formula": "Implies(Not(starred_in_badults_bbc_two_andrew_collins), Not(starred_in_badults_bbc_three_andrew_collins))",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not(starred_in(badults, bbc_three, andrew_collins))",
+          "z3_formula": "Not(starred_in_badults_bbc_three_andrew_collins) == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "not(starred_in(X, Y, W)) -> false",
+          "z3_formula": "Implies(Not(starred_in_badults_bbc_three_andrew_collins), False)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "false",
+          "z3_formula": "False == True",
+          "source_step": 12
+        }
+      ]
+    }
+  ]
+}

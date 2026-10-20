@@ -1,0 +1,568 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-178_Q3",
+    "problem": "Bob is big. Bob is quiet. Erin is white. Gary is big. Gary is red. Harry is green. Harry is smart. If someone is smart and big then they are white. All quiet, red people are smart. If someone is smart and white then they are green. Red, round people are quiet. If someone is big then they are round. If Erin is round and Erin is quiet then Erin is smart. If someone is red and green then they are big.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is round.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nQuiet($x, bool) ::: Is x quiet?\nWhite($x, bool) ::: Is x white?\nRed($x, bool) ::: Is x red?\nGreen($x, bool) ::: Is x green?\nSmart($x, bool) ::: Is x smart?\nRound($x, bool) ::: Is x round?\n\nFacts:\nBig(Bob, True) ::: Bob is big.\nQuiet(Bob, True) ::: Bob is quiet.\nWhite(Erin, True) ::: Erin is white.\nBig(Gary, True) ::: Gary is big.\nRed(Gary, True) ::: Gary is red.\nGreen(Harry, True) ::: Harry is green.\nSmart(Harry, True) ::: Harry is smart.\n\nRules:\nSmart($x, True) && Big($x, True) >>> White($x, True) ::: If someone is smart and big then they are white.\nQuiet($x, True) && Red($x, True) >>> Smart($x, True) ::: All quiet, red people are smart.\nSmart($x, True) && White($x, True) >>> Green($x, True) ::: If someone is smart and white then they are green.\nRed($x, True) && Round($x, True) >>> Quiet($x, True) ::: Red, round people are quiet.\nBig($x, True) >>> Round($x, True) ::: If someone is big then they are round.\nRound(Erin, True) && Quiet(Erin, True) >>> Smart(Erin, True) ::: If Erin is round and Erin is quiet then Erin is smart.\nRed($x, True) && Green($x, True) >>> Big($x, True) ::: If someone is red and green then they are big.\n\nQuery:\nRound(Bob, True) ::: Bob is round."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 66.0,
+      "Unknown": 41.0
+    },
+    "answer_counts": {
+      "True": 10,
+      "Unknown": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Bob is round\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. Bob is big.\n2. Bob is quiet.\n\nWe know that \"If someone is big then they are round.\" Therefore, from statement 1, we can conclude that Bob is round.\n\nHowever, we also need to check if this conclusion is affected by any other given statements. \n\nSince Bob is big and round, we can check if there are any other statements that could contradict this or provide additional information.\n\nThe statements do not provide any information about a person being big and round, so the conclusion \"Bob is round\" stands.\n\nTherefore, the statement \"Bob is round\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is round\" is true, false, or unknown, we need to analyze the given information and the conditions provided.\n\nFrom the given information:\n\n1. Bob is big. \n2. If someone is big then they are round. \n\nWe can use the second statement to conclude that since Bob is big, he must be round.\n\nTherefore, based on the given information, we can determine that the statement \"Bob is round\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is round\" is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\n1. From the given information, we know that:\n   - Bob is big.\n   - If someone is big, then they are round. \n   Therefore, we can conclude that Bob is round.\n\nHowever, we need to ensure that our conclusion is based on the information provided. We'll continue to analyze the information.\n\n2. We also know that:\n   - Bob is quiet.\n   - All quiet, red people are smart.\n   We don't know if Bob is red, so we can't conclude that Bob is smart.\n\n3. Since we know that Bob is big and round, we can conclude that Bob is indeed round.\n\nHowever, let's look at all the information given, and determine the best answer.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve the problem, we'll break it down into steps using the given information.\n\n1. Given information:\n   - Bob is big.\n   - Bob is quiet.\n   - Erin is white.\n   - Gary is big.\n   - Gary is red.\n   - Harry is green.\n   - Harry is smart.\n   - If someone is smart and big then they are white.\n   - All quiet, red people are smart.\n   - If someone is smart and white then they are green.\n   - Red, round people are quiet.\n   - If someone is big then they are round.\n   - If Erin is round and Erin is quiet then Erin is smart.\n   - If someone is red and green then they are big.\n\n2. We need to determine whether the statement \"Bob is round\" is true, false, or unknown. To do this, we'll examine each piece of information that might be related to Bob being round.\n\n3. Let's start by looking at the information about Bob. We know that Bob is big and Bob is quiet.\n\n4. Since Bob is big, we can infer that Bob is round because the given information states that \"If someone is big then they are round.\"\n\n5. Therefore, we can conclude that Bob is round, and the statement is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement 'Bob is round' is true, false, or unknown, we need to analyze the given information and the relationships between the different attributes.\n\nGiven information:\n\n1. Bob is big. \n2. Bob is quiet. \n3. Erin is white. \n4. Gary is big. \n5. Gary is red. \n6. Harry is green. \n7. Harry is smart. \n8. If someone is smart and big then they are white. \n9. All quiet, red people are smart. \n10. If someone is smart and white then they are green. \n11. Red, round people are quiet. \n12. If someone is big then they are round. \n13. If Erin is round and Erin is quiet then Erin is smart. \n14. If someone is red and green then they are big.\n\nNow, we need to determine whether 'Bob is round' is true, false, or unknown based on these rules.\n\nStep 1: Analyze the given information about Bob.\n- Bob is big (rule 1)\n- Bob is quiet (rule 2)\n\nStep 2: Use the rules to determine Bob's roundness.\n- If someone is big then they are round (rule 12). \n- Since Bob is big (rule 1), we can conclude that Bob is round.\n\nTherefore, 'Bob is round' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is round\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Given information:\n   - Bob is big.\n   - Bob is quiet.\n   - Erin is white.\n   - Gary is big.\n   - Gary is red.\n   - Harry is green.\n   - Harry is smart.\n   - If someone is smart and big then they are white.\n   - All quiet, red people are smart.\n   - If someone is smart and white then they are green.\n   - Red, round people are quiet.\n   - If someone is big then they are round.\n   - If Erin is round and Erin is quiet then Erin is smart.\n   - If someone is red and green then they are big.\n\n2. We want to determine whether the statement \"Bob is round\" is true, false, or unknown.\n\nFrom the given information, we know that \"If someone is big then they are round.\" We also know that \"Bob is big.\" So, we can conclude that Bob is round using the given information.\n\nTherefore, the statement \"Bob is round\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement 'Bob is round' is true, false, or unknown, we need to analyze the given information step by step.\n\nGiven information:\n1. Bob is big. \n2. Bob is quiet.\n3. Erin is white.\n4. Gary is big. \n5. Gary is red.\n6. Harry is green.\n7. Harry is smart.\n8. If someone is smart and big then they are white. \n9. All quiet, red people are smart.\n10. If someone is smart and white then they are green.\n11. If someone is red and green then they are big.\n12. If Erin is round and Erin is quiet then Erin is smart.\n\nSince we are trying to find out if Bob is round, let's try to deduce it using the given statements.\n\nFrom statement 1, Bob is big.\nFrom statement 5, Gary is big.\nStatement 11 says that if someone is red and green then they are big. But there's no information about Bob being red and green, or just red, or just green.\n\nHowever, from statement 2, Bob is quiet. \nFrom statement 9, all quiet, red people are smart. We don't have information that Bob is red, but we don't have any information that he is not red either.\n\nSince we don't have enough information to determine if Bob is red or not, we cannot conclusively say if he is round or not.\n\nTherefore, the final answer is: \n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is round\" is true, false, or unknown, we need to analyze the given information and apply it step by step.\n\n1. From the information given, we know:\n   - Bob is big. (1)\n   - If someone is big then they are round. (2)\n   So, we can conclude that Bob is round because it is a direct consequence of being big.\n\nHowever, there is also information about being round and quiet:\n- If someone is red and round then they are quiet. (4)\nSince we don't have any information about Bob being red, we cannot directly apply this rule.\n\nBut we can analyze this further. We know that being big implies being round (rule 2), and we also know that being red and round implies being quiet (rule 4). If we could find a connection between being red and being big, then we could conclude that Bob is quiet.\n\nHowever, we have information that if someone is big then they are round (rule 2), and we also have information that if someone is red and green then they are big (rule 7). \n\nSo we are missing the color of Bob to figure out if he is quiet or not, because we need to find the color of Bob to connect the rules 2 and 4, but the rules given provide information to determine the statement in question.\n\nGiven the information, we can conclude that Bob is round, which is a direct consequence of being big.\n\nHowever, we cannot determine whether Bob is quiet or not with the given information.\n\nSo, the statement \"Bob is round\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and find any information related to \"Bob is round.\"\n\n1. Given statements:\n   - Bob is big.\n   - Bob is quiet.\n   - Erin is white.\n   - Gary is big.\n   - Gary is red.\n   - Harry is green.\n   - Harry is smart.\n   - If someone is smart and big then they are white.\n   - All quiet, red people are smart.\n   - If someone is smart and white then they are green.\n   - Red, round people are quiet.\n   - If someone is big then they are round.\n   - If Erin is round and Erin is quiet then Erin is smart.\n   - If someone is red and green then they are big.\n\n2. Let's start with the information we have about Bob:\n   - Bob is big.\n   - Bob is quiet.\n\n3. From the given statements, we have:\n   - If someone is big then they are round.\n   - So, since Bob is big, it implies that Bob is round.\n\n4. Now we have the conclusion: Bob is round.\n\nSo, the answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is round\" is true, false, or unknown, we need to analyze the given information and apply it step by step.\n\nGiven information:\n1. Bob is big.\n2. Bob is quiet.\n3. Erin is white.\n4. Gary is big.\n5. Gary is red.\n6. Harry is green.\n7. Harry is smart.\n8. If someone is smart and big then they are white.\n9. All quiet, red people are smart.\n10. If someone is smart and white then they are green.\n11. Red, round people are quiet.\n12. If someone is big then they are round.\n13. If Erin is round and Erin is quiet then Erin is smart.\n14. If someone is red and green then they are big.\n\nFrom statement 1, we know that Bob is big. Now, we can use statement 14 to see if it helps us determine if Bob is round.\n\nUsing statement 12, we can conclude that since Bob is big, then Bob is round.\n\nTherefore, based on the given information, we can determine that the statement \"Bob is round\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether Bob is round, we need to analyze the given information step by step.\n\n1. From the information given:\n   - Gary is big, and Gary is red.\n   - If someone is big, then they are round. (Rule 5)\n   - Since Gary is big, Gary is round.\n   - Red, round people are quiet. (Rule 4)\n   - Therefore, Gary is quiet.\n   - All quiet, red people are smart. (Rule 3)\n   - Therefore, Gary is smart.\n   - If someone is smart and white, then they are green. (Rule 2)\n   - This rule doesn't apply here because we don't know that Gary is white.\n\n2. Now let's look at Bob:\n   - Bob is big.\n   - If someone is big, then they are round. (Rule 5)\n   - Therefore, Bob is round.\n\nSo, based on the given information, we can conclude that Bob is indeed round.",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is round\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning step by step.\n\nGiven information:\n\n1. Bob is big.\n2. Bob is quiet.\n3. Erin is white.\n4. Gary is big.\n5. Gary is red.\n6. Harry is green.\n7. Harry is smart.\n8. If someone is smart and big then they are white.\n9. All quiet, red people are smart.\n10. If someone is smart and white then they are green.\n11. Red, round people are quiet.\n12. If someone is big then they are round.\n13. If Erin is round and Erin is quiet then Erin is smart.\n14. If someone is red and green then they are big.\n\nWe are asked to determine whether \"Bob is round\" is true, false, or unknown.\n\nStep 1: Analyze given information about Bob.\nFrom statement 1, we know that Bob is big.\n\nStep 2: Apply rule 12 to deduce that Bob is round.\nSince Bob is big (statement 1), according to rule 12, Bob is round.\n\nConclusion: Based on the given information and logical reasoning, \"Bob is round\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_bob, round_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_bob, round_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_bob, round_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_bob, red_bob), smart_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_bob, round_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_bob, round_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & big(X) -> white(X)",
+          "z3_formula": "Implies(And(smart_X, big_X), white_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_X, red_X), smart_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> green(X)",
+          "z3_formula": "Implies(And(smart_X, white_X), green_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & round(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_X, round_X), quiet_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_X, round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(round_X, quiet_X), smart_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> big(X)",
+          "z3_formula": "Implies(And(red_X, green_X), big_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & big(X) -> white(X)",
+          "z3_formula": "Implies(And(smart_X, big_X), white_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_X, red_X), smart_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> green(X)",
+          "z3_formula": "Implies(And(smart_X, white_X), green_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> big(X)",
+          "z3_formula": "Implies(And(red_X, green_X), big_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(round_X, quiet_X), smart_X)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_bob, round_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_bob, round_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_bob, round_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_gary, round_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> quiet(X)",
+          "z3_formula": "Implies(And(round_gary, red_gary), quiet_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_gary, red_gary), smart_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> green(X)",
+          "z3_formula": "Implies(And(smart_gary, white_gary), green_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_bob, round_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_bob, round_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 2
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 73,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 24
+    },
+    "maxsat_stats": {
+      "satisfied": 24,
+      "excluded": 0,
+      "total_weight": 73,
+      "solve_time_ms": 0.8660191670060158
+    },
+    "timing": {
+      "trace_gen_s": 4.031,
+      "extraction_s": 12.354,
+      "dedup_s": 0.378,
+      "maxsat_s": 0.002,
+      "total_s": 16.765
+    }
+  }
+}

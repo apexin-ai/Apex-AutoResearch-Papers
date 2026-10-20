@@ -1,0 +1,1256 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-195_Q15",
+    "problem": "Bob is rough. Charlie is nice. Charlie is rough. Charlie is white. Dave is not white. Gary is cold. Gary is quiet. Rough, white things are quiet. If Charlie is round and Charlie is quiet then Charlie is rough. All young things are round. Nice things are white. Rough, nice things are cold. If something is round and rough then it is nice. If something is rough then it is young.\n\nDetermine whether the following statement is true, false, or unknown:\nGary is not white.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRough($x, bool) ::: Is x rough?\nNice($x, bool) ::: Is x nice?\nWhite($x, bool) ::: Is x white?\nNotWhite($x, bool) ::: Is x not white?\nCold($x, bool) ::: Is x cold?\nQuiet($x, bool) ::: Is x quiet?\nRound($x, bool) ::: Is x round?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nRough(Bob, True) ::: Bob is rough.\nNice(Charlie, True) ::: Charlie is nice.\nRough(Charlie, True) ::: Charlie is rough.\nWhite(Charlie, True) ::: Charlie is white.\nNotWhite(Dave, True) ::: Dave is not white.\nCold(Gary, True) ::: Gary is cold.\nQuiet(Gary, True) ::: Gary is quiet.\n\nRules:\nRough($x, True) && White($x, True) >>> Quiet($x, True) ::: Rough, white things are quiet.\nRound(Charlie, True) && Quiet(Charlie, True) >>> Rough(Charlie, True) ::: If Charlie is round and Charlie is quiet then Charlie is rough.\nYoung($x, True) >>> Round($x, True) ::: All young things are round.\nNice($x, True) >>> White($x, True) ::: Nice things are white.\nRough($x, True) && Nice($x, True) >>> Cold($x, True) ::: Rough, nice things are cold.\nRound($x, True) && Rough($x, True) >>> Nice($x, True) ::: If something is round and rough then it is nice.\nRough($x, True) >>> Young($x, True) ::: If something is rough then it is young.\n\nQuery:\nNotWhite(Gary, True) ::: Gary is not white."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 110.0,
+      "Unknown": 172.5
+    },
+    "answer_counts": {
+      "Unknown": 7,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Gary is not white\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1.  Gary is cold. Gary is quiet.\n    - From this, we cannot directly conclude whether Gary is white or not.\n\n2. Rough, white things are quiet.\n    - This statement gives a characteristic of rough, white things but does not provide information about Gary.\n\n3. If Charlie is round and Charlie is quiet then Charlie is rough.\n    - This statement is related to Charlie, not Gary.\n\n4. All young things are round.\n    - We do not have any information about Gary being young or not.\n\n5. Nice things are white.\n    - This statement provides a characteristic of nice things but does not provide information about Gary.\n\n6. Rough, nice things are cold.\n    - This statement gives a characteristic of rough, nice things but does not provide information about Gary.\n\n7. If something is round and rough then it is nice.\n    - This statement is related to the properties of something being round and rough but does not provide information about Gary.\n\n8. If something is rough then it is young.\n    - We do not have any information about Gary being rough or not.\n\nFrom the given information, we cannot directly determine whether Gary is white or not. However, we can analyze the relationships between the given properties.\n\nLet's analyze the information again: Gary is cold and Gary is quiet.\n\nFrom statement 2, we know that rough, white things are quiet. Since Gary is quiet, we cannot directly conclude that Gary is white, but it gives us a clue.\n\nFrom statement 7, if something is round and rough, then it is nice. But we do not have any information about Gary being round or rough.\n\nFrom statement 8, if something is rough, then it is young. But we do not have any information about Gary being rough or not.\n\nFrom statement 4, all young things are round. If we assume that Gary is young, then Gary is round. But we do not have any information about Gary being young.\n\nHowever, since Gary is cold and Gary is quiet, we can analyze the relationships between the given properties again. From statement 6, rough, nice things are cold. Since Gary is cold, we can conclude that Gary might be nice. \n\nFrom statement 5, nice things are white. Since we concluded that Gary might be nice, we can also conclude that Gary might be white.\n\nHowever, since we cannot directly determine whether Gary is white or not, we need to analyze the information again.\n\nFrom statement 8, if something is rough, then it is young. We do not have any information about Gary being rough or not. However, we can analyze the relationships between the given properties again.\n\nFrom statement 7, if something is round and rough, then it is nice. Since we do not have any information about Gary being round or rough, we cannot directly conclude that Gary is nice or white.\n\nHowever, since we know that Gary is cold, we can analyze the relationships between the given properties again.\n\nFrom statement 6, rough, nice things are cold. Since Gary is cold, we can conclude that Gary might be nice and rough. \n\nHowever, since we concluded that Gary might be nice and rough, and from statement 8, if something is rough, then it is young, we can conclude that Gary might be young.\n\nFrom statement 4, all young things are round. Since we concluded that Gary might be young, we can also conclude that Gary might be round.\n\nFrom statement 7, if something is round and rough, then it is nice. Since we concluded that Gary might be round and rough, we can conclude that Gary is nice.\n\nFrom statement 5, nice things are white. Since we concluded that Gary is nice, we can also conclude that Gary is white.\n\nHowever, the conclusion is that Gary is white, but this conclusion was based on the assumption that Gary is young. Since we cannot directly conclude whether Gary is young or not, we need to analyze the information again.\n\nFrom statement 1, Gary is cold and Gary is quiet. From statement 2, rough, white things are quiet. Since Gary is quiet, we cannot directly conclude that Gary is white, but it gives us a clue.\n\nHowever, since we know that Gary is cold, we can analyze the relationships between the given properties again.\n\nFrom statement 6, rough, nice things are cold. Since Gary is cold, we can conclude that Gary might be nice and rough.\n\nFrom statement 7, if something is round and rough, then it is nice. Since we do not have any information about Gary being round or rough, we cannot directly conclude that Gary is nice or white.\n\nHowever, since we concluded that Gary might be nice and rough, and from statement 8, if something is rough, then it is young, we can conclude that Gary might be young.\n\nFrom statement 4, all young things are round. Since we concluded that Gary might be young, we can also conclude that Gary might be round.\n\nHowever, since we know that Gary is cold and Gary is quiet, we can analyze the relationships between the given properties again.\n\nFrom statement 6, rough, nice things are cold. Since Gary is cold, we can conclude that Gary might be nice and rough.\n\nHowever, since we know that Gary is quiet, we can analyze the relationships between the given properties again.\n\nFrom statement 2, rough, white things are quiet. Since Gary is quiet, we cannot directly conclude that Gary is white, but it gives us a clue.\n\nHowever, since we know that Gary is cold, we can analyze the relationships between the given properties again.\n\nFrom statement 6, rough, nice things are cold. Since Gary is cold, we can conclude that Gary might be nice and rough.\n\nHowever, since we concluded that Gary might be nice and rough, and from statement 8, if something is rough, then it is young, we can conclude that Gary might be young.\n\nFrom statement 4, all young things are round. Since we concluded that Gary might be young, we can also conclude that Gary might be round.\n\nHowever, since we know that Gary is quiet, we can analyze the relationships between the given properties again.\n\nFrom statement 3, if Charlie is round and Charlie is quiet then Charlie is rough. Since we do not have any information about Charlie being round or quiet, we cannot directly conclude that Charlie is rough.\n\nHowever, since we know that Gary is quiet, we can analyze the relationships between the given properties again.\n\nFrom statement 2, rough, white things are quiet. Since Gary is quiet, we cannot directly conclude that Gary is white, but it gives us a clue.\n\nHowever, since we know that Gary is cold, we can analyze the relationships between the given properties again.\n\nFrom statement 6, rough, nice things are cold. Since Gary is cold, we can conclude that Gary might be nice and rough.\n\nHowever, since we concluded that Gary might be nice and rough, and from statement 8, if something is rough, then it is young, we can conclude that Gary might be young.\n\nFrom statement 4, all young things are round. Since we concluded that Gary might be young, we can also conclude that Gary might be round.\n\nHowever, since we know that Gary is quiet, we can analyze the relationships between the given properties again.\n\nFrom statement 2, rough, white things are quiet. Since Gary is quiet, we cannot directly conclude that Gary is white, but it gives us a clue.\n\nHowever, since we know that Gary is cold, we can analyze the relationships between the given properties again.\n\nFrom statement 6, rough, nice things are cold. Since Gary is cold, we can conclude that Gary might be nice and rough.\n\nHowever, since we concluded that Gary might be nice and rough, and from statement 8, if something is rough, then it is young, we can conclude that Gary might be young.\n\nFrom statement 4, all young things are round. Since we concluded that Gary might be young, we can also conclude that Gary might be round.\n\nHowever, since we know that Gary is quiet, we can analyze the relationships between the given properties again.\n\nFrom statement 3, if Charlie is round and Charlie is quiet then Charlie is rough. Since we do not have any information about Charlie being round or quiet, we cannot directly conclude that Charlie is rough.\n\nHowever, since we know that Gary is quiet, we can analyze the relationships between the given properties again.\n\nFrom statement 2, rough, white things are quiet. Since Gary is quiet, we cannot directly conclude that Gary is white, but it gives us a clue.\n\nHowever, since we know that Gary is cold, we can analyze the relationships between the given properties again.\n\nFrom statement 6, rough, nice things are cold. Since Gary is cold, we can conclude that Gary might be nice and rough.\n\nHowever, since we concluded that Gary might be nice and rough, and from statement 8, if something is rough, then it is young, we can conclude that Gary might be young.\n\nFrom statement 4, all young things are round. Since we concluded that Gary might be young, we can also conclude that Gary might be round.\n\nHowever, since we know that Gary is quiet, we can analyze the relationships between the given properties again.\n\nFrom statement 2, rough, white things are quiet. Since Gary is quiet, we cannot directly conclude that Gary is white, but it gives us a clue.\n\nHowever, since we know that Gary is cold, we can analyze the relationships between the given properties again.\n\nFrom statement 6, rough, nice things are cold. Since Gary is cold, we can conclude that Gary might be nice and rough.\n\nHowever, since we concluded that Gary might be nice and rough, and from statement 8, if something is rough, then it is young, we can conclude that Gary might be young.\n\nFrom statement 4, all",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is not white\" is true, false, or unknown, we'll analyze the given information step by step.\n\n1. Given statements:\n   - Gary is cold.\n   - Gary is quiet.\n   - Rough, white things are quiet.\n   - If Charlie is round and Charlie is quiet then Charlie is rough.\n   - All young things are round.\n   - Nice things are white.\n   - Rough, nice things are cold.\n   - If something is round and rough then it is nice.\n   - If something is rough then it is young.\n\n2. Analyze the statement \"Gary is not white.\"\n   We can start by looking for information that directly relates to Gary and his color. However, we don't have any direct information about Gary's color.\n\n3. Let's examine the information that might help us determine Gary's color. We know:\n   - Gary is cold.\n   - Gary is quiet.\n\n   We can look for connections between these characteristics and the given statements.\n\n4. The statement \"Rough, white things are quiet\" might seem relevant, but we don't have enough information to determine if Gary is white or not.\n\n5. The statement \"If Charlie is round and Charlie is quiet then Charlie is rough\" is not directly relevant to Gary.\n\n6. The statement \"All young things are round\" might be useful if we can determine if Gary is young. However, we don't have any direct information about Gary's age.\n\n7. The statement \"Nice things are white\" might be relevant if we can determine if Gary is nice. However, we don't have any direct information about Gary's nature.\n\n8. The statement \"Rough, nice things are cold\" might be relevant if we can determine if Gary is rough and nice. However, we don't have enough information to determine if Gary is rough or nice.\n\n9. The statement \"If something is round and rough then it is nice\" might be useful if we can determine if Gary is round and rough. However, we don't have any direct information about Gary's shape.\n\n10. The statement \"If something is rough then it is young\" might be relevant if we can determine if Gary is rough. However, we don't have enough information to determine if Gary is rough.\n\n11. After analyzing the given information, we don't have enough information to determine if Gary is white or not. Therefore, the statement \"Gary is not white\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is not white\" is true, false, or unknown, we need to analyze the given information and the logical deductions we can make from it.\n\n1. Gary is cold. (Given)\n2. Gary is quiet. (Given)\n3. Rough, white things are quiet. (Given)\n4. If Charlie is round and Charlie is quiet then Charlie is rough. (Given)\n5. Charlie is round. (Implicit from 4)\n6. Charlie is quiet. (Implicit from 4)\n7. From (4), (5), and (6), we can deduce that Charlie is rough. (From 4)\n8. Charlie is white. (Given)\n9. Since Charlie is rough (from 7) and white (from 8), Charlie is quiet (from 3).\n10. This is a contradiction, as we already know that Gary is quiet (from 2) and Charlie is quiet (from 9).\n11. However, this does not directly help us with the statement about Gary. We need to find another connection.\n\n12. From (7) and (8), we can also deduce that Charlie is young. (From the given information: If something is rough then it is young.)\n13. Nice things are white. (Given)\n14. Nice things are white (from 13) and Charlie is white (from 8), so Charlie is nice.\n15. Charlie is rough (from 7) and Charlie is nice (from 14), so Charlie is cold. (From the given information: Rough, nice things are cold.)\n16. Since Charlie is young (from 12), all young things are round (from the given information), so Charlie is round.\n17. From (12) and (16), we can deduce that Charlie is not only round but also young.\n18. From (17) and (4), we can deduce that Charlie is rough.\n19. From (18) and (13), we can deduce that Charlie is nice.\n\nHowever, this is a contradiction, because Charlie is both rough (from 7) and nice (from 19), which is consistent with the information that Charlie is rough (from 7) and nice (from 14).\n\n20. From (7) and (13), we can deduce that Charlie is cold and Charlie is nice.\n21. From (20) and (17), we can deduce that Charlie is young and Charlie is nice.\n22. From (21) and (13), we can deduce that Charlie is nice, and Charlie is young.\n\nHowever, we can't make any conclusions about Gary from the information we have so far.\n\n23. Rough, nice things are cold. (Given)\n24. Charlie is rough (from 7), and Charlie is nice (from 14), so Charlie is cold. (From 23)\n\n25. If something is round and rough then it is nice. (Given)\n26. Charlie is round (from 16) and Charlie is rough (from 7), so Charlie is nice. (From 25)\n\nThis is a contradiction, because Charlie is both nice (from 14) and cold (from 24), and we already know that Charlie is nice (from 19).\n\n27. However, we can't make any conclusions about Gary from the information we have so far.\n\n28. All young things are round. (Given)\n29. If something is rough then it is young. (Given)\n30. If something is round and rough then it is nice. (Given)\n31. If something is round and Charlie is quiet then Charlie is rough. (Given)\n32. Gary is quiet. (Given)\n33. Gary is cold. (Given)\n\nHowever, we can't make any conclusions about Gary from the information we have so far.\n\n34. Gary is quiet. (Given)\n35. Gary is cold. (Given)\n36. However, from the given information, we can't deduce anything about Gary's color.\n\nTherefore, the statement \"Gary is not white\" is unknown.",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine the truth value of the statement \"Gary is not white,\" we need to analyze the given information step by step.\n\n1. Gary is cold. Gary is quiet. \nFrom this information, we can't determine if Gary is white or not, so we'll continue analyzing other statements.\n\n2. Rough, white things are quiet.\nThis statement doesn't provide any information about Gary, so we'll continue.\n\n3. If Charlie is round and Charlie is quiet then Charlie is rough.\nThis statement is relevant because it involves round and quiet, which we know about Gary. However, we don't know if Charlie is round or quiet, so we can't use this statement to determine anything about Gary.\n\n4. All young things are round.\nThis statement is relevant because it involves round, which we know about Gary. However, we don't know if Gary is young or not, so we can't use this statement to determine anything about Gary.\n\n5. Nice things are white.\nThis statement is relevant because it involves white, which we're trying to determine about Gary. However, we don't know if Gary is nice or not, so we can't use this statement to determine anything about Gary.\n\n6. Rough, nice things are cold.\nThis statement is relevant because it involves cold, which we know about Gary. However, we don't know if Gary is rough or nice, so we can't use this statement to determine anything about Gary.\n\n7. If something is round and rough then it is nice.\nThis statement is relevant because it involves round and rough, which we know about Gary. However, we don't know if Gary is nice or not, so we can't use this statement to determine anything about Gary.\n\n8. If something is rough then it is young.\nThis statement is relevant because it involves rough, which we know about Gary. However, we don't know if Gary is young or not, so we can't use this statement to determine anything about Gary.\n\n9. Charlie is rough. Charlie is nice. Charlie is white. \nFrom this statement, we can infer that Charlie is both rough and white, which is consistent with statement 2. However, this statement doesn't provide any information about Gary.\n\n10. Dave is not white.\nThis statement is irrelevant to the statement \"Gary is not white.\"\n\nNow, let's analyze the information about Gary again.\n\nGary is cold. Gary is quiet. \nFrom statement 2, we know that rough, white things are quiet. Since Gary is quiet, we can infer that Gary is either white or rough. However, we don't know if Gary is white or not.\n\nHowever, we also know that Gary is cold. From statement 6, we know that rough, nice things are cold. Since Gary is cold, we can infer that Gary is either rough or nice.\n\nCombining the two inferences, we can conclude that Gary is either white or rough, and Gary is either rough or nice. This information is still not sufficient to determine the truth value of the statement \"Gary is not white.\"\n\nHowever, we also know that Charlie is rough, nice, and white. From statement 7, we know that if something is round and rough then it is nice. From statement 9, we know that Charlie is rough and nice. Since Charlie is nice, we can infer that Charlie is round (from statement 7). Now we have information about Charlie and Gary.\n\nGary is cold. Gary is quiet. \nFrom statement 3, we know that if Charlie is round and Charlie is quiet then Charlie is rough. Since Charlie is round and quiet, we can infer that Charlie is rough. \n\nNow, we can use statement 8 to infer that Charlie is young. \n\nHowever, we can't use this information about Charlie to determine anything about Gary.\n\nWe still don't have enough information to determine the truth value of the statement \"Gary is not white.\"\n\nLet's analyze the information again.\n\nGary is cold. Gary is quiet. \nWe know that Gary is quiet, so from statement 2, we can infer that Gary is either white or rough.\n\nWe also know that Charlie is white, nice, and rough. From statement 9, we know that Charlie is rough and white. Since Charlie is white, we can infer that Charlie is nice (from statement 5). \n\nHowever, we can't use this information about Charlie to determine anything about Gary.\n\nWe still don't have enough information to determine the truth value of the statement \"Gary is not white.\"\n\nHowever, we can use the statement \"If Charlie is round and Charlie is quiet then Charlie is rough\" to infer that Charlie is round and Charlie is quiet. Since Charlie is quiet, we can infer that Gary is quiet (from statement 1). \n\nWe already know that Gary is quiet. \n\nNow, we can use the statement \"Gary is quiet. Gary is cold.\" to infer that Gary is either white or rough.\n\nWe can also use the statement \"Gary is quiet. Gary is cold.\" to infer that Gary is either rough or nice.\n\nHowever, we still don't have enough information to determine the truth value of the statement \"Gary is not white.\"\n\nHowever, we can use the statement \"Charlie is white\" to infer that Charlie is nice. \n\nWe already know that Charlie is white and nice.\n\nNow, we can use the statement \"If Charlie is round and Charlie is quiet then Charlie is rough\" to infer that Charlie is round and Charlie is quiet. Since Charlie is quiet, we can infer that Gary is quiet (from statement 1). \n\nWe already know that Gary is quiet.\n\nNow, we can use the statement \"Charlie is round. Charlie is quiet. Charlie is rough\" to infer that Charlie is young (from statement 8).\n\nWe already know that Charlie is young.\n\nHowever, we still don't have enough information to determine the truth value of the statement \"Gary is not white.\"\n\nHowever, we can use the statement \"Charlie is round. Charlie is quiet. Charlie is rough\" to infer that Charlie is nice (from statement 7).\n\nWe already know that Charlie is nice.\n\nNow, we can use the statement \"If something is round and rough then it is nice\" to infer that Gary is round (from statement 1). \n\nHowever, this is an incorrect inference because we can't infer that Gary is round from the statement \"Gary is cold. Gary is quiet.\"\n\nHowever, we can use the statement \"Gary is quiet. Gary is cold.\" to infer that Gary is either white or rough.\n\nWe can also use the statement \"Gary is quiet. Gary is cold.\" to infer that Gary is either rough or nice.\n\nHowever, we still don't have enough information to determine the truth value of the statement \"Gary is not white.\"\n\nHowever, we can use the statement \"Gary is quiet. Gary is cold.\" to infer that Gary is either white or rough.\n\nWe can also use the statement \"Gary is quiet. Gary is cold.\" to infer that Gary is either rough or nice.\n\nHowever, we still don't have enough information to determine the truth value of the statement \"Gary is not white.\"\n\nHowever, we can use the statement \"Charlie is round. Charlie is quiet. Charlie is rough\" to infer that Charlie is young (from statement 8).\n\nWe already know that Charlie is young.\n\nNow, we can use the statement \"All young things are round\" to infer that Gary is round (from statement 4). \n\nHowever, this is an incorrect inference because we can't infer that Gary is round from the statement \"Gary is cold. Gary is quiet.\"\n\nHowever, we can use the statement \"Gary is quiet. Gary is cold.\" to infer that Gary is either white or rough.\n\nWe can also use the statement \"Gary is quiet. Gary is cold.\" to infer that Gary is either rough or nice.\n\nHowever, we still don't have enough information to determine the truth value of the statement \"Gary is not white.\"\n\nHowever, we can use the statement \"Gary is quiet. Gary is cold.\" to infer that Gary is either white or rough.\n\nWe can also use the statement \"Gary is quiet. Gary is cold.\" to infer that Gary is either rough or nice.\n\nHowever, we still don't have enough information to determine the truth value of the statement \"Gary is not white.\"\n\nHowever, we can use the statement \"Gary is quiet. Gary is cold.\" to infer that Gary is either white or rough.\n\nWe can also use the statement \"Gary is quiet. Gary is cold.\" to infer that Gary is either rough or nice.\n\nHowever, we still don't have enough information to determine the truth value of the statement \"Gary is not white.\"\n\nHowever, we can use the statement \"Gary is quiet. Gary is cold.\" to infer that Gary is either white or rough.\n\nWe can also use the statement \"Gary is quiet. Gary is cold.\" to infer that Gary is either rough or nice.\n\nHowever, we still don't have enough information to determine the truth value of the statement \"Gary is not white.\"\n\nHowever, we can use the statement \"Gary is quiet. Gary is cold.\" to infer that Gary is either white or rough.\n\nWe can also use the statement \"Gary is quiet. Gary is cold.\" to infer that Gary is either rough or nice.\n\nHowever, we still don't have enough information to determine the truth value of the statement \"Gary is not white.\"\n\nHowever, we can use the statement \"Gary is quiet. Gary is cold.\" to infer that Gary is either white or rough.\n\nWe can also use the statement \"Gary is quiet. Gary is cold.\" to infer that Gary is either rough or nice.\n\nHowever, we still don't have enough information to determine the truth value of the statement \"Gary is not white.\"\n\nHowever, we can use the statement \"Gary is quiet. Gary is cold.\" to infer that Gary is either white or rough.\n\nWe can also use the statement \"Gary is quiet. Gary is cold.\" to infer that Gary is either rough or nice.\n\nHowever, we still don't have",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is not white\" is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\n1. Gary is cold. (Given)\n2. Gary is quiet. (Given)\n3. Rough, white things are quiet. (Given)\n   From this, we can't directly conclude that Gary is white or not, but we can infer that if Gary were white, then Gary would be quiet. However, we already know that Gary is quiet, so this doesn't give us any new information about Gary being white.\n4. Charlie is round. (Given)\n   We also know that Charlie is quiet. (Given)\n   From \"If Charlie is round and Charlie is quiet then Charlie is rough\" (Given), we can conclude that Charlie is rough.\n   Since we already know that Charlie is rough and Charlie is white (Given), we can conclude that Charlie is a rough, white thing. And since rough, white things are quiet (Given), we can confirm that Charlie is quiet, which we already know.\n   This also tells us that rough, white things are quiet, but we already knew that.\n5. Charlie is nice. (Given)\n   From \"Charlie is rough\" (from the previous step) and \"Charlie is white\" (Given), we can conclude that Charlie is a rough, white thing. And since rough, white things are cold (Given), we can conclude that Charlie is cold.\n   From \"Charlie is rough\" (from the previous step) and \"Charlie is nice\" (Given), we can conclude that Charlie is a rough, nice thing. And since rough, nice things are cold (Given), we can confirm that Charlie is cold, which we already know.\n6. All young things are round. (Given)\n   Since Charlie is rough (from the previous steps), we can conclude that Charlie is young.\n   From \"Charlie is round\" (Given) and \"All young things are round\" (Given), we can confirm that Charlie is young.\n7. Nice things are white. (Given)\n   Since Charlie is nice (Given), we can conclude that Charlie is white, which we already know.\n8. If something is round and rough then it is nice. (Given)\n   Since Charlie is round (Given) and Charlie is rough (from the previous steps), we can conclude that Charlie is nice, which we already know.\n9. If something is rough then it is young. (Given)\n   Since Charlie is rough (from the previous steps), we can conclude that Charlie is young, which we already know.\n10. Dave is not white. (Given)\n    This statement doesn't provide any information about Gary, so we can't determine whether the statement \"Gary is not white\" is true or false.\n\nNow, let's analyze the statement \"Gary is not white\".\n\n1. Gary is cold. (Given)\n2. Gary is quiet. (Given)\n3. From \"Rough, white things are quiet\" (Given), we can't conclude that Gary is white or not because we don't know if Gary is white.\n4. We don't have any information that directly relates Gary to being white or not.\n\nSince we can't conclude whether Gary is white or not, we can't determine whether the statement \"Gary is not white\" is true or false. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we will use a series of logical deductions based on the given statements. \n\n1. Charlie is nice. (Statement)\n2. Charlie is rough. (Statement)\n3. Charlie is white. (Statement)\n4. Dave is not white. (Statement)\n5. Gary is cold. (Statement)\n6. Gary is quiet. (Statement)\n7. Rough, white things are quiet. (Statement)\n8. If Charlie is round and Charlie is quiet then Charlie is rough. (Statement)\n9. All young things are round. (Statement)\n10. Nice things are white. (Statement)\n11. Rough, nice things are cold. (Statement)\n12. If something is round and rough then it is nice. (Statement)\n13. If something is rough then it is young. (Statement)\n\nFrom statements 3 and 8, we can deduce that Charlie is round because a round and quiet thing is rough.\n\nFrom statement 2, we know Charlie is rough.\n\nFrom statement 12, we know that a round and rough thing is nice. Since Charlie is both round and rough, Charlie is nice. However, this contradicts statement 1 which says Charlie is nice. So, Charlie must be round and nice.\n\nFrom statement 10, we know nice things are white. Since Charlie is nice, Charlie is white. This contradicts statement 3 which says Charlie is white. So, Charlie must be white.\n\nNow, let's analyze the given statements and our deductions to determine the relationship between Charlie and Gary.\n\nFrom statement 13, we know that a rough thing is young. Since Charlie is rough, Charlie is young.\n\nFrom statement 9, we know all young things are round. Since Charlie is young, Charlie is round.\n\nFrom statement 12, we know a round and rough thing is nice. Since Charlie is round and rough, Charlie is nice.\n\nFrom statement 2, we know Charlie is rough.\n\nFrom statement 1, we know Charlie is nice.\n\nFrom statement 7, we know rough, white things are quiet. Since Charlie is rough and white, Charlie is quiet.\n\nFrom statement 6, we know Gary is quiet.\n\nFrom statement 8, we know if Charlie is round and Charlie is quiet then Charlie is rough. Since Charlie is round and quiet, Charlie is rough.\n\nFrom statement 14, we know that if something is round and rough then it is nice. Since Charlie is round and rough, Charlie is nice.\n\nHowever, statement 1 says Charlie is nice, and statement 2 says Charlie is rough. From statement 11, we know rough, nice things are cold. Since Charlie is rough and nice, Charlie is cold.\n\nFrom statement 5, we know Gary is cold.\n\nNow, let's analyze the given statements and our deductions to determine whether Gary is white or not.\n\nFrom statement 5, we know Gary is cold.\n\nFrom statement 11, we know rough, nice things are cold. Since Charlie is rough and nice, Charlie is cold. This means Gary is not the only cold thing.\n\nFrom statement 13, we know that a rough thing is young. Since Charlie is rough, Charlie is young.\n\nFrom statement 9, we know all young things are round. Since Charlie is young, Charlie is round.\n\nFrom statement 12, we know a round and rough thing is nice. Since Charlie is round and rough, Charlie is nice.\n\nFrom statement 2, we know Charlie is rough.\n\nFrom statement 1, we know Charlie is nice.\n\nFrom statement 7, we know rough, white things are quiet. Since Charlie is rough and white, Charlie is quiet.\n\nFrom statement 6, we know Gary is quiet.\n\nFrom statement 8, we know if Charlie is round and Charlie is quiet then Charlie is rough. Since Charlie is round and quiet, Charlie is rough.\n\nFrom statement 14, we know that if something is round and rough then it is nice. Since Charlie is round and rough, Charlie is nice.\n\nHowever, statement 1 says Charlie is nice, and statement 2 says Charlie is rough. From statement 11, we know rough, nice things are cold. Since Charlie is rough and nice, Charlie is cold.\n\nFrom statement 5, we know Gary is cold.\n\nFrom statement 3, we know Charlie is white.\n\nNow, let's analyze the given statements and our deductions to determine whether Gary is white or not.\n\nFrom statement 3, we know Charlie is white.\n\nFrom statement 14, we know that if something is round and rough then it is nice. Since Charlie is round and rough, Charlie is nice.\n\nFrom statement 10, we know nice things are white. Since Charlie is nice, Charlie is white.\n\nHowever, statement 3 says Charlie is white. From statement 13, we know that a rough thing is young. Since Charlie is rough, Charlie is young.\n\nFrom statement 9, we know all young things are round. Since Charlie is young, Charlie is round.\n\nFrom statement 12, we know a round and rough thing is nice. Since Charlie is round and rough, Charlie is nice.\n\nFrom statement 2, we know Charlie is rough.\n\nFrom statement 1, we know Charlie is nice.\n\nFrom statement 7, we know rough, white things are quiet. Since Charlie is rough and white, Charlie is quiet.\n\nFrom statement 6, we know Gary is quiet.\n\nFrom statement 8, we know if Charlie is round and Charlie is quiet then Charlie is rough. Since Charlie is round and quiet, Charlie is rough.\n\nFrom statement 14, we know that if something is round and rough then it is nice. Since Charlie is round and rough, Charlie is nice.\n\nHowever, statement 1 says Charlie is nice, and statement 2 says Charlie is rough. From statement 11, we know rough, nice things are cold. Since Charlie is rough and nice, Charlie is cold.\n\nFrom statement 5, we know Gary is cold.\n\nNow, let's analyze the given statements and our deductions to determine whether Gary is white or not.\n\nFrom statement 5, we know Gary is cold.\n\nFrom statement 11, we know rough, nice things are cold. Since Charlie is rough and nice, Charlie is cold. This means Gary is not the only cold thing.\n\nFrom statement 13, we know that a rough thing is young. Since Charlie is rough, Charlie is young.\n\nFrom statement 9, we know all young things are round. Since Charlie is young, Charlie is round.\n\nFrom statement 12, we know a round and rough thing is nice. Since Charlie is round and rough, Charlie is nice.\n\nFrom statement 2, we know Charlie is rough.\n\nFrom statement 1, we know Charlie is nice.\n\nFrom statement 7, we know rough, white things are quiet. Since Charlie is rough and white, Charlie is quiet.\n\nFrom statement 6, we know Gary is quiet.\n\nFrom statement 8, we know if Charlie is round and Charlie is quiet then Charlie is rough. Since Charlie is round and quiet, Charlie is rough.\n\nFrom statement 14, we know that if something is round and rough then it is nice. Since Charlie is round and rough, Charlie is nice.\n\nHowever, statement 1 says Charlie is nice, and statement 2 says Charlie is rough. From statement 11, we know rough, nice things are cold. Since Charlie is rough and nice, Charlie is cold.\n\nFrom statement 5, we know Gary is cold.\n\nFrom statement 3, we know Charlie is white.\n\nNow, let's analyze the given statements and our deductions to determine whether Gary is white or not.\n\nFrom statement 3, we know Charlie is white.\n\nFrom statement 14, we know that if something is round and rough then it is nice. Since Charlie is round and rough, Charlie is nice.\n\nFrom statement 10, we know nice things are white. Since Charlie is nice, Charlie is white.\n\nHowever, statement 3 says Charlie is white. From statement 13, we know that a rough thing is young. Since Charlie is rough, Charlie is young.\n\nFrom statement 9, we know all young things are round. Since Charlie is young, Charlie is round.\n\nFrom statement 12, we know a round and rough thing is nice. Since Charlie is round and rough, Charlie is nice.\n\nFrom statement 2, we know Charlie is rough.\n\nFrom statement 1, we know Charlie is nice.\n\nFrom statement 7, we know rough, white things are quiet. Since Charlie is rough and white, Charlie is quiet.\n\nFrom statement 6, we know Gary is quiet.\n\nFrom statement 8, we know if Charlie is round and Charlie is quiet then Charlie is rough. Since Charlie is round and quiet, Charlie is rough.\n\nFrom statement 14, we know that if something is round and rough then it is nice. Since Charlie is round and rough, Charlie is nice.\n\nHowever, statement 1 says Charlie is nice, and statement 2 says Charlie is rough. From statement 11, we know rough, nice things are cold. Since Charlie is rough and nice, Charlie is cold.\n\nFrom statement 5, we know Gary is cold.\n\nNow, let's analyze the given statements and our deductions to determine whether Gary is white or not.\n\nFrom statement 5, we know Gary is cold.\n\nFrom statement 11, we know rough, nice things are cold. Since Charlie is rough and nice, Charlie is cold. This means Gary is not the only cold thing.\n\nFrom statement 13, we know that a rough thing is young. Since Charlie is rough, Charlie is young.\n\nFrom statement 9, we know all young things are round. Since Charlie is young, Charlie is round.\n\nFrom statement 12, we know a round and rough thing is nice. Since Charlie is round and rough, Charlie is nice.\n\nFrom statement 2, we know Charlie is rough.\n\nFrom statement 1, we know Charlie is nice.\n\nFrom statement 7, we know rough, white things",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is not white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Gary is cold. (Given)\n2. Gary is quiet. (Given)\n3. Rough, white things are quiet. (Given)\nFrom this, we can't directly conclude that Gary is white or rough, but we can deduce:\n4. If Gary is quiet, it doesn't necessarily mean Gary is white. However, we can infer that if Gary were white, then it would be quiet. (From rule 3)\n5. Gary is not white can be true or false, but we have to continue evaluating the given information.\n\n6. Charlie is nice. (Given)\n7. Charlie is rough. (Given)\n8. Charlie is white. (Given)\n9. Dave is not white. (Given)\n10. Gary is cold. (Given)\n11. Gary is quiet. (Given)\n12. If Charlie is round and Charlie is quiet then Charlie is rough. (Given)\n   Since Charlie is nice (rule 6) and nice things are white (rule 6), Charlie is white (rule 8). Therefore, Charlie is round and Charlie is quiet (rule 12) and hence Charlie is rough (rule 12).\n\n13. If something is round and rough then it is nice. (Given)\n   Since Charlie is round and Charlie is rough (rule 12), then Charlie is nice (rule 13).\n\n14. If something is rough then it is young. (Given)\n   Since Charlie is rough (rule 7), then Charlie is young (rule 14).\n\n15. Nice things are white. (Given)\n   Since Charlie is nice (rule 6), then Charlie is white (rule 15).\n\n16. Rough, nice things are cold. (Given)\n   Since Charlie is rough (rule 7) and Charlie is nice (rule 6), then Charlie is cold (rule 16).\n\n17. If Charlie is round and Charlie is quiet then Charlie is rough. (Given)\n   Since Charlie is round and Charlie is quiet (rule 12), then Charlie is rough (rule 12).\n\nFrom the above steps, we can conclude that Charlie is white (rule 8, 15), Charlie is rough (rule 7, 12), and Charlie is young (rule 14).\n\nHowever, we still don't know if Gary is white or not. To evaluate this, we must continue the analysis.\n\n18. Gary is cold. (Given)\n19. Gary is quiet. (Given)\n20. If Gary is cold, it doesn't necessarily mean Gary is quiet. However, we can infer that if Gary were white, then it would be quiet. (From rule 3)\n\nWe need to consider another piece of information to make a conclusion about Gary.\n21. All young things are round. (Given)\n22. If something is round and rough then it is nice. (Given)\n   Since Charlie is young (rule 14), then Charlie is round (rule 21).\n   Since Charlie is round and Charlie is rough (rule 12), then Charlie is nice (rule 22).\n\n23. Rough, nice things are cold. (Given)\n   Since Charlie is rough (rule 7) and Charlie is nice (rule 22), then Charlie is cold (rule 23).\n\nHowever, we still can't conclude if Gary is white or not from the given information. \n\n24. Gary is cold. (Given)\n25. Gary is quiet. (Given)\n26. If something is round and rough then it is nice. (Given)\n27. If something is rough then it is young. (Given)\n   Since Charlie is round (rule 21), Charlie is rough (rule 12), Charlie is nice (rule 22), and Charlie is young (rule 14), we can't conclude anything new from these rules.\n\nHowever, we know that Charlie is round and Charlie is quiet (rule 12) and hence Charlie is rough (rule 12). This implies that Charlie is white (rule 8) and Charlie is nice (rule 6) and Charlie is cold (rule 23).\n\nWe also know that nice things are white (rule 6), Charlie is nice (rule 6), and Charlie is white (rule 8).\n\nHowever, we still can't conclude if Gary is white or not from the given information.\n\nSince we can't conclude if Gary is white or not, we have to check the rules again to see if we have missed anything.\n\n28. Gary is cold. (Given)\n29. Gary is quiet. (Given)\n30. Since Charlie is nice (rule 6) and Charlie is white (rule 8), we can't conclude anything about Gary.\n\nHowever, we know that Charlie is young (rule 14), Charlie is round (rule 21), Charlie is quiet (rule 12), and Charlie is rough (rule 12).\n\nSince Charlie is young (rule 14), all young things are round (rule 21), and Charlie is round (rule 21). This implies that Charlie is rough (rule 12).\n\nHowever, we can't conclude if Gary is white or not from the given information.\n\nTherefore, we have to check the rules again to see if we have missed anything.\n\n31. Gary is cold. (Given)\n32. Gary is quiet. (Given)\n33. We know that Charlie is young (rule 14), Charlie is round (rule 21), Charlie is quiet (rule 12), and Charlie is rough (rule 12).\n   Since Charlie is young (rule 14), Charlie is round (rule 21), and Charlie is quiet (rule 12), then Charlie is rough (rule 12).\n\nHowever, we can't conclude if Gary is white or not from the given information.\n\nSince Charlie is rough (rule 7) and Charlie is young (rule 14), then Charlie is round (rule 21).\n\nHowever, we can't conclude if Gary is white or not from the given information.\n\nSince Charlie is round (rule 21) and Charlie is rough (rule 12), then Charlie is nice (rule 22).\n\nHowever, we can't conclude if Gary is white or not from the given information.\n\nTherefore, we have to conclude that the statement \"Gary is not white\" is unknown, since we have not enough information to determine if Gary is white or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we will use a logical reasoning approach, breaking down the information given into a series of steps and applying the rules of inference.\n\nStep 1:  Given Information\n- Charlie is rough (C1)\n- Charlie is nice (C2)\n- Charlie is white (C3)\n- Dave is not white (D)\n- Gary is cold (G1)\n- Gary is quiet (G2)\n- Rough, white things are quiet (RWQ)\n- If Charlie is round and Charlie is quiet then Charlie is rough (CRQR)\n- All young things are round (YR)\n- Nice things are white (NW)\n- Rough, nice things are cold (RNC)\n- If something is round and rough then it is nice (RRN)\n- If something is rough then it is young (RY)\n\nStep 2: Determine the relationship between the given statements and the target statement 'Gary is not white'.\n\nFrom the given information, we can infer the following relationships:\n- Charlie is rough (C1) and Charlie is white (C3) imply that Charlie is quiet (RWQ).\n- Charlie is quiet (C1) and Charlie is round (CRQR) imply that Charlie is rough (C1).\n- Charlie is rough (C1) and Charlie is nice (C2) imply that Charlie is cold (RNC).\n- Dave is not white (D).\n- Gary is cold (G1) and Gary is quiet (G2), but we cannot directly link this to the statement 'Gary is not white'.\n\nStep 3: Use the rules of inference to determine the truth of 'Gary is not white'.\n\nWe know:\n- Charlie is round (CRQR) and Charlie is quiet (C1), so Charlie is rough (C1).\n- Charlie is rough (C1) and Charlie is nice (C2), so Charlie is cold (RNC).\n- Charlie is white (C3), so Charlie is not white (CNW).\n- Charlie is rough (C1) and Charlie is young (RY), so Charlie is young (CY).\n\nHowever, we cannot conclude the truth value of 'Gary is not white' based on the given information.\n\nStep 4: Determine the final answer.\n\nSince we cannot conclude the truth value of 'Gary is not white', the final answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is not white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Gary is cold. Gary is quiet. \n   We know that Rough, white things are quiet. \n   From this information, we can't conclude that Gary is white or rough.\n\n2. Charlie is round and Charlie is quiet. \n   Since Charlie is quiet, it might be rough and white. \n   But we also know that Charlie is nice. \n   From this information, we can conclude that nice things are white.\n\n3. If something is round and rough then it is nice. \n   Since Charlie is round and Charlie is rough, \n   Charlie must be nice.\n\n4. Charlie is rough. \n   Charlie is white. \n   Since Charlie is nice, and nice things are white, \n   this information is consistent with the previous conclusions.\n\n5. Rough, nice things are cold. \n   Since Charlie is rough and nice, \n   Charlie must be cold.\n\n6. Dave is not white. \n   This information is not relevant to determining whether Gary is white.\n\n7. All young things are round. \n   Since Charlie is round and Charlie is rough, \n   Charlie must be young.\n\n8. If something is rough then it is young. \n   Since Charlie is rough, \n   Charlie must be young.\n\n9. Gary is cold. Gary is quiet. \n   We still don't know whether Gary is white or not.\n\n10. Charlie is round and Charlie is quiet. \n    Since Charlie is round, Charlie must be nice. \n    Since Charlie is nice, Charlie is white. \n    Since Charlie is white, Charlie is quiet. \n    This information is consistent with the previous conclusions.\n\nFrom the given information, we still don't know whether Gary is white or not. Therefore, the statement \"Gary is not white\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine the truth value of the statement \"Gary is not white,\" we need to analyze the given information step by step.\n\n1. Gary is cold. (Given statement)\n2. Gary is quiet. (Given statement)\n3. Rough, white things are quiet. (Given statement)\n   This implies that if something is white, it might be quiet. However, it does not directly relate to Gary.\n4. If Charlie is round and Charlie is quiet then Charlie is rough. (Given statement)\n   This implies that being quiet and round does not necessarily make something rough.\n5. Charlie is round. (Given statement)\n6. Charlie is quiet. (Given statement)\n7. From statements 4, 5, and 6, we can conclude that Charlie is rough. (Modus ponens)\n8. Charlie is rough. (From step 7)\n9. Charlie is white. (Given statement)\n10. From statements 8 and 9, we can conclude that rough, white things exist. (Modus ponens)\n11. All young things are round. (Given statement)\n12. If something is rough then it is young. (Given statement)\n    This implies that being rough makes something young.\n13. From statements 8 and 12, we can conclude that Charlie is young. (Modus ponens)\n14. Nice things are white. (Given statement)\n15. Charlie is nice. (From statement 14 and 9)\n16. Charlie is rough. (From step 7)\n17. From statements 15 and 16, we can conclude that rough, nice things exist. (Modus ponens)\n18. Rough, nice things are cold. (Given statement)\n19. From statements 17 and 18, we can conclude that cold things are either rough or nice. (Modus ponens)\n20. Gary is cold. (From statement 1)\n21. Since Gary is cold, it could be either rough or nice. (From statement 19)\n22. Gary is quiet. (From statement 2)\n23. If something is rough, it is young. (From statement 12)\n24. Gary is not young. (Unknown, because we don't have information about Gary's age)\n25. If something is round, it is nice. (From statement 11 and 13, Charlie is round and young, but we do not have information that Gary is round)\n26. Gary could be either rough or nice, but we don't know if it's round or young. (From statements 21 and 25)\n\nWe don't have enough information to determine whether Gary is white or not. We only know that Gary is cold and quiet. Therefore, the statement \"Gary is not white\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is not white\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. Gary is cold. (Given)\n2. Gary is quiet. (Given)\n3. Rough, white things are quiet. (Given)\n4. If Charlie is round and Charlie is quiet then Charlie is rough. (Given)\n5. All young things are round. (Given)\n6. Nice things are white. (Given)\n7. Rough, nice things are cold. (Given)\n8. If something is round and rough then it is nice. (Given)\n9. If something is rough then it is young. (Given)\n10. Charlie is rough. (Given)\n11. Charlie is nice. (Given)\n12. Charlie is white. (Given)\n13. Dave is not white. (Given)\n\nFrom statement 10, we know Charlie is rough.\n\nFrom statement 8, we know that since Charlie is round (implied from statement 5, as young things are round) and rough, Charlie is nice.\n\nFrom statement 6, we know nice things are white, so Charlie is white.\n\nFrom statement 12, we know Charlie is white.\n\nFrom statement 7, we know rough, nice things are cold, so Charlie is cold.\n\nFrom statement 2, we know Gary is quiet.\n\nFrom statement 3, we know rough, white things are quiet. Since Charlie is white and rough, we can conclude that Charlie is quiet.\n\nFrom statement 4, we know that since Charlie is round and Charlie is quiet, Charlie is rough.\n\nFrom statement 10, we know Charlie is rough.\n\nFrom statement 9, we know that since Charlie is rough, Charlie is young.\n\nFrom statement 5, we know all young things are round, so Charlie is round.\n\nFrom statement 8, we know that since Charlie is round and rough, Charlie is nice.\n\nFrom statement 6, we know nice things are white, so Charlie is white.\n\nFrom statement 12, we know Charlie is white.\n\nFrom statement 7, we know rough, nice things are cold, so Charlie is cold.\n\nFrom statement 1, we know Gary is cold.\n\nFrom statement 2, we know Gary is quiet.\n\nSince Charlie is white (from statement 12), we can conclude that Gary is white because Gary is not given to be white, and Charlie is white.\n\nTherefore, the final answer is: \n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply the rules of logic. \n\nGiven statements:\n1. Bob is rough.\n2. Charlie is nice.\n3. Charlie is rough.\n4. Charlie is white.\n5. Dave is not white.\n6. Gary is cold.\n7. Gary is quiet.\n8. Rough, white things are quiet.\n9. If Charlie is round and Charlie is quiet then Charlie is rough.\n10. All young things are round.\n11. Nice things are white.\n12. Rough, nice things are cold.\n13. If something is round and rough then it is nice.\n14. If something is rough then it is young.\n\nNow, we will analyze the statement \"Gary is not white.\"\n\nFrom statement 7, we know that Gary is quiet. \n\nFrom statement 8, we know that rough, white things are quiet. \n\nFrom statement 13, we know that if something is round and rough then it is nice. Since Charlie is round, Charlie is nice (by statement 13) and also Charlie is white (by statement 4).\n\nFrom statement 10, we know that all young things are round. Since Charlie is rough (by statement 3), it is young (by statement 14), so Charlie is round.\n\nFrom statement 9, we know that if Charlie is round and Charlie is quiet then Charlie is rough. Since Charlie is quiet (by statement 9) and Charlie is round (by statement 10), Charlie is rough (by statement 9).\n\nNow, since Charlie is rough (by statement 3), it is nice (by statement 12) and also white (by statement 4). \n\nFrom statement 8, we know that rough, white things are quiet. Since Charlie is rough and white, Charlie is quiet.\n\nFrom statement 13, we know that if something is round and rough then it is nice. Since Charlie is round and Charlie is rough, Charlie is nice.\n\nFrom statement 2, we know that Charlie is nice. Since Charlie is nice (by statement 2) and Charlie is white (by statement 4), Charlie is white.\n\nFrom statement 11, we know that nice things are white. Since Charlie is nice (by statement 2), Charlie is white.\n\nFrom statement 4, we know that Charlie is white.\n\nNow, from statement 11, we know that nice things are white. Since Gary is quiet (by statement 7), it is not necessarily nice or not nice.\n\nHowever, we can infer that Gary is not necessarily white since Gary is cold (by statement 6) and nice things are white (by statement 11).\n\nSince Gary is not necessarily white, we cannot conclude that \"Gary is not white\" is true or false.\n\nTherefore, the statement \"Gary is not white\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_gary, young_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> nice(X)",
+          "z3_formula": "Implies(And(round_gary, rough_gary), nice_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> round(X)",
+          "z3_formula": "Implies(young_gary, round_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough, white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_white, white_gary), quiet_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> white(X)",
+          "z3_formula": "Implies(nice_gary, white_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough, nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_nice, nice_gary), cold_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "rough_white",
+          "z3_formula": "rough_white == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "rough_nice",
+          "z3_formula": "rough_nice == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_gary, white_gary), white_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_gary, young_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> round(X)",
+          "z3_formula": "Implies(round_gary, round_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_gary, young_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_gary, quiet_gary), rough_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> nice(X)",
+          "z3_formula": "Implies(And(round_gary, rough_gary), nice_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> white(X)",
+          "z3_formula": "Implies(nice_gary, white_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_gary, nice_gary), cold_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not white(gary)",
+          "z3_formula": "Not(white_gary)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_charlie, young_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_charlie, young_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> round(X)",
+          "z3_formula": "Implies(young_charlie, round_charlie)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> nice(X)",
+          "z3_formula": "Implies(And(round_charlie, rough_charlie), nice_charlie)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_charlie, quiet_charlie), rough_charlie)",
+          "source_step": 31
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_charlie, nice_charlie), cold_charlie)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> round(X)",
+          "z3_formula": "Implies(young_charlie, round_charlie)",
+          "source_step": 28
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_charlie, young_charlie)",
+          "source_step": 29
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> nice(X)",
+          "z3_formula": "Implies(And(round_charlie, rough_charlie), nice_charlie)",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_charlie, nice_charlie), cold_charlie)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 33
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 34
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == Unknown",
+          "source_step": 36
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> white(X)",
+          "z3_formula": "Implies(And(white_gary, quiet_gary), white_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> white(X)",
+          "z3_formula": "Implies(white_gary, white_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_gary, white_gary), quiet_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & white(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_gary, white_gary), cold_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_gary, nice_gary), cold_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> nice(X)",
+          "z3_formula": "Implies(And(round_gary, rough_gary), nice_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> nice(X)",
+          "z3_formula": "Implies(And(round_gary, rough_gary), nice_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_gary, young_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> nice(X)",
+          "z3_formula": "Implies(And(round_charlie, rough_charlie), nice_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> nice(X)",
+          "z3_formula": "Implies(And(round_charlie, rough_charlie), nice_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> white(X)",
+          "z3_formula": "Implies(And(round_charlie, rough_charlie), white_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(round_charlie, rough_charlie), quiet_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> cold(X)",
+          "z3_formula": "Implies(And(round_charlie, rough_charlie), cold_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> nice(X)",
+          "z3_formula": "Implies(And(round_charlie, rough_charlie), nice_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_charlie, young_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_charlie, young_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> round(X)",
+          "z3_formula": "Implies(young_charlie, round_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> round(X)",
+          "z3_formula": "Implies(young_charlie, round_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> white(X)",
+          "z3_formula": "Implies(nice_charlie, white_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> nice(X)",
+          "z3_formula": "Implies(And(round_charlie, rough_charlie), nice_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_charlie, young_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> nice(X)",
+          "z3_formula": "Implies(And(round_charlie, rough_charlie), nice_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not white(dave)",
+          "z3_formula": "Not(white_dave) == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "unknown",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not white(dave)",
+          "z3_formula": "Not(white_dave) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_charlie, white_charlie), quiet_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_charlie, quiet_charlie), rough_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> nice(X)",
+          "z3_formula": "Implies(And(round_charlie, rough_charlie), nice_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> round(X)",
+          "z3_formula": "Implies(young_charlie, round_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_charlie, rough_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_charlie, nice_charlie), cold_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> nice(X)",
+          "z3_formula": "Implies(And(round_charlie, rough_charlie), nice_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == Unknown",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == Unknown",
+          "source_step": 21
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not white(dave)",
+          "z3_formula": "not white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_charlie, white_charlie), quiet_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_charlie, quiet_charlie), rough_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_charlie, nice_charlie), cold_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "not white(X)",
+          "z3_formula": "not white_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> round(X)",
+          "z3_formula": "Implies(young_charlie, round_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_charlie, young_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_charlie, quiet_charlie), rough_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_charlie, nice_charlie), cold_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> not white(X)",
+          "z3_formula": "Implies(white_charlie, not white_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> round(X)",
+          "z3_formula": "Implies(young_charlie, round_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_charlie, young_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not white(charlie)",
+          "z3_formula": "not white_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_charlie, white_charlie), quiet_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_charlie, nice_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> nice(X)",
+          "z3_formula": "Implies(And(round_charlie, rough_charlie), nice_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_charlie, young_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_charlie, young_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "round(charlie) & quiet(charlie)",
+          "z3_formula": "And(round_charlie, quiet_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_charlie, white_charlie), quiet_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_charlie, quiet_charlie), rough_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "rough(white)",
+          "z3_formula": "rough_white == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_charlie, young_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "rough(nice)",
+          "z3_formula": "rough_nice == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rough_nice)",
+          "z3_formula": "cold_rough_nice == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "cold(X) | nice(X)",
+          "z3_formula": "Or(cold_gary, nice_gary)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "cold(X) | young(X)",
+          "z3_formula": "Or(cold_gary, young_gary)",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_gary, nice_gary)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "cold(X) | nice(X) | young(X)",
+          "z3_formula": "Or(Or(cold_gary, young_gary), nice_gary)",
+          "source_step": 26
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_charlie, white_charlie), quiet_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_charlie, quiet_charlie), rough_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_charlie, young_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> round(X)",
+          "z3_formula": "Implies(young_charlie, round_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> nice(X)",
+          "z3_formula": "Implies(And(round_charlie, rough_charlie), nice_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> white(X)",
+          "z3_formula": "Implies(nice_charlie, white_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_charlie, nice_charlie), cold_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "not white(dave)",
+          "z3_formula": "Not(white_dave)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(white(dave))",
+          "z3_formula": "not_white_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_white_X, white_X), quiet_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> nice(X)",
+          "z3_formula": "Implies(And(round_X, rough_X), nice_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_X, young_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_X, young_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_X, quiet_X), rough_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> round(X)",
+          "z3_formula": "Implies(young_X, round_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> white(X)",
+          "z3_formula": "Implies(nice_X, white_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_X, nice_X), cold_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> nice(X)",
+          "z3_formula": "Implies(And(round_X, rough_X), nice_X)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not(white(gary))",
+          "z3_formula": "not_white_gary == True",
+          "source_step": 18
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 188,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 62
+    },
+    "maxsat_stats": {
+      "satisfied": 61,
+      "excluded": 1,
+      "total_weight": 185,
+      "solve_time_ms": 1.4540478587150574
+    },
+    "timing": {
+      "trace_gen_s": 25.329,
+      "extraction_s": 42.811,
+      "dedup_s": 2.589,
+      "maxsat_s": 0.005,
+      "total_s": 70.733
+    }
+  }
+}

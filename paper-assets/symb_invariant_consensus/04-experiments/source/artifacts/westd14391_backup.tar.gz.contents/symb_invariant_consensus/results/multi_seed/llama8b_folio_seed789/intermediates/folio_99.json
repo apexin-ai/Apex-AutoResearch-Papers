@@ -1,0 +1,820 @@
+{
+  "problem": {
+    "id": "folio_99",
+    "problem": "Given the following premises:\nA man is either kind or evil. No ugly person is handsome. All evil people are ugly. All gentlemen are handsome. All CEOs are gentlemen. Harry is a gentleman.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nHarry is a CEO.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (Kind(x) \u2295 Evil(x))",
+      "\u2200x (Ugly(x) \u2192 \u00acHandsome(x))",
+      "\u2200x (Evil(x) \u2192 Ugly(x))",
+      "\u2200x (Gentleman(x) \u2192 Handsome(x))",
+      "\u2200x (CEO(x) \u2192 Gentleman(x))",
+      "Gentleman(harry)"
+    ],
+    "conclusion_fol": "CEO(harry)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 64.5,
+      "Unknown": 89.5
+    },
+    "answer_counts": {
+      "Unknown": 9,
+      "True": 3
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: A man is either kind or evil.\nThis premise tells us that a person can be either kind or evil, but it does not provide any information about their physical appearance or profession.\n\nPremise 2: No ugly person is handsome.\nThis premise tells us that if someone is not ugly, they must be handsome. It does not tell us anything about people who are kind or evil.\n\nPremise 3: All evil people are ugly.\nThis premise tells us that if someone is evil, they must be ugly. It does not tell us anything about people who are kind or handsome.\n\nPremise 4: All gentlemen are handsome.\nThis premise tells us that if someone is a gentleman, they must be handsome. It does not tell us anything about people who are evil or ugly.\n\nPremise 5: All CEOs are gentlemen.\nThis premise tells us that if someone is a CEO, they must be a gentleman. It does not tell us anything about people who are ugly or evil.\n\nPremise 6: Harry is a gentleman.\nThis premise tells us that Harry is a gentleman, which means he must be handsome according to Premise 4.\n\nNow, we can conclude that Harry is handsome. But we need to determine whether he is a CEO or not. To do this, we can use a process of elimination.\n\nWe know that Harry is handsome (Premise 6), and we know that all gentlemen are handsome (Premise 4). Therefore, we can conclude that Harry is a gentleman (Premise 6).\n\nWe also know that all CEOs are gentlemen (Premise 5), so if Harry is a CEO, then he must be a gentleman (Premise 5). But we already know that Harry is a gentleman (Premise 6). Therefore, we can conclude that if Harry is a CEO, then he must be a gentleman.\n\nHowever, we cannot conclude that Harry is a CEO. We can only conclude that if Harry is a CEO, then he must be a gentleman. But the fact that Harry is a gentleman does not necessarily mean that he is a CEO.\n\nIn other words, we have a conditional statement: \"If Harry is a CEO, then he must be a gentleman.\" But we cannot conclude the converse: \"If Harry is a gentleman, then he must be a CEO.\"\n\nTherefore, we cannot determine whether Harry is a CEO or not. The conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion \"Harry is a CEO\" is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: A man is either kind or evil.\n\nThis premise doesn't give us any information about Harry specifically, so we'll come back to it later.\n\nPremise 2: No ugly person is handsome.\n\nThis premise tells us that if a person is ugly, they can't be handsome.\n\nPremise 3: All evil people are ugly.\n\nThis premise connects evil people to ugliness.\n\nPremise 4: All gentlemen are handsome.\n\nThis premise connects gentlemen to handsomeness.\n\nPremise 5: All CEOs are gentlemen.\n\nThis premise connects CEOs to gentlemen.\n\nPremise 6: Harry is a gentleman.\n\nThis premise directly relates to Harry, stating that he is a gentleman.\n\nNow, let's analyze the premises in the context of Harry:\n\nFrom Premise 6, we know Harry is a gentleman.\n\nFrom Premise 4, we know all gentlemen are handsome, so Harry is handsome.\n\nWe don't have any direct information about Harry's ugliness, but we know that no ugly person is handsome (Premise 2). Since Harry is handsome, we can conclude that he is not ugly.\n\nFrom Premise 3, we know all evil people are ugly. Since Harry is not ugly, we can conclude that he is not evil.\n\nFrom Premise 1, we know a man is either kind or evil. Since Harry is not evil, we can conclude that he is kind.\n\nNow, let's try to connect Harry's kind nature to the CEO conclusion. We know that all CEOs are gentlemen (Premise 5), but we don't have any information about kind people being CEOs.\n\nHowever, we can make an indirect connection using the premises. Since all gentlemen are handsome (Premise 4), and all CEOs are gentlemen (Premise 5), we can conclude that all CEOs are handsome.\n\nBut this connection still doesn't help us determine whether Harry is a CEO. We know Harry is handsome (from Premise 4), but we don't have any direct information about kind people being CEOs.\n\nSince we can't make a direct or indirect connection between Harry's kind nature and the CEO conclusion, the conclusion \"Harry is a CEO\" is uncertain.\n\nTherefore, the final answer is:\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion \"Harry is a CEO\" is true, false, or uncertain, we need to analyze the given premises step by step.\n\n1. Premise 1: A man is either kind or evil.\n   - This premise doesn't provide any direct information about Harry, but it sets up a binary classification for men.\n\n2. Premise 2: No ugly person is handsome.\n   - This premise establishes a relationship between being ugly and handsome. It implies that if someone is ugly, they cannot be handsome.\n\n3. Premise 3: All evil people are ugly.\n   - This premise connects being evil with being ugly. It implies that if someone is evil, they must be ugly.\n\n4. Premise 4: All gentlemen are handsome.\n   - This premise connects being a gentleman with being handsome. It implies that if someone is a gentleman, they must be handsome.\n\n5. Premise 5: All CEOs are gentlemen.\n   - This premise connects being a CEO with being a gentleman. It implies that if someone is a CEO, they must be a gentleman.\n\n6. Premise 6: Harry is a gentleman.\n   - This premise directly states that Harry is a gentleman. Since we know from Premise 4 that all gentlemen are handsome, we can infer that Harry is handsome.\n\nNow, let's try to connect the premises to the conclusion. We know that Harry is a gentleman, which means he is handsome (Premise 6 and Premise 4). However, being handsome doesn't directly relate to being a CEO. \n\nThe crucial connection is that Harry is a gentleman, which makes him handsome, but it doesn't directly connect to being a CEO. However, we can use Premise 5 to make an indirect connection: since all CEOs are gentlemen, and Harry is a gentleman, it doesn't necessarily mean Harry is a CEO. However, since we know all gentlemen are handsome and Harry is handsome, we can use that to connect to the conclusion.\n\nBut we need to connect it to the premises that relate to CEOs. We know Harry is a gentleman, which makes him handsome (Premise 4). We also know all CEOs are gentlemen (Premise 5). We also know all evil people are ugly (Premise 3) and no ugly person is handsome (Premise 2). Since Harry is handsome (Premise 6), we can conclude that Harry is not evil.\n\nNow we know Harry is not evil and is handsome. Since all evil people are ugly (Premise 3), and Harry is not evil, it means Harry must be kind (Premise 1). But we still need to connect this to the conclusion that Harry is a CEO.\n\nWe know that Harry is a gentleman (Premise 6), and all CEOs are gentlemen (Premise 5). Since we know Harry is a gentleman, it means Harry must be a CEO. This conclusion is derived from the premises.\n\nTherefore, the conclusion \"Harry is a CEO\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: A man is either kind or evil.\nThis premise establishes a binary classification of men into two categories: kind and evil.\n\nPremise 2: No ugly person is handsome.\nThis premise establishes a relationship between physical appearance and the two categories from Premise 1. It states that if a person is not ugly, then they are handsome.\n\nPremise 3: All evil people are ugly.\nThis premise establishes a relationship between the evil category and physical appearance. It states that all people in the evil category are also in the ugly category.\n\nPremise 4: All gentlemen are handsome.\nThis premise establishes a relationship between the gentleman category and the handsome category. It states that all people in the gentleman category are also in the handsome category.\n\nPremise 5: All CEOs are gentlemen.\nThis premise establishes a relationship between the CEO category and the gentleman category. It states that all people in the CEO category are also in the gentleman category.\n\nPremise 6: Harry is a gentleman.\nThis premise establishes a direct relationship between Harry and the gentleman category. It states that Harry is a member of the gentleman category.\n\nNow, let's analyze the conclusion:\nHarry is a CEO.\n\nTo determine whether the conclusion is true, false, or uncertain, we need to examine the relationships established by the premises. We know that:\n\n- Harry is a gentleman (Premise 6).\n- All gentlemen are handsome (Premise 4).\n- All handsome people are not ugly (by contrapositive of Premise 2).\n- All handsome people are not evil (by contrapositive of Premise 3).\n- All CEOs are gentlemen (Premise 5).\n\nHowever, there is no direct relationship between being a gentleman and being a CEO. Being a gentleman is a characteristic that is common to both CEOs and other people, but it does not imply that a gentleman is a CEO.\n\nTherefore, the conclusion \"Harry is a CEO\" is uncertain. There is no logical path from the premises to the conclusion that guarantees Harry is a CEO.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion \"Harry is a CEO\" is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: A man is either kind or evil.\nThis premise gives us two possible categories for a man: kind or evil.\n\nPremise 2: No ugly person is handsome.\nThis premise establishes a relationship between the characteristics of being ugly and handsome.\n\nPremise 3: All evil people are ugly.\nThis premise connects the category of evil with the characteristic of being ugly.\n\nPremise 4: All gentlemen are handsome.\nThis premise connects the category of gentlemen with the characteristic of being handsome.\n\nPremise 5: All CEOs are gentlemen.\nThis premise connects the category of CEOs with the category of gentlemen.\n\nPremise 6: Harry is a gentleman.\nThis premise directly states that Harry belongs to the category of gentlemen.\n\nNow, let's analyze the given premises to conclude whether Harry is a CEO or not:\n\nFrom Premise 6, we know that Harry is a gentleman.\n\nFrom Premise 5, we know that all CEOs are gentlemen. This implies that all gentlemen are CEOs (by the definition of the subset). \n\nSince Harry is a gentleman (Premise 6), and all gentlemen are CEOs (by the definition of the subset), we can conclude that Harry is a CEO.\n\nTherefore, the conclusion \"Harry is a CEO\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "Let's break down the given information step by step:\n\n1. A man is either kind or evil. (Premise 1)\n   - This means every man is either kind or evil, and not both.\n\n2. No ugly person is handsome. (Premise 2)\n   - This is a statement about people's physical appearance, which is not directly related to their profession or personality.\n\n3. All evil people are ugly. (Premise 3)\n   - This implies that if someone is evil, they must be ugly.\n\n4. All gentlemen are handsome. (Premise 4)\n   - This statement links the title \"gentleman\" with physical appearance, specifically being handsome.\n\n5. All CEOs are gentlemen. (Premise 5)\n   - This statement connects the profession \"CEO\" with the title \"gentleman.\"\n\n6. Harry is a gentleman. (Premise 6)\n   - We're given that Harry holds the title of \"gentleman.\"\n\nFrom Premise 4, we know that all gentlemen are handsome. Since Harry is a gentleman (Premise 6), we can conclude that Harry is handsome.\n\nNow, let's look at the possible conclusions from the given premises:\n- If Harry is handsome, and from Premise 2, no ugly person is handsome, then Harry must be handsome but not ugly. This means Harry cannot be evil (from Premise 3), as all evil people are ugly.\n- Since Harry is not evil, and from Premise 1, a man is either kind or evil, we can conclude that Harry is kind.\n\nWe still need to determine if Harry is a CEO. Given that Harry is a gentleman (Premise 6), and from Premise 5, all CEOs are gentlemen, we can infer that Harry might be a CEO. However, this is not certain yet.\n\nFrom Premise 6, we know Harry is a gentleman. From Premise 5, all CEOs are gentlemen. This implies that all gentlemen are CEOs. Since Harry is a gentleman, we can conclude that Harry is a CEO.\n\nHowever, we must consider the possibility of Harry not being a CEO. If Harry is a gentleman, and all gentlemen are CEOs, it might seem like Harry must be a CEO. But let's examine this further.\n\nIf Harry is a CEO, then from Premise 5, he must be a gentleman. However, if Harry is not a CEO, then we still know that he is a gentleman from Premise 6. But if Harry is a gentleman, and from Premise 5, all CEOs are gentlemen, this does not necessarily mean Harry is a CEO.\n\nWe can deduce that Harry is either a CEO or not a CEO. If Harry is a CEO, he is a gentleman. If Harry is not a CEO, he is still a gentleman. \n\nHowever, given that all gentlemen are CEOs from Premise 5, and Harry is a gentleman from Premise 6, we can conclude that Harry is indeed a CEO.\n\nThe conclusion is not uncertain; it is actually true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we'll analyze the given premises step by step.\n\nPremise 1: A man is either kind or evil.\n\nThis premise gives us a binary classification for men: kind or evil.\n\nPremise 2: No ugly person is handsome.\n\nThis premise establishes a relationship between ugliness and handsomeness. It doesn't directly affect our conclusion but provides a contrast between these two traits.\n\nPremise 3: All evil people are ugly.\n\nThis premise links the traits of being evil and ugly. Since we know from premise 1 that a man is either kind or evil, this premise implies that an evil person is also ugly.\n\nPremise 4: All gentlemen are handsome.\n\nThis premise connects the traits of being a gentleman and handsome. Since we're given that Harry is a gentleman, this premise suggests that Harry is handsome.\n\nPremise 5: All CEOs are gentlemen.\n\nThis premise connects the traits of being a CEO and a gentleman. Given that Harry is a gentleman, this premise implies that Harry could be a CEO.\n\nPremise 6: Harry is a gentleman.\n\nThis premise directly states that Harry is a gentleman, which we already know from premise 5.\n\nNow, let's analyze the conclusion: Harry is a CEO.\n\nGiven that we know Harry is a gentleman (premise 6), we can use premise 5 to infer that Harry might be a CEO. However, we can't be certain about this conclusion because there's a possibility that Harry could be a kind gentleman (as opposed to an evil one) and still not be a CEO.\n\nWe can use a truth table or logical deductions to further analyze the possibilities. Given that a man is either kind or evil (premise 1), and all evil people are ugly (premise 3), and no ugly person is handsome (premise 2), we can deduce that a kind person must be handsome (since all gentlemen are handsome, premise 4).\n\nNow, let's examine the possibilities:\n\n- If Harry is evil, then he's ugly (premise 3), but we know no ugly person is handsome (premise 2). This would imply that Harry is not handsome, which contradicts premise 4 (all gentlemen are handsome).\n- If Harry is kind, then he's handsome (since all kind people are handsome by default), and he's a gentleman (premise 6). Given that all gentlemen are handsome (premise 4), this possibility aligns with the given premises.\n\nHowever, we still can't be certain that Harry is a CEO, as there might be other kind gentlemen who are not CEOs.\n\nThe conclusion \"Harry is a CEO\" is uncertain because we can't rule out the possibility that Harry is a kind gentleman who is not a CEO.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "Let's analyze the premises and conclusion step by step.\n\nPremises:\n\n1. A man is either kind or evil.\n2. No ugly person is handsome.\n3. All evil people are ugly.\n4. All gentlemen are handsome.\n5. All CEOs are gentlemen.\n6. Harry is a gentleman.\n\nConclusion: Harry is a CEO.\n\nFrom premise 6, we know Harry is a gentleman.\n\nFrom premise 4, we know all gentlemen are handsome. Therefore, Harry is handsome.\n\nNow, let's consider the possibilities:\n\n- If Harry is evil, then from premise 3, he is ugly. But from premise 2, no ugly person is handsome. This contradicts the fact that Harry is handsome. Therefore, Harry cannot be evil.\n\n- Since Harry is not evil, from premise 1, he must be kind.\n\nNow, let's see if we can conclude that Harry is a CEO.\n\nFrom premise 5, all CEOs are gentlemen. We already know Harry is a gentleman. However, being a gentleman does not necessarily mean he is a CEO. There might be other gentlemen who are not CEOs.\n\nSince we cannot conclude that Harry is a CEO based on the premises, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine the validity of the conclusion \"Harry is a CEO,\" we need to analyze the given premises step by step.\n\nPremise 1: A man is either kind or evil.\nThis premise gives us two categories: kind and evil.\n\nPremise 2: No ugly person is handsome.\nThis premise establishes a relationship between ugliness and handsomeness, stating that the two are mutually exclusive.\n\nPremise 3: All evil people are ugly.\nThis premise links evilness to ugliness, stating that anyone who is evil is also ugly.\n\nPremise 4: All gentlemen are handsome.\nThis premise links gentlemen to handsomeness, stating that anyone who is a gentleman is also handsome.\n\nPremise 5: All CEOs are gentlemen.\nThis premise establishes a relationship between CEOs and gentlemen, stating that anyone who is a CEO is also a gentleman.\n\nPremise 6: Harry is a gentleman.\nThis premise directly states that Harry is a gentleman.\n\nNow, let's analyze the conclusion based on the given premises:\n\nConclusion: Harry is a CEO.\n\nWe know that Harry is a gentleman (Premise 6). From Premise 5, we also know that all CEOs are gentlemen. Therefore, we can conclude that Harry is indeed a gentleman and potentially a CEO.\n\nHowever, we cannot conclude with certainty that Harry is a CEO because we don't have any information about the relationship between gentlemen and CEOs beyond Premise 5. We also don't know if Harry is kind or evil, which could affect his appearance and, consequently, his eligibility to be a CEO.\n\nConsidering the given premises and the conclusion, we can determine that the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion \"Harry is a CEO\" is true, false, or uncertain, let's analyze the given premises step by step:\n\n1. A man is either kind or evil.\n   This premise tells us that a person can only be one of two things: kind or evil. However, it doesn't give us any information about Harry directly.\n\n2. No ugly person is handsome.\n   This premise tells us that if a person is ugly, they cannot be handsome. However, it also tells us that if a person is handsome, they cannot be ugly. This means that a person can either be handsome or ugly.\n\n3. All evil people are ugly.\n   This premise tells us that if a person is evil, they must be ugly. However, it doesn't tell us anything about kind people.\n\n4. All gentlemen are handsome.\n   This premise tells us that if a person is a gentleman, they must be handsome.\n\n5. All CEOs are gentlemen.\n   This premise tells us that if a person is a CEO, they must be a gentleman.\n\n6. Harry is a gentleman.\n   This premise tells us that Harry is a gentleman.\n\nNow, let's use the premises to analyze the conclusion \"Harry is a CEO.\" If Harry is a CEO, then he must be a gentleman (premise 5). We already know that Harry is a gentleman (premise 6). Therefore, we can conclude that Harry is indeed a gentleman.\n\nHowever, we cannot conclude that Harry is a CEO from being a gentleman. We can only conclude that if Harry is a CEO, then he is a gentleman. To determine whether Harry is a CEO, we need more information.\n\nLooking at premise 4, we know that all gentlemen are handsome. Since Harry is a gentleman, we can conclude that Harry is handsome. Now, let's look at premise 3. We know that all evil people are ugly, and premise 2 tells us that no ugly person is handsome. Therefore, since Harry is handsome, he cannot be evil.\n\nNow, let's use premise 1, which tells us that a man is either kind or evil. Since Harry is not evil (he is handsome), we can conclude that Harry is kind.\n\nWe cannot conclude that Harry is a CEO based on the information given in the premises. The premises tell us that all CEOs are gentlemen, but being a gentleman does not necessarily mean that someone is a CEO. We can only conclude that Harry is a kind gentleman, but we do not have enough information to determine whether he is a CEO.\n\nTherefore, the conclusion \"Harry is a CEO\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and their implications.\n\nPremise 1: A man is either kind or evil.\nThis premise provides two possible categories for a man: kind or evil.\n\nPremise 2: No ugly person is handsome.\nThis premise establishes a relationship between physical appearance and the categories of kind or evil. It implies that if a person is ugly, they must be evil (since they can't be handsome).\n\nPremise 3: All evil people are ugly.\nThis premise is already covered by Premise 2. It's redundant, but it doesn't provide any new information.\n\nPremise 4: All gentlemen are handsome.\nThis premise establishes a relationship between social status (gentleman) and physical appearance (handsome).\n\nPremise 5: All CEOs are gentlemen.\nThis premise establishes a relationship between social status (CEO) and social status (gentleman).\n\nPremise 6: Harry is a gentleman.\nThis premise directly states a fact about Harry.\n\nNow, let's analyze the conclusion: \"Harry is a CEO.\"\n\nIf Harry is a gentleman (Premise 6), then he must be handsome (Premise 4).\n\nSince Harry is handsome, he can't be ugly (by definition).\n\nGiven that no ugly person is handsome (Premise 2), we can conclude that Harry is not ugly.\n\nNow, let's revisit Premise 3 (which is redundant, but it's still useful for understanding the relationships): All evil people are ugly.\n\nIf Harry is not ugly, it means he can't be evil.\n\nGiven that a man is either kind or evil (Premise 1), we can conclude that Harry is kind.\n\nNow, we need to determine whether Harry being a kind person implies that he is a CEO. Unfortunately, the premises don't provide any direct relationship between being kind and being a CEO.\n\nThe premises only establish relationships between social status, physical appearance, and the categories of kind or evil. They don't provide any information about the qualities or characteristics required to be a CEO.\n\nTherefore, the conclusion \"Harry is a CEO\" is uncertain, as we can't determine with certainty whether being kind or being a gentleman (or both) implies that someone is a CEO.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we will use the method of deduction and analyze the given premises step by step.\n\n1. Premise: A man is either kind or evil. \nThis premise gives us two possible categories for a man: kind or evil.\n\n2. Premise: No ugly person is handsome. \nThis premise tells us that if a person is ugly, they cannot be handsome.\n\n3. Premise: All evil people are ugly. \nFrom this premise, we can conclude that if a person is evil, they must be ugly.\n\n4. Premise: All gentlemen are handsome. \nThis premise tells us that all gentlemen are considered handsome.\n\n5. Premise: All CEOs are gentlemen. \nThis premise indicates that all CEOs are also gentlemen.\n\n6. Premise: Harry is a gentleman. \nWe are given this information directly.\n\nNow, let's try to determine whether Harry is a CEO.\n\nFrom premise 6, we know that Harry is a gentleman. Since all gentlemen are handsome (premise 4), Harry must be handsome.\n\nNow, we need to find a relationship between being handsome and being a CEO. \n\nWe can conclude that since Harry is handsome (and therefore not ugly), he cannot be evil (premise 2 and premise 3). \n\nNow we know Harry is either kind or evil but is not evil.\n\nSince Harry is not evil, Harry must be kind (premise 1). \n\nNow, we need to determine whether being kind makes Harry a CEO.\n\nWe have no direct connection between being kind and being a CEO. Therefore, based on the information given, we cannot conclude that Harry is a CEO.\n\nThe conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "kind(man)",
+          "z3_formula": "kind_man == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "evil(man)",
+          "z3_formula": "evil_man == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "Not ugly(X) -> handsome(X)",
+          "z3_formula": "Implies(Not(ugly_man), handsome_man)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "evil(X) -> ugly(X)",
+          "z3_formula": "Implies(evil_man, ugly_man)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "gentleman(X) -> handsome(X)",
+          "z3_formula": "Implies(gentleman_harry, handsome_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "CEO(X) -> gentleman(X)",
+          "z3_formula": "Implies(CEO_harry, gentleman_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(harry)",
+          "z3_formula": "gentleman_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "handsome(harry)",
+          "z3_formula": "handsome_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "gentleman(harry)",
+          "z3_formula": "gentleman_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "If CEO(harry) then gentleman(harry)",
+          "z3_formula": "Implies(CEO_harry, gentleman_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "If gentleman(harry) then Not CEO(harry)",
+          "z3_formula": "Implies(gentleman_harry, Not(CEO_harry))",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "man(X) -> kind(X) | evil(X)",
+          "z3_formula": "Implies(Or(kind_harry, evil_harry), True)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "ugly(X) -> Not(handsome(X))",
+          "z3_formula": "Implies(ugly_harry, Not(handsome_harry))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "evil(X) -> ugly(X)",
+          "z3_formula": "Implies(evil_harry, ugly_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "gentleman(X) -> handsome(X)",
+          "z3_formula": "Implies(gentleman_harry, handsome_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "gentleman(X) -> handsome(X)",
+          "z3_formula": "Implies(gentleman_harry, handsome_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "CEO(X) -> gentleman(X)",
+          "z3_formula": "Implies(CEO_harry, gentleman_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(harry)",
+          "z3_formula": "gentleman_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "handsome(harry)",
+          "z3_formula": "handsome_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(ugly(harry))",
+          "z3_formula": "Not(ugly_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "Not(evil(harry))",
+          "z3_formula": "Not(evil_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "handsome(CEO(X))",
+          "z3_formula": "handsome_harry",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "kind(CEO(X))",
+          "z3_formula": "kind_harry",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "man(X)",
+          "z3_formula": "man_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "man(X) -> kind(X) | evil(X)",
+          "z3_formula": "Implies(man_harry, Or(kind_harry, evil_harry))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not handsome(X) -> not ugly(X)",
+          "z3_formula": "Not(handsome_X) -> Not(ugly_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "evil(X) -> ugly(X)",
+          "z3_formula": "Implies(evil_harry, ugly_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "gentleman(X) -> handsome(X)",
+          "z3_formula": "Implies(gentleman_harry, handsome_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(harry)",
+          "z3_formula": "gentleman_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "gentleman(X) -> CEO(X)",
+          "z3_formula": "Implies(gentleman_harry, CEO_harry)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "man(X) & (kind(X) | evil(X))",
+          "z3_formula": "And(man_X, Or(kind_X, evil_X))",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "not ugly(X) -> handsome(X)",
+          "z3_formula": "Implies(Not(ugly_X), handsome_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "evil(X) -> ugly(X)",
+          "z3_formula": "Implies(evil_X, ugly_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "gentleman(X) -> handsome(X)",
+          "z3_formula": "Implies(gentleman_X, handsome_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "gentleman(X) -> handsome(X)",
+          "z3_formula": "Implies(gentleman_X, handsome_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "CEO(X) -> gentleman(X)",
+          "z3_formula": "Implies(CEO_X, gentleman_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(harry)",
+          "z3_formula": "gentleman_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "gentleman(harry) & handsome(harry) & not evil(harry) & not ugly(harry)",
+          "z3_formula": "And(gentleman_harry, And(handsome_harry, And(Not(evil_harry), Not(ugly_harry))))",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(man)",
+          "z3_formula": "kind_man == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "evil(man)",
+          "z3_formula": "evil_man == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(man) | evil(man)",
+          "z3_formula": "Or(kind_man, evil_man)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not handsome(ugly)",
+          "z3_formula": "Not(handsome_ugly) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "evil(man) -> ugly(man)",
+          "z3_formula": "Implies(evil_man, ugly_man)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "ugly(man) -> not handsome(man)",
+          "z3_formula": "Implies(ugly_man, Not(handsome_man))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(man) -> handsome(man)",
+          "z3_formula": "Implies(gentleman_man, handsome_man)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "ceo(man) -> gentleman(man)",
+          "z3_formula": "Implies(ceo_man, gentleman_man)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(harry)",
+          "z3_formula": "gentleman_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "gentleman(man) -> ceo(man)",
+          "z3_formula": "Implies(gentleman_man, ceo_man)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "ceo(harry)",
+          "z3_formula": "ceo_harry == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "man(harry)",
+          "z3_formula": "man_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "man(X) -> kind(X) | evil(X)",
+          "z3_formula": "Implies(Or(kind_harry, evil_harry), man_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not ugly(X) -> not handsome(X)",
+          "z3_formula": "Not(Implies(Not(ugly_harry), handsome_harry))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "evil(X) -> ugly(X)",
+          "z3_formula": "Implies(evil_harry, ugly_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(X) -> handsome(X)",
+          "z3_formula": "Implies(gentleman_harry, handsome_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(X) -> handsome(X)",
+          "z3_formula": "Implies(gentleman_harry, handsome_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "CEO(X) -> gentleman(X)",
+          "z3_formula": "Implies(CEO_harry, gentleman_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(harry)",
+          "z3_formula": "gentleman_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "gentleman(harry) -> CEO(harry)",
+          "z3_formula": "Implies(gentleman_harry, CEO_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "CEO(harry)",
+          "z3_formula": "CEO_harry == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind_or_evil(man)",
+          "z3_formula": "kind_or_evil_man == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not ugly_and_handsome",
+          "z3_formula": "Not(And(ugly_person, handsome_person)) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "evil(X) -> ugly(X)",
+          "z3_formula": "Implies(evil_man, ugly_man)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "gentleman(X) -> handsome(X)",
+          "z3_formula": "Implies(gentleman_man, handsome_man)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(harry)",
+          "z3_formula": "gentleman_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "gentleman(X) -> CEO(X)",
+          "z3_formula": "Implies(gentleman_man, CEO_man)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(X) | evil(X)",
+          "z3_formula": "Or(kind_harry, evil_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "Not(handsome(X)) | ugly(X)",
+          "z3_formula": "Not(handsome_harry) | ugly_harry",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "evil(X) -> ugly(X)",
+          "z3_formula": "Implies(evil_harry, ugly_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(X) -> handsome(X)",
+          "z3_formula": "Implies(gentleman_harry, handsome_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(X) -> handsome(X)",
+          "z3_formula": "Implies(gentleman_harry, handsome_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(X) -> handsome(X)",
+          "z3_formula": "Implies(gentleman_harry, handsome_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(X)",
+          "z3_formula": "gentleman_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "handsome(X)",
+          "z3_formula": "handsome_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "Not(handsome(X)) | ugly(X)",
+          "z3_formula": "Not(handsome_harry) | ugly_harry",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "Not(evil(X))",
+          "z3_formula": "Not(evil_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "kind(X) | evil(X)",
+          "z3_formula": "Or(kind_harry, evil_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "kind(X)",
+          "z3_formula": "kind_harry",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(X) -> CEO(X)",
+          "z3_formula": "Implies(gentleman_harry, ceo_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(X)",
+          "z3_formula": "gentleman_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "CEO(X)",
+          "z3_formula": "ceo_harry == Unknown",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(X) | evil(X)",
+          "z3_formula": "Or(kind_harry, evil_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "Not(handsome(X)) | Not(ugly(X))",
+          "z3_formula": "Not(handsome_harry) | Not(ugly_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "evil(X) -> ugly(X)",
+          "z3_formula": "Implies(evil_harry, ugly_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "ugly(X) -> Not(handsome(X))",
+          "z3_formula": "Implies(ugly_harry, Not(handsome_harry))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "gentleman(X) -> handsome(X)",
+          "z3_formula": "Implies(gentleman_harry, handsome_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "CEO(X) -> gentleman(X)",
+          "z3_formula": "Implies(CEO_harry, gentleman_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(harry)",
+          "z3_formula": "gentleman_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "gentleman(harry) & CEO(X) -> CEO(harry)",
+          "z3_formula": "And(gentleman_harry, CEO_harry) -> CEO_harry",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "man(X) -> kind(X) | evil(X)",
+          "z3_formula": "Or(Not(kind_harry), evil_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "Not(ugly(X) & handsome(X))",
+          "z3_formula": "Not(And(ugly_harry, handsome_harry))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "evil(X) -> ugly(X)",
+          "z3_formula": "Implies(evil_harry, ugly_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(X) -> handsome(X)",
+          "z3_formula": "Implies(gentleman_harry, handsome_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "CEO(X) -> gentleman(X)",
+          "z3_formula": "Implies(CEO_harry, gentleman_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(harry)",
+          "z3_formula": "gentleman_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(man)",
+          "z3_formula": "kind_man == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "evil(man) == False",
+          "z3_formula": "Not(kind_man) == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "ugly(X) -> Not(handsome(X))",
+          "z3_formula": "Implies(ugly_man, Not(handsome_man))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "evil(X) -> ugly(X)",
+          "z3_formula": "Implies(evil_man, ugly_man)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "gentleman(X) -> handsome(X)",
+          "z3_formula": "Implies(gentleman_harry, handsome_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "CEO(X) -> gentleman(X)",
+          "z3_formula": "Implies(CEO_harry, gentleman_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(harry)",
+          "z3_formula": "gentleman_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "handsome(harry)",
+          "z3_formula": "handsome_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(ugly(harry))",
+          "z3_formula": "Not(ugly_harry) == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "Not(evil(harry))",
+          "z3_formula": "Not(evil_harry) == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "CEO(harry)",
+          "z3_formula": "CEO_harry == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind_or_evil(man)",
+          "z3_formula": "kind_or_evil_man == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not ugly_and_handsome(person)",
+          "z3_formula": "Not(And(ugly_person, handsome_person)) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "evil_person_implies_ugly",
+          "z3_formula": "Implies(evil_person, ugly_person)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman_implies_handsome",
+          "z3_formula": "Implies(gentleman, handsome_person)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman_implies_ceo",
+          "z3_formula": "Implies(gentleman, ceo)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(harry)",
+          "z3_formula": "gentleman_harry == True",
+          "source_step": 6
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 114,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 46
+    },
+    "maxsat_stats": {
+      "satisfied": 41,
+      "excluded": 5,
+      "total_weight": 103,
+      "solve_time_ms": 1.4895414933562279
+    },
+    "timing": {
+      "trace_gen_s": 7.592,
+      "extraction_s": 18.407,
+      "dedup_s": 1.051,
+      "maxsat_s": 0.004,
+      "total_s": 27.055
+    }
+  }
+}
