@@ -1,0 +1,32 @@
+{
+  "exp_id": "threshold_q03_seed42",
+  "project": "provenance_weight_training",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 1,
+    "created_at": "2026-05-16T05:34:34.545Z",
+    "updated_at": "2026-05-16T12:39:31.465Z",
+    "hypothesis": "Hard-filter threshold sensitivity: remove q>0.3 samples, train uniformly on remaining. Paired with detect_remove (q>0.5) and threshold_q07 (q>0.7) to test if filtering requires precise threshold calibration while adaptive does not.",
+    "reproduce": {
+      "finished_at": "2026-05-16T10:30:31.843Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-16T10:30:32.935Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T10:30:35.110226+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    }
+  },
+  "timestamp": "2026-05-16T12:39:31.798596+00:00",
+  "trigger": "update_registry"
+}

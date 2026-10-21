@@ -1,0 +1,122 @@
+{
+  "project": "provenance_weight_training",
+  "code_count": 559,
+  "data_count": 2002,
+  "env_count": 0,
+  "tex_count": 42,
+  "bib_count": 1,
+  "review_count": 13,
+  "validation_count": 15,
+  "chat_count": 635,
+  "worker_count": 2217,
+  "trace_count": 3029,
+  "trace_bytes": 359733284,
+  "maintenance_count": 198,
+  "provenance_count": 0,
+  "submission_count": 0,
+  "license_count": 0,
+  "paper_pdf": "paper.pdf",
+  "paper_sha256": "a303a1f883b575ab0867e38faf29ce323d664c99ad2580f49c10dd68ac84cbc9",
+  "title": "When Does Detect-and-Reweight Work for Synthetic Contamination?",
+  "pages": 15,
+  "status_marker": "Anonymous ACL submission",
+  "version_count": 30,
+  "version_paths": [
+    "docs/paper/detector_requirements.pdf",
+    "docs/paper/delta_vs_rho.pdf",
+    "docs/paper/dual_constraint_illustration.pdf",
+    "docs/paper/bstar_trajectory_adaptive_fix.pdf",
+    "docs/paper/grid_b_trend_clean.pdf",
+    "docs/paper/batch_size_amplification.pdf",
+    "docs/paper/dr_pipeline_concept.pdf",
+    "docs/paper/constraint_regime_decomposition.pdf",
+    "docs/paper/tau_rho_rank_preservation.pdf",
+    "docs/paper/dr_dual_curve.pdf",
+    "docs/paper/main.pdf",
+    "docs/paper/fig1_overview.pdf",
+    "artifacts/review_round_12/submitted.pdf",
+    "artifacts/_project/paper/paper_draft_20260519.pdf",
+    "artifacts/_project/paper/main.pdf",
+    "artifacts/paper_draft_20260519.pdf",
+    "artifacts/review_round_14/submitted.pdf",
+    "artifacts/review_round_11/submitted.pdf",
+    "artifacts/review_round_9/submitted.pdf",
+    "artifacts/dream_reports/dream_20260515T102146/median/paper.pdf",
+    "artifacts/dream_reports/dream_20260515T102146/worst/paper.pdf",
+    "artifacts/dream_reports/dream_20260515T102146/best/paper.pdf",
+    "artifacts/dream_reports/dream_20260515T011902/median/paper.pdf",
+    "artifacts/dream_reports/dream_20260515T011902/worst/paper.pdf",
+    "artifacts/dream_reports/dream_20260515T011902/best/paper.pdf",
+    "artifacts/review_round_10/submitted.pdf",
+    "artifacts/paper_draft_20260519_v3.pdf",
+    "artifacts/paper_draft_20260519_v4.pdf",
+    "artifacts/paper_draft_20260519_v2.pdf",
+    "artifacts/review_round_13/submitted.pdf"
+  ],
+  "archive_rel": "provenance_weight_training/workspace.tar.gz",
+  "archive_note": "Archive scan completed",
+  "archive_error": null,
+  "source_s3": {
+    "bucket": "agent-ml-research-project-backups-20260531",
+    "key": "provenance_weight_training/workspace.tar.gz",
+    "sha256": "861fd78d296280429bd1ea4f17b97851401046b5ee8a5a0500beaf8d257401a5",
+    "bytes": 340157760,
+    "etag": "\"f3a8b2f2944cb3967127f32445771283-41\"",
+    "modified": "2026-05-31T17:32:58+00:00"
+  },
+  "academic_record": {
+    "date": "2026-05-31",
+    "record": "Project status documents are included as source evidence; formal submission, acceptance, or publication status is unverified."
+  },
+  "criteria": [
+    {
+      "name": "Manuscript and versions",
+      "status": "Available",
+      "evidence": "42 source files; 30 PDF candidates",
+      "gap": "Candidate filenames do not establish official submission or publication.",
+      "path": "01-manuscript/"
+    },
+    {
+      "name": "Academic status",
+      "status": "Unverified",
+      "evidence": "Project status documents are included as source evidence; formal submission, acceptance, or publication status is unverified.",
+      "gap": "Official submission, acceptance, and publication were not independently checked.",
+      "path": "06-maintenance/"
+    },
+    {
+      "name": "Generation trace",
+      "status": "Organized",
+      "evidence": "635 conversations; 2217 worker logs/results; 3029 source files",
+      "gap": "Overlapping snapshots are retained; credentials and binary attachments are redacted.",
+      "path": "04-generation-trace/"
+    },
+    {
+      "name": "Reproduction code",
+      "status": "Available",
+      "evidence": "559 code/configuration files; 0 environment manifests",
+      "gap": "The code is archived; experiments were not rerun for this release.",
+      "path": "02-code/"
+    },
+    {
+      "name": "Experiments and environment",
+      "status": "Partial",
+      "evidence": "2002 data/result files",
+      "gap": "Original data permissions and completeness require project-specific review.",
+      "path": "03-experiments/"
+    },
+    {
+      "name": "Validation evidence",
+      "status": "Partial",
+      "evidence": "13 internal review records; 15 other audit records",
+      "gap": "Internal reviews are project evidence, not independently verified external reviews.",
+      "path": "05-validation/"
+    },
+    {
+      "name": "Maintenance",
+      "status": "Partial",
+      "evidence": "198 project documentation files; 0 license files",
+      "gap": "A project license file applies only within its stated scope.",
+      "path": "06-maintenance/"
+    }
+  ]
+}

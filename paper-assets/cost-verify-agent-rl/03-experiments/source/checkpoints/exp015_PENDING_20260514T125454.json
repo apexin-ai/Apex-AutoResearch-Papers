@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp015",
+  "project": "cost-verify-agent-rl",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:48:38.065Z",
+    "updated_at": "2026-05-14T12:54:54.006Z",
+    "hypothesis": "Sparse GRPO + 训练稳定性修复。纯 sparse reward（won=10.0，无 valid_action_bonus，无 format_penalty）。针对 exp012b 的 step 7 catastrophic collapse（grad_norm 1.48→0.094），三项修复：LR 1e-7（降 10 倍防单步更新过激）、kl_loss_coef 0.1（增 10 倍约束策略偏移）、max_grad_norm=1.0（梯度裁剪）。从 exp008 step 5 checkpoint 恢复，GRPO 30 步。",
+    "parent": "exp012b"
+  },
+  "timestamp": "2026-05-14T12:54:54.075998+00:00",
+  "trigger": "update_registry"
+}

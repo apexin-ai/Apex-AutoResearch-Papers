@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan006-prolog-exec-s43-r2",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:32:37.140Z",
+    "updated_at": "2026-05-14T12:32:41.826Z",
+    "hypothesis": "Prolog exec-only GRPO seed=43 r2: 修正 warmup_ratio=0.0 与 s42 一致。cross-seed stability check for Prolog logic type.",
+    "parent": "plan006-prolog-exec-s43"
+  },
+  "timestamp": "2026-05-14T12:32:41.947490+00:00",
+  "trigger": "update_registry"
+}

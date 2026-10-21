@@ -1,1 +1,0 @@
-Summary: WildChat FPR 0.0% (from 68.1%), IID F1=1.0, OOD DD F1=1.0, OOD AA F1=0.956, OOD FITD F1=1.0. All 3 seeds. Eval N=49. Data: 500 train (350 orig + 150 WildChat benign). Server results at /root/persuasion_turn_jailbreak_detect/results/exp42_ood_benign_mixed.json

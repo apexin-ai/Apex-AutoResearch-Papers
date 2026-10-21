@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp_002_ner_conll2003",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T11:42:15.223Z",
+    "updated_at": "2026-05-14T11:50:32.180Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 llamafactory-cli train conll2003_lora.yaml",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "44399",
+      "log_path": "~/runs/struct_self_consist_ie/exp_002_ner_conll2003.log",
+      "submitted_at": "2026-05-14T11:49:32.890Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data/conll2003/",
+      "data_count": 14041,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "description": "CoNLL-2003 NER fine-tune + pilot. LoRA r=32, alpha=64, epochs=5, lr=2e-4. Verify SJ/voting confidence on news domain."
+    },
+    "server": "autodl-5090",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "autodl-5090",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-14T11:43:49.959Z"
+    }
+  },
+  "timestamp": "2026-05-14T11:50:32.246542+00:00",
+  "trigger": "update_registry"
+}

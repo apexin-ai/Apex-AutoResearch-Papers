@@ -1,0 +1,116 @@
+{
+  "ner": {
+    "soft_jaccard": {
+      "T=1.0": {
+        "rho": 0.3825,
+        "tau": 0.2658,
+        "auroc": 0.6892,
+        "note": "rho from pilot_004; tau/auroc from exp_012 recomputation"
+      },
+      "T=0.7": {
+        "rho": 0.3875,
+        "tau": "N/A (T=0.7 not computed)",
+        "auroc": "N/A (T=0.7 not computed)"
+      },
+      "delta_rho": 0.005
+    },
+    "fleiss_kappa": {
+      "T=1.0": {
+        "rho": 0.259,
+        "tau": 0.2027,
+        "auroc": 0.6292
+      },
+      "T=0.7": {
+        "rho": 0.3211,
+        "tau": "N/A (T=0.7 not computed)",
+        "auroc": "N/A (T=0.7 not computed)"
+      },
+      "delta_rho": 0.0621
+    },
+    "mean_logprob": {
+      "T=1.0": {
+        "rho": 0.1396,
+        "tau": 0.1006,
+        "auroc": 0.5907,
+        "n": 529
+      },
+      "T=0.7": "N/A (T=0.7 not computed)",
+      "delta_rho": "N/A (T=0.7 not computed)"
+    },
+    "exact_match": {
+      "T=1.0": {
+        "rho": 0.2941,
+        "tau": 0.2181,
+        "auroc": 0.6398
+      },
+      "T=0.7": "N/A (T=0.7 not computed)",
+      "delta_rho": "N/A (T=0.7 not computed)"
+    },
+    "voting_conf": {
+      "T=1.0": {
+        "rho": 0.3915,
+        "tau": 0.2906,
+        "auroc": 0.7039
+      },
+      "T=0.7": "N/A (T=0.7 not computed)",
+      "delta_rho": "N/A (T=0.7 not computed)"
+    }
+  },
+  "re": {
+    "soft_jaccard": {
+      "T=1.0": {
+        "rho": 0.2441,
+        "tau": 0.1619,
+        "auroc": 0.5916,
+        "note": "rho from pilot_004; tau/auroc from exp_012 recomputation"
+      },
+      "T=0.7": {
+        "rho": 0.2343,
+        "tau": "N/A (T=0.7 not computed)",
+        "auroc": "N/A (T=0.7 not computed)"
+      },
+      "delta_rho": -0.0098
+    },
+    "fleiss_kappa": {
+      "T=1.0": {
+        "rho": 0.2782,
+        "tau": 0.1967,
+        "auroc": 0.6262
+      },
+      "T=0.7": {
+        "rho": 0.1835,
+        "tau": "N/A (T=0.7 not computed)",
+        "auroc": "N/A (T=0.7 not computed)"
+      },
+      "delta_rho": -0.0947
+    },
+    "mean_logprob": {
+      "T=1.0": {
+        "rho": 0.2467,
+        "tau": 0.1808,
+        "auroc": 0.6186,
+        "n": 397
+      },
+      "T=0.7": "N/A (T=0.7 not computed)",
+      "delta_rho": "N/A (T=0.7 not computed)"
+    },
+    "exact_match": {
+      "T=1.0": {
+        "rho": 0.1562,
+        "tau": 0.1185,
+        "auroc": 0.5863
+      },
+      "T=0.7": "N/A (T=0.7 not computed)",
+      "delta_rho": "N/A (T=0.7 not computed)"
+    },
+    "voting_conf": {
+      "T=1.0": {
+        "rho": 0.3403,
+        "tau": 0.256,
+        "auroc": 0.6668
+      },
+      "T=0.7": "N/A (T=0.7 not computed)",
+      "delta_rho": "N/A (T=0.7 not computed)"
+    }
+  }
+}

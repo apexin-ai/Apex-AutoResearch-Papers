@@ -1,0 +1,57 @@
+{
+  "exp_id": "gemma27b_cross_transfer",
+  "project": "gen-depth-contamination",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T09:41:08.133Z",
+    "updated_at": "2026-05-24T09:56:41.200Z",
+    "hypothesis": "Cross-model transfer retention across 18x scale gap (27B to 1.5B) will maintain 80%+ retention, confirming depth signal is text-intrinsic and scale-invariant. OBD classifiers trained on 27B-generated text should generalize to smaller model outputs without retraining.",
+    "metrics": {
+      "transfer_matrix_accuracy": {
+        "Gemma27B→Gemma27B": 0.3106,
+        "Gemma27B→LLaMA8B": 0.3218,
+        "Gemma27B→Qwen1.5B": 0.3331,
+        "Gemma27B→Pythia": 0.3214,
+        "Gemma27B→OLMo": 0.2892,
+        "LLaMA8B→Gemma27B": 0.3048,
+        "Qwen1.5B→Gemma27B": 0.2693,
+        "Pythia→Gemma27B": 0.286,
+        "OLMo→Gemma27B": 0.2457
+      },
+      "transfer_matrix_mean_auc": {
+        "Gemma27B→Gemma27B": 0.6019,
+        "Gemma27B→LLaMA8B": 0.6147,
+        "Gemma27B→Qwen1.5B": 0.6274,
+        "Gemma27B→Pythia": 0.6166,
+        "Gemma27B→OLMo": 0.5934,
+        "LLaMA8B→Gemma27B": 0.6037,
+        "Qwen1.5B→Gemma27B": 0.5949,
+        "Pythia→Gemma27B": 0.5973,
+        "OLMo→Gemma27B": 0.5455
+      },
+      "retention_27b_to_small": {
+        "avg_acc": "101.3%",
+        "LLaMA8B": "103.6%",
+        "Qwen1.5B": "107.2%",
+        "Pythia": "103.5%",
+        "OLMo": "93.1%"
+      },
+      "retention_small_to_27b": {
+        "avg_acc": "76.5%",
+        "LLaMA8B": "92.1%",
+        "Qwen1.5B": "71.3%",
+        "Pythia": "80.9%",
+        "OLMo": "77.3%"
+      },
+      "retention_1.5b_inter_model": "88.9%",
+      "result_path": "results/gemma27b_cross_transfer/cross_transfer_gemma27b_matrix.json",
+      "key_finding": "27B→small retention 101.3% (>100%!): classifier trained on 27B data works BETTER on smaller models. 27B learns universal depth features. Small→27B only 76.5% due to weaker depth signal in 27B text. Strong asymmetry confirms depth signal is text-intrinsic but scale-modulated."
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-24T09:56:41.556148+00:00",
+  "trigger": "update_registry"
+}

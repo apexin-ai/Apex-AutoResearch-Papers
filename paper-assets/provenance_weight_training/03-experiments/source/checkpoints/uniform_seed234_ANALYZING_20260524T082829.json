@@ -1,0 +1,61 @@
+{
+  "exp_id": "uniform_seed234",
+  "project": "provenance_weight_training",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T04:42:43.151Z",
+    "updated_at": "2026-05-24T08:28:28.174Z",
+    "hypothesis": "N=5 seed replication (seed=234): uniform weighting baseline on ρ=0.4 data. Fifth seed paired with adaptive_seed234 for Δ calculation.",
+    "spec": {
+      "command": "python -u training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/uniform_seed234 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --num_train_tokens 200000000 --contamination_ratio 0.4 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --seed 234 --bf16 --save_total_limit 2 --logging_steps 10",
+      "server": "westd-41312",
+      "gpu": "cuda:3",
+      "pid": 923155,
+      "log_path": "~/runs/provenance_weight_training/uniform_seed234.log",
+      "submitted_at": "2026-05-24T04:43:04.505Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/scored_data.jsonl",
+      "data_count": 371499,
+      "model_name": "Qwen3-0.6B",
+      "seed": 234,
+      "checkpoint_path": "/root/autodl-tmp/provenance_weight_training/output/models/uniform_seed234",
+      "hyperparams": {
+        "weighting_method": "uniform",
+        "contamination_ratio": 0.4,
+        "num_train_tokens": 200000000,
+        "max_steps": 6103,
+        "batch_size": 4,
+        "gradient_accumulation_steps": 4,
+        "effective_batch_size": 16,
+        "lr": "5e-5",
+        "save_total_limit": 2
+      }
+    },
+    "reproduce": {
+      "finished_at": "2026-05-24T08:19:51.651Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-24T08:20:05.021154+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "holdout_ppl": 17.7082,
+      "holdout_loss": 2.874,
+      "train_loss": 8.008,
+      "train_duration_s": 12780
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-24T08:28:29.084466+00:00",
+  "trigger": "update_registry"
+}

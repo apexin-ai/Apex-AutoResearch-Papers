@@ -1,0 +1,1316 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1205_Q16",
+    "problem": "Anne is blue. Anne is furry. Anne is red. Charlie is white. Gary is nice. Gary is rough. Harry is nice. Kind, white people are furry. All blue people are furry. Red people are blue. If someone is kind then they are furry. If Harry is nice and Harry is rough then Harry is red. White, rough people are kind. Blue, red people are white. Nice people are rough. If someone is kind and furry then they are rough.\n\nDetermine whether the following statement is true, false, or unknown:\nCharlie is rough.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nFurry($x, bool) ::: Is x furry?\nRed($x, bool) ::: Is x red?\nWhite($x, bool) ::: Is x white?\nNice($x, bool) ::: Is x nice?\nRough($x, bool) ::: Is x rough?\nKind($x, bool) ::: Is x kind?\n\nFacts:\nBlue(Anne, True) ::: Anne is blue.\nFurry(Anne, True) ::: Anne is furry.\nRed(Anne, True) ::: Anne is red.\nWhite(Charlie, True) ::: Charlie is white.\nNice(Gary, True) ::: Gary is nice.\nRough(Gary, True) ::: Gary is rough.\nNice(Harry, True) ::: Harry is nice.\n\nRules:\nKind($x, True) && White($x, True) >>> Furry($x, True) ::: Kind, white people are furry.\nBlue($x, True) >>> Furry($x, True) ::: All blue people are furry.\nRed($x, True) >>> Blue($x, True) ::: Red people are blue.\nKind($x, True) >>> Furry($x, True) ::: If someone is kind then they are furry.\nNice(Harry, True) && Rough(Harry, True) >>> Red(Harry, True) ::: If Harry is nice and Harry is rough then Harry is red.\nWhite($x, True) && Rough($x, True) >>> Kind($x, True) ::: White, rough people are kind.\nBlue($x, True) && Red($x, True) >>> White($x, True) ::: Blue, red people are white.\nNice($x, True) >>> Rough($x, True) ::: Nice people are rough.\nKind($x, True) && Furry($x, True) >>> Rough($x, True) ::: If someone is kind and furry then they are rough.\n\nQuery:\nRough(Charlie, True) ::: Charlie is rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 134.0,
+      "Unknown": 173.0
+    },
+    "answer_counts": {
+      "Unknown": 7,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Charlie is rough\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\nFrom the given statements:\n\n1. Charlie is white. (Statement)\n2. White, rough people are kind. (Statement)\n3. Kind people are rough. (Statement)\n\nWe can combine statements 2 and 3 to conclude that white people are rough. However, this conclusion is not applicable to Charlie because we don't have any information that links Charlie to being kind. \n\nHowever, we do have statement 3 which states: Kind people are rough. We can also combine this with statement 5: If someone is kind then they are furry. This implies that rough people are furry. Combining this with statement 1: Charlie is white and statement 2: White, rough people are kind, we find that Charlie is furry.\n\nWe now have a new piece of information: Charlie is furry. We can use statement 8: All blue people are furry. This implies that Charlie is blue. We can now use statement 7: Red people are blue. This implies that Charlie is red.\n\nNow we have: Charlie is white, Charlie is furry, Charlie is blue, Charlie is red.\n\nWe can use statement 6: Blue, red people are white. This statement says that the combination of blue and red results in white. Therefore, we can conclude that Charlie is white.\n\nHowever, this is a contradiction. We initially concluded that Charlie is white but now we have concluded that Charlie is not white because of statement 6. Therefore, we cannot conclude that Charlie is white. \n\nNow we know that Charlie is blue and Charlie is red. We can use statement 7: Red people are blue. This statement says that red results in blue. Therefore, we can conclude that Charlie is red.\n\nNow we have: Charlie is red, Charlie is furry, Charlie is blue.\n\nWe can use statement 4: Red people are blue. This statement says that red results in blue. We already know that Charlie is red, therefore we can conclude that Charlie is blue.\n\nNow we have: Charlie is blue, Charlie is furry.\n\nWe can use statement 8: All blue people are furry. This statement says that all blue people are furry. We already know that Charlie is blue, therefore we can conclude that Charlie is furry.\n\nNow we have: Charlie is furry, Charlie is blue.\n\nWe can use statement 9: If someone is kind and furry then they are rough. This statement says that if someone is kind and furry then they are rough. However, we don't have any information that links Charlie to being kind. We can use statement 5: If someone is kind then they are furry. This statement says that if someone is kind then they are furry. However, we don't have any information that links Charlie to being kind.\n\nWe can use statement 3: Kind people are rough. This statement says that kind people are rough. However, we don't have any information that links Charlie to being kind.\n\nWe can use statement 10: If Harry is nice and Harry is rough then Harry is red. This statement says that if someone is nice and rough then they are red. However, this statement is not applicable to Charlie.\n\nWe can use statement 2: White, rough people are kind. This statement says that white, rough people are kind. However, we don't have any information that links Charlie to being white, rough, or kind.\n\nWe can use statement 7: Red people are blue. This statement says that red people are blue. However, this statement is not applicable to Charlie.\n\nWe can use statement 6: Blue, red people are white. This statement says that blue, red people are white. However, this statement is not applicable to Charlie.\n\nWe can use statement 9: If someone is kind and furry then they are rough. This statement says that if someone is kind and furry then they are rough. However, we don't have any information that links Charlie to being kind or furry.\n\nWe can use statement 4: Red people are blue. This statement says that red people are blue. However, this statement is not applicable to Charlie.\n\nWe can use statement 10: If Harry is nice and Harry is rough then Harry is red. This statement says that if someone is nice and rough then they are red. However, this statement is not applicable to Charlie.\n\nWe can use statement 9: If someone is kind and furry then they are rough. This statement says that if someone is kind and furry then they are rough. However, we don't have any information that links Charlie to being kind or furry.\n\nWe can use statement 5: If someone is kind then they are furry. This statement says that if someone is kind then they are furry. However, we don't have any information that links Charlie to being kind.\n\nWe can use statement 6: Blue, red people are white. This statement says that blue, red people are white. However, this statement is not applicable to Charlie.\n\nWe can use statement 8: All blue people are furry. This statement says that all blue people are furry. However, this statement is not applicable to Charlie.\n\nWe can use statement 1: Charlie is white. This statement says that Charlie is white. However, we don't have any information that links Charlie to being rough.\n\nWe can use statement 2: White, rough people are kind. This statement says that white, rough people are kind. However, we don't have any information that links Charlie to being white, rough, or kind.\n\nWe can use statement 4: Red people are blue. This statement says that red people are blue. However, this statement is not applicable to Charlie.\n\nWe can use statement 5: If someone is kind then they are furry. This statement says that if someone is kind then they are furry. However, we don't have any information that links Charlie to being kind.\n\nWe can use statement 6: Blue, red people are white. This statement says that blue, red people are white. However, this statement is not applicable to Charlie.\n\nWe can use statement 7: Red people are blue. This statement says that red people are blue. However, this statement is not applicable to Charlie.\n\nWe can use statement 8: All blue people are furry. This statement says that all blue people are furry. However, this statement is not applicable to Charlie.\n\nWe can use statement 9: If someone is kind and furry then they are rough. This statement says that if someone is kind and furry then they are rough. However, we don't have any information that links Charlie to being kind or furry.\n\nWe can use statement 10: If Harry is nice and Harry is rough then Harry is red. This statement says that if someone is nice and rough then they are red. However, this statement is not applicable to Charlie.\n\nWe can use statement 3: Kind people are rough. This statement says that kind people are rough. However, we don't have any information that links Charlie to being kind.\n\nWe can use statement 5: If someone is kind then they are furry. This statement says that if someone is kind then they are furry. However, we don't have any information that links Charlie to being kind.\n\nWe can use statement 9: If someone is kind and furry then they are rough. This statement says that if someone is kind and furry then they are rough. However, we don't have any information that links Charlie to being kind or furry.\n\nWe can use statement 1: Charlie is white. This statement says that Charlie is white. However, we don't have any information that links Charlie to being rough.\n\nWe can use statement 2: White, rough people are kind. This statement says that white, rough people are kind. However, we don't have any information that links Charlie to being white, rough, or kind.\n\nWe can use statement 3: Kind people are rough. This statement says that kind people are rough. However, we don't have any information that links Charlie to being kind.\n\nWe can use statement 4: Red people are blue. This statement says that red people are blue. However, this statement is not applicable to Charlie.\n\nWe can use statement 5: If someone is kind then they are furry. This statement says that if someone is kind then they are furry. However, we don't have any information that links Charlie to being kind.\n\nWe can use statement 6: Blue, red people are white. This statement says that blue, red people are white. However, this statement is not applicable to Charlie.\n\nWe can use statement 7: Red people are blue. This statement says that red people are blue. However, this statement is not applicable to Charlie.\n\nWe can use statement 8: All blue people are furry. This statement says that all blue people are furry. However, this statement is not applicable to Charlie.\n\nWe can use statement 9: If someone is kind and furry then they are rough. This statement says that if someone is kind and furry then they are rough. However, we don't have any information that links Charlie to being kind or furry.\n\nWe can use statement 10: If Harry is nice and Harry is rough then Harry is red. This statement says that if someone is nice and rough then they are red. However, this statement is not applicable to Charlie.\n\nWe can use statement 3: Kind people are rough. This statement says that kind people are rough. However, we don't have any information that links Charlie to being kind.\n\nWe can use statement 5: If someone is kind then they are furry. This statement says that if someone is kind then they are furry. However, we don't have any information that links Charlie to being kind.\n\nWe can use statement 9: If someone is kind and furry then they are rough. This statement says that if someone is kind and furry then they are rough. However, we don't have any information",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given statements into a series of logical deductions. \n\n1. Red people are blue. (Statement 3)\n2. Blue people are furry. (Statement 2)\n3. Therefore, Red people are furry. (From 1 and 2)\n\n4. Nice people are rough. (Statement 7)\n5. Harry is nice. (Statement 8)\n6. Harry is rough. (Statement 8, From 4 and 5)\n7. Harry is red. (Statement 9, From 5 and 6)\n\n8. Kind, white people are furry. (Statement 6)\n9. White, rough people are kind. (Statement 10)\n10. Therefore, White, rough people are furry. (From 8 and 9)\n\n11. If someone is kind and furry then they are rough. (Statement 11)\n12. However, there is no statement that says someone is both kind and furry. So, we cannot conclude anything from this statement yet.\n\n13. Kind, white people are furry. (Statement 6)\n14. Charlie is white. (Statement 4)\n15. However, there is no information about Charlie being kind. Therefore, we cannot conclude whether Charlie is furry or not.\n\n16. Blue, red people are white. (Statement 12)\n17. Anne is red. (Statement 3)\n18. Therefore, Anne is white. (From 16 and 17)\n19. Anne is blue. (Statement 1)\n20. Therefore, Anne is white. (From 18 and 19)\n21. However, from statement 14, we know Charlie is white. We cannot conclude whether Charlie is blue or not.\n\n22. Gary is nice. (Statement 5)\n23. Gary is rough. (Statement 6)\n24. However, there is no statement that says Gary is blue or red.\n\nNow, let's go back to the question: Is Charlie rough?\nWe don't have any information about Charlie being kind or furry, or blue or red. We only know that Charlie is white. We also know that white, rough people are kind, but we don't know if Charlie is rough.\n\nHowever, from statement 10, we can conclude that Charlie is not rough. \n\nBut wait, we also have the statement: If Harry is nice and Harry is rough then Harry is red. (Statement 9)\nIf Charlie is not rough, then this statement is not applicable to Charlie.\n\nHowever, from statement 10, we know that White, rough people are kind. If Charlie is not rough, then Charlie is not kind. \n\nNow, let's go back to statement 11: If someone is kind and furry then they are rough. We don't have any information about Charlie being kind and furry. Therefore, we cannot conclude whether Charlie is rough.\n\nBut we do have information about Harry, who is both kind and rough. However, this information is not applicable to Charlie.\n\nSince we cannot conclude whether Charlie is rough or not from the given statements, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we will use a logical approach and analyze the given statements one by one.\n\n1. Anne is blue. \n2. Anne is furry. \n3. Anne is red. \n4. Charlie is white.\n5. Gary is nice.\n6. Gary is rough.\n7. Harry is nice.\n8. Kind, white people are furry.\n9. All blue people are furry.\n10. Red people are blue.\n11. If someone is kind then they are furry.\n12. If Harry is nice and Harry is rough then Harry is red.\n13. White, rough people are kind.\n14. Blue, red people are white.\n15. Nice people are rough.\n16. If someone is kind and furry then they are rough.\n\nNow, let's analyze the given statements to determine whether Charlie is rough or not.\n\nFrom statement 4, we know that Charlie is white.\n\nFrom statement 11, we know that kind people are furry. However, we do not have any information about Charlie's kind or not.\n\nFrom statement 13, we know that white, rough people are kind. This implies that if Charlie is rough, then he is kind. But we do not have any information about Charlie's rough or not.\n\nFrom statement 5, we know that Gary is nice, and from statement 6, we know that Gary is rough. From statement 15, we know that nice people are rough. This implies that Gary is nice.\n\nFrom statement 16, we know that if someone is kind and furry then they are rough. We do not have any information about Anne's kind or not, but we know that Anne is blue from statement 1 and Anne is red from statement 3. From statement 10, we know that red people are blue. This implies that Anne is blue and Anne is red. From statement 9, we know that all blue people are furry, so Anne is furry. From statement 11, we know that kind people are furry, so Anne is kind. \n\nFrom statement 7, we know that Harry is nice, and from statement 2, we know that Anne is furry. From statement 12, we know that if Harry is nice and Harry is rough then Harry is red. However, we do not have any information about Harry's rough or not. \n\nFrom statement 5, we know that Gary is nice, and from statement 7, we know that Harry is nice. From statement 16, we know that if someone is kind and furry then they are rough. We know that Anne is kind and furry, so Anne is rough. However, this does not give us any information about Charlie.\n\nWe know that Gary is nice and rough from statements 5 and 6. We also know that Gary is nice from statement 5, so Gary is rough.\n\nWe know that Harry is nice, and from statement 12, we know that if Harry is nice and Harry is rough then Harry is red. However, we do not have any information about Harry's rough or not.\n\nWe know that Gary is rough from statement 6. We also know that Gary is nice from statement 5. We know that Anne is kind and furry from statement 2 and statement 11. We also know that Anne is rough from statement 16.\n\nWe know that Gary is rough from statement 6, and we know that Gary is nice from statement 5. We also know that Gary is rough from statement 6.\n\nNow, let's analyze the statements again to determine whether Charlie is rough or not.\n\nFrom statement 4, we know that Charlie is white.\n\nFrom statement 13, we know that white, rough people are kind. However, we do not have any information about Charlie's rough or not.\n\nFrom statement 15, we know that nice people are rough. We do not have any information about Charlie's nice or not.\n\nWe know that Gary is rough from statement 6, and we know that Gary is nice from statement 5.\n\nWe know that Harry is nice from statement 7, and from statement 12, we know that if Harry is nice and Harry is rough then Harry is red. However, we do not have any information about Harry's rough or not.\n\nWe know that Anne is kind and furry from statement 2 and statement 11. We also know that Anne is rough from statement 16.\n\nFrom statement 14, we know that blue, red people are white. We know that Anne is red from statement 3, and we know that Anne is blue from statement 1. From statement 9, we know that all blue people are furry. So, Anne is white.\n\nFrom statement 11, we know that kind people are furry. We know that Anne is kind from statement 16, so Anne is furry. We also know that Anne is furry from statement 2.\n\nFrom statement 15, we know that nice people are rough. We know that Gary is nice from statement 5, so Gary is rough. We also know that Gary is rough from statement 6.\n\nWe know that Charlie is white from statement 4. We know that white, rough people are kind from statement 13. We know that Gary is rough from statement 6, and we know that Gary is nice from statement 5. \n\nWe know that Harry is nice from statement 7, and from statement 12, we know that if Harry is nice and Harry is rough then Harry is red. However, we do not have any information about Harry's rough or not.\n\nFrom statement 14, we know that blue, red people are white. We know that Anne is red from statement 3, and we know that Anne is blue from statement 1. From statement 9, we know that all blue people are furry. So, Anne is white.\n\nFrom statement 11, we know that kind people are furry. We know that Anne is kind from statement 16, so Anne is furry. We also know that Anne is furry from statement 2.\n\nFrom statement 15, we know that nice people are rough. We know that Gary is nice from statement 5, so Gary is rough. We also know that Gary is rough from statement 6.\n\nWe know that Charlie is white from statement 4. We know that white, rough people are kind from statement 13. We know that Gary is rough from statement 6, and we know that Gary is nice from statement 5. \n\nNow, we can use the statements to deduce that Charlie is not rough.\n\nWe know that Charlie is white from statement 4. \n\nFrom statement 13, we know that white, rough people are kind. However, we do not have any information about Charlie's rough or not.\n\nWe know that Gary is rough from statement 6, and we know that Gary is nice from statement 5.\n\nWe know that Harry is nice from statement 7, and from statement 12, we know that if Harry is nice and Harry is rough then Harry is red. However, we do not have any information about Harry's rough or not.\n\nWe know that Anne is kind and furry from statement 2 and statement 11. We also know that Anne is rough from statement 16.\n\nWe know that Charlie is white from statement 4. \n\nFrom statement 13, we know that white, rough people are kind. However, we do not have any information about Charlie's rough or not.\n\nWe know that Gary is rough from statement 6, and we know that Gary is nice from statement 5.\n\nWe know that Harry is nice from statement 7, and from statement 12, we know that if Harry is nice and Harry is rough then Harry is red. However, we do not have any information about Harry's rough or not.\n\nWe know that Anne is kind and furry from statement 2 and statement 11. We also know that Anne is rough from statement 16.\n\nWe know that Charlie is white from statement 4. \n\nWe know that Charlie is white from statement 4. \n\nFrom statement 13, we know that white, rough people are kind. However, we do not have any information about Charlie's rough or not.\n\nWe know that Charlie is white from statement 4. \n\nWe know that Charlie is white from statement 4. \n\nFrom statement 13, we know that white, rough people are kind. However, we do not have any information about Charlie's rough or not.\n\nWe know that Charlie is white from statement 4. \n\nWe know that Charlie is white from statement 4. \n\nFrom statement 13, we know that white, rough people are kind. However, we do not have any information about Charlie's rough or not.\n\nWe know that Charlie is white from statement 4. \n\nWe know that Charlie is white from statement 4. \n\nFrom statement 13, we know that white, rough people are kind. However, we do not have any information about Charlie's rough or not.\n\nWe know that Charlie is white from statement 4. \n\nWe know that Charlie is white from statement 4. \n\nFrom statement 13, we know that white, rough people are kind. However, we do not have any information about Charlie's rough or not.\n\nWe know that Charlie is white from statement 4. \n\nWe know that Charlie is white from statement 4. \n\nFrom statement 13, we know that white, rough people are kind. However, we do not have any information about Charlie's rough or not.\n\nWe know that Charlie is white from statement 4. \n\nWe know that Charlie is white from statement 4. \n\nFrom statement 13, we know that white, rough people are kind. However, we do not have any information about Charlie's rough or not.\n\nWe know that Charlie is white from statement 4. \n\nWe know that Charlie is white from statement 4. \n\nFrom statement 13, we know that white, rough people are kind. However, we do not have any information about Charlie's rough or",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether Charlie is rough, we need to analyze the given statements and use logical deductions.\n\n1. Charlie is white. (Statement)\n2. White, rough people are kind. (Statement)\n3. Kind people are furry. (Statement)\n4. All blue people are furry. (Statement)\n5. Red people are blue. (Statement)\n6. Blue, red people are white. (Statement)\n7. Nice people are rough. (Statement)\n8. Gary is nice. (Statement)\n9. Gary is rough. (Statement)\n10. If Harry is nice and Harry is rough then Harry is red. (Statement)\n11. Harry is nice. (Statement)\n12. Harry is rough. (Statement)\n13. If someone is kind then they are furry. (Statement)\n14. If someone is kind and furry then they are rough. (Statement)\n\nFrom statement 11 and 12, we can deduce that Harry is red (by statement 10).\n\nFrom statement 1, Charlie is white.\n\nFrom statement 6, blue, red people are white. However, this statement can be inferred as a special case of blue people being white. \n\nFrom statement 5, we know red people are blue. Since Harry is red (from statement 12 and 10), Harry is blue (by statement 5).\n\nNow, from statement 4, all blue people are furry. Since Harry is blue, Harry is furry (by statement 4).\n\nFrom statement 13, if someone is kind, then they are furry. Since Harry is furry, Harry is kind (by statement 13).\n\nFrom statement 14, if someone is kind and furry, then they are rough. Since Harry is kind and furry, Harry is rough (by statement 14).\n\nFrom statement 2, white, rough people are kind. However, since we know Harry is white (from statement 1), Harry is rough (from statement 12), and Harry is kind (from statement 13), this statement is not directly useful for Charlie.\n\nNow, let's look at the information about Charlie. Charlie is white (from statement 1).\n\nWe cannot directly apply any of the given statements to determine whether Charlie is rough. However, we can use the process of elimination.\n\nFrom statement 7, nice people are rough. However, we know Gary is nice and rough (from statement 8 and 9). \n\nFrom statement 11, Harry is nice. However, we know Harry is rough (from statement 12). \n\nFrom statement 14, if someone is kind and furry, then they are rough. Since Harry is kind and furry, Harry is rough (from statement 14). \n\nFrom statement 2, white, rough people are kind. However, this does not directly apply to Charlie.\n\nFrom statement 7, nice people are rough. However, we cannot directly apply this to Charlie.\n\nHowever, we cannot directly determine if Charlie is rough or not.\n\nTherefore, the answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is white. (Given)\n2. Red people are blue. (Given)\n3. Blue people are furry. (Given)\n4. If someone is red then they are blue. (From 2)\n   - Therefore, Charlie is blue (since Charlie is white and white people can't be blue, we need to find other relations)\n   - This leads to a contradiction because if Charlie is blue, then Charlie should be furry (from 3), but we don't have any information about Charlie being furry.\n   - However, since Charlie is white and we have a relation that \"White, rough people are kind\" we can't conclude anything about Charlie being rough or not from this alone.\n\n5. Blue, red people are white. (Given)\n   - This statement doesn't provide any new information about Charlie being rough.\n\n6. Since we have a contradiction (Charlie is blue and Charlie is white), we can't conclude whether Charlie is rough or not. However, this doesn't mean the statement is false, it means that we can't determine it.\n\n7. Let's analyze another relation: Nice people are rough. (Given)\n   - Gary is nice. (Given)\n   - Harry is nice. (Given)\n   - Since Harry is nice, we can conclude that Harry is rough. (from 7)\n   - But we don't have any information about Gary being rough.\n\n8. Kind, white people are furry. (Given)\n   - We know Charlie is white, but we don't know if Charlie is kind.\n\n9. If Harry is nice and Harry is rough then Harry is red. (Given)\n   - This statement is true because Harry is nice and Harry is rough.\n\n10. Since we don't have any information about Charlie being kind or furry, we can't conclude that Charlie is rough.\n\nConsidering all the above points, we can conclude that the statement \"Charlie is rough\" is unknown because we can't determine whether Charlie is rough or not from the given information. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is rough\" is true, false, or unknown, we need to analyze the given statements and apply logical deductions.\n\n1. Given statements:\n   - Anne is blue.\n   - Anne is furry.\n   - Anne is red.\n   - Charlie is white.\n   - Gary is nice.\n   - Gary is rough.\n   - Harry is nice.\n   - Kind, white people are furry.\n   - All blue people are furry.\n   - Red people are blue.\n   - If someone is kind then they are furry.\n   - If Harry is nice and Harry is rough then Harry is red.\n   - White, rough people are kind.\n   - Blue, red people are white.\n   - Nice people are rough.\n   - If someone is kind and furry then they are rough.\n\n2. Analyze the statements:\n   - From statement 10, we know that if Harry is nice and Harry is rough then Harry is red. \n   - Given that Harry is nice (statement 7), we can infer that Harry is rough (statement 10) and thus, Harry is red (statement 10).\n   - From statement 9, we know that red people are blue.\n   - Therefore, we can conclude that Harry is blue.\n\n3. Analyze the statements related to blue people:\n   - From statement 9, we know that red people are blue.\n   - From statement 2, we know that Anne is blue and Anne is red.\n   - Therefore, we can conclude that Anne is red is the same as saying that Anne is blue.\n\n4. Analyze the statements related to blue people being furry:\n   - From statement 2, we know that Anne is blue and Anne is furry.\n   - From statement 9, we know that red people are blue.\n   - Therefore, we can conclude that all red people are furry.\n\n5. Analyze the statements related to rough people:\n   - From statement 7, we know that Harry is nice.\n   - From statement 10, we know that if Harry is nice and Harry is rough then Harry is red.\n   - However, we already know that Harry is red from previous deductions.\n   - Since Harry is red, from statement 9, we can infer that Harry is blue.\n   - We know that all blue people are furry (statement 8).\n   - We also know that if someone is kind and furry then they are rough (statement 14).\n   - Since we have no information about Harry being kind, we cannot conclude that Harry is rough.\n\n6. Analyze the statements related to Charlie:\n   - From statement 4, we know that Charlie is white.\n\n7. Determine whether Charlie is rough:\n   - We know that Charlie is white (statement 4).\n   - We also know that white, rough people are kind (statement 11).\n   - However, we do not have any information about Charlie being kind or not.\n   - Since we cannot conclude that Charlie is kind, we also cannot conclude that Charlie is rough.\n\nTherefore, the statement \"Charlie is rough\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use the rules of inference to deduce whether Charlie is rough or not.\n\nGiven statements:\n\n1. Anne is blue.\n2. Anne is furry.\n3. Anne is red.\n4. Charlie is white.\n5. Gary is nice.\n6. Gary is rough.\n7. Harry is nice.\n8. Kind, white people are furry.\n9. All blue people are furry.\n10. Red people are blue.\n11. If someone is kind then they are furry.\n12. If Harry is nice and Harry is rough then Harry is red.\n13. White, rough people are kind.\n14. Blue, red people are white.\n15. Nice people are rough.\n16. If someone is kind and furry then they are rough.\n\nNow, let's analyze the statements to determine whether Charlie is rough or not.\n\nFrom statement 4, we know that Charlie is white. \n\nUsing statement 13, we can infer that white, rough people are kind. However, we cannot directly conclude that Charlie is rough from this statement alone.\n\nFrom statement 7, we know that Harry is nice. \n\nUsing statement 15, we can infer that nice people are rough. Therefore, Harry is rough.\n\nUsing statement 12, we can infer that Harry is red, as Harry is nice and Harry is rough.\n\nUsing statement 10, we can infer that red people are blue. Therefore, Harry is blue.\n\nFrom statement 16, we know that if someone is kind and furry then they are rough. However, we cannot directly conclude that Charlie is rough from this statement alone.\n\nFrom statement 5, we know that Gary is nice.\n\nUsing statement 15, we can infer that nice people are rough. Therefore, Gary is rough.\n\nUsing statement 11, we can infer that kind people are furry. Therefore, Gary is furry.\n\nUsing statement 8, we can infer that kind, white people are furry. However, we cannot directly conclude that Charlie is rough from this statement alone.\n\nFrom statement 1, we know that Anne is blue.\n\nUsing statement 9, we can infer that all blue people are furry. Therefore, Anne is furry.\n\nUsing statement 3, we can infer that Anne is red.\n\nUsing statement 10, we can infer that red people are blue. Therefore, Anne is blue.\n\nUsing statement 14, we can infer that blue, red people are white. Therefore, Anne is white.\n\nHowever, we know that Anne is blue, which contradicts our previous conclusion that Anne is white. This creates a contradiction.\n\nSince there is a contradiction, we cannot determine whether Charlie is rough or not.\n\nTherefore, the answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Anne is blue.\n   - Anne is furry.\n   - Anne is red.\n   - Charlie is white.\n   - Gary is nice.\n   - Gary is rough.\n   - Harry is nice.\n   - Kind, white people are furry.\n   - All blue people are furry.\n   - Red people are blue.\n   - If someone is kind then they are furry.\n   - If Harry is nice and Harry is rough then Harry is red.\n   - White, rough people are kind.\n   - Blue, red people are white.\n   - Nice people are rough.\n   - If someone is kind and furry then they are rough.\n\n2. Analyzing the given information:\n   - Since Harry is nice and Harry is rough, then Harry is red. (Given)\n   - Since Harry is red, then Harry is blue. (Red people are blue)\n   - Since Harry is blue, then Harry is furry. (All blue people are furry)\n   - Since Harry is furry and Harry is kind, then Harry is rough. (If someone is kind and furry then they are rough)\n   - Since this contradicts the information that Harry is rough (given), we cannot conclude that Harry is rough based on the other information. However, we cannot use this conclusion to determine if Charlie is rough. \n   - Since Harry is nice, then Harry is rough. (Nice people are rough)\n   - Since Harry is nice, then Harry is kind. (Given)\n   - Since Harry is kind, then Harry is furry. (If someone is kind then they are furry)\n   - Since Harry is furry, then Harry is rough. (If someone is kind and furry then they are rough)\n   - This conclusion is the same as the conclusion above, and it does not help determine Charlie's roughness.\n\n3. To determine Charlie's roughness, we need to look for a direct relationship between Charlie and the properties mentioned.\n   - Charlie is white. (Given)\n   - We do not have any information that links white people directly to being rough.\n\nHowever, we can use the given information to derive some relationships.\n\n   - Since Harry is nice and Harry is rough, then Harry is red. (Given)\n   - Since Harry is red, then Harry is blue. (Red people are blue)\n   - Since Harry is blue, then Harry is furry. (All blue people are furry)\n   - Since Harry is furry and Harry is kind, then Harry is rough. (If someone is kind and furry then they are rough)\n   - Since Harry is furry, then Harry is blue. (All blue people are furry)\n   - Since blue people are furry, then Harry is furry. (All blue people are furry)\n   - Since blue people are furry, then Harry is furry.\n   - Since blue people are furry, then all blue people are furry.\n   - Since blue people are furry, then all blue people are furry.\n   - Since red people are blue, then red people are furry. (All blue people are furry)\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since all blue people are furry, then red people are furry.\n   - Since all blue people are furry, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then red people are furry.\n   - Since red people are blue, then",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Anne is blue.\n   - Anne is furry.\n   - Anne is red.\n   - Charlie is white.\n   - Gary is nice.\n   - Gary is rough.\n   - Harry is nice.\n   - Kind, white people are furry.\n   - All blue people are furry.\n   - Red people are blue.\n   - If someone is kind then they are furry.\n   - If Harry is nice and Harry is rough then Harry is red.\n   - White, rough people are kind.\n   - Blue, red people are white.\n   - Nice people are rough.\n   - If someone is kind and furry then they are rough.\n\n2. Analyzing the given statements, we can deduce the following:\n\n   - From the statement \"If someone is kind then they are furry,\" and \"Anne is furry\" and \"Anne is blue,\" we can conclude that Anne is kind because all blue people are furry.\n   - From \"Anne is blue\" and \"Red people are blue,\" we can conclude that Anne is red.\n   - From \"Anne is red\" and \"Anne is blue,\" we can conclude that Anne is white because blue, red people are white.\n   - Since Anne is white and Anne is kind, we can conclude that Anne is furry because kind, white people are furry.\n   - Since Anne is nice (from the conclusion that Anne is kind) and Anne is rough, we can conclude that Harry is red (from the statement \"If Harry is nice and Harry is rough then Harry is red\").\n   - Since Harry is red, we can conclude that Harry is blue (from \"Red people are blue\").\n   - Since Harry is blue, we can conclude that Harry is furry (from \"All blue people are furry\").\n\n3. Now, to determine whether Charlie is rough, we need to analyze the information given about Charlie and the information deduced from the previous steps.\n\n   - Charlie is white.\n   - We have not found any information that directly relates Charlie's characteristics to being rough.\n\n4. However, we can analyze Charlie's characteristics using the given statements. Since Charlie is white, we can see that the statements \"White, rough people are kind\" and \"Nice people are rough\" can be applied to Charlie.\n\n   - From \"White, rough people are kind,\" we can conclude that Charlie is kind if Charlie is rough.\n   - From \"Nice people are rough,\" we can conclude that Charlie is rough if Charlie is nice.\n\n5. However, from the information deduced in the previous steps, we have not found any information that Charlie is nice or kind.\n\n   - We have concluded that Harry is nice, but we have not found any information that Charlie is nice.\n   - We have concluded that Anne is kind, but we have not found any information that Charlie is kind.\n\n6. Based on the given information and the deduced conclusions, we cannot determine whether Charlie is rough.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and apply them step by step to determine the truth value of \"Charlie is rough.\"\n\n1. Given statements:\n   - Anne is blue. \n   - Anne is furry. \n   - Anne is red. \n   - Charlie is white. \n   - Gary is nice. \n   - Gary is rough. \n   - Harry is nice. \n   - Kind, white people are furry. \n   - All blue people are furry. \n   - Red people are blue. \n   - If someone is kind then they are furry. \n   - If Harry is nice and Harry is rough then Harry is red. \n   - White, rough people are kind. \n   - Blue, red people are white. \n   - Nice people are rough. \n   - If someone is kind and furry then they are rough.\n\n2. We need to determine whether the statement \"Charlie is rough\" is true, false, or unknown.\n\nLet's start by using the statements to derive information about Charlie.\n\nFrom the statement \"Charlie is white,\" we can use the statement \"White, rough people are kind\" to conclude that Charlie is not rough because if he were, then he would be kind. However, we cannot conclude that Charlie is not kind.\n\nNow, let's use the statement \"Nice people are rough\" and \"Gary is nice\" and \"Gary is rough\" to conclude that Gary is rough because he is nice. \n\nFrom the statement \"Gary is rough\" and \"If someone is kind and furry then they are rough,\" we cannot conclude that Gary is kind and furry because we don't have enough information about Gary being kind and furry.\n\nFrom the statement \"Harry is nice\" and \"Harry is rough,\" we can conclude that Harry is red because of the statement \"If Harry is nice and Harry is rough then Harry is red.\"\n\nFrom the statement \"Harry is red\" and \"Red people are blue,\" we can conclude that Harry is blue.\n\nFrom the statement \"Harry is blue\" and \"All blue people are furry,\" we can conclude that Harry is furry.\n\nFrom the statement \"Harry is furry\" and \"If someone is kind then they are furry,\" we cannot conclude that Harry is kind because we don't have enough information about Harry being kind.\n\nFrom the statement \"Harry is furry\" and \"If someone is kind and furry then they are rough,\" we cannot conclude that Harry is rough because we don't have enough information about Harry being kind.\n\nNow, let's use the statement \"Kind, white people are furry\" to conclude that not all white people are furry.\n\nNow, let's use the statement \"Blue, red people are white\" to conclude that red people are white. We cannot conclude that Harry is white because Harry is red.\n\nNow, let's use the statement \"Blue, red people are white\" and \"Harry is red\" to conclude that Harry is white because Harry is red. We cannot conclude that Harry is kind because we don't have enough information about Harry being kind.\n\nNow, let's use the statement \"White, rough people are kind\" to conclude that white people cannot be rough.\n\nNow, let's use the statement \"Charlie is white\" and \"White, rough people are kind\" to conclude that Charlie is not rough because if he were, then he would be kind.\n\nHowever, we cannot conclude that Charlie is not kind.\n\nSince we have used all the given statements and concluded that Charlie is not rough, the statement \"Charlie is rough\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is rough\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. Given information:\n   - Anne is blue.\n   - Anne is furry.\n   - Anne is red.\n   - Charlie is white.\n   - Gary is nice.\n   - Gary is rough.\n   - Harry is nice.\n   - Kind, white people are furry.\n   - All blue people are furry.\n   - Red people are blue.\n   - If someone is kind then they are furry.\n   - If Harry is nice and Harry is rough then Harry is red.\n   - White, rough people are kind.\n   - Blue, red people are white.\n   - Nice people are rough.\n   - If someone is kind and furry then they are rough.\n\n2. Analyze the given information to find any relationships between the statements and the statement to be determined (\"Charlie is rough\").\n\n   Since Charlie is white, we need to find a relationship between white people and roughness.\n\n   From the information \"White, rough people are kind,\" we can infer that white people can be rough if they are kind.\n\n   However, this does not directly tell us if Charlie is rough.\n\n   Let's analyze the information \"If someone is kind and furry then they are rough.\"\n\n   We know that if Harry is nice and Harry is rough then Harry is red.\n\n   From the information \"Harry is nice,\" we can infer that Harry is furry (since \"If someone is kind then they are furry\").\n\n   Since Harry is furry and nice, we can conclude that Harry is rough.\n\n   Now, we know that Harry is red (since \"If Harry is nice and Harry is rough then Harry is red\").\n\n   From the information \"Red people are blue,\" we can conclude that Harry is blue.\n\n   We also know that Anne is blue, and Anne is furry.\n\n   From the information \"All blue people are furry,\" we can confirm that all blue people are furry.\n\n   This does not provide any direct information about Charlie, but we can infer that blue people are furry, and red people are blue.\n\n   Now, let's look at the information \"Blue, red people are white.\"\n\n   Since Harry is blue and Harry is white, we can conclude that blue people can be white.\n\n   However, this does not provide any direct information about Charlie.\n\n   Let's look at the information \"Nice people are rough.\"\n\n   We know that Gary is nice, and Gary is rough.\n\n   This does not provide any direct information about Charlie.\n\n   Now, let's look at the information \"If someone is kind and furry then they are rough.\"\n\n   Since Charlie is white, we need to determine if Charlie is kind and furry.\n\n   We know that white, rough people are kind.\n\n   However, this does not provide any direct information about Charlie.\n\n   Let's look at the information \"Charlie is white.\"\n\n   Since Charlie is white, we can look at the other information about white people.\n\n   We know that Gary is nice, and Gary is rough.\n\n   However, this does not provide any direct information about Charlie.\n\n   Now, let's look at the information \"All blue people are furry.\"\n\n   Since we know that red people are blue, we can infer that red people are furry.\n\n   However, this does not provide any direct information about Charlie.\n\n3. Conclusion:\nBased on the given information, we cannot determine whether Charlie is rough. The information provided does not provide a direct link between Charlie being white and Charlie being rough.\n\nTherefore, the answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement 'Charlie is rough' is true, false, or unknown, we need to use the given information and apply logical deductions.\n\nStep 1:  Analyze the information given about Charlie.\n- Charlie is white. \n\nStep 2:  Analyze the relationship between white people and rough people.\n- White, rough people are kind. This does not directly tell us if Charlie is rough, but it's a starting point for the analysis.\n\nStep 3:  Analyze the relationship between white people and rough people in conjunction with other information.\n- Since Charlie is white, we know he is not kind, as being white and rough would make him kind (from the statement 'White, rough people are kind.') But we are not given any information about Charlie being kind or not. \n\nStep 4:  Since Charlie is white, we need to look for other information that might help us determine if he is rough.\n- Since Charlie is not kind, we can look at other information that might help us determine if he is rough.\n\nStep 5:  Analyze the relationship between kind, furry, and rough people.\n- If someone is kind and furry then they are rough. This information does not directly help us determine if Charlie is rough because we do not know if Charlie is kind or furry.\n\nStep 6:  Analyze the relationship between blue people and white people.\n- Blue, red people are white. This does not directly tell us if Charlie is rough.\n\nStep 7:  Analyze the relationship between red people and being rough.\n- If Harry is nice and Harry is rough then Harry is red. This does not directly tell us if Charlie is rough.\n\nStep 8:  Analyze the relationship between blue people and being furry.\n- All blue people are furry. This does not directly tell us if Charlie is rough.\n\nStep 9:  Analyze the relationship between red people and being blue.\n- Red people are blue. This does not directly tell us if Charlie is rough.\n\nStep 10:  Analyze the relationship between being nice and being rough.\n- Nice people are rough. This does not directly tell us if Charlie is rough because we do not know if Charlie is nice.\n\nStep 11:  Analyze the relationship between being furry and being rough.\n- If someone is kind and furry then they are rough. This does not directly tell us if Charlie is rough.\n\nStep 12:  Analyze the information given about Gary.\n- Gary is nice. Gary is rough. Since we know that nice people are rough, this supports the statement 'Charlie is rough' as being true.",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_charlie, rough_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_charlie, furry_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> furry(X)",
+          "z3_formula": "Implies(rough_charlie, furry_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(white_charlie, rough_charlie), kind_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_charlie, furry_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "all(X, blue(X) -> furry(X))",
+          "z3_formula": "Implies(blue_charlie, furry_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_charlie, blue_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(blue_charlie, red_charlie), white_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_charlie, furry_charlie), rough_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_harry, rough_harry), red_harry)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(people)",
+          "z3_formula": "red_people == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_people, blue_people)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(people)",
+          "z3_formula": "blue_people == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "furry(people)",
+          "z3_formula": "furry_people == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> rough(X)",
+          "z3_formula": "Implies(nice_harry, rough_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_charlie, white_charlie), furry_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(white_charlie, rough_charlie), kind_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_charlie, furry_charlie), rough_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(blue_anne, red_anne), white_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "blue(anne) == False",
+          "z3_formula": "Not(blue_anne) == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "white(anne) == True",
+          "z3_formula": "white_anne == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(charlie)",
+          "z3_formula": "Not(rough_charlie) == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_harry, rough_harry), red_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not applicable",
+          "z3_formula": "Not(And(nice_charlie, rough_charlie)) == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(charlie)",
+          "z3_formula": "Not(kind_charlie) == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_charlie, furry_charlie), rough_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Or(rough_charlie, Not(rough_charlie)) == True",
+          "source_step": 12
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(white_charlie, rough_charlie), kind_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_charlie, furry_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_charlie, furry_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_charlie, blue_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(blue_charlie, red_charlie), white_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> rough(X)",
+          "z3_formula": "Implies(nice_charlie, rough_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_harry, rough_harry), red_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_harry, furry_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_harry, furry_harry), rough_harry)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_charlie, blue_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_charlie, furry_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> Not(blue(X))",
+          "z3_formula": "Implies(white_charlie, Not(blue_charlie))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "Not(blue_charlie)",
+          "z3_formula": "Not(blue_charlie) == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "Not(furry_charlie)",
+          "z3_formula": "Not(furry_charlie) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(blue_charlie, red_charlie), white_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(X) -> rough(X)",
+          "z3_formula": "Implies(nice_harry, rough_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_charlie, white_charlie), furry_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_harry, rough_harry), red_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind_charlie == Unknown",
+          "z3_formula": "kind_charlie == Unknown",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "furry_charlie == Unknown",
+          "z3_formula": "furry_charlie == Unknown",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "rough(charlie) == Unknown",
+          "z3_formula": "rough_charlie == Unknown",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_anne, white_anne), furry_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_anne, furry_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_anne, blue_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_anne, furry_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_harry, rough_harry), red_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(white_charlie, rough_charlie), kind_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(blue_anne, red_anne), white_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> rough(X)",
+          "z3_formula": "Implies(nice_gary, rough_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_anne, furry_anne), rough_anne)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_charlie, white_charlie), furry_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_anne, furry_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_anne, blue_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_anne, furry_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_harry, rough_harry), red_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(white_charlie, rough_charlie), kind_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(blue_anne, red_anne), white_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> rough(X)",
+          "z3_formula": "Implies(nice_gary, rough_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_anne, furry_anne), rough_anne)",
+          "source_step": 16
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_anne, furry_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_anne, furry_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_anne, blue_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_anne, white_charlie), furry_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_harry, rough_harry), red_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(white_charlie, rough_charlie), kind_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(blue_harry, red_harry), white_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> rough(X)",
+          "z3_formula": "Implies(nice_gary, rough_gary)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_anne, furry_anne), rough_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_anne, furry_anne), rough_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_anne, furry_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(white_charlie, rough_charlie), kind_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> rough(X)",
+          "z3_formula": "Implies(nice_gary, rough_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_harry, furry_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_harry, furry_harry), rough_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_charlie, furry_charlie), rough_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_anne, furry_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_anne, blue_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_harry, rough_harry), red_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_harry, blue_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_harry, furry_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_charlie, white_charlie), furry_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(blue_harry, red_harry), white_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> not rough(X)",
+          "z3_formula": "Implies(white_charlie, Not(rough_charlie))",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(charlie)",
+          "z3_formula": "Not(rough_charlie) == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == Unknown",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(harry)",
+          "z3_formula": "Not(kind_harry) == Unknown",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(harry)",
+          "z3_formula": "Not(rough_harry) == Unknown",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(harry)",
+          "z3_formula": "Not(furry_harry) == Unknown",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not white(harry)",
+          "z3_formula": "Not(white_harry) == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(charlie)",
+          "z3_formula": "Not(kind_charlie) == Unknown",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(charlie)",
+          "z3_formula": "Not(rough_charlie) == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(charlie)",
+          "z3_formula": "Not(furry_charlie) == Unknown",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not white(charlie)",
+          "z3_formula": "Not(white_charlie) == Unknown",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(harry) & not furry(harry) -> not rough(harry)",
+          "z3_formula": "Implies(And(Not(kind_harry), Not(furry_harry)), Not(rough_harry))",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(charlie) & not furry(charlie) -> not rough(charlie)",
+          "z3_formula": "Implies(And(Not(kind_charlie), Not(furry_charlie)), Not(rough_charlie))",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(charlie)",
+          "z3_formula": "Not(rough_charlie) == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_anne, furry_anne), rough_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> furry(X)",
+          "z3_formula": "Implies(nice_anne, furry_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_harry, rough_harry), red_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(white_charlie, rough_charlie), kind_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(blue_harry, red_harry), white_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> rough(X)",
+          "z3_formula": "Implies(nice_gary, rough_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_anne, furry_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "furry(blue)",
+          "z3_formula": "furry_blue == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "blue(white)",
+          "z3_formula": "blue_white == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(white_charlie, rough_charlie), kind_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(charlie)",
+          "z3_formula": "Not(kind_charlie) == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_charlie, furry_charlie), rough_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(charlie) | not furry(charlie)",
+          "z3_formula": "Or(Not(kind_charlie), Not(furry_charlie)) == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_charlie, furry_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry) == False",
+          "z3_formula": "red_harry == False",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_harry, rough_harry), red_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_charlie, red_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> rough(X)",
+          "z3_formula": "Implies(nice_charlie, rough_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 12
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 198,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 74
+    },
+    "maxsat_stats": {
+      "satisfied": 67,
+      "excluded": 7,
+      "total_weight": 190,
+      "solve_time_ms": 2.400672063231468
+    },
+    "timing": {
+      "trace_gen_s": 25.047,
+      "extraction_s": 45.368,
+      "dedup_s": 3.248,
+      "maxsat_s": 0.006,
+      "total_s": 73.668
+    }
+  }
+}

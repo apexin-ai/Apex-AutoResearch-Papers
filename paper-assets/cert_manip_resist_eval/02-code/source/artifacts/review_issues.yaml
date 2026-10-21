@@ -1,0 +1,700 @@
+issues:
+  # ============================================================
+  # ROUND 8 — CRITICAL ISSUES
+  # ============================================================
+
+  - id: "R1-N1"
+    summary: "Cinelli-Hazlett 69% 条件下 K_eff 效应可被已知 confound 解释，diversity-vulnerability 关联无法与 capability confound 区分"
+    category: method
+    severity: critical
+    status: open
+    first_raised_round: 3
+    last_seen_round: 8
+    mentions:
+      - round: 3
+        reviewers: [1, 2]
+        note: "R1 首提，R2 AGREE。当时 78% (full pool)。"
+      - round: 4
+        reviewers: [1, 2]
+        note: "数值更新为 69% (25/36)。Cinelli-Hazlett 前置到 Abstract。"
+      - round: 5
+        reviewers: [1, 2]
+        note: "Pool A 10/12 在 power 仅 30.1% 下是 trivially expected。"
+      - round: 6
+        reviewers: [1, 2]
+        note: "R1 重提。R2 AGREE 并指出跨基准预测可能仅反映混杂变量稳定性。"
+      - round: 7
+        reviewers: [1, 2]
+        note: "R2-N1 首提 confound 为 headline contribution 的致命弱点。R1-W6 同意。交叉回应中双方 AGREE：r=0.70-0.81 confound 是最核心方法论限制。Pool A (r=0.50) 功效不足 (MDE>0.9) 无法提供充分 de-confounding。"
+      - round: 8
+        reviewers: [1, 2]
+        note: "R1 Must-Fix，R2 AGREE 但降级为 Should-Fix（framing 调整）。R2 论证 10/12 方向一致性不太可能完全由 confound 解释。分歧在严重程度。Director 判定 Must-Fix（framing 级别：删 'decomposing'、Contribution 1 重述为条件性关联）。"
+    action_items:
+      - round: 3
+        action: "Cinelli-Hazlett 结果前置到 Abstract/Intro"
+        assigned_to: paper_agent
+        status: done
+      - round: 4
+        action: "主文明确呈现 25/36 条件下 confound 可解释 K_eff"
+        assigned_to: paper_agent
+        status: done
+      - round: 7
+        action: "[复发 ×5] Contribution 1 重述为 'diversity and vulnerability confounded by capability, with partial survival under matching'；Pool A 完整回归移入正文"
+        assigned_to: paper_agent
+        status: open
+      - round: 8
+        action: "[复发 ×6] 删除 Introduction 'decomposing' 表述；Contribution 1 明确为条件性关联"
+        assigned_to: paper_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: "R1-N2"
+    summary: "因果语言残留——标题 'shifts' 暗示因果，framing 与 associational 声明矛盾"
+    category: framing
+    severity: critical
+    status: open
+    first_raised_round: 3
+    last_seen_round: 8
+    mentions:
+      - round: 3
+        reviewers: [1, 2]
+        note: "Title/Abstract 中强因果动词。"
+      - round: 4
+        reviewers: [1, 2]
+        note: "Title 改为 Shifting Bottleneck，局部泄漏。"
+      - round: 5
+        reviewers: [1, 2]
+        note: "Title 改为 Shifting Predictor。但 Contribution 1 仍暗示独立性。"
+      - round: 6
+        reviewers: [1, 2]
+        note: "Figure 1 caption、Abstract、Section 1 仍有因果语言。第 4 次被标记。"
+      - round: 7
+        reviewers: [1, 2]
+        note: "R2-W1 标 warning：标题 'How Panel Size Shifts' 使用因果动词。R1 交叉回应 AGREE。第 5 次被标记。"
+      - round: 8
+        reviewers: [1, 2]
+        note: "第 6 次被标记。R1 和 R2 均再次确认。Introduction 'decomposing' 同样暗示因果分离。"
+    action_items:
+      - round: 7
+        action: "[复发 ×5] 标题中 'shifts' 替换为中性表述；全文 grep 因果动词"
+        assigned_to: paper_agent
+        status: open
+      - round: 8
+        action: "[复发 ×6] 标题 'shifts' → 中性词；Introduction 'decomposing' → 中性表述"
+        assigned_to: paper_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: "R7-N1"
+    summary: "'diminishing weakest link' 标题发现的 CI 在 K≥5 跨零，claim strength 超出统计证据"
+    category: framing
+    severity: critical
+    status: open
+    first_raised_round: 7
+    last_seen_round: 8
+    mentions:
+      - round: 7
+        reviewers: [1, 2]
+        note: "R1-N1 首提。R2 交叉回应 AGREE 并补充：'diminishing' 暗示渐进趋势，实际更像 K=3→K=5 的 discrete transition。"
+      - round: 8
+        reviewers: [1, 2]
+        note: "通过 MF2 (vote-counting) 间接确认——Abstract 的 framing 整体需修正。"
+    action_items:
+      - round: 7
+        action: "Abstract/Conclusion 加限定 'becomes statistically non-significant at K≥5'"
+        assigned_to: paper_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: "R7-N2"
+    summary: "多样性度量操作化依赖性：K_eff/κ-diversity/Shannon MI 显著性轨迹完全相反，'uniformly positive' 声明需限定"
+    category: method
+    severity: critical
+    status: open
+    first_raised_round: 7
+    last_seen_round: 8
+    mentions:
+      - round: 7
+        reviewers: [1, 2]
+        note: "R1-N2 首提。R2 AGREE。三种 metric 三种 K-trajectory。"
+      - round: 8
+        reviewers: [1, 2]
+        note: "R2 交叉回应中再次确认 operationalization dependence。"
+    action_items:
+      - round: 7
+        action: "Abstract 区分 direction consistency (12/12) 和 significance consistency (metric-dependent)"
+        assigned_to: paper_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: "R8-N1"
+    summary: "K_eff Gaussian Copula GoF 拒绝率 97-100%，'effective independent channels' 理论标签无基础"
+    category: method
+    severity: warning
+    status: open
+    first_raised_round: 8
+    last_seen_round: 8
+    mentions:
+      - round: 8
+        reviewers: [1, 2]
+        note: "R1 Must-Fix，R2 REBUT 降级为 Should-Fix。R2 论证 K_eff 实际功能是 empirical predictor（ranking ρ≈0.86-0.87），不依赖 Gaussian copula 分布假设。Director 采纳 R2 立场：terminology issue，非 method failure。"
+    action_items:
+      - round: 8
+        action: "K_eff 改名为中性术语（如 'pairwise-MI-based diversity index'）；正文声明 empirical-only usage；GoF 拒绝率移至正文报告"
+        assigned_to: paper_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: "R6-W5"
+    summary: "Vote-counting (X/12) 作为主要汇总方法在统计上不当——Abstract/Intro 应以 pooled β̂_std 为主"
+    category: method
+    severity: critical
+    status: open
+    first_raised_round: 6
+    last_seen_round: 8
+    mentions:
+      - round: 6
+        reviewers: [1, 2]
+        note: "R1 提出。建议 pooled effect size + I²/Q-test。"
+      - round: 7
+        reviewers: [1, 2]
+        note: "DerSimonian-Laird 在 I²>87% 下 pooled estimate 意义有限。"
+      - round: 8
+        reviewers: [1, 2]
+        note: "R1-N3 升级为 Must-Fix。R2 AGREE 并纠正事实：DL pooling 在 Section 5.2 正文（非附录）。两位共识：Abstract/Intro 应从 vote counts 改为 pooled β̂_std ± CI 表述。"
+    action_items:
+      - round: 7
+        action: "主文限定 pooled estimate 可解释性；报告 prediction interval"
+        assigned_to: main_agent
+        status: open
+      - round: 8
+        action: "[升级 Must-Fix] Abstract/Intro 从 'X/12 conditions' 改为 'pooled β̂_std [CI]' 表述"
+        assigned_to: paper_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: "R5-W2"
+    summary: "K_eff 与 κ-diversity ρ=0.978，显著性模式定性相反，shift 可能是数学变换 artifact"
+    category: method
+    severity: critical
+    status: in_progress
+    first_raised_round: 5
+    last_seen_round: 8
+    mentions:
+      - round: 5
+        reviewers: [1, 2]
+        note: "K_eff 唯一优势在 shift，但 shift 受质疑。"
+      - round: 6
+        reviewers: [1, 2]
+        note: "R2 详细论证：ρ=0.978 + 趋势相反 = artifact。"
+      - round: 7
+        reviewers: [1, 2]
+        note: "R7-N2 再次确认。三种 metric 三种模式进一步强化 artifact 怀疑。"
+      - round: 8
+        reviewers: [1, 2]
+        note: "通过 R8-N1 (GoF rejection) 和 operationalization dependence 间接确认。"
+    action_items:
+      - round: 6
+        action: "κ-diversity 替代回归 36 conditions WCB"
+        assigned_to: main_agent
+        status: in_progress
+    resolution: ""
+    resolution_round: null
+
+  # ============================================================
+  # ROUND 8 — WARNING ISSUES
+  # ============================================================
+
+  - id: "R1-W1-v3"
+    summary: "Predictor shift 在 crossed RE 下崩溃 (K=3 0/12, K=7 0/12)，显著性计数受功效机械增长污染"
+    category: method
+    severity: critical
+    status: in_progress
+    first_raised_round: 3
+    last_seen_round: 7
+    mentions:
+      - round: 6
+        reviewers: [1, 2]
+        note: "crossed RE K=3 0/12, K=7 0/12。样本量 455→6435 (14×) 功效机械增长。"
+      - round: 7
+        reviewers: [1, 2]
+        note: "本轮通过 R7-N1 (CI 跨零) 和 R7-N2 (metric dependence) 间接确认。"
+    action_items:
+      - round: 6
+        action: "crossed RE 功效分析 + 等量下采样"
+        assigned_to: main_agent
+        status: in_progress
+    resolution: ""
+    resolution_round: null
+
+  - id: "R1-W2"
+    summary: "INT4 量化混淆：API-only 中 K_eff 降至 2-3/12 但功效不足 (MDE>0.9)"
+    category: experiment
+    severity: warning
+    status: open
+    first_raised_round: 3
+    last_seen_round: 8
+    mentions:
+      - round: 6
+        reviewers: [1, 2]
+        note: "FP16 V3 failed (2/5 models)。"
+      - round: 7
+        reviewers: [1, 2]
+        note: "R2-W6 重提。R1 交叉 AGREE。"
+      - round: 8
+        reviewers: [1, 2]
+        note: "R1-W1, R2 AGREE。正文 Analysis 部分应更显著讨论。"
+    action_items:
+      - round: 7
+        action: "[复发] 正文（非仅 Limitations）讨论 AWQ confound 程度"
+        assigned_to: paper_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: "R4-N1"
+    summary: "K_eff exp(-2·MI) 缺乏充分理论 justification——三种 metric 给出不同 pattern"
+    category: method
+    severity: critical
+    status: in_progress
+    first_raised_round: 4
+    last_seen_round: 8
+    mentions:
+      - round: 6
+        reviewers: [1, 2]
+        note: "K_eff 与 κ-diversity ρ=0.978 但 shift 模式相反。"
+      - round: 7
+        reviewers: [1, 2]
+        note: "R2-W3 重提。R1 交叉 AGREE。"
+      - round: 8
+        reviewers: [1, 2]
+        note: "R8-N1 补充：GoF 拒绝 97-100% 进一步削弱理论 justification。但 R2 论证 empirical predictor 角色不受影响。"
+    action_items:
+      - round: 7
+        action: "[复发] 提供明确 metric selection 理由；正文讨论三种 metric 不同结论的含义"
+        assigned_to: paper_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: "R6-W1"
+    summary: "核心发现与经典 ensemble diversity theory 增量区分不足"
+    category: framing
+    severity: warning
+    status: open
+    first_raised_round: 6
+    last_seen_round: 8
+    mentions:
+      - round: 6
+        reviewers: [1, 2]
+        note: "Krogh & Vaidya 1995, Brown et al. 2005 已预测 diversity 在大 ensemble 更重要。"
+      - round: 7
+        reviewers: [1, 2]
+        note: "R2-W2 重提。R1 交叉 AGREE。"
+      - round: 8
+        reviewers: [1, 2]
+        note: "R2 维持 novelty 不足判断；R1 REBUT 认为 adversarial LLM 场景与经典 ensemble theory 有本质差异，K_eff 正系数方向是 genuine contribution。分歧记录。"
+    action_items:
+      - round: 7
+        action: "[复发 ×2] §2 或 §6 加段明确讨论：本文发现在多大程度上是经典理论的 instantiation vs novel"
+        assigned_to: paper_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: "R6-W2"
+    summary: "仅 MMLU+ARC (MC 基准)，开放式评估场景未验证"
+    category: experiment
+    severity: warning
+    status: open
+    first_raised_round: 3
+    last_seen_round: 8
+    mentions:
+      - round: 6
+        reviewers: [1, 2]
+        note: "MC 结构可能使 weakest-link 特别适用。"
+      - round: 7
+        reviewers: [1, 2]
+        note: "R2-W5 重提。建议标题/abstract 限定 scope。"
+      - round: 8
+        reviewers: [1, 2]
+        note: "R1-W2, R2 AGREE。scope limitation 非 methodological flaw。"
+    action_items:
+      - round: 7
+        action: "[复发] 标题或 abstract 明确 'multiple-choice evaluation' scope"
+        assigned_to: paper_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: "R6-W3"
+    summary: "Proposition 1 (Weakest-Link Monotonicity) 作为独立贡献过于 trivial"
+    category: method
+    severity: warning
+    status: open
+    first_raised_round: 6
+    last_seen_round: 8
+    mentions:
+      - round: 6
+        reviewers: [1, 2]
+        note: "R2 提出，R1 建议降级为 supporting result。"
+      - round: 7
+        reviewers: [1, 2]
+        note: "R2-N2 升级为 Must-Fix。R1-W4 AGREE。交叉后双方共识：不构成有意义的独立贡献。"
+      - round: 8
+        reviewers: [1, 2]
+        note: "R1-W5 AGREE，R2 strongly agrees。两位强烈共识：降级为 Observation。"
+    action_items:
+      - round: 7
+        action: "[复发 ×2] 降级为 supporting observation / §3 自然推论，删除 Contribution 独立条目"
+        assigned_to: paper_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: "R5-W1"
+    summary: "Conclusion 过于简略，缺少 implications 和 future work"
+    category: writing
+    severity: warning
+    status: open
+    first_raised_round: 5
+    last_seen_round: 8
+    mentions:
+      - round: 5
+        reviewers: [1, 2]
+        note: "约 5-6 行。"
+      - round: 6
+        reviewers: [1, 2]
+        note: "R2 重提。建议加 2-3 句前瞻性讨论。"
+      - round: 7
+        reviewers: [1, 2]
+        note: "R2-W4 重提：约 150 words。R1 交叉 AGREE。"
+      - round: 8
+        reviewers: [1, 2]
+        note: "未单独提及但未解决。"
+    action_items:
+      - round: 7
+        action: "[复发 ×3] 扩展至 2-3 段：practical implications + theoretical implications + future directions"
+        assigned_to: paper_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: "R1-W4"
+    summary: "攻击模板覆盖不足（每种 1-2 variants），无 template sensitivity analysis"
+    category: experiment
+    severity: warning
+    status: open
+    first_raised_round: 3
+    last_seen_round: 8
+    mentions:
+      - round: 5
+        reviewers: [1, 2]
+        note: "Limitations 已提及。"
+      - round: 7
+        reviewers: [1, 2]
+        note: "R1-N3 升级。R2 REBUT 建议降级。"
+      - round: 8
+        reviewers: [1, 2]
+        note: "R1-W3, R2 AGREE 并补充 template-model family 交互风险。"
+    action_items:
+      - round: 7
+        action: "§4.2 增加 template coverage caveat；§7 建议 future work 增加 template diversity"
+        assigned_to: paper_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: "R7-W1"
+    summary: "ε=10⁻⁶ 对 log-log 回归的敏感性：3 个条件 K_eff 系数变号"
+    category: method
+    severity: warning
+    status: open
+    first_raised_round: 7
+    last_seen_round: 8
+    mentions:
+      - round: 7
+        reviewers: [1, 2]
+        note: "R1-W1 提出。R2 AGREE。"
+      - round: 8
+        reviewers: [1, 2]
+        note: "R1-W4, R2 AGREE。预期影响小但应在附录验证。"
+    action_items:
+      - round: 7
+        action: "Fractional logit 与 OLS 并列报告"
+        assigned_to: paper_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: "R7-W2"
+    summary: "API 模型版本控制缺失——OpenRouter 无版本锁定"
+    category: experiment
+    severity: warning
+    status: open
+    first_raised_round: 7
+    last_seen_round: 8
+    mentions:
+      - round: 7
+        reviewers: [1, 2]
+        note: "R1-W5 提出。R2 AGREE。"
+      - round: 8
+        reviewers: [1, 2]
+        note: "R1-W6, R2 AGREE。LLM 实证研究通病。"
+    action_items:
+      - round: 7
+        action: "Appendix 列出 OpenRouter 返回的具体 model version/snapshot ID"
+        assigned_to: paper_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: "R4-W3"
+    summary: "聚合规则分析表面化——Bayesian R²=0.09 的深层含义未展开"
+    category: writing
+    severity: warning
+    status: in_progress
+    first_raised_round: 4
+    last_seen_round: 7
+    mentions:
+      - round: 6
+        reviewers: [1, 2]
+        note: "R² 对比缺乏 CI 或统计检验。"
+      - round: 7
+        reviewers: [1, 2]
+        note: "本轮未单独提及，可能部分改善。"
+    action_items:
+      - round: 6
+        action: "讨论 R²=0.09 含义；RF vs adaptive R² 加 bootstrap CI"
+        assigned_to: main_agent
+        status: in_progress
+    resolution: ""
+    resolution_round: null
+
+  - id: "R6-W6"
+    summary: "Missing references: ensemble diversity 经典文献 + deep ensembles"
+    category: writing
+    severity: warning
+    status: open
+    first_raised_round: 6
+    last_seen_round: 8
+    mentions:
+      - round: 6
+        reviewers: [2]
+        note: "经典 ensemble learning + ML BFT 文献。"
+      - round: 7
+        reviewers: [2]
+        note: "补充缺失：Krogh & Vaidya 1995, Horváth et al. 2022, Lakshminarayanan et al. 2017。"
+      - round: 8
+        reviewers: [1, 2]
+        note: "R2 再次确认缺失。R1 补充 MacKinnon & Webb 2017 few-cluster bootstrap。Kuncheva 2003 也应引用。"
+    action_items:
+      - round: 7
+        action: "补充引用并在 Related Work 实质性讨论"
+        assigned_to: paper_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: "R6-W4"
+    summary: "K_eff 正系数直觉解释不充分——与 BFT/Condorcet 定理矛盾未展开"
+    category: writing
+    severity: warning
+    status: open
+    first_raised_round: 6
+    last_seen_round: 7
+    mentions:
+      - round: 6
+        reviewers: [1, 2]
+        note: "Random faults vs adaptive attacks 下独立性的不同作用是关键区分。"
+      - round: 7
+        reviewers: [1, 2]
+        note: "本轮未单独提及。"
+    action_items:
+      - round: 6
+        action: "Section 5.1/5.3 扩展 random vs adversarial K_eff 方向差异讨论"
+        assigned_to: paper_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: "R6-AUD1"
+    summary: "Fractional logit 数字错误：论文引用 11/12 和 12/12，实际为 9/12 at ALL K"
+    category: writing
+    severity: warning
+    status: in_progress
+    first_raised_round: 6
+    last_seen_round: 7
+    mentions:
+      - round: 7
+        reviewers: [1, 2]
+        note: "R1 引用了 fractional logit 10-11/12 数字（§5.2），与 R6 标记的 9/12 不一致。需确认。"
+    action_items:
+      - round: 6
+        action: "全文 grep fractional logit 相关数字"
+        assigned_to: main_agent
+        status: in_progress
+    resolution: ""
+    resolution_round: null
+
+  - id: "R5-M1"
+    summary: "OpenRouter API 快照一致性未充分讨论"
+    category: experiment
+    severity: info
+    status: in_progress
+    first_raised_round: 5
+    last_seen_round: 8
+    mentions:
+      - round: 7
+        reviewers: [1, 2]
+        note: "R1-W5 重提。论文 footnote 和 Limitations 已有声明但缺 version IDs。"
+      - round: 8
+        reviewers: [1, 2]
+        note: "与 R7-W2 合并处理。"
+    action_items:
+      - round: 7
+        action: "与 R7-W2 合并处理"
+        assigned_to: paper_agent
+        status: in_progress
+    resolution: ""
+    resolution_round: null
+
+  # ============================================================
+  # RESOLVED ISSUES
+  # ============================================================
+
+  - id: "R4-W4"
+    summary: "log(ASR + ε) 在高零值率下不稳定，fractional logit 更稳健"
+    category: method
+    severity: warning
+    status: resolved
+    first_raised_round: 4
+    last_seen_round: 5
+    resolution: "Fractional logit 98.6% concordance。Table 2 并列报告。"
+    resolution_round: 6
+
+  - id: "R2-W6"
+    summary: "仅 MMLU+ARC (multiple-choice)，scope qualifier 已加"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 3
+    last_seen_round: 5
+    resolution: "Abstract now says 'two multiple-choice benchmarks'. Limitations also mentions open-ended tasks."
+    resolution_round: 6
+
+  - id: "R1-N3"
+    summary: "K=3 'co-determination' 叙事随推断方法改变"
+    category: method
+    severity: critical
+    status: resolved
+    first_raised_round: 3
+    last_seen_round: 4
+    resolution: "Table 3 五种方法对比，K=3 叙事标注为 method-sensitive"
+    resolution_round: 4
+
+  - id: "R2-N1"
+    summary: "'Diversity hurts' 方向非 novel，CJT framing overclaiming"
+    category: framing
+    severity: critical
+    status: resolved
+    first_raised_round: 3
+    last_seen_round: 4
+    resolution: "CJT 定位修正，Contributions 聚焦 predictor shift"
+    resolution_round: 4
+
+  - id: "R2-N2-v3"
+    summary: "K_eff 相对 κ-diversity 无显著量化优势"
+    category: method
+    severity: critical
+    status: resolved
+    first_raised_round: 3
+    last_seen_round: 4
+    resolution: "K_eff vs κ-diversity 对比完成，shift 差异化论证"
+    resolution_round: 4
+
+  - id: "R1-W5-v3"
+    summary: "K_eff–η_max 共线性使 predictor decomposition 不可靠"
+    category: method
+    severity: warning
+    status: resolved
+    first_raised_round: 3
+    last_seen_round: 4
+    resolution: "升级为 Limitations 首要讨论项"
+    resolution_round: 4
+
+  - id: "R2-W1-v3"
+    summary: "相关工作遗漏：Maloyan 2025, TAMAS, Credibility Scoring"
+    category: writing
+    severity: warning
+    status: resolved
+    first_raised_round: 3
+    last_seen_round: 4
+    resolution: "三篇引用全部加入"
+    resolution_round: 4
+
+  - id: "R2-W4"
+    summary: "'regime transition' vs 'predictor shift' 术语不一致"
+    category: writing
+    severity: warning
+    status: resolved
+    first_raised_round: 3
+    last_seen_round: 4
+    resolution: "全文术语统一为 predictor shift"
+    resolution_round: 4
+
+  - id: "R4-W1"
+    summary: "'uniformly positive' 表述误导"
+    category: framing
+    severity: warning
+    status: resolved
+    first_raised_round: 4
+    last_seen_round: 5
+    resolution: "Abstract 已区分 direction vs significance"
+    resolution_round: 5
+
+  - id: "R4-W5"
+    summary: "Crossed random effects 分析"
+    category: method
+    severity: warning
+    status: resolved
+    first_raised_round: 4
+    last_seen_round: 5
+    resolution: "Appendix C 实现 crossed RE"
+    resolution_round: 5
+
+  - id: "R4-W6"
+    summary: "缺少相关工作：CollabEval (2026)"
+    category: writing
+    severity: warning
+    status: resolved
+    first_raised_round: 4
+    last_seen_round: 5
+    resolution: "已引用并讨论"
+    resolution_round: 5
+
+  - id: "R2-W2"
+    summary: "Kuai et al. (2026) DBEI 与 K_eff 正文对比"
+    category: writing
+    severity: warning
+    status: resolved
+    first_raised_round: 3
+    last_seen_round: 5
+    resolution: "DBEI 在 Related Work 和 Appendix 中已讨论"
+    resolution_round: 5
+
+  - id: "R4-W2"
+    summary: "标题 overclaiming"
+    category: framing
+    severity: warning
+    status: resolved
+    first_raised_round: 4
+    last_seen_round: 5
+    resolution: "标题改为描述性表述"
+    resolution_round: 5

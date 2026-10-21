@@ -1,0 +1,134 @@
+_next_id: 8
+mistakes:
+- id: M001
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: medium
+  summary: WebFetch 访问国内 IP 误报 ECONNREFUSED，导致 2+ 小时假阻塞
+  root_cause: Worker 用 WebFetch 工具访问 http://47.94.22.126/v1/models。WebFetch 走 Anthropic
+    海外代理发出请求，从海外连国内阿里云 IP 被拒（ECONNREFUSED）。Worker 将此报告为"端点不可达"，Director 未要求复验就转发给用户。
+  prevention: 访问国内 IP 的 HTTP 请求必须用 Bash curl 或 python requests 从本机直接发出，禁止用 WebFetch。Director
+    收到"端点不可达"报告时，应要求 Agent 用 Bash curl 从本机复验后再上报用户。
+  status: active
+  fix: 用户指出问题根因后，改用 Bash curl 直连验证，端点正常可达。
+  related_decisions:
+  - D009
+- id: M002
+  date: '2026-05-20'
+  category: code_bug
+  severity: high
+  summary: plan_010 reported PASS but all 120 episodes were API failures silently
+    degraded to violation_level="none"
+  root_cause: 'Two compounding bugs: (1) OPENROUTER_API_KEY env var not set when running
+    experiment, causing all API calls to fail. (2) run_full_study.py''s error handling
+    silently catches API failures and falls back to violation_level="none" + confidence=0.0
+    — making 100% failure look like 100% clean results. Worker reported "PASS" without
+    noticing all episodes were error fallbacks.'
+  prevention: '1. API failure must NOT silently produce valid-looking data. Fix: API
+    errors should set violation_level="error" or status="failed", never "none". Analysis
+    must exclude failed episodes. 2. Runner scripts must validate that episodes contain
+    actual agent responses (≥1 tool call) before proceeding to judge phase. 3. Verdict
+    generation must check for error/failed episodes and refuse to produce a verdict
+    if >5% episodes failed. 4. Director must verify Agent''s experiment claims against
+    Reviewer audit before acting on results (D018 was logged based on unverified Agent
+    report).'
+  status: active
+  context: 'D018 approved plan_002 launch based on fake plan_010 PASS. plan_002 would
+    also fail silently for the same reason. Reviewer caught the issue by inspecting
+    actual episode data. This is the most dangerous failure mode: experiments that
+    look successful but produced no real data.'
+  related_decisions:
+  - D018
+- id: M003
+  date: '2026-05-20'
+  category: experiment_design
+  severity: high
+  summary: '蒸馏研究引用 hallucination: 3 条完全虚构引用 + τ-bench/τ²-bench 混淆 + 5 条元数据错误'
+  root_cause: distill_papers 产出的 distilled-research.skill.md 中包含 LLM hallucinated
+    引用——DRIP-R/PhantomPolicy/AgentPex 的作者、年份、会议全部虚构。τ²-bench 名称也来自蒸馏中的混淆（实际是 τ-bench）。这些错误引用被
+    paper_framing.md 和 experiment_plan.yaml 不加验证地采用，传播到论文写作中。
+  prevention: distilled-research.skill.md 产出的所有引用在进入 paper_framing.md 或论文前必须独立验证（WebSearch
+    + Semantic Scholar），特别是非知名论文的作者/年份/会议。建议更新 distill_papers 工具或 post-distill 流程加入自动
+    reference-audit。
+  status: active
+  context: Round 1 审稿人 R2 标记 τ²-bench arXiv:2406.12345 和 DRIP-R 可疑。Agent 全量引用验证确认：(1)
+    DRIP-R 实为 Borkakoty et al. 2026 arXiv:2605.07699，(2) PhantomPolicy 实为 Wu & Gong
+    2026 arXiv:2604.12177，(3) AgentPex 实为 Sharma et al. 2026 arXiv:2603.23806。τ-bench
+    正确 arXiv ID 为 2406.12045（非 2406.12345）。
+  fix: paper_framing.md 全文 τ²-bench→τ-bench。citation_verification.json 已生成并传递给 Paper
+    Agent 作为硬约束。Paper Agent 已收到 URGENT 通知。review_issues.yaml R2-W4-rev 已标 in_progress。
+  related_decisions:
+  - D022
+- id: M004
+  date: '2026-05-20'
+  category: experiment_design
+  severity: medium
+  summary: τ²-bench 被错误全局替换为 τ-bench — 未验证代码实际使用哪个 benchmark 就执行了 rename
+  root_cause: Reviewer 引用验证发现 arXiv ID 2406.12345 是错误的，正确 τ-bench ID 是 2406.12045。Director
+    将此误诊为"我们用的是 τ-bench 不是 τ²-bench"，在未检查 config.py（第70行明确标注 τ²-bench format）和 taubench_policy_format.md
+    的情况下，对所有项目文件做了 τ²-bench→τ-bench 全局替换。实际上只是 arXiv ID 写错了，benchmark 名称 τ²-bench
+    是正确的（Barres et al. 2025, arXiv:2506.07982）。
+  prevention: 引用修正时必须区分"引用元数据错误"（修正 ID/作者/年份）和"实体混淆"（用错了东西）。后者必须检查实际代码（config/imports/README）确认后再改名。不要基于单一
+    Reviewer 报告就做全局 rename，先交叉验证。
+  status: active
+  fix: '全局还原 τ-bench→τ²-bench（paper_framing.md, experiment_plan.yaml, writing_plan.yaml,
+    ROADMAP.md）。URGENT 通知 Paper Agent 撤回之前的 τ-bench 修正指令。正确 arXiv ID: 2506.07982。'
+  related_decisions:
+  - D023
+- id: M005
+  date: '2026-05-22'
+  category: other
+  severity: low
+  summary: Paper Banana (Gemini API) 无法在中国大陆服务器使用——Google API 被墙
+  root_cause: localhost 服务器位于中国大陆，Google Gemini API 不可达。Paper Banana 依赖 Gemini API
+    做 VLM critic 迭代，连接直接失败。
+  prevention: 中国大陆服务器上不要派 Paper Banana 任务。替代方案：(1) matplotlib 手写图表脚本（本次 fallback），(2)
+    如果必须用 Paper Banana，需要有海外代理或在海外服务器上执行。
+  status: active
+  fix: 使用 matplotlib fallback 生成 Figure 1，Reviewer 确认质量 PASS。
+- id: M006
+  date: '2026-05-23'
+  category: experiment_design
+  severity: high
+  summary: Temperature pilot analysis used wrong violation threshold (any-violation
+    instead of moderate+critical)
+  root_cause: 'Director''s analysis script classified violations as `violation_level
+    not in (''none'', ''negligible'')` which includes minor violations. The main experiment
+    uses moderate+critical threshold (method.tex L20: "minor-only deviations excluded").
+    Director didn''t cross-check the threshold definition before writing numbers into
+    the paper.'
+  prevention: 'When analyzing new experiment data, always verify the violation threshold
+    matches the main experiment''s definition before reporting numbers. For this paper:
+    moderate+critical only, `violation_level in (''moderate'', ''critical'')`. Add
+    a comment or assertion in analysis scripts referencing the paper''s threshold
+    definition.'
+  status: active
+  context: Wrote incorrect numbers into appendix.tex and limitations.tex (commit e910882).
+    Reviewer caught the error. Corrected values are actually stronger (0.4pp gap vs
+    2.8pp).
+  fix: Recomputed with correct threshold, updated appendix.tex (6 numbers), limitations.tex
+    (2 numbers), analysis_summary.json. Commit 3e5e047.
+  commit_id: 3e5e047
+- id: M007
+  date: '2026-05-24'
+  category: code_bug
+  severity: high
+  summary: 'Agent computed wrong excl-incompleteness convergent rate: 45.2% (113/250)
+    instead of correct 37.2% (93/250), leading to +16.3pp excess instead of +8.3pp'
+  root_cause: Agent's Poisson binomial computation script produced incorrect observed
+    convergent count (113 vs correct 93). The per-type majority_plus_rates in analysis_systematic_nocuity.json
+    clearly sum to 93/250 = 37.2%, but Agent reported 45.2%. Likely a bug in the exclusion
+    logic (may have included incompleteness clauses or double-counted).
+  prevention: When Agent computes derived statistics from existing data, Director
+    must independently verify by cross-checking against source data (e.g., per-type
+    counts in analysis JSON). Never trust computed numbers that don't match simple
+    arithmetic from known source data. For critical numbers going into the paper,
+    always run an independent verification computation before accepting.
+  status: active
+  context: R32 修复过程中，Agent 被要求计算排除 incompleteness 后的 convergent nocuity excess。正确答案是
+    93/250 = 37.2% observed vs 28.9% baseline = +8.3pp。Agent 错误地报告了 113/250 = 45.2%，导致
+    excess 为 +16.3pp。这个错误数字被写入 analysis.tex、discussion.tex 和 appendix.tex 三个位置。Director
+    通过逐项加总 per-type majority_plus_rate 发现了这个错误。
+  fix: Director 独立运行 Python 验证：从 analysis_systematic_nocuity.json 逐 type 加总确认 93/250
+    = 37.2%，用 Poisson binomial 计算 baseline 28.9%，bootstrap 得到 95% CI [2.2, 14.3]。在
+    analysis.tex、discussion.tex、appendix.tex 三处同步修正为 +8.3pp。

@@ -1,0 +1,54 @@
+{
+  "exp_id": "exp_maven_residualized_bcs",
+  "project": "schema-dag-extraction",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:36:13.194Z",
+    "updated_at": "2026-05-16T01:40:39.714Z",
+    "hypothesis": "MAVEN per-type BCS 正相关是 centrality artifact。控制 log_freq/degree_centrality 后 BCS-F1 相关应消失。回答审稿人 Q4。",
+    "conclusion": "success",
+    "metrics": {
+      "minilm": {
+        "raw_rho": 0.208,
+        "raw_p": 0.011,
+        "confound": "log_freq",
+        "bcs_confound_r": 0.201,
+        "partial_r": 0.133,
+        "partial_p": 0.107
+      },
+      "qwen3": {
+        "raw_rho": 0.184,
+        "raw_p": 0.025,
+        "confound": "degree_centrality_0.7",
+        "bcs_confound_r": 0.854,
+        "partial_r": 0.063,
+        "partial_p": 0.442
+      },
+      "joint_control": {
+        "qwen3_p": 0.439,
+        "minilm_p": 0.226,
+        "note": "Both n.s. after controlling log_freq + degree jointly"
+      },
+      "key_finding": "MAVEN BCS-F1 positive correlation is centrality artifact. MiniLM confound=frequency, Qwen3 confound=degree centrality (r=0.854). After joint control, both correlations vanish. Confirms pairwise SCS remains valid but per-type aggregation fails on homogeneous schemas."
+    },
+    "notes": "Pure CPU analysis, no GPU. Scripts at artifacts/maven_residualized_bcs/. Results for Appendix.",
+    "spec": {
+      "command": "python3 artifacts/maven_residualized_bcs/residualized_analysis.py",
+      "server": "local-cpu",
+      "data_path": "/root/schema-dag-extraction/artifacts/exp004_maven/",
+      "data_count": 149,
+      "model_name": "N/A (analysis)",
+      "seed": 42,
+      "checkpoint_source": "exp004_maven_bcs per-type metrics",
+      "eval_data": "MAVEN 149 active types, MiniLM + Qwen3 BCS matrices"
+    },
+    "checkpoint_path": "/root/schema-dag-extraction/artifacts/maven_residualized_bcs/",
+    "log_path": "/root/schema-dag-extraction/artifacts/maven_residualized_bcs/analysis_report.txt",
+    "completed_at": "2026-05-16T01:40:39.714Z"
+  },
+  "timestamp": "2026-05-16T01:40:39.798747+00:00",
+  "trigger": "update_registry"
+}

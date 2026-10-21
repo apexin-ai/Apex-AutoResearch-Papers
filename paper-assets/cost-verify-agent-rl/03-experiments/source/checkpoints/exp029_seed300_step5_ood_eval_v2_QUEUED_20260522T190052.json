@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp029_seed300_step5_ood_eval_v2",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:37:44.501Z",
+    "updated_at": "2026-05-22T19:00:52.533Z",
+    "hypothesis": "OOD eval of seed300 step5 checkpoint with unified pipeline (seed.val=321, enable_response_mask=false, 134 OOD tasks, T=0.4). Retry of v1 which crashed due to W&B /tmp cleanup. Fix: WANDB_DIR=/root/autodl-tmp/wandb_tmp.",
+    "parent": "exp029_seed300_step5_ood_eval"
+  },
+  "timestamp": "2026-05-22T19:00:52.858762+00:00",
+  "trigger": "update_registry"
+}

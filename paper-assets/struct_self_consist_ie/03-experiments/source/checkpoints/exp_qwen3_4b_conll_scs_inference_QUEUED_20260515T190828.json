@@ -1,0 +1,23 @@
+{
+  "exp_id": "exp_qwen3_4b_conll_scs_inference",
+  "project": "struct_self_consist_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:08:28.512Z",
+    "updated_at": "2026-05-15T19:08:28.512Z",
+    "spec": {
+      "hypothesis": "4B CoNLL SCS inference: N=8 T=1.0 full metrics (SJ/FK/LP/AUROC/tied%/rho). Cross-scale comparison with 8B.",
+      "model_name": "Qwen3-4B (CoNLL LoRA merged)",
+      "data_path": "data/conll2003",
+      "data_count": 3453,
+      "seed": 42,
+      "server": "autodl-5090",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-4b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/exp_qwen3_4b_conll_scs_inference\""
+    }
+  },
+  "timestamp": "2026-05-15T19:08:28.803045+00:00",
+  "trigger": "update_registry"
+}

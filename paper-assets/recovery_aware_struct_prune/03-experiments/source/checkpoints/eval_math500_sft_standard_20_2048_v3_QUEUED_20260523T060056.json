@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_math500_sft_standard_20_2048_v3",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T06:00:31.430Z",
+    "updated_at": "2026-05-23T06:00:55.801Z",
+    "hypothesis": "SFT Standard 20% MATH-500 @2048 rerun with NEW eval script. Previous 25.8% (eval_math500_sft_standard_20_2048_v2) used OLD answer extraction. Rerun ensures consistent comparison with other MATH-500 evals (all NEW version).",
+    "parent": "eval_math500_sft_standard_20_2048_v2"
+  },
+  "timestamp": "2026-05-23T06:00:56.580231+00:00",
+  "trigger": "update_registry"
+}

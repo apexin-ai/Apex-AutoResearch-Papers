@@ -1,0 +1,26 @@
+R14-A2 Per-fold BA-optimal Layer Index (K=5 Stratified CV)
+
+Setup: K=5 StratifiedKFold on train+val (60/20/20 split, seed=42)
+Probe: LogisticRegression(lbfgs, C=1.0, class_weight=balanced, max_iter=2000), W=1 static
+
+QwQ-32B (76 trainval traces, 3823 steps):
+  Fold 1 → L63 (ba=0.7838)
+  Fold 2 → L51 (ba=0.8034)
+  Fold 3 → L39 (ba=0.7326)
+  Fold 4 → L44 (ba=0.7462)
+  Fold 5 → L44 (ba=0.6599)
+  Dominant layer: L44 (2/5 folds)
+  Mean-BA best: L50 (0.7226)
+  LOO-CV dominant (R8): L30 (13/19=68%)
+
+R1-32B (80 trainval traces, 2962 steps):
+  Fold 1 → L53 (ba=0.7102)
+  Fold 2 → L45 (ba=0.8082)
+  Fold 3 → L40 (ba=0.7734)
+  Fold 4 → L63 (ba=0.7698)
+  Fold 5 → L39 (ba=0.7550)
+  Dominant layer: none (each fold different)
+  Mean-BA best: L47 (0.7400)
+  LOO-CV dominant (R8): L47 (15/20=75%)
+
+Remote path: /root/autodl-tmp/contrastive_trace_safety/artifacts/r14_a2_per_fold_ba_layer/results.json

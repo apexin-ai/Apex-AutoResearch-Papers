@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_openvla_attn_k07_object_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-26T00:20:12.605Z",
+    "updated_at": "2026-05-26T00:20:57.189Z",
+    "hypothesis": "Attention-based pruning at k=0.7 (deeper compression than k=0.5) on OpenVLA libero_object will retain most task performance because importance-ranked tokens preserve critical spatial features even at 70% compression ratio"
+  },
+  "timestamp": "2026-05-26T00:20:58.336152+00:00",
+  "trigger": "update_registry"
+}

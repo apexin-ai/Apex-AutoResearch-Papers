@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp27_mean_pooling",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:40:18.175Z",
+    "updated_at": "2026-05-20T14:40:18.175Z"
+  },
+  "timestamp": "2026-05-20T14:40:18.325821+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,52 @@
+{
+  "exp_id": "plan_013_none_collapse",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T01:12:53.567Z",
+    "updated_at": "2026-05-18T02:44:57.760Z",
+    "hypothesis": "Binary persuasion collapse (persuasion-present vs none) will perform comparably to full 9-class persuasion classification, proving the model is fundamentally a persuasion-presence detector rather than relying on fine-grained strategy discrimination",
+    "spec": {
+      "command": "python src/train_deberta_binary.py + train_classifier_binary.py + eval",
+      "server": "westd-33183",
+      "data_path": "data/plan_002_splits/",
+      "data_count": 500,
+      "model_name": "DeBERTa-v3-base (binary persuasion head) + BiGRU",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/plan_013_none_collapse/",
+      "eval_data": "data/plan_002_splits/test.jsonl"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "binary_k1_f1": 1,
+      "binary_k2_f1": 1,
+      "binary_k3_f1": 1,
+      "binary_k5_f1": 1,
+      "binary_full_f1": 1,
+      "ninclass_k1_f1": 1,
+      "ninclass_k2_f1": 1,
+      "ninclass_k3_f1": 1,
+      "ninclass_k5_f1": 1,
+      "ninclass_full_f1": 1,
+      "baseline_k1_f1": 0.987,
+      "baseline_k2_f1": 0.987,
+      "baseline_k3_f1": 0.987,
+      "baseline_full_f1": 1,
+      "dd_binary_k1_f1": 0.9809,
+      "dd_binary_k2_f1": 0.9809,
+      "dd_binary_k3_f1": 0.9715,
+      "dd_binary_k5_f1": 1,
+      "dd_binary_full_f1": 0.9904,
+      "dd_9class_full_f1": 1,
+      "dd_baseline_full_f1": 0.2845,
+      "conclusion_note": "binary collapse = 9-class IID and OOD, model is persuasion-presence detector"
+    },
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "completed_at": "2026-05-18T02:11:24.348Z"
+  },
+  "timestamp": "2026-05-18T02:44:57.788813+00:00",
+  "trigger": "update_registry"
+}

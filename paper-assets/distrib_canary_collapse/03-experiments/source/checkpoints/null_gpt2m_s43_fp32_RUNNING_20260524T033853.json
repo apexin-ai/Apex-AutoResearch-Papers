@@ -1,0 +1,23 @@
+{
+  "exp_id": "null_gpt2m_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T03:37:55.937Z",
+    "updated_at": "2026-05-24T03:38:53.321Z",
+    "hypothesis": "Cross-architecture FPR verification: GPT-2-medium null (α=0.00) should show 0% PermG detection rate, confirming method is not architecture-specific",
+    "spec": {
+      "command": "python -u iterative_train.py --model_name openai-community/gpt2-medium --synthetic_ratio 0.00 --num_generations 10 --steps_per_gen 5000 --output_dir results/alpha_sweep/a000_gpt2m_s43_fp32 --seed 43",
+      "server": "westd-17855",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "openai-community/gpt2-medium",
+      "seed": 43
+    }
+  },
+  "timestamp": "2026-05-24T03:38:53.773130+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp-004-reduced-lora-eval-ckpt7000",
+  "project": "contrastive_entrain_calib",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T07:06:41.966Z",
+    "updated_at": "2026-05-23T07:06:41.966Z"
+  },
+  "timestamp": "2026-05-23T07:06:42.160032+00:00",
+  "trigger": "update_registry"
+}

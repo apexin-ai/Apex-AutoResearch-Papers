@@ -1,0 +1,105 @@
+{
+  "exp_id": "plan018-additive-random-b01-s42-1000-r3",
+  "project": "solver-trace-ablation",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T10:26:49.094Z",
+    "updated_at": "2026-05-15T12:23:30.395Z",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --reward_mode additive_random --output_dir /root/autodl-tmp/outputs/plan018_additive_random_b01_s42_1000_r3 --num_steps 1000 --beta 0.1 --seed 42 --no_wandb\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "269147",
+      "log_path": "~/runs/solver-trace-ablation/plan018-additive-random-b01-s42-1000-r3.log",
+      "submitted_at": "2026-05-15T10:27:08.529Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "westd-39279",
+    "gpu": "cuda:1",
+    "account": "root",
+    "pid": "269147",
+    "log_path": "~/runs/solver-trace-ablation/plan018-additive-random-b01-s42-1000-r3.log",
+    "reproduce": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --reward_mode additive_random --output_dir /root/autodl-tmp/outputs/plan018_additive_random_b01_s42_1000_r3 --num_steps 1000 --beta 0.1 --seed 42 --no_wandb\"",
+      "finished_at": "2026-05-15T12:05:43.550Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T12:05:46.554124+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "/root/autodl-tmp/outputs/plan018_additive_random_b01_s42_1000_r3/checkpoint-1000",
+    "metrics": {
+      "eval": {
+        "prove_rate": 0.97,
+        "mean_isr": 0.6892,
+        "isr_std": 0.2037,
+        "median_isr": 0.75,
+        "min_isr": 0,
+        "max_isr": 1,
+        "proved_only_mean_isr": 0.7105,
+        "n_proved": 97,
+        "n_problems": 100,
+        "by_answer_type": {
+          "false": {
+            "count": 25,
+            "proved": 25,
+            "prove_rate": 1,
+            "mean_isr": 0.753
+          },
+          "unknown": {
+            "count": 41,
+            "proved": 39,
+            "prove_rate": 0.951,
+            "mean_isr": 0.657
+          },
+          "true": {
+            "count": 34,
+            "proved": 33,
+            "prove_rate": 0.971,
+            "mean_isr": 0.681
+          }
+        }
+      },
+      "classification": {
+        "H7_tautological": 97,
+        "H7_pct": 100,
+        "H1_conclusion_embedding": 0,
+        "H1_pct": 0,
+        "H8_conjunction_collapse": 0,
+        "H8_pct": 0,
+        "genuine": 0,
+        "genuine_pct": 0,
+        "failed": 3
+      },
+      "isr_distribution": {
+        "0.33": 13,
+        "0.67": 5,
+        "0.75": 71,
+        "1.00": 8
+      },
+      "training": {
+        "steps": 1000,
+        "train_loss": 0.0067,
+        "final_prove_rate": 0.827,
+        "final_mean_isr": 0.521,
+        "duration_seconds": 5783,
+        "epoch": 4
+      }
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-15T12:23:30.600544+00:00",
+  "trigger": "update_registry"
+}

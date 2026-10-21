@@ -1,0 +1,24 @@
+{
+  "exp_id": "rho03_uniform_seed456",
+  "project": "provenance_weight_training",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T01:04:02.959Z",
+    "updated_at": "2026-05-23T01:04:18.775Z",
+    "spec": {
+      "hypothesis": "Third seed (456) uniform baseline at ρ=0.3 for paired comparison with rho03_adaptive_seed456. Completes 3-seed set for paired t-test at the boundary contamination ratio.",
+      "parent": "rho03_uniform_seed42",
+      "model_name": "Qwen3-0.6B",
+      "data_path": "data/scored_data_rho03.jsonl",
+      "data_count": 235555,
+      "seed": 456,
+      "server": "westd-41312"
+    },
+    "hypothesis": "Third seed (456) uniform baseline at ρ=0.3 for paired comparison with rho03_adaptive_seed456. Completes 3-seed set for paired t-test at the boundary contamination ratio."
+  },
+  "timestamp": "2026-05-23T01:04:19.217488+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,959 @@
+{
+  "problem": {
+    "id": "folio_4",
+    "problem": "Given the following premises:\nAll employees who schedule a meeting with their customers will appear in the company today.  Everyone who has lunch in the company schedules meetings with their customers.  Employees will either have lunch in the company or have lunch at home. If an employee has lunch at home, then he/she is working remotely from home. All employees who are in other countries work remotely from home.  No managers work remotely from home.  James is either a manager and appears in the company today or neither a manager nor appears in the company today.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nJames does not have lunch in the company.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (Meeting(x) \u2192 AppearInCompany(x))",
+      "\u2200x (LunchInCompany(x) \u2192 Meetings(x))",
+      "\u2200x (LunchInCompany(x) \u2228 LunchAtHome(x))",
+      "\u2200x (LunchAtHome(x) \u2192 WorkRemotelyFromHome(x))",
+      "\u2200x (InOtherCountries(x) \u2192 WorkRemotelyFromHome(x))",
+      "\u2200x (Manager(x) \u2192 \u00acWorkRemotelyFromHome(x))",
+      "Manager(james) \u2295 AppearInCompany(james)"
+    ],
+    "conclusion_fol": "\u00acLunchInCompany(james)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 17.5,
+      "Unknown": 100.5
+    },
+    "answer_counts": {
+      "Unknown": 11,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "Let's break down the given premises step by step:\n\n1. All employees who schedule a meeting with their customers will appear in the company today.\n2. Everyone who has lunch in the company schedules meetings with their customers.\n3. Employees will either have lunch in the company or have lunch at home.\n4. If an employee has lunch at home, then he/she is working remotely from home.\n5. All employees who are in other countries work remotely from home.\n6. No managers work remotely from home.\n7. James is either a manager and appears in the company today or neither a manager nor appears in the company today.\n\nFrom premise 7, we have two possibilities for James:\n\n- Either James is a manager and appears in the company today.\n- Or, James is neither a manager nor appears in the company today.\n\nNow, let's consider the first possibility: James is a manager and appears in the company today.\n\nFrom premise 6, we know that no managers work remotely from home. If James is a manager and appears in the company today, then he must be working from the company (because all employees who are in other countries work remotely from home, but James is in the company). \n\nFrom premise 3, we know that employees will either have lunch in the company or have lunch at home. Since James is working from the company, he will have lunch in the company. \n\nNow, let's consider the second possibility: James is neither a manager nor appears in the company today.\n\nFrom premise 7, this is one of the two possibilities. We also know that all employees who are in other countries work remotely from home (premise 5). \n\nFrom premise 3, we know that employees will either have lunch in the company or have lunch at home. If James is neither a manager nor appears in the company today, then he must be working remotely from home (because all employees who are in other countries work remotely from home, but premise 5 does not specify that James is in another country; it only specifies that employees in other countries work remotely).\n\nHowever, if James is working remotely from home, then he will have lunch at home (premise 4).\n\nNow, let's analyze the conclusion: James does not have lunch in the company.\n\nFor the first possibility (James is a manager and appears in the company today), we know that James will have lunch in the company.\n\nFor the second possibility (James is neither a manager nor appears in the company today), we know that James will have lunch at home.\n\nSince the conclusion James does not have lunch in the company is true for one possibility and false for the other possibility, the conclusion is uncertain.\n\nTherefore, the final answer is:\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine the conclusion, let's analyze the given premises step by step.\n\n1. All employees who schedule a meeting with their customers will appear in the company today.\n2. Everyone who has lunch in the company schedules meetings with their customers.\n3. Employees will either have lunch in the company or have lunch at home.\n4. If an employee has lunch at home, then he/she is working remotely from home.\n5. All employees who are in other countries work remotely from home.\n6. No managers work remotely from home.\n7. James is either a manager and appears in the company today or neither a manager nor appears in the company today.\n\nFrom premise 7, we have two possibilities for James:\n\n- James is a manager and appears in the company today.\n- James is neither a manager nor appears in the company today.\n\nIf James is a manager and appears in the company today (first possibility), then from premise 6, we know that James is not working remotely from home. From premise 3, we know that employees will either have lunch in the company or have lunch at home. Since James is not working remotely from home, he must have lunch in the company.\n\nNow, let's consider the second possibility: James is neither a manager nor appears in the company today. \n\nFrom premise 3, we know that employees will either have lunch in the company or have lunch at home. Since James does not appear in the company today, he must have lunch at home. From premise 4, we know that if an employee has lunch at home, then he/she is working remotely from home.\n\nHowever, from premise 5, we know that all employees who are in other countries work remotely from home. But we don't have any information about James's location. Therefore, we cannot conclude that James is working remotely from home.\n\nConsidering both possibilities, we can conclude that James does not have lunch in the company only in the second scenario where James is neither a manager nor appears in the company today. \n\nSo, the conclusion \"James does not have lunch in the company\" is uncertain because it depends on the possibility that James is neither a manager nor appears in the company today.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether James does not have lunch in the company, we need to analyze the given premises step by step.\n\nPremise 1: All employees who schedule a meeting with their customers will appear in the company today.\nPremise 2: Everyone who has lunch in the company schedules meetings with their customers.\nPremise 3: Employees will either have lunch in the company or have lunch at home.\nPremise 4: If an employee has lunch at home, then he/she is working remotely from home.\nPremise 5: All employees who are in other countries work remotely from home.\nPremise 6: No managers work remotely from home.\nPremise 7: James is either a manager and appears in the company today or neither a manager nor appears in the company today.\n\nFrom Premise 2, we know that if an employee has lunch in the company, they schedule meetings with their customers. And from Premise 1, we know that if an employee schedules a meeting with their customers, they appear in the company today.\n\nNow, let's consider the two possible cases for James based on Premise 7:\n\nCase 1: James is a manager and appears in the company today.\nIn this case, James has lunch in the company (by Premise 2), and since he appears in the company today (by Premise 1), he must have lunch in the company.\n\nCase 2: James is neither a manager nor appears in the company today.\nIn this case, we cannot directly conclude whether James has lunch in the company or not. However, we know that James does not appear in the company today, which means he cannot have lunch in the company (by Premise 1).\n\nSince we cannot conclude with certainty whether James has lunch in the company or not, we cannot conclude with certainty that James does not have lunch in the company.\n\nHowever, considering all premises, we can say that if James is a manager, then he does have lunch in the company.  Therefore, if James does not have lunch in the company, then he cannot be a manager. \n\nBut we also know from Premise 6 that no managers work remotely from home.  And from Premise 5 that all employees who are in other countries work remotely from home.  From Premise 7, we know that James is either a manager and appears in the company today or neither a manager nor appears in the company today.  Therefore, if James does not have lunch in the company, then he must not appear in the company today.\n\nIf James does not appear in the company today, then he must work remotely from home (by Premise 1).  Therefore, if James does not have lunch in the company, then he must work remotely from home.\n\nNow, from Premise 3, we know that employees will either have lunch in the company or have lunch at home.  And from Premise 4, we know that if an employee has lunch at home, then he/she is working remotely from home.\n\nIf James does not have lunch in the company, then he must have lunch at home.  And since he works remotely from home (as we concluded earlier), it is consistent with Premise 4.\n\nTherefore, considering all premises, the conclusion that James does not have lunch in the company is uncertain, but it is possible that he does not have lunch in the company.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine the conclusion, we need to break down the given premises and analyze the information step by step.\n\nPremise 1: All employees who schedule a meeting with their customers will appear in the company today.\nPremise 2: Everyone who has lunch in the company schedules meetings with their customers.\nPremise 3: Employees will either have lunch in the company or have lunch at home.\nPremise 4: If an employee has lunch at home, then he/she is working remotely from home.\nPremise 5: All employees who are in other countries work remotely from home.\nPremise 6: No managers work remotely from home.\nPremise 7: James is either a manager and appears in the company today or neither a manager nor appears in the company today.\n\nFrom Premise 7, we can deduce two possible scenarios for James:\n- James is a manager and appears in the company today.\n- James is not a manager and does not appear in the company today.\n\nWe need to analyze these scenarios separately.\n\n**Scenario 1: James is a manager and appears in the company today**\n\nSince James is a manager and appears in the company today, we know that he cannot work remotely from home (Premise 6). Also, since he appears in the company today, we know that he must have had lunch in the company (Premise 1 and Premise 2). This is because all employees who appear in the company today must have had lunch in the company, as per Premise 1 and Premise 2.\n\nTherefore, in this scenario, James does have lunch in the company.\n\n**Scenario 2: James is not a manager and does not appear in the company today**\n\nSince James does not appear in the company today, we know that he cannot have had lunch in the company (Premise 1 and Premise 2). We also know that he cannot be working remotely from home because he is not in another country (Premise 5). Therefore, the only possibility left for James is that he works remotely from home because he had lunch at home (Premise 3 and Premise 4).\n\nTherefore, in this scenario, James does not have lunch in the company.\n\nNow, let's look at the conclusion: \"James does not have lunch in the company.\"\n\nFrom the analysis above, we can see that this conclusion is true in Scenario 2 (James is not a manager and does not appear in the company today).\n\nHowever, we cannot conclude that the conclusion is always true, as it is true only in one of the possible scenarios (Scenario 2). The other scenario (Scenario 1) shows that James does have lunch in the company.\n\nTherefore, the conclusion \"James does not have lunch in the company\" is uncertain, as it is true in one scenario but false in the other.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given premises and their relationships.\n\nPremise 1: All employees who schedule a meeting with their customers will appear in the company today.\nPremise 2: Everyone who has lunch in the company schedules meetings with their customers.\nPremise 3: Employees will either have lunch in the company or have lunch at home.\nPremise 4: If an employee has lunch at home, then he/she is working remotely from home.\nPremise 5: All employees who are in other countries work remotely from home.\nPremise 6: No managers work remotely from home.\nPremise 7: James is either a manager and appears in the company today or neither a manager nor appears in the company today.\n\nLet's analyze the conclusion: James does not have lunch in the company.\n\nFrom Premise 2, if an employee has lunch in the company, they must schedule meetings with their customers. Therefore, employees who have lunch in the company appear in the company today (Premise 1).\n\nNow, let's analyze James. From Premise 7, James is either a manager and appears in the company today or neither a manager nor appears in the company today. \n\nIf James is a manager and appears in the company today, then he must have lunch in the company (since employees who have lunch in the company appear in the company today, as we established earlier). However, this is contradictory to the conclusion that James does not have lunch in the company.\n\nNow, let's consider the case where James is not a manager and does not appear in the company today. From Premise 3, if James does not have lunch in the company, he must have lunch at home. From Premise 4, if James has lunch at home, he must be working remotely from home. From Premise 5, all employees who are in other countries work remotely from home. However, we do not have information about James's country or location.\n\nSince we cannot determine James's location, we cannot conclude whether James does or does not have lunch in the company. Therefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: All employees who schedule a meeting with their customers will appear in the company today.\nPremise 2: Everyone who has lunch in the company schedules meetings with their customers.\nPremise 3: Employees will either have lunch in the company or have lunch at home.\nPremise 4: If an employee has lunch at home, then he/she is working remotely from home.\nPremise 5: All employees who are in other countries work remotely from home.\nPremise 6: No managers work remotely from home.\nPremise 7: James is either a manager and appears in the company today or neither a manager nor appears in the company today.\n\nFrom Premise 7, we have two possible scenarios:\nScenario 1: James is a manager and appears in the company today.\nScenario 2: James is not a manager and does not appear in the company today.\n\nNow, let's analyze Scenario 1:\nIf James is a manager and appears in the company today, then he cannot work remotely from home (Premise 6). \nIf James cannot work remotely from home, then he must have lunch in the company (Premise 3).\nIf James has lunch in the company, then he schedules meetings with his customers (Premise 2).\nIf James schedules meetings with his customers, then he appears in the company today (Premise 1).\n\nHowever, this scenario contradicts Premise 7, which states that James is a manager and appears in the company today. This means that Scenario 1 is not possible.\n\nNow, let's analyze Scenario 2:\nIf James is not a manager and does not appear in the company today, then we cannot determine whether he has lunch in the company or not.\n\nHowever, we can use Premise 5 to conclude that James is not working remotely from home. If James is not working remotely from home, then he must have lunch in the company or be in the same country as the company (Premise 4). \n\nIf James has lunch in the company, then the conclusion \"James does not have lunch in the company\" would be false.\n\nBut, we cannot rule out the possibility that James has lunch in the company. Therefore, the conclusion is uncertain.\n\nSince we cannot determine whether James has lunch in the company or not, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether James does not have lunch in the company, we need to analyze the given premises and their implications.\n\nPremise 1: All employees who schedule a meeting with their customers will appear in the company today.\nPremise 2: Everyone who has lunch in the company schedules meetings with their customers.\nPremise 3: Employees will either have lunch in the company or have lunch at home.\nPremise 4: If an employee has lunch at home, then he/she is working remotely from home.\nPremise 5: All employees who are in other countries work remotely from home.\nPremise 6: No managers work remotely from home.\nPremise 7: James is either a manager and appears in the company today or neither a manager nor appears in the company today.\n\nFrom Premise 2, we can conclude that if James has lunch in the company, then he must schedule meetings with his customers.\n\nFrom Premise 1, we can conclude that if James schedules meetings with his customers, then he appears in the company today.\n\nFrom Premise 7, we can conclude that James appears in the company today if he is a manager, and he does not appear in the company today if he is not a manager.\n\nCombining the conclusions from the above, if James has lunch in the company, then he must appear in the company today. However, Premise 7 states that James does not appear in the company today if he is not a manager.\n\nFrom Premise 6, we know that no managers work remotely from home. Therefore, if James is a manager, then he must have lunch in the company.\n\nHowever, we cannot conclude that James is a manager based on the given premises. We can only say that James is either a manager and appears in the company today or neither a manager nor appears in the company today.\n\nTherefore, we cannot determine whether James has lunch in the company or not based on the given premises. The conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and their implications.\n\n1. All employees who schedule a meeting with their customers will appear in the company today.\n2. Everyone who has lunch in the company schedules meetings with their customers.\n3. Employees will either have lunch in the company or have lunch at home.\n4. If an employee has lunch at home, then he/she is working remotely from home.\n5. All employees who are in other countries work remotely from home.\n6. No managers work remotely from home.\n7. James is either a manager and appears in the company today or neither a manager nor appears in the company today.\n\nFrom premise 7, we have two possibilities for James:\n\n- James is a manager and appears in the company today.\n- James is neither a manager nor appears in the company today.\n\nWe need to analyze both possibilities.\n\n**Case 1: James is a manager and appears in the company today.**\n\nFrom premise 6, we know that no managers work remotely from home. This implies that James must be working from the company. \n\nFrom premise 3, we know that employees will either have lunch in the company or have lunch at home. Since James is working from the company, he must be having lunch in the company.\n\nHowever, this conclusion contradicts the given conclusion that James does not have lunch in the company. Therefore, the given conclusion cannot be true if James is a manager and appears in the company today.\n\n**Case 2: James is neither a manager nor appears in the company today.**\n\nFrom premise 7, this is one of the possibilities for James.\n\nIf James is not a manager, then he must be an employee. \n\nFrom premise 5, we know that all employees who are in other countries work remotely from home. However, we do not have any information about James's location, so we cannot conclude that he is working remotely from home.\n\nFrom premise 7, we know that James does not appear in the company today. Therefore, he must be working remotely from home.\n\nFrom premise 3, we know that employees will either have lunch in the company or have lunch at home. Since James is working remotely from home, he must be having lunch at home.\n\nThis conclusion is consistent with the given conclusion that James does not have lunch in the company. However, we cannot conclude that James does not have lunch in the company with certainty because we do not know James's location.\n\nTherefore, the conclusion is uncertain. \n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "Let's break down the given premises step by step to determine the conclusion.\n\n1. All employees who schedule a meeting with their customers will appear in the company today.\n2. Everyone who has lunch in the company schedules meetings with their customers.\n3. Employees will either have lunch in the company or have lunch at home.\n4. If an employee has lunch at home, then he/she is working remotely from home.\n5. All employees who are in other countries work remotely from home.\n6. No managers work remotely from home.\n7. James is either a manager and appears in the company today or neither a manager nor appears in the company today.\n\nFrom premises 3, we know that employees will either have lunch in the company or have lunch at home. \n\nIf James has lunch in the company, then from premise 2, he must schedule meetings with his customers. Therefore, from premise 1, James will appear in the company today.\n\nNow, let's consider the two possible scenarios for James:\n\nScenario 1: James is a manager and appears in the company today.\n\nIn this scenario, from premise 6, James cannot be working remotely from home because no managers work remotely from home. Therefore, James must have lunch in the company (premise 3).\n\nScenario 2: James is neither a manager nor appears in the company today.\n\nIn this scenario, we cannot directly determine whether James has lunch in the company or not. However, from premise 5, all employees who are in other countries work remotely from home. But we cannot determine James's location, so we cannot conclude that he works remotely from home.\n\nHowever, let's look at premise 7. It says James is either a manager and appears in the company today or neither a manager nor appears in the company today. This statement does not explicitly state that James is in another country, so we cannot directly use premise 5 to conclude that James works remotely from home.\n\nSince we cannot determine whether James is in another country or not, we cannot directly conclude that he works remotely from home. However, we can use premise 6 to conclude that James is not a manager if he works remotely from home.\n\nNow, let's look at the conclusion: James does not have lunch in the company. \n\nIf James is a manager and appears in the company today (Scenario 1), then we have already concluded that he must have lunch in the company.\n\nIf James is neither a manager nor appears in the company today (Scenario 2), we cannot directly determine whether James has lunch in the company or not.\n\nHowever, from premise 7, we know that James is either a manager and appears in the company today or neither a manager nor appears in the company today. This statement does not explicitly state that James is in another country, so we cannot directly use premise 5 to conclude that James works remotely from home. \n\nSince we cannot determine whether James appears in the company today or not, we cannot directly determine whether James has lunch in the company or not. \n\nHowever, we can use premise 7 to conclude that James is either a manager and appears in the company today or neither a manager nor appears in the company today. This statement does not explicitly state that James is in another country, so we cannot directly use premise 5 to conclude that James works remotely from home.\n\nTherefore, given the premises, we cannot conclude with certainty that James does not have lunch in the company. \n\nHowever, we can conclude that James must either be a manager and appears in the company today or neither a manager nor appears in the company today.\n\nSince we cannot determine whether James appears in the company today or not, we cannot directly determine whether James has lunch in the company or not.\n\nThe conclusion \"James does not have lunch in the company\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and the conclusion.\n\nPremise 1: All employees who schedule a meeting with their customers will appear in the company today.\nPremise 2: Everyone who has lunch in the company schedules meetings with their customers.\nPremise 3: Employees will either have lunch in the company or have lunch at home.\nPremise 4: If an employee has lunch at home, then he/she is working remotely from home.\nPremise 5: All employees who are in other countries work remotely from home.\nPremise 6: No managers work remotely from home.\nPremise 7: James is either a manager and appears in the company today or neither a manager nor appears in the company today.\n\nConclusion: James does not have lunch in the company.\n\nLet's analyze the possibilities:\n\n- If James is a manager, then he appears in the company today (Premise 7). Since he is a manager, he cannot work remotely from home (Premise 6).\n- If James is not a manager, then he does not appear in the company today (Premise 7). If he does not appear in the company today, then he must be working remotely from home (Premise 1 and Premise 3).\n\nNow, let's consider the possibilities for James's lunch arrangement:\n\n- If James is a manager and appears in the company today, then he can have lunch in the company (Premise 3).\n- If James is not a manager and does not appear in the company today, then he is working remotely from home, and he has lunch at home (Premise 4 and Premise 3).\n\nSince the conclusion states that James does not have lunch in the company, let's see if this conclusion is true or false based on the possibilities.\n\nIf James is a manager and appears in the company today, the conclusion is false because he can have lunch in the company.\n\nIf James is not a manager and does not appear in the company today, the conclusion is true because he has lunch at home.\n\nHowever, we cannot conclude that James does not have lunch in the company with certainty because we have two possibilities: either the conclusion is true or false.\n\nTherefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and the conclusion.\n\nPremise 1: All employees who schedule a meeting with their customers will appear in the company today.\nPremise 2: Everyone who has lunch in the company schedules meetings with their customers.\nPremise 3: Employees will either have lunch in the company or have lunch at home.\nPremise 4: If an employee has lunch at home, then he/she is working remotely from home.\nPremise 5: All employees who are in other countries work remotely from home.\nPremise 6: No managers work remotely from home.\nPremise 7: James is either a manager and appears in the company today or neither a manager nor appears in the company today.\n\nConclusion: James does not have lunch in the company.\n\nFrom Premise 7, we know that James is either a manager and appears in the company today or neither a manager nor appears in the company today.\n\nLet's consider both cases:\n\nCase 1: James is a manager and appears in the company today.\nIf James appears in the company today, then from Premise 1, he must have scheduled a meeting with his customers. From Premise 2, this means he has lunch in the company. But from Premise 6, no managers work remotely from home, so if James has lunch at home, then he cannot be a manager. Therefore, in this case, James must have lunch in the company.\n\nCase 2: James is neither a manager nor appears in the company today.\n\nFrom Premise 3, employees will either have lunch in the company or have lunch at home. Since James does not appear in the company today, he must have lunch at home. From Premise 4, if an employee has lunch at home, then he/she is working remotely from home. But from Premise 5, all employees who are in other countries work remotely from home, which is not necessarily true for James. Therefore, we cannot conclude whether James has lunch at home or not.\n\nHowever, we can conclude that James does not have lunch in the company. If he has lunch in the company, then from Premise 2, he must have scheduled a meeting with his customers, which contradicts the fact that he does not appear in the company today.\n\nTherefore, the conclusion \"James does not have lunch in the company\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether James does not have lunch in the company, we need to analyze the given premises.\n\nPremise 1: All employees who schedule a meeting with their customers will appear in the company today.\nPremise 2: Everyone who has lunch in the company schedules meetings with their customers.\nPremise 3: Employees will either have lunch in the company or have lunch at home.\nPremise 4: If an employee has lunch at home, then he/she is working remotely from home.\nPremise 5: All employees who are in other countries work remotely from home.\nPremise 6: No managers work remotely from home.\nPremise 7: James is either a manager and appears in the company today or neither a manager nor appears in the company today.\n\nFrom Premise 7, we have two possible cases for James:\n\nCase 1: James is a manager and appears in the company today.\nCase 2: James is neither a manager nor appears in the company today.\n\nLet's analyze each case separately:\n\nCase 1: James is a manager and appears in the company today.\nFrom Premise 6, we know that no managers work remotely from home. Therefore, James is not working remotely from home.\n\nFrom Premise 3, we know that employees will either have lunch in the company or have lunch at home. Since James is not working remotely from home, he must have lunch in the company.\n\nHowever, this contradicts the conclusion that James does not have lunch in the company. Therefore, this case is not possible.\n\nCase 2: James is neither a manager nor appears in the company today.\nFrom Premise 7, we know that James is neither a manager nor appears in the company today.\n\nFrom Premise 5, we know that all employees who are in other countries work remotely from home. However, this premise does not provide any information about James's location.\n\nFrom Premise 4, we know that if an employee has lunch at home, then he/she is working remotely from home. Therefore, if James has lunch at home, he must be working remotely from home.\n\nHowever, we do not know whether James has lunch at home or not. If he has lunch at home, he is working remotely from home, which means he is not appearing in the company today. This is consistent with Premise 7.\n\nOn the other hand, if James does not have lunch at home, he must have lunch in the company. From Premise 2, we know that everyone who has lunch in the company schedules meetings with their customers. However, there is no information about James scheduling meetings with his customers.\n\nTherefore, we cannot determine whether James has lunch in the company or not. The conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "appears_in_company_today(james)",
+          "z3_formula": "appears_in_company_today_james == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "manager(james)",
+          "z3_formula": "manager_james == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "appears_in_company_today(X) -> not(appears_in_other_countries(X))",
+          "z3_formula": "Implies(appears_in_company_today_james, not(appears_in_other_countries_james))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "appears_in_other_countries(X) -> works_remotely_from_home(X)",
+          "z3_formula": "Implies(appears_in_other_countries_james, works_remotely_from_home_james)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not(manager(X)) -> not(works_remotely_from_home(X))",
+          "z3_formula": "Implies(Not(manager_james), Not(works_remotely_from_home_james))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "appears_in_company_today(X) -> has_lunch_in_company(X)",
+          "z3_formula": "Implies(appears_in_company_today_james, has_lunch_in_company_james)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "works_remotely_from_home(X) -> has_lunch_at_home(X)",
+          "z3_formula": "Implies(works_remotely_from_home_james, has_lunch_at_home_james)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "has_lunch_in_company(X) | has_lunch_at_home(X)",
+          "z3_formula": "Or(has_lunch_in_company_james, has_lunch_at_home_james)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not(has_lunch_in_company(james))",
+          "z3_formula": "Not(has_lunch_in_company_james)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "schedules_meeting_with_customer(X) -> appears_in_company_today(X)",
+          "z3_formula": "Implies(schedules_meeting_with_customer_X, appears_in_company_today_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "has_lunch_in_company(X) -> schedules_meeting_with_customer(X)",
+          "z3_formula": "Implies(has_lunch_in_company_X, schedules_meeting_with_customer_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "has_lunch_in_company(X) | has_lunch_at_home(X)",
+          "z3_formula": "Or(has_lunch_in_company_X, has_lunch_at_home_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "has_lunch_at_home(X) -> working_remotely_from_home(X)",
+          "z3_formula": "Implies(has_lunch_at_home_X, working_remotely_from_home_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "in_other_countries(X) -> working_remotely_from_home(X)",
+          "z3_formula": "Implies(in_other_countries_X, working_remotely_from_home_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "manager(X) -> not working_remotely_from_home(X)",
+          "z3_formula": "Implies(manager_X, Not(working_remotely_from_home_X))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "manager(X) | not manager(X) & not appears_in_company_today(X)",
+          "z3_formula": "Or(manager_X, And(Not(manager_X), Not(appears_in_company_today_X)))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "manager(X) & appears_in_company_today(X) -> not working_remotely_from_home(X)",
+          "z3_formula": "Implies(And(manager_X, appears_in_company_today_X), Not(working_remotely_from_home_X))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "manager(X) & appears_in_company_today(X) -> has_lunch_in_company(X)",
+          "z3_formula": "Implies(And(manager_X, appears_in_company_today_X), has_lunch_in_company_X)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not manager(X) & not appears_in_company_today(X) -> has_lunch_at_home(X)",
+          "z3_formula": "Implies(And(Not(manager_X), Not(appears_in_company_today_X)), has_lunch_at_home_X)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not manager(X) & not appears_in_company_today(X) -> working_remotely_from_home(X)",
+          "z3_formula": "Implies(And(Not(manager_X), Not(appears_in_company_today_X)), working_remotely_from_home_X)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not manager(X) & not appears_in_company_today(X) -> not has_lunch_in_company(X)",
+          "z3_formula": "Implies(And(Not(manager_X), Not(appears_in_company_today_X)), Not(has_lunch_in_company_X))",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "has_meeting_with_customer(X, Y)",
+          "z3_formula": "has_meeting_with_customer_X_Y == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "has_lunch_in_company(X)",
+          "z3_formula": "has_lunch_in_company_X == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "has_lunch_at_home(X)",
+          "z3_formula": "has_lunch_at_home_X == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "has_meeting_with_customer(X, Y) -> appears_in_company(X)",
+          "z3_formula": "Implies(has_meeting_with_customer_X_Y, appears_in_company_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "has_lunch_in_company(X) -> has_meeting_with_customer(X, Y)",
+          "z3_formula": "Implies(has_lunch_in_company_X, has_meeting_with_customer_X_Y)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "has_lunch_at_home(X) -> works_remotely_from_home(X)",
+          "z3_formula": "Implies(has_lunch_at_home_X, works_remotely_from_home_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "works_remotely_from_home(X) -> in_other_countries(X)",
+          "z3_formula": "Implies(works_remotely_from_home_X, in_other_countries_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "in_other_countries(X) -> works_remotely_from_home(X)",
+          "z3_formula": "Implies(in_other_countries_X, works_remotely_from_home_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "manager(X) -> not works_remotely_from_home(X)",
+          "z3_formula": "Implies(manager_X, Not(works_remotely_from_home_X))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "not appears_in_company(X) -> not has_lunch_in_company(X)",
+          "z3_formula": "Implies(Not(appears_in_company_X), Not(has_lunch_in_company_X))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "not appears_in_company(X) -> works_remotely_from_home(X)",
+          "z3_formula": "Implies(Not(appears_in_company_X), works_remotely_from_home_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "not has_lunch_in_company(X) -> has_lunch_at_home(X)",
+          "z3_formula": "Implies(Not(has_lunch_in_company_X), has_lunch_at_home_X)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not has_lunch_in_company(james)",
+          "z3_formula": "Not(has_lunch_in_company_james) == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "appears_in_company_today(james)",
+          "z3_formula": "appears_in_company_today_james == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "manager(james)",
+          "z3_formula": "manager_james == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "appears_in_company_today(X) -> had_lunch_in_company(X)",
+          "z3_formula": "Implies(appears_in_company_today_james, had_lunch_in_company_james)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "had_lunch_in_company(X) -> appears_in_company_today(X)",
+          "z3_formula": "Implies(had_lunch_in_company_james, appears_in_company_today_james)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "appears_in_company_today(X) & manager(X) -> not works_remotely_from_home(X)",
+          "z3_formula": "Implies(And(appears_in_company_today_james, manager_james), Not(works_remotely_from_home_james))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "appears_in_company_today(X) -> had_lunch_in_company(X)",
+          "z3_formula": "Implies(appears_in_company_today_james, had_lunch_in_company_james)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "had_lunch_in_company(X) -> appears_in_company_today(X)",
+          "z3_formula": "Implies(had_lunch_in_company_james, appears_in_company_today_james)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "not appears_in_company_today(X) -> not had_lunch_in_company(X)",
+          "z3_formula": "Implies(Not(appears_in_company_today_james), Not(had_lunch_in_company_james))",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "not appears_in_company_today(X) -> not works_remotely_from_home(X)",
+          "z3_formula": "Implies(Not(appears_in_company_today_james), Not(works_remotely_from_home_james))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not works_remotely_from_home(X) -> had_lunch_at_home(X)",
+          "z3_formula": "Implies(Not(works_remotely_from_home_james), had_lunch_at_home_james)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "had_lunch_at_home(X) -> works_remotely_from_home(X)",
+          "z3_formula": "Implies(had_lunch_at_home_james, works_remotely_from_home_james)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not had_lunch_in_company(james)",
+          "z3_formula": "Not(had_lunch_in_company_james)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all(employees, schedule_meeting(X, customer) -> appears_in_company(X))",
+          "z3_formula": "Implies(schedule_meeting_with_customer, appears_in_company)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all(employees, has_lunch_in_company(X) -> schedule_meeting(X, customer))",
+          "z3_formula": "Implies(has_lunch_in_company, schedule_meeting_with_customer)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all(employees, has_lunch(X) = has_lunch_in_company(X) | has_lunch_at_home(X))",
+          "z3_formula": "has_lunch = has_lunch_in_company | has_lunch_at_home",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "all(employees, has_lunch_at_home(X) -> works_remotely_from_home(X))",
+          "z3_formula": "Implies(has_lunch_at_home, works_remotely_from_home)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "all(employees, works_remotely_from_home(X) -> in_other_countries(X))",
+          "z3_formula": "Implies(works_remotely_from_home, in_other_countries)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "all(employees, not_manager(X) -> not in_other_countries(X))",
+          "z3_formula": "Implies(not_manager, not in_other_countries)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "manager(X) & appears_in_company(X) -> has_lunch_in_company(X)",
+          "z3_formula": "Implies(And(manager, appears_in_company), has_lunch_in_company)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not has_lunch_in_company(james)",
+          "z3_formula": "Not(has_lunch_in_company_james)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "appears_in_company_today(james)",
+          "z3_formula": "appears_in_company_today_james == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "manager(james)",
+          "z3_formula": "manager_james == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "manager(X) & appears_in_company_today(X) -> not_works_remotely_from_home(X)",
+          "z3_formula": "Implies(And(manager_james, appears_in_company_today_james), not_works_remotely_from_home_james)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "not_works_remotely_from_home(X) -> has_lunch_in_company(X)",
+          "z3_formula": "Implies(not_works_remotely_from_home_james, has_lunch_in_company_james)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "has_lunch_in_company(X) -> schedules_meetings_with_customers(X)",
+          "z3_formula": "Implies(has_lunch_in_company_james, schedules_meetings_with_customers_james)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "schedules_meetings_with_customers(X) -> appears_in_company_today(X)",
+          "z3_formula": "Implies(schedules_meetings_with_customers_james, appears_in_company_today_james)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "appears_in_company_today(james)",
+          "z3_formula": "appears_in_company_today_james == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "appears_in_company_today(james)",
+          "z3_formula": "appears_in_company_today_james == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "manager(james)",
+          "z3_formula": "manager_james == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "manager(X) -> not_works_remotely_from_home(X)",
+          "z3_formula": "Implies(manager_james, not_works_remotely_from_home_james)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "not_works_remotely_from_home(X) -> has_lunch_in_company(X) | in_same_country_as_company(X)",
+          "z3_formula": "Implies(not_works_remotely_from_home_james, Or(has_lunch_in_company_james, in_same_country_as_company_james))",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not has_lunch_in_company(james)",
+          "z3_formula": "Not(has_lunch_in_company_james)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "has_lunch_in_company(james)",
+          "z3_formula": "has_lunch_in_company_james",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all employees who schedule a meeting with their customers will appear in the company today",
+          "z3_formula": "all_meetings_today == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "everyone who has lunch in the company schedules meetings with their customers",
+          "z3_formula": "lunch_in_company_meets_customers == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "employees will either have lunch in the company or have lunch at home",
+          "z3_formula": "lunch_in_company_or_home == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "if an employee has lunch at home, then he/she is working remotely from home",
+          "z3_formula": "lunch_at_home_remotely == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "all employees who are in other countries work remotely from home",
+          "z3_formula": "remote_from_home_other_countries == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "no managers work remotely from home",
+          "z3_formula": "no_managers_remotely == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "James is either a manager and appears in the company today or neither a manager nor appears in the company today",
+          "z3_formula": "manager_today_or_neither == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "everyone who has lunch in the company schedules meetings with their customers -> if someone schedules meetings with their customers, then they appear in the company today",
+          "z3_formula": "Implies(lunch_in_company_meets_customers, Implies(meets_customers, appears_today))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "all employees who schedule a meeting with their customers will appear in the company today -> if someone appears in the company today, then they schedule meetings with their customers",
+          "z3_formula": "Implies(all_meetings_today, Implies(appears_today, meets_customers))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "James is either a manager and appears in the company today or neither a manager nor appears in the company today -> if James is a manager, then he appears in the company today, and if James is not a manager, then he does not appear in the company today",
+          "z3_formula": "Implies(manager_today_or_neither, (manager_today -> appears_today) & (not_manager_today -> not_appears_today))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "if James has lunch in the company, then he must appear in the company today",
+          "z3_formula": "Implies(lunch_in_company, appears_today)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "James does not appear in the company today if he is not a manager",
+          "z3_formula": "not_manager_today -> not_appears_today",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "if James is a manager, then he must have lunch in the company",
+          "z3_formula": "manager_today -> lunch_in_company",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "appears_in_company_today(james)",
+          "z3_formula": "appears_in_company_today_james == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "appears_in_company_today(X) -> appears_in_company_today(X)",
+          "z3_formula": "Implies(appears_in_company_today_james, appears_in_company_today_james)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "is_manager(james)",
+          "z3_formula": "is_manager_james == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "is_manager(X) -> not(works_remotely_from_home(X))",
+          "z3_formula": "Implies(is_manager_james, not(works_remotely_from_home_james))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "works_from_company(james)",
+          "z3_formula": "works_from_company_james == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "has_lunch_in_company(james)",
+          "z3_formula": "has_lunch_in_company_james == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "works_from_company(X) -> has_lunch_in_company(X)",
+          "z3_formula": "Implies(works_from_company_james, has_lunch_in_company_james)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "has_lunch_in_company(james)",
+          "z3_formula": "has_lunch_in_company_james == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "has_lunch_in_company(X) -> not(has_lunch_in_company(X))",
+          "z3_formula": "Implies(has_lunch_in_company_james, not(has_lunch_in_company_james))",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not(appears_in_company_today(james))",
+          "z3_formula": "not(appears_in_company_today_james) == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not(appears_in_company_today(X)) -> works_remotely_from_home(X)",
+          "z3_formula": "Implies(not(appears_in_company_today_james), works_remotely_from_home_james)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "works_remotely_from_home(james)",
+          "z3_formula": "works_remotely_from_home_james == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "works_remotely_from_home(james)",
+          "z3_formula": "works_remotely_from_home_james == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "works_remotely_from_home(X) -> has_lunch_at_home(X)",
+          "z3_formula": "Implies(works_remotely_from_home_james, has_lunch_at_home_james)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "has_lunch_at_home(james)",
+          "z3_formula": "has_lunch_at_home_james == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "schedules_meeting_with_customer(X, Y) -> appears_in_company_today(X, Y)",
+          "z3_formula": "Implies(schedules_meeting_with_customer_X_Y, appears_in_company_today_X_Y)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "has_lunch_in_company(X) -> schedules_meeting_with_customer(X, Y)",
+          "z3_formula": "Implies(has_lunch_in_company_X, schedules_meeting_with_customer_X_Y)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "has_lunch_in_company(X) | has_lunch_at_home(X)",
+          "z3_formula": "Or(has_lunch_in_company_X, has_lunch_at_home_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "has_lunch_at_home(X) -> works_remotely_from_home(X)",
+          "z3_formula": "Implies(has_lunch_at_home_X, works_remotely_from_home_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "in_other_country(X) -> works_remotely_from_home(X)",
+          "z3_formula": "Implies(in_other_country_X, works_remotely_from_home_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "manager(X) -> not works_remotely_from_home(X)",
+          "z3_formula": "Implies(manager_X, Not(works_remotely_from_home_X))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "manager(X) & appears_in_company_today(X) | not manager(X) & not appears_in_company_today(X)",
+          "z3_formula": "Or(And(manager_X, appears_in_company_today_X), And(Not(manager_X), Not(appears_in_company_today_X)))",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "appears_in_company_today(james)",
+          "z3_formula": "appears_in_company_today_james == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "manager(james)",
+          "z3_formula": "manager_james == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "appears_in_company_today(james) -> not(remotely_from_home(james))",
+          "z3_formula": "Implies(appears_in_company_today_james, not(remotely_from_home_james))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "not(appears_in_company_today(james)) -> remotely_from_home(james)",
+          "z3_formula": "Implies(Not(appears_in_company_today_james), remotely_from_home_james)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "appears_in_company_today(james) -> lunch_in_company(james)",
+          "z3_formula": "Implies(appears_in_company_today_james, lunch_in_company_james)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "not(appears_in_company_today(james)) -> lunch_at_home(james)",
+          "z3_formula": "Implies(Not(appears_in_company_today_james), lunch_at_home_james)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "remotely_from_home(james) -> lunch_at_home(james)",
+          "z3_formula": "Implies(remotely_from_home_james, lunch_at_home_james)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "manager(james) -> not(remotely_from_home(james))",
+          "z3_formula": "Implies(manager_james, not(remotely_from_home_james))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "not(manager(james)) & not(appears_in_company_today(james)) -> remotely_from_home(james)",
+          "z3_formula": "Implies(And(Not(manager_james), Not(appears_in_company_today_james)), remotely_from_home_james)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(lunch_in_company(james))",
+          "z3_formula": "Not(lunch_in_company_james)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "appears_in_company_today(james)",
+          "z3_formula": "appears_in_company_today_james == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "appears_in_company_today(X) -> schedules_meeting_with_customers(X)",
+          "z3_formula": "Implies(appears_in_company_today_james, schedules_meeting_with_customers_james)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "schedules_meeting_with_customers(X) -> has_lunch_in_company(X)",
+          "z3_formula": "Implies(schedules_meeting_with_customers_james, has_lunch_in_company_james)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "has_lunch_in_company(X) -> not works_remotely_from_home(X)",
+          "z3_formula": "Implies(has_lunch_in_company_james, Not(works_remotely_from_home_james))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not works_remotely_from_home(X) -> not manager(X)",
+          "z3_formula": "Implies(Not(works_remotely_from_home_james), Not(manager_james))",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "manager(X) -> not works_remotely_from_home(X)",
+          "z3_formula": "Implies(manager_james, Not(works_remotely_from_home_james))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "appears_in_company_today(X) -> not in_other_countries(X)",
+          "z3_formula": "Implies(appears_in_company_today_james, Not(in_other_countries_james))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "in_other_countries(X) -> works_remotely_from_home(X)",
+          "z3_formula": "Implies(in_other_countries_james, works_remotely_from_home_james)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "appears_in_company_today(james) == False",
+          "z3_formula": "appears_in_company_today_james == False",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not has_lunch_in_company(james)",
+          "z3_formula": "Not(has_lunch_in_company_james)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "appears_in_company(james)",
+          "z3_formula": "appears_in_company_james == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "is_manager(james)",
+          "z3_formula": "is_manager_james == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "appears_in_company(james) & is_manager(james) -> not(remotely_from_home(james))",
+          "z3_formula": "Implies(And(appears_in_company_james, is_manager_james), Not(remotely_from_home_james))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "appears_in_company(james) -> has_lunch_in_company(james)",
+          "z3_formula": "Implies(appears_in_company_james, has_lunch_in_company_james)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "has_lunch_in_company(james) -> schedules_meetings(james)",
+          "z3_formula": "Implies(has_lunch_in_company_james, schedules_meetings_james)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "schedules_meetings(james) -> appears_in_company(james)",
+          "z3_formula": "Implies(schedules_meetings_james, appears_in_company_james)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "remotely_from_home(james) -> has_lunch_at_home(james)",
+          "z3_formula": "Implies(remotely_from_home_james, has_lunch_at_home_james)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "has_lunch_at_home(james) -> remotely_from_home(james)",
+          "z3_formula": "Implies(has_lunch_at_home_james, remotely_from_home_james)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "in_other_countries(james) -> remotely_from_home(james)",
+          "z3_formula": "Implies(in_other_countries_james, remotely_from_home_james)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "not(in_other_countries(james)) -> not(remotely_from_home(james))",
+          "z3_formula": "Implies(Not(in_other_countries_james), Not(remotely_from_home_james))",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "not(remotely_from_home(james)) -> has_lunch_in_company(james)",
+          "z3_formula": "Implies(Not(remotely_from_home_james), has_lunch_in_company_james)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "not(appears_in_company(james)) -> not(has_lunch_in_company(james))",
+          "z3_formula": "Implies(Not(appears_in_company_james), Not(has_lunch_in_company_james))",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "not(is_manager(james)) -> not(appears_in_company(james))",
+          "z3_formula": "Implies(Not(is_manager_james), Not(appears_in_company_james))",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "not(is_manager(james)) & not(appears_in_company(james)) -> not(has_lunch_in_company(james))",
+          "z3_formula": "Implies(And(Not(is_manager_james), Not(appears_in_company_james)), Not(has_lunch_in_company_james))",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not(has_lunch_in_company(james))",
+          "z3_formula": "Not(has_lunch_in_company_james) == True",
+          "source_step": 20
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 137,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 97
+    },
+    "maxsat_stats": {
+      "satisfied": 84,
+      "excluded": 13,
+      "total_weight": 111,
+      "solve_time_ms": 3.710459917783737
+    },
+    "timing": {
+      "trace_gen_s": 9.32,
+      "extraction_s": 31.368,
+      "dedup_s": 3.011,
+      "maxsat_s": 0.009,
+      "total_s": 43.708
+    }
+  }
+}

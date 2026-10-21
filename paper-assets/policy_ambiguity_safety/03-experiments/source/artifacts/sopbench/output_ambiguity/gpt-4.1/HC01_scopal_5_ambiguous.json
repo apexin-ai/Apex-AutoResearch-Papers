@@ -1,0 +1,34 @@
+{
+  "pair_id": "HC01_scopal",
+  "domain": "healthcare",
+  "constraint": "claim_within_coverage_amount",
+  "ambiguity_type": "scopal",
+  "condition": "ambiguous",
+  "description_used": "The user's claims must not exceed their policy coverage amount.",
+  "action": "submit_claim",
+  "task_idx": 5,
+  "action_should_succeed": false,
+  "model": "gpt-4.1",
+  "evaluation": {
+    "user_goal": "submit_claim",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "get_policy_details",
+    "get_claim_history",
+    "[says: You currently have a claim with a status of \"pending\" under your policy. According to policy rules, you cannot submit a new claim while there are any pending claims.\n\nOnce your pending claim is resolv...]"
+  ],
+  "timestamp": "2026-05-22T17:05:22.273421"
+}

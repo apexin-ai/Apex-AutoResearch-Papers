@@ -1,0 +1,235 @@
+{
+  "benchmark": "hellaswag",
+  "n_samples": 10042,
+  "arch_pairs": [
+    "GDN-RetNet",
+    "GDN-HGRN2",
+    "RetNet-HGRN2"
+  ],
+  "jaccard_analysis": {
+    "h24-1": {
+      "GDN-RetNet_helped": {
+        "J_obs": 0.0605,
+        "J_null": 0.016,
+        "J_max": 0.9905,
+        "normalized_ES": 0.0457,
+        "p_value_permutation": 0.0,
+        "n_permutations": 10000,
+        "sizes": [317, 314]
+      },
+      "GDN-RetNet_hurt": {
+        "J_obs": 0.0892,
+        "J_null": 0.0162,
+        "J_max": 0.8073,
+        "normalized_ES": 0.0923,
+        "p_value_permutation": 0.0,
+        "n_permutations": 10000,
+        "sizes": [358, 289]
+      },
+      "GDN-HGRN2_helped": {
+        "J_obs": 0.0942,
+        "J_null": 0.0152,
+        "J_max": 0.9054,
+        "normalized_ES": 0.0887,
+        "p_value_permutation": 0.0,
+        "n_permutations": 10000,
+        "sizes": [317, 287]
+      },
+      "GDN-HGRN2_hurt": {
+        "J_obs": 0.0771,
+        "J_null": 0.0156,
+        "J_max": 0.757,
+        "normalized_ES": 0.0829,
+        "p_value_permutation": 0.0,
+        "n_permutations": 10000,
+        "sizes": [358, 271]
+      },
+      "RetNet-HGRN2_helped": {
+        "J_obs": 0.0967,
+        "J_null": 0.0152,
+        "J_max": 0.914,
+        "normalized_ES": 0.0907,
+        "p_value_permutation": 0.0,
+        "n_permutations": 10000,
+        "sizes": [314, 287]
+      },
+      "RetNet-HGRN2_hurt": {
+        "J_obs": 0.0874,
+        "J_null": 0.0141,
+        "J_max": 0.9377,
+        "normalized_ES": 0.0793,
+        "p_value_permutation": 0.0,
+        "n_permutations": 10000,
+        "sizes": [289, 271]
+      }
+    },
+    "h12-1": {
+      "GDN-RetNet_helped": {
+        "J_obs": 0.076,
+        "J_null": 0.0164,
+        "J_max": 0.8815,
+        "normalized_ES": 0.0689,
+        "p_value_permutation": 0.0,
+        "n_permutations": 10000,
+        "sizes": [346, 305]
+      },
+      "GDN-RetNet_hurt": {
+        "J_obs": 0.0589,
+        "J_null": 0.0149,
+        "J_max": 0.6972,
+        "normalized_ES": 0.0645,
+        "p_value_permutation": 0.0,
+        "n_permutations": 10000,
+        "sizes": [360, 251]
+      },
+      "GDN-HGRN2_helped": {
+        "J_obs": 0.092,
+        "J_null": 0.0165,
+        "J_max": 0.8873,
+        "normalized_ES": 0.0867,
+        "p_value_permutation": 0.0,
+        "n_permutations": 10000,
+        "sizes": [346, 307]
+      },
+      "GDN-HGRN2_hurt": {
+        "J_obs": 0.0568,
+        "J_null": 0.0144,
+        "J_max": 0.6528,
+        "normalized_ES": 0.0665,
+        "p_value_permutation": 0.0,
+        "n_permutations": 10000,
+        "sizes": [360, 235]
+      },
+      "RetNet-HGRN2_helped": {
+        "J_obs": 0.1168,
+        "J_null": 0.0155,
+        "J_max": 0.9935,
+        "normalized_ES": 0.1036,
+        "p_value_permutation": 0.0,
+        "n_permutations": 10000,
+        "sizes": [305, 307]
+      },
+      "RetNet-HGRN2_hurt": {
+        "J_obs": 0.0848,
+        "J_null": 0.0122,
+        "J_max": 0.9363,
+        "normalized_ES": 0.0786,
+        "p_value_permutation": 0.0,
+        "n_permutations": 10000,
+        "sizes": [251, 235]
+      }
+    },
+    "h6-1": {
+      "GDN-RetNet_helped": {
+        "J_obs": 0.0923,
+        "J_null": 0.0162,
+        "J_max": 0.9969,
+        "normalized_ES": 0.0776,
+        "p_value_permutation": 0.0,
+        "n_permutations": 10000,
+        "sizes": [320, 319]
+      },
+      "GDN-RetNet_hurt": {
+        "J_obs": 0.0745,
+        "J_null": 0.0133,
+        "J_max": 0.6707,
+        "normalized_ES": 0.0931,
+        "p_value_permutation": 0.0,
+        "n_permutations": 10000,
+        "sizes": [328, 220]
+      },
+      "GDN-HGRN2_helped": {
+        "J_obs": 0.0758,
+        "J_null": 0.0154,
+        "J_max": 0.9062,
+        "normalized_ES": 0.0679,
+        "p_value_permutation": 0.0,
+        "n_permutations": 10000,
+        "sizes": [320, 290]
+      },
+      "GDN-HGRN2_hurt": {
+        "J_obs": 0.0892,
+        "J_null": 0.0142,
+        "J_max": 0.75,
+        "normalized_ES": 0.1019,
+        "p_value_permutation": 0.0,
+        "n_permutations": 10000,
+        "sizes": [328, 246]
+      },
+      "RetNet-HGRN2_helped": {
+        "J_obs": 0.1154,
+        "J_null": 0.0154,
+        "J_max": 0.9091,
+        "normalized_ES": 0.1119,
+        "p_value_permutation": 0.0,
+        "n_permutations": 10000,
+        "sizes": [319, 290]
+      },
+      "RetNet-HGRN2_hurt": {
+        "J_obs": 0.0965,
+        "J_null": 0.0117,
+        "J_max": 0.8943,
+        "normalized_ES": 0.096,
+        "p_value_permutation": 0.0,
+        "n_permutations": 10000,
+        "sizes": [220, 246]
+      }
+    },
+    "h3-1": {
+      "GDN-RetNet_helped": {
+        "J_obs": 0.0867,
+        "J_null": 0.0158,
+        "J_max": 0.9292,
+        "normalized_ES": 0.0775,
+        "p_value_permutation": 0.0,
+        "n_permutations": 10000,
+        "sizes": [325, 302]
+      },
+      "GDN-RetNet_hurt": {
+        "J_obs": 0.0905,
+        "J_null": 0.016,
+        "J_max": 0.7042,
+        "normalized_ES": 0.1082,
+        "p_value_permutation": 0.0,
+        "n_permutations": 10000,
+        "sizes": [382, 269]
+      },
+      "GDN-HGRN2_helped": {
+        "J_obs": 0.0879,
+        "J_null": 0.0156,
+        "J_max": 0.9046,
+        "normalized_ES": 0.0813,
+        "p_value_permutation": 0.0,
+        "n_permutations": 10000,
+        "sizes": [325, 294]
+      },
+      "GDN-HGRN2_hurt": {
+        "J_obs": 0.0794,
+        "J_null": 0.0155,
+        "J_max": 0.6728,
+        "normalized_ES": 0.0972,
+        "p_value_permutation": 0.0,
+        "n_permutations": 10000,
+        "sizes": [382, 257]
+      },
+      "RetNet-HGRN2_helped": {
+        "J_obs": 0.0936,
+        "J_null": 0.0151,
+        "J_max": 0.9735,
+        "normalized_ES": 0.0819,
+        "p_value_permutation": 0.0,
+        "n_permutations": 10000,
+        "sizes": [302, 294]
+      },
+      "RetNet-HGRN2_hurt": {
+        "J_obs": 0.0801,
+        "J_null": 0.0133,
+        "J_max": 0.9554,
+        "normalized_ES": 0.0709,
+        "p_value_permutation": 0.0,
+        "n_permutations": 10000,
+        "sizes": [269, 257]
+      }
+    }
+  }
+}

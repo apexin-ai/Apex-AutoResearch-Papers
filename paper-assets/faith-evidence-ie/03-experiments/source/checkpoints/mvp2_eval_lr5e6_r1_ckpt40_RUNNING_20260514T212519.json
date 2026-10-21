@@ -1,0 +1,33 @@
+{
+  "exp_id": "mvp2_eval_lr5e6_r1_ckpt40",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T21:25:00.579Z",
+    "updated_at": "2026-05-14T21:25:19.139Z",
+    "spec": {
+      "command": "bash /root/autodl-tmp/scripts/eval_lr5e6_r1_ckpt40.sh",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "101831",
+      "log_path": "~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt40.log",
+      "submitted_at": "2026-05-14T21:25:06.448Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 985,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-40",
+      "eval_data": "docred-dev-985"
+    }
+  },
+  "timestamp": "2026-05-14T21:25:19.242878+00:00",
+  "trigger": "update_registry"
+}

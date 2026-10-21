@@ -1,0 +1,809 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-333_Q7",
+    "problem": "Bob is round. Erin is quiet. Erin is smart. Erin is not white. Fiona is green. Fiona is quiet. Fiona is smart. Gary is big. Gary is green. Gary is quiet. Gary is white. All quiet things are smart. Round things are quiet. All green, round things are white. If Fiona is not quiet then Fiona is white. Smart, white things are big. If something is nice and quiet then it is big. If something is quiet and not smart then it is not green. All quiet, smart things are green. If something is big then it is nice.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is green.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRound($x, bool) ::: Is x round?\nQuiet($x, bool) ::: Is x quiet?\nSmart($x, bool) ::: Is x smart?\nWhite($x, bool) ::: Is x white?\nGreen($x, bool) ::: Is x green?\nBig($x, bool) ::: Is x big?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nRound(Bob, True) ::: Bob is round.\nQuiet(Erin, True) ::: Erin is quiet.\nSmart(Erin, True) ::: Erin is smart.\nWhite(Erin, False) ::: Erin is not white.\nGreen(Fiona, True) ::: Fiona is green.\nQuiet(Fiona, True) ::: Fiona is quiet.\nSmart(Fiona, True) ::: Fiona is smart.\nBig(Gary, True) ::: Gary is big.\nGreen(Gary, True) ::: Gary is green.\nQuiet(Gary, True) ::: Gary is quiet.\nWhite(Gary, True) ::: Gary is white.\n\nRules:\nQuiet($x, True) >>> Smart($x, True) ::: All quiet things are smart.\nRound($x, True) >>> Quiet($x, True) ::: Round things are quiet.\nGreen($x, True) && Round($x, True) >>> White($x, True) ::: All green, round things are white.\nQuiet(Fiona, False) >>> White(Fiona, True) ::: If Fiona is not quiet then Fiona is white.\nSmart($x, True) && White($x, True) >>> Big($x, True) ::: Smart, white things are big.\nNice($x, True) && Quiet($x, True) >>> Big($x, True) ::: If something is nice and quiet then it is big.\nQuiet($x, True) && Smart($x, False) >>> Green($x, False) ::: If something is quiet and not smart then it is not green.\nQuiet($x, True) && Smart($x, True) >>> Green($x, True) ::: All quiet, smart things are green.\nBig($x, True) >>> Nice($x, True) ::: If something is big then it is nice.\n\nQuery:\nGreen(Bob, True) ::: Bob is green."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "False": 71.5,
+      "True": 105.0,
+      "Unknown": 65.0
+    },
+    "answer_counts": {
+      "True": 6,
+      "Unknown": 5,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Bob is green\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Bob is round. (Given)\n2. Round things are quiet. (Given)\n3. All quiet things are smart. (Given)\n4. Since Bob is round, Bob is quiet. (From 1 and 2)\n5. Since Bob is quiet, Bob is smart. (From 2 and 3)\n\nWe now know that Bob is quiet and smart. To determine if Bob is green, we need to analyze the properties of quiet, smart things.\n\n6. All quiet, smart things are green. (Given)\n7. Since Bob is quiet and smart, Bob is green. (From 6)\n\nBased on the given information and logical deductions, we can conclude that Bob is indeed green.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether Bob is green, we need to analyze the given statements and their logical implications.\n\n1. Bob is round.\n2. Round things are quiet. (From statement 1, we can infer that Bob is quiet.)\n3. All quiet things are smart. (From statement 2, we can infer that Bob is smart.)\n4. All quiet, smart things are green. (From statements 2 and 3, we can infer that Bob is green.)\n\nBased on the logical implications, we can conclude that Bob is indeed green.\n\nTherefore, the final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information, we know:\n   - Bob is round.\n   - Round things are quiet.\n   - Quiet things are smart.\n   - All green, round things are white.\n\n2. Since Bob is round, we can conclude that Bob is quiet (from the statement \"Round things are quiet\").\n   - Bob is quiet.\n   - Quiet things are smart.\n   - Therefore, Bob is smart.\n\n3. From the statement \"All green, round things are white,\" we can conclude that if Bob were green, he would be white. However, we do not have any information that directly states Bob is green or white. We need more information to make a conclusion.\n\n4. Since we do not have any direct information that says Bob is green, we cannot conclude that Bob is green or white. Therefore, the statement \"Bob is green\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is green\" is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\nGiven statements:\n1. Bob is round.\n2. Erin is quiet.\n3. Erin is smart.\n4. Erin is not white.\n5. Fiona is green.\n6. Fiona is quiet.\n7. Fiona is smart.\n8. Gary is big.\n9. Gary is green.\n10. Gary is quiet.\n11. Gary is white.\n12. All quiet things are smart.\n13. Round things are quiet.\n14. All green, round things are white.\n15. If Fiona is not quiet then Fiona is white.\n16. Smart, white things are big.\n17. If something is nice and quiet then it is big.\n18. If something is quiet and not smart then it is not green.\n19. All quiet, smart things are green.\n20. If something is big then it is nice.\n\nNow, let's analyze the given statements to find any relationships between Bob and the other objects.\n\nFrom statement 1, we know that Bob is round.\n\nFrom statement 13, we know that round things are quiet.\n\nNow, from statement 12, we know that all quiet things are smart.\n\nSo, from statement 13 and 12, we can conclude that Bob is quiet and smart.\n\nNow, from statement 19, we know that all quiet, smart things are green.\n\nSo, from statement 13, 12, and 19, we can conclude that Bob is green.\n\nTherefore, the statement \"Bob is green\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is green\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\nStep 1: We are given that \"Bob is round.\" \nFrom the information provided, we know that \"Round things are quiet.\" \nSo, we can infer that \"Bob is quiet.\"\n\nStep 2: We are given that \"All quiet things are smart.\" \nSince we already inferred that \"Bob is quiet,\" we can conclude that \"Bob is smart.\"\n\nStep 3: We are given that \"All green, round things are white.\" \nHowever, we don't have any information that directly states \"Bob is green.\" We also don't know if Bob is round and green. \nSo, based on the given information, we can't conclude that \"Bob is green.\"\n\nTherefore, the statement \"Bob is green\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that: Bob is round.\n   Since we have information about round things, let's analyze it: All quiet things are smart. Round things are quiet. \n\n   Combining these two statements: Since Bob is round, we can conclude that Bob is quiet. And since Bob is quiet, we can conclude that Bob is smart.\n\n2. We are given that: Erin is quiet. Erin is smart.\n   We already concluded that Bob is smart, and we know that Erin is smart. However, this information does not help us determine whether Bob is green or not.\n\n3. We are given that: All quiet, smart things are green.\n   We already concluded that Bob is quiet and smart. Therefore, based on this rule, Bob must be green.\n\nHowever, we also have another statement that might contradict this conclusion: All green, round things are white.\nBut since we concluded that Bob is round and green, we need to check if this statement applies to Bob. Unfortunately, this statement is not specific enough to determine whether Bob is white or not.\n\nSo, based on the given information, we can conclude that Bob is green, but we cannot determine whether Bob is white or not. Therefore, the statement \"Bob is green\" is true, but the statement \"Bob is white\" is unknown.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that Bob is round.\n2. We are given that round things are quiet. \n   So, from this, we can conclude that Bob is quiet.\n\n3. Now, we know that all quiet things are smart. \n   Therefore, Bob is smart.\n\n4. However, we cannot conclude that Bob is green from the given information.\n\n5. We know that all green, round things are white. \n   Since Bob is round, this statement may be applicable to him, but it does not directly say that Bob is white.\n\n6. We cannot conclude that Bob is green using the given information. \n\nHence, the statement \"Bob is green\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is green\" is true, false, or unknown, we need to use the given information and logical deductions.\n\n1. Bob is round. \n2. Erin is quiet. Erin is smart. Erin is not white. \n3. Fiona is green. Fiona is quiet. Fiona is smart. \n4. Gary is big. Gary is green. Gary is quiet. Gary is white. \n5. All quiet things are smart. (From 2 and 3) \n6. Round things are quiet. (From 1) \n7. All green, round things are white. (From 3 and 6) \n8. If Fiona is not quiet then Fiona is white. \n9. Smart, white things are big. \n10. If something is nice and quiet then it is big. \n11. If something is quiet and not smart then it is not green. \n12. All quiet, smart things are green. \n13. If something is big then it is nice.\n\nFrom statement 1, Bob is round. \nFrom statement 6, round things are quiet. \nTherefore, Bob is quiet.\n\nFrom statement 5, all quiet things are smart. \nTherefore, Bob is smart.\n\nNow, let's analyze the possibilities for Bob's color. \n- If Bob is white, then from statement 7, Bob must be green and round, which contradicts statement 4 that Gary is white and green. Therefore, Bob is not white.\n- If Bob is green, then we need to check if this is possible based on the given information.\n\nSince Bob is round (from statement 1), and all green, round things are white (from statement 7), we can conclude that Bob is white.\n\nHowever, if we look at statement 8, if Fiona is not quiet then Fiona is white. \nFiona is quiet (from statement 3), therefore, Fiona is not white.\nFrom statement 7, all green, round things are white. \nGary is green and round (from statement 4), therefore, Gary is white. \nThis contradicts the fact that Fiona is not white, since Gary and Fiona are both green and round.\n\nWe can see that the information given is inconsistent. The statement \"Bob is green\" is not directly true or false based on the given information, but it is inconsistent with the information given about Gary and Fiona.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine the characteristics of each person and object. \n\n1. Bob is round.\n2. Erin is quiet.\n3. Erin is smart.\n4. Erin is not white.\n5. Fiona is green.\n6. Fiona is quiet.\n7. Fiona is smart.\n8. Gary is big.\n9. Gary is green.\n10. Gary is quiet.\n11. Gary is white.\n12. All quiet things are smart.\n13. Round things are quiet.\n14. All green, round things are white.\n15. If Fiona is not quiet then Fiona is white.\n16. Smart, white things are big.\n17. If something is nice and quiet then it is big.\n18. If something is quiet and not smart then it is not green.\n19. All quiet, smart things are green.\n20. If something is big then it is nice.\n\nFrom statement 13, we know that round things are quiet. Since Bob is round (statement 1), we can conclude that Bob is quiet (by the transitive property).\n\nFrom statement 12, we know that all quiet things are smart. Since Bob is quiet, we can conclude that Bob is smart (by the transitive property).\n\nFrom statement 18, we know that if something is quiet and not smart then it is not green. However, we do not know if Bob is not smart. Since we already concluded that Bob is smart, this statement does not provide any additional information about Bob's color.\n\nFrom statement 14, we know that all green, round things are white. However, we do not know if Bob is green. We only know that Bob is round.\n\nTherefore, we cannot determine if Bob is green based on the given information. The answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve the problem, we need to analyze the given statements and apply them to determine whether Bob is green.\n\n1. Bob is round.\n2. All round things are quiet. \n   From this, we can conclude that Bob is quiet.\n\n3. All quiet things are smart.\n   Since Bob is quiet, we can conclude that Bob is smart.\n\n4. All quiet, smart things are green.\n   However, we have another statement that says \"If something is quiet and not smart then it is not green.\" Since Bob is both quiet and smart, we cannot conclude whether Bob is green or not based on this statement alone.\n\n5. All green, round things are white.\n   This statement is not directly applicable to Bob, but it does imply that green round things are white. We don't have enough information to conclude that Bob is white or not.\n\nTo determine whether Bob is green or not, let's consider the other statements.\n\n6. Fiona is green.\n7. Fiona is quiet.\n8. Fiona is smart.\n9. If Fiona is not quiet then Fiona is white.\n   From this statement, we can conclude that Fiona is not white because Fiona is quiet.\n\n10. Gary is big.\n11. Gary is green.\n12. Gary is quiet.\n13. Gary is white.\n14. If something is nice and quiet then it is big.\n   Since Gary is quiet, we can conclude that Gary is big.\n15. If something is big then it is nice.\n   Since Gary is big, we can conclude that Gary is nice.\n\nNow, let's consider the initial statement \"All quiet, smart things are green\" again. We know that Bob is quiet and smart, but we don't know whether he is green or not. However, we have another statement that says \"If Fiona is not quiet then Fiona is white.\" This implies that if Fiona is not quiet, then she is white. But we know that Fiona is quiet.\n\nFrom statements 3 and 7, we can conclude that Fiona is smart and quiet, which means Fiona is green. However, statement 9 says \"If Fiona is not quiet then Fiona is white.\" This implies that Fiona being quiet does not necessarily mean she is green.\n\nSince we know that Fiona is green when she is not quiet, and we know that Fiona is quiet, we can conclude that Fiona is green.\n\nNow, let's go back to the initial problem and the conclusion we reached for Fiona. We concluded that Fiona is green when she is quiet, and we also concluded that Fiona is quiet. We also concluded that all quiet, smart things are green.\n\nSo, Bob is quiet, and we know that all quiet, smart things are green. Since we know that Fiona is green, and we know that Fiona is quiet and smart, we can conclude that all quiet, smart things are green.\n\nTherefore, since Bob is quiet and smart, we can conclude that Bob is green.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. \"Bob is round.\"\n   - We know that round things are quiet. So, Bob is quiet.\n\n2. Since Bob is quiet, and all quiet things are smart, Bob is smart.\n\n3. There is no information about Bob's color. We don't know if he is green or not.\n\n4. To determine if Bob is green, we need to consider the information about green things.\n   - Gary is green, Gary is quiet, and Gary is white. Since Gary is quiet and not smart (smart things are green), Gary is not green (because quiet and not smart is not green).\n\n   - Fiona is green, quiet, and smart. But the fact that Fiona is green and quiet doesn't tell us anything about Bob being green.\n\n   - There is no information about round things being green. Since Bob is round, this might seem like a potential clue, but it's not enough information to conclude that Bob is green.\n\n5. The statement \"All green, round things are white\" is crucial. If Bob is round and green, then he would be white, which contradicts the information about Bob being round and quiet (round things are quiet).\n\n   - So, we can conclude that if Bob is green, he would be white and quiet. However, we already know that Bob is quiet. If Bob is green, then he must be white, which contradicts the fact that round things are quiet.\n\n   - But, if we consider the fact that if Fiona is not quiet then Fiona is white, we can't conclude anything about Bob being green from this fact.\n\n6. There is no information that directly contradicts Bob being green, but there are indirect clues. If Bob is green, then he would be white (all green, round things are white), and this would create a contradiction with the fact that round things are quiet.\n\n   - However, we need to consider the statement \"If something is quiet and not smart then it is not green.\" This statement tells us that if Bob is quiet and not smart, then he is not green. But we already know that Bob is smart.\n\n7. Since we have a contradiction when considering the possibilities of Bob being green and we already know that Bob is round and quiet, we can conclude that Bob cannot be green.\n\nTherefore, the statement \"Bob is green\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is green\" is true, false, or unknown, we need to analyze the given statements and apply logical reasoning.\n\nGiven statements:\n1. Bob is round.\n2. Erin is quiet.\n3. Erin is smart.\n4. Erin is not white.\n5. Fiona is green.\n6. Fiona is quiet.\n7. Fiona is smart.\n8. Gary is big.\n9. Gary is green.\n10. Gary is quiet.\n11. Gary is white.\n12. All quiet things are smart.\n13. Round things are quiet.\n14. All green, round things are white.\n15. If Fiona is not quiet then Fiona is white.\n16. Smart, white things are big.\n17. If something is nice and quiet then it is big.\n18. If something is quiet and not smart then it is not green.\n19. All quiet, smart things are green.\n20. If something is big then it is nice.\n\nNow, let's apply these statements to determine whether Bob is green.\n\nFrom statement 1, Bob is round. \nFrom statement 13, round things are quiet.\nSo, Bob is quiet (from statement 13).\n\nFrom statement 12, all quiet things are smart. \nSo, Bob is smart (from statement 12).\n\nWe cannot directly determine Bob's color from the given statements. However, since Bob is quiet and smart, we can apply statement 19, which states that all quiet, smart things are green.\n\nTherefore, based on the given statements, Bob is green.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_bob, round_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_bob, quiet_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_bob, smart_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_bob, smart_bob), green_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_bob, quiet_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_bob, smart_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_bob, smart_bob), green_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_bob, quiet_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_bob, smart_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & round(X) -> white(X)",
+          "z3_formula": "Implies(And(green_bob, round_bob), white_bob)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_bob, quiet_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_bob, smart_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_bob, smart_bob), green_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_bob, quiet_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_bob, smart_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & round(X) -> white(X)",
+          "z3_formula": "Implies(And(green_bob, round_bob), white_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == Unknown",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_X, smart_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_bob, quiet_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_bob, smart_bob), green_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & round(X) -> white(X)",
+          "z3_formula": "Implies(And(green_bob, round_bob), white_bob)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_bob, quiet_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_bob, smart_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & round(X) -> white(X)",
+          "z3_formula": "Implies(And(green_bob, round_bob), white_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 5
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_bob, quiet_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_bob, smart_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & ~smart(X) -> ~green(X)",
+          "z3_formula": "Implies(And(quiet_bob, Not(smart_bob)), Not(green_bob))",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & round(X) -> white(X)",
+          "z3_formula": "Implies(And(green_bob, round_bob), white_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == Unknown",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_bob, quiet_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_bob, smart_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_bob, smart_bob), green_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & Not(smart(X)) -> Not(green(X))",
+          "z3_formula": "Implies(And(quiet_X, Not(smart_X)), Not(green_X))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "Not(quiet(X)) -> white(X)",
+          "z3_formula": "Implies(Not(quiet_X), white_X)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_gary, big_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> nice(X)",
+          "z3_formula": "Implies(big_gary, nice_gary)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "Not(quiet(X)) -> white(X)",
+          "z3_formula": "Implies(Not(quiet_X), white_X)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "Not(white(fiona))",
+          "z3_formula": "Not(white_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_fiona, smart_fiona), green_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_bob, smart_bob), green_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_bob, quiet_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_bob, smart_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & quiet(X) -> not smart(X)",
+          "z3_formula": "Implies(And(green_gary, quiet_gary), Not(smart_gary))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(gary)",
+          "z3_formula": "Not(smart_gary) == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & round(X) -> white(X)",
+          "z3_formula": "Implies(And(green_bob, round_bob), white_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_bob, quiet_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not smart(X) -> not green(X)",
+          "z3_formula": "Implies(And(quiet_bob, Not(smart_bob)), Not(green_bob))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not green(bob)",
+          "z3_formula": "Not(green_bob) == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_bob, quiet_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_bob, smart_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_bob, smart_bob), green_bob)",
+          "source_step": 6
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 113,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 32
+    },
+    "maxsat_stats": {
+      "satisfied": 31,
+      "excluded": 1,
+      "total_weight": 112,
+      "solve_time_ms": 1.149144023656845
+    },
+    "timing": {
+      "trace_gen_s": 7.16,
+      "extraction_s": 28.798,
+      "dedup_s": 0.675,
+      "maxsat_s": 0.003,
+      "total_s": 36.637
+    }
+  }
+}

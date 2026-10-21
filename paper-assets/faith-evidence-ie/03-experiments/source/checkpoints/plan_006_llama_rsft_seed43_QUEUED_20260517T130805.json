@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan_006_llama_rsft_seed43",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:07:02.215Z",
+    "updated_at": "2026-05-17T13:08:05.129Z",
+    "hypothesis": "Validate LLaMA-8B RSFT robustness across seeds. Seed 42 gave rel_f1=0.5674 (+1.6pp over SFT baseline 0.5514). If seed 43 gives similar result, the cross-architecture RSFT claim is robust against seed variance.",
+    "parent": "plan_016_llama_rsft_train_r3"
+  },
+  "timestamp": "2026-05-17T13:08:05.563115+00:00",
+  "trigger": "update_registry"
+}

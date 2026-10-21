@@ -1,0 +1,1 @@
+Cross-model SC (w=3) vs NLI combo (w=3) ablation results. Cross voter: Qwen2.5-14B. Remote file: westd-16639:/root/symb_invariant_consensus/results/cross_model_sc_ablation.json

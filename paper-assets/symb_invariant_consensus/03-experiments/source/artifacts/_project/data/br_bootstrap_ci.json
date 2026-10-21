@@ -1,0 +1,28 @@
+{
+  "Mistral-7B": {
+    "br": 4.97,
+    "ci_low": 3.98,
+    "ci_high": 6.37,
+    "n_questions": 83
+  },
+  "Qwen2.5-14B": {
+    "br": 3.93,
+    "ci_low": 2.44,
+    "ci_high": 7.11,
+    "n_questions": 52
+  },
+  "LLaMA-3.1-8B": {
+    "br": 3.87,
+    "ci_low": 3.11,
+    "ci_high": 4.98,
+    "n_questions": 86,
+    "note": "4 traces from cross-model experiment, SICA by constraint-count majority"
+  },
+  "method": {
+    "bootstrap_resamples": 10000,
+    "seed": 42,
+    "level": "question-level",
+    "statistic": "mean of per-question gold_frac, then BR = (1 - mean) / mean",
+    "ci_type": "percentile 95%"
+  }
+}

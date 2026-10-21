@@ -1,0 +1,52 @@
+{
+  "exp_id": "exception_only_nomarker_seed42",
+  "project": "trace-verdict-study",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 2,
+    "created_at": "2026-05-16T06:03:33.324Z",
+    "updated_at": "2026-05-16T15:51:23.030Z",
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "reproduce": {
+      "finished_at": "2026-05-16T15:50:20.250Z"
+    },
+    "completed_at": "2026-05-16T15:50:22.017Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T15:50:23.894246+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "python train/train_sft.py --condition exception_only_nomarker --model_path models/Qwen2.5-Coder-7B-Instruct --gpu 0 --seed 42 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_nomarker_seed42 --wandb_run_name exception_only_nomarker_seed42 --gradient_checkpointing && python eval/evaluate.py --condition exception_only_nomarker --checkpoint_dir .../exception_only_nomarker_seed42/final --save_predictions",
+      "server": "westd-11235",
+      "data_path": "/root/autodl-tmp/trace-verdict-study-data/exception_only_nomarker_{train,test}.jsonl",
+      "data_count": 5910,
+      "model_name": "Qwen2.5-Coder-7B-Instruct",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_nomarker_seed42",
+      "log_path": "/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_nomarker_seed42_train.log",
+      "gpu": "cuda:0",
+      "tmux_session": "nomarker_seed42",
+      "description": "R1-N1 control: exception_only with ALL bracket format markers removed",
+      "markers_removed": [
+        "[No exception data in trace]",
+        "[ERROR] prefix",
+        "[No trace available]",
+        "[...trace truncated...]"
+      ],
+      "train_samples": 4720,
+      "test_samples": 1190
+    }
+  },
+  "timestamp": "2026-05-16T15:51:23.286073+00:00",
+  "trigger": "update_registry"
+}

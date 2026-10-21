@@ -1,0 +1,232 @@
+{
+  "rf_ols": {
+    "mmlu": {
+      "r2": 0.6586615509552801,
+      "adj_r2": 0.6584339919892503,
+      "keff_beta": 0.16517932295288243,
+      "keff_std_beta": 0.16517932295288243,
+      "keff_t": 28.723551518003255,
+      "keff_p": 1.672624445031848e-160,
+      "eta_beta": 0.19397432471269013,
+      "eta_std_beta": 0.19397432471269013,
+      "eta_t": 33.73080485772521,
+      "eta_p": 9.465043972745533e-212
+    },
+    "arc_challenge": {
+      "r2": 0.7507050490507157,
+      "adj_r2": 0.7505388524167496,
+      "keff_beta": 1.0968682504541702,
+      "keff_std_beta": 1.0968682504541702,
+      "keff_t": 38.9653278152125,
+      "keff_p": 4.165043724175732e-269,
+      "eta_beta": 0.14969050650576918,
+      "eta_std_beta": 0.14969050650576918,
+      "eta_t": 5.317630129605251,
+      "eta_p": 1.128452486349379e-07
+    }
+  },
+  "rf_clustered_se": {
+    "mmlu": {
+      "keff_p": 4.551682410898801e-05,
+      "eta_p": 4.723436963893844e-06
+    },
+    "arc_challenge": {
+      "keff_p": 0.0007401400719028095,
+      "eta_p": 0.5757059625950891
+    }
+  },
+  "adaptive_comparison": {
+    "mmlu": {
+      "rf_r2": 0.6586615509552801,
+      "adaptive_mean_r2": 0.2993726851314971,
+      "gap": 0.359288865823783,
+      "adaptive_per_condition": {
+        "mmluxprompt_injection": 0.6038245457626201,
+        "mmluxsycophancy": 0.29859413860523376,
+        "mmluxscore_manipulation": 0.32011239208700004,
+        "mmluxverbosity_bias": 0.3259662305953288,
+        "mmluxposition_bias": 0.18468992038469711,
+        "mmluxauthority_bias": 0.06304888335410297
+      }
+    },
+    "arc_challenge": {
+      "rf_r2": 0.7507050490507157,
+      "adaptive_mean_r2": 0.21298073448566,
+      "gap": 0.5377243145650556,
+      "adaptive_per_condition": {
+        "arc_challengexprompt_injection": 0.30414386978201924,
+        "arc_challengexsycophancy": 0.07710107966581581,
+        "arc_challengexscore_manipulation": 0.17648495819517218,
+        "arc_challengexverbosity_bias": 0.21752149273946386,
+        "arc_challengexposition_bias": 0.35656942396232505,
+        "arc_challengexauthority_bias": 0.14606358256916363
+      }
+    }
+  },
+  "per_condition_detail": {
+    "mmlu": {
+      "n_panels": 3003,
+      "rf_asr_stats": {
+        "mean": 0.08960086580086579,
+        "std": 0.03564957793358564,
+        "max_analytical_deviation": 0.004098613925925906
+      },
+      "eta_max_rf_stats": {
+        "mean": 0.3732256632256633,
+        "min": 0.18666666666666665,
+        "max": 0.43333333333333335
+      },
+      "keff_stats": {
+        "mean": 3.5509969815435527,
+        "min": 2.262318849883708,
+        "max": 4.41469390032275
+      },
+      "ols": {
+        "r2": 0.6586615509552801,
+        "adj_r2": 0.6584339919892503,
+        "keff_beta": 0.16517932295288243,
+        "keff_std_beta": 0.16517932295288243,
+        "keff_t": 28.723551518003255,
+        "keff_p": 1.672624445031848e-160,
+        "eta_beta": 0.19397432471269013,
+        "eta_std_beta": 0.19397432471269013,
+        "eta_t": 33.73080485772521,
+        "eta_p": 9.465043972745533e-212
+      },
+      "clustered_se": {
+        "keff_p": 4.551682410898801e-05,
+        "eta_p": 4.723436963893844e-06
+      },
+      "bootstrap_v2": {
+        "keff_boot_p_positions": [
+          0.0031,
+          0.0014,
+          0.0014,
+          0.0014,
+          0.002
+        ],
+        "keff_final_p": 0.0031,
+        "keff_n_clusters": [
+          11,
+          11,
+          11,
+          11,
+          11
+        ],
+        "eta_boot_p_positions": [
+          0.0067,
+          0.0055,
+          0.0028,
+          0.002,
+          0.0014
+        ],
+        "eta_final_p": 0.0067,
+        "eta_n_clusters": [
+          11,
+          11,
+          11,
+          11,
+          11
+        ]
+      }
+    },
+    "arc_challenge": {
+      "n_panels": 3003,
+      "rf_asr_stats": {
+        "mean": 0.015261238761238763,
+        "std": 0.020768554031533073,
+        "max_analytical_deviation": 0.0019753705185185134
+      },
+      "eta_max_rf_stats": {
+        "mean": 0.36044289044289046,
+        "min": 0.036666666666666625,
+        "max": 0.55
+      },
+      "keff_stats": {
+        "mean": 3.151818279526899,
+        "min": 2.0632973380215227,
+        "max": 4.179510017824375
+      },
+      "ols": {
+        "r2": 0.7507050490507157,
+        "adj_r2": 0.7505388524167496,
+        "keff_beta": 1.0968682504541702,
+        "keff_std_beta": 1.0968682504541702,
+        "keff_t": 38.9653278152125,
+        "keff_p": 4.165043724175732e-269,
+        "eta_beta": 0.14969050650576918,
+        "eta_std_beta": 0.14969050650576918,
+        "eta_t": 5.317630129605251,
+        "eta_p": 1.128452486349379e-07
+      },
+      "clustered_se": {
+        "keff_p": 0.0007401400719028095,
+        "eta_p": 0.5757059625950891
+      },
+      "bootstrap_v2": {
+        "keff_boot_p_positions": [
+          0.001,
+          0.001,
+          0.001,
+          0.003,
+          0.0016
+        ],
+        "keff_final_p": 0.003,
+        "keff_n_clusters": [
+          11,
+          11,
+          11,
+          11,
+          11
+        ],
+        "eta_boot_p_positions": [
+          0.14,
+          0.1369,
+          0.3847,
+          0.3127,
+          0.5697
+        ],
+        "eta_final_p": 0.5697,
+        "eta_n_clusters": [
+          11,
+          11,
+          11,
+          11,
+          11
+        ]
+      }
+    }
+  },
+  "summary": "K=5 RF: K_eff sig OLS 2/2, clustered 2/2, bootstrap 2/2. RF mean R²=0.7047 > adaptive mean R²=0.2562 (gap=+0.4485), matching K=3 pattern where RF consistently explains more variance.",
+  "meta": {
+    "K": 5,
+    "n_panels": 3003,
+    "n_sim_trials": 10000,
+    "bootstrap_B": 9999,
+    "seed": 42,
+    "majority_threshold": 3,
+    "rf_definition": "1 - clean_accuracy (dataset-level)",
+    "regression": "log(ASR+1e-6) ~ log(K_eff) + log(eta_max+1e-6), standardized",
+    "clustering": "5-position max-p (conservative)",
+    "n_conditions": 2,
+    "note": "RF is dataset-level; no attack variation; no FDR (only 2 tests).",
+    "k3_reference": {
+      "mmlu_r2": 0.7344,
+      "arc_r2": 0.8133,
+      "keff_sig_bootstrap": "2/2"
+    }
+  },
+  "comparison_table": {
+    "k3_rf": {
+      "mmlu_r2": 0.7344,
+      "arc_r2": 0.8133,
+      "keff_boot_sig": "2/2"
+    },
+    "k5_rf": {
+      "mmlu_r2": 0.6586615509552801,
+      "arc_r2": 0.7507050490507157,
+      "keff_boot_sig": "2/2"
+    },
+    "k5_adaptive_mean_r2": 0.25617670980857854
+  }
+}

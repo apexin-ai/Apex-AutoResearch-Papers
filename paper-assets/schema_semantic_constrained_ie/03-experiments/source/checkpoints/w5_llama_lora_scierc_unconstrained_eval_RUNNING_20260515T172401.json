@@ -1,0 +1,36 @@
+{
+  "exp_id": "w5_llama_lora_scierc_unconstrained_eval",
+  "project": "schema_semantic_constrained_ie",
+  "state": "RUNNING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T16:33:40.179Z",
+    "updated_at": "2026-05-15T17:24:00.928Z",
+    "spec": {
+      "command": "python3 run_constrained_extraction.py --mode unconstrained --dataset scierc --model_path checkpoints/llama_lora_scierc_merged --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/w5_llama_lora_scierc_unconstrained.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "287667",
+      "log_path": "/root/schema_semantic_constrained_ie/outputs/w5_llama_lora_scierc_unconstrained.jsonl",
+      "submitted_at": "2026-05-15T17:19:48.001Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/processed_data/test.json",
+      "data_count": 100,
+      "model_name": "Meta-Llama-3.1-8B-Instruct-LoRA-SciERC",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/llama_lora_scierc_merged",
+      "eval_data": "data/processed_data/test.json",
+      "parent": "w5_llama_lora_scierc_training",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/llama_lora_scierc_merged"
+    },
+    "hypothesis": "Fine-tuned Llama-3.1-8B SciERC unconstrained eval — 验证 LoRA 后残余 DR 是否仍 >2%，决定 OntoCoDec 在 fine-tuned Llama 上的 composability 价值。"
+  },
+  "timestamp": "2026-05-15T17:24:01.011159+00:00",
+  "trigger": "update_registry"
+}

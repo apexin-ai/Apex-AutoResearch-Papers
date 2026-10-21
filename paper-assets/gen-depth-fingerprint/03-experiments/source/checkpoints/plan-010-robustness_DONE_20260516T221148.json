@@ -1,0 +1,42 @@
+{
+  "exp_id": "plan-010-robustness",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T22:09:57.049Z",
+    "updated_at": "2026-05-16T22:11:48.657Z",
+    "hypothesis": "Human edit robustness: depth fingerprint 在 5-20% random word replacement 下的 F1 退化测试，验证实际编辑场景（通常 < 5%）不影响检测",
+    "conclusion": "success",
+    "metrics": {
+      "baseline_binary_f1": 0.695,
+      "5pct_binary_f1": 0.65,
+      "10pct_binary_f1": 0.614,
+      "20pct_binary_f1": 0.591,
+      "5pct_drop": -0.046,
+      "10pct_drop": -0.081,
+      "20pct_drop": -0.104
+    },
+    "checkpoint_path": "/root/gen-depth-fingerprint/experiments/human_edit_robustness/robustness_results.json",
+    "log_path": "/root/gen-depth-fingerprint/experiments/human_edit_robustness/",
+    "spec": {
+      "command": "python human_edit_robustness.py",
+      "server": "autodl-5090",
+      "gpu": "cuda:0",
+      "data_path": "/root/gen-depth-fingerprint/data/detector_scores_8gen.csv",
+      "data_count": 5000,
+      "model_name": "Pythia-410M (reference)",
+      "seed": 42,
+      "perturbation_rates": [
+        0.05,
+        0.1,
+        0.2
+      ]
+    },
+    "completed_at": "2026-05-16T22:11:48.657Z"
+  },
+  "timestamp": "2026-05-16T22:11:48.727377+00:00",
+  "trigger": "update_registry"
+}

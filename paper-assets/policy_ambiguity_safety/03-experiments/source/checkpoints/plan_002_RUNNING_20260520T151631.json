@@ -1,0 +1,24 @@
+{
+  "exp_id": "plan_002",
+  "project": "policy_ambiguity_safety",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T15:16:08.165Z",
+    "updated_at": "2026-05-20T15:16:31.482Z",
+    "hypothesis": "Policy ambiguity causes significantly higher agent safety violation rates (+30-40pp) across all 6 ambiguity types, with uniform effect size across types (no significant type×violation interaction). Binary effect is the primary finding; type uniformity supports that ambiguity per se, not specific linguistic structures, drives violations.",
+    "spec": {
+      "command": "python run_full_study.py --all --clauses clause_templates_full.json --models gpt-5.4,gpt-4.1 --concurrency 10",
+      "server": "local (API experiment)",
+      "data_path": "artifacts/clause_templates_full.json",
+      "data_count": 300,
+      "model_name": "gpt-5.4, gpt-4.1",
+      "seed": "N/A"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-20T15:16:31.491757+00:00",
+  "trigger": "update_registry"
+}

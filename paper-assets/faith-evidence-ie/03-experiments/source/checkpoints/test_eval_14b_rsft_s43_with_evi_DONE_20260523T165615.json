@@ -1,0 +1,70 @@
+{
+  "exp_id": "test_eval_14b_rsft_s43_with_evi",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T15:01:43.424Z",
+    "updated_at": "2026-05-23T16:56:14.861Z",
+    "spec": {
+      "command": "python -m freige.eval.test_inference --model_path /root/autodl-tmp/rsft_output_14b_s43 --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b_s43 --data_path /root/autodl-tmp/data/re-docred-repo/data --split test_revised --max_new_tokens 2048 --no-quantize --seed 43 --output_dir /root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "261715",
+      "log_path": "~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log",
+      "submitted_at": "2026-05-23T15:01:42.508Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/re-docred-repo/data",
+      "data_count": 500,
+      "model_name": "Qwen3-14B",
+      "seed": 43,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_14b_s43",
+      "eval_data": "Re-DocRED test_revised (500 docs)",
+      "wall_clock_seconds": 6872.4,
+      "gpu_hours": 1.91
+    },
+    "hypothesis": "14B RSFT s43 with-evidence test eval (Re-DocRED test_revised 500 docs, matched@2048). s42 test ign_f1=0.3849. 2-seed reproducibility for 14B test.",
+    "parent": "plan017_14b_rsft_s43_train",
+    "reproduce": {
+      "finished_at": "2026-05-23T16:53:09.148Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-23T16:53:16.818227+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "ign_f1": 0.3767,
+      "f1": 0.3767,
+      "precision": 0.4252,
+      "recall": 0.3382,
+      "evi_f1": 0.2468,
+      "evi_f1_tp": 0.5836,
+      "edcr": 0.834,
+      "n_docs": 500,
+      "n_predictions": 22861,
+      "format_ok": 498,
+      "truncated": 271,
+      "inference_time_s": 6583.2,
+      "codalab_converted": 13323,
+      "codalab_skipped_rel": 371,
+      "codalab_skipped_entity": 652
+    },
+    "log_path": "~/runs/faith-evidence-ie/test_eval_14b_rsft_s43_with_evi.log",
+    "checkpoint_path": "/root/autodl-tmp/eval_results/test_eval_14b_rsft_s43_with_evi",
+    "conclusion": "success",
+    "completed_at": "2026-05-23T16:56:14.862Z"
+  },
+  "timestamp": "2026-05-23T16:56:15.584415+00:00",
+  "trigger": "update_registry"
+}

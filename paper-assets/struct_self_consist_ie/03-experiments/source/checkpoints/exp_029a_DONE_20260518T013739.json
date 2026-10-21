@@ -1,0 +1,71 @@
+{
+  "exp_id": "exp_029a",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T23:32:17.191Z",
+    "updated_at": "2026-05-18T01:37:39.742Z",
+    "hypothesis": "Training convergence modulates degeneracy across datasets. SciERC 3-epoch training should produce lower degeneracy than 5-epoch baseline (17.8%), confirming epoch confound is not Few-NERD-specific.",
+    "parent": "ft_002_v2",
+    "spec": {
+      "command": "FORCE_TORCHRUN=0 CUDA_VISIBLE_DEVICES=0 bash -c \"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && llamafactory-cli train train_config_scierc_3ep.yaml\"",
+      "server": "autodl-5090",
+      "gpu": "cuda:0",
+      "pid": 436761,
+      "data_path": "data/scierc_uie_train",
+      "data_count": 1861,
+      "model_name": "Qwen3-8B LoRA rank=32",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-3epoch-lora",
+      "log_path": "/root/autodl-tmp/struct_self_consist_ie/logs/exp_029a_inference.log",
+      "checkpoint_source": "Qwen/Qwen3-8B",
+      "eval_data": "data/scierc_uie_dev"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T00:55:16.392Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T00:55:20.617085+00:00"
+        }
+      ]
+    },
+    "failure_reason": "",
+    "conclusion": "success",
+    "completed_at": "2026-05-18T01:00:18.242Z",
+    "metrics": {
+      "degeneracy_cf1_pct": 6.43,
+      "greedy_macro_f1": 0.6501,
+      "oracle_macro_f1": 0.7998,
+      "headroom_pp": 14.97,
+      "lp_selection_f1": 0.6383,
+      "lp_selection_delta_pp": -1.18,
+      "qe_LP_auroc": 0.6641,
+      "qe_LP_rho": 0.3551,
+      "qe_SJ_auroc": 0.744,
+      "qe_SJ_rho": 0.516,
+      "qe_FK_auroc": 0.7523,
+      "qe_FK_rho": 0.5302,
+      "qe_EM_auroc": 0.634,
+      "qe_EM_rho": 0.3353,
+      "qe_VC_auroc": 0.736,
+      "qe_VC_rho": 0.5074,
+      "within_instance_median_rho": 0.3172,
+      "within_instance_mean_rho": 0.2727,
+      "lp_range_mean": 0.0854,
+      "n_test": 551,
+      "n_gold_filtered": 529,
+      "n_samples": 8,
+      "train_loss_final": 0.052,
+      "eval_loss": 0.0753
+    }
+  },
+  "timestamp": "2026-05-18T01:37:39.988770+00:00",
+  "trigger": "update_registry"
+}

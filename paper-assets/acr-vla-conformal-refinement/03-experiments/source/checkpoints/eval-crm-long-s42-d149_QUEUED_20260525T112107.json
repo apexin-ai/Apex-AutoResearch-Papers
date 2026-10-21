@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-crm-long-s42-d149",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T11:20:45.404Z",
+    "updated_at": "2026-05-25T11:21:06.370Z",
+    "hypothesis": "SmolVLA CRM (K=10, norm=0.05) 在 Long benchmark 上的 action correction 效果（Table 1 D149 seed，CRM 用 3suite checkpoint 跨 suite 泛化）"
+  },
+  "timestamp": "2026-05-25T11:21:07.956529+00:00",
+  "trigger": "update_registry"
+}

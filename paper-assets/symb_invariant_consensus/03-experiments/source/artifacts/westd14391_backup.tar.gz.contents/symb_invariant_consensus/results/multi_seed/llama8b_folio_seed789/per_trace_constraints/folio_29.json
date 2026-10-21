@@ -1,0 +1,641 @@
+{
+  "pid": "folio_29",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "extraterrestrial(alien)",
+          "z3_formula": "extraterrestrial_alien == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "from_mars(X) -> alien(X)",
+          "z3_formula": "Implies(from_mars_marvin, alien_marvin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not human(extraterrestrial)",
+          "z3_formula": "Not(human_extraterrestrial)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "from_earth(human)",
+          "z3_formula": "from_earth_human == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not from_earth(marvin) & not from_mars(marvin)",
+          "z3_formula": "And(Not(from_earth_marvin), Not(from_mars_marvin))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "extraterrestrial(marvin)",
+          "z3_formula": "extraterrestrial_marvin == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "not from_mars(X) -> human(X)",
+          "z3_formula": "Implies(Not(from_mars_marvin), human_marvin)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "extraterrestrial(alien)",
+          "z3_formula": "extraterrestrial_alien == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "from_mars(X) -> alien(X)",
+          "z3_formula": "Implies(from_mars_marvin, alien_marvin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not human(extraterrestrial)",
+          "z3_formula": "Not(human_extraterrestrial) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "human(from_earth)",
+          "z3_formula": "human_from_earth == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not from_earth_and_mars(marvin)",
+          "z3_formula": "Not(from_earth_and_mars_marvin) == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not from_earth(X) -> extraterrestrial(X)",
+          "z3_formula": "Implies(Not(from_earth_marvin), extraterrestrial_marvin)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "extraterrestrial(alien)",
+          "z3_formula": "extraterrestrial_alien == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "from_mars(X) -> alien(X)",
+          "z3_formula": "Implies(from_mars_marvin, alien_marvin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not human(extraterrestrial)",
+          "z3_formula": "Not(human_extraterrestrial) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "human(from_earth)",
+          "z3_formula": "human_from_earth == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not from_earth_and_mars(marvin)",
+          "z3_formula": "Not(and(from_earth_marvin, from_mars_marvin)) == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not from_earth(X) -> extraterrestrial(X)",
+          "z3_formula": "Implies(Not(from_earth_marvin), extraterrestrial_marvin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "if not from_mars(marvin) then human(marvin)",
+          "z3_formula": "Implies(Not(from_mars_marvin), human_marvin)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "extraterrestrial(alien)",
+          "z3_formula": "extraterrestrial_alien == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "from_mars(X) -> alien(X)",
+          "z3_formula": "Implies(from_mars_marvin, alien_marvin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not_human(extraterrestrial)",
+          "z3_formula": "not_human_extraterrestrial == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "human(everyone_from_earth)",
+          "z3_formula": "human_everyone_from_earth == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not_from_earth_and_mars(marvin)",
+          "z3_formula": "not_from_earth_and_mars_marvin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not from_earth(X) -> extraterrestrial(X)",
+          "z3_formula": "Implies(not_from_earth_marvin, extraterrestrial_marvin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "if not from_mars(marvin) then human(marvin)",
+          "z3_formula": "Implies(not_from_mars_marvin, human_marvin)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": []
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "extraterrestrial(alien)",
+          "z3_formula": "extraterrestrial_alien == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "from_mars(X) -> alien(X)",
+          "z3_formula": "Implies(from_mars_marvin, alien_marvin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not_human(extraterrestrial)",
+          "z3_formula": "not_human_extraterrestrial == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "from_earth(human)",
+          "z3_formula": "from_earth_human == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(from_earth_marvin & from_mars_marvin)",
+          "z3_formula": "not(from_earth_marvin & from_mars_marvin) == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not(from_earth(X)) -> extraterrestrial(X)",
+          "z3_formula": "Implies(Not(from_earth_marvin), extraterrestrial_marvin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "extraterrestrial_marvin",
+          "z3_formula": "extraterrestrial_marvin == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "if_not_from_mars_then_human",
+          "z3_formula": "Implies(Not(from_mars_marvin), human_marvin)",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "extraterrestrial(alien)",
+          "z3_formula": "extraterrestrial_alien == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "from_mars(X) -> alien(X)",
+          "z3_formula": "Implies(from_mars_marvin, alien_marvin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not_human(extraterrestrial)",
+          "z3_formula": "not_human_extraterrestrial == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "human(from_earth)",
+          "z3_formula": "human_from_earth == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not from_earth_and_mars(marvin)",
+          "z3_formula": "not_from_earth_and_mars_marvin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not from_earth(X) -> extraterrestrial(X)",
+          "z3_formula": "Implies(Not(from_earth_marvin), extraterrestrial_marvin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "if not from_mars(marvin) then human(marvin)",
+          "z3_formula": "Implies(Not(from_mars_marvin), human_marvin)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "extraterrestrial(alien)",
+          "z3_formula": "extraterrestrial_alien == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "from_mars(X) -> alien(X)",
+          "z3_formula": "Implies(from_mars_marvin, alien_marvin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not extraterrestrial(human)",
+          "z3_formula": "Not(extraterrestrial_human) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "from_earth(X) -> human(X)",
+          "z3_formula": "Implies(from_earth_marvin, human_marvin)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not from_earth_marvin & not from_mars_marvin",
+          "z3_formula": "And(Not(from_earth_marvin), Not(from_mars_marvin)) == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not from_earth(X) -> extraterrestrial(X)",
+          "z3_formula": "Implies(Not(from_earth_marvin), extraterrestrial_marvin)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "extraterrestrial_alien == True",
+          "z3_formula": "extraterrestrial_alien == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "extraterrestrial(X) -> alien(X)",
+          "z3_formula": "Implies(extraterrestrial_marvin, alien_marvin)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not human(alien)",
+          "z3_formula": "Not(human_alien) == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not human(marvin)",
+          "z3_formula": "Not(human_marvin) == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "extraterrestrial(alien)",
+          "z3_formula": "extraterrestrial_alien == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "from_mars(X) -> alien(X)",
+          "z3_formula": "Implies(from_mars_marvin, alien_marvin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "alien(X) -> extraterrestrial(X)",
+          "z3_formula": "Implies(alien_marvin, extraterrestrial_marvin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "extraterrestrial(X) -> not human(X)",
+          "z3_formula": "Implies(extraterrestrial_marvin, not_human_marvin)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "human(earth)",
+          "z3_formula": "human_earth == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "from_earth(X) -> human(X)",
+          "z3_formula": "Implies(from_earth_marvin, human_marvin)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not from_earth_and_from_mars(marvin)",
+          "z3_formula": "not_from_earth_and_from_mars_marvin == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not from_earth(X) -> extraterrestrial(X)",
+          "z3_formula": "Implies(not_from_earth_marvin, extraterrestrial_marvin)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "if not from_mars(marvin) then human(marvin)",
+          "z3_formula": "Implies(not_from_mars_marvin, human_marvin)",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "extraterrestrial(alien)",
+          "z3_formula": "extraterrestrial_alien == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "alien(X) -> extraterrestrial(X)",
+          "z3_formula": "Implies(alien_marvin, extraterrestrial_marvin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "from_mars(alien)",
+          "z3_formula": "from_mars_alien == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "from_mars(X) -> alien(X)",
+          "z3_formula": "Implies(from_mars_marvin, alien_marvin)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not_human(extraterrestrial)",
+          "z3_formula": "Not(extraterrestrial_alien) == human_alien",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "human(from_earth)",
+          "z3_formula": "human_from_earth == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(from_earth, marvin) & not(from_mars, marvin)",
+          "z3_formula": "And(Not(from_earth_marvin), Not(from_mars_marvin)) == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not(from_earth, X) -> extraterrestrial(X)",
+          "z3_formula": "Implies(Not(from_earth_marvin), extraterrestrial_marvin)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not_human(extraterrestrial)",
+          "z3_formula": "Not(extraterrestrial_marvin) == human_marvin",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "False (when Marvin is not from Earth), Uncertain (when Marvin is from Earth)",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "extraterrestrial(alien)",
+          "z3_formula": "extraterrestrial_alien == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "from_mars(X) -> alien(X)",
+          "z3_formula": "Implies(from_mars_marvin, alien_marvin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not_human(extraterrestrial)",
+          "z3_formula": "not_human_extraterrestrial == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "human(from_earth)",
+          "z3_formula": "human_from_earth == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(from_mars, and(from_earth, marvin))",
+          "z3_formula": "not_and(from_mars_marvin, from_earth_marvin) == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not(from_earth, marvin) -> extraterrestrial(marvin)",
+          "z3_formula": "Implies(not_from_earth_marvin, extraterrestrial_marvin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not_human(extraterrestrial)",
+          "z3_formula": "not_human_extraterrestrial == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "extraterrestrial(alien)",
+          "z3_formula": "extraterrestrial_alien == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "from_mars(X) -> alien(X)",
+          "z3_formula": "Implies(from_mars_marvin, alien_marvin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not_human(extraterrestrial)",
+          "z3_formula": "not_human_extraterrestrial == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "human(from_earth)",
+          "z3_formula": "human_from_earth == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(from_marvin, earth) & not(from_marvin, mars)",
+          "z3_formula": "And(Not(from_marvin_earth), Not(from_marvin_mars))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not(from_marvin, earth) -> extraterrestrial_marvin",
+          "z3_formula": "Implies(Not(from_marvin_earth), extraterrestrial_marvin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(from_marvin, mars) -> not(from_marvin, earth)",
+          "z3_formula": "Implies(Not(from_marvin_mars), Not(from_marvin_earth))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not_human(extraterrestrial_marvin)",
+          "z3_formula": "not_human_extraterrestrial_marvin == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not(from_marvin, earth) -> not_human_marvin",
+          "z3_formula": "Implies(Not(from_marvin_earth), not_human_marvin)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not(from_marvin, earth) -> human_marvin",
+          "z3_formula": "Implies(Not(from_marvin_earth), human_marvin)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not(from_marvin, mars) -> human_marvin",
+          "z3_formula": "Implies(Not(from_marvin_mars), human_marvin)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not(from_marvin, mars) -> not_human_marvin",
+          "z3_formula": "Implies(Not(from_marvin_mars), not_human_marvin)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not(from_marvin, mars) -> human_marvin == False",
+          "z3_formula": "Implies(Not(from_marvin_mars), human_marvin == False)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not(from_marvin, mars) -> not_human_marvin == True",
+          "z3_formula": "Implies(Not(from_marvin_mars), not_human_marvin == True)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not(from_marvin, mars) -> human_marvin == True",
+          "z3_formula": "Implies(Not(from_marvin_mars), human_marvin == True)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not(from_marvin, mars) -> human_marvin == Unknown",
+          "z3_formula": "Implies(Not(from_marvin_mars), human_marvin == Unknown)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "human_marvin == Unknown",
+          "z3_formula": "human_marvin == Unknown",
+          "source_step": 17
+        }
+      ]
+    }
+  ]
+}

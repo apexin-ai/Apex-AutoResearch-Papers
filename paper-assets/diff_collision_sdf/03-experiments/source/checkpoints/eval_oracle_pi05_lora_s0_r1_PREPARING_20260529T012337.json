@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval_oracle_pi05_lora_s0_r1",
+  "project": "diff_collision_sdf",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-29T01:23:37.027Z",
+    "updated_at": "2026-05-29T01:23:37.027Z"
+  },
+  "timestamp": "2026-05-29T01:23:37.294344+00:00",
+  "trigger": "update_registry"
+}

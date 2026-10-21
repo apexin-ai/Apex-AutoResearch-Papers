@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-922_Q7",
+    "problem": "The cow is cold. The cow is not round. The cow sees the squirrel. The cow sees the tiger. The mouse needs the cow. The mouse needs the tiger. The squirrel needs the cow. The tiger is blue. The tiger is red. The tiger is round. The tiger sees the mouse. If something needs the squirrel then the squirrel sees the tiger. If the cow sees the squirrel then the cow eats the mouse. If the squirrel eats the mouse and the squirrel is not green then the mouse is not red. If the mouse needs the tiger and the mouse is red then the tiger does not see the squirrel. If something needs the mouse and the mouse eats the cow then the cow eats the squirrel. If something is blue then it needs the squirrel. If something needs the cow and the cow is blue then it eats the mouse. If something eats the mouse then it is blue.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse eats the mouse.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nRound($x, bool) ::: Is x round?\nSees($x, $y, bool) ::: Does x see y?\nNeeds($x, $y, bool) ::: Does x need y?\nBlue($x, bool) ::: Is x blue?\nRed($x, bool) ::: Is x red?\nEats($x, $y, bool) ::: Does x eat y?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nCold(cow, True) ::: The cow is cold.\nRound(cow, False) ::: The cow is not round.\nSees(cow, squirrel, True) ::: The cow sees the squirrel.\nSees(cow, tiger, True) ::: The cow sees the tiger.\nNeeds(mouse, cow, True) ::: The mouse needs the cow.\nNeeds(mouse, tiger, True) ::: The mouse needs the tiger.\nNeeds(squirrel, cow, True) ::: The squirrel needs the cow.\nBlue(tiger, True) ::: The tiger is blue.\nRed(tiger, True) ::: The tiger is red.\nRound(tiger, True) ::: The tiger is round.\nSees(tiger, mouse, True) ::: The tiger sees the mouse.\n\nRules:\nNeeds($x, squirrel, True) >>> Sees(squirrel, tiger, True) ::: If something needs the squirrel then the squirrel sees the tiger.\nSees(cow, squirrel, True) >>> Eats(cow, mouse, True) ::: If the cow sees the squirrel then the cow eats the mouse.\nEats(squirrel, mouse, True) && Green(squirrel, False) >>> Red(mouse, False) ::: If the squirrel eats the mouse and the squirrel is not green then the mouse is not red.\nNeeds(mouse, tiger, True) && Red(mouse, True) >>> Sees(tiger, squirrel, False) ::: If the mouse needs the tiger and the mouse is red then the tiger does not see the squirrel.\nNeeds($x, mouse, True) && Eats(mouse, cow, True) >>> Eats(cow, squirrel, True) ::: If something needs the mouse and the mouse eats the cow then the cow eats the squirrel.\nBlue($x, True) >>> Needs($x, squirrel, True) ::: If something is blue then it needs the squirrel.\nNeeds($x, cow, True) && Blue(cow, True) >>> Eats($x, mouse, True) ::: If something needs the cow and the cow is blue then it eats the mouse.\nEats($x, mouse, True) >>> Blue($x, True) ::: If something eats the mouse then it is blue.\n\nQuery:\nEats(mouse, mouse, True) ::: The mouse eats the mouse."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

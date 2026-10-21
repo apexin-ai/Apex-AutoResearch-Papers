@@ -1,0 +1,36 @@
+{
+  "exp_id": "eval_sft_qwen_math_standard_25",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T12:04:49.969Z",
+    "updated_at": "2026-05-16T12:46:00.373Z",
+    "hypothesis": "Qwen2.5-Math-7B Standard 25% post-SFT GSM8K eval (N=200, greedy, seed=42). Control for eval_sft_qwen_math_rasp_25。对比 20% 结果 (Standard 71.0%)。Parent: sft_qwen_math_standard_25.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_standard_25 --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_qwen_math_standard_25.json",
+      "server": "westd-11672",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "6215",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_sft_qwen_math_standard_25.log",
+      "submitted_at": "2026-05-16T12:05:12.481Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "openai/gsm8k",
+      "data_count": 200,
+      "model_name": "Qwen2.5-Math-7B-Standard-25%-SFT",
+      "seed": 42,
+      "gpu_id": "cuda:3",
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_standard_25/",
+      "eval_data": "gsm8k_test"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-16T12:46:00.531991+00:00",
+  "trigger": "update_registry"
+}

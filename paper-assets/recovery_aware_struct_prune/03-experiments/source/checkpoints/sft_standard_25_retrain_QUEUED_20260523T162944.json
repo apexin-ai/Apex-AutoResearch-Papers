@@ -1,0 +1,15 @@
+{
+  "exp_id": "sft_standard_25_retrain",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T15:49:44.201Z",
+    "updated_at": "2026-05-23T16:29:44.133Z",
+    "hypothesis": "Retrain SFT Standard 25% from pruned_standard_25 (2 epochs). Original SFT checkpoint deleted during disk cleanup. P1 — needed for 25% sparsity table. pruned_standard_25 confirmed on westd (10.8G)."
+  },
+  "timestamp": "2026-05-23T16:29:44.899466+00:00",
+  "trigger": "update_registry"
+}

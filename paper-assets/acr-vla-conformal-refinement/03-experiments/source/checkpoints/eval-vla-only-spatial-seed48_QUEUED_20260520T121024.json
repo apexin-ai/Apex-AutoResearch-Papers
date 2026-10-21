@@ -1,0 +1,45 @@
+{
+  "exp_id": "eval-vla-only-spatial-seed48",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 1,
+    "created_at": "2026-05-19T20:32:48.207Z",
+    "updated_at": "2026-05-20T12:10:23.199Z",
+    "hypothesis": "VLA-only baseline on LIBERO-Spatial with seed48 establishes additional statistical sample (n→6) for baseline success rate estimation.",
+    "reproduce": {
+      "finished_at": "2026-05-19T20:58:37.605Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-19T20:58:30.818Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-19T20:59:16.811621+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py --mode vla_only --benchmark spatial --seed 48 --n_rollouts 10 --K 1 --output_file logs/eval_vla_only_spatial_seed48.json 2>&1 | tee logs/eval-vla-only-spatial-seed48.log\"",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "314646",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-vla-only-spatial-seed48.log",
+      "submitted_at": "2026-05-20T10:52:32.818Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-20T12:10:24.297429+00:00",
+  "trigger": "update_registry"
+}

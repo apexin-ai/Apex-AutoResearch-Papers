@@ -1,0 +1,39 @@
+{
+  "exp_id": "learned_estimator_001",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T16:27:28.913Z",
+    "updated_at": "2026-05-17T19:13:37.905Z",
+    "hypothesis": "Statistical features (19-dimensional: perplexity stats, surprisal, n-gram entropy, repetition ratios) can predict generation depth (0-3) with over 70% accuracy using learned classifiers (ordinal MLP, prototypical networks, XGBoost), and this generalizes across models in leave-one-out evaluation, because recursive generation progressively degrades text quality in statistically measurable ways.",
+    "notes": "plan_025. CORRECTED: XGBoost mean 66.1%, Ordinal MLP 63.2%, Prototypical ~65.4% (gpt2xl NaN). All three learned classifiers FAIL to beat RF baseline 66.4%. Confirms 19-feature bottleneck: switching classifier cannot overcome feature ceiling. Negative but valuable result supporting \"feature design is the contribution\" narrative.",
+    "spec": {
+      "command": "bash /root/autodl-tmp/recursive_gen_depth_est/scripts/run_learned_estimator.sh",
+      "server": "westd-48862",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "7428",
+      "log_path": "~/runs/recursive_gen_depth_est/learned_estimator_001.log",
+      "submitted_at": "2026-05-17T17:02:39.989Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/",
+      "data_count": 180000,
+      "model_name": "ordinal_mlp+prototypical+xgboost",
+      "seed": 42,
+      "wall_clock_seconds": 7857.9,
+      "gpu_hours": 2.18
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator/",
+    "log_path": "~/runs/recursive_gen_depth_est/learned_estimator_001.log",
+    "completed_at": "2026-05-17T19:13:37.905Z"
+  },
+  "timestamp": "2026-05-17T19:13:38.131240+00:00",
+  "trigger": "update_registry"
+}

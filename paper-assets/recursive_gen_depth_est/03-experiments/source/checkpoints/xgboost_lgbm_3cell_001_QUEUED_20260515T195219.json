@@ -1,0 +1,14 @@
+{
+  "exp_id": "xgboost_lgbm_3cell_001",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:52:18.858Z",
+    "updated_at": "2026-05-15T19:52:18.858Z"
+  },
+  "timestamp": "2026-05-15T19:52:19.025227+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,66 @@
+{
+  "exp_id": "smollm3_3b_wiki_a100_s42_v3",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T00:24:12.263Z",
+    "updated_at": "2026-05-19T19:07:30.862Z",
+    "hypothesis": "D080 fix: SmolLM3-3B fp32 cross-architecture validation. Resubmit with torch_dtype=float32 to satisfy D079 fp32 requirement.",
+    "parent": "smollm3_3b_wiki_a100_s42_v2",
+    "server": "westd-19828",
+    "gpu": "cuda:1",
+    "account": "root",
+    "spec": {
+      "command": "iterative_train.py --model_name SmolLM3-3B-Base --seed 42 --synthetic_ratio 1.0",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "408261",
+      "log_path": "~/runs/distrib_canary_collapse/smollm3_3b_wiki_a100_s42_v3.log",
+      "submitted_at": "2026-05-19T00:24:32.263Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "SmolLM3-3B-Base",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/models/SmolLM3-3B-Base/",
+      "eval_data": "data/wikitext103_5k",
+      "wall_clock_seconds": 67378.6,
+      "gpu_hours": 18.72
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T19:02:21.376Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T19:02:25.372669+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/distrib_canary_collapse/results/generalize/smollm3_3b_wiki_a100_s42_fp32_v3",
+    "log_path": "~/runs/distrib_canary_collapse/smollm3_3b_wiki_a100_s42_v3.log",
+    "metrics": {
+      "PermG_fwd": "6/8",
+      "PermG_rev": "0/8",
+      "K_ge3_2sigma": "7/8",
+      "K_ge4_2sigma": "6/8",
+      "threshold_onset": "8/8",
+      "MMCT_uniform_fwd": "0/8",
+      "MMCT_wgf": "0/8",
+      "note": "5-method K strong but MMCT ns (3-null-run power limit)"
+    },
+    "completed_at": "2026-05-19T19:07:30.862Z"
+  },
+  "timestamp": "2026-05-19T19:07:31.086379+00:00",
+  "trigger": "update_registry"
+}

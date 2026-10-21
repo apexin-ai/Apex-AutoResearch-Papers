@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-336_Q8",
+    "problem": "The bald eagle eats the bear. The bald eagle eats the cat. The bald eagle eats the rabbit. The bald eagle is young. The bald eagle likes the bear. The bald eagle sees the cat. The bald eagle sees the rabbit. The bear eats the bald eagle. The cat eats the bald eagle. The cat likes the rabbit. The rabbit is round. The rabbit sees the bald eagle. If someone eats the bald eagle and they see the rabbit then they are round. If someone eats the bald eagle and they eat the rabbit then the rabbit likes the cat. If someone is young and they eat the rabbit then the rabbit sees the cat. If someone eats the rabbit and the rabbit is cold then they are blue. If the rabbit sees the cat and the rabbit is round then the cat eats the rabbit. If the bald eagle sees the bear and the bald eagle likes the bear then the bald eagle is red. If someone eats the rabbit and they are blue then they eat the bald eagle. If someone likes the cat then the cat is round. If the rabbit likes the cat and the cat is round then the rabbit is blue.\n\nDetermine whether the following statement is true, false, or unknown:\nThe rabbit does not like the cat.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nYoung($x, bool) ::: Is x young?\nLikes($x, $y, bool) ::: Does x like y?\nSees($x, $y, bool) ::: Does x see y?\nRound($x, bool) ::: Is x round?\nCold($x, bool) ::: Is x cold?\nBlue($x, bool) ::: Is x blue?\nRed($x, bool) ::: Is x red?\n\nFacts:\nEats(BaldEagle, Bear, True) ::: The bald eagle eats the bear.\nEats(BaldEagle, Cat, True) ::: The bald eagle eats the cat.\nEats(BaldEagle, Rabbit, True) ::: The bald eagle eats the rabbit.\nYoung(BaldEagle, True) ::: The bald eagle is young.\nLikes(BaldEagle, Bear, True) ::: The bald eagle likes the bear.\nSees(BaldEagle, Cat, True) ::: The bald eagle sees the cat.\nSees(BaldEagle, Rabbit, True) ::: The bald eagle sees the rabbit.\nEats(Bear, BaldEagle, True) ::: The bear eats the bald eagle.\nEats(Cat, BaldEagle, True) ::: The cat eats the bald eagle.\nLikes(Cat, Rabbit, True) ::: The cat likes the rabbit.\nRound(Rabbit, True) ::: The rabbit is round.\nSees(Rabbit, BaldEagle, True) ::: The rabbit sees the bald eagle.\n\nRules:\nEats($x, BaldEagle, True) && Sees($x, Rabbit, True) >>> Round($x, True) ::: If someone eats the bald eagle and they see the rabbit then they are round.\nEats($x, BaldEagle, True) && Eats($x, Rabbit, True) >>> Likes(Rabbit, Cat, True) ::: If someone eats the bald eagle and they eat the rabbit then the rabbit likes the cat.\nYoung($x, True) && Eats($x, Rabbit, True) >>> Sees(Rabbit, Cat, True) ::: If someone is young and they eat the rabbit then the rabbit sees the cat.\nEats($x, Rabbit, True) && Cold(Rabbit, True) >>> Blue($x, True) ::: If someone eats the rabbit and the rabbit is cold then they are blue.\nSees(Rabbit, Cat, True) && Round(Rabbit, True) >>> Eats(Cat, Rabbit, True) ::: If the rabbit sees the cat and the rabbit is round then the cat eats the rabbit.\nSees(BaldEagle, Bear, True) && Likes(BaldEagle, Bear, True) >>> Red(BaldEagle, True) ::: If the bald eagle sees the bear and the bald eagle likes the bear then the bald eagle is red.\nEats($x, Rabbit, True) && Blue($x, True) >>> Eats($x, BaldEagle, True) ::: If someone eats the rabbit and they are blue then they eat the bald eagle.\nLikes($x, Cat, True) >>> Round(Cat, True) ::: If someone likes the cat then the cat is round.\nLikes(Rabbit, Cat, True) && Round(Cat, True) >>> Blue(Rabbit, True) ::: If the rabbit likes the cat and the cat is round then the rabbit is blue.\n\nQuery:\nLikes(Rabbit, Cat, False) ::: The rabbit does not like the cat."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

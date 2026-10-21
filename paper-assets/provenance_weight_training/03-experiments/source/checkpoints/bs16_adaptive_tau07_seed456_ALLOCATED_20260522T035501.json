@@ -1,0 +1,16 @@
+{
+  "exp_id": "bs16_adaptive_tau07_seed456",
+  "project": "provenance_weight_training",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T03:32:04.878Z",
+    "updated_at": "2026-05-22T03:55:00.909Z",
+    "hypothesis": "Adaptive dual-constraint weighting with bs=16 (n_min=8, tau=0.7), seed456. Third seed for batch-size amplification effect. Paired with bs16_uniform_seed456. If 3-seed mean Δ(adaptive−uniform) at bs=16 >> bs=4's Δ=−0.020, confirms batch size amplifies adaptive advantage.",
+    "parent": "bs16_adaptive_tau07_seed42"
+  },
+  "timestamp": "2026-05-22T03:55:01.345076+00:00",
+  "trigger": "update_registry"
+}

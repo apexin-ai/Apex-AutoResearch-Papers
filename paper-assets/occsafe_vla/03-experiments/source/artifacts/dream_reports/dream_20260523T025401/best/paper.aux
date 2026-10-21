@@ -1,0 +1,68 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{brohan2023rt2}
+\citation{kim2024openvla}
+\citation{brohan2023rt2}
+\citation{kim2024openvla}
+\citation{zhao2024cbf}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{jaderberg2017reinforcement}
+\citation{yarats2021improving}
+\citation{ruder2017overview}
+\citation{standley2020tasks}
+\citation{maennel2020neural}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}VLA Architecture and Auxiliary Heads}{2}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:arch}{{3.1}{2}{VLA Architecture and Auxiliary Heads}{subsection.3.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Experimental Design: Six-Condition Factorial Ablation}{2}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:conditions}{{3.2}{2}{Experimental Design: Six-Condition Factorial Ablation}{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Metrics}{2}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{2}{section.4}\protected@file@percent }
+\newlabel{sec:exp}{{4}{2}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{2}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Axis 1: Gradient Flow Existence}{2}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:axis1}{{4.2}{2}{Axis 1: Gradient Flow Existence}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Six-condition comparison on LIBERO-Spatial (3 seeds each; Depth uses 4 seeds). CAR is the primary safety metric. $\Delta $\,CAR is relative to Vanilla.}}{3}{table.caption.2}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:main}{{1}{3}{Six-condition comparison on LIBERO-Spatial (3 seeds each; Depth uses 4 seeds). CAR is the primary safety metric. $\Delta $\,CAR is relative to Vanilla}{table.caption.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Axis 2: Spatial Content Irrelevance}{3}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:axis2}{{4.3}{3}{Axis 2: Spatial Content Irrelevance}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Axis 3: Temporal Sufficiency}{3}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:axis3}{{4.4}{3}{Axis 3: Temporal Sufficiency}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.1}Dose-Response Analysis}{3}{subsubsection.4.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Dose-response: CAR as a function of gradient flow duration. Cutoff@35K uses 3-seed mean; others are single-seed.}}{3}{table.caption.3}\protected@file@percent }
+\newlabel{tab:dose}{{2}{3}{Dose-response: CAR as a function of gradient flow duration. Cutoff@35K uses 3-seed mean; others are single-seed}{table.caption.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Marginal CAR gain per additional 10K steps of gradient flow exposure.}}{3}{table.caption.4}\protected@file@percent }
+\newlabel{tab:marginal}{{3}{3}{Marginal CAR gain per additional 10K steps of gradient flow exposure}{table.caption.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.2}Temporal Asymmetry: Forward vs.\ Reverse Cutoff}{3}{subsubsection.4.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Mechanistic Evidence: Gradient Norm Tracking}{3}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:gradnorm}{{4.5}{3}{Mechanistic Evidence: Gradient Norm Tracking}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Forward vs.\ reverse cutoff at 35K steps. The 3.3\,pp asymmetry identifies early exposure as the causal factor.}}{4}{table.caption.5}\protected@file@percent }
+\newlabel{tab:reverse}{{4}{4}{Forward vs.\ reverse cutoff at 35K steps. The 3.3\,pp asymmetry identifies early exposure as the causal factor}{table.caption.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Gradient norm temporal evolution (Full OCC condition). The OCC/Action ratio quantifies the relative strength of auxiliary gradient signal.}}{4}{table.caption.6}\protected@file@percent }
+\newlabel{tab:gradnorm}{{5}{4}{Gradient norm temporal evolution (Full OCC condition). The OCC/Action ratio quantifies the relative strength of auxiliary gradient signal}{table.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Cross-Benchmark Replication: LIBERO-Goal}{4}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:goal}{{4.6}{4}{Cross-Benchmark Replication: LIBERO-Goal}{subsection.4.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Gradient norms at step 25K across conditions. Detach produces exactly zero auxiliary gradient to the encoder, confirming the severed gradient path.}}{4}{table.caption.7}\protected@file@percent }
+\newlabel{tab:gradcond}{{6}{4}{Gradient norms at step 25K across conditions. Detach produces exactly zero auxiliary gradient to the encoder, confirming the severed gradient path}{table.caption.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces LIBERO-Goal replication (1 seed each). Condition ordering matches LIBERO-Spatial.}}{4}{table.caption.8}\protected@file@percent }
+\newlabel{tab:goal}{{7}{4}{LIBERO-Goal replication (1 seed each). Condition ordering matches LIBERO-Spatial}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{4}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{4}{Discussion}{section.5}{}}
+\bibstyle{plain}
+\bibcite{brohan2023rt2}{1}
+\bibcite{kim2024openvla}{2}
+\bibcite{zhao2024cbf}{3}
+\bibcite{jaderberg2017reinforcement}{4}
+\bibcite{yarats2021improving}{5}
+\bibcite{ruder2017overview}{6}
+\bibcite{standley2020tasks}{7}
+\bibcite{maennel2020neural}{8}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{5}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{5}{Conclusion}{section.6}{}}
+\gdef \@abspage@last{5}

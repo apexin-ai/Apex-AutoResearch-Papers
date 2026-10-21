@@ -1,0 +1,37 @@
+{
+  "exp_id": "gemma_full_pipeline_102",
+  "project": "clkc_mech_interp",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 1,
+    "created_at": "2026-05-22T03:55:53.223Z",
+    "updated_at": "2026-05-22T04:46:11.143Z",
+    "hypothesis": "跨语言知识冲突信号的可检测性（EN balanced acc ≥70%）和迁移不对称性（ZH→EN > EN→ZH ~7pp）在第三个模型架构 Gemma-2-9B-IT（42层 GQA）上同样成立，与 Llama-3.1-8B 和 Qwen3-8B 形成三模型跨架构验证。",
+    "server": "westd-41302",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-41302",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-22T03:57:47.790Z"
+    },
+    "completed_at": "2026-05-22T04:24:55.671Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "killed"
+      }
+    },
+    "spec": {
+      "command": "translate_to_zh running in tmux(gemma_translate_zh), verify EN done (1274 train + 316 test)",
+      "server": "westd-41302",
+      "data_path": "data/gemma2/",
+      "data_count": 1590,
+      "model_name": "Gemma-2-9B-IT",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-22T04:46:11.204255+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "reverse_cutoff_s2_v3",
+  "project": "occsafe_vla",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T04:39:12.698Z",
+    "updated_at": "2026-05-25T04:40:45.160Z",
+    "hypothesis": "Seed 44 replication of reverse_cutoff (no OCC first 35K steps, enable 35K-50K). Fresh start from pretrained weights — C002 prohibits resume for cutoff experiments. 2-seed results show instability (0.700-0.736) with T7 primary variance source. 3rd seed for late-onset gradient flow instability confirmation.",
+    "parent": "reverse_cutoff_s1"
+  },
+  "timestamp": "2026-05-25T04:40:45.402913+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,55 @@
+{
+  "exp_id": "exp_001_eval_05B_d005_para_aligned",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T15:46:02.603Z",
+    "updated_at": "2026-05-14T20:48:29.901Z",
+    "spec": {
+      "command": "HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=5 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d005_s42/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d005_s42_para_aligned --paraphrase-dir /root/autodl-tmp/exp001/paraphrases/ --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache",
+      "server": "cqa1-21977",
+      "gpu": "cuda:5",
+      "pid": "400526",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_eval_05B_d005_para_aligned.log",
+      "submitted_at": "2026-05-14T15:47:42.077Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "MMLU+GSM8K+ARC+HumanEval paraphrase aligned",
+      "data_count": 4,
+      "model_name": "Qwen2.5-0.5B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d005_s42/lora_adapter",
+      "eval_data": "mmlu gsm8k arc_challenge humaneval paraphrase",
+      "parent": "exp_001_sft_d005_05B",
+      "wall_clock_seconds": 18047.8,
+      "gpu_hours": 5.01
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T16:20:40.222Z"
+    },
+    "metrics": {
+      "mmlu": 0.3548,
+      "gsm8k": 0.2588,
+      "arc_challenge": 0.33,
+      "humaneval": 0,
+      "mmlu_correct": 2340,
+      "mmlu_total": 6596,
+      "gsm8k_correct": 59,
+      "gsm8k_total": 228,
+      "arc_correct": 230,
+      "arc_total": 697,
+      "humaneval_correct": 0,
+      "humaneval_total": 26
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d005_s42_para_aligned",
+    "log_path": "~/runs/contamcal-irt-calibration/exp_001_eval_05B_d005_para_aligned.log",
+    "completed_at": "2026-05-14T20:48:29.901Z"
+  },
+  "timestamp": "2026-05-14T20:48:30.751278+00:00",
+  "trigger": "update_registry"
+}

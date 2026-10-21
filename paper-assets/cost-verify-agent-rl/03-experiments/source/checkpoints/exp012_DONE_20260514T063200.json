@@ -1,0 +1,52 @@
+{
+  "exp_id": "exp012",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T06:24:24.322Z",
+    "updated_at": "2026-05-14T06:32:00.965Z",
+    "hypothesis": "format_penalty=0 + group_size=16 解决 exp010/011 中 format penalty 劫持 GRPO 梯度导致 success 崩塌的问题。从 step 5 checkpoint 恢复，预期 success rate 能持续上升而非崩塌。",
+    "parent": "exp011",
+    "notes": "D010指令：纯A2实验，隔离变量。format_penalty=0（非-0.01），不含valid-action bonus，env.py保持原始二值reward（won=10.0/otherwise 0）。group_size=16, resume from step 5。Worker验证配置中。",
+    "server": "bjb1-17606",
+    "gpu": "cuda:0,cuda:1",
+    "account": "root",
+    "spec": {
+      "command": "python -m ragen.llm_agent.agent_proxy --config-name _alfworld_exp012_reward_fix",
+      "server": "bjb1-17606",
+      "gpu": "cuda:0,cuda:1",
+      "data_path": "/root/autodl-tmp/alfworld/",
+      "data_count": 3553,
+      "model_name": "Qwen3-1.7B (SFT warmup, resumed from GRPO step 5)",
+      "seed": 10000,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/exp008_grpo/global_step_5/",
+      "log_path": "~/runs/cost-verify-agent-rl/exp012.log",
+      "checkpoint_path": "none",
+      "config": "_alfworld_exp012_reward_fix.yaml",
+      "changes_from_parent": "format_penalty: -0.1→0, group_size: 8→16, resume from step 5 instead of step 10"
+    },
+    "pid": "221683",
+    "log_path": "~/runs/cost-verify-agent-rl/exp012.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p \\$TMPDIR && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && cd /root/cost-verify-agent-rl/RAGEN && python -m ragen.llm_agent.agent_proxy --config-name _alfworld_exp012_reward_fix\"",
+      "finished_at": "2026-05-14T06:30:05.818Z"
+    },
+    "failure_reason": "Traceback →  = LLM( ^^^^ File \"/root/miniconda3/lib/python3.12/site-packages/vllm/entrypoints/llm.py\", line 342, in __init__ engine_args = EngineArgs( ^^^^^^^^^^^ TypeError: EngineArgs.__init__() got an unexpected keyword argument 'disable_mm_preprocessor_cache'",
+    "conclusion": "failed",
+    "completed_at": "2026-05-14T06:30:06.373Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T06:30:07.545912+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-14T06:32:00.998962+00:00",
+  "trigger": "update_registry"
+}

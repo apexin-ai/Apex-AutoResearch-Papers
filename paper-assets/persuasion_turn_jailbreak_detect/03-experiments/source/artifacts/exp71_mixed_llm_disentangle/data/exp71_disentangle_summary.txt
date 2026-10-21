@@ -1,0 +1,1 @@
+Comparison table:\n350 Qwen-only: DD=0.997±0.005, AA=0.972±0.026\n250+250 mixed: DD=0.818±0.096, AA=0.504±0.107\n350+350 mixed: DD=0.944±0.007, AA=0.709±0.085\n\nConclusion: Both factors contribute. Scaling 250->350 per source recovers AA +0.205pp but 0.263pp gap to single-source remains (distribution heterogeneity).

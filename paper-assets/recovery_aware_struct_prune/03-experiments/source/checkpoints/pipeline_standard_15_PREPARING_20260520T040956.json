@@ -1,0 +1,14 @@
+{
+  "exp_id": "pipeline_standard_15",
+  "project": "recovery_aware_struct_prune",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T04:09:55.898Z",
+    "updated_at": "2026-05-20T04:09:55.899Z"
+  },
+  "timestamp": "2026-05-20T04:09:56.679294+00:00",
+  "trigger": "update_registry"
+}

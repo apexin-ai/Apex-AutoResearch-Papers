@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-supp-vla-only-spatial-s47",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T07:15:40.347Z",
+    "updated_at": "2026-05-24T07:17:33.630Z",
+    "hypothesis": "VLA-only baseline on Spatial suite seed47. Sixth seed extending variance analysis. 5-seed mean ~78.7%."
+  },
+  "timestamp": "2026-05-24T07:17:35.016768+00:00",
+  "trigger": "update_registry"
+}

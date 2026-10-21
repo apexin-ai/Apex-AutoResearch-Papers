@@ -1,0 +1,62 @@
+{
+  "exp_id": "cwm-seed0",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-12T12:49:43.806Z",
+    "updated_at": "2026-05-12T13:53:51.849Z",
+    "hypothesis": "补充 4B CWM seed=0，凑齐 CWM 5-seed (42, 123, 456, 789, 0)，与 5-seed CLS 做完整 paired 统计分析",
+    "spec": {
+      "command": "bash -c \"cd /home/sonny/exec-sim-repair-verifier && python3 train_cwm_baseline.py --data_dir data/ --model_name /home/sonny/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/1cfa9a7208912126459214e8b04321603b3df60c --output_dir checkpoints_cwm_seed0/ --batch_size 2 --grad_accumulation 16 --no_wandb --seed 0 && python3 eval_cwm_baseline.py --data_dir data/ --checkpoint_dir checkpoints_cwm_seed0/best/ --model_name /home/sonny/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/1cfa9a7208912126459214e8b04321603b3df60c --output eval_cwm_seed0.json\"",
+      "server": "home-1x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "2764835",
+      "log_path": "~/runs/exec-sim-repair-verifier/cwm-seed0.log",
+      "submitted_at": "2026-05-12T12:50:46.224Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "sonny",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl",
+      "data_count": 15290,
+      "model_name": "Qwen/Qwen3-4B",
+      "seed": 0,
+      "checkpoint_path": "/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed0/best/",
+      "wall_clock_seconds": 3785.6,
+      "gpu_hours": 1.05
+    },
+    "reproduce": {
+      "finished_at": "2026-05-12T13:52:02.918Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-12T13:52:04.195613+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "overall_accuracy": 87.57,
+      "fail_f1": 87.93,
+      "fail_precision": 82.71,
+      "fail_recall": 93.86,
+      "pass_f1": 87.18,
+      "pass_precision": 93.45,
+      "pass_recall": 81.7,
+      "exact_match_rate": 84.29,
+      "eval_loss": 0.0665,
+      "train_loss": 0.2554,
+      "train_runtime_sec": 3586
+    },
+    "completed_at": "2026-05-12T13:53:51.849Z"
+  },
+  "timestamp": "2026-05-12T13:53:51.916040+00:00",
+  "trigger": "update_registry"
+}

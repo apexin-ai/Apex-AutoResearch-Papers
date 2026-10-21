@@ -1,0 +1,33 @@
+{
+  "exp_id": "exp_007_llama_inference",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T13:54:48.055Z",
+    "updated_at": "2026-05-14T13:55:19.160Z",
+    "spec": {
+      "command": "python run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp007_llama_inference/",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "75172",
+      "log_path": "~/runs/struct_self_consist_ie/exp_007_llama_inference.log",
+      "submitted_at": "2026-05-14T13:54:47.962Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/scierc/processed_data",
+      "data_count": 551,
+      "model_name": "Meta-Llama-3.1-8B-Instruct (LoRA fine-tuned on SciERC)",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/llama3.1-8b-scierc-merged",
+      "description": "LLaMA-3.1-8B SciERC joint inference (NER+RE) with 8 samples, T=1.0, logprobs collected."
+    }
+  },
+  "timestamp": "2026-05-14T13:55:19.231191+00:00",
+  "trigger": "update_registry"
+}

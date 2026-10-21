@@ -1,0 +1,41 @@
+{
+  "exp_id": "train-crm-pi05-unified-3suite",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T10:10:37.619Z",
+    "updated_at": "2026-05-24T10:38:14.192Z",
+    "hypothesis": "π0.5 unified 3-suite (Spatial+Goal+Object) CRM training. D135: Long dropped due to DDL. obs_dim=2048, ~194K samples, batch_size=32, 50 epochs.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python -u src/train_crm.py --benchmark object spatial goal --cache_dir /root/autodl-tmp/crm_cache_pi05_2048/ --obs_dim 2048 --epochs 50 --batch_size 32 --lr 1e-3 --output_dir /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/",
+      "server": "bjb1-18228",
+      "gpu": 0,
+      "pid": 319672,
+      "model_name": "pi05",
+      "obs_dim": 2048,
+      "data_count": 194485,
+      "data_path": "/root/autodl-tmp/crm_cache_pi05_2048/{object,spatial,goal}/",
+      "data_breakdown": {
+        "object": 72507,
+        "spatial": 60250,
+        "goal": 61728
+      },
+      "seed": 42,
+      "script": "src/train_crm.py",
+      "tmux_session": "crm-pi05-unified",
+      "log_path": "/tmp/train_crm_pi05_unified_3suite.log",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/",
+      "cache_dir": "/root/autodl-tmp/crm_cache_pi05_2048/",
+      "epochs": 50,
+      "batch_size": 32,
+      "lr": 0.001
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-24T10:38:14.192Z"
+  },
+  "timestamp": "2026-05-24T10:38:15.510649+00:00",
+  "trigger": "update_registry"
+}

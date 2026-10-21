@@ -1,0 +1,32 @@
+{
+  "exp_id": "mvp_kl_norm_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:23:52.490Z",
+    "updated_at": "2026-05-15T14:24:54.052Z",
+    "spec": {
+      "hypothesis": "Normalized KL (÷seq_len) + Lagrangian 约束在 1000 步完整训练下产生优于 BCE 的稀疏预测器 (PPL increase < 58%)",
+      "loss_type": "kl_normalized",
+      "seed": 42,
+      "model": "Llama-3.1-8B",
+      "model_name": "llama-3.1-8b",
+      "sparsity": 0.5,
+      "steps": 1000,
+      "batch_size": 4,
+      "seq_len": 2048,
+      "gpu": "cuda:0",
+      "server": "westd-34887",
+      "parent": "kl_normalized_quicktest",
+      "data_path": "wikitext-103 (HF cached)",
+      "data_count": null,
+      "kl_normalization": "÷seq_len only",
+      "lagrangian": "lambda_init=1.0, ×2.0/×0.5 every 25 steps, clamp [0.1, 1000]"
+    }
+  },
+  "timestamp": "2026-05-15T14:24:54.083674+00:00",
+  "trigger": "update_registry"
+}

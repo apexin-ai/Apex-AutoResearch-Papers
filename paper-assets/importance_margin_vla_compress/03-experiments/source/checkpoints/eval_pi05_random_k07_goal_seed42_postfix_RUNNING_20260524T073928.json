@@ -1,0 +1,31 @@
+{
+  "exp_id": "eval_pi05_random_k07_goal_seed42_postfix",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T07:39:07.175Z",
+    "updated_at": "2026-05-24T07:39:27.984Z",
+    "hypothesis": "π0.5 Random k=0.7 Goal post-fix — Goal disruption curve 中间点。Object k=0.7=74.0%（接近 baseline），Spatial k=0.7 运行中。验证 Goal 在 k=0.7 是否也恢复到 near-baseline。Goal baseline=88.4%",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.7 --suite libero_goal --n_episodes 50 --seed 42 --gpu 0",
+      "server": "westd-38929",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "863249",
+      "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k07_goal_seed42_postfix.log",
+      "account": "root",
+      "data_path": "libero_goal",
+      "data_count": 500,
+      "model_name": "pi05_libero_finetuned",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/pi05_libero_finetuned",
+      "eval_data": "libero_goal"
+    }
+  },
+  "timestamp": "2026-05-24T07:39:28.953519+00:00",
+  "trigger": "update_registry"
+}

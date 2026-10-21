@@ -1,0 +1,35 @@
+{
+  "exp_id": "exp-078",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:27:35.893Z",
+    "updated_at": "2026-05-19T22:28:15.797Z",
+    "conclusion": "negative",
+    "metrics": {
+      "sc_accuracy": 0.5,
+      "debate_accuracy": 0.27,
+      "delta": -0.23,
+      "n_samples": 200,
+      "fallbacks": 16,
+      "wall_time_min": 211.5
+    },
+    "checkpoint_path": "/root/symb_invariant_consensus/results/exp078_debate_mistral_logiqa200/results.json",
+    "log_path": "/tmp/exp078_debate_logiqa.log",
+    "spec": {
+      "command": "python run_debate.py --dataset logiqa --n 200",
+      "server": "westd-16639",
+      "data_path": "logiqa",
+      "data_count": 200,
+      "model_name": "mistral-7b",
+      "seed": 42
+    },
+    "hypothesis": "Multi-agent debate among Mistral-7B instances on LogiQA improves accuracy over self-consistency because inter-agent argumentation corrects reasoning errors that independent sampling cannot, yielding a positive delta on 200 problems.",
+    "completed_at": "2026-05-19T22:28:15.797Z"
+  },
+  "timestamp": "2026-05-19T22:28:16.012683+00:00",
+  "trigger": "update_registry"
+}

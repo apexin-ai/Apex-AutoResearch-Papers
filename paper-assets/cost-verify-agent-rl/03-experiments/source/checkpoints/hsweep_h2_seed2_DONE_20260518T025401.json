@@ -1,0 +1,83 @@
+{
+  "exp_id": "hsweep_h2_seed2",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T14:37:14.817Z",
+    "updated_at": "2026-05-18T02:54:01.812Z",
+    "hypothesis": "h=2 seed 2 replicates seed 1 catastrophic collapse (step 3-4 onset, 0% by step 9+), confirming collapse is robust not single-run artifact. Additionally LOG_PER_SAMPLE_ADV=1 collects per-window advantage data for plan_004 sign misattribution empirical verification.",
+    "parent": "hsweep_h2_seed1",
+    "spec": {
+      "command": "python train.py --config-name _alfworld_hsweep_h2 seed.train=20000 trainer.experiment_name=hsweep-h2-seed2",
+      "server": "bjb1-17606",
+      "gpu": "cuda:0,1",
+      "pid": 945877,
+      "wandb_run_id": "jhwyg4tc",
+      "model_name": "Qwen3-1.7B",
+      "seed": 20000,
+      "data_path": "ALFWorld",
+      "data_count": "134 train tasks",
+      "checkpoint_source": "Qwen3-1.7B base (same as hsweep_h2_seed1, not from parent checkpoint)",
+      "eval_data": "ALFWorld val 16 tasks",
+      "log_path": "~/runs/cost-verify-agent-rl/hsweep_h2_s2.log",
+      "notes": "auto_next triggered from hsweep_h2_seed1 completion. LOG_PER_SAMPLE_ADV=1 for plan_004 advantage logging.",
+      "env": "LOG_PER_SAMPLE_ADV=1",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/hsweep-h2/global_step_15/"
+    },
+    "metrics": {
+      "current_step": "15/15",
+      "completed": true,
+      "val_step5": {
+        "success": 0
+      },
+      "val_step10": {
+        "success": 0
+      },
+      "val_step15": {
+        "success": 0.09375
+      },
+      "train_step14": {
+        "success": 0.2656,
+        "pass_at_8": 0.6875
+      },
+      "train_step15": {
+        "success": 0.2812,
+        "pass_at_8": 0.625,
+        "entropy": 0.401,
+        "ppo_kl": 0.006
+      },
+      "train_success_peak": {
+        "step": 15,
+        "value": 0.2812
+      },
+      "adv_log_lines": 3000,
+      "adv_episodes": {
+        "total": 128,
+        "success": 65,
+        "fail": 63
+      },
+      "adv_analysis": {
+        "sign_outcome_agreement": 0.5207,
+        "point_biserial_r": 0.068,
+        "p_adv_pos_given_success": 0.3706,
+        "p_adv_pos_given_failure": 0.306,
+        "magnitude_decay_gamma": 0.9426,
+        "distribution_overlap": 0.878,
+        "verdict": "52% agreement confirms advantage signal nearly uninformative about episode outcome = sign misattribution"
+      },
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/hsweep-h2/global_step_15/",
+      "checkpoint_warning": "seed2 overwrote seed1 step15 checkpoint in same directory",
+      "status_note": "COMPLETED 15/15. Late recovery at step 14-15 (train 26-28%). Val 9.375% on 16 in-dist tasks. ADV: 52% sign agreement = near-random."
+    },
+    "conclusion": "success",
+    "notes": "15/15 步正常完成 + final val。Hypothesis NOT confirmed：seed2 未复现 seed1 的 catastrophic collapse。关键差异：(1) action_is_valid 始终 88-100%（seed1 崩至 0.06%）(2) val step 15 恢复到 9.375%（seed1 终值 0%）(3) train step 15 success=28.1%（seed1 终值 0%）。Val step 0/5/10 确实为 0%，说明 h=2 确实造成学习困难，但不是 seed1 那样的不可逆 catastrophic collapse。Collapse 行为是 seed-dependent 的，不是 robust finding。ADV log 3000 行可用于 sign misattribution 分析。注意：checkpoint 写入 hsweep-h2/ 目录（与 seed1 共享，global_step_15 被覆盖）。",
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/hsweep-h2/global_step_15",
+    "log_path": "/root/runs/cost-verify-agent-rl/hsweep-h2-seed2.log",
+    "completed_at": "2026-05-18T02:52:28.352Z"
+  },
+  "timestamp": "2026-05-18T02:54:01.997180+00:00",
+  "trigger": "update_registry"
+}

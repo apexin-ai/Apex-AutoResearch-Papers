@@ -1,0 +1,14 @@
+{
+  "exp_id": "sica_smoke_5q",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:38:43.996Z",
+    "updated_at": "2026-05-15T11:38:47.349Z"
+  },
+  "timestamp": "2026-05-15T11:38:47.368276+00:00",
+  "trigger": "update_registry"
+}

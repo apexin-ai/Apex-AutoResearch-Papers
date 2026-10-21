@@ -1,0 +1,120 @@
+# Experiment Metrics Summary
+
+## Group Summary (Mean PPL +/- Std)
+
+| Group | N (with PPL) | Mean PPL | Std | Min | Max |
+|-------|-------------|----------|-----|-----|-----|
+| ESS-only | 3 | 17.723 | 0.006 | 17.719 | 17.730 |
+| adaptive (n_min=2) | 3 | 17.651 | 0.007 | 17.643 | 17.657 |
+| adaptive (n_min=3) | 3 | 17.639 | 0.007 | 17.631 | 17.644 |
+| baseline | 4 | 19.013 | 2.638 | 17.686 | 22.970 |
+| batch_size | 1 | 17.730 | 0.000 | 17.730 | 17.730 |
+| contamination_60 | 3 | 17.737 | 0.031 | 17.704 | 17.766 |
+| grid-sweep | 12 | 17.770 | 0.128 | 17.638 | 17.993 |
+| other | 3 | 17.713 | 0.069 | 17.654 | 17.789 |
+| tau-sweep | 5 | 17.696 | 0.020 | 17.679 | 17.723 |
+
+## ESS-only
+
+| exp_id | conclusion | eval_ppl | spec_summary | notes | artifact_flag |
+|--------|-----------|----------|-------------|-------|---------------|
+| ess_only_seed123 | success | 17.720 | n_min=2; method=ess_only | N/A |  |
+| ess_only_seed42 | success | 17.730 | n_min=2; method=ess_only | N/A |  |
+| ess_only_seed456 | success | 17.719 | n_min=2; method=ess_only | N/A |  |
+
+## adaptive (n_min=2)
+
+| exp_id | conclusion | eval_ppl | spec_summary | notes | artifact_flag |
+|--------|-----------|----------|-------------|-------|---------------|
+| adaptive_fix_seed123 | success | 17.643 | tau=0.8 | 最终清理后重提交。从 checkpoint-1500 恢复，无 inline eval。PID=126944 |  |
+| adaptive_fix_seed42 | success | 17.653 | n_min=2; tau=0.8 | 最终清理后重提交。从 checkpoint-1500 恢复，无 inline eval。PID=126801 |  |
+| adaptive_fix_seed456 | success | 17.657 | n_min=2; tau=0.8 | 最终清理后重提交。从 checkpoint-1000 恢复，无 inline eval。PID=127285 |  |
+
+## adaptive (n_min=3)
+
+| exp_id | conclusion | eval_ppl | spec_summary | notes | artifact_flag |
+|--------|-----------|----------|-------------|-------|---------------|
+| adaptive_seed123 | success | 17.631 | method=adaptive; contam=0.4; bs=4; seed=123; Qwen3-0.6B; gpu_h=4.21 | ⚠️ success 仅指训练完成无报错。MVP 假设验证待 held-out eval perplexity 结果。 |  |
+| adaptive_seed42 | success | 17.644 | method=adaptive; contam=0.4; bs=4; seed=42; Qwen3-0.6B; gpu_h=4.21 | ⚠️ success 仅指训练完成无报错。MVP 假设验证待 held-out eval perplexity 结果。 |  |
+| adaptive_seed456 | success | 17.642 | method=adaptive; contam=0.4; bs=4; seed=456; Qwen3-0.6B; gpu_h=4.21 | ⚠️ success 仅指训练完成无报错。MVP 假设验证待 held-out eval perplexity 结果。 |  |
+
+## baseline
+
+| exp_id | conclusion | eval_ppl | spec_summary | notes | artifact_flag |
+|--------|-----------|----------|-------------|-------|---------------|
+| baseline_qwen3_0.6b | success | 22.970 | Qwen3-0.6B | Baseline PPL=22.9654 (loss=3.1340), tokens=4,077,068, time=249s. Weight SHA256=f47f71177f32bcd101b7573ec9171e6a57f4f4d31148d38e382306f42996874b. Pretrained weights confirmed (std ~0.02-0.03, layern... |  |
+| uniform_seed123 | success | 17.686 | method=uniform; bs=4; seed=123; Qwen3-0.6B; gpu_h=3.43 | N/A |  |
+| uniform_seed42 | success | 17.694 | method=uniform; bs=4; seed=42; Qwen3-0.6B; gpu_h=3.43 | N/A |  |
+| uniform_seed456 | success | 17.701 | method=uniform; bs=4; seed=456; Qwen3-0.6B; gpu_h=3.43 | N/A |  |
+
+## batch_size
+
+| exp_id | conclusion | eval_ppl | spec_summary | notes | artifact_flag |
+|--------|-----------|----------|-------------|-------|---------------|
+| bs8_nmin2_seed42 | failed |  | method=adaptive; n_min=2; tau=0.8; contam=0.4; bs=8; gpu_h=0.01 | OOM failed: GPU 2 was occupied by zombie PID 236702 (old bs8_seed42). Superseded by bs8_nmin2_seed42_r2. Config: n_min=2, bs=8, grad_accum=2, tau=0.8, adaptive, seed=42. |  |
+| bs8_nmin2_seed42_r2 | negative | 17.730 | method=adaptive; n_min=2; tau=0.8; contam=0.4; bs=8; seed=42; Qwen3-0.6B; gpu_h=4.1 | 训练完成 6103/6103 steps, train_loss=5.4065. EXIT_CODE=129 (SIGHUP) 发生在训练完成后 W&B finalization 阶段，不影响结果。Checkpoint 验证通过。Eval PPL=17.73 > uniform avg 17.694 (+0.036), 与 ESS-only 水平相当(~17.72)。**NEGATIVE b... |  |
+| bs8_seed42 | failed |  | method=adaptive; n_min=4; tau=0.8; contam=0.4; bs=8; gpu_h=0.19 | Killed at 1% (71/6103 steps). Wrong config: n_min=4 matches same ESS/bs ratio as n_min=2/bs=4. Director instructed restart with n_min=2 + bs=8 for wider ESS dynamic range [2,8]. Replaced by bs8_nmi... |  |
+
+## contamination_60
+
+| exp_id | conclusion | eval_ppl | spec_summary | notes | artifact_flag |
+|--------|-----------|----------|-------------|-------|---------------|
+| contamination_60_grid_b0_5_seed42 | success | 17.704 | b=0.5; method=grid; contam=0.6; bs=4; seed=42; Qwen3-0.6B; gpu_h=3.65 | 训练完成 6103/6103 steps。EXIT_CODE=129 (SIGHUP) 发生在训练完成后（与 contamination_60_uniform_seed42 同一模式）。WANDB_MODE=disabled 导致 cron 误判为 failed。实际 success，等 eval PPL。 |  |
+| contamination_60_seed42 | failed |  | seed=42; contam=0.6; Qwen3-0.6B | 数据验证通过: scored_data_60.jsonl 371,499行/907MB, synthetic=222900/human=148599, actual ρ=0.6。q_score: mean=0.6243, std=0.3703, median=0.7753。字段: text/depth/source_model/prompt_tokens/generated_tokens/d... |  |
+| contamination_60_seed42_r2 | success | 17.740 | method=adaptive; n_min=2; tau=0.8; contam=0.6; bs=4; gpu_h=4.05 | N/A |  |
+| contamination_60_uniform_seed42 | success | 17.766 | method=uniform; contam=0.6; bs=4; gpu_h=3.61 | 训练实际已完成 (6103/6103 steps, 3:35:04)。模型已保存到 output/models/contamination_60_uniform_seed42/final。EXIT_CODE=129 (SIGHUP) 发生在训练完成后。WANDB_MODE=disabled 导致 cron 误判为 failed。train_loss=7.649 (avg), train_ru... |  |
+
+## grid-sweep
+
+| exp_id | conclusion | eval_ppl | spec_summary | notes | artifact_flag |
+|--------|-----------|----------|-------------|-------|---------------|
+| grid_b0_5_seed123 | success | 17.638 | b=0.5; method=grid; contam=0.4; bs=4; seed=123; Qwen3-0.6B; gpu_h=3.8 | N/A |  |
+| grid_b0_5_seed456 | success | 17.650 | b=0.5; method=grid; contam=0.4; bs=4; seed=456; Qwen3-0.6B; gpu_h=3.71 | 重提交成功（retry_count=1）。原 OOM 因 cuda:1 残留 eval 进程。已清理 exit marker，日志重定向正常。step 56/6103, ETA ~3.5h。 |  |
+| grid_b1_0_seed123 | success | 17.674 | b=1.0; method=grid; contam=0.4; bs=4; seed=123; Qwen3-0.6B; gpu_h=3.88 | N/A |  |
+| grid_b1_0_seed456 | success | 17.680 | b=1.0; seed=456; Qwen3-0.6B | N/A |  |
+| grid_b1_5_seed123 | success | 17.701 | b=1.5; seed=123; gpu_h=4.18 | N/A |  |
+| grid_b1_5_seed456 | success | 17.710 | b=1.5; seed=456; Qwen3-0.6B | N/A |  |
+| grid_b2_0_seed123 | success | 17.725 | b=2.0; method=grid; contam=0.4; seed=123; Qwen3-0.6B | N/A |  |
+| grid_b2_0_seed456 | success | 17.989 | b=2.0; method=grid; contam=0.4; bs=4; gpu_h=1.78 | checkpoint_artifact: true. D026 决策：seed456 b≥2.0 的 PPL 异常高（checkpoint 问题），论文只报 2-seed 数据。 | checkpoint_artifact |
+| grid_b3_0_seed123 | success | 17.760 | b=3.0; seed=123 | 训练完成，eval 未执行（should_evaluate=false，缺少 --eval_data_path 和 --eval_steps）。Checkpoint: /root/provenance_weight_training/output/models/grid_b3_0_seed123/final/ (model.safetensors 1.19GB)。需补跑 eval。 |  |
+| grid_b3_0_seed456 | success | 17.921 | b=3.0; method=grid; contam=0.4; bs=4; seed=456; Qwen3-0.6B | checkpoint_artifact: true. D026 决策：seed456 b≥2.0 的 PPL 异常高（checkpoint 问题），论文只报 2-seed 数据。 | checkpoint_artifact |
+| grid_b5_0_seed123 | success | 17.804 | b=5.0; method=grid; contam=0.4; bs=4; seed=123; Qwen3-0.6B | PID 94717 已确认存活（SSH 验证 2026-05-14T11:39）。旧 PID 92798 已 kill，cron 重新注册。 |  |
+| grid_b5_0_seed456 | success | 17.993 | b=5.0; method=grid; contam=0.4; bs=4; seed=456; Qwen3-0.6B | checkpoint_artifact: true. D026 决策：seed456 b≥2.0 的 PPL 异常高（checkpoint 问题），论文只报 2-seed 数据。 | checkpoint_artifact |
+| grid_b_seed42_batch | success |  | seed=42; Qwen3-0.6B; gpu_h=22.53 | N/A |  |
+
+## other
+
+| exp_id | conclusion | eval_ppl | spec_summary | notes | artifact_flag |
+|--------|-----------|----------|-------------|-------|---------------|
+| adaptive_v2_seed123 | killed |  | seed=123 | D012 修正：取消 v2（含 EMA），改用 adaptive_fix（仅修 n_min=2，无 EMA） |  |
+| adaptive_v2_seed42 | killed |  | seed=42 | D012 修正：取消 v2（含 EMA），改用 adaptive_fix（仅修 n_min=2，无 EMA） |  |
+| adaptive_v2_seed456 | killed |  | seed=456 | D012 修正：取消 v2（含 EMA），改用 adaptive_fix（仅修 n_min=2，无 EMA） |  |
+| datagen_synthetic_4gpu | success |  | bs=128; seed=42/1042/2042/3042; Qwen3-0.6B | N/A |  |
+| detector_modernbert | killed |  | N/A | Superseded by TF-IDF detector (detector_tfidf_lr). Never ran — cancelled at QUEUED stage. |  |
+| detector_tfidf_lr | success |  | seed=42 | N/A |  |
+| diagnostic_contamination100 | killed |  | method=uniform; seed=42; Qwen3-0.6B | Director 指令 kill：GPU 2/3 显存打满影响 grid-b seed123 训练速度。诊断实验等 grid-b round 1 完成后重跑。 |  |
+| golden_ratio_seed42 | success | 17.654 | method=golden_ratio; tau=0.8; contam=0.4; bs=4; gpu_h=3.96 | N/A |  |
+| grid_b_low_seed42 | failed |  | seed=42; Qwen3-0.6B; gpu_h=0.22 | cron框架误杀(infrastructure bug)。根因: WANDB_MODE=disabled + tmux wrapper PID 不匹配，reconcile_crons 判定进程死亡并发送 SIGTERM。训练实际曾完成 3 个 b 值(8477/8477×3)，但第二次重启后在 step 431 被杀，所有 checkpoint 目录丢失(grid_b0_1/0_2/0_3_... |  |
+| grid_b_low_seed42_r2 | failed |  | method=grid; contam=0.4; bs=4; gpu_h=0.01 | 失败根因：bash -c "..." 双引号内的 $b 被外层 shell 提前展开为空字符串，导致 --grid_b_value 收到空参数，argparse 报错 "expected one argument" 立即退出。日志首行 "Training grid b= ===" 确认 $b 为空。修复方法：将 $b 转义为 \$b（如 \$b 和 \${b}），或改用 bash -c '.... |  |
+| grid_b_low_seed42_r3 | failed |  | seed=42; Qwen3-0.6B | Worker 提交时未指定 GPU，导致与 cuda:0 上的 contamination_60_seed42_r2 冲突。PID 258500 在启动后秒级崩溃。grid_b_low 需在 GPU 释放后单独提交（每个 b 值独立实验或硬编码脚本 + 显式 CUDA_VISIBLE_DEVICES）。 |  |
+| grid_b_low_serial_seed42 | killed |  | seed=42; gpu_h=0.1 | R4 killed: cuda:2 GPU冲突，与contamination_60_ess_only_seed42双进程占满显存(93042/97887 MiB)，仅完成48/6103步。第3次因GPU冲突失败(R3=cuda:0撞contamination_60, R4=cuda:2撞ess_only)。PID 265617已确认死亡，cuda:2显存恢复至~46.5GB，ess_only... |  |
+| nmin1_seed42 | success | 17.789 | method=adaptive; n_min=1; tau=0.8; contam=0.4; bs=4; gpu_h=5.01 | 训练完成(EXIT_CODE=0, 4h50m)。PPL=17.789，比 adaptive_fix(n_min=2, 17.650) 差 +0.139，比 uniform(17.690) 差 +0.099。n_min=1 导致极端 b* 分布：46.7% batch b*≥2，p75=20.0(上限)，mean=7.197。ESS 约束几乎失效，over-downweighting 明显。... |  |
+| nmin4_seed42 | success | 17.695 | method=adaptive; n_min=4; tau=0.8; contam=0.4; bs=4; seed=42; Qwen3-0.6B; gpu_h=4.63 | Mid-training check @step 2036/6103: b=0.0, ess=4.0 (=n_min), weighted_loss==unweighted_loss — confirms b*=0 degenerates to uniform weighting as theoretically predicted. Eval commands prepared for p... |  |
+| p0_contamination_60_datagen | success |  | contam=0.6; seed=42; Qwen3-0.6B | N/A |  |
+| tau_05_nmin2_seed42 | killed |  | method=adaptive; n_min=2; tau=0.5; contam=0.4; bs=4; gpu_h=0.78 | N/A |  |
+| tau_06_nmin2_seed42 | killed |  | tau=0.6; seed=42; n_min=2 | N/A |  |
+| tau_07_nmin2_seed42 | killed |  | tau=0.7; seed=42; n_min=2 | N/A |  |
+| tau_095_nmin2_seed42 | killed |  | tau=0.95; seed=42; n_min=2 | N/A |  |
+| tau_09_nmin2_seed42 | killed |  | tau=0.9; seed=42; n_min=2 | N/A |  |
+
+## tau-sweep
+
+| exp_id | conclusion | eval_ppl | spec_summary | notes | artifact_flag |
+|--------|-----------|----------|-------------|-------|---------------|
+| tau_0.6_seed42 | killed |  | seed=42 | 废弃: exp_id 含点号不合法，已用 tau_06_seed42 替代 |  |
+| tau_05_seed42 | success | 17.688 | method=adaptive; tau=0.5; contam=0.4; bs=4; seed=42; Qwen3-0.6B | N/A |  |
+| tau_06_seed42 | success | 17.680 | tau=0.6; method=adaptive; contam=0.4; bs=4; seed=42; gpu_h=3.88 | PPL=17.681 劣于 τ=0.8 baseline (17.650)，conclusion=negative。概念修正：τ 越低 → α_eff 下界越松 → b* 更小 → 降权力度更弱（非更激进）。正确因果链：τ 越高 → α_eff 下界越严 → min-intervention 需要更大 b* 才能满足约束 → 降权力度更强。 |  |
+| tau_07_seed42 | success | 17.679 | method=adaptive; tau=0.7; contam=0.4; bs=4; seed=42; Qwen3-0.6B; gpu_h=4.36 | N/A |  |
+| tau_095_seed42 | negative | 17.723 | tau=0.95; seed=42 | N/A |  |
+| tau_09_seed42 | negative | 17.712 | tau=0.9; seed=42 | N/A |  |
+

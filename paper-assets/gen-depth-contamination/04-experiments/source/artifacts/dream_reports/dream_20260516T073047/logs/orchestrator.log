@@ -1,8 +1,0 @@
-2026-05-16 07:46:39,031 WARNING core.tools.dream  [dream] Phase 2 median parse failed (attempt 0): while parsing a block collection
-  in "<unicode string>", line 20, column 3:
-      - name: "LLaMA-3.1-8B cross-fami ... 
-      ^
-expected <block end>, but found '?'
-  in "<unicode string>", line 761, column 3:
-      aggregate_summary:
-      ^

@@ -1,2 +1,0 @@
-Remote path: westd-32608:/root/symb_invariant_consensus/artifacts/figures/f4_c0_vs_gap.{pdf,png}
-Script: westd-32608:/root/symb_invariant_consensus/scripts/plot_f4_fixed.py

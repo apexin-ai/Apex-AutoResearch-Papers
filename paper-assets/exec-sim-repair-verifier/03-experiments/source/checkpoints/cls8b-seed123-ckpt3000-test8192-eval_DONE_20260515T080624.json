@@ -1,0 +1,36 @@
+{
+  "exp_id": "cls8b-seed123-ckpt3000-test8192-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T07:32:32.981Z",
+    "updated_at": "2026-05-15T08:06:24.381Z",
+    "hypothesis": "seed123 val-best (ckpt-3000, val=88.69%) 的 test@8192。决定 seed123 multi-seed headline number。",
+    "parent": "repo-level-cls-8b-seed123-conda-v3",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split test --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt3000_test8192",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:3"
+      ],
+      "log_path": "~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt3000-test8192-eval.log",
+      "submitted_at": "2026-05-15T15:33:50Z",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/swebench_full",
+      "data_count": 9335,
+      "model_name": "Qwen/Qwen3-8B",
+      "seed": 123,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000",
+      "eval_data": "test@8192"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-15T07:55:14.458Z",
+    "notes": "误标 RUNNING，实际未启动（无 PID、无日志）。GPU:3 当时仍在跑 ckpt-6400 val。已标 failed 并创建 v2 重新排队。"
+  },
+  "timestamp": "2026-05-15T08:06:24.655613+00:00",
+  "trigger": "update_registry"
+}

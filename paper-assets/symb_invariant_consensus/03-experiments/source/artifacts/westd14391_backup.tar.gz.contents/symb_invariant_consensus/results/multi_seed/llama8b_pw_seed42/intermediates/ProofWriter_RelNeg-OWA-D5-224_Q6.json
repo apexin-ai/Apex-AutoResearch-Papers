@@ -1,0 +1,1355 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-224_Q6",
+    "problem": "The dog chases the lion. The dog is nice. The lion does not eat the tiger. The lion is not big. The lion visits the tiger. The mouse does not chase the tiger. The mouse is nice. The tiger chases the lion. The tiger eats the dog. The tiger does not eat the mouse. The tiger visits the lion. If something visits the dog and it is kind then it visits the mouse. If something chases the dog then it is not red. If something chases the lion and it visits the dog then it chases the dog. If something chases the lion then it is big. If something eats the lion then it is not cold. If something is big then it visits the dog. If something visits the mouse then the mouse is red. If the tiger visits the dog and the dog is not big then the dog chases the mouse. If something visits the tiger and the tiger is not red then it is not nice.\n\nDetermine whether the following statement is true, false, or unknown:\nThe dog does not visit the dog.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nNice($x, bool) ::: Is x nice?\nEats($x, $y, bool) ::: Does x eat y?\nBig($x, bool) ::: Is x big?\nVisits($x, $y, bool) ::: Does x visit y?\nRed($x, bool) ::: Is x red?\nCold($x, bool) ::: Is x cold?\nKind($x, bool) ::: Is x kind?\n\nFacts:\nChases(Dog, Lion, True) ::: The dog chases the lion.\nNice(Dog, True) ::: The dog is nice.\nEats(Lion, Tiger, False) ::: The lion does not eat the tiger.\nBig(Lion, False) ::: The lion is not big.\nVisits(Lion, Tiger, True) ::: The lion visits the tiger.\nChases(Mouse, Tiger, False) ::: The mouse does not chase the tiger.\nNice(Mouse, True) ::: The mouse is nice.\nChases(Tiger, Lion, True) ::: The tiger chases the lion.\nEats(Tiger, Dog, True) ::: The tiger eats the dog.\nEats(Tiger, Mouse, False) ::: The tiger does not eat the mouse.\nVisits(Tiger, Lion, True) ::: The tiger visits the lion.\n\nRules:\nVisits($x, Dog, True) && Kind($x, True) >>> Visits($x, Mouse, True) ::: If something visits the dog and it is kind then it visits the mouse.\nChases($x, Dog, True) >>> Red($x, False) ::: If something chases the dog then it is not red.\nChases($x, Lion, True) && Visits($x, Dog, True) >>> Chases($x, Dog, True) ::: If something chases the lion and it visits the dog then it chases the dog.\nChases($x, Lion, True) >>> Big($x, True) ::: If something chases the lion then it is big.\nEats($x, Lion, True) >>> Cold($x, False) ::: If something eats the lion then it is not cold.\nBig($x, True) >>> Visits($x, Dog, True) ::: If something is big then it visits the dog.\nVisits($x, Mouse, True) >>> Red(Mouse, True) ::: If something visits the mouse then the mouse is red.\nVisits(Tiger, Dog, True) && Big(Dog, False) >>> Chases(Dog, Mouse, True) ::: If the tiger visits the dog and the dog is not big then the dog chases the mouse.\nVisits($x, Tiger, True) && Red(Tiger, False) >>> Nice($x, False) ::: If something visits the tiger and the tiger is not red then it is not nice.\n\nQuery:\nVisits(Dog, Dog, False) ::: The dog does not visit the dog."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 112.0,
+      "True": 91.0,
+      "Unknown": 153.0
+    },
+    "answer_counts": {
+      "Unknown": 8,
+      "False": 1,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the given statement is true, false, or unknown, we need to break down the information provided and analyze the relationships between the entities involved.\n\n1. The dog is nice.\n2. The lion does not eat the tiger.\n3. The lion is not big.\n4. The lion visits the tiger.\n5. The mouse does not chase the tiger.\n6. The mouse is nice.\n7. The tiger chases the lion.\n8. The tiger eats the dog.\n9. The tiger does not eat the mouse.\n10. The tiger visits the lion.\n\nNow, let's consider the given rules:\n\n1. If something visits the dog and it is kind then it visits the mouse.\n2. If something chases the dog then it is not red.\n3. If something chases the lion and it visits the dog then it chases the dog.\n4. If something chases the lion then it is big.\n5. If something eats the lion then it is not cold.\n6. If something is big then it visits the dog.\n7. If something visits the mouse then the mouse is red.\n8. If the tiger visits the dog and the dog is not big then the dog chases the mouse.\n9. If something visits the tiger and the tiger is not red then it is not nice.\n\nNow, let's analyze the given statement: \"The dog does not visit the dog.\"\n\nTo determine whether this statement is true, false, or unknown, we need to consider the information provided in the rules.\n\nFrom rule 1, if something visits the dog and it is kind, then it visits the mouse. However, this rule does not provide any information about the dog visiting the dog.\n\nFrom rule 6, if something is big, then it visits the dog. However, the dog is nice (rule 1), so we cannot determine whether the dog is big or not.\n\nFrom rule 8, if the tiger visits the dog and the dog is not big, then the dog chases the mouse. However, this rule does not provide any information about the dog visiting the dog.\n\nSince we cannot determine whether the dog is big or not, and we cannot determine whether the dog visits the dog based on the given rules, we cannot conclude whether the statement \"The dog does not visit the dog\" is true, false, or unknown.\n\nTherefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The dog does not visit the dog\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. The dog chases the lion.\n2. The dog is nice.\n3. The lion does not eat the tiger.\n4. The lion is not big.\n5. The lion visits the tiger.\n6. The mouse does not chase the tiger.\n7. The mouse is nice.\n8. The tiger chases the lion.\n9. The tiger eats the dog.\n10. The tiger does not eat the mouse.\n11. The tiger visits the lion.\n12. If something visits the dog and it is kind then it visits the mouse.\n13. If something chases the dog then it is not red.\n14. If something chases the lion and it visits the dog then it chases the dog.\n15. If something chases the lion then it is big.\n16. If something eats the lion then it is not cold.\n17. If something is big then it visits the dog.\n18. If something visits the mouse then the mouse is red.\n19. If the tiger visits the dog and the dog is not big then the dog chases the mouse.\n20. If something visits the tiger and the tiger is not red then it is not nice.\n\nFrom statement 17, we know that if something is big, then it visits the dog. Since the tiger is big (from statement 15), the tiger visits the dog.\n\nFrom statement 5, we know that the lion visits the tiger.\n\nNow, let's consider the statement \"The dog does not visit the dog.\" To determine its truth value, we need to check if there's any rule that implies the dog visits the dog.\n\nFrom statement 12, we know that if something visits the dog and it is kind, then it visits the mouse. However, this rule does not imply that the dog visits the dog.\n\nFrom statement 17, we know that if something is big, then it visits the dog. However, we do not know if the dog is big or not.\n\nFrom statement 19, we know that if the tiger visits the dog and the dog is not big, then the dog chases the mouse. However, this rule does not imply that the dog visits the dog.\n\nSince there is no rule that directly implies the dog visits the dog, we cannot determine the truth value of the statement based on the given information. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and find out if they provide any information about the dog visiting the dog.\n\n1. The dog chases the lion. \n   - This statement tells us that the dog chases the lion, but it does not tell us anything about the dog visiting the dog.\n\n2. The dog is nice.\n   - This statement tells us that the dog is nice, but it does not tell us anything about the dog visiting the dog.\n\n3. The lion does not eat the tiger.\n   - This statement tells us that the lion does not eat the tiger, but it does not tell us anything about the dog visiting the dog.\n\n4. The lion is not big.\n   - This statement tells us that the lion is not big, but it does not tell us anything about the dog visiting the dog.\n\n5. The lion visits the tiger.\n   - This statement tells us that the lion visits the tiger, but it does not tell us anything about the dog visiting the dog.\n\n6. The mouse does not chase the tiger.\n   - This statement tells us that the mouse does not chase the tiger, but it does not tell us anything about the dog visiting the dog.\n\n7. The mouse is nice.\n   - This statement tells us that the mouse is nice, but it does not tell us anything about the dog visiting the dog.\n\n8. The tiger chases the lion.\n   - This statement tells us that the tiger chases the lion, but it does not tell us anything about the dog visiting the dog.\n\n9. The tiger eats the dog.\n   - This statement tells us that the tiger eats the dog, but it does not tell us anything about the dog visiting the dog.\n\n10. The tiger does not eat the mouse.\n    - This statement tells us that the tiger does not eat the mouse, but it does not tell us anything about the dog visiting the dog.\n\n11. The tiger visits the lion.\n    - This statement tells us that the tiger visits the lion, but it does not tell us anything about the dog visiting the dog.\n\n12. If something visits the dog and it is kind then it visits the mouse.\n    - This statement does not tell us anything about the dog visiting the dog.\n\n13. If something chases the dog then it is not red.\n    - This statement does not tell us anything about the dog visiting the dog.\n\n14. If something chases the lion and it visits the dog then it chases the dog.\n    - This statement tells us that the lion visits the dog (from statement 5) and the tiger chases the lion (from statement 8), so the tiger chases the dog. However, this statement does not tell us anything about the dog visiting the dog.\n\n15. If something chases the lion then it is big.\n    - This statement tells us that the tiger chases the lion (from statement 8) and the tiger is big. However, this statement does not tell us anything about the dog visiting the dog.\n\n16. If something eats the lion then it is not cold.\n    - This statement tells us that the tiger eats the lion (from statement 9) and the tiger is not cold. However, this statement does not tell us anything about the dog visiting the dog.\n\n17. If something is big then it visits the dog.\n    - This statement tells us that the tiger is big (from statement 15) and the tiger visits the dog (from statement 11). However, this statement does not tell us anything about the dog visiting the dog.\n\n18. If something visits the mouse then the mouse is red.\n    - This statement does not tell us anything about the dog visiting the dog.\n\n19. If the tiger visits the dog and the dog is not big then the dog chases the mouse.\n    - This statement tells us that the tiger visits the dog (from statement 11) and the dog is not big (because the tiger is big from statement 15). However, this statement does not tell us anything about the dog visiting the dog.\n\n20. If something visits the tiger and the tiger is not red then it is not nice.\n    - This statement does not tell us anything about the dog visiting the dog.\n\nFrom the given statements, we cannot determine whether the dog visits the dog or not. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The dog does not visit the dog\" is true, false, or unknown, we need to analyze the given information and create a conclusion using logical reasoning.\n\n1. The dog is nice. (Statement 2)\n2. The lion does not eat the tiger. (Statement 3)\n3. The lion is not big. (Statement 4)\n4. The lion visits the tiger. (Statement 5)\n5. The mouse does not chase the tiger. (Statement 6)\n6. The mouse is nice. (Statement 7)\n7. The tiger chases the lion. (Statement 8)\n8. The tiger eats the dog. (Statement 9)\n9. The tiger does not eat the mouse. (Statement 10)\n10. The tiger visits the lion. (Statement 11)\n11. If something visits the dog and it is kind then it visits the mouse. (Statement 12)\n12. If something chases the dog then it is not red. (Statement 13)\n13. If something chases the lion and it visits the dog then it chases the dog. (Statement 14)\n14. If something chases the lion then it is big. (Statement 15)\n15. If something eats the lion then it is not cold. (Statement 16)\n16. If something is big then it visits the dog. (Statement 17)\n17. If something visits the mouse then the mouse is red. (Statement 18)\n18. If the tiger visits the dog and the dog is not big then the dog chases the mouse. (Statement 19)\n19. If something visits the tiger and the tiger is not red then it is not nice. (Statement 20)\n\nWe can create a conclusion by combining the statements:\n\nFrom statement 12, we can infer that the dog is kind (since it is nice, as stated in statement 2).\n\nNow, let's check the statement \"The dog does not visit the dog.\"\n\nIf the dog visits the dog, then it must be true that the dog is kind and the dog visits the dog. However, there is no statement that directly implies the dog visits the dog.\n\nHowever, if the dog does not visit the dog, then statement 12 does not apply. Statement 12 states that if something visits the dog and it is kind, then it visits the mouse. Since the dog does not visit the dog, statement 12 is not applicable.\n\nWe cannot conclude that the dog does not visit the dog because there is no direct evidence or implication from the given statements. The statement \"The dog does not visit the dog\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we'll create a knowledge base from the given statements and then use this knowledge base to determine whether the statement \"The dog does not visit the dog\" is true, false, or unknown.\n\nKnowledge Base:\n\n1. The dog chases the lion.\n2. The dog is nice.\n3. The lion does not eat the tiger.\n4. The lion is not big.\n5. The lion visits the tiger.\n6. The mouse does not chase the tiger.\n7. The mouse is nice.\n8. The tiger chases the lion.\n9. The tiger eats the dog.\n10. The tiger does not eat the mouse.\n11. The tiger visits the lion.\n12. If something visits the dog and it is kind then it visits the mouse.\n13. If something chases the dog then it is not red.\n14. If something chases the lion and it visits the dog then it chases the dog.\n15. If something chases the lion then it is big.\n16. If something eats the lion then it is not cold.\n17. If something is big then it visits the dog.\n18. If something visits the mouse then the mouse is red.\n19. If the tiger visits the dog and the dog is not big then the dog chases the mouse.\n20. If something visits the tiger and the tiger is not red then it is not nice.\n\nFrom the knowledge base, we can derive the following information:\n\n- The dog is nice (Statement 2).\n- The tiger is not nice (because it eats the dog, and eating something is not a kind action).\n- The lion is not big (Statement 4).\n- The tiger is big (because it chases the lion, and chasing the lion implies being big, Statement 15).\n- The tiger visits the dog (Statement 11).\n- The tiger is red (because it eats the dog, and eating something is a red action).\n- The lion visits the tiger (Statement 5).\n- The mouse is red (because the lion visits it, and visiting the mouse implies it is red, Statement 18).\n\nTo determine whether the statement \"The dog does not visit the dog\" is true, false, or unknown, we need to find any information that contradicts this statement. Since we don't have any information about the dog visiting the dog, we can assume this statement is unknown.\n\nHowever, let's further analyze the situation. Statement 19 says \"If the tiger visits the dog and the dog is not big then the dog chases the mouse.\" Since the tiger visits the dog (Statement 11) and the dog is not big (because the lion is not big, Statement 4, and the dog chases the lion, Statement 1), the dog should chase the mouse. But, the dog does not chase the mouse (because the mouse is nice, Statement 7, and the dog is nice, Statement 2). This information contradicts Statement 19, which is a necessary condition for the dog to visit the mouse.\n\nHowever, this contradiction indicates that our initial assumption that the statement \"The dog does not visit the dog\" is unknown is incorrect. The actual information is that Statement 19 must be false because it leads to a contradiction.\n\nSince Statement 19 is false, we need to re-examine our knowledge base. Statement 19 is a conditional statement that depends on the tiger visiting the dog and the dog not being big. If the dog is big, then Statement 19 does not apply. However, we already determined that the dog is not big (because the lion is not big, Statement 4, and the dog chases the lion, Statement 1).\n\nNow, let's analyze the situation further. Statement 1 says \"The dog chases the lion.\" Statement 14 says \"If something chases the lion and it visits the dog then it chases the dog.\" Since the dog chases the lion (Statement 1) and the dog visits the dog (this statement is what we're trying to determine), the dog should chase the dog.\n\nHowever, we determined earlier that Statement 19 is false. This implies that the condition \"the dog is not big\" in Statement 19 is not met. However, we already determined that the dog is not big. Therefore, we need to re-examine our knowledge base again.\n\nLet's look at Statement 19 again. Statement 19 says \"If the tiger visits the dog and the dog is not big then the dog chases the mouse.\" However, Statement 19 is false. This implies that the condition \"the dog is not big\" in Statement 19 is not necessary for the dog to visit the mouse.\n\nHowever, Statement 1 says \"The dog chases the lion.\" Statement 14 says \"If something chases the lion and it visits the dog then it chases the dog.\" Since the dog chases the lion (Statement 1) and the dog visits the dog (this statement is what we're trying to determine), the dog should chase the dog.\n\nHowever, Statement 13 says \"If something chases the dog then it is not red.\" Since the dog chases the lion (Statement 1) and the dog is nice (Statement 2), we can conclude that the lion is not red.\n\nHowever, Statement 15 says \"If something chases the lion then it is big.\" Since the dog chases the lion (Statement 1), the dog is big.\n\nHowever, Statement 17 says \"If something is big then it visits the dog.\" Since the dog is big (because the dog chases the lion, Statement 1, and chasing the lion implies being big, Statement 15), the dog visits the dog.\n\nHowever, we are trying to determine whether the statement \"The dog does not visit the dog\" is true, false, or unknown.\n\nSince we determined that the dog is big (because the dog chases the lion, Statement 1, and chasing the lion implies being big, Statement 15), Statement 17 says that the dog visits the dog. However, Statement 1 says that the dog chases the lion.\n\nTherefore, we need to re-examine our knowledge base again.\n\nLet's look at Statement 1 again. Statement 1 says \"The dog chases the lion.\" Statement 14 says \"If something chases the lion and it visits the dog then it chases the dog.\" Since the dog chases the lion (Statement 1) and the dog visits the dog (this statement is what we're trying to determine), the dog should chase the dog.\n\nHowever, Statement 13 says \"If something chases the dog then it is not red.\" Since the dog chases the lion (Statement 1) and the dog is nice (Statement 2), we can conclude that the lion is not red.\n\nHowever, Statement 15 says \"If something chases the lion then it is big.\" Since the dog chases the lion (Statement 1), the dog is big.\n\nHowever, Statement 17 says \"If something is big then it visits the dog.\" Since the dog is big (because the dog chases the lion, Statement 1, and chasing the lion implies being big, Statement 15), the dog visits the dog.\n\nHowever, we determined earlier that Statement 19 is false. This implies that the condition \"the dog is not big\" in Statement 19 is not met. However, we already determined that the dog is not big. Therefore, we need to re-examine our knowledge base again.\n\nHowever, Statement 1 says \"The dog chases the lion.\" Statement 15 says \"If something chases the lion then it is big.\" Since the dog chases the lion (Statement 1), the dog is big.\n\nHowever, Statement 17 says \"If something is big then it visits the dog.\" Since the dog is big (because the dog chases the lion, Statement 1, and chasing the lion implies being big, Statement 15), the dog visits the dog.\n\nHowever, Statement 1 says \"The dog chases the lion.\" Statement 14 says \"If something chases the lion and it visits the dog then it chases the dog.\" Since the dog chases the lion (Statement 1) and the dog visits the dog (this statement is what we're trying to determine), the dog should chase the dog.\n\nHowever, Statement 13 says \"If something chases the dog then it is not red.\" Since the dog chases the lion (Statement 1) and the dog is nice (Statement 2), we can conclude that the lion is not red.\n\nHowever, Statement 15 says \"If something chases the lion then it is big.\" Since the dog chases the lion (Statement 1), the dog is big.\n\nHowever, Statement 17 says \"If something is big then it visits the dog.\" Since the dog is big (because the dog chases the lion, Statement 1, and chasing the lion implies being big, Statement 15), the dog visits the dog.\n\nHowever, Statement 1 says \"The dog chases the lion.\" Statement 14 says \"If something chases the lion and it visits the dog then it chases the dog.\" Since the dog chases the lion (Statement 1) and the dog visits the dog (this statement is what we're trying to determine), the dog should chase the dog.\n\nHowever, Statement 13 says \"If something chases the dog then it is not red.\" Since the dog chases the lion (Statement 1) and the dog is nice (Statement 2), we can conclude that the lion is not red.\n\nHowever, Statement 15 says \"If something chases the lion then it is big.\" Since the dog chases the lion (Statement 1), the dog is big.\n\nHowever, Statement 17 says \"If something is big then it visits the dog.\" Since the dog is big (because the dog chases the lion, Statement 1",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information and the conditions.\n\nFrom the given information:\n1. The dog is nice.\n2. The lion does not eat the tiger.\n3. The lion is not big.\n4. The lion visits the tiger.\n5. The mouse does not chase the tiger.\n6. The mouse is nice.\n7. The tiger chases the lion.\n8. The tiger eats the dog.\n9. The tiger does not eat the mouse.\n10. The tiger visits the lion.\n\nWe need to consider the conditions:\n1. If something visits the dog and it is kind then it visits the mouse. (Condition 1)\n2. If something chases the dog then it is not red. (Condition 2)\n3. If something chases the lion and it visits the dog then it chases the dog. (Condition 3)\n4. If something chases the lion then it is big. (Condition 4)\n5. If something eats the lion then it is not cold. (Condition 5)\n6. If something is big then it visits the dog. (Condition 6)\n7. If something visits the mouse then the mouse is red. (Condition 7)\n8. If the tiger visits the dog and the dog is not big then the dog chases the mouse. (Condition 8)\n9. If something visits the tiger and the tiger is not red then it is not nice. (Condition 9)\n\nNow, let's analyze the statement \"The dog does not visit the dog.\"\n\nFrom Condition 6, we know that if something is big, then it visits the dog. However, we do not know if the dog is big or not. Let's assume the dog is not big (Case 1) or big (Case 2).\n\nCase 1: If the dog is not big, then it cannot be the case that the dog visits the dog because the dog would be big (Condition 6). Therefore, the statement is true.\n\nCase 2: If the dog is big, then it visits the dog (Condition 6). However, we need to consider the conditions related to the dog and other animals. \n\nSince the tiger eats the dog (Statement 8), the tiger is not cold (Condition 5), and the tiger is big (Condition 4). The tiger also visits the lion (Statement 10), but this does not imply that the tiger visits the dog because of its size. However, we cannot conclude that the dog visits the dog from this information.\n\nConsidering other conditions, we cannot determine whether the dog visits the dog or not, so we cannot conclude that the statement is true or false based on the given information.\n\nHowever, considering the statement \"If something visits the dog and it is kind then it visits the mouse\" (Condition 1), we can conclude that since the dog is nice, it visits the mouse. Therefore, we can conclude that the statement \"The dog does not visit the dog\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications. Let's break down the statements into relevant information and use logical deductions to determine the answer.\n\n1. The dog chases the lion.\n2. The dog is nice.\n3. The lion does not eat the tiger.\n4. The lion is not big.\n5. The lion visits the tiger.\n6. The mouse does not chase the tiger.\n7. The mouse is nice.\n8. The tiger chases the lion.\n9. The tiger eats the dog.\n10. The tiger does not eat the mouse.\n11. The tiger visits the lion.\n\nFrom statement 11, we can deduce that the tiger visits the lion. The lion is not big (statement 4). \n\nStatement 13: If something is big then it visits the dog. \nSince the lion is not big, it cannot be big. Therefore, the lion does not visit the dog.\n\nStatement 5: The lion visits the tiger. \n\nStatement 1: The dog chases the lion. \n\nStatement 14: If something chases the lion and it visits the dog then it chases the dog. \nSince the dog visits the lion (from statement 5) and chases the lion (statement 1), the dog chases the dog.\n\nStatement 15: If something chases the lion then it is big. \nThe dog chases the lion (statement 1), but the dog is not big (not given directly, we cannot conclude this from given statements).\n\nStatement 16: If something eats the lion then it is not cold. \nThere is no information about the lion being eaten.\n\nStatement 18: If something is big then it visits the dog. \nWe cannot conclude if the dog is big or not.\n\nStatement 19: If the tiger visits the dog and the dog is not big then the dog chases the mouse. \nThe tiger visits the dog (statement 9), but we cannot conclude if the dog is big or not.\n\nStatement 20: If something visits the tiger and the tiger is not red then it is not nice. \nThere is no information about the tiger's color.\n\nFrom the given statements, we cannot conclude anything about the statement \"The dog does not visit the dog.\" since there is no information about the dog visiting itself.\n\nTherefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The dog does not visit the dog\" is true, false, or unknown, we need to analyze the given information.\n\nGiven information:\n\n1. The lion does not eat the tiger.\n2. The lion is not big.\n3. The lion visits the tiger.\n4. The mouse does not chase the tiger.\n5. The mouse is nice.\n6. The tiger chases the lion.\n7. The tiger eats the dog.\n8. The tiger does not eat the mouse.\n9. The tiger visits the lion.\n10. If something visits the dog and it is kind then it visits the mouse.\n11. If something chases the dog then it is not red.\n12. If something chases the lion and it visits the dog then it chases the dog.\n13. If something chases the lion then it is big.\n14. If something eats the lion then it is not cold.\n15. If something is big then it visits the dog.\n16. If something visits the mouse then the mouse is red.\n17. If the tiger visits the dog and the dog is not big then the dog chases the mouse.\n18. If something visits the tiger and the tiger is not red then it is not nice.\n\nFrom statements 3 and 9, we know the lion visits the tiger. The lion's color and size are not mentioned.\n\nThe dog's color is not mentioned.\n\nWe are not given any direct information about the dog visiting the dog. However, we need to analyze the possibilities.\n\nIf the dog visits the dog, then statement 10 is not applicable, as it requires the dog to be kind. However, we do not have any information about the dog's kind nature.\n\nIf the dog does not visit the dog, then statement 10 is not applicable.\n\nWe cannot determine the dog's kind nature from the given information.\n\nHowever, we can determine the following: If the dog is not big (which is not mentioned), then statement 17 is not applicable, and we cannot conclude anything about the dog's behavior.\n\nSince we do not have enough information to determine whether the dog visits the dog or not, the statement \"The dog does not visit the dog\" is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The dog does not visit the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information, we know that the dog chases the lion. This does not provide any information about the dog visiting another animal.\n\n2. We also know that the tiger chases the lion. From the given rules, we know that if something chases the lion, then it is big. Therefore, the tiger is big.\n\n3. Since the tiger is big, according to the given rules, it must visit the dog. \n\n4. Now, we are given the rule that if something visits the dog and it is kind then it visits the mouse. However, we do not know if the tiger is kind. We only know that the mouse does not chase the tiger, which does not provide any information about the tiger's kindness. \n\n5. Since we do not know if the tiger is kind, we cannot determine if it visits the mouse based on this rule.\n\n6. Next, we look at the rule that if something chases the lion and it visits the dog then it chases the dog. However, the tiger does not chase the lion because the lion does not eat the tiger, which means the lion and the tiger have a different relationship. The tiger chases the lion, but this is an exception to the rule.\n\n7. Now, we consider the rule that if something chases the lion then it is big. This has already been established in step 2.\n\n8. We also know that the dog chases the lion. According to the given rules, if something chases the lion and it visits the dog, then it chases the dog. However, this does not provide any information about the dog visiting another animal.\n\n9. The final rule is that if the tiger visits the dog and the dog is not big then the dog chases the mouse. However, we already know that the dog is not big (because the lion does not eat the tiger, and the lion is not big), but we also know that the tiger visits the dog. \n\n10. Since the dog is not big, according to this rule, the dog chases the mouse. However, this does not provide any information about the dog visiting the dog.\n\nHowever, we have information that the dog does not chase the lion, and we know that the lion is not big. This means that the lion does not chase the dog, which means the lion does not visit the dog. The information that the lion does not eat the tiger implies that the lion is not big, but we already know the lion is not big from the statement \"The lion is not big.\" However, there is no information that the lion visits the dog. \n\nTherefore, we cannot conclude that the dog visits the dog based on the given information. We can only conclude that the dog does not visit the lion. The statement \"The dog does not visit the dog\" is true if we consider the information that the lion does not visit the dog, and the lion is not the dog.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine the truth of the statement \"The dog does not visit the dog,\" we need to analyze the given information step by step.\n\n1.  The dog chases the lion. (We don't have enough information to conclude that the lion is big or small. We only know that the lion does not eat the tiger, but this does not give us any information about the lion's size.)\n2.  The lion does not eat the tiger. (This statement does not give us any information about the size of the lion.)\n3.  The lion is not big. (Now we have information that the lion is not big.)\n4.  The lion visits the tiger. (This statement is irrelevant to determining the size of the lion. However, we know that the lion is not big.)\n5.  The mouse does not chase the tiger. (This statement does not give us any information about the size of the tiger.)\n6.  The mouse is nice. (This statement does not give us any information about the size of the mouse.)\n7.  The tiger chases the lion. (This statement tells us that the tiger chases the lion, but it does not tell us the size of the tiger.)\n8.  The tiger eats the dog. (This statement does not give us any information about the size of the tiger.)\n9.  The tiger does not eat the mouse. (This statement does not give us any information about the size of the mouse.)\n10. The tiger visits the lion. (This statement is irrelevant to determining the size of the lion or the tiger.)\n11. If something visits the dog and it is kind then it visits the mouse. (This statement does not give us any information about the size of the dog or the mouse.)\n12. If something chases the dog then it is not red. (This statement does not give us any information about the size of the dog.)\n13. If something chases the lion and it visits the dog then it chases the dog. (This statement tells us that the tiger chases the lion and visits the dog, so it chases the dog. However, this statement does not give us any information about the size of the tiger.)\n14. If something chases the lion then it is big. (Now we know that the tiger is big because it chases the lion.)\n15. If something eats the lion then it is not cold. (This statement does not give us any information about the size of the lion.)\n16. If something is big then it visits the dog. (Now we know that the tiger visits the dog because it is big.)\n17. If something visits the mouse then the mouse is red. (This statement does not give us any information about the size of the mouse.)\n18. If the tiger visits the dog and the dog is not big then the dog chases the mouse. (We know that the tiger visits the dog, but the size of the dog is irrelevant because we already know that the dog is nice and the mouse is nice, so the dog does not visit the mouse.)\n19. If something visits the tiger and the tiger is not red then it is not nice. (This statement does not give us any information about the size of the tiger.)\n\nFrom the above statements, we can deduce the following information:\n\n*   The lion is not big.\n*   The tiger is big because it chases the lion.\n*   The tiger visits the dog because it is big.\n*   The mouse is nice.\n\nGiven that the dog is nice, and the mouse is nice, we can conclude that the dog does not visit the mouse.\n\nNow, we can analyze the statement \"The dog does not visit the dog.\" We already know that the dog is nice, but we do not have enough information to conclude whether the dog visits the dog or not.\n\nHowever, if we consider the statement \"If something visits the dog and it is kind then it visits the mouse\" and the fact that the dog is nice, we can conclude that the dog does not visit the mouse. But we cannot conclude whether the dog visits the dog or not.\n\nTherefore, the truth of the statement \"The dog does not visit the dog\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The dog does not visit the dog\" is true, false, or unknown, we need to use the given information and analyze the relationships between the animals.\n\nLet's start by analyzing the given information:\n\n1. The dog chases the lion. (D chases L)\n2. The dog is nice. (D is nice)\n3. The lion does not eat the tiger. (L does not eat T)\n4. The lion is not big. (L is not big)\n5. The lion visits the tiger. (L visits T)\n6. The mouse does not chase the tiger. (M does not chase T)\n7. The mouse is nice. (M is nice)\n8. The tiger chases the lion. (T chases L)\n9. The tiger eats the dog. (T eats D)\n10. The tiger does not eat the mouse. (T does not eat M)\n11. The tiger visits the lion. (T visits L)\n12. If something visits the dog and it is kind then it visits the mouse. (If V(D) and kind, then V(M))\n13. If something chases the dog then it is not red. (If C(D), then not red)\n14. If something chases the lion and it visits the dog then it chases the dog. (If C(L) and V(D), then C(D))\n15. If something chases the lion then it is big. (If C(L), then big)\n16. If something eats the lion then it is not cold. (If E(L), then not cold)\n17. If something is big then it visits the dog. (If big, then V(D))\n18. If something visits the mouse then the mouse is red. (If V(M), then M is red)\n19. If the tiger visits the dog and the dog is not big then the dog chases the mouse. (If T visits D and D is not big, then D chases M)\n20. If something visits the tiger and the tiger is not red then it is not nice. (If V(T) and T is not red, then not nice)\n\nNow, let's analyze the given statement:\n\n\"The dog does not visit the dog.\"\n\nTo determine whether this statement is true, false, or unknown, we need to find any information that may contradict it.\n\nFrom the given information, we know that the dog is nice (statement 2) and that if something visits the dog and it is kind then it visits the mouse (statement 12). We also know that the mouse is nice (statement 7).\n\nUsing statement 12, we can infer that since the dog is nice and visits the mouse, it must visit the mouse. Therefore, we have: D visits M.\n\nNow, let's analyze the relationship between the dog and the mouse. We know that the mouse does not chase the tiger (statement 6) and that the tiger eats the dog (statement 9). This implies that the mouse and the dog have a different relationship than the tiger and the dog.\n\nFrom statement 19, we know that if the tiger visits the dog and the dog is not big then the dog chases the mouse. However, we already know that the dog is nice (statement 2), which implies that it is not big (since big animals do not visit the dog, as per statement 17). However, there is no information that states the dog does not visit the dog, and in fact, the dog's relationship to the mouse is not explicitly defined by the given statements.\n\nTherefore, based on the given information, we cannot determine whether the dog visits the dog or not, making the statement \"The dog does not visit the dog\" unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications.\n\n1. The dog chases the lion.\n   - This statement tells us that the dog is a chaser, but it doesn't tell us whether the dog is nice or big.\n\n2. The dog is nice.\n   - We now know the dog is nice.\n\n3. The lion does not eat the tiger.\n   - This statement doesn't provide any information about the dog.\n\n4. The lion is not big.\n   - This statement doesn't provide any information about the dog.\n\n5. The lion visits the tiger.\n   - This statement doesn't provide any information about the dog.\n\n6. The mouse does not chase the tiger.\n   - This statement doesn't provide any information about the dog.\n\n7. The mouse is nice.\n   - This statement doesn't provide any information about the dog.\n\n8. The tiger chases the lion.\n   - This statement tells us that the tiger is a chaser, but it doesn't tell us whether the tiger is big or nice.\n\n9. The tiger eats the dog.\n   - This statement tells us that the tiger is an eater, but it doesn't tell us whether the tiger is big or nice.\n\n10. The tiger does not eat the mouse.\n    - This statement doesn't provide any information about the dog.\n\n11. The tiger visits the lion.\n    - This statement doesn't provide any information about the dog.\n\nNow we will analyze the implication statements:\n\n1. If something visits the dog and it is kind then it visits the mouse.\n   - Since the dog is nice (kind), and the tiger visits the dog, this statement implies that the tiger visits the mouse.\n\n2. If something chases the dog then it is not red.\n   - Since the tiger chases the dog, this statement implies that the tiger is not red.\n\n3. If something chases the lion and it visits the dog then it chases the dog.\n   - Since the tiger chases the lion and visits the dog, this statement implies that the tiger chases the dog.\n\n4. If something chases the lion then it is big.\n   - Since the tiger chases the lion, this statement implies that the tiger is big.\n\n5. If something eats the lion then it is not cold.\n   - Since there is no statement about something eating the lion, we cannot determine whether the tiger is cold or not.\n\n6. If something is big then it visits the dog.\n   - Since the tiger is big, this statement implies that the tiger visits the dog, which we already know.\n\n7. If something visits the mouse then the mouse is red.\n   - Since the tiger visits the mouse, this statement implies that the mouse is red.\n\n8. If the tiger visits the dog and the dog is not big then the dog chases the mouse.\n   - This statement doesn't apply because the dog is nice, and we don't know whether the dog is big or not.\n\n9. If something visits the tiger and the tiger is not red then it is not nice.\n   - Since the mouse visits the tiger and the tiger is not red, this statement implies that the mouse is not nice.\n\nNow we will analyze the statement we are asked to determine:\n\nThe dog does not visit the dog.\n\nTo determine whether this statement is true, false, or unknown, we need to look at the given statements and their implications.\n\nWe know that the dog is nice and the tiger visits the dog, which implies that the tiger visits the mouse. However, we don't have any information about whether the dog visits the mouse or not.\n\nBut we can conclude that the statement \"The dog does not visit the dog\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(lion, tiger)",
+          "z3_formula": "Not(eats_lion_tiger) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not big(lion)",
+          "z3_formula": "Not(big_lion) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, tiger)",
+          "z3_formula": "visits_lion_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not chases(mouse, tiger)",
+          "z3_formula": "Not(chases_mouse_tiger) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(mouse)",
+          "z3_formula": "nice_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, lion)",
+          "z3_formula": "chases_tiger_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(tiger, mouse)",
+          "z3_formula": "Not(eats_tiger_mouse) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, lion)",
+          "z3_formula": "visits_tiger_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & kind(X) -> visits(X, mouse)",
+          "z3_formula": "Implies(And(visits_X_dog, kind_X), visits_X_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> not red(X)",
+          "z3_formula": "Implies(chases_X_dog, Not(red_X))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & visits(X, dog) -> chases(X, dog)",
+          "z3_formula": "Implies(And(chases_X_lion, visits_X_dog), chases_X_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> big(X)",
+          "z3_formula": "Implies(chases_X_lion, big_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> not cold(X)",
+          "z3_formula": "Implies(eats_X_lion, Not(cold_X))",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, dog)",
+          "z3_formula": "Implies(big_X, visits_X_dog)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> red(mouse)",
+          "z3_formula": "Implies(visits_X_mouse, red_mouse)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(tiger, dog) & not big(dog) -> chases(dog, mouse)",
+          "z3_formula": "Implies(And(visits_tiger_dog, Not(big_dog)), chases_dog_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) & not red(tiger) -> not nice(X)",
+          "z3_formula": "Implies(And(visits_X_tiger, Not(red_tiger)), Not(nice_X))",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not visits(dog, dog)",
+          "z3_formula": "Not(visits_dog_dog) == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(dog, lion)",
+          "z3_formula": "chases_dog_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(lion, tiger))",
+          "z3_formula": "not(eats_lion_tiger) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(big(lion))",
+          "z3_formula": "not(big_lion) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, tiger)",
+          "z3_formula": "visits_lion_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(mouse, tiger))",
+          "z3_formula": "not(chases_mouse_tiger) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(mouse)",
+          "z3_formula": "nice_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, lion)",
+          "z3_formula": "chases_tiger_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(tiger, mouse))",
+          "z3_formula": "not(eats_tiger_mouse) == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, lion)",
+          "z3_formula": "visits_tiger_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & kind(X) -> visits(X, mouse)",
+          "z3_formula": "Implies(And(visits_dog_dog, kind_dog), visits_dog_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> not(red(X))",
+          "z3_formula": "Implies(chases_dog_dog, not(red_dog))",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & visits(X, dog) -> chases(X, dog)",
+          "z3_formula": "Implies(And(chases_lion_dog, visits_dog_dog), chases_dog_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> big(X)",
+          "z3_formula": "Implies(chases_lion_dog, big_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> not(cold(X))",
+          "z3_formula": "Implies(eats_lion_dog, not(cold_dog))",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, dog)",
+          "z3_formula": "Implies(big_dog, visits_dog_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> red(mouse)",
+          "z3_formula": "Implies(visits_dog_mouse, red_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) & not(red(tiger)) -> not(nice(X))",
+          "z3_formula": "Implies(And(visits_tiger_dog, not(red_tiger)), not(nice_dog))",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "visits(tiger, dog) & not(big(dog)) -> chases(dog, mouse)",
+          "z3_formula": "Implies(And(visits_tiger_dog, not(big_dog)), chases_dog_mouse)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(dog, lion)",
+          "z3_formula": "chases_dog_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(lion, tiger))",
+          "z3_formula": "not(eats_lion_tiger) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(big(lion))",
+          "z3_formula": "not(big_lion) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, tiger)",
+          "z3_formula": "visits_lion_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(mouse, tiger))",
+          "z3_formula": "not(chases_mouse_tiger) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(mouse)",
+          "z3_formula": "nice_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, lion)",
+          "z3_formula": "chases_tiger_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(tiger, mouse))",
+          "z3_formula": "not(eats_tiger_mouse) == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, lion)",
+          "z3_formula": "visits_tiger_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & kind(X) -> visits(X, mouse)",
+          "z3_formula": "Implies(And(visits_X_dog, kind_X), visits_X_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> not(red(X))",
+          "z3_formula": "Implies(chases_X_dog, not(red_X))",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & visits(X, dog) -> chases(X, dog)",
+          "z3_formula": "Implies(And(chases_X_lion, visits_X_dog), chases_X_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> big(X)",
+          "z3_formula": "Implies(chases_X_lion, big_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> not(cold(X))",
+          "z3_formula": "Implies(eats_X_lion, not(cold_X))",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, dog)",
+          "z3_formula": "Implies(big_X, visits_X_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> red(mouse)",
+          "z3_formula": "Implies(visits_X_mouse, red_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(tiger, dog) & not(big(dog)) -> chases(dog, mouse)",
+          "z3_formula": "Implies(And(visits_tiger_dog, not(big_dog)), chases_dog_mouse)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) & not(red(tiger)) -> not(nice(X))",
+          "z3_formula": "Implies(And(visits_X_tiger, not(red_tiger)), not(nice_X))",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(lion, tiger))",
+          "z3_formula": "Not(eats_lion_tiger) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(big(lion))",
+          "z3_formula": "Not(big_lion) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, tiger)",
+          "z3_formula": "visits_lion_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(mouse, tiger))",
+          "z3_formula": "Not(chases_mouse_tiger) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(mouse)",
+          "z3_formula": "nice_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, lion)",
+          "z3_formula": "chases_tiger_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(tiger, mouse))",
+          "z3_formula": "Not(eats_tiger_mouse) == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, lion)",
+          "z3_formula": "visits_tiger_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & kind(X) -> visits(X, mouse)",
+          "z3_formula": "Implies(And(visits_X_dog, kind_X), visits_X_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> not(red(X))",
+          "z3_formula": "Implies(chases_X_dog, Not(red_X))",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & visits(X, dog) -> chases(X, dog)",
+          "z3_formula": "Implies(And(chases_X_lion, visits_X_dog), chases_X_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> big(X)",
+          "z3_formula": "Implies(chases_X_lion, big_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> not(cold(X))",
+          "z3_formula": "Implies(eats_X_lion, Not(cold_X))",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, dog)",
+          "z3_formula": "Implies(big_X, visits_X_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> red(mouse)",
+          "z3_formula": "Implies(visits_X_mouse, red_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & not(big(dog)) -> chases(dog, mouse)",
+          "z3_formula": "Implies(And(visits_X_dog, Not(big_dog)), chases_dog_mouse)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) & not(red(tiger)) -> not(nice(X))",
+          "z3_formula": "Implies(And(visits_X_tiger, Not(red_tiger)), Not(nice_X))",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(dog, lion)",
+          "z3_formula": "chases_dog_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not big(lion)",
+          "z3_formula": "not_big_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> big(X)",
+          "z3_formula": "Implies(chases_dog_lion, big_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, dog)",
+          "z3_formula": "Implies(big_dog, visits_dog_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & not big(X) -> chases(X, mouse)",
+          "z3_formula": "Implies(And(visits_dog_dog, not_big_dog), chases_dog_mouse)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> not red(X)",
+          "z3_formula": "Implies(chases_dog_lion, not_red_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> big(X)",
+          "z3_formula": "Implies(chases_dog_lion, big_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & visits(X, dog) -> chases(X, dog)",
+          "z3_formula": "Implies(And(chases_dog_lion, visits_dog_dog), chases_dog_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "visits(dog, dog)",
+          "z3_formula": "visits_dog_dog == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not red(lion)",
+          "z3_formula": "not_red_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "chases(dog, dog)",
+          "z3_formula": "chases_dog_dog == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(dog, mouse)",
+          "z3_formula": "not_chases_dog_mouse == True",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(lion, tiger)",
+          "z3_formula": "Not(eats_lion_tiger) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not big(lion)",
+          "z3_formula": "Not(big_lion) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, tiger)",
+          "z3_formula": "visits_lion_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not chases(mouse, tiger)",
+          "z3_formula": "Not(chases_mouse_tiger) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(mouse)",
+          "z3_formula": "nice_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, lion)",
+          "z3_formula": "chases_tiger_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(tiger, mouse)",
+          "z3_formula": "Not(eats_tiger_mouse) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, lion)",
+          "z3_formula": "visits_tiger_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & kind(X) -> visits(X, mouse)",
+          "z3_formula": "Implies(And(visits_X_dog, kind_X), visits_X_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> not red(X)",
+          "z3_formula": "Implies(chases_X_dog, Not(red_X))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & visits(X, dog) -> chases(X, dog)",
+          "z3_formula": "Implies(And(chases_X_lion, visits_X_dog), chases_X_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> big(X)",
+          "z3_formula": "Implies(chases_X_lion, big_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> not cold(X)",
+          "z3_formula": "Implies(eats_X_lion, Not(cold_X))",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, dog)",
+          "z3_formula": "Implies(big_X, visits_X_dog)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> red(mouse)",
+          "z3_formula": "Implies(visits_X_mouse, red_mouse)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(tiger, dog) & not big(dog) -> chases(dog, mouse)",
+          "z3_formula": "Implies(And(visits_tiger_dog, Not(big_dog)), chases_dog_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) & not red(tiger) -> not nice(X)",
+          "z3_formula": "Implies(And(visits_X_tiger, Not(red_tiger)), Not(nice_X))",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not visits(dog, dog)",
+          "z3_formula": "Not(visits_dog_dog)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(dog, lion)",
+          "z3_formula": "chases_dog_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(lion, tiger)",
+          "z3_formula": "Not(eats_lion_tiger) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not big(lion)",
+          "z3_formula": "Not(big_lion) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, tiger)",
+          "z3_formula": "visits_lion_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not chases(mouse, tiger)",
+          "z3_formula": "Not(chases_mouse_tiger) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(mouse)",
+          "z3_formula": "nice_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, lion)",
+          "z3_formula": "chases_tiger_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(tiger, mouse)",
+          "z3_formula": "Not(eats_tiger_mouse) == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, lion)",
+          "z3_formula": "visits_tiger_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, dog)",
+          "z3_formula": "Implies(big_X, visits_X_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & chases(X, lion) -> chases(X, dog)",
+          "z3_formula": "Implies(And(visits_X_dog, chases_X_lion), chases_X_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> big(X)",
+          "z3_formula": "Implies(chases_X_lion, big_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> not cold(X)",
+          "z3_formula": "Implies(eats_X_lion, Not(cold_X))",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, dog)",
+          "z3_formula": "Implies(big_X, visits_X_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & not big(X) -> chases(X, mouse)",
+          "z3_formula": "Implies(And(visits_X_dog, Not(big_X)), chases_X_mouse)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) & not red(tiger) -> not nice(X)",
+          "z3_formula": "Implies(And(visits_X_tiger, Not(red_tiger)), Not(nice_X))",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not eats(lion, tiger)",
+          "z3_formula": "not eats_lion_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not big(lion)",
+          "z3_formula": "not big_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, tiger)",
+          "z3_formula": "visits_lion_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not chases(mouse, tiger)",
+          "z3_formula": "not chases_mouse_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(mouse)",
+          "z3_formula": "nice_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, lion)",
+          "z3_formula": "chases_tiger_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(tiger, mouse)",
+          "z3_formula": "not eats_tiger_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, lion)",
+          "z3_formula": "visits_tiger_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & kind(X) -> visits(X, mouse)",
+          "z3_formula": "Implies(And(visits_X_dog, kind_X), visits_X_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> not red(X)",
+          "z3_formula": "Implies(chases_X_dog, not red_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & visits(X, dog) -> chases(X, dog)",
+          "z3_formula": "Implies(And(chases_X_lion, visits_X_dog), chases_X_dog)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> big(X)",
+          "z3_formula": "Implies(chases_X_lion, big_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> not cold(X)",
+          "z3_formula": "Implies(eats_X_lion, not cold_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, dog)",
+          "z3_formula": "Implies(big_X, visits_X_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> red(mouse)",
+          "z3_formula": "Implies(visits_X_mouse, red_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(tiger, dog) & not big(dog) -> chases(dog, mouse)",
+          "z3_formula": "Implies(And(visits_tiger_dog, not big_dog), chases_dog_mouse)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) & not red(tiger) -> not nice(X)",
+          "z3_formula": "Implies(And(visits_X_tiger, not red_tiger), not nice_X)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(dog, lion)",
+          "z3_formula": "chases_dog_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, lion)",
+          "z3_formula": "chases_tiger_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> big(X)",
+          "z3_formula": "Implies(chases_tiger_lion, big_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, dog)",
+          "z3_formula": "Implies(big_tiger, visits_tiger_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(tiger)",
+          "z3_formula": "Not(kind_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & visits(X, dog) -> chases(X, dog)",
+          "z3_formula": "Implies(And(chases_tiger_lion, visits_tiger_dog), chases_tiger_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(tiger, lion)",
+          "z3_formula": "Not(chases_tiger_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> big(X)",
+          "z3_formula": "Implies(chases_dog_lion, big_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not big(dog)",
+          "z3_formula": "Not(big_dog)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & not big(dog) -> chases(X, mouse)",
+          "z3_formula": "Implies(And(visits_tiger_dog, Not(big_dog)), chases_tiger_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "chases(dog, mouse)",
+          "z3_formula": "chases_dog_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not chases(lion, tiger)",
+          "z3_formula": "Not(chases_lion_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not visits(lion, dog)",
+          "z3_formula": "Not(visits_lion_dog)",
+          "source_step": 13
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(dog, lion)",
+          "z3_formula": "chases_dog_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(lion, tiger))",
+          "z3_formula": "not(eats_lion_tiger) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(big(lion))",
+          "z3_formula": "not(big_lion) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, tiger)",
+          "z3_formula": "visits_lion_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(mouse, tiger))",
+          "z3_formula": "not(chases_mouse_tiger) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(mouse)",
+          "z3_formula": "nice_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, lion)",
+          "z3_formula": "chases_tiger_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(tiger, mouse))",
+          "z3_formula": "not(eats_tiger_mouse) == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, lion)",
+          "z3_formula": "visits_tiger_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & kind(X) -> visits(X, mouse)",
+          "z3_formula": "Implies(And(visits_dog_dog, kind_dog), visits_dog_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> not(red(X))",
+          "z3_formula": "Implies(chases_dog_dog, not(red_dog))",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & visits(X, dog) -> chases(X, dog)",
+          "z3_formula": "Implies(And(chases_lion_dog, visits_dog_dog), chases_lion_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> big(X)",
+          "z3_formula": "Implies(chases_lion_dog, big_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> not(cold(X))",
+          "z3_formula": "Implies(eats_lion_dog, not(cold_dog))",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, dog)",
+          "z3_formula": "Implies(big_dog, visits_dog_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> red(mouse)",
+          "z3_formula": "Implies(visits_dog_mouse, red_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & not(big(dog)) -> chases(dog, mouse)",
+          "z3_formula": "Implies(And(visits_tiger_dog, not(big_dog)), chases_dog_mouse)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) & not(red(tiger)) -> not(nice(X))",
+          "z3_formula": "Implies(And(visits_dog_tiger, not(red_tiger)), not(nice_dog))",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(dog, lion)",
+          "z3_formula": "chases_dog_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(lion, tiger))",
+          "z3_formula": "not(eats_lion_tiger) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(big(lion))",
+          "z3_formula": "not(big_lion) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, tiger)",
+          "z3_formula": "visits_lion_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(mouse, tiger))",
+          "z3_formula": "not(chases_mouse_tiger) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(mouse)",
+          "z3_formula": "nice_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, lion)",
+          "z3_formula": "chases_tiger_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(tiger, mouse))",
+          "z3_formula": "not(eats_tiger_mouse) == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, lion)",
+          "z3_formula": "visits_tiger_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X) & kind(X) -> visits(mouse)",
+          "z3_formula": "Implies(And(visits_dog, kind_dog), visits_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X) -> not(red(X))",
+          "z3_formula": "Implies(chases_tiger_lion, not(red_tiger))",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X) & visits(X) & visits(Y) -> chases(Y)",
+          "z3_formula": "Implies(And(chases_tiger_lion, visits_tiger_dog), chases_tiger_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X) & visits(Y) -> big(X)",
+          "z3_formula": "Implies(And(chases_tiger_lion, visits_tiger_dog), big_tiger)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X) -> not(cold(X))",
+          "z3_formula": "Implies(eats_tiger_dog, not(cold_tiger))",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X)",
+          "z3_formula": "Implies(big_tiger, visits_tiger_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X) -> red(mouse)",
+          "z3_formula": "Implies(visits_mouse, red_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X) & not(big(Y)) -> chases(mouse)",
+          "z3_formula": "Implies(And(visits_tiger_dog, not(big_dog)), chases_mouse)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X) & not(red(Y)) -> not(nice(X))",
+          "z3_formula": "Implies(And(visits_mouse, not(red_tiger)), not(nice_mouse))",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not(visits(dog, dog))",
+          "z3_formula": "not(visits_dog_dog) == True",
+          "source_step": 21
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 204,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 53
+    },
+    "maxsat_stats": {
+      "satisfied": 50,
+      "excluded": 3,
+      "total_weight": 180,
+      "solve_time_ms": 1.7870618030428886
+    },
+    "timing": {
+      "trace_gen_s": 24.391,
+      "extraction_s": 41.046,
+      "dedup_s": 1.714,
+      "maxsat_s": 0.005,
+      "total_s": 67.156
+    }
+  }
+}

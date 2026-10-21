@@ -1,0 +1,42 @@
+{
+  "pair_id": "HC12_lexical",
+  "domain": "healthcare",
+  "constraint": "provider_available",
+  "ambiguity_type": "lexical",
+  "condition": "ambiguous",
+  "description_used": "The provider should be able to accept new patients for scheduling.",
+  "action": "schedule_appointment",
+  "task_idx": 9,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "schedule_appointment",
+    "action_should_succeed": false,
+    "num_messages": 8,
+    "num_function_calls": 5,
+    "num_constraints": 4,
+    "num_constraints_expanded": 6,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "[says: I'll help you schedule your appointment! Let me start by verifying your account and logging you in. I'll work through this step by step.\n\n**Step 1: Check if the username exists.**]",
+    "login_user",
+    "[says: The username exists! Now let me log you in.\n\n**Step 2: Log in the user.**]",
+    "get_policy_details",
+    "[says: You're logged in successfully! Now let me retrieve your policy details to verify it's active.\n\n**Step 3: Retrieve policy details.**]",
+    "get_provider_details",
+    "[says: Your policy is active (Health). Now let me check the provider details.\n\n**Step 4: Retrieve provider details.**]",
+    "internal_get_interaction_time",
+    "[says: The provider is available and accepting new patients. Now let me check the current interaction time to ensure the appointment date is in the future.\n\n**Step 5: Get the current interaction time.**]",
+    "[says: Unfortunately, I'm unable to schedule the appointment. Here's why:\n\n- **Requested Appointment Date:** 2025-01-10\n- **Current Date:** 2025-01-15\n\nThe appointment date **2025-01-10** is in the **past**,...]",
+    "[says: I understand you'd like to proceed with the same information, but unfortunately I'm unable to schedule the appointment for **2025-01-10** because that date is in the past. The current date is **Januar...]"
+  ],
+  "timestamp": "2026-05-22T17:13:58.700524"
+}

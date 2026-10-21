@@ -1,0 +1,38 @@
+{
+  "exp_id": "exp_021",
+  "project": "spectral_collapse_ews",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T22:13:13.291Z",
+    "updated_at": "2026-05-24T06:10:02.504Z",
+    "hypothesis": "Real-data fine-tuning control for cross-architecture claim: GPT-2-medium fine-tuned on pure real OpenWebText (r=1.0) will exhibit Phase I decompression (r_eff increase) but NOT Phase II/III reversal and acceleration, demonstrating that the three-phase spectral collapse trajectory is specific to synthetic recursive training rather than a generic fine-tuning artifact.",
+    "parent": "exp_020",
+    "spec": {
+      "command": "bash -c 'export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 && python run_gpt2m_realdata_control.py --seed 42 --gpu 0'",
+      "server": "rtx6000-diagprobe",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "846794",
+      "log_path": "~/runs/spectral_collapse_ews/exp_021.log",
+      "submitted_at": "2026-05-24T02:45:53.443Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/spectral_collapse_ews/data/openwebtext_50k.jsonl",
+      "data_count": 50000,
+      "model_name": "gpt2-medium",
+      "seed": 42,
+      "checkpoint_source": "huggingface:gpt2-medium (pretrained, same as exp_020)",
+      "eval_data": "/root/spectral_collapse_ews/data/openwebtext_eval_5k.jsonl"
+    },
+    "notes": "Restarted from gen_1 checkpoint (--start_gen 2) after disk full crash. Freed 134G by deleting checkpoints_phase1/ and checkpoints_410m/. PID 858050 on GPU 1. tmux session: exp021. Log: /root/autodl-tmp/spectral_collapse_ews/logs/exp021_restart.log",
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-24T06:10:02.652272+00:00",
+  "trigger": "update_registry"
+}

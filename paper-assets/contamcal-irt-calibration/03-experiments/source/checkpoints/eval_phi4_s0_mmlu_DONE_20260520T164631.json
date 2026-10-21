@@ -1,0 +1,43 @@
+{
+  "exp_id": "eval_phi4_s0_mmlu",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T15:20:20.364Z",
+    "updated_at": "2026-05-20T16:46:31.123Z",
+    "hypothesis": "Phi-4 seed=0 MMLU 5-shot eval across 5 dosages. Third seed for triple-seed bootstrap CI. Immune pattern (s42: -0.17pp, s123: pending). Parent: sft_phi4_s0_sweep.",
+    "parent": "sft_phi4_s0_sweep",
+    "spec": {
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/phi-4_d{000,005,025,050,100}_s0/lora_adapter/",
+      "eval_data": "mmlu_5shot",
+      "eval_data_md5": "17673bf373f00f83ccc41fc1d355a4cd",
+      "server": "westd-29999",
+      "gpu": "cuda:0",
+      "command": "bash /root/contamcal-irt-calibration/scripts/eval_phi4_s0_mmlu.sh",
+      "model_name": "phi-4",
+      "seed": 0,
+      "data_path": "/root/contamcal-irt-calibration/results/mmlu_eval/phi4/",
+      "data_count": 5,
+      "log_path": "/root/contamcal-irt-calibration/logs/eval_phi4_s0_mmlu.log",
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/",
+      "pid": 366153
+    },
+    "conclusion": "success",
+    "metrics": {
+      "d000_acc": 0.7643,
+      "d005_acc": 0.7643,
+      "d025_acc": 0.7672,
+      "d050_acc": 0.773,
+      "d100_acc": 0.7695,
+      "delta_d100": 0.0052
+    },
+    "checkpoint_path": "/root/contamcal-irt-calibration/results/mmlu_eval/phi4/",
+    "log_path": "/root/contamcal-irt-calibration/logs/eval_phi4_s0_mmlu.log",
+    "completed_at": "2026-05-20T16:46:31.123Z"
+  },
+  "timestamp": "2026-05-20T16:46:31.730769+00:00",
+  "trigger": "update_registry"
+}

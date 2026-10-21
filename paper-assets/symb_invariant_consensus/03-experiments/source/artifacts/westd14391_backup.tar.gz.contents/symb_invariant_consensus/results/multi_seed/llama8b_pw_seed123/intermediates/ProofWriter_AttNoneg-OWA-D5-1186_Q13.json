@@ -1,0 +1,933 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1186_Q13",
+    "problem": "Erin is blue. Erin is cold. Erin is smart. Fiona is round. Gary is cold. Gary is green. Gary is quiet. Gary is round. Gary is smart. Harry is smart. Nice, green people are round. Green people are nice. If someone is blue then they are green. If someone is blue then they are smart. Nice, round people are blue. Smart people are green. If Harry is blue and Harry is smart then Harry is quiet.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is not smart.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nSmart($x, bool) ::: Is x smart?\nRound($x, bool) ::: Is x round?\nGreen($x, bool) ::: Is x green?\nQuiet($x, bool) ::: Is x quiet?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nBlue(Erin, True) ::: Erin is blue.\nCold(Erin, True) ::: Erin is cold.\nSmart(Erin, True) ::: Erin is smart.\nRound(Fiona, True) ::: Fiona is round.\nCold(Gary, True) ::: Gary is cold.\nGreen(Gary, True) ::: Gary is green.\nQuiet(Gary, True) ::: Gary is quiet.\nRound(Gary, True) ::: Gary is round.\nSmart(Gary, True) ::: Gary is smart.\nSmart(Harry, True) ::: Harry is smart.\n\nRules:\nNice($x, True) && Green($x, True) >>> Round($x, True) ::: Nice, green people are round.\nGreen($x, True) >>> Nice($x, True) ::: Green people are nice.\nBlue($x, True) >>> Green($x, True) ::: If someone is blue then they are green.\nBlue($x, True) >>> Smart($x, True) ::: If someone is blue then they are smart.\nNice($x, True) && Round($x, True) >>> Blue($x, True) ::: Nice, round people are blue.\nSmart($x, True) >>> Green($x, True) ::: Smart people are green.\nBlue(Harry, True) && Smart(Harry, True) >>> Quiet(Harry, True) ::: If Harry is blue and Harry is smart then Harry is quiet.\n\nQuery:\nSmart(Fiona, False) ::: Fiona is not smart."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 38.0,
+      "Unknown": 124.0
+    },
+    "answer_counts": {
+      "Unknown": 10,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether Fiona is not smart, we need to analyze the given information step by step.\n\n1. Fiona is round. \n   We do not have any information about Fiona's color or intelligence yet. \n\n2. Nice, green people are round. \n   This statement implies that if someone is green and nice, they are round. However, it does not say that being round is exclusive to green people.\n\n3. Green people are nice. \n   This statement implies that green people are nice, but it does not provide any information about their roundness.\n\n4. If someone is blue then they are green. \n   This statement implies that blue people are also green. However, it does not provide any information about their roundness or niceness.\n\n5. If someone is blue then they are smart. \n   This statement implies that blue people are smart. However, it does not provide any information about their roundness or greenness.\n\n6. Nice, round people are blue. \n   This statement implies that if someone is round and nice, they are blue. However, we do not know if Fiona is nice or not.\n\n7. Smart people are green. \n   This statement implies that smart people are green, but it does not provide any information about their roundness or blue color.\n\n8. Gary is green. Gary is smart. \n   This statement implies that Gary is both green and smart, which aligns with statement 7.\n\n9. Erin is blue. Erin is cold. Erin is smart. \n   This statement implies that Erin is blue and smart, but it does not provide any information about her greenness or roundness.\n\n10. If Harry is blue and Harry is smart then Harry is quiet. \n    This statement implies that if Harry is both blue and smart, he is quiet. However, this statement is not relevant to determining whether Fiona is not smart.\n\n11. Gary is quiet. Gary is round. Gary is green. Gary is cold. Gary is smart. \n    This statement implies that Gary is round, green, and smart.\n\nNow, let's go back to Fiona. Fiona is round (statement 1), but we do not know if she is green or blue. We do not know if she is smart or not.\n\nTo determine whether Fiona is not smart, we need to consider the following statements:\n- Nice, round people are blue. (Statement 6)\n- Green people are nice. (Statement 3)\n- Smart people are green. (Statement 7)\n- If someone is blue then they are green. (Statement 4)\n- If someone is blue then they are smart. (Statement 5)\n\nSince Fiona is round, we can consider statement 6, which implies that she might be blue. If she is blue, then she might be green (statement 4), and if she is green, then she might be smart (statement 7). However, we do not have enough information to conclude that Fiona is not smart.\n\nTherefore, the final answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not smart\" is true, false, or unknown, we need to analyze the given information.\n\nFrom the given statements, we can derive the following information:\n\n1. Erin is blue. Erin is cold. Erin is smart. (This doesn't provide any direct information about Fiona or the relationship between colors and qualities.)\n2. Fiona is round. (This provides information about Fiona but not about her qualities or colors.)\n3. Gary is cold. Gary is green. Gary is quiet. Gary is round. Gary is smart. (This provides information about Gary but not about Fiona or the relationship between colors and qualities.)\n4. Harry is smart. (This provides information about Harry but not about Fiona or the relationship between colors and qualities.)\n5. Nice, green people are round. Green people are nice. (This provides information about the relationship between colors and qualities.)\n6. If someone is blue then they are green. If someone is blue then they are smart. (This provides information about the relationship between colors and qualities.)\n7. Nice, round people are blue. (This provides information about the relationship between qualities and colors.)\n8. Smart people are green. (This provides information about the relationship between qualities and colors.)\n9. If Harry is blue and Harry is smart then Harry is quiet. (This provides information about Harry but not about Fiona or the relationship between colors and qualities.)\n\nFrom statement 6, we know that \"If someone is blue then they are green\" and \"If someone is blue then they are smart.\" However, there is no information about Fiona being blue.\n\nFrom statement 2, we know that Fiona is round. We can't determine if Fiona is smart or not based on the given information.\n\nFrom statement 5, we know that green people are nice. We can't determine if Fiona is green or not based on the given information.\n\nFrom statement 7, we know that nice, round people are blue. We can't determine if Fiona is nice or not based on the given information.\n\nFrom statement 8, we know that smart people are green. We can't determine if Fiona is smart or not based on the given information.\n\nHowever, from statement 5, we know that green people are nice. We can't determine if Fiona is green or not based on the given information. But from statement 5, we also know that green people are round. We know that Fiona is round, but there is no information about Fiona being green.\n\nFrom statement 9, we know that \"If Harry is blue and Harry is smart then Harry is quiet.\" However, there is no information about Harry being blue.\n\nBased on the given information, we can't determine if Fiona is smart or not. Therefore, the statement \"Fiona is not smart\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is round.\n2. Nice, round people are blue.\n   From this, we can conclude that Fiona is blue.\n\n3. If someone is blue then they are green.\n   From this, we can conclude that Fiona is green.\n\n4. Erin is blue.\n   We don't know if Erin is green, smart, or not smart from the given information.\n\n5. Erin is cold.\n   We don't know if this has any relation to Fiona's properties.\n\n6. Erin is smart.\n   We don't know if Erin's properties have any relation to Fiona's properties.\n\n7. Fiona is round.\n   We already know this from statement 1.\n\n8. Gary is cold.\n   We don't know if this has any relation to Fiona's properties.\n\n9. Gary is green.\n   We already know that Fiona is green from statement 3.\n\n10. Gary is quiet.\n    We don't know if this has any relation to Fiona's properties.\n\n11. Gary is round.\n    We already know this from statement 9.\n\n12. Gary is smart.\n    We don't know if this has any relation to Fiona's properties.\n\n13. Harry is smart.\n    We don't know if Harry is blue, green, or not green from the given information.\n\n14. If Harry is blue and Harry is smart then Harry is quiet.\n    This is a conditional statement, and we don't know if Harry is blue, so we can't conclude anything about Harry's quietness.\n\n15. Nice, green people are round.\n    We already know that Fiona is green from statement 3.\n\n16. Green people are nice.\n    We don't know if this has any relation to Fiona's properties.\n\n17. If someone is blue then they are smart.\n    We already know that Fiona is blue from statement 2.\n\n18. Smart people are green.\n    We already know that Fiona is green from statement 3.\n\nFrom the given information, we can conclude that Fiona is both blue and green. We can also conclude that Fiona is round, and since round people are nice, Fiona is nice. However, we don't have any information that directly states whether Fiona is smart or not.\n\nSince we don't have enough information to determine whether Fiona is smart or not, the statement \"Fiona is not smart\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is round. \n   There is no information given about Fiona's color or smartness, so we cannot conclude anything about her smartness yet.\n\n2. If someone is blue then they are green. \n   This statement does not directly relate to Fiona. We cannot conclude Fiona's color from this statement.\n\n3. Nice, round people are blue. \n   Again, this statement does not directly relate to Fiona. We cannot conclude Fiona's color from this statement.\n\n4. Green people are nice. \n   This statement does not directly relate to Fiona. We cannot conclude Fiona's color or niceness from this statement.\n\n5. If someone is blue then they are smart. \n   This statement does not directly relate to Fiona. We cannot conclude Fiona's smartness from this statement.\n\n6. Smart people are green. \n   This statement does not directly relate to Fiona. We cannot conclude Fiona's smartness from this statement.\n\n7. Gary is green. \n   This statement does not directly relate to Fiona. We cannot conclude Fiona's color from this statement.\n\n8. Gary is round. \n   This statement does not directly relate to Fiona. We cannot conclude Fiona's roundness from this statement.\n\n9. Gary is quiet. \n   This statement does not directly relate to Fiona. We cannot conclude Fiona's quietness from this statement.\n\n10. Erin is blue. Erin is cold. Erin is smart. \n    This statement does not directly relate to Fiona. We cannot conclude Fiona's color or smartness from this statement.\n\n11. Harry is smart. \n    This statement does not directly relate to Fiona. We cannot conclude Fiona's smartness from this statement.\n\n12. If Harry is blue and Harry is smart then Harry is quiet. \n    This statement does not directly relate to Fiona. We cannot conclude Fiona's quietness or color from this statement.\n\n13. Erin is blue. \n    From statement 11, we know that Erin is blue.\n\n14. If someone is blue then they are green. \n    From statement 1, we can conclude that Erin is green.\n\n15. Smart people are green. \n    From statement 14, we know that Erin is green, and from statement 15, we can conclude that Erin is smart.\n\n16. If someone is blue then they are smart. \n    From statement 1, we know that Erin is blue, and from statement 16, we can conclude that Erin is smart.\n\nFrom statements 14 and 15, we can conclude that Erin is both green and smart. However, we cannot conclude Fiona's color or smartness from the given information.\n\nTherefore, the statement \"Fiona is not smart\" is **unknown**.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to use logical reasoning and analyze the given statements.\n\n1. Erin is blue. \n2. Erin is cold. \n3. Erin is smart. \n4. Fiona is round. \n5. Gary is cold. \n6. Gary is green. \n7. Gary is quiet. \n8. Gary is round. \n9. Gary is smart. \n10. Harry is smart. \n11. Nice, green people are round. \n12. Green people are nice. \n13. If someone is blue then they are green. \n14. If someone is blue then they are smart. \n15. Nice, round people are blue. \n16. Smart people are green. \n17. If Harry is blue and Harry is smart then Harry is quiet.\n\nFrom statement 13, we know that if someone is blue, then they are green.\n\nFrom statement 15, we know that nice, round people are blue. \n\nHowever, from statement 4, we know that Fiona is round. But we cannot conclude that Fiona is blue or green or nice based on the given statements. \n\nFrom statement 12, we know that green people are nice. \n\nCombining statement 12 and statement 13, we can conclude that people who are blue are also nice.\n\nHowever, we still cannot conclude whether Fiona is smart or not. \n\nNow, let's analyze the statement \"Fiona is not smart.\"\n\nTo determine whether this statement is true, false, or unknown, we need to find out if there is any information that contradicts it or if there is any information that supports it.\n\nWe cannot conclude that Fiona is smart from the given statements. \n\nHowever, we cannot conclude that Fiona is not smart either. \n\nTherefore, the statement \"Fiona is not smart\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is round. (This is a direct statement)\n\n2. Nice, round people are blue. (From the given information)\n   Since Fiona is round, she is blue.\n\n3. If someone is blue then they are green. (From the given information)\n   Since Fiona is blue, she is green.\n\n4. Green people are nice. (From the given information)\n   Since Fiona is green, she is nice.\n\nFrom the above steps, we can conclude that Fiona is round, blue, green, and nice.\n\n5. Erin is blue. (From the given information)\n   Erin being blue does not directly relate to Fiona.\n\n6. Erin is cold. (From the given information)\n   Erin being cold does not directly relate to Fiona.\n\n7. Erin is smart. (From the given information)\n   Erin being smart does not directly relate to Fiona.\n\n8. Gary is cold. (From the given information)\n   Gary being cold does not directly relate to Fiona.\n\n9. Gary is green. (From the given information)\n   Gary being green does not directly relate to Fiona.\n\n10. Gary is quiet. (From the given information)\n   Gary being quiet does not directly relate to Fiona.\n\n11. Gary is round. (From the given information)\n    This is consistent with Fiona being round.\n\n12. Gary is smart. (From the given information)\n    This does not directly relate to Fiona's smartness.\n\n13. Harry is smart. (From the given information)\n    This does not directly relate to Fiona's smartness.\n\n14. If Harry is blue and Harry is smart then Harry is quiet. (From the given information)\n    This does not directly relate to Fiona's smartness.\n\n15. Smart people are green. (From the given information)\n    Since Fiona is green (step 3), this statement indirectly suggests Fiona might be smart.\n\nHowever, based on the information provided, we cannot directly conclude whether Fiona is smart or not. The statement \"Fiona is not smart\" cannot be determined as true or false based on the given information. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not smart\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. Fiona is round. (Given)\n2. Nice, round people are blue. (Given)\n   From this, we can deduce that Fiona is blue because she is round and nice round people are blue.\n3. If someone is blue then they are green. (Given)\n   From this, we can deduce that Fiona is green because she is blue.\n4. Green people are nice. (Given)\n   From this, we can deduce that Fiona is nice because she is green.\n5. If someone is green then they are not smart. (We can infer this from the given statement: Smart people are green. This implies that green people cannot be both smart and not smart at the same time.)\n\nHowever, we cannot conclude that Fiona is not smart directly from the information given. We can only infer that green people are not smart, but we don't have any information about Fiona being green and not smart at the same time.\n\nGiven that we have information about Fiona being round and green, we cannot conclude that she is not smart. Therefore, the statement \"Fiona is not smart\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether Fiona is not smart, we need to analyze the given information step by step.\n\n1. Fiona is round. (Given)\n\n2. Nice, round people are blue. (Given)\n   However, we cannot conclude that Fiona is blue from this statement alone because there might be other characteristics that make her blue.\n\n3. Nice, green people are round. (Given)\n   This statement alone does not provide any information about Fiona.\n\n4. Green people are nice. (Given)\n   This statement alone does not provide any information about Fiona.\n\n5. If someone is blue then they are green. (Given)\n   This statement alone does not provide any information about Fiona.\n\n6. If someone is blue then they are smart. (Given)\n   This statement alone does not provide any information about Fiona.\n\n7. Erin is blue. Erin is cold. Erin is smart. (Given)\n   This information does not provide any connection to Fiona.\n\n8. Fiona is not mentioned in the statements about Erin.\n\n9. Gary is green. Gary is quiet. Gary is round. Gary is smart. (Given)\n   This information does not provide any connection to Fiona.\n\n10. Harry is smart. (Given)\n    This information does not provide any connection to Fiona.\n\n11. If Harry is blue and Harry is smart then Harry is quiet. (Given)\n    This information does not provide any connection to Fiona.\n\nWe cannot determine whether Fiona is smart or not based on the given statements. There is no direct or indirect connection between Fiona and the characteristics smart, blue, green, or round. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not smart\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. Fiona is round.\n2. Nice, green people are round.\n3. Green people are nice.\n4. If someone is blue then they are green.\n5. If someone is blue then they are smart.\n6. Nice, round people are blue.\n7. Smart people are green.\n8. If Harry is blue and Harry is smart then Harry is quiet.\n\nFrom statement 1, we know Fiona is round.\n\nFrom statements 2 and 3, we can conclude that green people are nice and round, but this does not directly relate to Fiona.\n\nFrom statement 4, we can conclude that if someone is blue, then they are green. However, this does not provide any information about Fiona.\n\nFrom statement 5, we can conclude that if someone is blue, then they are smart. However, this does not provide any information about Fiona.\n\nFrom statement 6, we can conclude that nice, round people are blue. Since Fiona is round (statement 1), we can deduce that Fiona is blue.\n\nHowever, we cannot directly conclude that Fiona is smart or green using the given statements.\n\nThe given statements do not provide any information about Fiona being smart. Therefore, we cannot determine whether the statement \"Fiona is not smart\" is true or false.\n\nThe answer is: \n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is not smart' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The given information is:\n   - Erin is blue.\n   - Erin is cold.\n   - Erin is smart.\n   - Fiona is round.\n   - Gary is cold.\n   - Gary is green.\n   - Gary is quiet.\n   - Gary is round.\n   - Gary is smart.\n   - Harry is smart.\n   - Nice, green people are round.\n   - Green people are nice.\n   - If someone is blue then they are green.\n   - If someone is blue then they are smart.\n   - Nice, round people are blue.\n   - Smart people are green.\n   - If Harry is blue and Harry is smart then Harry is quiet.\n\n2. We have two statements that are relevant to our problem:\n   - Fiona is round.\n   - Nice, round people are blue.\n   - If someone is blue then they are green.\n   - If someone is blue then they are smart.\n\nFrom the above statements, we can infer that Fiona is blue. \n\nHowever, there's another statement:\n   - Fiona is round.\n   - Gary is round.\n   - Gary is green.\n\nSince Fiona and Gary are both round, and we know Gary is green, we can't directly infer whether Fiona is green or not based on the information provided.",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not smart\" is true, false, or unknown, we need to analyze the given statements and use the rules of logic.\n\nStep 1: \nGiven statements:\n1. Fiona is round.\n2. Nice, green people are round.\n3. Green people are nice.\n4. If someone is blue then they are green.\n5. If someone is blue then they are smart.\n6. Nice, round people are blue.\n7. Smart people are green.\n8. If Harry is blue and Harry is smart then Harry is quiet.\n\nStep 2: \nWe need to find a relationship between Fiona and the color green or blue. Since there's no direct statement linking Fiona to green or blue, we need to find an indirect relationship.\n\nStep 3: \nFrom statement 1, we know Fiona is round.\nFrom statement 6, we know nice, round people are blue.\nSo, Fiona could be nice and blue.\n\nStep 4: \nFrom statement 3, we know green people are nice.\nFrom statement 7, we know smart people are green.\nHowever, we cannot conclude that Fiona is smart or green from these statements.\n\nStep 5: \nFrom statement 4, we know if someone is blue then they are green.\nHowever, this statement cannot be used to conclude that Fiona is green.\n\nStep 6: \nNow let's look at statement 8: If Harry is blue and Harry is smart then Harry is quiet.\nThis statement doesn't provide any information about Fiona.\n\nStep 7: \nWe cannot conclude whether Fiona is smart or not from the given statements.\n\nStep 8: \nWe cannot conclude whether Fiona is not smart or not from the given statements.\n\nFinal Answer:\nSince we cannot conclude whether Fiona is smart or not, the answer is \\boxed{unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to evaluate the given statements and use logical deductions to determine the truth value of the statement \"Fiona is not smart.\"\n\n1. We are given the following statements:\n   - Erin is blue.\n   - Erin is cold.\n   - Erin is smart.\n   - Fiona is round.\n   - Gary is cold.\n   - Gary is green.\n   - Gary is quiet.\n   - Gary is round.\n   - Gary is smart.\n   - Harry is smart.\n   - Nice, green people are round.\n   - Green people are nice.\n   - If someone is blue then they are green.\n   - If someone is blue then they are smart.\n   - Nice, round people are blue.\n   - Smart people are green.\n   - If Harry is blue and Harry is smart then Harry is quiet.\n\n2. The statement we need to evaluate is:\n   - Fiona is not smart.\n\nFrom the given statements, we know:\n   - Fiona is round.\n   - Nice, round people are blue.\n   - If someone is blue then they are green.\n   - If someone is blue then they are smart.\n   - Green people are nice.\n\nFrom these statements, we can deduce that Fiona is blue because she is round and nice (round people are blue). \n\nSince Fiona is blue, we can apply the statements:\n   - If someone is blue then they are green.\n   - If someone is blue then they are smart.\n\nThis means Fiona is both green and smart.\n\nNow, let's evaluate the statement \"Fiona is not smart.\"\nSince we have established that Fiona is smart, this statement is false.\n\nTherefore, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> blue(X)",
+          "z3_formula": "Implies(And(nice_fiona, round_fiona), blue_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_fiona, nice_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_fiona, green_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_fiona, green_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_fiona, smart_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(fiona)",
+          "z3_formula": "Not(smart_fiona)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_erin, green_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_erin, smart_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & nice(X) -> round(X)",
+          "z3_formula": "Implies(And(green_X, nice_X), round_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_X, nice_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> blue(X)",
+          "z3_formula": "Implies(And(nice_X, round_X), blue_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_X, green_X)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona) & (not green(fiona) | not nice(fiona))",
+          "z3_formula": "And(round_fiona, Or(Not(green_fiona), Not(nice_fiona)))",
+          "source_step": 10
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_fiona, green_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_fiona, nice_fiona), blue_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_fiona, nice_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_fiona, smart_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_fiona, green_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> quiet(X)",
+          "z3_formula": "Implies(And(blue_harry, smart_harry), quiet_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_erin, green_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_erin, green_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_erin, smart_erin)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_X, round_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_X, blue_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_X, nice_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_X, green_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_X, smart_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_X, smart_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> quiet(X)",
+          "z3_formula": "Implies(And(blue_X, smart_X), quiet_X)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_fiona, blue_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_fiona, green_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_fiona, nice_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> quiet(X)",
+          "z3_formula": "Implies(And(blue_harry, smart_harry), quiet_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_fiona, smart_fiona)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> blue(X)",
+          "z3_formula": "Implies(And(nice_fiona, round_fiona), blue_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_fiona, green_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_fiona, nice_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> Not(smart(X))",
+          "z3_formula": "Implies(green_fiona, Not(smart_fiona))",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> blue(X)",
+          "z3_formula": "Implies(And(nice_fiona, round_fiona), blue_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(nice_gary, green_gary), round_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_gary, nice_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_erin, green_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_erin, smart_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> quiet(X)",
+          "z3_formula": "Implies(And(blue_harry, smart_harry), quiet_harry)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(nice_fiona, green_fiona), round_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_fiona, nice_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_fiona, green_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_fiona, smart_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> blue(X)",
+          "z3_formula": "Implies(And(nice_fiona, round_fiona), blue_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_fiona, green_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> quiet(X)",
+          "z3_formula": "Implies(And(blue_harry, smart_harry), quiet_harry)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_gary, nice_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_gary, green_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_gary, smart_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_fiona, nice_fiona), blue_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & green(X) -> ?furry(X)",
+          "z3_formula": "Implies(And(round_fiona, green_fiona), ?furry_fiona)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(nice_fiona, green_fiona), round_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_fiona, nice_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_fiona, green_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_fiona, smart_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> blue(X)",
+          "z3_formula": "Implies(And(nice_fiona, round_fiona), blue_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_fiona, green_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> quiet(X)",
+          "z3_formula": "Implies(And(blue_harry, smart_harry), quiet_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == Unknown",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(fiona)",
+          "z3_formula": "Not(smart_fiona) == Unknown",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_fiona, blue_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_fiona, green_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_fiona, smart_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_fiona, nice_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(fiona)",
+          "z3_formula": "Not(smart_fiona) == True",
+          "source_step": 9
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 134,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 45
+    },
+    "maxsat_stats": {
+      "satisfied": 42,
+      "excluded": 3,
+      "total_weight": 129,
+      "solve_time_ms": 2.0265812054276466
+    },
+    "timing": {
+      "trace_gen_s": 7.514,
+      "extraction_s": 25.945,
+      "dedup_s": 1.171,
+      "maxsat_s": 0.005,
+      "total_s": 34.635
+    }
+  }
+}

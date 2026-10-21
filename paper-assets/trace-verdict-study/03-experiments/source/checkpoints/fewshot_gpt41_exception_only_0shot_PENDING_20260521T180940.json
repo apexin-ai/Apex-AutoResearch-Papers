@@ -1,0 +1,16 @@
+{
+  "exp_id": "fewshot_gpt41_exception_only_0shot",
+  "project": "trace-verdict-study",
+  "state": "PENDING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T18:07:51.545Z",
+    "updated_at": "2026-05-21T18:09:39.896Z",
+    "hypothesis": "GPT-4.1 zero-shot on exception_only condition performs comparably to GPT-4o because both are frontier models with similar code reasoning capabilities.",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-21T18:09:40.229201+00:00",
+  "trigger": "update_registry"
+}

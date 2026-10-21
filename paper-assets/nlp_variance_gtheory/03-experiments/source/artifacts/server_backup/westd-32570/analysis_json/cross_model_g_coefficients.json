@@ -1,0 +1,197 @@
+{
+  "G_item": {
+    "description": "Item difficulty ranking reliability across models and conditions",
+    "question": "Is item difficulty ranking reliable across different models?",
+    "tau": "sigma2_item_id",
+    "tau_value": 0.07682113,
+    "tau_pct": 37.93,
+    "g": 0.706926,
+    "sigma_tau": 0.07682113,
+    "sigma_delta": 0.03184812,
+    "delta_breakdown": {
+      "model:item_id": {
+        "raw_estimate": 0.05299053,
+        "divisor": 2,
+        "contribution": 0.02649526
+      },
+      "precision:item_id": {
+        "raw_estimate": 0.004684,
+        "divisor": 2,
+        "contribution": 0.002342
+      },
+      "prompt_template:item_id": {
+        "raw_estimate": 0.00565004,
+        "divisor": 6,
+        "contribution": 0.00094167
+      },
+      "temperature:item_id": {
+        "raw_estimate": 0.00266933,
+        "divisor": 3,
+        "contribution": 0.00088978
+      },
+      "seed:item_id": {
+        "raw_estimate": 0.00500694,
+        "divisor": 6,
+        "contribution": 0.00083449
+      },
+      "ordering:item_id": {
+        "raw_estimate": 0.00126457,
+        "divisor": 4,
+        "contribution": 0.00031614
+      },
+      "residual": {
+        "raw_estimate": 0.04970857,
+        "divisor": 1728,
+        "contribution": 2.877e-05
+      }
+    },
+    "dominant_delta_component": "model:item_id (83.2% of delta)"
+  },
+  "G_condition": {
+    "description": "Condition effect reliability (original definition)",
+    "question": "Are precision/temperature effects detectable across models/items?",
+    "tau": "sigma2_precision + sigma2_temperature + sigma2_precision:temperature",
+    "g": 0.072668,
+    "sigma_tau": 0.00017862,
+    "sigma_delta": 0.00227945
+  },
+  "comparison_with_single_model": {
+    "single_model_ICC_item": 0.6108,
+    "cross_model_ICC_item": 0.379282,
+    "cross_model_G_item": 0.706926,
+    "icc_drop": "0.611 -> 0.379 due to model x item (26.2%)",
+    "g_item_with_averaging": "Averaging over 2 models yields G_item=0.707"
+  },
+  "d_study_g_item_vs_n_models": [
+    {
+      "n_models": 1,
+      "g_item": 0.568232,
+      "sigma_tau": 0.07682113,
+      "sigma_delta": 0.05837215
+    },
+    {
+      "n_models": 2,
+      "g_item": 0.706926,
+      "sigma_tau": 0.07682113,
+      "sigma_delta": 0.03184812
+    },
+    {
+      "n_models": 3,
+      "g_item": 0.769536,
+      "sigma_tau": 0.07682113,
+      "sigma_delta": 0.02300677
+    },
+    {
+      "n_models": 4,
+      "g_item": 0.805192,
+      "sigma_tau": 0.07682113,
+      "sigma_delta": 0.0185861
+    },
+    {
+      "n_models": 5,
+      "g_item": 0.828217,
+      "sigma_tau": 0.07682113,
+      "sigma_delta": 0.0159337
+    },
+    {
+      "n_models": 6,
+      "g_item": 0.844313,
+      "sigma_tau": 0.07682113,
+      "sigma_delta": 0.01416543
+    },
+    {
+      "n_models": 7,
+      "g_item": 0.856198,
+      "sigma_tau": 0.07682113,
+      "sigma_delta": 0.01290238
+    },
+    {
+      "n_models": 8,
+      "g_item": 0.865335,
+      "sigma_tau": 0.07682113,
+      "sigma_delta": 0.01195509
+    },
+    {
+      "n_models": 9,
+      "g_item": 0.872576,
+      "sigma_tau": 0.07682113,
+      "sigma_delta": 0.01121831
+    },
+    {
+      "n_models": 10,
+      "g_item": 0.878458,
+      "sigma_tau": 0.07682113,
+      "sigma_delta": 0.01062889
+    }
+  ],
+  "d_study_g_item_vs_n_prompts": [
+    {
+      "n_prompts": 1,
+      "g_item": 0.67671
+    },
+    {
+      "n_prompts": 2,
+      "g_item": 0.694522
+    },
+    {
+      "n_prompts": 3,
+      "g_item": 0.700669
+    },
+    {
+      "n_prompts": 6,
+      "g_item": 0.706926
+    },
+    {
+      "n_prompts": 10,
+      "g_item": 0.70946
+    },
+    {
+      "n_prompts": 15,
+      "g_item": 0.710734
+    },
+    {
+      "n_prompts": 20,
+      "g_item": 0.711373
+    }
+  ],
+  "d_study_g_item_vs_n_seeds": [
+    {
+      "n_seeds": 1,
+      "g_item": 0.67992
+    },
+    {
+      "n_seeds": 2,
+      "g_item": 0.69587
+    },
+    {
+      "n_seeds": 3,
+      "g_item": 0.701355
+    },
+    {
+      "n_seeds": 6,
+      "g_item": 0.706926
+    },
+    {
+      "n_seeds": 10,
+      "g_item": 0.70918
+    },
+    {
+      "n_seeds": 15,
+      "g_item": 0.710312
+    },
+    {
+      "n_seeds": 20,
+      "g_item": 0.710879
+    }
+  ],
+  "n_levels_observed": {
+    "model": 2,
+    "precision": 2,
+    "temperature": 3,
+    "prompt_template": 6,
+    "seed": 6,
+    "ordering": 4,
+    "item_id": 200
+  },
+  "methodology_note": "Original G=0.073 used tau=condition_effects (precision+temperature). Single-model G=0.611 used tau=item_id. These answer different questions. G_item (tau=item_id) is the correct metric for comparing item ranking reliability across single-model vs cross-model designs."
+}

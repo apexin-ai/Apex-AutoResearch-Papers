@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_goal_prune_k05",
+  "project": "importance_margin_vla_compress",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T12:04:37.802Z",
+    "updated_at": "2026-05-17T12:54:05.639Z",
+    "hypothesis": "ACIS k=0.5 true_removal 在 libero_goal suite 上的 SR。验证 cliff-edge 效应是否跨全部 3 个 LIBERO suite (Object/Spatial/Goal) 一致。Goal baseline=63%, Object/Spatial 已确认 0%。",
+    "parent": "eval_spatial_prune_k05"
+  },
+  "timestamp": "2026-05-17T12:54:05.740437+00:00",
+  "trigger": "update_registry"
+}

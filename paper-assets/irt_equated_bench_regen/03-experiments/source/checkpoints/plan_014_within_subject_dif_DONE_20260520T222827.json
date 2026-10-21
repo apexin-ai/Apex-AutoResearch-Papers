@@ -1,0 +1,44 @@
+{
+  "exp_id": "plan_014_within_subject_dif",
+  "project": "irt_equated_bench_regen",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T22:23:50.857Z",
+    "updated_at": "2026-05-20T22:28:27.350Z",
+    "hypothesis": "Within-subject temporal DIF（只用该 subject 内 items 和总分）在高 C% subjects 上的 C% 将 < 15%，表明 plan_001 的 31% FPR 主要来自 between-subject 能力差异而非 within-subject 因素。如果 within-subject C% > 25%，则 bifactor 模型也无法解决 FPR 问题。",
+    "parent": "plan_012_irt_theta_conditioning",
+    "spec": {
+      "command": "python plan_014_within_subject_dif.py",
+      "server": "local (CPU)",
+      "data_path": "artifacts/response_matrix.npz + item_metadata.csv + model_metadata.csv",
+      "data_count": "5_subjects_x_2_matching_types",
+      "model_name": "N/A (within-subject MH-DIF)",
+      "seed": "N/A",
+      "checkpoint_source": "plan_012_irt_theta_conditioning",
+      "eval_data": "METABENCH 5 high-C% subjects, within-subject vs cross-subject matching"
+    },
+    "metrics": {
+      "business_ethics_within_c_pct": 45.2,
+      "human_aging_within_c_pct": 33,
+      "formal_logic_within_c_pct": 39.5,
+      "professional_medicine_within_c_pct": 31.1,
+      "high_school_statistics_within_c_pct": 42,
+      "avg_within_subject_c_pct": 38.1,
+      "avg_cross_subject_c_pct": 40.5,
+      "avg_delta_within_vs_cross": -2.4,
+      "sibtest_available": false,
+      "r_available": false,
+      "decision_zone": ">25% HIGH"
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "artifacts/plan_014/",
+    "log_path": "logs/workers/worker_code_plan_014_within_subject_dif_20260520T222310.log",
+    "notes": "Within-subject temporal DIF 前置检查 NEGATIVE。5 个高 C% subjects 平均 within-subject C%=38.1%（全部 >25%）：business_ethics 45.2%, human_aging 33.0%, formal_logic 39.5%, professional_medicine 31.1%, high_school_statistics 42.0%。Cross-subject matching C% 40.5%（Δ=-2.4pp）。结论：temporal DIF 渗透到每个 subject 内部，不是 between-subject 能力差异的伪影。Bifactor 模型大概率无法解决 FPR 问题。SIBTEST: R 不可用，Python 无实现。",
+    "completed_at": "2026-05-20T22:28:27.350Z"
+  },
+  "timestamp": "2026-05-20T22:28:27.404577+00:00",
+  "trigger": "update_registry"
+}

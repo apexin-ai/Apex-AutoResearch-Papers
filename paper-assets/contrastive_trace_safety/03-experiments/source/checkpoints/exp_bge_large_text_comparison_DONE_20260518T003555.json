@@ -1,0 +1,50 @@
+{
+  "exp_id": "exp_bge_large_text_comparison",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T00:30:42.031Z",
+    "updated_at": "2026-05-18T00:35:55.749Z",
+    "hypothesis": "HS advantage over text probes persists even with a stronger text encoder (BGE-large 1024d vs MiniLM 384d). If HS advantage shrinks but remains significant under HB correction, the paper claim is strengthened against dimensionality/encoder-quality confounds.",
+    "spec": {
+      "command": "python scripts/stronger_text_encoder_comparison.py --models r1-8b ot-7b r1-32b qwq-32b --n-bootstrap 1000",
+      "server": "autodl-rtx6000",
+      "data_path": "artifacts/hidden_states_*/",
+      "data_count": "4 models, jailbreak traces",
+      "model_name": "BGE-large-en-v1.5 (1024d) vs HS probes",
+      "seed": "42",
+      "checkpoint_path": "artifacts/bge_large_comparison.json",
+      "log_path": "artifacts/bge_large_comparison.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "r1_8b_hs_prec": 0.497,
+      "r1_8b_bge_prec": 0.436,
+      "r1_8b_diff": 0.058,
+      "r1_8b_p": 0.185,
+      "r1_8b_hb": false,
+      "ot_7b_hs_prec": 0.446,
+      "ot_7b_bge_prec": 0.263,
+      "ot_7b_diff": 0.181,
+      "ot_7b_p": 0,
+      "ot_7b_hb": true,
+      "r1_32b_hs_prec": 0.588,
+      "r1_32b_bge_prec": 0.475,
+      "r1_32b_diff": 0.117,
+      "r1_32b_p": 0.027,
+      "r1_32b_hb": false,
+      "qwq_32b_hs_prec": 0.545,
+      "qwq_32b_bge_prec": 0.454,
+      "qwq_32b_diff": 0.094,
+      "qwq_32b_p": 0.132,
+      "qwq_32b_hb": false,
+      "hb_pass_count": "1/4"
+    },
+    "completed_at": "2026-05-18T00:35:55.749Z"
+  },
+  "timestamp": "2026-05-18T00:35:55.844831+00:00",
+  "trigger": "update_registry"
+}

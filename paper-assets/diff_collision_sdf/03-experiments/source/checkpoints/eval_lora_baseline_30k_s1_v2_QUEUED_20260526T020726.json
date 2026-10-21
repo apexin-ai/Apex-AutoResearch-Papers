@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_lora_baseline_30k_s1_v2",
+  "project": "diff_collision_sdf",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T02:07:16.733Z",
+    "updated_at": "2026-05-26T02:07:26.648Z",
+    "hypothesis": "LoRA baseline (no SDF) 30K eval on object_pudding seed 1 (v2, base env fix): second seed for LoRA-only attribution. Paired with s0 for error bars.",
+    "parent": "train_pi05_lora_baseline_s1"
+  },
+  "timestamp": "2026-05-26T02:07:26.794109+00:00",
+  "trigger": "update_registry"
+}

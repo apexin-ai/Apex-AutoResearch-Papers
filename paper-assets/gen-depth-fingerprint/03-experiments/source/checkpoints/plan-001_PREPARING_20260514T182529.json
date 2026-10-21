@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan-001",
+  "project": "gen-depth-fingerprint",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T18:25:29.824Z",
+    "updated_at": "2026-05-14T18:25:29.824Z"
+  },
+  "timestamp": "2026-05-14T18:25:29.837167+00:00",
+  "trigger": "update_registry"
+}

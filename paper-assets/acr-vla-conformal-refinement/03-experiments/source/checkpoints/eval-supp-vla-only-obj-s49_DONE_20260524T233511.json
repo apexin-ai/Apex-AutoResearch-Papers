@@ -1,0 +1,52 @@
+{
+  "exp_id": "eval-supp-vla-only-obj-s49",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T15:36:00.263Z",
+    "updated_at": "2026-05-24T23:35:09.744Z",
+    "hypothesis": "VLA-only baseline seed 49 on Object. Paired baseline for Adaptive seed extension, enabling 8-seed statistical comparison.",
+    "spec": {
+      "command": "python evaluate.py --mode vla_only --benchmark object --seed 49 --n_rollouts 20",
+      "server": "cqa1-32758",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": "942933",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-supp-vla-only-obj-s49.log",
+      "submitted_at": "2026-05-24T15:38:56.078Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "SmolVLA",
+      "seed": 49,
+      "data_path": "LIBERO-Object",
+      "data_count": 200,
+      "wall_clock_seconds": 28573.7,
+      "gpu_hours": 7.94
+    },
+    "conclusion": "success",
+    "metrics": {
+      "overall_sr": 0.755,
+      "per_task_sr": {
+        "soup": 0.55,
+        "cream_cheese": 0.7,
+        "salad": 0.8,
+        "bbq": 0.95,
+        "ketchup": 0.8,
+        "tomato": 0.8,
+        "butter": 0.6,
+        "milk": 0.65,
+        "pudding": 0.8,
+        "oj": 0.9
+      }
+    },
+    "checkpoint_path": "N/A (eval only)",
+    "completed_at": "2026-05-24T23:35:09.744Z"
+  },
+  "timestamp": "2026-05-24T23:35:11.177831+00:00",
+  "trigger": "update_registry"
+}

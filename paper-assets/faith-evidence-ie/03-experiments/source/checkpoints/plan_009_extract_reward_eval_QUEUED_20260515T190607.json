@@ -1,0 +1,24 @@
+{
+  "exp_id": "plan_009_extract_reward_eval",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:04:55.707Z",
+    "updated_at": "2026-05-15T19:06:07.153Z",
+    "spec": {
+      "hypothesis": "Extract reward GRPO checkpoint eval。用已有 checkpoint 补充 forgetting dynamics 图的 extract reward 变体数据，实现三种 reward 对比。",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 985,
+      "model_name": "Qwen3-4B + SFT + QLoRA GRPO (extract reward)",
+      "seed": 42,
+      "eval_data": "docred dev (985 docs)",
+      "checkpoint_source": "grpo_extract_r3/r4 checkpoints"
+    }
+  },
+  "timestamp": "2026-05-15T19:06:07.396299+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval-perdof-object-norm005-seed47",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T05:56:21.800Z",
+    "updated_at": "2026-05-19T12:00:31.370Z",
+    "spec": {
+      "command": "bash -c \"cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=2 timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 47 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.05 --output_file logs/eval_object_perdof_norm005_seed47.json\"",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "990235",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-perdof-object-norm005-seed47.log",
+      "submitted_at": "2026-05-19T05:56:21.094Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "perdof CRM (ε=0.05) seed47 on LIBERO-Object. 补 magnitude curve perdof ε=0.05 (当前 n=4)。timeout=16h。"
+  },
+  "timestamp": "2026-05-19T12:00:32.258831+00:00",
+  "trigger": "update_registry"
+}

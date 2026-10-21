@@ -1,0 +1,51 @@
+{
+  "exp_id": "eval_pi05_a1_30k_s2_l01_high",
+  "project": "diff_collision_sdf",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-28T01:00:40.157Z",
+    "updated_at": "2026-05-28T01:39:43.360Z",
+    "hypothesis": "Evaluate λ=0.1 seed2 30K checkpoint on safelibero_object. Third seed to complete 3-seed statistical power. s0 CAR=58%, s1 CAR=58.5%. Combined 3-seed mean determines final A/B/C scenario for paper.",
+    "parent": "train_pi05_a1_obj_s2_l01_high",
+    "spec": {
+      "command": "python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l1/30000 --config_name pi05_libero --model_type lora_baseline --pi05 --suite safelibero_object --safety_level II --n_episodes 50 --seed 7 --gpu 0",
+      "server": "westd-45947",
+      "gpu": [
+        "cuda:0"
+      ],
+      "data_path": "safelibero_object",
+      "data_count": 200,
+      "model_name": "pi05_a1_sdf_seed2_l01_high",
+      "seed": 7,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l1/30000",
+      "eval_data": "safelibero_object_levelII",
+      "log_path": "/root/autodl-tmp/eval_results/eval_sdf_s2_l1_30k_auto.log",
+      "pid": "568277",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed2_l1/30000"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "car": 54.5,
+      "tsr": 54.5,
+      "per_task_car": {
+        "orange_juice": 56,
+        "chocolate_pudding": 76,
+        "milk": 70,
+        "bbq_sauce": 16
+      },
+      "per_task_tsr": {
+        "orange_juice": 30,
+        "chocolate_pudding": 72,
+        "milk": 48,
+        "bbq_sauce": 68
+      },
+      "scenario": "B"
+    },
+    "completed_at": "2026-05-28T01:39:43.360Z"
+  },
+  "timestamp": "2026-05-28T01:39:43.571135+00:00",
+  "trigger": "update_registry"
+}

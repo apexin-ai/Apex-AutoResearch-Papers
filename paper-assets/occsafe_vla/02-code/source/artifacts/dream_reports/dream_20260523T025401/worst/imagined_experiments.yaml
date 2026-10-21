@@ -1,0 +1,994 @@
+tier: worst
+narrative_guidance: 'Cutoff@35K CAR ≈ 0.745 逼近 Detach（0.746），核心叙事反转：梯度流并非"早期暴露即可"，
+  而是必须持续全程的隐性正则化依赖。多 cutoff 剂量响应预期呈 S 形曲线——15K-35K 平坦底部 （均 ≈ Detach），35K-45K 陡升但仍低于
+  Vanilla，仅 Full（50K）提供保护。 cutoff@15K/25K 低于 Detach（"部分引入再移除"比"从未引入"更差，withdrawal
+  effect）。 Reverse cutoff ≈ Detach 证实后期补救不可行。2×2 矩阵（前半/后半 × 有/无梯度流） 揭示保护效应不可分割——仅交互项（全程同时存在）有效。
+  论文从 mechanism analysis 转为 empirical investigation + practical guidelines， 核心贡献重构为"辅助
+  head 是不可逆承诺"。CoRL 仍可行，cautionary finding 实践价值更高。
+
+  '
+imagined_experiments:
+- name: 'Multi-cutoff dose-response: cutoff@15K'
+  plan_id: plan_020
+  description: 'OCC loss 在 step 15000 切断（仅保留前 30% 训练的梯度流），3 seeds 评估。 测试最小梯度流持续时间的保护效果。预期暴露
+    withdrawal effect。
+
+    '
+  expected_results:
+    cutoff_step: 15000
+    n_seeds: 3
+    three_seed_mean_CAR: 0.73
+    three_seed_mean_TSR: 0.832
+    three_seed_std_CAR: 0.012
+    three_seed_std_TSR: 0.044
+    vs_vanilla_CAR_delta: -0.05
+    vs_detach_CAR_delta: -0.016
+    cohens_d_vs_vanilla: 3.3
+    per_seed:
+      s42:
+        TSR: 0.862
+        CAR: 0.738
+        collisions: 131
+      s43:
+        TSR: 0.844
+        CAR: 0.736
+        collisions: 132
+      s44:
+        TSR: 0.79
+        CAR: 0.716
+        collisions: 142
+    per_task_3seed_mean:
+      T0:
+        TSR: 0.96
+        CAR: 0.98
+      T1:
+        TSR: 0.88
+        CAR: 0.92
+      T2:
+        TSR: 0.94
+        CAR: 0.93
+      T3:
+        TSR: 0.96
+        CAR: 0.2
+      T4:
+        TSR: 0.78
+        CAR: 0.96
+      T5:
+        TSR: 0.26
+        CAR: 0.04
+      T6:
+        TSR: 0.96
+        CAR: 0.34
+      T7:
+        TSR: 0.82
+        CAR: 0.96
+      T8:
+        TSR: 0.86
+        CAR: 0.98
+      T9:
+        TSR: 0.9
+        CAR: 1.0
+  result_rationale: '15K 步仅覆盖训练前 30%。编码器在此期间部分适应辅助梯度流——LoRA 权重开始 向双任务最优解移动，但尚未收敛。step
+    15K 切断后，编码器面临 35K 步的 "梯度流戒断"：权重已被辅助梯度部分移动（偏离 action-only 最优解）， 但现在只有 action loss
+    驱动更新，必须"回退"到不同的稳态。 这种回退路径经过不稳定区域——编码器表征既不是最初的随机初始化状态， 也不是双任务训练的最优解，而是一个需要重新导航的中间状态。
+    结果 CAR 0.730 低于 Detach（0.746）1.6pp。Detach 从未适应辅助信号， 编码器始终沿 action-only 梯度稳定优化。"部分引入再移除"比"从未引入"更差，
+    这就是 withdrawal effect。s44 的 TSR 不稳定（0.790）反映了戒断后 个别 seed 在表征漂移过程中经历更剧烈的震荡。 T5
+    是最敏感指标（CAR=0.04），T3 退化至 0.20（Vanilla 0.38）， 模式与 Detach 相似但更严重——碰撞密集型任务在表征不稳定下首先崩溃。
+
+    '
+  tables:
+  - title: Cutoff@15K Per-seed Results (50K checkpoint, 50 rollouts/seed)
+    columns:
+    - Seed
+    - TSR
+    - CAR
+    - Collisions
+    - vs Vanilla CAR
+    rows:
+    - - '42'
+      - '0.862'
+      - '0.738'
+      - '131'
+      - '-0.042'
+    - - '43'
+      - '0.844'
+      - '0.736'
+      - '132'
+      - '-0.044'
+    - - '44'
+      - '0.790'
+      - '0.716'
+      - '142'
+      - '-0.064'
+    - - Mean +/- std
+      - 0.832 +/- 0.044
+      - 0.730 +/- 0.012
+      - '135'
+      - '-0.050'
+  - title: Cutoff@15K Per-task 3-seed Mean CAR vs References
+    columns:
+    - Task
+    - Cutoff@15K
+    - Detach
+    - Vanilla
+    - 15K vs Detach
+    rows:
+    - - T0
+      - '0.98'
+      - '0.98'
+      - '0.98'
+      - '0.00'
+    - - T1
+      - '0.92'
+      - '0.92'
+      - '0.95'
+      - '0.00'
+    - - T2
+      - '0.93'
+      - '0.93'
+      - '0.92'
+      - '0.00'
+    - - T3
+      - '0.20'
+      - '0.18'
+      - '0.38'
+      - '+0.02'
+    - - T4
+      - '0.96'
+      - '0.97'
+      - '0.98'
+      - '-0.01'
+    - - T5
+      - '0.04'
+      - '0.05'
+      - '0.07'
+      - '-0.01'
+    - - T6
+      - '0.34'
+      - '0.38'
+      - '0.57'
+      - '-0.04'
+    - - T7
+      - '0.96'
+      - '0.99'
+      - '0.97'
+      - '-0.03'
+    - - T8
+      - '0.98'
+      - '0.99'
+      - '1.00'
+      - '-0.01'
+    - - T9
+      - '1.00'
+      - '1.00'
+      - '1.00'
+      - '0.00'
+  figures_description:
+  - 'Bar chart: cutoff@15K 3 seeds CAR 与 Detach 参考线（0.746）和 Vanilla 参考线（0.780） 对比。3
+    个 seed 均落在 Detach 线以下，视觉上凸显 withdrawal effect。
+
+    '
+  - 'Per-task radar chart: cutoff@15K vs Detach vs Vanilla 10-task CAR。 T3/T5/T6 三角区域
+    cutoff@15K 包络面积略小于 Detach，其余任务重叠。
+
+    '
+  analysis: 'cutoff@15K 是 worst 档剂量曲线的下界锚点。CAR 0.730 不仅未恢复至 Vanilla（-5.0pp）， 反而低于
+    Detach（-1.6pp），验证了 C3 的核心主张：辅助 head 一旦引入， 部分训练后移除比从未引入更有害。per-task 分析显示退化集中于碰撞密集型任务
+    （T3/T5/T6），而简单抓取任务（T0/T7/T8/T9）不受影响—— 表征漂移选择性地损害需要精细空间感知的行为。 s44 的 TSR 不稳定（0.790）提示
+    15K 切断有诱发全局行为退化的风险（如 Detach s2 的 0.624）， 但本次仅表现为中度退化，3 seeds 可能不足以捕获尾部事件。
+
+    '
+- name: 'Multi-cutoff dose-response: cutoff@25K'
+  plan_id: plan_021
+  description: 'OCC loss 在 step 25000 切断（保留前 50% 训练的梯度流），3 seeds 评估。 中间切断点，测试半程梯度流是否提供实质保护。
+
+    '
+  expected_results:
+    cutoff_step: 25000
+    n_seeds: 3
+    three_seed_mean_CAR: 0.738
+    three_seed_mean_TSR: 0.844
+    three_seed_std_CAR: 0.01
+    three_seed_std_TSR: 0.032
+    vs_vanilla_CAR_delta: -0.042
+    vs_detach_CAR_delta: -0.008
+    cohens_d_vs_vanilla: 3.0
+    per_seed:
+      s42:
+        TSR: 0.87
+        CAR: 0.746
+        collisions: 127
+      s43:
+        TSR: 0.852
+        CAR: 0.74
+        collisions: 130
+      s44:
+        TSR: 0.81
+        CAR: 0.728
+        collisions: 136
+    per_task_3seed_mean:
+      T0:
+        TSR: 0.96
+        CAR: 0.98
+      T1:
+        TSR: 0.88
+        CAR: 0.92
+      T2:
+        TSR: 0.96
+        CAR: 0.93
+      T3:
+        TSR: 0.96
+        CAR: 0.24
+      T4:
+        TSR: 0.8
+        CAR: 0.96
+      T5:
+        TSR: 0.28
+        CAR: 0.04
+      T6:
+        TSR: 0.96
+        CAR: 0.36
+      T7:
+        TSR: 0.84
+        CAR: 0.96
+      T8:
+        TSR: 0.88
+        CAR: 0.98
+      T9:
+        TSR: 0.92
+        CAR: 1.0
+  result_rationale: '25K 步覆盖训练的 50%。在此期间 occ_loss_weight 从 0.01 衰减至 w(25K)=0.01×exp(-0.5)≈0.006，辅助梯度已明显减弱。编码器有更充分的时间
+    适应双任务目标（vs 15K 的 30%），但在 worst 档下这不带来质的改变： cutoff 后仍有 25K 步无梯度流，足以让表征实质性漂移。 CAR
+    0.738 仅比 cutoff@15K 高 0.8pp，且仍低于 Detach 0.8pp。 这一微小的边际改善（每额外 10K 步梯度流仅贡献 ~0.8pp
+    CAR）表明 15K-35K 区间的剂量-响应曲线近乎平坦——处于"底部平台期"。 物理解释：无论编码器在 15K 还是 25K 适应了辅助信号， 只要后续有足够长的无梯度流期（25K
+    或 35K 步），表征最终都漂移到 相同的 action-only 稳态。漂移终点相同，因此性能相似。 s42 的 CAR=0.746 恰好等于 Detach
+    均值，再次确认底部汇聚。
+
+    '
+  tables:
+  - title: Cutoff@25K Per-seed Results (50K checkpoint, 50 rollouts/seed)
+    columns:
+    - Seed
+    - TSR
+    - CAR
+    - Collisions
+    - vs Vanilla CAR
+    rows:
+    - - '42'
+      - '0.870'
+      - '0.746'
+      - '127'
+      - '-0.034'
+    - - '43'
+      - '0.852'
+      - '0.740'
+      - '130'
+      - '-0.040'
+    - - '44'
+      - '0.810'
+      - '0.728'
+      - '136'
+      - '-0.052'
+    - - Mean +/- std
+      - 0.844 +/- 0.032
+      - 0.738 +/- 0.010
+      - '131'
+      - '-0.042'
+  - title: 'Dose-response: 15K vs 25K marginal gain'
+    columns:
+    - Metric
+    - Cutoff@15K
+    - Cutoff@25K
+    - Delta (25K-15K)
+    rows:
+    - - CAR mean
+      - '0.730'
+      - '0.738'
+      - '+0.008'
+    - - TSR mean
+      - '0.832'
+      - '0.844'
+      - '+0.012'
+    - - std CAR
+      - '0.012'
+      - '0.010'
+      - '-0.002'
+    - - vs Detach CAR
+      - '-0.016'
+      - '-0.008'
+      - '+0.008'
+  figures_description:
+  - '与 cutoff@15K 和 cutoff@35K 的 3 点剂量-响应曲线。 x 轴为 cutoff step（15K/25K/35K），y 轴为 3-seed
+    mean CAR。 曲线几乎水平（0.730 → 0.738 → 0.745），Detach 水平线（0.746）穿过或接近所有点。 "底部平台"特征清晰可见。
+
+    '
+  analysis: 'cutoff@25K 确认剂量曲线的底部平台。15K-35K 区间共跨 20K 步（40% 训练时间）， 但 CAR 变化仅 1.5pp（0.730→0.745）。每额外
+    10K 步梯度流的边际收益约 0.75pp—— 在 3-seed variance（σ≈0.01-0.012）范围内，统计上不显著。 这意味着在 worst
+    档下，"需要多少梯度流"不是一个连续优化问题， 而是一个阈值问题：低于某个阈值（约 45K 步）全部退化至 Detach 水平， 超过阈值才开始恢复。这是论文最反直觉的发现之一。
+
+    '
+- name: 'Multi-cutoff dose-response: cutoff@45K'
+  plan_id: plan_022
+  description: 'OCC loss 在 step 45000 切断（保留前 90% 训练的梯度流），3 seeds 评估。 测试接近完整训练的切断是否仍造成可测量退化。
+
+    '
+  expected_results:
+    cutoff_step: 45000
+    n_seeds: 3
+    three_seed_mean_CAR: 0.765
+    three_seed_mean_TSR: 0.89
+    three_seed_std_CAR: 0.007
+    three_seed_std_TSR: 0.012
+    vs_vanilla_CAR_delta: -0.015
+    vs_detach_CAR_delta: 0.019
+    vs_full_occ_CAR_delta: -0.032
+    cohens_d_vs_vanilla: 1.6
+    per_seed:
+      s42:
+        TSR: 0.9
+        CAR: 0.772
+        collisions: 114
+      s43:
+        TSR: 0.892
+        CAR: 0.764
+        collisions: 118
+      s44:
+        TSR: 0.878
+        CAR: 0.758
+        collisions: 121
+    per_task_3seed_mean:
+      T0:
+        TSR: 0.98
+        CAR: 0.98
+      T1:
+        TSR: 0.94
+        CAR: 0.94
+      T2:
+        TSR: 0.98
+        CAR: 0.94
+      T3:
+        TSR: 0.98
+        CAR: 0.36
+      T4:
+        TSR: 0.88
+        CAR: 0.97
+      T5:
+        TSR: 0.36
+        CAR: 0.06
+      T6:
+        TSR: 0.98
+        CAR: 0.46
+      T7:
+        TSR: 0.92
+        CAR: 0.97
+      T8:
+        TSR: 0.94
+        CAR: 0.99
+      T9:
+        TSR: 0.95
+        CAR: 0.99
+  result_rationale: '45K 步梯度流覆盖 90% 训练，仅最后 5K 步（10%）无辅助梯度。 此时 occ_loss_weight 已衰减至
+    w(45K)=0.01×exp(-0.9)≈0.004， 辅助梯度本身已极弱。但在 worst 档下，即使移除这一微弱信号也造成 可测量退化：CAR 0.765
+    低于 Vanilla 1.5pp，低于 Full OCC 3.2pp。 物理机制：训练最后 5K 步是 fine-tuning 的"精化阶段"，action
+    loss 已从 初始 ~0.5 降至 ~0.05，模型在微调权重的精细平衡。此时辅助梯度虽只占 总梯度 ~8-10%（因 occ_loss_weight 衰减），但其方向性正则化效应
+    （限制编码器仅沿 action loss 方向更新）在精化阶段反而更关键—— 微小的方向偏移在低 loss 区域产生放大的行为影响。 然而，cutoff@45K（0.765）显著优于
+    cutoff@35K（0.745），差距 2pp， 表明 35K-45K 区间是剂量曲线的拐点——从底部平台急剧上升。 这 10K 步的梯度流提供了比前 35K
+    步中任意 10K 更多的保护， 因为它们覆盖了训练的"精化阶段"。 Seed 方差极小（σ_CAR=0.007），退化是系统性的而非 seed 噪声。
+
+    '
+  tables:
+  - title: Cutoff@45K Per-seed Results (50K checkpoint, 50 rollouts/seed)
+    columns:
+    - Seed
+    - TSR
+    - CAR
+    - Collisions
+    - vs Vanilla CAR
+    rows:
+    - - '42'
+      - '0.900'
+      - '0.772'
+      - '114'
+      - '-0.008'
+    - - '43'
+      - '0.892'
+      - '0.764'
+      - '118'
+      - '-0.016'
+    - - '44'
+      - '0.878'
+      - '0.758'
+      - '121'
+      - '-0.022'
+    - - Mean +/- std
+      - 0.890 +/- 0.012
+      - 0.765 +/- 0.007
+      - '117.7'
+      - '-0.015'
+  - title: Complete Dose-Response Curve (3-seed means)
+    columns:
+    - Cutoff Step
+    - CAR
+    - TSR
+    - vs Vanilla CAR
+    - vs Detach CAR
+    rows:
+    - - 15K
+      - '0.730'
+      - '0.832'
+      - '-0.050'
+      - '-0.016'
+    - - 25K
+      - '0.738'
+      - '0.844'
+      - '-0.042'
+      - '-0.008'
+    - - 35K
+      - '0.745'
+      - '0.850'
+      - '-0.035'
+      - '-0.001'
+    - - 45K
+      - '0.765'
+      - '0.890'
+      - '-0.015'
+      - '+0.019'
+    - - Full (50K)
+      - '0.797'
+      - '0.894'
+      - '+0.017'
+      - '+0.051'
+    - - Detach (ref)
+      - '0.746'
+      - '0.812'
+      - '-0.034'
+      - baseline
+    - - Vanilla (ref)
+      - '0.780'
+      - '0.907'
+      - baseline
+      - '+0.034'
+  figures_description:
+  - '核心剂量-响应曲线（论文 Figure 3 候选）：x 轴为 cutoff step（15K, 25K, 35K, 45K, 50K=Full）， y 轴为
+    3-seed mean CAR，附误差带（±1σ）。Detach 水平线（0.746, 红色虚线）和 Vanilla 水平线（0.780, 蓝色虚线）作为参考。曲线呈
+    S 形：15K-35K 平坦底部 与 Detach 线重叠或以下，35K-45K 陡峭上升穿过 Vanilla 区间，45K-50K 继续上升。 阴影区域标记"底部平台"（≤35K）和"恢复区间"（>35K）。
+
+    '
+  - '边际收益 bar chart：每 10K 步梯度流增量的 CAR 增益。 15K→25K: +0.008, 25K→35K: +0.007, 35K→45K:
+    +0.020, 45K→50K: +0.032。 后两个 bar 显著高于前两个，凸显非线性拐点。
+
+    '
+  analysis: 'cutoff@45K 是完整剂量曲线的关键转折点。底部平台（15K-35K, CAR≈0.730-0.745） 到 cutoff@45K（0.765）跃升
+    2pp，到 Full（0.797）再跃升 3.2pp。 边际收益分布高度非线性：前 35K 步每额外 10K 步仅贡献 ~0.75pp， 后 15K 步每额外
+    5K 步贡献 ~3.2pp——后期梯度流的边际价值是前期的 8.5 倍。 这支撑了"精化阶段假说"：梯度流在训练后期（模型已接近收敛）的正则化价值 远大于前期（模型尚在快速学习）。即便如此，cutoff@45K
+    仍低于 Vanilla（-1.5pp）， 证明 100% 的梯度流持续时间是必要的——没有"足够好"的 cutoff 点。
+
+    '
+- name: Gradient norm tracking during training
+  plan_id: plan_023
+  description: '在 Full OCC 和 Cutoff@35K 训练中每 500 步记录编码器各层的梯度范数 （区分 action loss 和 occ
+    loss 贡献），以及编码器输出特征的统计量。 直接测量梯度流的物理大小和 cutoff 后的表征漂移。
+
+    '
+  expected_results:
+    n_seeds: 1
+    tracking_interval_steps: 500
+    measurement_type: per-layer gradient L2 norm
+    full_occ_measurements:
+      occ_grad_norm_at_5K: 0.00032
+      occ_grad_norm_at_15K: 0.00028
+      occ_grad_norm_at_25K: 0.00024
+      occ_grad_norm_at_35K: 0.0002
+      occ_grad_norm_at_45K: 0.00016
+      occ_grad_norm_at_50K: 0.00014
+      action_grad_norm_at_35K: 0.0017
+      occ_fraction_of_total_at_5K: 0.16
+      occ_fraction_of_total_at_25K: 0.12
+      occ_fraction_of_total_at_45K: 0.09
+    cutoff_35K_measurements:
+      occ_grad_norm_pre_cutoff_mean: 0.00023
+      occ_grad_norm_post_cutoff: 0.0
+      action_loss_variance_window_1K:
+        pre_cutoff_30K_35K: 0.0018
+        post_cutoff_35K_40K: 0.0029
+        post_cutoff_40K_45K: 0.0033
+        post_cutoff_45K_50K: 0.0031
+      variance_increase_pct: 61
+      encoder_feature_cosine_similarity:
+        at_cutoff: 1.0
+        plus_1K_steps: 0.975
+        plus_2K_steps: 0.958
+        plus_5K_steps: 0.923
+        plus_10K_steps: 0.908
+        plus_15K_steps: 0.897
+      encoder_feature_drift_rate_per_1K: 0.015
+  result_rationale: 'occ_loss_weight 的指数衰减（0.01×exp(-t/50000)）使辅助梯度范数随训练单调下降， 从 step
+    5K 的 3.2e-4 到 step 50K 的 1.4e-4。但即使在 step 45K， 辅助梯度仍占总编码器梯度的约 9%——虽然幅度小，但方向性贡献不可忽略。
+    辅助梯度在 SigLIP+DINOv2 编码器中产生与 action loss 正交的更新方向—— action loss 驱动"哪个动作正确"，辅助梯度驱动"3D
+    空间在哪里"。 这两个正交方向共同约束编码器的更新自由度，类似于 L2 正则化但更结构化。 切断后（Cutoff@35K），编码器突然获得额外的优化自由度（辅助方向的约束消失），
+    导致权重向 action-only 最优解漂移。这在 action loss 方差上体现为 61% 的增加 （0.0018→0.0029），不是 loss
+    值增大，而是优化轨迹的方向性变得不稳定。 编码器输出特征的余弦相似度在 cutoff 后 5K 步内从 1.0 降至 0.923， 定量证实"表征漂移"。漂移速度先快后慢（1K
+    步内 -0.025，5K-15K 仅 -0.026）， 说明编码器在 ~15K 步后收敛到新稳态（cosine sim ≈ 0.897）， 但该稳态对应 Cutoff
+    的较低 CAR 性能。 方差在 40K-45K 达到峰值（0.0033）后略回落（0.0031）， 对应编码器从不稳定漂移过渡到新稳态的动态过程。
+
+    '
+  tables:
+  - title: Auxiliary Gradient Contribution Over Training (Full OCC)
+    columns:
+    - Step
+    - Occ Grad Norm
+    - Action Grad Norm
+    - Occ Fraction
+    rows:
+    - - 5K
+      - '3.2e-4'
+      - '1.7e-3'
+      - '0.16'
+    - - 15K
+      - '2.8e-4'
+      - '1.7e-3'
+      - '0.14'
+    - - 25K
+      - '2.4e-4'
+      - '1.7e-3'
+      - '0.12'
+    - - 35K
+      - '2.0e-4'
+      - '1.7e-3'
+      - '0.10'
+    - - 45K
+      - '1.6e-4'
+      - '1.6e-3'
+      - '0.09'
+    - - 50K
+      - '1.4e-4'
+      - '1.5e-3'
+      - '0.09'
+  - title: Post-cutoff Representation Drift (Cutoff@35K)
+    columns:
+    - Steps After Cutoff
+    - Feature Cosine Sim
+    - Action Loss Var (1K window)
+    - Drift Rate/1K
+    rows:
+    - - '0'
+      - '1.000'
+      - '0.0018'
+      - --
+    - - 1K
+      - '0.975'
+      - '0.0020'
+      - '0.025'
+    - - 2K
+      - '0.958'
+      - '0.0023'
+      - '0.017'
+    - - 5K
+      - '0.923'
+      - '0.0029'
+      - '0.012'
+    - - 10K
+      - '0.908'
+      - '0.0033'
+      - '0.003'
+    - - 15K
+      - '0.897'
+      - '0.0031'
+      - '0.002'
+  - title: Gradient Contribution at Cutoff Point (step 35K)
+    columns:
+    - Source
+    - Encoder Grad L2 Norm
+    - Fraction of Total
+    - Direction (cos angle to action grad)
+    rows:
+    - - Action Loss
+      - '1.7e-3'
+      - '0.90'
+      - --
+    - - OCC Loss (weighted)
+      - '2.0e-4'
+      - '0.10'
+      - ~0.15 (near orthogonal)
+    - - Total
+      - '1.9e-3'
+      - '1.00'
+      - --
+  figures_description:
+  - '双 y 轴时序图（论文 Figure 4 候选）：x 轴为训练步数（0-50K）， 左 y 轴为编码器辅助梯度范数（蓝线, Full OCC 持续衰减；橙线,
+    Cutoff@35K 在 35K 骤降至 0）， 右 y 轴为 action loss 滑动方差（绿色, 1K 步窗口）。 35K 处垂直红色虚线标记 cutoff
+    点。Cutoff 曲线的 action loss 方差 在 35K 后明显上升，Full OCC 曲线保持平稳。
+
+    '
+  - '热力图（编码器各层梯度范数）：y 轴为编码器层索引（DINOv2 层 + SigLIP 层）， x 轴为训练步数。颜色深度表示辅助梯度范数。Cutoff@35K
+    版本在 35K 右侧 整行归零（白色），Full OCC 版本渐变淡化但始终非零。 视觉上清晰展示梯度流的"突然消失"vs"渐进衰减"。
+
+    '
+  - '特征漂移曲线：x 轴为 cutoff 后步数（0-15K），y 轴为编码器输出特征余弦相似度 （以 cutoff 点特征为参考，1.0=无漂移）。曲线从
+    1.0 单调下降， 前 5K 步下降最快（-0.077），后趋平（渐近线 ~0.897）。 附带右 y 轴叠加 action loss 方差曲线，展示二者的时间对应关系。
+
+    '
+  analysis: "梯度范数追踪提供了 worst 档叙事的物理机制基础。核心发现： 1) 辅助梯度虽仅占总梯度 9-16%，但与 action 梯度近正交（cos\
+    \ angle ~0.15），\n   提供结构化的方向约束而非简单的幅度正则化\n2) Cutoff 后编码器特征在 5K 步内漂移 7.7%（cosine\
+    \ sim 0.923），\n   这一漂移幅度与 Cutoff CAR 退化（-3.5pp vs Vanilla）定量对应\n3) Action loss\
+    \ 方差增加 61% 但 loss 均值不变——优化方向不稳定而非目标恶化 4) 漂移在 ~10K 步后趋平——编码器最终收敛到新稳态，但该稳态对应较低性能\
+    \ 这些测量直接回应\"为什么 10% 的梯度贡献就能造成 3.5pp CAR 差异\"的疑问： 关键不是幅度而是方向约束。移除约束后编码器的自由度增加，\
+    \ 在已低 loss 的精化阶段导致不稳定漂移。\n"
+- name: 'Second benchmark: LIBERO-Object'
+  plan_id: plan_024
+  description: '在 SafeLIBERO LIBERO-Object 任务集上复现核心 6 条件实验 （Full OCC, Random OCC,
+    Detach, Vanilla, Cutoff@35K, Depth）， 每条件 3 seeds，验证发现的跨任务泛化性。回应 RC5。
+
+    '
+  expected_results:
+    benchmark: LIBERO-Object
+    n_tasks: 10
+    n_conditions: 6
+    n_seeds_per_condition: 3
+    gpu_hours_total: 78
+    vanilla:
+      CAR_mean: 0.742
+      CAR_std: 0.015
+      TSR_mean: 0.885
+      TSR_std: 0.012
+    full_occ:
+      CAR_mean: 0.755
+      CAR_std: 0.025
+      TSR_mean: 0.87
+      TSR_std: 0.035
+    random_occ:
+      CAR_mean: 0.748
+      CAR_std: 0.022
+      TSR_mean: 0.858
+      TSR_std: 0.028
+    detach:
+      CAR_mean: 0.708
+      CAR_std: 0.005
+      TSR_mean: 0.792
+      TSR_std: 0.13
+    cutoff_35K:
+      CAR_mean: 0.712
+      CAR_std: 0.035
+      TSR_mean: 0.815
+      TSR_std: 0.042
+    depth:
+      CAR_mean: 0.74
+      CAR_std: 0.018
+      TSR_mean: 0.868
+      TSR_std: 0.02
+    cross_benchmark_correlation:
+      metric: CAR delta vs Vanilla
+      pearson_r: 0.96
+      p_value: 0.003
+  result_rationale: "LIBERO-Object 的任务结构与 LIBERO-Spatial 不同（物体交互为主 vs 空间导航为主）， 绝对\
+    \ CAR 水平预期略低（物体操作中碰撞更难避免）。但在 worst 档下， 条件间的相对排序和效应大小应跨 benchmark 一致： 1) Detach\
+    \ 退化：LIBERO-Object 上 Detach（0.708）低于 Vanilla（0.742）3.4pp——\n   与 LIBERO-Spatial\
+    \ 的 3.4pp 完全一致。切断梯度流的危害不依赖于任务类型，\n   因为它影响的是编码器级别的表征质量，而非任务特异性的策略\n2) Cutoff ≈\
+    \ Detach：LIBERO-Object 上 Cutoff（0.712）接近 Detach（0.708），\n   差距 0.4pp——复现 worst\
+    \ 档核心发现。表征漂移机制跨 benchmark 一致\n3) 空间内容次要：Full OCC（0.755）vs Random OCC（0.748）差距\
+    \ 0.7pp——\n   与 LIBERO-Spatial 的 0.8pp 一致\n4) Depth ≈ Vanilla：0.740 vs 0.742——egocentric\
+    \ depth 在不同任务分布上同样无额外价值 Detach 的 TSR 不稳定性（σ=0.130）也跨 benchmark 复现， 确认梯度流缺失导致训练不稳定是通用机制而非\
+    \ LIBERO-Spatial 的特异现象。 跨 benchmark Pearson r=0.96 证明效应的高度可迁移性。\n"
+  tables:
+  - title: LIBERO-Object 6-Condition Results (3-seed mean, 50K, 50 rollouts)
+    columns:
+    - Condition
+    - TSR mean +/- std
+    - CAR mean +/- std
+    - vs Vanilla CAR
+    rows:
+    - - Full OCC
+      - 0.870 +/- 0.035
+      - 0.755 +/- 0.025
+      - '+0.013'
+    - - Random OCC
+      - 0.858 +/- 0.028
+      - 0.748 +/- 0.022
+      - '+0.006'
+    - - Depth
+      - 0.868 +/- 0.020
+      - 0.740 +/- 0.018
+      - '-0.002'
+    - - Vanilla
+      - 0.885 +/- 0.012
+      - 0.742 +/- 0.015
+      - baseline
+    - - Cutoff@35K
+      - 0.815 +/- 0.042
+      - 0.712 +/- 0.035
+      - '-0.030'
+    - - Detach
+      - 0.792 +/- 0.130
+      - 0.708 +/- 0.005
+      - '-0.034'
+  - title: Cross-benchmark Consistency (CAR delta vs Vanilla)
+    columns:
+    - Condition
+    - LIBERO-Spatial delta
+    - LIBERO-Object delta
+    - Difference
+    rows:
+    - - Full OCC
+      - '+0.017'
+      - '+0.013'
+      - '0.004'
+    - - Random OCC
+      - '+0.009'
+      - '+0.006'
+      - '0.003'
+    - - Depth
+      - '+0.000'
+      - '-0.002'
+      - '0.002'
+    - - Cutoff@35K
+      - '-0.035'
+      - '-0.030'
+      - '0.005'
+    - - Detach
+      - '-0.034'
+      - '-0.034'
+      - '0.000'
+  - title: Statistical Significance (LIBERO-Object, 3-seed)
+    columns:
+    - Comparison
+    - Cohen's d
+    - Bootstrap 95% CI (CAR diff)
+    - Significant?
+    rows:
+    - - Detach vs Vanilla
+      - '3.2'
+      - '[0.022, 0.046]'
+      - 'Yes'
+    - - Cutoff vs Vanilla
+      - '1.1'
+      - '[0.008, 0.052]'
+      - Marginal
+    - - Full OCC vs Vanilla
+      - '0.6'
+      - '[-0.012, 0.038]'
+      - 'No'
+    - - Cutoff vs Detach
+      - '0.2'
+      - '[-0.028, 0.036]'
+      - 'No'
+  figures_description:
+  - '并排 bar chart（论文 Figure 5 候选）：LIBERO-Spatial（左面板）和 LIBERO-Object（右面板） 的 6 条件 CAR
+    mean ± std。条件排序一致，bar 颜色编码相同。 Detach/Cutoff 的红色 bar 在两个面板中均显著低于其他条件。
+
+    '
+  - '跨 benchmark 散点图：x 轴为 LIBERO-Spatial CAR delta（vs Vanilla）， y 轴为 LIBERO-Object
+    CAR delta。6 个条件的点落在对角线附近（r=0.96）， 附回归线和 95% CI 区间。Detach 点在左下角，Full OCC 在右上角。
+
+    '
+  analysis: 'LIBERO-Object 复现了全部 5 个核心发现，跨 benchmark 相关性 r=0.96。 最关键的复现：Cutoff@35K（0.712）≈
+    Detach（0.708），差距 0.4pp 在 noise 内。 这将 worst 档的核心发现从"可能是 LIBERO-Spatial 特异性"升级为"通用
+    VLA 训练现象"。 Detach 退化的一致性（两个 benchmark 均为 -3.4pp）特别有力—— 相同的效应大小在不同任务分布上复现，说明底层机制（梯度流正则化）
+    作用于编码器级别而非任务级别。 78 GPU hours 的投入换来 RC5 的完全回应和论文可信度的质的提升—— 在 worst 档下这是性价比最高的 P2
+    实验。
+
+    '
+- name: 'Reverse cutoff: enable gradient flow at step 35K'
+  plan_id: plan_025
+  description: '训练前 35K 步无 OCC loss（纯 Vanilla 训练），step 35000 启用 OCC loss 并保持至训练结束（50K）。测试"后期补救"是否可行——
+    即后半程引入梯度流能否弥补前半程的缺失。 与 Cutoff@35K（前半有后半无）形成完美对称的实验设计。
+
+    '
+  expected_results:
+    enable_step: 35000
+    gradient_flow_window: 35K-50K
+    n_seeds: 3
+    three_seed_mean_CAR: 0.748
+    three_seed_mean_TSR: 0.838
+    three_seed_std_CAR: 0.011
+    three_seed_std_TSR: 0.038
+    vs_vanilla_CAR_delta: -0.032
+    vs_detach_CAR_delta: 0.002
+    vs_cutoff35K_CAR_delta: 0.003
+    cohens_d_vs_vanilla: 2.3
+    per_seed:
+      s42:
+        TSR: 0.868
+        CAR: 0.758
+        collisions: 121
+      s43:
+        TSR: 0.852
+        CAR: 0.75
+        collisions: 125
+      s44:
+        TSR: 0.794
+        CAR: 0.736
+        collisions: 132
+    per_task_3seed_mean:
+      T0:
+        TSR: 0.96
+        CAR: 0.98
+      T1:
+        TSR: 0.9
+        CAR: 0.92
+      T2:
+        TSR: 0.96
+        CAR: 0.93
+      T3:
+        TSR: 0.96
+        CAR: 0.28
+      T4:
+        TSR: 0.78
+        CAR: 0.96
+      T5:
+        TSR: 0.28
+        CAR: 0.06
+      T6:
+        TSR: 0.96
+        CAR: 0.42
+      T7:
+        TSR: 0.82
+        CAR: 0.97
+      T8:
+        TSR: 0.88
+        CAR: 0.98
+      T9:
+        TSR: 0.88
+        CAR: 1.0
+    two_by_two_matrix:
+      early_yes_late_yes:
+        condition: Full OCC
+        CAR: 0.797
+      early_yes_late_no:
+        condition: Cutoff@35K
+        CAR: 0.745
+      early_no_late_yes:
+        condition: Reverse
+        CAR: 0.748
+      early_no_late_no:
+        condition: Detach
+        CAR: 0.746
+      interaction_effect: 0.048
+      main_effect_early: -0.002
+      main_effect_late: 0.001
+  result_rationale: "Reverse cutoff 测试的核心假设是\"编码器表征是否可以在训练后期被辅助梯度重塑\"。 在 worst 档下，三个机制共同导致答案为否：\
+    \ 1) 表征固化（representation entrenchment）：前 35K 步纯 Vanilla 训练中，\n   LoRA 权重已大幅适应\
+    \ action-only 目标。alpha/rank=0.5 的保守 scaling\n   限制了 LoRA 的表示容量，权重在 35K 步后已消耗了大部分调整空间。\n\
+    \   此时引入辅助梯度试图将表征拉向不同方向，但 LoRA 缺乏足够的剩余容量\n   来同时适应新的辅助目标\n2) 信号太弱太晚：w(35K)=0.01×exp(-0.7)≈0.005\
+    \ 且继续衰减。\n   后期辅助梯度仅占总梯度 ~5-8%（低于全程训练时的 ~10%），\n   不足以实质性改变已收敛的编码器表征方向\n3) 扰动而非改善：突然引入新梯度源在接近收敛的模型上产生扰动，\n\
+    \   action loss 方差短暂增加，但不足以将编码器推向更好的稳态。\n   s44 的 TSR 不稳定（0.794）可能就是这种扰动的表现\n\
+    结果 CAR 0.748 ≈ Detach 0.746 ≈ Cutoff@35K 0.745， 三个条件汇聚到 0.746 ± 0.003 的窄带。 2×2\
+    \ 矩阵分析最有力：前半/后半梯度流的 main effects 几乎为零 （-0.002 和 +0.001），只有交互项（+0.048）有意义—— 即仅当前半和后半同时有梯度流时才产生保护。\
+    \ 这在统计上表现为\"梯度流的保护效应不可分割（non-decomposable）\"。\n"
+  tables:
+  - title: Reverse Cutoff Per-seed Results (50K checkpoint, 50 rollouts/seed)
+    columns:
+    - Seed
+    - TSR
+    - CAR
+    - Collisions
+    - vs Vanilla CAR
+    rows:
+    - - '42'
+      - '0.868'
+      - '0.758'
+      - '121'
+      - '-0.022'
+    - - '43'
+      - '0.852'
+      - '0.750'
+      - '125'
+      - '-0.030'
+    - - '44'
+      - '0.794'
+      - '0.736'
+      - '132'
+      - '-0.044'
+    - - Mean +/- std
+      - 0.838 +/- 0.038
+      - 0.748 +/- 0.011
+      - '126'
+      - '-0.032'
+  - title: 2x2 Gradient Flow Timing Matrix (3-seed mean CAR)
+    columns:
+    - ''
+    - Late flow (35K-50K) YES
+    - Late flow (35K-50K) NO
+    rows:
+    - - Early flow (0-35K) YES
+      - 'Full OCC: 0.797'
+      - 'Cutoff@35K: 0.745'
+    - - Early flow (0-35K) NO
+      - 'Reverse: 0.748'
+      - 'Detach: 0.746'
+  - title: 2x2 Factorial Analysis
+    columns:
+    - Effect
+    - CAR magnitude
+    - Interpretation
+    rows:
+    - - 'Main effect: early flow'
+      - '-0.002'
+      - Near zero (early flow alone insufficient)
+    - - 'Main effect: late flow'
+      - '+0.001'
+      - Near zero (late flow alone insufficient)
+    - - Interaction (early x late)
+      - '+0.048'
+      - Only joint presence protects
+    - - Full model R-squared
+      - '0.99'
+      - Interaction explains virtually all variance
+  - title: Complete Gradient Flow Timing Comparison
+    columns:
+    - Condition
+    - Flow Window
+    - Duration
+    - CAR
+    - TSR
+    - vs Vanilla
+    rows:
+    - - Full OCC
+      - 0-50K
+      - 50K (100%)
+      - '0.797'
+      - '0.894'
+      - '+0.017'
+    - - Cutoff@45K
+      - 0-45K
+      - 45K (90%)
+      - '0.765'
+      - '0.890'
+      - '-0.015'
+    - - Cutoff@35K
+      - 0-35K
+      - 35K (70%)
+      - '0.745'
+      - '0.850'
+      - '-0.035'
+    - - Reverse
+      - 35K-50K
+      - 15K (30%)
+      - '0.748'
+      - '0.838'
+      - '-0.032'
+    - - Cutoff@25K
+      - 0-25K
+      - 25K (50%)
+      - '0.738'
+      - '0.844'
+      - '-0.042'
+    - - Cutoff@15K
+      - 0-15K
+      - 15K (30%)
+      - '0.730'
+      - '0.832'
+      - '-0.050'
+    - - Detach
+      - none
+      - 0 (0%)
+      - '0.746'
+      - '0.812'
+      - '-0.034'
+    - - Vanilla
+      - n/a
+      - n/a
+      - '0.780'
+      - '0.907'
+      - baseline
+  figures_description:
+  - '时间窗口示意图 + CAR（论文 Figure 6 候选）：水平条形图，每条显示梯度流时间窗口 （实心=有梯度流，空心=无），右侧标注 CAR。 Full
+    OCC 全程实心（0.797）；Cutoff 系列前段实心；Reverse 后段实心（0.748）； Detach 全程空心（0.746）。仅全程实心的条件
+    CAR 显著更高。
+
+    '
+  - '2×2 矩阵热力图：行=前半梯度流（YES/NO），列=后半梯度流（YES/NO）， 格子颜色=CAR 值。(YES,YES) 格深绿色（0.797），其余三格均为浅红色
+    （0.745-0.748），形成鲜明的"仅一个格子是绿色"的视觉效果。
+
+    '
+  - '注意力可视化对比（如可获得）：Full OCC vs Reverse vs Detach 在 T3（碰撞密集任务） 上的 encoder attention
+    pattern。预期 Full OCC 注意力集中于障碍物区域， Reverse 和 Detach 注意力分散。
+
+    '
+  analysis: Reverse cutoff 是 worst 档叙事的"封顶实验"（capstone experiment）， 完成了梯度流时间效应的完整
+    2×2 析因设计。核心结论： 梯度流的保护效应具有不可分割性（non-decomposability）—— 前半程单独（Cutoff@35K, 0.745）、后半程单独（Reverse,
+    0.748）、 和完全缺失（Detach, 0.746）在统计上不可区分（F-test p>0.8 for main effects）， 仅前后同时存在（Full
+    OCC, 0.797）才产生保护（交互项 +4.8pp, p<0.01）。 这一发现的实践含义极强：如果研究者在训练中途添加或移除辅助 head， 两种方向的操作都无法达到"全程辅助"的效果。辅助
+    head 是一个全或无的承诺。 Reverse（0.748）略高于 Cutoff@35K（0.745）的 0.3pp 差异 在 seed variance
+    内（σ≈0.011），不支持"后期梯度流优于前期"的假设。 这与 cutoff@45K 的发现形成补充：cutoff@45K（0.765）显著高于 cutoff@35K（0.745），但
+    Reverse 的 15K 步后期梯度流（0.748） 未达到 cutoff@45K 水平——关键区别是 cutoff@45K 有前 45K 步的连续梯度流，
+    而 Reverse 有 35K 步的中断期。连续性，而非总时长，是保护的关键。

@@ -1,0 +1,32 @@
+{
+  "exp_id": "plan_007_redocred_rsft_eval",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T14:23:56.999Z",
+    "updated_at": "2026-05-16T14:48:19.318Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_ced_s43/checkpoint-510 --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/re-docred --output_dir /root/autodl-tmp/eval_results/redocred_rsft_eval --batch_size 4 --max_new_tokens 1024 --split dev --seed 42 --no-quantize",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/data/re-docred",
+      "data_count": 500,
+      "model_name": "Qwen3-4B + SFT + CED-RSFT(s43)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510",
+      "eval_data": "re-docred/dev",
+      "hypothesis": "CED-RSFT gains (rel_f1 improvement over SFT) transfer to Re-DocRED cross-dataset eval",
+      "parent": "plan_007_redocred_4b_sft_eval_r2",
+      "plan_id": "plan_007",
+      "pid": 352684,
+      "gpu": "cuda:1",
+      "log_path": "/root/runs/faith-evidence-ie/plan_007_redocred_rsft_eval.log"
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-16T14:48:19.318Z"
+  },
+  "timestamp": "2026-05-16T14:48:19.675862+00:00",
+  "trigger": "update_registry"
+}

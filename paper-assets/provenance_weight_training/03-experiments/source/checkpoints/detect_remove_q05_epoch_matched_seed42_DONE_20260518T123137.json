@@ -1,0 +1,45 @@
+{
+  "exp_id": "detect_remove_q05_epoch_matched_seed42",
+  "project": "provenance_weight_training",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T07:20:02.608Z",
+    "updated_at": "2026-05-18T12:31:37.482Z",
+    "hypothesis": "Epoch-matched control: training with uniform weighting on filtered data (q>0.5 removed) for exactly 2533 steps (matching content-level 1 epoch of the contaminated data). If PPL is comparable to the full 6103-step D&R run, the D&R benefit comes from data quality not extra training; if PPL is worse, the extra training contributes meaningfully.",
+    "notes": "Content-level 1 epoch: 153K samples × ~540 avg tokens = ~83M tokens → max_steps=2533. NOT Trainer epoch (9607 steps/315M tokens).",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_filtered_q05.jsonl --output_dir /root/autodl-tmp/output/models/detect_remove_q05_epoch_matched_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --contamination_ratio 0.4 --max_steps 2533 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3",
+      "server": "westd-30476",
+      "gpu": 2,
+      "data_path": "data/scored_data_filtered_q05.jsonl",
+      "data_count": 153725,
+      "model_name": "models/Qwen/Qwen3-0.6B",
+      "seed": 42,
+      "pid": 20387,
+      "output_dir": "/root/autodl-tmp/output/models/detect_remove_q05_epoch_matched_seed42",
+      "log_path": "/root/autodl-tmp/output/logs/detect_remove_q05_epoch_matched_seed42.log",
+      "tmux_session": "detect_remove_q05_epoch_matched_seed42",
+      "weighting_method": "uniform",
+      "max_steps": 2533
+    },
+    "conclusion": "success",
+    "metrics": {
+      "eval_ppl_holdout": 17.65,
+      "eval_loss_holdout": 2.8707,
+      "eval_holdout_tokens": 4077068,
+      "train_loss_final": 3.184,
+      "total_steps": 2533,
+      "eval_method": "eval_perplexity.py --max_docs 5000 --max_length 2048 --stride 1024 --fp16",
+      "vs_full_dr_q05": "+0.360 (17.650 vs 17.290, epoch-matched worse)",
+      "vs_adaptive": "-0.001 (17.650 vs 17.651, nearly identical to adaptive)",
+      "interpretation": "D&R 0.36 PPL advantage over epoch-matched is entirely from multi-epoch training on clean data, not from data quality filtering"
+    },
+    "checkpoint_path": "/root/provenance_weight_training/output/detect_remove_q05_epoch_matched_seed42/",
+    "completed_at": "2026-05-18T12:31:37.482Z"
+  },
+  "timestamp": "2026-05-18T12:31:37.890687+00:00",
+  "trigger": "update_registry"
+}

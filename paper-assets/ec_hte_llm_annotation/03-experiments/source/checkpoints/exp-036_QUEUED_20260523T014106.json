@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-036",
+  "project": "ec_hte_llm_annotation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T01:40:48.269Z",
+    "updated_at": "2026-05-23T01:41:06.800Z",
+    "hypothesis": "Bootstrap SE (B=200, re-estimating CM + re-fitting CF per bootstrap) can close the CausalForest under-coverage gap (91% vs nominal 95%) by properly accounting for CM estimation uncertainty that plug-in SE ignores."
+  },
+  "timestamp": "2026-05-23T01:41:06.931269+00:00",
+  "trigger": "update_registry"
+}

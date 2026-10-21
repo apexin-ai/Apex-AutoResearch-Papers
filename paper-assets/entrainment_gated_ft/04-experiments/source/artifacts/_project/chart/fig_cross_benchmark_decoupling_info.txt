@@ -1,5 +1,0 @@
-4-panel figure showing σ (left y-axis, blue) and mean pairwise Jaccard (right y-axis, red/orange) vs attention ratio for LAMBADA, HellaSwag, PIQA, ARC-Easy. Each panel annotated with Spearman ρ and exact permutation p-value.
-
-Server paths:
-- PDF: /root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/fig_cross_benchmark_decoupling.pdf
-- PNG: /root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/fig_cross_benchmark_decoupling.png

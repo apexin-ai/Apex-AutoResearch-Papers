@@ -1,0 +1,41 @@
+{
+  "exp_id": "qwen14b_teal30_uniform_hspiqa_v2",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:25:23.976Z",
+    "updated_at": "2026-05-19T15:31:08.241Z",
+    "hypothesis": "TEAL 30% uniform on Qwen-14B HellaSwag+PIQA. Re-submit after erroneous kill (TEAL vanilla not affected by D075 bug).",
+    "parent": "qwen14b_teal30_uniform_eval_4task",
+    "spec": {
+      "command": "python -u src/benchmark_eval.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --baseline_mode teal_vanilla --allocation uniform --sparsity_target 0.3 --tasks hellaswag,piqa --exp_id qwen14b_teal30_uniform_hspiqa_v2 --gpu 0",
+      "server": "westd-41718",
+      "gpu_ids": [
+        0
+      ],
+      "pid": 152255,
+      "model_name": "qwen2.5-14b",
+      "data_path": "hellaswag,piqa",
+      "data_count": 0,
+      "seed": 42,
+      "log_path": "/root/distill_sparse_swiglu/logs/qwen14b_teal30_uniform_hspiqa.log",
+      "checkpoint_source": "/root/autodl-tmp/models/qwen2.5-14b/",
+      "eval_data": "hellaswag,piqa",
+      "checkpoint_path": "N/A",
+      "result_path": "/root/distill_sparse_swiglu/results/benchmark/qwen14b_teal30_uniform_hspiqa_v2/results.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "hellaswag_acc": 0.4936,
+      "hellaswag_acc_norm": 0.6756,
+      "piqa_acc": 0.7443,
+      "piqa_acc_norm": 0.7427
+    },
+    "completed_at": "2026-05-19T15:31:08.241Z"
+  },
+  "timestamp": "2026-05-19T15:31:08.820117+00:00",
+  "trigger": "update_registry"
+}

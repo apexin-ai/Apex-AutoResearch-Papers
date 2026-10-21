@@ -1,0 +1,14 @@
+{
+  "exp_id": "tau-sweep-long-tau015-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-26T14:14:20.867Z",
+    "updated_at": "2026-05-26T14:14:20.867Z"
+  },
+  "timestamp": "2026-05-26T14:14:24.329507+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,474 @@
+{
+  "pid": "ProofWriter_RelNeg-OWA-D5-68_Q2",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(dog)",
+          "z3_formula": "Not(blue_dog) == True",
+          "source_step": 1
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, mouse)",
+          "z3_formula": "likes_dog_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> blue(X)",
+          "z3_formula": "Implies(likes_dog_mouse, blue_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> blue(X)",
+          "z3_formula": "Implies(likes_dog_mouse, blue_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 18
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, cat)",
+          "z3_formula": "Implies(blue_dog, eats_dog_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(dog))",
+          "z3_formula": "Not(cold_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, cat) & likes(dog, mouse)",
+          "z3_formula": "And(likes_dog_cat, likes_dog_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> likes(X, cat)",
+          "z3_formula": "Implies(chases_X_dog, likes_X_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & likes(rabbit, mouse) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(eats_X_rabbit, likes_rabbit_mouse), likes_X_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> likes(X, rabbit)",
+          "z3_formula": "Implies(eats_X_rabbit, likes_X_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(cat, rabbit) -> chases(cat, dog)",
+          "z3_formula": "Implies(chases_cat_rabbit, chases_cat_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> likes(X, cat) | likes(X, mouse)",
+          "z3_formula": "Implies(Or(likes_dog_cat, likes_dog_mouse), blue_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> blue(X)",
+          "z3_formula": "Implies(likes_dog_mouse, blue_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, cat)",
+          "z3_formula": "Implies(blue_dog, eats_dog_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(dog))",
+          "z3_formula": "Not(cold_dog) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, cat)",
+          "z3_formula": "likes_dog_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, mouse)",
+          "z3_formula": "likes_dog_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(blue(dog))",
+          "z3_formula": "Not(blue_dog) == False",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> blue(X)",
+          "z3_formula": "Implies(likes_dog_mouse, blue_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, cat)",
+          "z3_formula": "Implies(blue_dog, eats_dog_cat)",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> blue(X)",
+          "z3_formula": "Implies(likes_dog_mouse, blue_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, cat)",
+          "z3_formula": "Implies(blue_dog, eats_dog_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> likes(X, cat)",
+          "z3_formula": "Implies(chases_X_dog, likes_dog_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & likes(rabbit, mouse) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(eats_dog_rabbit, likes_rabbit_mouse), likes_dog_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(dog))",
+          "z3_formula": "Not(cold_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, cat)",
+          "z3_formula": "likes_dog_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, mouse)",
+          "z3_formula": "likes_dog_mouse == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> blue(X)",
+          "z3_formula": "Implies(likes_dog_mouse, blue_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, cat)",
+          "z3_formula": "Implies(blue_dog, eats_dog_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(dog, cat)",
+          "z3_formula": "Not(likes_dog_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & likes(rabbit, mouse) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(eats_dog_rabbit, likes_rabbit_mouse), likes_dog_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> likes(X, cat)",
+          "z3_formula": "Implies(chases_X_dog, likes_X_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(dog)",
+          "z3_formula": "Not(cold_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, cat)",
+          "z3_formula": "likes_dog_cat == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, cat)",
+          "z3_formula": "Implies(blue_dog, eats_dog_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, cat)",
+          "z3_formula": "likes_dog_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(dog))",
+          "z3_formula": "not(cold_dog) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> likes(X, cat)",
+          "z3_formula": "Implies(chases_dog, likes_dog_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & likes(rabbit, mouse) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(eats_dog_rabbit, likes_rabbit_mouse), likes_dog_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> likes(X, rabbit)",
+          "z3_formula": "Implies(eats_dog_rabbit, likes_dog_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(blue_dog, likes_dog_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, cat)",
+          "z3_formula": "Implies(blue_dog, eats_dog_cat)",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> blue(X)",
+          "z3_formula": "Implies(likes_dog_mouse, blue_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, mouse)",
+          "z3_formula": "likes_dog_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & likes(rabbit, mouse) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(eats_dog_rabbit, likes_rabbit_mouse), likes_dog_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, mouse)",
+          "z3_formula": "eats_rabbit_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> likes(X, cat)",
+          "z3_formula": "Implies(chases_dog, likes_dog_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(rabbit)",
+          "z3_formula": "nice_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> likes(X, mouse)",
+          "z3_formula": "Implies(chases_rabbit, likes_rabbit_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> chases(X, dog)",
+          "z3_formula": "Implies(chases_rabbit, chases_dog)",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        }
+      ]
+    }
+  ]
+}

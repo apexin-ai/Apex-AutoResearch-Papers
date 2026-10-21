@@ -1,0 +1,33 @@
+{
+  "pair_id": "HC14_incomp",
+  "domain": "healthcare",
+  "constraint": "policy_type_valid",
+  "ambiguity_type": "incompleteness",
+  "condition": "ambiguous",
+  "description_used": "The policy type must be a recognized insurance category.",
+  "action": "update_policy",
+  "task_idx": 5,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "update_policy",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "update_policy",
+    "[says: Your healthcare policy has been successfully updated with the following details:  \n- **Policy Type:** Life  \n- **Coverage Amount:** $7,500  \n- **Annual Income:** $55,000  \n\nLet me know if you need fur...]"
+  ],
+  "timestamp": "2026-05-22T17:09:25.479223"
+}

@@ -1,0 +1,86 @@
+{
+  "exp_id": "eval_xvla_random_k085_long_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T03:34:42.927Z",
+    "updated_at": "2026-05-24T05:25:37.619Z",
+    "spec": {
+      "command": "cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_10 --keep_ratio 0.85 --mode random --num_episodes 50 --seed 42 --domain_id 3 --gpu 0",
+      "server": "westd-38929",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "316561",
+      "log_path": "~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log",
+      "submitted_at": "2026-05-24T03:34:41.532Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO libero_10 (Long)",
+      "data_count": 500,
+      "model_name": "X-VLA-Libero",
+      "seed": 42
+    },
+    "hypothesis": "X-VLA Random k=0.85 Long seed42 — 补全 k=0.85 Random 跨 suite 数据（Object=65.0%, Spatial=68.2%, Goal=60.4%, Long=?），验证 RoPE disruption hypothesis (D196) 在 Long (最复杂 suite) 上的表现",
+    "reproduce": {
+      "finished_at": "2026-05-24T05:22:15.912Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-24T05:22:28.283496+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "overall_sr": 35,
+      "total_success": 175,
+      "total_episodes": 500,
+      "wilson_ci_95": [
+        30.9,
+        39.3
+      ],
+      "elapsed_min": 106.7,
+      "per_task_sr": {
+        "T0_alphabet_soup_tomato_sauce_basket": 54,
+        "T1_cream_cheese_butter_basket": 10,
+        "T2_stove_moka_pot": 16,
+        "T3_black_bowl_drawer": 88,
+        "T4_white_mug_left_yellow_mug_right": 2,
+        "T5_book_caddy": 98,
+        "T6_white_mug_chocolate_pudding": 0,
+        "T7_alphabet_soup_cream_cheese_basket": 48,
+        "T8_both_moka_pots_stove": 16,
+        "T9_mug_microwave": 18
+      },
+      "suite": "libero_10",
+      "model": "X-VLA",
+      "prune_mode": "random",
+      "keep_ratio": 0.85,
+      "seed": 42,
+      "cross_suite_k085": {
+        "object": 65,
+        "spatial": 68.2,
+        "goal": 60.4,
+        "long": 35
+      },
+      "vs_k05_long": {
+        "k05_sr": 61.6,
+        "k085_sr": 35,
+        "delta_pp": -26.6,
+        "non_monotonic": true
+      }
+    },
+    "log_path": "~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log",
+    "checkpoint_path": "N/A",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-24T05:25:38.631957+00:00",
+  "trigger": "update_registry"
+}

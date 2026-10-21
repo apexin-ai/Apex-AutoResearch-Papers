@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp006-pooled-s1only-gsm8k-v2",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T01:22:13.409Z",
+    "updated_at": "2026-05-15T01:22:13.409Z"
+  },
+  "timestamp": "2026-05-15T01:22:14.338002+00:00",
+  "trigger": "update_registry"
+}

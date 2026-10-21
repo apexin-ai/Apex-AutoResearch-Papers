@@ -1,0 +1,19 @@
+{
+  "exp_id": "mvp-p1-gpu1-v3",
+  "project": "simgate-modular-routing",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T08:00:51.836Z",
+    "updated_at": "2026-05-13T08:00:51.836Z",
+    "spec": {
+      "hypothesis": "always-internal 无 death filter (纯 LLM) vs always-det 有 death filter (模拟器辅助) vs oracle routing，展示模拟器的增量价值",
+      "description": "Phase 1 GPU1 v3 — always-internal 无 death filter, det+oracle 保留 (mix-paint + grow-plant)",
+      "parent": "mvp-p1-gpu1-v2"
+    }
+  },
+  "timestamp": "2026-05-13T08:00:51.849563+00:00",
+  "trigger": "update_registry"
+}

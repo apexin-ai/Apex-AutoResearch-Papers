@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-040",
+  "project": "ec_hte_llm_annotation",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T15:54:23.294Z",
+    "updated_at": "2026-05-23T15:54:31.422Z",
+    "hypothesis": "EC-HTE is robust to moderate treatment-dependent misclassification (γ_T≤0.05, coverage ≥89.7%) but degrades at γ_T≥0.10 because per-subgroup CM estimates become biased when expert sample treatment composition doesn't match the full sample."
+  },
+  "timestamp": "2026-05-23T15:54:31.538754+00:00",
+  "trigger": "update_registry"
+}

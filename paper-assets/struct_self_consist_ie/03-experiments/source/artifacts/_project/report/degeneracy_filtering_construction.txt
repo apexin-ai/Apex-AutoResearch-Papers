@@ -1,0 +1,16 @@
+Degeneracy Filtering + Entity Construction (micro-F1, θ=0.5)
+
+Dataset    n_total  n_nondeg  n_deg(%)   Full Δ(pp)  NonDeg Δ(pp)  Deg Δ(pp)
+SciERC         551       473    78(14.2%)     +3.03        +3.36       0.00
+CoNLL         3453      1179  2274(65.9%)     +2.70        +5.18       0.00
+FewNERD      37648     30198  7450(19.8%)     +6.60        +7.08       0.00
+
+Detailed F1:
+SciERC:  Greedy=0.6327 Constr=0.6630 (Full +3.03) | NonDeg: 0.6094→0.6430 (+3.36) | Deg: 0.8305→0.8305 (0.00)
+CoNLL:   Greedy=0.8822 Constr=0.9092 (Full +2.70) | NonDeg: 0.7970→0.8488 (+5.18) | Deg: 0.9708→0.9708 (0.00)
+FewNERD: Greedy=0.7108 Constr=0.7768 (Full +6.60) | NonDeg: 0.7010→0.7718 (+7.08) | Deg: 0.8415→0.8415 (0.00)
+
+Key findings:
+1. Degenerate construction == greedy (Δ=0.00 on all 3 datasets) — theoretically expected
+2. Non-degenerate Δ > Full Δ on all 3 datasets — degeneracy dilutes construction gains
+3. CoNLL dilution strongest: 65.9% degenerate, full +2.70pp diluted from non-deg +5.18pp

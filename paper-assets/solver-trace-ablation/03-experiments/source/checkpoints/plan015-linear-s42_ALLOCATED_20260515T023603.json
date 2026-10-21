@@ -1,0 +1,28 @@
+{
+  "exp_id": "plan015-linear-s42",
+  "project": "solver-trace-ablation",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T01:05:37.944Z",
+    "updated_at": "2026-05-15T02:36:03.598Z",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.1 --reward_mode additive_bonus --beta_schedule linear --output_dir /root/autodl-tmp/outputs/plan015_linear_s42\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "60030",
+      "log_path": "~/runs/solver-trace-ablation/plan015-linear-s42.log",
+      "submitted_at": "2026-05-15T01:05:52.053Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-15T02:36:03.950365+00:00",
+  "trigger": "update_registry"
+}

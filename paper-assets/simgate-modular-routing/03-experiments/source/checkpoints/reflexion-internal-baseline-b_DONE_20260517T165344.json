@@ -1,0 +1,32 @@
+{
+  "exp_id": "reflexion-internal-baseline-b",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:57:51.606Z",
+    "updated_at": "2026-05-17T16:53:44.380Z",
+    "hypothesis": "Reflexion baseline Part 2 (tasks 7-11): 与 part 1 并行收集，验证 reflexion 对 death rate 的影响",
+    "parent": "reflexion-internal-baseline",
+    "spec": {
+      "command": "/root/miniconda3/bin/python src/reflexion_baseline.py --mode reflexion --tasks identify-life-stages-2,inclined-plane-determine-angle,lifespan-longest-lived,lifespan-longest-lived-then-shortest-lived,measure-melting-point-unknown-substance --api-base http://localhost:8001/v1 --model /root/autodl-tmp/models/Qwen2.5-7B-Instruct --output-dir results/reflexion_baseline_part2/ --episodes-per-task 20 --max-trials 3",
+      "server": "westb-14838",
+      "gpu": "cuda:3",
+      "model_name": "Qwen2.5-7B-Instruct",
+      "data_path": "ScienceWorld environment (5 tasks: identify-life-stages-2, inclined-plane-determine-angle, lifespan-longest-lived, lifespan-longest-lived-then-shortest-lived, measure-melting-point-unknown-substance)",
+      "data_count": 100,
+      "seed": 42,
+      "pid": 20483,
+      "log_path": "/root/autodl-tmp/simgate-modular-routing/results/reflexion_baseline_part2/",
+      "checkpoint_source": "N/A (episode collection)",
+      "eval_data": "ScienceWorld environment interactive episodes",
+      "checkpoint_path": "N/A (episode collection, no checkpoint)"
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-17T16:53:44.380Z"
+  },
+  "timestamp": "2026-05-17T16:53:44.575884+00:00",
+  "trigger": "update_registry"
+}

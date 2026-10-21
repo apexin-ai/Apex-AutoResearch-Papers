@@ -1,0 +1,52 @@
+{
+  "exp_id": "detach_ln_v2_s3",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-27T16:37:57.184Z",
+    "updated_at": "2026-05-28T07:02:32.426Z",
+    "hypothesis": "Cell 4 v2 n expansion (seed 45): Detach LN (gradient OFF + LayerNorm). Additional seed to increase factorial ANOVA statistical power. With gradient detached, LN norm should not impair safety (expect CAR closer to Detach BN ~0.767 than Full OCC LN ~0.740).",
+    "reproduce": {
+      "finished_at": "2026-05-28T06:41:48.725Z"
+    },
+    "failure_reason": "EXIT_CODE=129 — training actually completed (50000_chkpt exists and verified). Cron false positive: torchrun wrapper exited with SIGHUP after training completion, no W&B metrics expected for training runs. Eval launched by polling script, PID 70950, in progress.",
+    "completed_at": "2026-05-28T03:43:54.047Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-28T03:43:58.721746+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-28T06:41:58.336569+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "torchrun finetune.py --vla_path rebuilt_40000_chkpt --seed 45 --use_occ_head True --occ_detach True --occ_norm_type ln --max_steps 50005 --resume True --resume_step 40000",
+      "server": "westd-34685",
+      "gpu_id": "cuda:3",
+      "pid": "56822",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": 4600,
+      "model_name": "openvla-7b",
+      "seed": 45,
+      "run_root_dir": "/root/autodl-tmp/checkpoints/detach_ln_v2_s3",
+      "checkpoint_source": "detach_ln_v2_s3--40000_chkpt_rebuilt",
+      "eval_data": "N/A-training"
+    },
+    "server": "westd-34685",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-28T07:02:32.832016+00:00",
+  "trigger": "update_registry"
+}

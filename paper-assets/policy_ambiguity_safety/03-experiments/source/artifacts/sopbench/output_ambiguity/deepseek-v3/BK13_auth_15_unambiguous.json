@@ -1,0 +1,34 @@
+{
+  "pair_id": "BK13_auth",
+  "domain": "bank",
+  "constraint": "logged_in_user",
+  "ambiguity_type": "authorization_scope",
+  "condition": "unambiguous",
+  "description_used": "The user with username {username} is logged in previously with the correct credentials to perform this action.",
+  "action": "transfer_funds",
+  "task_idx": 15,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "transfer_funds",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 4,
+    "num_constraints_expanded": 5,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "internal_check_username_exist",
+    "get_account_balance",
+    "[says: I'm sorry, but the transfer cannot be completed at this time. Your current account balance is $500.00, which is less than the requested transfer amount of $600.00. \n\nPlease ensure you have sufficient ...]"
+  ],
+  "timestamp": "2026-05-23T00:11:28.086221"
+}

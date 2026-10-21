@@ -1,0 +1,33 @@
+{
+  "exp_id": "uniform_1_7b_seed42_v3",
+  "project": "provenance_weight_training",
+  "state": "DONE",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-20T04:49:30.213Z",
+    "updated_at": "2026-05-20T05:50:45.424Z",
+    "hypothesis": "Uniform baseline at 1.7B model scale (seed=42). Provides 1.7B uniform PPL baseline for model scaling comparison. Previous uniform_1_7b_seed42 failed; this is a clean re-run on westd-30476 with verified model weights.",
+    "server": "westd-30476",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-30476",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-20T04:50:55.085Z"
+    },
+    "completed_at": "2026-05-20T05:38:48.621Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "killed"
+      }
+    },
+    "conclusion": "killed",
+    "spec": {
+      "kill_reason": "westd-30476 已注销，checkpoint 丢失"
+    }
+  },
+  "timestamp": "2026-05-20T05:50:45.814627+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,93 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{dcsh2025}
+\citation{tracepile2025}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{dcsh2025}
+\citation{tracepile2025}
+\citation{traced2024}
+\citation{instruction_length}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Trace SFT for code models.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Information compression in LLM training.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method: Verdict-Optimized Trace Abstraction}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method: Verdict-Optimized Trace Abstraction}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Task Definition}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}VOTA Components}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Exception Summary.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Loop Compression.}{2}{section*.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Main results on test verdict prediction ($n=1{,}190$). \textsc  {Vota}{} achieves $+24.0\,\text  {pp}$ over no\_trace and $+17.4\,\text  {pp}$ over full\_trace. Removing actual/expected values (\textsc  {Vota}{}\_no\_ae) does not degrade performance, confirming that \textsc  {Vota}{}'s advantage stems from behavioral understanding, not string comparison.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:main}{{1}{3}{Main results on test verdict prediction ($n=1{,}190$). \vota {} achieves $+24.0\pp $ over no\_trace and $+17.4\pp $ over full\_trace. Removing actual/expected values (\vota {}\_no\_ae) does not degrade performance, confirming that \vota {}'s advantage stems from behavioral understanding, not string comparison}{table.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Assertion Snapshots.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Trace Conditions}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{3}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Dataset.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{3}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{3}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Main Results: Three-Condition Gradient}{3}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:main_results}{{5.1}{3}{Main Results: Three-Condition Gradient}{subsection.5.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Component ablation. Exception summary is the strongest single component ($+13.9\,\text  {pp}$), followed by loop compression ($+5.9\,\text  {pp}$). Both individually underperform \textsc  {Vota}{}, indicating complementary contributions.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:component}{{2}{4}{Component ablation. Exception summary is the strongest single component ($+13.9\pp $), followed by loop compression ($+5.9\pp $). Both individually underperform \vota {}, indicating complementary contributions}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Additive decomposition of \textsc  {Vota}{}'s improvement. The $+4.3\,\text  {pp}$ super-additive synergy indicates that exception and loop components provide complementary signals on boundary cases.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:synergy}{{3}{4}{Additive decomposition of \vota {}'s improvement. The $+4.3\pp $ super-additive synergy indicates that exception and loop components provide complementary signals on boundary cases}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Causal Decomposition: Gradient Dilution vs.\ Information Overload}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:causal}{{5.2}{4}{Causal Decomposition: Gradient Dilution vs.\ Information Overload}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Component Ablation}{4}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:component}{{5.3}{4}{Component Ablation}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Exception summary}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Loop compression}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Component Synergy}{4}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:synergy}{{5.4}{4}{Component Synergy}{subsection.5.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Rule-based ceiling analysis. The best structural rule combination (82.0\%) matches full\_trace SFT (81.8\%), suggesting that full-trace SFT learns only structural features. \textsc  {Vota}{} exceeds this ceiling by $17.2\,\text  {pp}$.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:rules}{{4}{5}{Rule-based ceiling analysis. The best structural rule combination (82.0\%) matches full\_trace SFT (81.8\%), suggesting that full-trace SFT learns only structural features. \vota {} exceeds this ceiling by $17.2\pp $}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Accuracy at different full-trace truncation lengths. The optimal truncation (1024 tokens, 83.0\%) slightly exceeds untruncated full\_trace via implicit regularization, but \textsc  {Vota}{} at $\sim $250 tokens outperforms all truncations by $\geq 16.2\,\text  {pp}$.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:length}{{5}{5}{Accuracy at different full-trace truncation lengths. The optimal truncation (1024 tokens, 83.0\%) slightly exceeds untruncated full\_trace via implicit regularization, but \vota {} at $\sim $250 tokens outperforms all truncations by $\geq 16.2\pp $}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Rule-Based Ceiling Analysis}{5}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:rules}{{5.5}{5}{Rule-Based Ceiling Analysis}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Trace Length Ablation}{5}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:length}{{5.6}{5}{Trace Length Ablation}{subsection.5.6}{}}
+\citation{debugbench2024}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Calibration metrics. \textsc  {Vota}{} achieves near-perfect calibration (ECE 0.015), while no\_trace exhibits severe miscalibration (ECE 0.180) due to overconfident predictions under information scarcity.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:calibration}{{6}{6}{Calibration metrics. \vota {} achieves near-perfect calibration (ECE 0.015), while no\_trace exhibits severe miscalibration (ECE 0.180) due to overconfident predictions under information scarcity}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Cross-model comparison. The three-condition gradient replicates on DeepSeek-Coder-6.7B with remarkably consistent lift magnitudes, confirming that decision-relevant trace compression is a model-agnostic principle.}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:crossmodel}{{7}{6}{Cross-model comparison. The three-condition gradient replicates on DeepSeek-Coder-6.7B with remarkably consistent lift magnitudes, confirming that decision-relevant trace compression is a model-agnostic principle}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Calibration Analysis}{6}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:calibration}{{5.7}{6}{Calibration Analysis}{subsection.5.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Cross-Model Verification}{6}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:crossmodel}{{5.8}{6}{Cross-Model Verification}{subsection.5.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Cross-Task Generalization: DebugBench Bug Detection}{6}{subsection.5.9}\protected@file@percent }
+\newlabel{sec:debugbench}{{5.9}{6}{Cross-Task Generalization: DebugBench Bug Detection}{subsection.5.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Cross-task comparison. The three-condition gradient replicates on DebugBench bug detection with consistent lift, despite lower absolute accuracies reflecting the harder task.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:debugbench}{{8}{7}{Cross-task comparison. The three-condition gradient replicates on DebugBench bug detection with consistent lift, despite lower absolute accuracies reflecting the harder task}{table.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{7}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{7}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Why does full-trace SFT learn only structural features?}{7}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The compression--quality tradeoff.}{7}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Super-additive component synergy.}{7}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for trace SFT research.}{7}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{7}{section*.15}\protected@file@percent }
+\bibstyle{plainnat}
+\bibdata{custom}
+\bibcite{debugbench2024}{{1}{2024{a}}{{Anonymous}}{{}}}
+\bibcite{instruction_length}{{2}{2024{b}}{{Anonymous}}{{}}}
+\bibcite{traced2024}{{3}{2024{c}}{{Anonymous}}{{}}}
+\bibcite{dcsh2025}{{4}{2025{a}}{{Anonymous}}{{}}}
+\bibcite{tracepile2025}{{5}{2025{b}}{{Anonymous}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{8}{Conclusion}{section.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Actual/Expected Only Ablation}{9}{appendix.A}\protected@file@percent }
+\newlabel{app:ae_only}{{A}{9}{Actual/Expected Only Ablation}{appendix.A}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Actual/expected (ae) component isolation. ae\_only achieves 88.0\%, but this is confounded by structural fallback: when tests crash before reaching assertions, the ae trace is empty/``no assertions reached,'' which itself is a strong fail signal. Combined with \textsc  {Vota}{}\_no\_ae (99.4\%), this confirms ae values are redundant in the full \textsc  {Vota}{} representation.}}{9}{table.9}\protected@file@percent }
+\newlabel{tab:ae_only}{{9}{9}{Actual/expected (ae) component isolation. ae\_only achieves 88.0\%, but this is confounded by structural fallback: when tests crash before reaching assertions, the ae trace is empty/``no assertions reached,'' which itself is a strong fail signal. Combined with \vota {}\_no\_ae (99.4\%), this confirms ae values are redundant in the full \vota {} representation}{table.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Seed Robustness}{9}{appendix.B}\protected@file@percent }
+\newlabel{app:seeds}{{B}{9}{Seed Robustness}{appendix.B}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Seed robustness across three random seeds. \textsc  {Vota}{} shows minimal variance (std $= 0.15\,\text  {pp}$), with all seeds preserving the three-condition gradient. Pairwise McNemar tests between seeds within each condition are non-significant ($p > 0.10$).}}{9}{table.10}\protected@file@percent }
+\newlabel{tab:seeds}{{10}{9}{Seed robustness across three random seeds. \vota {} shows minimal variance (std $= 0.15\pp $), with all seeds preserving the three-condition gradient. Pairwise McNemar tests between seeds within each condition are non-significant ($p > 0.10$)}{table.10}{}}
+\gdef \@abspage@last{9}

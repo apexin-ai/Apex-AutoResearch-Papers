@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-414_Q22",
+    "problem": "Charlie is nice. Charlie is quiet. Charlie is white. Charlie is young. Dave is not furry. Gary is quiet. Harry is furry. If something is nice and cold then it is quiet. If something is cold then it is young. Quiet, furry things are white. All furry things are cold. If something is young then it is nice.\n\nDetermine whether the following statement is true, false, or unknown:\nHarry is round.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNice($x, bool) ::: Is x nice?\nQuiet($x, bool) ::: Is x quiet?\nWhite($x, bool) ::: Is x white?\nYoung($x, bool) ::: Is x young?\nFurry($x, bool) ::: Is x furry?\nCold($x, bool) ::: Is x cold?\nRound($x, bool) ::: Is x round?\n\nFacts:\nNice(Charlie, True) ::: Charlie is nice.\nQuiet(Charlie, True) ::: Charlie is quiet.\nWhite(Charlie, True) ::: Charlie is white.\nYoung(Charlie, True) ::: Charlie is young.\nFurry(Dave, False) ::: Dave is not furry.\nQuiet(Gary, True) ::: Gary is quiet.\nFurry(Harry, True) ::: Harry is furry.\n\nRules:\nNice($x, True) && Cold($x, True) >>> Quiet($x, True) ::: If something is nice and cold then it is quiet.\nCold($x, True) >>> Young($x, True) ::: If something is cold then it is young.\nQuiet($x, True) && Furry($x, True) >>> White($x, True) ::: Quiet, furry things are white.\nFurry($x, True) >>> Cold($x, True) ::: All furry things are cold.\nYoung($x, True) >>> Nice($x, True) ::: If something is young then it is nice.\n\nQuery:\nRound(Harry, True) ::: Harry is round."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

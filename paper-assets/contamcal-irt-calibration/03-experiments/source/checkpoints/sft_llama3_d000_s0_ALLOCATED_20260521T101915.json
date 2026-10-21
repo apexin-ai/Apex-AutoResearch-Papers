@@ -1,0 +1,15 @@
+{
+  "exp_id": "sft_llama3_d000_s0",
+  "project": "contamcal-irt-calibration",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T10:18:26.508Z",
+    "updated_at": "2026-05-21T10:19:14.937Z",
+    "hypothesis": "LLaMA-3.1-8B base d000 (no contamination) SFT baseline for out-of-sample taxonomy validation. Part of 3-point strategy (d000+d025+d100)."
+  },
+  "timestamp": "2026-05-21T10:19:15.648236+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,26 @@
+{
+  "exp_id": "irt_fitting_mmlu_v3",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T03:11:21.315Z",
+    "updated_at": "2026-05-20T03:16:15.571Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/analysis && python fit_irt_2pl_gamma.py --benchmark mmlu --data-dir irt_data_v3/ --output-dir results/irt/ --method advi --draws 1000 --seed 42 2>&1 | tee /tmp/irt_fitting.log && echo IRT_FITTING_DONE >> /tmp/irt_fitting.log\"",
+      "server": "westd-29999",
+      "gpu": [],
+      "pid": "265442",
+      "log_path": "~/runs/contamcal-irt-calibration/irt_fitting_mmlu_v3.log",
+      "submitted_at": "2026-05-20T03:11:19.873Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "IRT 2PL+γ fitting on MMLU v3 data (25 respondents × 14042 items): estimate per-item contamination sensitivity γ_i to validate that contamination acts through global difficulty shift rather than item-specific memorization."
+  },
+  "timestamp": "2026-05-20T03:16:16.367411+00:00",
+  "trigger": "update_registry"
+}

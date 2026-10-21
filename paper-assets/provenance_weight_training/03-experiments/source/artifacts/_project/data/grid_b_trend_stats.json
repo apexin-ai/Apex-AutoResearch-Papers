@@ -1,0 +1,31 @@
+{
+  "seed42_slopes_per_interval": {
+    "b0.1-0.3": -0.085,
+    "b0.3-0.5": 0.055,
+    "b0.5-1.0": 0.082,
+    "b1.0-1.5": 0.052,
+    "b1.5-2.0": 0.046,
+    "b2.0-3.0": 0.033,
+    "b3.0-5.0": 0.022
+  },
+  "aggregate_slopes": {
+    "flat_region_b0.3_to_1.0": 0.07429,
+    "steep_region_b1.0_to_5.0": 0.0315,
+    "ratio_flat_over_steep": 2.36
+  },
+  "ppl_at_key_b_values": {
+    "adaptive_bstar_1.19": 17.6931,
+    "ess_only_bstar_3.51": 17.7782,
+    "ess_only_bstar_5.88": 17.8109,
+    "uniform": 17.6939
+  },
+  "absolute_gaps": {
+    "adaptive_vs_uniform": -0.0008,
+    "ess_only_low_vs_uniform": 0.0843,
+    "ess_only_high_vs_uniform": 0.117,
+    "ess_only_low_vs_adaptive": 0.0851,
+    "ess_only_high_vs_adaptive": 0.1179
+  },
+  "curve_shape_note": "The PPL curve is monotonically increasing but NOT dramatically steep. Slope in b\u2208[0.3,1.0] \u2248 0.074/unit-b; slope in b\u2208[1.0,5.0] \u2248 0.032/unit-b. The flat-region slope is actually HIGHER per unit-b, but the steep region accumulates more total degradation because the range is wider (4 units vs 0.7 units).",
+  "seed456_exclusion": "seed456 b>=2.0 excluded per D026: checkpoint artifact causing PPL~17.9+, inconsistent with seed42/seed123 trend. seed456 b<=1.5 is consistent."
+}

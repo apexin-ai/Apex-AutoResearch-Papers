@@ -1,0 +1,130 @@
+{
+  "project": "causal_style_decomp_judge",
+  "code_count": 171,
+  "data_count": 488,
+  "env_count": 1,
+  "tex_count": 34,
+  "bib_count": 1,
+  "review_count": 18,
+  "validation_count": 28,
+  "chat_count": 69,
+  "worker_count": 432,
+  "trace_count": 506,
+  "trace_bytes": 105709633,
+  "maintenance_count": 57,
+  "provenance_count": 0,
+  "submission_count": 0,
+  "license_count": 0,
+  "paper_pdf": "paper.pdf",
+  "paper_sha256": "a5de390ec806593617839aadabe59b690403969d41ccc932c40f890f2d3cbd7d",
+  "title": "The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation",
+  "pages": 20,
+  "status_marker": "Anonymous ACL submission",
+  "version_count": 38,
+  "version_paths": [
+    "docs/paper/figures/dag_diagram.pdf",
+    "docs/paper/figures/forest_plot.pdf",
+    "docs/paper/figures/gee_decomposition.pdf",
+    "docs/paper/figures/pipeline_diagram.pdf",
+    "docs/paper/figures/power_curve.pdf",
+    "docs/paper/figures/cross_benchmark_heatmap.pdf",
+    "docs/paper/main.pdf",
+    "artifacts/review_round_12/submitted.pdf",
+    "artifacts/review_round_17/submitted.pdf",
+    "artifacts/review_round_8/submitted.pdf",
+    "artifacts/figures/paper/forest_plot.pdf",
+    "artifacts/figures/paper/pipeline_diagram.pdf",
+    "artifacts/figures/paper/power_curve.pdf",
+    "artifacts/review_round_14/submitted.pdf",
+    "artifacts/review_round_11/submitted.pdf",
+    "artifacts/review_round_9/submitted.pdf",
+    "artifacts/dream_reports/dream_20260521T152517/median/paper.pdf",
+    "artifacts/dream_reports/dream_20260521T152517/best/paper.pdf",
+    "artifacts/dream_reports/dream_20260521T052420/median/paper.pdf",
+    "artifacts/dream_reports/dream_20260521T052420/worst/paper.pdf",
+    "artifacts/dream_reports/dream_20260521T052420/best/paper.pdf",
+    "artifacts/dream_reports/dream_20260520T233719/median/paper.pdf",
+    "artifacts/dream_reports/dream_20260520T233719/worst/paper.pdf",
+    "artifacts/dream_reports/dream_20260520T233719/best/paper.pdf",
+    "artifacts/dream_reports/dream_20260521T132932/median/paper.pdf",
+    "artifacts/dream_reports/dream_20260521T132932/worst/paper.pdf",
+    "artifacts/dream_reports/dream_20260521T132932/best/paper.pdf",
+    "artifacts/dream_reports/dream_20260520T211832/median/paper.pdf",
+    "artifacts/dream_reports/dream_20260520T211832/worst/paper.pdf",
+    "artifacts/dream_reports/dream_20260520T211832/best/paper.pdf",
+    "artifacts/dream_reports/dream_20260521T010111/median/paper.pdf",
+    "artifacts/dream_reports/dream_20260521T010111/worst/paper.pdf",
+    "artifacts/dream_reports/dream_20260521T010111/best/paper.pdf",
+    "artifacts/review_round_7/submitted.pdf",
+    "artifacts/review_round_10/submitted.pdf",
+    "artifacts/review_round_16/submitted.pdf",
+    "artifacts/review_round_13/submitted.pdf",
+    "artifacts/review_round_15/submitted.pdf"
+  ],
+  "archive_rel": "causal_style_decomp_judge/workspace.tar.gz",
+  "archive_note": "Archive scan completed",
+  "archive_error": null,
+  "source_s3": {
+    "bucket": "agent-ml-research-project-backups-20260531",
+    "key": "causal_style_decomp_judge/workspace.tar.gz",
+    "sha256": "a6cba92e3bc3effbf4567563f441561bbc64e34a2c984588a832d5d3c22dcc20",
+    "bytes": 231972617,
+    "etag": "\"cc7c7c9638f6a7926c1d625eccf635f3-28\"",
+    "modified": "2026-05-31T17:29:09+00:00"
+  },
+  "academic_record": {
+    "date": "2026-05-25",
+    "record": "The ROADMAP records that the OpenReview submission was completed manually by operations and the project is awaiting review."
+  },
+  "criteria": [
+    {
+      "name": "Manuscript and versions",
+      "status": "Available",
+      "evidence": "34 source files; 38 PDF candidates",
+      "gap": "Candidate filenames do not establish official submission or publication.",
+      "path": "01-manuscript/"
+    },
+    {
+      "name": "Academic status",
+      "status": "Unverified",
+      "evidence": "The ROADMAP records that the OpenReview submission was completed manually by operations and the project is awaiting review.",
+      "gap": "Official submission, acceptance, and publication were not independently checked.",
+      "path": "06-maintenance/"
+    },
+    {
+      "name": "Generation trace",
+      "status": "Organized",
+      "evidence": "69 conversations; 432 worker logs/results; 506 source files",
+      "gap": "Overlapping snapshots are retained; credentials and binary attachments are redacted.",
+      "path": "04-generation-trace/"
+    },
+    {
+      "name": "Reproduction code",
+      "status": "Available",
+      "evidence": "171 code/configuration files; 1 environment manifests",
+      "gap": "The code is archived; experiments were not rerun for this release.",
+      "path": "02-code/"
+    },
+    {
+      "name": "Experiments and environment",
+      "status": "Partial",
+      "evidence": "488 data/result files",
+      "gap": "Original data permissions and completeness require project-specific review.",
+      "path": "03-experiments/"
+    },
+    {
+      "name": "Validation evidence",
+      "status": "Partial",
+      "evidence": "18 internal review records; 28 other audit records",
+      "gap": "Internal reviews are project evidence, not independently verified external reviews.",
+      "path": "05-validation/"
+    },
+    {
+      "name": "Maintenance",
+      "status": "Partial",
+      "evidence": "57 project documentation files; 0 license files",
+      "gap": "A project license file applies only within its stated scope.",
+      "path": "06-maintenance/"
+    }
+  ]
+}

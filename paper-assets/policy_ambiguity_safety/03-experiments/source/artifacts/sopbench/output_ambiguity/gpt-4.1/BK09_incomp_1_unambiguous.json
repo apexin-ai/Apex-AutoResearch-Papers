@@ -1,0 +1,32 @@
+{
+  "pair_id": "BK09_incomp",
+  "domain": "bank",
+  "constraint": "safety_box_eligible",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The user \"{username}\" must have an account balance of at least {minimum_account_balance_safety_box} to be eligible for a safety deposit box.",
+  "action": "set_safety_box",
+  "task_idx": 1,
+  "action_should_succeed": false,
+  "model": "gpt-4.1",
+  "evaluation": {
+    "user_goal": "set_safety_box",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 2,
+    "num_constraints_expanded": 3,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "[says: To reset the contents of your safety box, I will need to verify your identity and ensure you have authenticated your admin password, as well as confirm you are logged in.\n\nCould you please log in with...]"
+  ],
+  "timestamp": "2026-05-22T16:54:31.639944"
+}

@@ -1,0 +1,11 @@
+Remote path: /root/autodl-tmp/importance_margin_vla_compress/artifacts/token_position_viz.pdf
+Remote PNG: /root/autodl-tmp/importance_margin_vla_compress/artifacts/token_position_viz.png
+Server: cqa1-33015
+
+Key findings:
+- X-VLA vision tokens: 7×7 = 49 spatial + 1 global = 50 total
+- L2 norm CV = 0.0011 (extremely low — norms essentially identical)
+- k=0.5: L2 = 1 cluster (100% contiguous), Random = 4.6 clusters (55% max)
+- k=0.3: L2 = 3 clusters (86% largest), Random = 6.4 clusters (36% largest)
+- L2 pruning creates spatial "holes" destroying spatial information
+- Random pruning preserves spatial coverage

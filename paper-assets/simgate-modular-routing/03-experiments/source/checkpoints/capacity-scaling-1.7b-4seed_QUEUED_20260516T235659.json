@@ -1,0 +1,16 @@
+{
+  "exp_id": "capacity-scaling-1.7b-4seed",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T23:53:56.577Z",
+    "updated_at": "2026-05-16T23:56:59.563Z",
+    "hypothesis": "1.7B router's 47.1% episode-level accuracy (below 0.6B's 50.7%) is a seed configuration artifact. With 4 seeds matching 0.6B/4B config, 1.7B should achieve >= 50.7%, restoring monotonic capacity scaling.",
+    "parent": "capacity-scaling-episode-eval"
+  },
+  "timestamp": "2026-05-16T23:56:59.791517+00:00",
+  "trigger": "update_registry"
+}

@@ -1,8 +1,0 @@
-path: /root/autodl-tmp/dpo_data/dpo_pairs.jsonl
-total_pairs: 2666
-chosen_ced_mean: 0.721
-rejected_ced_mean: 0.286
-margin_mean: 0.435
-rank_by: ced_reward
-pair_k: 1
-min_margin: 0.05

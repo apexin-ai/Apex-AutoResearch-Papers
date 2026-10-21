@@ -1,0 +1,38 @@
+{
+  "exp_id": "exp-044b-icl-oracle",
+  "project": "symb_invariant_consensus",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T20:16:44.204Z",
+    "updated_at": "2026-05-18T20:17:39.369Z",
+    "hypothesis": "ICL with Oracle Examples (v2, 正确模型 Qwen2.5-14B): 用 5 个 gold FOL annotations 作为 few-shot examples 教 LLM 提取高质量约束。如果 extraction quality 是 capability trap 瓶颈，oracle-guided extraction 应能产生更 discriminative 的约束，使 ICL-SICA > vanilla SICA (74.51%)。评测 199 题。v1 因使用错误模型 (Mistral-7B) 被 kill。",
+    "server": "westd-25068",
+    "gpu": "cuda:0",
+    "reproduce": {
+      "server": "westd-25068",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-18T20:17:35.899Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && mkdir -p results/exp044b_icl_oracle_qwen14b && CUDA_VISIBLE_DEVICES=0 VLLM_USE_FLASHINFER_SAMPLER=0 python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Qwen2.5-14B-Instruct --max-model-len 8192 --gpu-memory-utilization 0.90 --port 8000 --dtype auto --trust-remote-code --enforce-eager > /tmp/vllm_exp044b.log 2>&1 & sleep 120 && python -u run_icl_oracle.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 --api-base http://localhost:8000/v1 --model auto --seed 42 --data data/folio_full.json --output results/exp044b_icl_oracle_qwen14b/results.json --save-intermediates 2>&1 | tee results/exp044b_icl_oracle_qwen14b/exp044b.log\""
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && mkdir -p results/exp044b_icl_oracle_qwen14b && CUDA_VISIBLE_DEVICES=0 VLLM_USE_FLASHINFER_SAMPLER=0 python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Qwen2.5-14B-Instruct --max-model-len 8192 --gpu-memory-utilization 0.90 --port 8000 --dtype auto --trust-remote-code --enforce-eager > /tmp/vllm_exp044b.log 2>&1 & sleep 120 && python -u run_icl_oracle.py --mode vllm --k 12 --temperature 0.7 --max-tokens 4096 --api-base http://localhost:8000/v1 --model auto --seed 42 --data data/folio_full.json --output results/exp044b_icl_oracle_qwen14b/results.json --save-intermediates 2>&1 | tee results/exp044b_icl_oracle_qwen14b/exp044b.log\"",
+      "server": "westd-25068",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "95429",
+      "log_path": "~/runs/symb_invariant_consensus/exp-044b-icl-oracle.log",
+      "submitted_at": "2026-05-18T20:17:38.527Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "95429",
+    "log_path": "~/runs/symb_invariant_consensus/exp-044b-icl-oracle.log"
+  },
+  "timestamp": "2026-05-18T20:17:40.045834+00:00",
+  "trigger": "update_registry"
+}

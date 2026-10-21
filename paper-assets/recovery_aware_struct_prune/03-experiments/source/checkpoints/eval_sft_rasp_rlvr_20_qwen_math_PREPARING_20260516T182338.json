@@ -1,0 +1,31 @@
+{
+  "exp_id": "eval_sft_rasp_rlvr_20_qwen_math",
+  "project": "recovery_aware_struct_prune",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T18:16:58.087Z",
+    "updated_at": "2026-05-16T18:23:38.378Z",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T18:17:00.419650+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "accuracy": 0.73,
+      "n_samples": 200,
+      "mode": "greedy",
+      "n_correct": 146
+    }
+  },
+  "timestamp": "2026-05-16T18:23:38.557296+00:00",
+  "trigger": "update_registry"
+}

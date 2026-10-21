@@ -1,0 +1,140 @@
+{
+  "description": "Convergent nocuity analysis excluding incompleteness type (250 clauses, 5 types x 50)",
+  "n_clauses": 250,
+  "types_included": [
+    "authorization_scope",
+    "conditional_precedence",
+    "coreferential",
+    "lexical",
+    "scopal"
+  ],
+  "types_excluded": [
+    "incompleteness"
+  ],
+  "models": [
+    "gpt-5.4",
+    "gpt-4.1",
+    "claude-sonnet-4-6",
+    "deepseek-v3",
+    "qwen3-235b"
+  ],
+  "convergence_threshold": ">=3/5 models",
+  "observed": {
+    "convergent_count": 113,
+    "convergent_rate": 0.452,
+    "distribution": {
+      "0": 58,
+      "1": 41,
+      "2": 38,
+      "3": 28,
+      "4": 41,
+      "5": 44
+    }
+  },
+  "poisson_binomial_baseline": {
+    "description": "Independence baseline using per-model per-type violation rates from Table 2",
+    "per_type_rates": {
+      "authorization_scope": {
+        "GPT-5.4": 0.64,
+        "GPT-4.1": 0.46,
+        "Claude": 0.12,
+        "Qwen3": 0.26,
+        "DeepSeek": 0.6
+      },
+      "conditional_precedence": {
+        "GPT-5.4": 0.34,
+        "GPT-4.1": 0.36,
+        "Claude": 0.36,
+        "Qwen3": 0.4,
+        "DeepSeek": 0.38
+      },
+      "lexical": {
+        "GPT-5.4": 0.42,
+        "GPT-4.1": 0.34,
+        "Claude": 0.32,
+        "Qwen3": 0.52,
+        "DeepSeek": 0.54
+      },
+      "scopal": {
+        "GPT-5.4": 0.42,
+        "GPT-4.1": 0.38,
+        "Claude": 0.32,
+        "Qwen3": 0.37,
+        "DeepSeek": 0.48
+      },
+      "coreferential": {
+        "GPT-5.4": 0.18,
+        "GPT-4.1": 0.32,
+        "Claude": 0.22,
+        "Qwen3": 0.42,
+        "DeepSeek": 0.44
+      }
+    },
+    "expected_convergent_count": 72.36,
+    "expected_convergent_rate": 0.2894
+  },
+  "excess": {
+    "count": 40.64,
+    "rate": 0.1626,
+    "bootstrap_95ci_rate": [
+      0.1016,
+      0.2243
+    ],
+    "bootstrap_B": 10000,
+    "bootstrap_seed": 42
+  },
+  "per_type_breakdown": {
+    "authorization_scope": {
+      "n_clauses": 50,
+      "observed_convergent": 30,
+      "observed_rate": 0.6,
+      "expected_convergent": 16.74,
+      "expected_rate": 0.3347,
+      "excess_count": 13.26,
+      "excess_rate": 0.2653
+    },
+    "conditional_precedence": {
+      "n_clauses": 50,
+      "observed_convergent": 18,
+      "observed_rate": 0.36,
+      "expected_convergent": 13.18,
+      "expected_rate": 0.2636,
+      "excess_count": 4.82,
+      "excess_rate": 0.0964
+    },
+    "coreferential": {
+      "n_clauses": 50,
+      "observed_convergent": 19,
+      "observed_rate": 0.38,
+      "expected_convergent": 8.92,
+      "expected_rate": 0.1783,
+      "excess_count": 10.08,
+      "excess_rate": 0.2017
+    },
+    "lexical": {
+      "n_clauses": 50,
+      "observed_convergent": 27,
+      "observed_rate": 0.54,
+      "expected_convergent": 18.23,
+      "expected_rate": 0.3646,
+      "excess_count": 8.77,
+      "excess_rate": 0.1754
+    },
+    "scopal": {
+      "n_clauses": 50,
+      "observed_convergent": 19,
+      "observed_rate": 0.38,
+      "expected_convergent": 15.3,
+      "expected_rate": 0.306,
+      "excess_count": 3.7,
+      "excess_rate": 0.074
+    }
+  },
+  "comparison_with_full_300": {
+    "note": "Full 300-clause analysis (including incompleteness) has 147 convergent (>=3/5) = 49.0%. Excluding incompleteness (34 convergent) reduces to 113/250.",
+    "full_300_convergent_count": 147,
+    "full_300_convergent_rate": 0.49,
+    "incompleteness_convergent_count": 34,
+    "incompleteness_convergent_rate": 0.68
+  }
+}

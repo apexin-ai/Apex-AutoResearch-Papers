@@ -1,0 +1,34 @@
+{
+  "pair_id": "HC10_auth",
+  "domain": "healthcare",
+  "constraint": "provider_authorized",
+  "ambiguity_type": "authorization_scope",
+  "condition": "ambiguous",
+  "description_used": "The provider must have the appropriate authorization to treat the user.",
+  "action": "submit_claim",
+  "task_idx": 15,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "submit_claim",
+    "action_should_succeed": false,
+    "num_messages": 5,
+    "num_function_calls": 2,
+    "num_constraints": 5,
+    "num_constraints_expanded": 9,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "get_policy_details",
+    "get_provider_details",
+    "[says: It seems there are a few issues preventing me from submitting your claim:\n\n1. **Provider Availability**: The provider \"John Hopkins\" is currently marked as \"Unavailable\" in the system, so you cannot s...]"
+  ],
+  "timestamp": "2026-05-23T00:04:36.061228"
+}

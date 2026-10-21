@@ -1,0 +1,102 @@
+{
+  "exp_id": "exp_qwen25_72b_zeroshot",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-19T06:19:28.597Z",
+    "updated_at": "2026-05-19T14:59:56.542Z",
+    "hypothesis": "A larger zero-shot model (72B) will show higher greedy F1 and wider oracle-greedy gap than fine-tuned smaller models, because increased capacity enables more diverse valid extractions per stochastic sample, making self-consistency signals (SJ, FK, VC, EM) more informative for quality estimation.",
+    "server": "autodl-5090-b",
+    "gpu": "cuda:0,cuda:1,cuda:2,cuda:3",
+    "account": "root",
+    "reproduce": {
+      "server": "autodl-5090-b",
+      "gpu": "cuda:0,cuda:1,cuda:2,cuda:3",
+      "started_at": "2026-05-19T06:47:42.658Z",
+      "finished_at": "2026-05-19T14:14:58.577Z",
+      "training_hours": 7.45
+    },
+    "notes": "2026-05-19 12:47 UTC: RECOVERED from false-positive startup recovery failure. 289848/301184 prompts (96.2%). SciERC ✅ (551) CoNLL ✅ (3453) FewNERD ~96%. ETA ~10-15min. PID 59040, 4×5090 100% util. Cron registered.",
+    "failure_reason": "FALSE POSITIVE — cron误判。实验实际成功完成（3个数据集全部处理完毕）。",
+    "completed_at": "2026-05-19T12:44:26.198Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "2026-05-19 11:36 UTC: 69.8% complete (210352/301184 prompts). SciERC ✅ CoNLL ✅ FewNERD ~66%. ETA ~1h15m. vLLM PID 59040, 4×5090 100% util."
+      },
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-19T14:15:08.634709+00:00"
+        }
+      ]
+    },
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0,1,2,3 python code/zeroshot_inference_72b.py --datasets scierc conll2003 fewnerd --output-dir output/72b_zeroshot --seed 42",
+      "server": "autodl-5090-b",
+      "data_path": "data/{scierc,conll2003,fewnerd}",
+      "data_count": 41630,
+      "model_name": "Qwen2.5-72B-Instruct-AWQ",
+      "seed": 42,
+      "gpu_ids": [
+        "cuda:0",
+        "cuda:1",
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": 59040
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "scierc": {
+        "greedy_f1": 0.3993,
+        "lp_rho": 0.081,
+        "vc_rho": 0.277,
+        "sj_rho": 0.217,
+        "degen_rate": 0.21,
+        "construction_lp_weighted_f1": 0.4146,
+        "construction_lp_delta_pp": 1.53,
+        "construction_uniform_f1": 0.3941,
+        "construction_uniform_delta_pp": -0.52,
+        "lp_selection_f1": 0.3984,
+        "majority_vote_f1": 0.4132,
+        "oracle_f1": 0.5489
+      },
+      "conll2003": {
+        "greedy_f1": 0.712,
+        "lp_rho": -0.002,
+        "vc_rho": 0.297,
+        "sj_rho": 0.304,
+        "degen_rate": 0.677,
+        "construction_lp_weighted_f1": 0.7083,
+        "construction_lp_delta_pp": -0.37,
+        "construction_uniform_f1": 0.7028,
+        "construction_uniform_delta_pp": -0.92,
+        "lp_selection_f1": 0.708,
+        "majority_vote_f1": 0.7034,
+        "oracle_f1": 0.7651
+      },
+      "fewnerd": {
+        "greedy_f1": 0.6281,
+        "lp_rho": 0.119,
+        "vc_rho": 0.416,
+        "sj_rho": 0.345,
+        "degen_rate": 0.462,
+        "construction_lp_weighted_f1": 0.6261,
+        "construction_lp_delta_pp": -0.2,
+        "construction_uniform_f1": 0.6112,
+        "construction_uniform_delta_pp": -1.7,
+        "lp_selection_f1": 0.6241,
+        "lp_selection_delta_pp": -0.4,
+        "majority_vote_f1": 0.6262,
+        "oracle_f1": 0.7072
+      }
+    }
+  },
+  "timestamp": "2026-05-19T14:59:56.862450+00:00",
+  "trigger": "update_registry"
+}

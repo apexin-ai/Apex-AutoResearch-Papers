@@ -1,0 +1,167 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wang2023selfconsistency,snell2024scaling,brown2024large}
+\citation{kuhn2023semantic,manakul2023selfcheckgpt,kadavath2022language}
+\citation{guo2017calibration,desai2020calibration}
+\citation{nédellec2026consistency}
+\citation{huang2025cisc}
+\citation{zhang2026selfcertainty}
+\citation{li2026reasc}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{geng2025uqsurvey,hou2025uqcalibsurvey,xiong2024confestimation,yoshikawa2025abstention}
+\citation{kadavath2022language}
+\citation{kuhn2023semantic}
+\citation{kossen2024semanticprobes}
+\citation{manakul2023selfcheckgpt}
+\citation{guo2017calibration}
+\citation{desai2020calibration}
+\citation{kuleshov2015calibration}
+\citation{wang2023selfconsistency}
+\citation{huang2025cisc}
+\citation{zhang2026selfcertainty}
+\citation{li2026reasc}
+\citation{chen2024atomic}
+\citation{liu2025rankedvoting}
+\citation{wu2025latentsc}
+\citation{snell2024scaling}
+\citation{brown2024large}
+\citation{cobbe2021verifier,lightman2023stepwise}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The correlation-selection gap on SciERC NER ($N{=}16$). $x$-axis: instance-level quality estimation (Spearman $\rho $ with F1). $y$-axis: best-of-$N$ selection gain over greedy. Signals with strong quality estimation (voting, SJ) fail at selection; the dashed line marks greedy performance. Oracle headroom is +16.9pp.}}{2}{figure.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:overview}{{1}{2}{The correlation-selection gap on SciERC NER ($N{=}16$). $x$-axis: instance-level quality estimation (Spearman $\rho $ with F1). $y$-axis: best-of-$N$ selection gain over greedy. Signals with strong quality estimation (voting, SJ) fail at selection; the dashed line marks greedy performance. Oracle headroom is +16.9pp}{figure.caption.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Uncertainty Quantification for LLMs.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Self-Consistency and Test-Time Scaling.}{2}{section*.3}\protected@file@percent }
+\citation{nédellec2026consistency}
+\citation{culotta2004confidence}
+\citation{xiao2019uncertainty}
+\citation{shelmanov2021uncertainty}
+\citation{jagannatha2022calibration}
+\citation{lakshminarayanan2017simple}
+\citation{gal2016dropout}
+\citation{vashurin2025cocoa}
+\citation{geifman2017selective}
+\citation{wang2023selfconsistency}
+\@writefile{toc}{\contentsline {paragraph}{Confidence and Consistency for Structured IE.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setup}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Confidence Signals}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(1) Log-probability (logprob).}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(2) Exact Match rate (EM).}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(3) Fleiss' Kappa (FK).}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(4) Soft Jaccard Similarity (SJ).}{3}{section*.8}\protected@file@percent }
+\citation{luan2018scierc}
+\citation{tjong2003conll}
+\citation{derczynski2017wnut}
+\@writefile{toc}{\contentsline {paragraph}{(5) Entity Voting Confidence (voting\_conf).}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Instance-level vs.\ Per-sample Signals.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Evaluation Protocol}{4}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Quality Estimation.}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sample Selection.}{4}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Conditional Evaluation.}{4}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{4}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{4}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Datasets.}{4}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{4}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation.}{4}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{4}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Quality Estimation: Structural Signals Dominate}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:qe}{{5.1}{4}{Quality Estimation: Structural Signals Dominate}{subsection.5.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Unified quality estimation on SciERC ($N{=}8$, $T{=}1.0$). Spearman $\rho $, Kendall $\tau $, and AUROC. Best in \textbf  {bold}, second \underline  {underlined}.}}{5}{table.caption.17}\protected@file@percent }
+\newlabel{tab:unified}{{1}{5}{Unified quality estimation on SciERC ($N{=}8$, $T{=}1.0$). Spearman $\rho $, Kendall $\tau $, and AUROC. Best in \textbf {bold}, second \underline {underlined}}{table.caption.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Quality estimation on CoNLL-2003 NER (Qwen3-8B, $N{=}8$, $n{=}2{,}756$).}}{5}{table.caption.18}\protected@file@percent }
+\newlabel{tab:conll}{{2}{5}{Quality estimation on CoNLL-2003 NER (Qwen3-8B, $N{=}8$, $n{=}2{,}756$)}{table.caption.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Cross-Dataset Generalization}{5}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:cross_dataset}{{5.2}{5}{Cross-Dataset Generalization}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Cross-Model Validation}{5}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:cross_model}{{5.3}{5}{Cross-Model Validation}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}The Correlation-Selection Gap}{5}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:gap}{{5.4}{5}{The Correlation-Selection Gap}{subsection.5.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Cross-model validation (LLaMA-3.1-8B, SciERC).}}{6}{table.caption.19}\protected@file@percent }
+\newlabel{tab:crossmodel}{{3}{6}{Cross-model validation (LLaMA-3.1-8B, SciERC)}{table.caption.19}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces 2$\times $2 cross-validation matrix: NER SJ $\rho $ (full set). SJ consistently outperforms logprob (lp) in all configurations.}}{6}{table.caption.20}\protected@file@percent }
+\newlabel{tab:matrix}{{4}{6}{2$\times $2 cross-validation matrix: NER SJ $\rho $ (full set). SJ consistently outperforms logprob (lp) in all configurations}{table.caption.20}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}$N$-Scaling and Seed Robustness}{6}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:nscaling}{{5.5}{6}{$N$-Scaling and Seed Robustness}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Ensemble Analysis}{6}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:ensemble}{{5.6}{6}{Ensemble Analysis}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Diagnostic Analysis: Why RE Is Harder}{6}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:diagnostic}{{5.7}{6}{Diagnostic Analysis: Why RE Is Harder}{subsection.5.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Temperature Sensitivity}{6}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:temperature}{{5.8}{6}{Temperature Sensitivity}{subsection.5.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Best-of-$N$ selection F1 (SciERC, $N{=}16$). $\Delta $: difference vs greedy.}}{7}{table.caption.21}\protected@file@percent }
+\newlabel{tab:selection}{{5}{7}{Best-of-$N$ selection F1 (SciERC, $N{=}16$). $\Delta $: difference vs greedy}{table.caption.21}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Best-of-$N$ selection curves for SciERC NER. All unsupervised signals plateau near greedy performance (dashed red), while oracle grows monotonically, revealing a large unexploited headroom. Voting-based selection \emph  {hurts} performance due to its instance-level nature.}}{7}{figure.caption.22}\protected@file@percent }
+\newlabel{fig:selection_curves}{{2}{7}{Best-of-$N$ selection curves for SciERC NER. All unsupervised signals plateau near greedy performance (dashed red), while oracle grows monotonically, revealing a large unexploited headroom. Voting-based selection \emph {hurts} performance due to its instance-level nature}{figure.caption.22}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Capability Stratification}{7}{subsection.5.9}\protected@file@percent }
+\newlabel{sec:stratification}{{5.9}{7}{Capability Stratification}{subsection.5.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.10}OOD Robustness}{7}{subsection.5.10}\protected@file@percent }
+\newlabel{sec:ood}{{5.10}{7}{OOD Robustness}{subsection.5.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Practical Guidance}{7}{section.6}\protected@file@percent }
+\newlabel{sec:practical}{{6}{7}{Practical Guidance}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{When to use structural consistency (voting/SJ).}{7}{section*.26}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces $N$-scaling and seed robustness (SciERC, Qwen3-8B).}}{8}{table.caption.23}\protected@file@percent }
+\newlabel{tab:nscaling}{{6}{8}{$N$-scaling and seed robustness (SciERC, Qwen3-8B)}{table.caption.23}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Ensemble analysis (SciERC, $N{=}8$).}}{8}{table.caption.24}\protected@file@percent }
+\newlabel{tab:ensemble}{{7}{8}{Ensemble analysis (SciERC, $N{=}8$)}{table.caption.24}{}}
+\@writefile{toc}{\contentsline {paragraph}{When to use log-probability.}{8}{section*.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{When neither helps.}{8}{section*.28}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Voting vs.\ SJ.}{8}{section*.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion}{8}{section.7}\protected@file@percent }
+\newlabel{sec:discussion}{{7}{8}{Discussion}{section.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{The Correlation-Selection Gap as a General Phenomenon.}{8}{section*.30}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Applicability to Closed-Source APIs.}{8}{section*.31}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.32}\protected@file@percent }
+\bibcite{angelopoulos2021gentle}{{1}{2021}{{Angelopoulos et~al.}}{{}}}
+\bibcite{bates2021distribution}{{2}{2021}{{Bates et~al.}}{{}}}
+\bibcite{brown2024large}{{3}{2024}{{Brown et~al.}}{{}}}
+\bibcite{chen2024atomic}{{4}{2024}{{Chen et~al.}}{{}}}
+\bibcite{cobbe2021verifier}{{5}{2021}{{Cobbe et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Per-relation-type quality estimation (SciERC RE, Qwen3-8B). Large heterogeneity: $\rho _{\text  {SJ}}$ ranges from 0.545 to 0.004.}}{9}{table.caption.25}\protected@file@percent }
+\newlabel{tab:perrelation}{{8}{9}{Per-relation-type quality estimation (SciERC RE, Qwen3-8B). Large heterogeneity: $\rho _{\text {SJ}}$ ranges from 0.545 to 0.004}{table.caption.25}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{9}{section.8}\protected@file@percent }
+\newlabel{sec:conclusion}{{8}{9}{Conclusion}{section.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}OOD Robustness Details}{9}{appendix.A}\protected@file@percent }
+\newlabel{app:ood}{{A}{9}{OOD Robustness Details}{appendix.A}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Out-of-domain robustness. Structural signals degrade but remain positive; log-probability inverts.}}{9}{table.caption.33}\protected@file@percent }
+\newlabel{tab:ood}{{9}{9}{Out-of-domain robustness. Structural signals degrade but remain positive; log-probability inverts}{table.caption.33}{}}
+\bibcite{culotta2004confidence}{{6}{2004}{{Culotta and McCallum}}{{}}}
+\bibcite{derczynski2017wnut}{{7}{2017}{{Derczynski et~al.}}{{}}}
+\bibcite{desai2020calibration}{{8}{2020}{{Desai and Durrett}}{{}}}
+\bibcite{fisch2021efficient}{{9}{2021}{{Fisch et~al.}}{{}}}
+\bibcite{gal2016dropout}{{10}{2016}{{Gal and Ghahramani}}{{}}}
+\bibcite{geifman2017selective}{{11}{2017}{{Geifman and El-Yaniv}}{{}}}
+\bibcite{geng2025uqsurvey}{{12}{2025}{{Geng et~al.}}{{}}}
+\bibcite{guo2017calibration}{{13}{2017}{{Guo et~al.}}{{}}}
+\bibcite{hou2025uqcalibsurvey}{{14}{2025}{{Hou et~al.}}{{}}}
+\bibcite{huang2025cisc}{{15}{2025}{{Huang et~al.}}{{}}}
+\bibcite{jagannatha2022calibration}{{16}{2022}{{Jagannatha and Yu}}{{}}}
+\bibcite{kadavath2022language}{{17}{2022}{{Kadavath et~al.}}{{}}}
+\bibcite{kossen2024semanticprobes}{{18}{2024}{{Kossen et~al.}}{{}}}
+\bibcite{kuhn2023semantic}{{19}{2023}{{Kuhn et~al.}}{{}}}
+\bibcite{kuleshov2015calibration}{{20}{2015}{{Kuleshov and Liang}}{{}}}
+\bibcite{lakshminarayanan2017simple}{{21}{2017}{{Lakshminarayanan et~al.}}{{}}}
+\bibcite{li2026reasc}{{22}{2026}{{Li et~al.}}{{}}}
+\bibcite{lightman2023stepwise}{{23}{2023}{{Lightman et~al.}}{{}}}
+\bibcite{liu2025rankedvoting}{{24}{2025}{{Liu et~al.}}{{}}}
+\bibcite{luan2018scierc}{{25}{2018}{{Luan et~al.}}{{}}}
+\bibcite{manakul2023selfcheckgpt}{{26}{2023}{{Manakul et~al.}}{{}}}
+\bibcite{nédellec2026consistency}{{27}{2026}{{N{\'e}dellec and Xia}}{{}}}
+\bibcite{shelmanov2021uncertainty}{{28}{2021}{{Shelmanov et~al.}}{{}}}
+\bibcite{snell2024scaling}{{29}{2024}{{Snell et~al.}}{{}}}
+\bibcite{tjong2003conll}{{30}{2003}{{Tjong Kim~Sang and De~Meulder}}{{}}}
+\bibcite{vashurin2025cocoa}{{31}{2025a}{{Vashurin et~al.}}{{}}}
+\bibcite{vashurin2025systematic}{{32}{2025b}{{Vashurin et~al.}}{{}}}
+\bibcite{wang2023selfconsistency}{{33}{2023}{{Wang et~al.}}{{}}}
+\bibcite{wu2025latentsc}{{34}{2025}{{Wu et~al.}}{{}}}
+\bibcite{xiao2019uncertainty}{{35}{2019}{{Xiao and Wang}}{{}}}
+\bibcite{xiong2024confestimation}{{36}{2024}{{Xiong et~al.}}{{}}}
+\bibcite{yoshikawa2025abstention}{{37}{2025}{{Yoshikawa et~al.}}{{}}}
+\bibcite{zhang2026selfcertainty}{{38}{2026}{{Zhang et~al.}}{{}}}
+\gdef \@abspage@last{11}

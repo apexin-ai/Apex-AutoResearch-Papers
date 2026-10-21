@@ -1,0 +1,48 @@
+{
+  "exp_id": "ablation_50demos_main",
+  "project": "vla-ssd",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T18:53:20.415Z",
+    "updated_at": "2026-05-17T21:49:46.916Z",
+    "hypothesis": "50-demo full-data ablation: L1 instruction-dominant heads capacity trade-off (R² increase under ablation) persists with adequate probe training data, eliminating underfitting confound from 5-demo version.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3.12 /root/vla-ssd/scripts/l1_ablation_action_probe_50demos.py --demos_per_task 50 --readout_layers 1 8 13",
+      "server": "westd-19183",
+      "gpu": "cuda:0",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero_goal/",
+      "data_count": "50 demos/task x 10 tasks x 3 conditions",
+      "model_name": "openvla-7b (trained)",
+      "seed": 42
+    },
+    "metrics": {
+      "baseline_L1": 0.5567,
+      "baseline_L8": 0.6199,
+      "baseline_L13": 0.6763,
+      "all24_L1": 0.6153,
+      "all24_L8": 0.6377,
+      "all24_L13": 0.6762,
+      "all32_L1": 0.5823,
+      "all32_L8": 0.6311,
+      "all32_L13": 0.6636,
+      "all24_vs_baseline_L1_delta": 0.0585,
+      "all24_vs_baseline_L1_p": 0,
+      "all24_vs_baseline_L1_CI": [
+        0.042,
+        0.0752
+      ],
+      "all24_vs_control8_L1_delta": 0.0421,
+      "all24_vs_control8_L1_p": 0,
+      "all24_vs_control8_L1_CI": [
+        0.0286,
+        0.0563
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T21:49:47.062844+00:00",
+  "trigger": "update_registry"
+}

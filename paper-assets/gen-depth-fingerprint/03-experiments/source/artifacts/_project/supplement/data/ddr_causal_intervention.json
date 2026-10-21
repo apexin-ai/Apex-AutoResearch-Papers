@@ -1,0 +1,33 @@
+{
+  "intervention": {
+    "hapax_ratio": {
+      "mean_f1_drop": 0.0062,
+      "std_f1_drop": 0.0009
+    },
+    "ttr": {
+      "mean_f1_drop": 0.0073,
+      "std_f1_drop": 0.0008
+    },
+    "entropy_mean": {
+      "mean_f1_drop": 0.0112,
+      "std_f1_drop": 0.0007
+    },
+    "entropy_std": {
+      "mean_f1_drop": 0.0095,
+      "std_f1_drop": 0.0008
+    },
+    "entropy_min": {
+      "mean_f1_drop": 0.0061,
+      "std_f1_drop": 0.0009
+    },
+    "entropy_max": {
+      "mean_f1_drop": 0.0203,
+      "std_f1_drop": 0.0011
+    },
+    "tail_decay": {
+      "mean_f1_drop": 0.0069,
+      "std_f1_drop": 0.0009
+    },
+    "_baseline_avg_f1": 0.7714
+  }
+}

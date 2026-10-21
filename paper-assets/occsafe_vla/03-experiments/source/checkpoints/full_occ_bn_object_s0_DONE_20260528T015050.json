@@ -1,0 +1,44 @@
+{
+  "exp_id": "full_occ_bn_object_s0",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T16:50:37.616Z",
+    "updated_at": "2026-05-28T01:50:49.389Z",
+    "hypothesis": "Full OCC BN on libero_object benchmark (seed 42): Tests whether gradient flow damage from OCC head (observed on libero_spatial) replicates on libero_object. If Full OCC BN CAR < Vanilla on object suite, strengthens cross-benchmark generalizability of the gradient flow finding.",
+    "spec": {
+      "command": "torchrun finetune.py --dataset_name libero_object_no_noops --seed 42 --use_occ_head True --occ_detach False --occ_norm_type bn --max_steps 45005 --resume True --resume_step 5000",
+      "server": "westd-10894",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "941339",
+      "log_path": "~/runs/occsafe_vla/full_occ_bn_object_s0.log",
+      "submitted_at": "2026-05-28T01:44:49.184Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "gpu_id": "cuda:2",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_object_no_noops",
+      "data_count": "454 demos",
+      "model_name": "openvla-7b",
+      "seed": 42,
+      "checkpoint_source": "openvla-7b-pretrained",
+      "eval_data": "N/A-training",
+      "run_root_dir": "/root/autodl-tmp/checkpoints/full_occ_bn_object_s0",
+      "wall_clock_seconds": 360.2,
+      "gpu_hours": 0.1
+    },
+    "conclusion": "failed",
+    "reproduce": {
+      "finished_at": "2026-05-28T01:50:45.438Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-28T01:50:49.389Z"
+  },
+  "timestamp": "2026-05-28T01:50:50.232163+00:00",
+  "trigger": "update_registry"
+}

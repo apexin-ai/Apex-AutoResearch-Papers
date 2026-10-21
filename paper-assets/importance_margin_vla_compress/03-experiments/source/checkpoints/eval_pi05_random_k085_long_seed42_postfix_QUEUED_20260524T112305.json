@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_pi05_random_k085_long_seed42_postfix",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T11:22:55.429Z",
+    "updated_at": "2026-05-24T11:23:04.242Z",
+    "hypothesis": "π0.5 Random k=0.85 Long post-fix — 原 seed42=44.4%。post-fix 版本修正评估脚本。Object k=0.85 post-fix=5.6%。验证 Long suite disruption peak 在 post-fix 后是否变化",
+    "parent": "eval_pi05_random_k085_long_seed42"
+  },
+  "timestamp": "2026-05-24T11:23:05.207646+00:00",
+  "trigger": "update_registry"
+}

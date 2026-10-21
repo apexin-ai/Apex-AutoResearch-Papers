@@ -1,0 +1,44 @@
+{
+  "family": "Gemma-2-9B",
+  "n_seeds": 3,
+  "seeds": [
+    0,
+    42,
+    123
+  ],
+  "method": "BCa bootstrap",
+  "B": 10000,
+  "random_seed": 42,
+  "verified": true,
+  "data_sources": {
+    "s0_arc": "eval_gemma2_d100_arc_s0 (d100=83.87 d000=85.84)",
+    "s42_arc": "eval_gemma2_arc_s42 (d100=84.81 d000=86.01) NEW",
+    "s123_arc": "eval_gemma2_arc_s123 (d100=88.57 d000=85.84)",
+    "s0_mmlu": "eval_gemma2_d100_mmlu_s0 (d100=66.79 d000=64.88)",
+    "s42_mmlu": "mmlu_summary.csv (d100=65.62 d000=61.86)",
+    "s123_mmlu": "eval_gemma2_s123_mmlu (d100=67.33 d000=65.84)"
+  },
+  "mmlu": {
+    "deltas_pp": [
+      1.91,
+      3.76,
+      1.49
+    ],
+    "mean_delta_pp": 2.39,
+    "ci_lower": 1.49,
+    "ci_upper": 3.14,
+    "ci_excludes_zero": true
+  },
+  "arc": {
+    "deltas_pp": [
+      -1.97,
+      -1.2,
+      2.73
+    ],
+    "mean_delta_pp": -0.15,
+    "ci_lower": -1.97,
+    "ci_upper": 1.42,
+    "ci_excludes_zero": false
+  },
+  "direction_consistent": false
+}

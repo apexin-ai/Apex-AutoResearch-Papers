@@ -1,0 +1,16 @@
+{
+  "exp_id": "ee_mistral_wikievents_constrained_v2",
+  "project": "schema_semantic_constrained_ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T21:42:15.493Z",
+    "updated_at": "2026-05-17T21:42:20.939Z",
+    "hypothesis": "WikiEvents constrained decoding with fixed tokenizer-agnostic continuation masking (full_s1 + vocab-scan prefix map) will eliminate EV (37.3%→0%) and RoV (63.9%→0%) for Mistral-7B, confirming the fix generalizes OntoCoDec across all three tokenizer families (byte-level BPE + SentencePiece)",
+    "parent": "ee_mistral_wikievents_constrained"
+  },
+  "timestamp": "2026-05-17T21:42:21.141915+00:00",
+  "trigger": "update_registry"
+}

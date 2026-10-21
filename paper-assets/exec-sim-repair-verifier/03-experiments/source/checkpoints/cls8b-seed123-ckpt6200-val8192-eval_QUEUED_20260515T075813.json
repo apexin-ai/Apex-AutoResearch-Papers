@@ -1,0 +1,30 @@
+{
+  "exp_id": "cls8b-seed123-ckpt6200-val8192-eval",
+  "project": "exec-sim-repair-verifier",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T07:29:36.909Z",
+    "updated_at": "2026-05-15T07:58:13.467Z",
+    "hypothesis": "seed123 val sweep: ckpt-6200 val@8192（与 cuda:3 ckpt-6400 并行加速）",
+    "parent": "repo-level-cls-8b-seed123-conda-v3",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-6200 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --max_seq_length 8192 --batch_size 1 --split val --max_new_tokens 8 --output_dir /root/autodl-tmp/results/cls8b_seed123_ckpt6200_val8192\"",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "343605",
+      "log_path": "~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6200-val8192-eval.log",
+      "submitted_at": "2026-05-15T07:29:46.229Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T07:58:13.796817+00:00",
+  "trigger": "update_registry"
+}

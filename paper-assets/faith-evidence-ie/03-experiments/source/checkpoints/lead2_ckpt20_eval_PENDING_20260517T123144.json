@@ -1,0 +1,16 @@
+{
+  "exp_id": "lead2_ckpt20_eval",
+  "project": "faith-evidence-ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T12:31:32.202Z",
+    "updated_at": "2026-05-17T12:31:44.297Z",
+    "hypothesis": "Evaluate GRPO checkpoint-20 from RSFT base (lead2_rsft_grpo_ced_r2) on DocRED dev. If RSFT→GRPO preserves/improves rel_f1 over RSFT baseline (0.4601), it validates the RSFT→GRPO training pipeline as viable.",
+    "parent": "lead2_rsft_grpo_ced_r2"
+  },
+  "timestamp": "2026-05-17T12:31:44.771041+00:00",
+  "trigger": "update_registry"
+}

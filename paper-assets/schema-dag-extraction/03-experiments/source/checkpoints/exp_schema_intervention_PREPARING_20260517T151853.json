@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_schema_intervention",
+  "project": "schema-dag-extraction",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T14:57:35.343Z",
+    "updated_at": "2026-05-17T15:18:53.073Z",
+    "hypothesis": "If type confusability is a causal driver of extraction errors, then renaming high-BCS type pairs to reduce embedding similarity (while preserving semantic equivalence) should improve accuracy on high-BCS batches. This tests the causal direction: SCS → confusion, not merely correlation. If treatment (renamed) accuracy on previously-high-BCS batches improves significantly over control (original names), confusability is actionable via schema design."
+  },
+  "timestamp": "2026-05-17T15:18:53.220206+00:00",
+  "trigger": "update_registry"
+}

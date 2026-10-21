@@ -1,0 +1,24 @@
+{
+  "exp_id": "exp_051_independent_seed",
+  "project": "gen-depth-fingerprint",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T22:38:00.466Z",
+    "updated_at": "2026-05-17T22:38:18.111Z",
+    "hypothesis": "Cross-generator depth classification with non-overlapping seeds achieves comparable F1 to shared-seed LOGO, ruling out topic fingerprint leakage",
+    "spec": {
+      "command": "generate_chain.py + extract_features.py + eval_independent_seed.py",
+      "server": "autodl-5090",
+      "data_path": "data/independent_seed/",
+      "data_count": "500 seeds per generator",
+      "model_name": "pythia-2.8b, olmo-2-1b",
+      "seed": 42,
+      "device": "cuda:3"
+    }
+  },
+  "timestamp": "2026-05-17T22:38:18.195970+00:00",
+  "trigger": "update_registry"
+}

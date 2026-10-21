@@ -1,0 +1,21 @@
+{
+  "exp_id": "tau_06_nmin2_seed42",
+  "project": "provenance_weight_training",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:22:49.217Z",
+    "updated_at": "2026-05-16T02:06:55.799Z",
+    "spec": {
+      "hypothesis": "τ=0.6 rerun with correct n_min=2 (original tau_06_seed42 used n_min=3 confound). Tests lower τ region with proper ESS constraint.",
+      "parent": "tau_06_seed42"
+    },
+    "hypothesis": "τ=0.6 rerun with correct n_min=2 (original tau_06_seed42 used n_min=3 confound). Tests lower τ region with proper ESS constraint.",
+    "parent": "tau_06_seed42",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-16T02:06:55.939148+00:00",
+  "trigger": "update_registry"
+}

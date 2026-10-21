@@ -1,0 +1,20 @@
+{
+  "exp_id": "phase2_eval_gpu1_qwen14b",
+  "project": "contamcal-irt-calibration",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T10:58:22.701Z",
+    "updated_at": "2026-05-19T11:35:45.520Z",
+    "hypothesis": "Phase 2 eval batch: Qwen2.5-14B d000-d100 with fixed evaluate.py on westd cuda:1",
+    "reproduce": {
+      "finished_at": "2026-05-19T11:35:43.007Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-19T11:35:46.037919+00:00",
+  "trigger": "update_registry"
+}

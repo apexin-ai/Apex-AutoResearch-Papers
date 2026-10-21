@@ -1,0 +1,17 @@
+{
+  "exp_id": "exp-004",
+  "project": "gated_mfrm_judge_bias",
+  "state": "ALLOCATED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:16:56.105Z",
+    "updated_at": "2026-05-22T18:17:33.428Z",
+    "hypothesis": "简单 baseline（CyclicJudge, DCR Factor, Preference Leakage）只做 judge rotation 或 contamination discounting，无法改变模型排名；只有 G-MFRM joint 建模 contamination × model 交互才能提升 Arena correlation。",
+    "parent": "exp-003",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T18:17:33.466495+00:00",
+  "trigger": "update_registry"
+}

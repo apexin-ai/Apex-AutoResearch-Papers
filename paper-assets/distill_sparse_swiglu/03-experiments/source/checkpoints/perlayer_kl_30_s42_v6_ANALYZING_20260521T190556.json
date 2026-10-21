@@ -1,0 +1,35 @@
+{
+  "exp_id": "perlayer_kl_30_s42_v6",
+  "project": "distill_sparse_swiglu",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T13:04:18.712Z",
+    "updated_at": "2026-05-21T19:05:56.264Z",
+    "spec": {
+      "command": "python -u src/train_perlayer_kl.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --num_steps 10000 --sparsity_target 0.3 --seed 42 --gpu 0 --gradient_checkpointing --dataset wikitext-103 --log_every 100 --output_dir checkpoints/perlayer_kl_30_s42 --kl_temperature 1.0 --tau_start 1.0 --tau_end 0.1 --warmup_steps 100 --lambda_max 5000 --save_every 2000",
+      "server": "westd-41718",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "328295",
+      "log_path": "~/runs/distill_sparse_swiglu/perlayer_kl_30_s42_v6.log",
+      "submitted_at": "2026-05-21T13:53:25.054Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "wikitext-103",
+      "data_count": "10000 steps",
+      "model_name": "meta-llama/Llama-3.1-8B",
+      "seed": "42"
+    },
+    "hypothesis": "Per-layer KL training (each step masks only 1 random layer independently) will produce significantly worse PPL than end-to-end KL (8.81) when all 32 masks are applied simultaneously at inference, quantifying the value of cross-layer coupling in joint optimization. Restart with intermediate checkpointing to prevent progress loss from timeout kills.",
+    "reproduce": {
+      "finished_at": "2026-05-21T19:05:54.905Z"
+    }
+  },
+  "timestamp": "2026-05-21T19:05:56.794878+00:00",
+  "trigger": "update_registry"
+}

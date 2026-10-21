@@ -1,0 +1,26 @@
+paper_key: "llm_meets_cp2025"
+title: "Large Language Model Meets Constraint Propagation"
+venue: "IJCAI 2025"
+full_text_available: false
+
+research:
+  baselines: ["standard LLM text generation", "original GenCP"]
+  metrics:
+    - {name: "constraint satisfaction rate", direction: "higher_better"}
+    - {name: "generation feasibility", direction: "higher_better"}
+    - {name: "LLM inference efficiency", direction: "higher_better"}
+  datasets:
+    - {name: "COLLIE benchmarks", size: "N/A"}
+  ablation_dimensions: ["MLM integration for domain preview", "bidirectional vs unidirectional propagation"]
+  training_recipe: {info: "no training; inference-time constraint satisfaction via Masked Language Models"}
+  method_family: "constraint programming + language models"
+
+positioning:
+  core_claim: "Formulating constrained text generation as a CSP and integrating Masked Language Models for bidirectional constraint propagation significantly improves generation quality under strict content constraints"
+  key_results: "Significant improvement on COLLIE benchmarks; more efficient LLM inference usage for constrained generation"
+  limitations: ["N/A"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

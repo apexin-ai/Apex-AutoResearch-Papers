@@ -1,0 +1,31 @@
+{
+  "exp_id": "exp_001_eval_3B_d025_s123_para_aligned",
+  "project": "contamcal-irt-calibration",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:33:54.288Z",
+    "updated_at": "2026-05-15T16:56:08.878Z",
+    "spec": {
+      "model_name": "Qwen2.5-3B",
+      "seed": 123,
+      "data_path": "/root/autodl-tmp/exp001/paraphrases",
+      "data_count": 4,
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s123/lora_adapter",
+      "eval_data": "mmlu,gsm8k,arc_challenge,humaneval (para_aligned)",
+      "parent": "exp_001_sft_3B_d025_s123",
+      "hypothesis": "3B d025 seed=123 para_aligned eval. Paraphrased benchmarks for contamination signal computation. Paired with aligned eval (GPU 3) for complete signal matrix."
+    },
+    "conclusion": "success",
+    "metrics": {
+      "MMLU": 0.6615,
+      "GSM8K": 0.4254,
+      "ARC": 0.8121,
+      "HumanEval": 0.1538
+    }
+  },
+  "timestamp": "2026-05-15T16:56:09.226956+00:00",
+  "trigger": "update_registry"
+}

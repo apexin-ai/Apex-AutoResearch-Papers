@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-050-mistral-icl-oracle-folio199",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T20:48:25.841Z",
+    "updated_at": "2026-05-18T20:48:48.582Z",
+    "hypothesis": "Mistral-7B ICL Oracle FOLIO-199: 用 5 个 gold FOL annotations 作 few-shot examples 教 Mistral-7B 提取高质量约束。Mistral 在 vanilla SICA 上已显示 +4.90pp (exp-033)，如果 ICL 进一步提升 extraction quality，应能扩大正向 delta。同时验证 ICL 技术对 regime-boundary 模型的增益。parent=exp-033"
+  },
+  "timestamp": "2026-05-18T20:48:48.771314+00:00",
+  "trigger": "update_registry"
+}

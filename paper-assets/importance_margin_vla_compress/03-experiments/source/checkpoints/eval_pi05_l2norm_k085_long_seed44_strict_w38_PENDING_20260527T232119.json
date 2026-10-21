@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_pi05_l2norm_k085_long_seed44_strict_w38",
+  "project": "importance_margin_vla_compress",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T22:05:01.866Z",
+    "updated_at": "2026-05-27T23:21:18.353Z",
+    "hypothesis": "π0.5 L2norm k=0.85 Long strict seed44 — 第三 seed 收窄 ±0.5pp (s42=78.6%, s43=77.6%, mean=78.1%)。L2norm graceful degradation 肩部关键点，margin=32.5pp 处精度",
+    "parent": "eval_pi05_l2norm_k085_long_seed43_strict_w41"
+  },
+  "timestamp": "2026-05-27T23:21:19.810119+00:00",
+  "trigger": "update_registry"
+}

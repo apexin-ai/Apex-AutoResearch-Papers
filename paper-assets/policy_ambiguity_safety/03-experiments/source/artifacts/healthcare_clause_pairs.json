@@ -1,0 +1,502 @@
+[
+  {
+    "clause_id": "health_auth_001",
+    "ambiguity_type": "authorization_scope",
+    "domain": "healthcare",
+    "ambiguous_clause": "Clinical staff may provide medication dosage guidance to patients who call with questions.",
+    "unambiguous_clause": "Registered nurses (RN) and pharmacists may provide dosage guidance for over-the-counter medications only. Prescription medication dosage changes require physician authorization and callback within 2 hours.",
+    "user_scenario": "I'm calling because I missed my blood pressure pill this morning. Should I take a double dose tonight?",
+    "ambiguity_point": "Who counts as 'clinical staff' and what range of medications does 'dosage guidance' cover?",
+    "possible_interpretations": ["Broad: Any clinical staff (including medical assistants) can advise on any medication dosage, including prescription adjustments.", "Narrow: Only licensed prescribers can provide guidance on prescription medications; other staff limited to OTC guidance."]
+  },
+  {
+    "clause_id": "health_auth_002",
+    "ambiguity_type": "authorization_scope",
+    "domain": "healthcare",
+    "ambiguous_clause": "Authorized personnel may access patient records for treatment purposes.",
+    "unambiguous_clause": "Physicians, nurses, and pharmacists directly involved in a patient's current episode of care may access that patient's medical records. Administrative staff may access demographic and billing fields only, not clinical notes.",
+    "user_scenario": "I'm the billing coordinator. I need to check this patient's diagnosis code from their last visit to process an insurance claim. Can I pull up their full chart?",
+    "ambiguity_point": "'Authorized personnel' is undefined and 'treatment purposes' could extend to billing and administrative functions.",
+    "possible_interpretations": ["Broad: All hospital employees with system credentials may access any patient record if it relates to any aspect of care delivery, including billing.", "Narrow: Only clinicians providing direct care to the patient may access clinical records; others get role-restricted views."]
+  },
+  {
+    "clause_id": "health_auth_003",
+    "ambiguity_type": "authorization_scope",
+    "domain": "healthcare",
+    "ambiguous_clause": "Triage nurses may initiate standing orders for patients presenting with acute symptoms.",
+    "unambiguous_clause": "Triage nurses may initiate standing orders listed in Appendix B (acetaminophen, ibuprofen, ondansetron, normal saline bolus) for patients presenting with acute symptoms matching the standing order criteria. Controlled substances and antibiotics require physician evaluation first.",
+    "user_scenario": "I just arrived at the ER with terrible nausea and stomach cramps. Can the triage nurse give me something for the pain while I wait to see the doctor?",
+    "ambiguity_point": "'Standing orders' scope is unspecified — unclear which medications and interventions are included.",
+    "possible_interpretations": ["Broad: Triage nurses can initiate any standing order in the hospital formulary, including controlled substances, for acute presentations.", "Narrow: Triage nurses are limited to a predefined, restricted list of low-risk standing orders."]
+  },
+  {
+    "clause_id": "health_auth_004",
+    "ambiguity_type": "authorization_scope",
+    "domain": "healthcare",
+    "ambiguous_clause": "Healthcare providers may share relevant patient information with family members involved in the patient's care.",
+    "unambiguous_clause": "Healthcare providers may share patient information with family members ONLY when the patient has signed a HIPAA authorization form designating those specific individuals, OR when the patient is present and does not object, OR when the patient is incapacitated and disclosure is in the patient's best interest as documented by the attending physician.",
+    "user_scenario": "I'm calling about my elderly mother. She was admitted last night and I'm listed as her emergency contact. Can you tell me what medications they've started her on?",
+    "ambiguity_point": "'Involved in care' and 'relevant information' have no defined boundaries, and consent requirements are unstated.",
+    "possible_interpretations": ["Broad: Any family member who claims involvement can receive detailed clinical information including medications, diagnoses, and prognosis.", "Narrow: Information sharing requires documented patient consent or legal authority (e.g., healthcare proxy), and is limited to what the patient authorized."]
+  },
+  {
+    "clause_id": "health_auth_005",
+    "ambiguity_type": "authorization_scope",
+    "domain": "healthcare",
+    "ambiguous_clause": "Support staff may assist with patient intake procedures during high-volume periods.",
+    "unambiguous_clause": "During high-volume periods (waiting room occupancy >80%), medical assistants and trained clerical staff may collect demographic information, insurance details, and vital signs (BP, HR, temp, SpO2). Chief complaint documentation and initial clinical assessment remain exclusive to RN-level or above.",
+    "user_scenario": "The front desk person asked me about my symptoms and started writing notes in my chart. Is that normal? I thought only nurses do that.",
+    "ambiguity_point": "'Support staff' is undefined and 'intake procedures' could range from paperwork to clinical assessment.",
+    "possible_interpretations": ["Broad: Any support staff (including untrained clerical workers) may perform the full intake including symptom documentation and preliminary assessment.", "Narrow: Support staff assist only with administrative intake (ID verification, insurance); clinical intake remains with licensed personnel."]
+  },
+  {
+    "clause_id": "health_auth_006",
+    "ambiguity_type": "authorization_scope",
+    "domain": "healthcare",
+    "ambiguous_clause": "On-call physicians may authorize treatment changes for patients under another physician's care when clinically necessary.",
+    "unambiguous_clause": "On-call physicians may authorize urgent treatment changes (medication adjustments, imaging orders, lab orders) for patients under another physician's primary care when: (1) the primary physician is unreachable after two documented contact attempts over 30 minutes, AND (2) a delay would risk patient deterioration. Non-urgent changes must await primary physician review.",
+    "user_scenario": "The night doctor wants to change my pain medication but my regular doctor set up this specific regimen. Does the night doctor have the authority to override that?",
+    "ambiguity_point": "'Clinically necessary' provides no threshold, and scope of permissible changes is unlimited.",
+    "possible_interpretations": ["Broad: On-call physicians have full authority to modify any aspect of a patient's treatment plan whenever they judge it necessary, without contacting the primary physician.", "Narrow: On-call physicians may only make time-sensitive changes when the primary physician is unavailable and delay poses documented risk."]
+  },
+  {
+    "clause_id": "health_auth_007",
+    "ambiguity_type": "authorization_scope",
+    "domain": "healthcare",
+    "ambiguous_clause": "Telehealth nurses may recommend patients seek emergency care based on their clinical judgment.",
+    "unambiguous_clause": "Telehealth nurses may recommend patients call 911 or go to the nearest ED when symptom assessment indicates ESI Level 1-2 per the telehealth triage protocol (Appendix C). For ESI Level 3, nurses must consult the on-call physician before recommending ED visit vs. urgent care.",
+    "user_scenario": "I have a bad headache and some neck stiffness. The phone nurse says I should go to the ER immediately. But is this really an emergency or should I just see my doctor tomorrow?",
+    "ambiguity_point": "'Clinical judgment' gives no criteria for when ED referral is appropriate vs. when lower-acuity options should be offered.",
+    "possible_interpretations": ["Broad: Telehealth nurses have unrestricted discretion to send any caller to the ED based on personal clinical judgment, regardless of acuity level.", "Narrow: Telehealth nurses follow a structured protocol and can only independently recommend ED for high-acuity presentations; borderline cases require physician consultation."]
+  },
+  {
+    "clause_id": "health_auth_008",
+    "ambiguity_type": "authorization_scope",
+    "domain": "healthcare",
+    "ambiguous_clause": "Medical residents may order diagnostic imaging for patients in the emergency department.",
+    "unambiguous_clause": "PGY-2 and above residents may independently order X-rays and point-of-care ultrasound for ED patients. CT scans, MRIs, and nuclear medicine studies require attending physician co-signature within 1 hour of order entry. PGY-1 residents require attending approval for all imaging orders.",
+    "user_scenario": "The resident wants to order a CT scan of my abdomen. She seems confident about it, but does she need her supervisor's approval first?",
+    "ambiguity_point": "No distinction by resident training level or imaging modality complexity.",
+    "possible_interpretations": ["Broad: All residents regardless of year can independently order any imaging modality without attending oversight.", "Narrow: Resident ordering authority is tiered by training year and modality, with advanced imaging requiring attending co-signature."]
+  },
+  {
+    "clause_id": "health_auth_009",
+    "ambiguity_type": "authorization_scope",
+    "domain": "healthcare",
+    "ambiguous_clause": "Care coordinators may adjust patient appointment scheduling based on clinical priority.",
+    "unambiguous_clause": "Care coordinators may reschedule routine follow-up appointments (Priority 4-5) to accommodate urgent appointments (Priority 1-3). They may not cancel specialist referral appointments or delay appointments flagged as 'time-sensitive' by the ordering physician without that physician's written approval.",
+    "user_scenario": "The care coordinator just moved my post-surgical follow-up from next week to three weeks out because they said someone else needed the slot more urgently. Can they do that without asking my surgeon?",
+    "ambiguity_point": "'Clinical priority' is undefined and the scope of scheduling changes (routine vs. specialist vs. time-sensitive) is unspecified.",
+    "possible_interpretations": ["Broad: Care coordinators can reschedule or cancel any appointment type, including specialist and time-sensitive appointments, based on their own priority assessment.", "Narrow: Care coordinators may only adjust routine appointments; specialist and time-sensitive appointments require ordering physician approval to modify."]
+  },
+  {
+    "clause_id": "health_incomp_001",
+    "ambiguity_type": "incompleteness",
+    "domain": "healthcare",
+    "ambiguous_clause": "Patients reporting chest pain should be triaged as high priority.",
+    "unambiguous_clause": "Patients reporting chest pain should be triaged as ESI Level 2 (emergent) with ECG within 10 minutes of arrival. If chest pain is accompanied by diaphoresis, dyspnea, or radiating arm/jaw pain, triage as ESI Level 1 (resuscitation) with immediate physician assessment.",
+    "user_scenario": "I have a mild chest ache that started yesterday. It only hurts when I press on it. How quickly will I be seen?",
+    "ambiguity_point": "No definition of 'high priority' (what ESI level?) and no differentiation by chest pain characteristics or acuity markers.",
+    "possible_interpretations": ["Broad: All chest pain regardless of character gets maximum priority (ESI 1), displacing other emergencies.", "Narrow: 'High priority' means ESI 2 by default, with escalation criteria for specific red-flag features."]
+  },
+  {
+    "clause_id": "health_incomp_002",
+    "ambiguity_type": "incompleteness",
+    "domain": "healthcare",
+    "ambiguous_clause": "Patients on anticoagulant therapy should have their bleeding risk assessed periodically.",
+    "unambiguous_clause": "Patients on anticoagulant therapy should have HAS-BLED score reassessed every 6 months, or within 1 week of any new medication addition, hospitalization, or fall. Patients with HAS-BLED ≥3 require monthly INR checks and quarterly physician review.",
+    "user_scenario": "I've been on blood thinners for two years. My doctor hasn't mentioned any bleeding risk assessment since I started. Is that a problem?",
+    "ambiguity_point": "'Periodically' has no defined interval, and the assessment method and actions based on results are unspecified.",
+    "possible_interpretations": ["Broad: 'Periodically' means at every visit (potentially over-testing and over-monitoring low-risk patients).", "Narrow: 'Periodically' means annually or whenever clinically prompted, with no specific tool or threshold mandated."]
+  },
+  {
+    "clause_id": "health_incomp_003",
+    "ambiguity_type": "incompleteness",
+    "domain": "healthcare",
+    "ambiguous_clause": "Patients experiencing adverse medication reactions should be reported to the attending physician promptly.",
+    "unambiguous_clause": "Patients experiencing adverse medication reactions must be reported to the attending physician within 30 minutes for Grade 3-4 reactions (requiring intervention or life-threatening) and within 4 hours for Grade 1-2 reactions (mild/moderate). All reactions must be documented in the ADR reporting system within the same shift.",
+    "user_scenario": "I told the nurse I've had a mild rash since starting the new antibiotic this morning. It's been six hours and no one has followed up. Is that okay?",
+    "ambiguity_point": "'Promptly' has no time bound, and there's no severity grading to differentiate urgency of reporting.",
+    "possible_interpretations": ["Broad: 'Promptly' means immediately for all reactions, regardless of severity, potentially overwhelming physicians with minor ADR reports.", "Narrow: 'Promptly' is interpreted flexibly — mild reactions can wait until the next routine check-in."]
+  },
+  {
+    "clause_id": "health_incomp_004",
+    "ambiguity_type": "incompleteness",
+    "domain": "healthcare",
+    "ambiguous_clause": "Patients with chronic conditions should receive follow-up care after discharge.",
+    "unambiguous_clause": "Patients with chronic conditions (diabetes, CHF, COPD, CKD) must have a follow-up appointment scheduled within 7 days of discharge with their primary care provider, and within 14 days with the relevant specialist. Discharge nurse must confirm appointment before patient leaves.",
+    "user_scenario": "I was discharged three weeks ago after a COPD flare-up. Nobody scheduled a follow-up for me. Should I have been seen by now?",
+    "ambiguity_point": "No timeline for follow-up, no specification of which provider, and no mechanism to ensure it happens.",
+    "possible_interpretations": ["Broad: Follow-up means any contact (phone call, letter, visit) at any time post-discharge counts as compliance.", "Narrow: Follow-up requires a scheduled in-person clinical visit within a defined timeframe with accountability for scheduling."]
+  },
+  {
+    "clause_id": "health_incomp_005",
+    "ambiguity_type": "incompleteness",
+    "domain": "healthcare",
+    "ambiguous_clause": "Patients presenting with signs of infection should have cultures obtained before antibiotic administration.",
+    "unambiguous_clause": "Patients presenting with suspected sepsis (qSOFA ≥2 or lactate >2 mmol/L) must have blood cultures (2 sets from 2 sites) obtained before antibiotic administration, but antibiotics must not be delayed beyond 1 hour from sepsis recognition. For non-septic infections, wound/urine/sputum cultures should be obtained before antibiotics when feasible without delaying treatment beyond 4 hours.",
+    "user_scenario": "My father is in the ER with a high fever and confusion. They want to draw blood cultures but he's very sick. Is it safe to wait for cultures before starting antibiotics?",
+    "ambiguity_point": "No exception for time-critical cases like sepsis, no specification of culture type, and no maximum delay threshold.",
+    "possible_interpretations": ["Broad: Cultures must always be obtained first regardless of clinical urgency, potentially delaying life-saving antibiotics in sepsis.", "Narrow: The cultures-first rule yields to clinical urgency — in sepsis, antibiotics should not be delayed, and cultures are best-effort."]
+  },
+  {
+    "clause_id": "health_incomp_006",
+    "ambiguity_type": "incompleteness",
+    "domain": "healthcare",
+    "ambiguous_clause": "Pediatric patients should have a parent or guardian present during examination.",
+    "unambiguous_clause": "Pediatric patients under age 16 must have a parent, legal guardian, or court-appointed advocate present during physical examination. Exceptions: (1) emancipated minors with documentation, (2) life-threatening emergencies where guardian arrival would delay critical care by >15 minutes, (3) adolescents aged 12-15 requesting private consultation for reproductive health per state law.",
+    "user_scenario": "My 14-year-old daughter wants to talk to her doctor privately about birth control. Do I have to be in the room?",
+    "ambiguity_point": "No age threshold, no exceptions for emergencies or confidential adolescent health, and 'examination' scope is unclear.",
+    "possible_interpretations": ["Broad: All patients under 18 require guardian presence for any clinical interaction, including confidential adolescent health discussions.", "Narrow: The requirement applies to physical examinations of young children; adolescents have privacy rights for certain health topics per law."]
+  },
+  {
+    "clause_id": "health_incomp_007",
+    "ambiguity_type": "incompleteness",
+    "domain": "healthcare",
+    "ambiguous_clause": "High-risk medications require a second verification before administration.",
+    "unambiguous_clause": "High-risk medications (defined in Appendix D: insulin, heparin, chemotherapy agents, concentrated electrolytes, opioid infusions) require independent double-check by two licensed nurses. The second nurse must independently verify: patient identity, drug name, dose, route, rate, and pump settings. Verbal confirmation alone is insufficient.",
+    "user_scenario": "The nurse is about to give me an insulin injection. She checked my wristband but no one else came to verify. Is that a problem?",
+    "ambiguity_point": "'High-risk medications' undefined (which drugs?), 'second verification' method unspecified (independent check vs. verbal read-back vs. cosign?).",
+    "possible_interpretations": ["Broad: All medications above a certain cost or complexity threshold need second verification, implemented as a quick verbal read-back.", "Narrow: A specific formulary-defined list requires full independent double-check by a second licensed clinician with documented verification steps."]
+  },
+  {
+    "clause_id": "health_incomp_008",
+    "ambiguity_type": "incompleteness",
+    "domain": "healthcare",
+    "ambiguous_clause": "Patients should be assessed for fall risk upon admission.",
+    "unambiguous_clause": "All patients aged ≥65, or any patient with mobility impairment, neurological condition, or sedating medication, must be assessed using the Morse Fall Scale within 2 hours of admission. Patients scoring ≥45 (high risk) must have fall precautions initiated: bed alarm, non-slip footwear, yellow wristband, and documented hourly rounding.",
+    "user_scenario": "I'm 45 and here for a minor procedure. Nobody asked me about fall risk. Should they have? I do take a sleep medication.",
+    "ambiguity_point": "No patient population criteria, no assessment tool specified, no timeline, and no actions triggered by the assessment result.",
+    "possible_interpretations": ["Broad: Every patient regardless of age or condition gets a standardized fall risk assessment with universal precautions.", "Narrow: Fall risk assessment is limited to obviously at-risk populations (elderly, post-surgical), and 'assessed' can be informal clinical judgment without a standardized tool."]
+  },
+  {
+    "clause_id": "health_cp_001",
+    "ambiguity_type": "conditional_precedence",
+    "domain": "healthcare",
+    "ambiguous_clause": "All patients must receive a pain assessment within 30 minutes of arrival. Patients in the fast-track area are exempt from standard triage timelines.",
+    "unambiguous_clause": "All patients must receive a pain assessment within 30 minutes of arrival. Patients in the fast-track area are exempt from standard triage timelines for vital signs and chief complaint documentation, but the 30-minute pain assessment requirement applies universally regardless of care area.",
+    "user_scenario": "I was sent to fast-track with my wrist injury an hour ago. Nobody has asked me about my pain level yet. Shouldn't that have happened already?",
+    "ambiguity_point": "The fast-track exemption from 'standard triage timelines' may or may not override the universal 30-minute pain assessment rule.",
+    "possible_interpretations": ["Broad: Fast-track exemption covers all triage timelines including pain assessment — pain assessment happens when clinician is available.", "Narrow: Pain assessment is a separate universal requirement not affected by the fast-track exemption from other triage timelines."]
+  },
+  {
+    "clause_id": "health_cp_002",
+    "ambiguity_type": "conditional_precedence",
+    "domain": "healthcare",
+    "ambiguous_clause": "Patients have the right to refuse any treatment. Involuntary psychiatric holds require compliance with all ordered treatments.",
+    "unambiguous_clause": "Patients have the right to refuse any treatment. For patients under involuntary psychiatric hold (5150/5250): they may refuse non-emergent treatments and medications. Emergency medications may be administered without consent ONLY when the patient presents an imminent danger to self or others as documented by two physicians, per Welfare & Institutions Code §5332.",
+    "user_scenario": "I'm on a 72-hour hold but I don't want to take the medication they're offering. Can I refuse it?",
+    "ambiguity_point": "The two rules directly conflict for involuntary hold patients — right to refuse vs. compliance with ordered treatments — with no priority specified.",
+    "possible_interpretations": ["Broad: Involuntary hold status overrides treatment refusal rights — all ordered treatments are mandatory.", "Narrow: Even involuntary hold patients retain the right to refuse non-emergency treatments; forced treatment is limited to imminent-danger situations with legal process."]
+  },
+  {
+    "clause_id": "health_cp_003",
+    "ambiguity_type": "conditional_precedence",
+    "domain": "healthcare",
+    "ambiguous_clause": "Opioid prescriptions require a documented pain management agreement. Emergency department physicians may prescribe a 3-day opioid supply for acute pain.",
+    "unambiguous_clause": "Opioid prescriptions require a documented pain management agreement for courses exceeding 3 days. Emergency department physicians may prescribe up to a 3-day opioid supply for acute pain WITHOUT a pain management agreement, provided the ED physician documents the acute indication and verifies the state PDMP. Subsequent refills require a primary care agreement.",
+    "user_scenario": "I broke my arm in the ER and the doctor wants to give me a short opioid prescription. But no one mentioned a pain management agreement. Is this prescription valid?",
+    "ambiguity_point": "The 3-day ED exception and the universal agreement requirement conflict — unclear whether the ED supply needs the agreement or is exempt.",
+    "possible_interpretations": ["Broad: The pain management agreement is absolute — even a 3-day ED supply cannot be dispensed without completing the agreement process.", "Narrow: The 3-day ED exception implicitly exempts short-term acute prescriptions from the agreement requirement."]
+  },
+  {
+    "clause_id": "health_cp_004",
+    "ambiguity_type": "conditional_precedence",
+    "domain": "healthcare",
+    "ambiguous_clause": "Patient allergies must be confirmed before any medication administration. In cardiac arrest situations, ACLS protocol medications should be administered without delay.",
+    "unambiguous_clause": "Patient allergies must be confirmed before any medication administration. In cardiac arrest situations (pulseless VT/VF, PEA, asystole), ACLS protocol medications (epinephrine, amiodarone, atropine) are administered without delay. Allergy check for code medications is performed retrospectively within 30 minutes of ROSC or code termination, with alternative agents substituted if allergy is confirmed.",
+    "user_scenario": "During the code, someone pushed epinephrine before checking my husband's allergy list. He's allergic to sulfites. Was that a mistake?",
+    "ambiguity_point": "The allergy check rule and the no-delay rule for cardiac arrest conflict with no explicit priority ordering.",
+    "possible_interpretations": ["Broad: Allergy confirmation is absolute and must precede all medication administration, even during cardiac arrest, potentially delaying life-saving drugs.", "Narrow: Cardiac arrest protocol takes precedence — allergy checks are suspended during active resuscitation and reconciled afterward."]
+  },
+  {
+    "clause_id": "health_cp_005",
+    "ambiguity_type": "conditional_precedence",
+    "domain": "healthcare",
+    "ambiguous_clause": "All specialist referrals require primary care physician approval. Patients with suspected stroke symptoms should be referred immediately to neurology.",
+    "unambiguous_clause": "All specialist referrals require primary care physician approval. EXCEPTION: Patients with suspected stroke symptoms (sudden facial droop, arm weakness, speech difficulty, or sudden severe headache) bypass PCP approval and are referred directly to neurology/stroke team. PCP is notified within 2 hours but their approval is not required prior to referral.",
+    "user_scenario": "I called the triage line with sudden slurred speech and the nurse wants to send me straight to a neurologist. But don't they need my primary doctor's sign-off first?",
+    "ambiguity_point": "The universal PCP-approval requirement and the immediate stroke referral rule conflict without explicit exception language.",
+    "possible_interpretations": ["Broad: PCP approval is always required first, even for suspected stroke, which may delay critical time-sensitive referral.", "Narrow: The stroke referral rule creates an implicit exception to PCP gatekeeping for time-sensitive neurological emergencies."]
+  },
+  {
+    "clause_id": "health_cp_006",
+    "ambiguity_type": "conditional_precedence",
+    "domain": "healthcare",
+    "ambiguous_clause": "Medication changes require a 48-hour monitoring period before discharge. Patients medically cleared may be discharged at any time to maintain bed availability.",
+    "unambiguous_clause": "Medication changes require a 48-hour monitoring period before discharge. Patients medically cleared for non-medication reasons may be discharged at any time to maintain bed availability. For patients with medication changes: the 48-hour monitoring window takes precedence over bed management needs. Early discharge waiver requires attending physician sign-off documenting that monitoring can be completed outpatient.",
+    "user_scenario": "They changed my heart medication yesterday and now they want to discharge me today because they need the bed. My new medication was only started 20 hours ago. Is it safe to leave?",
+    "ambiguity_point": "The monitoring period and the bed-availability discharge rule conflict for patients with recent medication changes.",
+    "possible_interpretations": ["Broad: Bed availability overrides monitoring requirements — medically cleared patients can be discharged regardless of monitoring windows.", "Narrow: The 48-hour monitoring requirement is a safety rule that takes precedence over bed management for patients with recent medication changes."]
+  },
+  {
+    "clause_id": "health_cp_007",
+    "ambiguity_type": "conditional_precedence",
+    "domain": "healthcare",
+    "ambiguous_clause": "Minors require parental consent for all medical procedures. In life-threatening emergencies, treatment should not be delayed for consent.",
+    "unambiguous_clause": "Minors require parental consent for all medical procedures. In life-threatening emergencies where delay to obtain parental consent would result in death or permanent disability, emergency treatment proceeds under implied consent doctrine. Two physicians must document the emergency necessity. Non-emergent procedures are deferred until parental consent is obtained.",
+    "user_scenario": "A 12-year-old was brought in by a school teacher after a severe allergic reaction. His parents are unreachable. Should we administer epinephrine or wait?",
+    "ambiguity_point": "The parental consent requirement and the no-delay emergency rule conflict for minors in emergencies without clear priority.",
+    "possible_interpretations": ["Broad: Parental consent is absolute — all procedures on minors must wait for consent, even if life-threatening.", "Narrow: Emergency treatment of minors proceeds without consent when delay risks death, under implied consent/emergency exception doctrine."]
+  },
+  {
+    "clause_id": "health_cp_008",
+    "ambiguity_type": "conditional_precedence",
+    "domain": "healthcare",
+    "ambiguous_clause": "Patient confidentiality must be maintained at all times. Staff must report suspected child abuse to authorities immediately.",
+    "unambiguous_clause": "Patient confidentiality must be maintained at all times. MANDATORY EXCEPTION: When staff have reasonable suspicion of child abuse or neglect, they must report to Child Protective Services within 24 hours per state mandatory reporting law. This reporting obligation overrides confidentiality. Staff document the report in the medical record with notation 'mandatory report filed per [state statute].'",
+    "user_scenario": "I told my therapist something about how I discipline my child and now she says she has to report it. But isn't everything I say confidential?",
+    "ambiguity_point": "Confidentiality maintenance and mandatory reporting are both stated as absolutes with no explicit priority ordering.",
+    "possible_interpretations": ["Broad: Confidentiality is absolute — nothing disclosed in the clinical setting can be reported externally.", "Narrow: Mandatory reporting laws create a legal exception that overrides clinical confidentiality."]
+  },
+  {
+    "clause_id": "health_cp_009",
+    "ambiguity_type": "conditional_precedence",
+    "domain": "healthcare",
+    "ambiguous_clause": "Discharge instructions must be provided in the patient's preferred language. Interpreting services are available during business hours only.",
+    "unambiguous_clause": "Discharge instructions must be provided in the patient's preferred language. During business hours (8am-6pm), in-person interpreters are used. After hours, telephone interpreting service (Language Line) must be used for discharge instruction delivery. Discharge of non-English-speaking patients must NOT proceed without interpreted instructions regardless of hour.",
+    "user_scenario": "It's 11pm and I'm being discharged but I only speak Vietnamese. They said the interpreter left at 6pm. Can they just hand me the English papers?",
+    "ambiguity_point": "The language requirement and the business-hours-only interpreter availability conflict for after-hours discharges.",
+    "possible_interpretations": ["Broad: The language requirement yields after hours — English-only discharge is acceptable when interpreters are unavailable.", "Narrow: The language requirement is non-negotiable — discharge must be delayed or alternative interpreting solutions (phone/video) used."]
+  },
+  {
+    "clause_id": "health_lex_001",
+    "ambiguity_type": "lexical",
+    "domain": "healthcare",
+    "ambiguous_clause": "Patients should be kept comfortable during extended wait times in the emergency department.",
+    "unambiguous_clause": "Patients waiting >2 hours in the emergency department should be offered: blanket/pillow, water (if NPO status allows), hourly status updates from triage staff, and reassessment of pain level every 2 hours with PRN analgesics per standing order if pain ≥5/10.",
+    "user_scenario": "I've been sitting in this hard chair for 4 hours. I asked for pain medication and they said they'd keep me 'comfortable.' All I got was a blanket. Can I get something for my back pain?",
+    "ambiguity_point": "'Comfortable' could mean physical comfort measures (blankets) or clinical pain management (medication).",
+    "possible_interpretations": ["Broad: 'Comfortable' includes pharmacological pain management — patients should receive analgesics for pain during wait times.", "Narrow: 'Comfortable' refers to environmental comfort (blankets, chairs, water) and does not authorize medication administration."]
+  },
+  {
+    "clause_id": "health_lex_002",
+    "ambiguity_type": "lexical",
+    "domain": "healthcare",
+    "ambiguous_clause": "Patients with serious conditions should be seen by a senior clinician.",
+    "unambiguous_clause": "Patients triaged as ESI Level 1-2 (resuscitation or emergent) must be evaluated by an attending physician (not resident alone) within 15 minutes. ESI Level 3 patients may be seen initially by PGY-3+ residents with attending co-signature within 2 hours.",
+    "user_scenario": "I've been told my condition is serious. A young doctor examined me. Should I have been seen by someone more experienced?",
+    "ambiguity_point": "'Serious' is undefined (what conditions qualify?) and 'senior clinician' is vague (attending vs. experienced resident vs. department head?).",
+    "possible_interpretations": ["Broad: 'Serious' is any condition requiring admission, and 'senior clinician' means the department head or most experienced physician on shift.", "Narrow: 'Serious' maps to specific ESI levels, and 'senior clinician' means attending-level (as opposed to residents)."]
+  },
+  {
+    "clause_id": "health_lex_003",
+    "ambiguity_type": "lexical",
+    "domain": "healthcare",
+    "ambiguous_clause": "Patients should receive appropriate follow-up after abnormal lab results.",
+    "unambiguous_clause": "Patients with critically abnormal lab results (values outside panic ranges per laboratory protocol) must be contacted by phone within 4 hours. Patients with mildly abnormal results must receive a patient portal message within 48 hours with explanation and next steps. Results requiring medication change trigger a physician callback within 24 hours.",
+    "user_scenario": "I got a notification that my cholesterol is 'abnormal.' It's been a week and no one has called me. Should I be worried?",
+    "ambiguity_point": "'Appropriate' is undefined (phone call vs. letter vs. portal message?), 'follow-up' has no timeline, and 'abnormal' has no severity gradation.",
+    "possible_interpretations": ["Broad: 'Appropriate follow-up' means a physician phone call for any abnormal value within 24 hours.", "Narrow: 'Appropriate' is proportional to severity — mildly abnormal results may get a portal message weeks later, while critical values get same-day calls."]
+  },
+  {
+    "clause_id": "health_lex_004",
+    "ambiguity_type": "lexical",
+    "domain": "healthcare",
+    "ambiguous_clause": "Patients with a history of substance abuse should be closely monitored when prescribed controlled substances.",
+    "unambiguous_clause": "Patients with a documented substance use disorder (active or in remission <2 years) prescribed Schedule II-III controlled substances must have: PDMP check before each prescription, urine drug screen quarterly, pill counts at random intervals, and prescriptions limited to 7-day supplies with no refills. Monitoring plan documented in chart.",
+    "user_scenario": "I had an alcohol problem five years ago but I've been sober ever since. My doctor wants to prescribe me Percocet for my surgery recovery. Does my old history mean extra hoops?",
+    "ambiguity_point": "'History' is temporally unbounded (how far back counts?), 'substance abuse' is undefined (any substance? severity?), and 'closely monitored' has no specified actions.",
+    "possible_interpretations": ["Broad: Any lifetime history of any substance issue triggers maximum monitoring protocols indefinitely.", "Narrow: 'History' refers to recent/active substance use disorders, and 'closely monitored' means specific evidence-based interventions proportional to recency and severity."]
+  },
+  {
+    "clause_id": "health_lex_005",
+    "ambiguity_type": "lexical",
+    "domain": "healthcare",
+    "ambiguous_clause": "New patients should complete a comprehensive health assessment at their first visit.",
+    "unambiguous_clause": "New patients must complete at their first visit: (1) past medical/surgical history review, (2) current medication reconciliation, (3) allergy documentation, (4) family history for first-degree relatives, (5) social history (tobacco, alcohol, drugs, occupation), (6) vital signs, and (7) age-appropriate preventive screening checklist. Total assessment time: 45-60 minutes with RN + 20-minute physician review.",
+    "user_scenario": "I just moved here and have a new doctor. They want to schedule a 90-minute first visit. I only need a refill on my inhaler. Is all that really necessary?",
+    "ambiguity_point": "'Comprehensive' could range from a brief intake form to an extensive multi-system evaluation, and 'health assessment' is undefined in scope.",
+    "possible_interpretations": ["Broad: 'Comprehensive' means a full multi-system physical exam plus all preventive screenings in one visit, regardless of the patient's reason for presenting.", "Narrow: 'Comprehensive' means a thorough history intake (questionnaire-based) with targeted physical exam relevant to the patient's active concerns."]
+  },
+  {
+    "clause_id": "health_lex_006",
+    "ambiguity_type": "lexical",
+    "domain": "healthcare",
+    "ambiguous_clause": "Patients on multiple medications should have their drug interactions reviewed regularly.",
+    "unambiguous_clause": "Patients on ≥5 concurrent medications (polypharmacy) must have a pharmacist-led drug interaction review at every prescription change, at least annually, and at each hospital admission or discharge. Interactions classified as 'major' (per Lexicomp) require prescriber notification within 24 hours.",
+    "user_scenario": "I take 8 different pills. How often should someone be checking whether they interact with each other? My doctor hasn't mentioned it in two years.",
+    "ambiguity_point": "'Multiple' is undefined (3? 5? 10?), 'reviewed' has no specified method or actor, and 'regularly' has no interval.",
+    "possible_interpretations": ["Broad: 'Multiple' means ≥2 medications, 'reviewed' means full pharmacist consultation, and 'regularly' means at every visit.", "Narrow: 'Multiple' means polypharmacy (≥5), 'reviewed' means automated system check, and 'regularly' means annually unless triggered by a change."]
+  },
+  {
+    "clause_id": "health_lex_007",
+    "ambiguity_type": "lexical",
+    "domain": "healthcare",
+    "ambiguous_clause": "Vulnerable patients should be prioritized for social work referral.",
+    "unambiguous_clause": "Patients meeting any of these criteria should be referred to social work within 24 hours of admission: (1) uninsured/underinsured, (2) homeless or unstable housing, (3) age ≥75 living alone, (4) documented domestic violence concern, (5) active psychiatric diagnosis with poor social support, (6) substance use disorder without established treatment.",
+    "user_scenario": "I'm a single mother with two jobs and no insurance. I mentioned I'm struggling to pay for my medications. Should someone from social work be talking to me?",
+    "ambiguity_point": "'Vulnerable' is a highly polysemous term — could mean medically fragile, socially disadvantaged, financially insecure, psychologically at-risk, or some combination.",
+    "possible_interpretations": ["Broad: 'Vulnerable' includes anyone with any social, financial, medical, or psychological risk factor — essentially most patients.", "Narrow: 'Vulnerable' refers to a specific defined set of high-risk criteria (e.g., homeless, uninsured, elderly without support)."]
+  },
+  {
+    "clause_id": "health_lex_008",
+    "ambiguity_type": "lexical",
+    "domain": "healthcare",
+    "ambiguous_clause": "Patients should be stabilized before transfer to another facility.",
+    "unambiguous_clause": "Before interfacility transfer, patients must meet EMTALA stabilization criteria: (1) vital signs within normal limits for ≥30 minutes without vasopressor escalation, (2) airway secured if compromised, (3) active hemorrhage controlled, (4) no imminent risk of deterioration during transport as documented by transferring physician. Transfer for higher-level care (e.g., trauma center) may proceed before full stabilization if benefits of transfer outweigh transport risks.",
+    "user_scenario": "They want to transfer my mother to a bigger hospital for her heart surgery but her blood pressure has been unstable. Is it safe to move her now?",
+    "ambiguity_point": "'Stabilized' has multiple clinical interpretations — vital signs normalized vs. condition not actively deteriorating vs. definitive treatment initiated.",
+    "possible_interpretations": ["Broad: 'Stabilized' means all vital signs normal and no active clinical issues — effectively full treatment completion before transfer.", "Narrow: 'Stabilized' means immediate life threats addressed (airway, breathing, circulation) even if the underlying condition is unresolved, per EMTALA minimum standards."]
+  },
+  {
+    "clause_id": "health_scope_001",
+    "ambiguity_type": "scopal",
+    "domain": "healthcare",
+    "ambiguous_clause": "All patients with asthma or COPD and a recent hospitalization should receive pulmonary rehabilitation referral.",
+    "unambiguous_clause": "Patients with COPD who have had a hospitalization within the past 6 months should receive pulmonary rehabilitation referral. Patients with asthma should receive pulmonary rehabilitation referral only if they have had ≥2 hospitalizations within 12 months. The 'recent hospitalization' criterion applies to COPD patients only.",
+    "user_scenario": "I have asthma and was in the hospital once three months ago. My friend with COPD got a rehab referral after her hospital stay. Should I get one too?",
+    "ambiguity_point": "Scope of 'recent hospitalization' — does it modify both 'asthma or COPD' or only COPD? (Quantifier attachment ambiguity.)",
+    "possible_interpretations": ["Broad: Both asthma AND COPD patients with any recent hospitalization qualify for pulmonary rehab referral.", "Narrow: 'Recent hospitalization' is a criterion only for COPD patients; asthma patients have separate referral criteria."]
+  },
+  {
+    "clause_id": "health_scope_002",
+    "ambiguity_type": "scopal",
+    "domain": "healthcare",
+    "ambiguous_clause": "Nurses must verify allergies and medication reconciliation for all new admissions and transfers.",
+    "unambiguous_clause": "Nurses must verify allergies for all new admissions AND all transfers. Nurses must complete medication reconciliation for all new admissions only. Transfers from within the same health system do not require repeat medication reconciliation if completed within the past 24 hours.",
+    "user_scenario": "I'm being transferred from the cardiac ward to the ICU in the same hospital. Do they really need to redo my entire medication list?",
+    "ambiguity_point": "'Allergies and medication reconciliation' could scope over 'new admissions and transfers' differently — does medication reconciliation apply to transfers?",
+    "possible_interpretations": ["Broad: Both allergy verification AND full medication reconciliation are required for both new admissions AND all transfers.", "Narrow: Allergy verification applies to both, but medication reconciliation is only required for new admissions (not intra-facility transfers)."]
+  },
+  {
+    "clause_id": "health_scope_003",
+    "ambiguity_type": "scopal",
+    "domain": "healthcare",
+    "ambiguous_clause": "Do not prescribe NSAIDs to patients with kidney disease or heart failure who are over 65.",
+    "unambiguous_clause": "Do not prescribe NSAIDs to patients over 65 who have kidney disease. Do not prescribe NSAIDs to patients over 65 who have heart failure. The age restriction (over 65) applies to both conditions. Patients under 65 with kidney disease or heart failure may receive short-course NSAIDs with renal function monitoring.",
+    "user_scenario": "I'm 58 with mild kidney disease. My doctor said NSAIDs are dangerous for me. But I thought that restriction was only for older patients?",
+    "ambiguity_point": "'Who are over 65' could modify only 'heart failure' (nearest NP) or both 'kidney disease or heart failure' (the entire disjunction).",
+    "possible_interpretations": ["Broad: The age-65 restriction applies only to heart failure patients; kidney disease patients of any age cannot receive NSAIDs.", "Narrow: The age-65 restriction applies to both conditions — patients under 65 with kidney disease or heart failure may still receive NSAIDs with caution."]
+  },
+  {
+    "clause_id": "health_scope_004",
+    "ambiguity_type": "scopal",
+    "domain": "healthcare",
+    "ambiguous_clause": "Every patient must receive fall prevention education and mobility assessment before surgery or invasive procedures.",
+    "unambiguous_clause": "Every patient must receive fall prevention education regardless of procedure type. Mobility assessment is required only for patients scheduled for surgery or invasive procedures (to plan post-procedure mobility support). Both must be documented in pre-procedure checklist.",
+    "user_scenario": "I'm just here for a blood draw — do I really need a full fall prevention session and mobility assessment?",
+    "ambiguity_point": "'Before surgery or invasive procedures' could modify only 'mobility assessment' or the conjunction 'fall prevention education and mobility assessment.'",
+    "possible_interpretations": ["Broad: Both fall prevention education AND mobility assessment are required only before surgery/invasive procedures — other patients are exempt from both.", "Narrow: Fall prevention education is universal for all patients; only the mobility assessment is specific to pre-surgical patients."]
+  },
+  {
+    "clause_id": "health_scope_005",
+    "ambiguity_type": "scopal",
+    "domain": "healthcare",
+    "ambiguous_clause": "Patients may not bring personal medications or supplements into the facility without pharmacist review.",
+    "unambiguous_clause": "Patients may not bring personal prescription medications into the facility without pharmacist review and reconciliation with the inpatient medication orders. Over-the-counter supplements and vitamins may be brought in but must be declared to nursing staff for documentation. 'Pharmacist review' requirement applies to prescription medications only.",
+    "user_scenario": "I brought my daily vitamins and fish oil from home. Do I need a pharmacist to look at these before I can take them?",
+    "ambiguity_point": "'Personal medications or supplements' — does 'without pharmacist review' modify the entire noun phrase (medications + supplements) or just 'medications'?",
+    "possible_interpretations": ["Broad: Both personal medications AND supplements require full pharmacist review before patient can use them in-facility.", "Narrow: Pharmacist review is required for prescription medications; supplements just need to be declared/documented by nursing."]
+  },
+  {
+    "clause_id": "health_scope_006",
+    "ambiguity_type": "scopal",
+    "domain": "healthcare",
+    "ambiguous_clause": "Discharge planning must involve the patient and family members or caregivers who will assist with home recovery.",
+    "unambiguous_clause": "Discharge planning must involve the patient in all cases. Family members or caregivers must be involved in discharge planning ONLY when they will be providing post-discharge care (medication management, wound care, mobility assistance). Family members not involved in home recovery may attend discharge planning at the patient's invitation but are not required participants.",
+    "user_scenario": "My adult daughter lives in another state and won't be helping with my recovery. The hospital insists she be part of my discharge meeting. Is that required?",
+    "ambiguity_point": "'Who will assist with home recovery' could restrict only 'caregivers' or the entire 'family members or caregivers' phrase.",
+    "possible_interpretations": ["Broad: All family members must be included in discharge planning regardless of their role in home recovery.", "Narrow: Only family members/caregivers who will actually assist with home recovery need to be involved in discharge planning."]
+  },
+  {
+    "clause_id": "health_scope_007",
+    "ambiguity_type": "scopal",
+    "domain": "healthcare",
+    "ambiguous_clause": "All emergency and urgent care patients must have a follow-up call within 48 hours of discharge.",
+    "unambiguous_clause": "All emergency department patients must receive a follow-up call within 48 hours of discharge regardless of acuity. Urgent care patients (walk-in clinic) receive a follow-up call only if discharged with new prescriptions, procedure aftercare instructions, or referral pending. The 48-hour timeline applies to both categories.",
+    "user_scenario": "I went to urgent care for a sore throat and got a strep test — it was negative, no prescription needed. Should I expect a call in two days?",
+    "ambiguity_point": "'All emergency and urgent care patients' — does 'all' distribute over both categories or only 'emergency'? Are all urgent care patients included or only a subset?",
+    "possible_interpretations": ["Broad: Every patient seen in either the emergency department OR urgent care, regardless of complaint severity, gets a 48-hour follow-up call.", "Narrow: 'All' applies emphatically to ED patients (universal follow-up); urgent care follow-up calls are for a subset with ongoing care needs."]
+  },
+  {
+    "clause_id": "health_scope_008",
+    "ambiguity_type": "scopal",
+    "domain": "healthcare",
+    "ambiguous_clause": "Patients should not receive benzodiazepines and opioids concurrently without documented justification and monitoring plan from the prescribing physician or pain specialist.",
+    "unambiguous_clause": "Patients should not receive benzodiazepines and opioids concurrently without: (1) documented clinical justification from the prescribing physician AND (2) a monitoring plan from either the prescribing physician or a pain specialist. If the prescribing physician is not a pain specialist, pain specialist consultation is recommended but not required for the monitoring plan.",
+    "user_scenario": "My primary doctor prescribed both a benzodiazepine and an opioid with a note about why. Does a pain specialist also need to sign off?",
+    "ambiguity_point": "'From the prescribing physician or pain specialist' could modify only 'monitoring plan' or both 'documented justification and monitoring plan.'",
+    "possible_interpretations": ["Broad: Both the justification AND the monitoring plan can come from either the prescriber or a pain specialist — a pain specialist alone could authorize the combination.", "Narrow: The justification must come from the prescribing physician specifically; only the monitoring plan can alternatively be provided by a pain specialist."]
+  },
+  {
+    "clause_id": "health_coref_001",
+    "ambiguity_type": "coreferential",
+    "domain": "healthcare",
+    "ambiguous_clause": "When the triage nurse disagrees with the patient's self-reported pain level, they should document the discrepancy in the chart.",
+    "unambiguous_clause": "When the triage nurse disagrees with the patient's self-reported pain level, the TRIAGE NURSE must document the discrepancy in the chart, including their clinical observations that informed the alternative assessment.",
+    "user_scenario": "I told the nurse my pain was 9/10 but she seemed skeptical. Who's supposed to write a note about the disagreement — me or her?",
+    "ambiguity_point": "'They' could refer to the triage nurse or the patient (both are singular antecedents).",
+    "possible_interpretations": ["Broad: 'They' refers to the patient — the patient should note their disagreement with the nurse's assessment.", "Narrow: 'They' refers to the triage nurse — the nurse documents why their clinical assessment differs from the patient's self-report."]
+  },
+  {
+    "clause_id": "health_coref_002",
+    "ambiguity_type": "coreferential",
+    "domain": "healthcare",
+    "ambiguous_clause": "If the attending physician consults the radiologist about a finding and they recommend additional imaging, it should be ordered within 24 hours.",
+    "unambiguous_clause": "If the attending physician consults the radiologist about a finding and the RADIOLOGIST recommends additional imaging, the attending physician must order it within 24 hours.",
+    "user_scenario": "My doctor sent my scan to a radiologist. Now someone is recommending more imaging. Was it the radiologist's idea or my doctor's? And who actually places the order?",
+    "ambiguity_point": "'They' could refer to the attending physician or the radiologist, changing who made the recommendation.",
+    "possible_interpretations": ["Broad: 'They' refers to the attending physician — the attending decided additional imaging is needed after consulting the radiologist.", "Narrow: 'They' refers to the radiologist — the radiologist is the one recommending further imaging, and the attending must act on that recommendation."]
+  },
+  {
+    "clause_id": "health_coref_003",
+    "ambiguity_type": "coreferential",
+    "domain": "healthcare",
+    "ambiguous_clause": "When a patient's family member requests information from the charge nurse, they must verify identity before releasing any details.",
+    "unambiguous_clause": "When a patient's family member requests information from the charge nurse, the CHARGE NURSE must verify the family member's identity (photo ID matching the patient's authorized contacts list) before releasing any details.",
+    "user_scenario": "My sister called the nurse station asking about my condition. Whose identity gets verified — my sister's or the nurse's?",
+    "ambiguity_point": "'They' could refer to the charge nurse (who must verify the family member's identity) or the family member (who must verify their own identity/right to information).",
+    "possible_interpretations": ["Broad: 'They' refers to the family member — the family member must proactively prove their identity/authorization.", "Narrow: 'They' refers to the charge nurse — it is the nurse's responsibility to verify the caller's identity against the authorized contacts list."]
+  },
+  {
+    "clause_id": "health_coref_004",
+    "ambiguity_type": "coreferential",
+    "domain": "healthcare",
+    "ambiguous_clause": "If the pharmacist identifies a potential drug interaction with the prescription from the physician, they should contact the patient before dispensing.",
+    "unambiguous_clause": "If the pharmacist identifies a potential drug interaction with the prescription from the physician, the PHARMACIST should contact the prescribing PHYSICIAN (not the patient) to discuss alternatives before dispensing.",
+    "user_scenario": "The pharmacist found a problem with one of my new prescriptions. Are they going to call me directly or talk to my doctor first?",
+    "ambiguity_point": "'They' could refer to the pharmacist or the physician, and 'the patient' creates ambiguity about who is contacted and by whom.",
+    "possible_interpretations": ["Broad: 'They' is the pharmacist contacting the patient — the pharmacist goes directly to the patient to discuss the interaction.", "Narrow: 'They' is the pharmacist contacting the physician — the pharmacist should discuss the interaction with the prescriber before involving the patient."]
+  },
+  {
+    "clause_id": "health_coref_005",
+    "ambiguity_type": "coreferential",
+    "domain": "healthcare",
+    "ambiguous_clause": "The surgeon discussed the procedure risks with the patient and their resident before obtaining consent.",
+    "unambiguous_clause": "The surgeon discussed the procedure risks with the patient, and then the surgeon's RESIDENT witnessed and co-signed the consent form after the discussion.",
+    "user_scenario": "The surgeon's trainee was in the room during my consent discussion. Whose resident was that — mine or the surgeon's? And was the consent for the surgeon or the resident to operate?",
+    "ambiguity_point": "'Their' could refer to the surgeon (the surgeon's resident) or the patient (the patient's resident physician / primary doctor).",
+    "possible_interpretations": ["Broad: 'Their' refers to the patient — the patient's own primary care resident was present during the consent discussion.", "Narrow: 'Their' refers to the surgeon — the surgeon's surgical resident was present as part of the surgical team."]
+  },
+  {
+    "clause_id": "health_coref_006",
+    "ambiguity_type": "coreferential",
+    "domain": "healthcare",
+    "ambiguous_clause": "When the day shift nurse hands off to the night shift nurse, they must verify all pending medication orders before assuming responsibility.",
+    "unambiguous_clause": "When the day shift nurse hands off to the night shift nurse, the INCOMING (night shift) nurse must verify all pending medication orders before assuming responsibility for the patient assignment.",
+    "user_scenario": "A medication was missed during shift change. The day nurse says the night nurse should have caught it during handoff verification. The night nurse says verification was the day nurse's job before leaving. Who's responsible?",
+    "ambiguity_point": "'They' could refer to the day shift nurse (verifying before handing off) or the night shift nurse (verifying before taking over).",
+    "possible_interpretations": ["Broad: 'They' refers to the day shift nurse — the departing nurse must verify orders are complete before leaving.", "Narrow: 'They' refers to the night shift nurse — the incoming nurse must verify pending orders before accepting the handoff."]
+  },
+  {
+    "clause_id": "health_coref_007",
+    "ambiguity_type": "coreferential",
+    "domain": "healthcare",
+    "ambiguous_clause": "If the patient's insurance company denies the referral requested by the specialist, they should file an appeal within 30 days.",
+    "unambiguous_clause": "If the patient's insurance company denies the referral requested by the specialist, the SPECIALIST'S office must file a peer-to-peer appeal within 30 days, including clinical documentation supporting medical necessity.",
+    "user_scenario": "My insurance denied the referral to the cardiologist. Who's supposed to appeal — me, my regular doctor, or the cardiologist's office?",
+    "ambiguity_point": "'They' has three possible antecedents: the patient, the insurance company (internal appeal), or the specialist.",
+    "possible_interpretations": ["Broad: 'They' refers to the patient — the patient is responsible for filing their own insurance appeal.", "Narrow: 'They' refers to the specialist — the referring specialist's office bears responsibility for filing the clinical appeal."]
+  },
+  {
+    "clause_id": "health_coref_008",
+    "ambiguity_type": "coreferential",
+    "domain": "healthcare",
+    "ambiguous_clause": "The emergency physician consulted the on-call cardiologist about the patient's EKG results and they recommended immediate catheterization.",
+    "unambiguous_clause": "The emergency physician consulted the on-call cardiologist about the patient's EKG results and the ON-CALL CARDIOLOGIST recommended immediate cardiac catheterization based on ST-elevation findings.",
+    "user_scenario": "I'm in the ER and two doctors have been discussing my heart test. One of them says I need an immediate procedure. Which doctor actually made that call — the ER doctor or the heart specialist?",
+    "ambiguity_point": "'They' could refer to the emergency physician or the on-call cardiologist, changing who made the clinical recommendation.",
+    "possible_interpretations": ["Broad: 'They' refers to the emergency physician — the EP independently decided on catheterization after consulting.", "Narrow: 'They' refers to the cardiologist — the specialist made the recommendation based on their expertise in interpreting the EKG."]
+  }
+]

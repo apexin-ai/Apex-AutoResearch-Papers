@@ -1,0 +1,123 @@
+{
+  "description": "4-method Fleiss kappa (excluding NaiveXCor) and voting analysis. Reviewer requested: does removing NaiveXCor (FPR=94.4%) improve inter-method agreement?",
+  "criteria": "D111 direction filter (peak_lag<0 for xcorr), BH-FDR for PermG/DiffXCorr, true_3sigma_d105 for Threshold",
+  "methods_5": ["naive_xcorr", "diff_xcorr", "threshold_onset", "perm_granger", "ty_granger"],
+  "methods_4": ["diff_xcorr", "threshold_onset", "perm_granger", "ty_granger"],
+
+  "reference_dataset": {
+    "note": "Paper kappa=0.185 computed from GPT-2M alpha=1.0 (2 seeds x 8 pairs = 16 pairs)",
+    "experiments": "gpt2m_wiki_a100_s42 + gen_wiki_gpt2m_a100_s43",
+    "kappa_5method": 0.1873,
+    "kappa_4method": 0.1667,
+    "kappa_delta": -0.0206,
+    "interpretation": "Removing NaiveXCor slightly reduces kappa (-0.021). NaiveXCor aligned with PermG/DiffXCorr on high-signal pairs, so removing it reduces rather than improves measured agreement.",
+    "per_method_sig_rate": {
+      "naive_xcorr": "13/16 = 81.2%",
+      "diff_xcorr": "12/16 = 75.0%",
+      "threshold_onset": "0/16 = 0.0%",
+      "perm_granger": "12/16 = 75.0%",
+      "ty_granger": "8/16 = 50.0%"
+    },
+    "pairwise_cohen_5method": {
+      "naive_xcorr_vs_diff_xcorr": 0.4706,
+      "naive_xcorr_vs_threshold_onset": "NaN (threshold=0%)",
+      "naive_xcorr_vs_perm_granger": 0.4706,
+      "naive_xcorr_vs_ty_granger": -0.0909,
+      "diff_xcorr_vs_threshold_onset": "NaN (threshold=0%)",
+      "diff_xcorr_vs_perm_granger": 1.0,
+      "diff_xcorr_vs_ty_granger": 0.0,
+      "threshold_onset_vs_perm_granger": "NaN (threshold=0%)",
+      "threshold_onset_vs_ty_granger": "NaN (threshold=0%)",
+      "perm_granger_vs_ty_granger": 0.0
+    },
+    "pairwise_cohen_4method": {
+      "diff_xcorr_vs_threshold_onset": "NaN (threshold=0%)",
+      "diff_xcorr_vs_perm_granger": 1.0,
+      "diff_xcorr_vs_ty_granger": 0.0,
+      "threshold_onset_vs_perm_granger": "NaN (threshold=0%)",
+      "threshold_onset_vs_ty_granger": "NaN (threshold=0%)",
+      "perm_granger_vs_ty_granger": 0.0
+    },
+    "note_on_pairwise": "DiffXCorr and PermG agree perfectly (kappa=1.0) at alpha=1.0. The low Fleiss kappa is driven entirely by Threshold (0/16) and TY (8/16) diverging from the DiffXCorr/PermG cluster."
+  },
+
+  "alpha_sweep_analysis": {
+    "note": "Pythia-410M alpha sweep with D111/C009 direction filter applied",
+    "null_alpha0": {
+      "n_pairs": 40,
+      "seeds": "s42, s43, s44, s46_fp32, s48_fp32",
+      "kappa_5method": -0.0,
+      "kappa_4method": -0.016,
+      "per_method_sig_rate": {
+        "naive_xcorr": "8/40 = 20.0%",
+        "diff_xcorr": "14/40 = 35.0%",
+        "threshold_onset": "11/40 = 27.5%",
+        "perm_granger": "0/40 = 0.0%",
+        "ty_granger": "7/40 = 17.5%"
+      },
+      "voting": {
+        "K_ge_3_of_5": "2/40 = 5.0%",
+        "K_ge_2_of_4": "7/40 = 17.5%",
+        "K_ge_3_of_4": "1/40 = 2.5%",
+        "K_ge_4_of_4": "0/40 = 0.0%"
+      }
+    },
+    "alpha050": {
+      "n_pairs": 24,
+      "seeds": "s42, s43, s44",
+      "kappa_5method": 0.1051,
+      "kappa_4method": 0.1158,
+      "per_method_sig_rate": {
+        "naive_xcorr": "12/24 = 50.0%",
+        "diff_xcorr": "11/24 = 45.8%",
+        "threshold_onset": "0/24 = 0.0%",
+        "perm_granger": "3/24 = 12.5%",
+        "ty_granger": "6/24 = 25.0%"
+      },
+      "voting": {
+        "K_ge_3_of_5": "5/24 = 20.8%",
+        "K_ge_2_of_4": "7/24 = 29.2%",
+        "K_ge_3_of_4": "1/24 = 4.2%",
+        "K_ge_4_of_4": "0/24 = 0.0%"
+      }
+    },
+    "alpha075": {
+      "n_pairs": 24,
+      "seeds": "s42, s43, s44",
+      "kappa_5method": -0.0752,
+      "kappa_4method": -0.0963,
+      "per_method_sig_rate": {
+        "naive_xcorr": "10/24 = 41.7%",
+        "diff_xcorr": "18/24 = 75.0%",
+        "threshold_onset": "2/24 = 8.3%",
+        "perm_granger": "11/24 = 45.8%",
+        "ty_granger": "5/24 = 20.8%"
+      },
+      "voting": {
+        "K_ge_3_of_5": "7/24 = 29.2%",
+        "K_ge_2_of_4": "13/24 = 54.2%",
+        "K_ge_3_of_4": "2/24 = 8.3%",
+        "K_ge_4_of_4": "0/24 = 0.0%"
+      }
+    }
+  },
+
+  "voting_comparison_table": {
+    "note": "Comparison of 5-method and 4-method voting thresholds across conditions",
+    "headers": ["Threshold", "FPR (null)", "TPR (α=0.50)", "TPR (α=0.75)"],
+    "rows": [
+      ["K≥3/5 (paper)", "5.0%", "20.8%", "29.2%"],
+      ["K≥2/4 (simple majority)", "17.5%", "29.2%", "54.2%"],
+      ["K≥3/4 (supermajority)", "2.5%", "4.2%", "8.3%"]
+    ]
+  },
+
+  "summary_for_reviewer": {
+    "kappa_5method": 0.187,
+    "kappa_4method": 0.167,
+    "kappa_delta": -0.02,
+    "key_finding": "Removing NaiveXCor does NOT improve inter-method agreement (kappa decreases from 0.187 to 0.167). The low kappa is not caused by NaiveXCor alone — it reflects genuine methodological disagreement: Threshold detects 0% at alpha=0.50-1.0, while DiffXCorr/PermG detect 45-75%. The fundamental tension is between conservative (Threshold, PermG) and moderate (DiffXCorr, TY) methods, not between NaiveXCor and the rest.",
+    "voting_finding": "K≥3/4 achieves excellent FPR (2.5%) but unacceptably low TPR (4.2-8.3%). K≥2/4 recovers TPR (29-54%) but at elevated FPR (17.5%). Neither 4-method threshold dominates the paper's K≥3/5 (FPR=5.0%, TPR=20.8-29.2%).",
+    "recommendation": "The MMCT consensus (K≥3/5) already marginalizes NaiveXCor's influence — it contributes at most 1 vote out of 5, and the K≥3 threshold means NaiveXCor alone cannot cause a false positive. Removing it entirely sacrifices a degree of freedom without improving agreement or FPR/TPR tradeoff."
+  }
+}

@@ -1,0 +1,16 @@
+Plan-012 Preliminary Death Decomposition (prescreening + MVP data)
+
+Script: death_decomposition.py (519 lines), all 6 analyses verified.
+
+Full results (30 tasks, 219 episodes):
+- Δ_full (det-internal, all): +37.9
+- Δ_nd (det-internal, non-death only): +0.2
+- death_fraction: 99%
+- r (death_rate_diff vs Δ): 0.989, p<0.0001
+- Δ_penalty_removed (-100→0): +0.9
+- Labels: det-preferred=89, internal-preferred=1, no-preference=129
+- Internal death rate: 49%, Det death rate: 12%
+
+vs MVP (5 tasks): Δ_full 36.9→37.9, r 0.986→0.989, conclusion unchanged.
+
+Note: aggregate_results() (~line 185-275) is dead code, main() uses aggregate_from_raw(). No functional impact.

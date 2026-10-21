@@ -1,0 +1,51 @@
+{
+  "exp_id": "eval-adaptive-k-spatial-p90-seed43",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:44:47.376Z",
+    "updated_at": "2026-05-20T13:06:03.701Z",
+    "hypothesis": "Adaptive K with τ=P90 (0.125870, Object-calibrated) on LIBERO-Spatial seed43. Second seed for Spatial P90 threshold. Cross-benchmark validation of aggressive compute saving regime.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py --mode adaptive_k --adaptive_threshold 0.125870 --k_full 10 --benchmark spatial --seed 43 --n_rollouts 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_adaptive_k_spatial_p90_seed43.json 2>&1 | tee logs/eval-adaptive-k-spatial-p90-seed43.log\"",
+      "server": "bjb1-18228",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "344852",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p90-seed43.log",
+      "submitted_at": "2026-05-20T10:45:15.637Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Spatial",
+      "data_count": "100 (10 tasks x 10 rollouts)",
+      "model_name": "SmolVLA + CRM adaptive_k (P90, τ=0.125870)",
+      "seed": 43,
+      "checkpoint_path": "N/A (eval only)",
+      "wall_clock_seconds": 8448.1,
+      "gpu_hours": 2.35
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T12:36:37.049Z"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "overall_success_rate": 0.32,
+      "avg_K": 3.586,
+      "fast_path_pct": 80.17,
+      "mean_l2": 0.0905,
+      "adaptive_trigger_rate": 0.198,
+      "threshold": 0.12587,
+      "total_steps": 23797,
+      "fast_steps": 19079,
+      "full_steps": 4718
+    },
+    "completed_at": "2026-05-20T13:06:03.701Z"
+  },
+  "timestamp": "2026-05-20T13:06:04.434395+00:00",
+  "trigger": "update_registry"
+}

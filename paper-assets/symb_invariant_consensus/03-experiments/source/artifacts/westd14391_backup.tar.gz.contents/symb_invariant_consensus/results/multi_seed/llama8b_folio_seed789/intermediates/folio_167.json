@@ -1,0 +1,476 @@
+{
+  "problem": {
+    "id": "folio_167",
+    "problem": "Given the following premises:\nHeinrich Scmidt was a Nazi German politician.  Heeinrich Scmidt was also a member of the Prussian State Parliament and the Nazi Reichstag.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nHeinrich Schmidt was either German or Russian.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "From(heinrichScmidt, naziGermany) \u2227 Politician(heinrichScmidt)",
+      "Member(heinrichScmidt, prussianStateParliament) \u2227 Member(heinrichScmidt, naziReichstag)"
+    ],
+    "conclusion_fol": "From(heinrichScmidt, naziGermany) \u2228 From(heinrichScmidt, russia)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "False": 19.0,
+      "True": 33.0,
+      "Unknown": 32.0
+    },
+    "answer_counts": {
+      "True": 5,
+      "Unknown": 4,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Heinrich Schmidt was a Nazi German politician.\n- This statement tells us that Heinrich Schmidt was German and a Nazi politician.\n\nPremise 2: Heinrich Schmidt was also a member of the Prussian State Parliament and the Nazi Reichstag.\n- This statement provides additional information about Heinrich Schmidt's roles, but it doesn't provide any new information about his nationality.\n\nNow, let's examine the conclusion:\nConclusion: Heinrich Schmidt was either German or Russian.\n- To evaluate the conclusion, we need to determine whether the given premises support or contradict it.\n\nFrom Premise 1, we know that Heinrich Schmidt was German. This directly supports the conclusion.\nHowever, there is no information provided in the premises about Heinrich Schmidt being Russian. \n\nSince there is no information that contradicts the conclusion and Premise 1 supports it, we can conclude that the information given is sufficient to support the conclusion.",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we can use a logical approach by analyzing the given premises and the conclusion.\n\nPremises:\n\n1. Heinrich Scmidt was a Nazi German politician. \n   - This implies that Heinrich Scmidt was of German nationality.\n\n2. Heeinrich Scmidt was also a member of the Prussian State Parliament and the Nazi Reichstag.\n   - This premise is incomplete and contains an error as it contains 'Heeinrich' instead of 'Heinrich'. However, based on the other premises we can still deduce some information. \n\nHowever, we can ignore the error and focus on the first premise for our analysis.\n\nConclusion:\nHeinrich Schmidt was either German or Russian.\n\nAnalysis:\nBased on the first premise, we know that Heinrich Scmidt (or Schmidt) was a Nazi German politician, which means he was of German nationality.\n\nThere is no information in the premises that suggests Heinrich Schmidt was Russian. Therefore, we can conclude that the conclusion is true, as we have enough information to determine that Heinrich Schmidt was indeed German.\n\nHowever, it's worth noting that the second premise is incomplete, and it would have been better if it had provided more information about Heinrich Schmidt. Nevertheless, we can still reach a conclusion based on the available information.\n\nFinal answer: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they provide any information about Heinrich Schmidt's nationality.\n\nPremise 1: Heinrich Schmidt was a Nazi German politician.\nThis premise tells us that Heinrich Schmidt was German and a politician in the Nazi party.\n\nPremise 2: Heeinrich Schmidt was also a member of the Prussian State Parliament and the Nazi Reichstag.\nThis premise provides additional information about Heinrich Schmidt's activities but does not give any new information about his nationality. It reinforces the fact that he was involved in the Nazi party and German politics.\n\nNow, let's examine the conclusion:\nHeinrich Schmidt was either German or Russian.\n\nFrom the premises, we know that Heinrich Schmidt was a German politician. There is no information provided in the premises that suggests he was Russian or had any connection to Russia.\n\nTherefore, we can conclude that the statement \"Heinrich Schmidt was either German or Russian\" is true because we have evidence that he was German, and there is no evidence to contradict the possibility that he could be Russian. However, it is also possible that the conclusion may be false because we cannot rule out the possibility that Heinrich Schmidt was indeed Russian. But given the information we have, we can only say that he was German.\n\nHowever, because we cannot rule out the possibility that Heinrich Schmidt may be Russian, the conclusion can be classified as uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine the conclusion, we need to analyze the given premises.\n\nPremise 1: Heinrich Scmidt was a Nazi German politician.\n\nFrom this, we can infer that Heinrich Scmidt was German.\n\nPremise 2: Heeinrich Scmidt was also a member of the Prussian State Parliament and the Nazi Reichstag.\n\nThis premise does not provide any new information about Heinrich Scmidt's nationality. It only adds to our knowledge of his political affiliations and roles.\n\nNow, we need to determine whether Heinrich Schmidt was Russian. We have no information from the premises that suggests Heinrich Schmidt was Russian.\n\nHowever, we do have information that suggests he was German. Since we cannot determine if he was Russian and we do have information that suggests he was German, we can conclude that Heinrich Schmidt was either German or Russian.\n\nSince we cannot conclude that he was definitely either German or Russian but we do know he was German and it doesn't conflict with the information that he was Russian, we cannot conclude that he was definitely Russian.\n\nTherefore, the conclusion is true.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's break down the given premises step by step:\n\n1. Heinrich Scmidt was a Nazi German politician:\n   - This premise tells us that Heinrich Scmidt was a German politician. \n   - However, it doesn't provide information about his nationality, only his political allegiance and geographic location.\n\n2. Heeinrich Scmidt was also a member of the Prussian State Parliament and the Nazi Reichstag:\n   - This premise doesn't add new information about Heinrich Scmidt's nationality. \n   - It only confirms that he was a member of two German political bodies.\n\nNow, let's analyze the conclusion: Heinrich Schmidt was either German or Russian.\n\n- We have no information that suggests Heinrich Schmidt was Russian.\n- We know from premise 1 that Heinrich Scmidt was a German politician, but this doesn't necessarily imply that he was a German citizen or had any other nationality.\n\nHowever, based on the premises provided, we can infer that Heinrich Schmidt was German, but we cannot determine whether he was Russian or not. The conclusion \"Heinrich Schmidt was either German or Russian\" is uncertain because there is no direct information provided about his nationality, only his affiliation with Germany as a politician.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's break down the information given and analyze it step by step.\n\nPremise 1: Heinrich Scmidt was a Nazi German politician.\nThis premise tells us that Heinrich Scmidt was German, as indicated by the nationality.\n\nPremise 2: Heeinrich Scmidt was also a member of the Prussian State Parliament and the Nazi Reichstag.\nThis premise further supports the information provided in premise 1, reinforcing the idea that Heinrich Scmidt was German, as he was a member of the Prussian State Parliament (which was a part of Prussia, a German state) and the Nazi Reichstag (the parliament of Nazi Germany).\n\nConclusion: Heinrich Schmidt was either German or Russian.\nWe need to determine whether this conclusion is true, false, or uncertain based on the information given.\n\nAnalysis:\nFrom the premises, we know that Heinrich Scmidt was a Nazi German politician. There is no mention or indication of him being Russian. The information given does not provide any evidence or reason to believe that Heinrich Scmidt had any connection to Russia.\n\nTherefore, based on the premises, the conclusion that Heinrich Schmidt was either German or Russian is **true**, as we can confirm that Heinrich Schmidt was German.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the given premises and the conclusion.\n\nPremise 1: Heinrich Scmidt was a Nazi German politician.\nFrom this, we can infer that Heinrich Scmidt was German.\n\nPremise 2: Heinrich Scmidt was also a member of the Prussian State Parliament and the Nazi Reichstag.\nThis information does not provide any additional information about his nationality.\n\nConclusion: Heinrich Schmidt was either German or Russian.\n\nWe can conclude that the conclusion is uncertain because:\n\n- From Premise 1, we know that Heinrich Scmidt was German.\n- There is no information in the premises that suggests he was Russian.\n- Therefore, we cannot determine for certain whether he was Russian or not.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises and the conclusion step by step.\n\n1. The first premise states that Heinrich Schmidt was a Nazi German politician. This implies that Heinrich Schmidt was from Germany.\n\n2. The second premise states that Heinrich Schmidt was a member of the Prussian State Parliament and the Nazi Reichstag. This also implies that Heinrich Schmidt was from Germany, as Prussia was a historical state in Germany and the Nazi Reichstag was the legislative body of the Nazi Party in Germany.\n\nFrom both premises, we can conclude that Heinrich Schmidt was indeed from Germany.\n\nThe conclusion states that Heinrich Schmidt was either German or Russian. Given our analysis in step 1 and step 2, we can determine that the conclusion is true because Heinrich Schmidt was from Germany, which satisfies one of the conditions stated in the conclusion. There is no information provided in the premises that suggests Heinrich Schmidt was Russian, so the conclusion that he was either German or Russian is supported by the information given.\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given premises and apply logical reasoning to determine the validity of the conclusion.\n\nPremise 1: Heinrich Schmidt was a Nazi German politician.\nFrom this premise, we can infer that Heinrich Schmidt was German.\n\nPremise 2: Heinrich Scmidt was also a member of the Prussian State Parliament and the Nazi Reichstag.\nThis premise provides additional information about Heinrich Schmidt's life but does not directly relate to his nationality.\n\nConclusion: Heinrich Schmidt was either German or Russian.\nTo determine the validity of this conclusion, we need to analyze the premises.\n\nFrom Premise 1, we already know that Heinrich Schmidt was German. There is no information in the premises that suggests he was Russian.\n\nTherefore, based on the given premises, we can confidently conclude that Heinrich Schmidt was German. Since there is no evidence to suggest he was Russian, we cannot say that the conclusion is uncertain. The conclusion is false because it incorrectly states that Heinrich Schmidt was Russian.\n\nHowever, the question asks whether the conclusion is true, false, or uncertain. The answer to this is false, because the premises indicate that Heinrich Schmidt was German, not Russian.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we will use a logical approach to analyze the given premises and the conclusion.\n\nPremises:\n1. Heinrich Scmidt was a Nazi German politician.\n2. Heeinrich Scmidt was also a member of the Prussian State Parliament and the Nazi Reichstag.\n\nConclusion:\nHeinrich Schmidt was either German or Russian.\n\nStep 1: Analyze the given names\nIn the premises, the name \"Heinrich Scmidt\" is mentioned. However, in the conclusion, the name \"Heinrich Schmidt\" is used. \n\nStep 2: Determine if the names are referring to the same person\nSince the names are very similar, it can be assumed that they are referring to the same person.\n\nStep 3: Analyze the information given in the premises\nFrom premise 1, we know that Heinrich Scmidt was a Nazi German politician. This implies that he was a citizen of Germany.\n\nStep 4: Evaluate the conclusion\nThe conclusion states that Heinrich Schmidt was either German or Russian. Based on the information provided in the premises, we can infer that Heinrich Schmidt was indeed German. \n\nStep 5: Determine if the conclusion is true, false, or uncertain\nSince we have enough information to determine that Heinrich Schmidt was German, the conclusion is not uncertain. However, the conclusion does not directly contradict the premises. Therefore, we can say that the conclusion is true based on the given information.\n\nFinal Answer:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises.\n\nPremise 1: Heinrich Scmidt was a Nazi German politician.\n- This tells us that Heinrich Scmidt was German, as he was a politician from Nazi Germany.\n\nPremise 2: Heinrich Scmidt was also a member of the Prussian State Parliament and the Nazi Reichstag.\n- This further supports that Heinrich Scmidt was German, as the Prussian State Parliament and the Nazi Reichstag were associated with Germany.\n\nThere is no information provided that suggests Heinrich Scmidt was Russian.\n\nFrom the premises, we can conclude that Heinrich Schmidt was German. The conclusion that \"Heinrich Schmidt was either German or Russian\" can be evaluated as uncertain, because while we know he was German, we have no information that rules out the possibility of him being Russian as well. However, based on the information given, we can conclude that the conclusion is True since he was German, and there's no information given that he was Russian.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the given premises.\n\nPremise 1: Heinrich Scmidt was a Nazi German politician.\nThis premise tells us that Heinrich Scmidt was a German politician, but it doesn't provide information about his nationality.\n\nPremise 2: Heinrich Scmidt was also a member of the Prussian State Parliament and the Nazi Reichstag.\nThis premise further supports the fact that Heinrich Scmidt was a German politician, but it also doesn't provide information about his nationality.\n\nThe conclusion: Heinrich Schmidt was either German or Russian.\nTo evaluate the conclusion, we need to consider the information provided in the premises. The premises do not provide any information about Heinrich Scmidt's nationality, but they do provide information about his association with Germany (being a Nazi German politician, a member of the Prussian State Parliament, and the Nazi Reichstag).\n\nHowever, there is no direct information that indicates Heinrich Scmidt's nationality. Therefore, based on the given premises, we cannot confirm that Heinrich Scmidt was indeed German or Russian.\n\nSince we do not have enough information to determine his nationality, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "german(heinrich_schmidt)",
+          "z3_formula": "german_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nazi_politician(heinrich_schmidt)",
+          "z3_formula": "nazi_politician_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "member_prussian_state_parliament(heinrich_schmidt)",
+          "z3_formula": "member_prussian_state_parliament_heinrich_schmidt == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "member_nazi_reichstag(heinrich_schmidt)",
+          "z3_formula": "member_nazi_reichstag_heinrich_schmidt == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "german(heinrich_schmidt) | russian(heinrich_schmidt)",
+          "z3_formula": "german_heinrich_schmidt | russian_heinrich_schmidt",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nazi_german_politician(heinrich_schmidt)",
+          "z3_formula": "nazi_german_politician_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nazi_german_politician(X) -> german(X)",
+          "z3_formula": "Implies(nazi_german_politician_heinrich_schmidt, german_heinrich_schmidt)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "german(heinrich_schmidt) | russian(heinrich_schmidt)",
+          "z3_formula": "Or(german_heinrich_schmidt, russian_heinrich_schmidt)",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "german_heinrich_schmidt",
+          "z3_formula": "german_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "politician_heinrich_schmidt",
+          "z3_formula": "politician_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "german(X) & politician(X) -> german_or_russian(X)",
+          "z3_formula": "Implies(And(german_heinrich_schmidt, politician_heinrich_schmidt), german_or_russian_heinrich_schmidt)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "german_or_russian_heinrich_schmidt",
+          "z3_formula": "german_or_russian_heinrich_schmidt == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nazi_german_politician(heinrich_schmidt)",
+          "z3_formula": "nazi_german_politician_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "german(heinrich_schmidt)",
+          "z3_formula": "german_heinrich_schmidt == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "member_of_prussian_state_parliament_and_nazi_reichstag(heinrich_schmidt)",
+          "z3_formula": "member_of_prussian_state_parliament_and_nazi_reichstag_heinrich_schmidt == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nazi_german_politician(X) -> german(X)",
+          "z3_formula": "Implies(nazi_german_politician_heinrich_schmidt, german_heinrich_schmidt)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "german(X) | russian(X)",
+          "z3_formula": "Or(german_heinrich_schmidt, russian_heinrich_schmidt)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "russian(heinrich_schmidt) == False",
+          "z3_formula": "Not(russian_heinrich_schmidt) == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "politician(heinrich_schmidt, german)",
+          "z3_formula": "politician_heinrich_schmidt_german == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "politician(X, german) -> german(X)",
+          "z3_formula": "Implies(politician_heinrich_schmidt_german, german_heinrich_schmidt)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "member(heinrich_schmidt, prussian_state_parliament)",
+          "z3_formula": "member_heinrich_schmidt_prussian_state_parliament == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "member(heinrich_schmidt, nazi_reichstag)",
+          "z3_formula": "member_heinrich_schmidt_nazi_reichstag == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "german(heinrich_schmidt)",
+          "z3_formula": "german_heinrich_schmidt == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(heinrich_schmidt, german_or_russian)",
+          "z3_formula": "german_heinrich_schmidt | Not(german_heinrich_schmidt)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "german(heinrich_schmidt)",
+          "z3_formula": "heinrich_schmidt_german == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "member(heinrich_schmidt, prussian_state_parliament)",
+          "z3_formula": "heinrich_schmidt_member_prussian_state_parliament == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "member(heinrich_schmidt, nazi_reichstag)",
+          "z3_formula": "heinrich_schmidt_member_nazi_reichstag == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "german(heinrich_schmidt) | russian(heinrich_schmidt)",
+          "z3_formula": "heinrich_schmidt_german == True | heinrich_schmidt_russian == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nazi_german_heinrich_schmidt",
+          "z3_formula": "nazi_german_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "german_heinrich_schmidt",
+          "z3_formula": "german_heinrich_schmidt == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "member_prussian_state_parliament_heinrich_schmidt",
+          "z3_formula": "member_prussian_state_parliament_heinrich_schmidt == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "member_nazi_reichstag_heinrich_schmidt",
+          "z3_formula": "member_nazi_reichstag_heinrich_schmidt == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "german_or_russian_heinrich_schmidt",
+          "z3_formula": "german_heinrich_schmidt | russian_heinrich_schmidt == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nazi_heinrich_schmidt",
+          "z3_formula": "nazi_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nazi_heinrich_schmidt -> german_heinrich_schmidt",
+          "z3_formula": "Implies(nazi_heinrich_schmidt, german_heinrich_schmidt)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "prussian_state_parliament_heinrich_schmidt",
+          "z3_formula": "prussian_state_parliament_heinrich_schmidt == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "prussian_state_parliament_heinrich_schmidt -> german_heinrich_schmidt",
+          "z3_formula": "Implies(prussian_state_parliament_heinrich_schmidt, german_heinrich_schmidt)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "german_heinrich_schmidt",
+          "z3_formula": "german_heinrich_schmidt == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "german_heinrich_schmidt | russian_heinrich_schmidt",
+          "z3_formula": "german_heinrich_schmidt | russian_heinrich_schmidt",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nazi_german_heinrich_schmidt",
+          "z3_formula": "nazi_german_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "german_heinrich_schmidt",
+          "z3_formula": "german_heinrich_schmidt == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "prussian_state_parliament_heinrich_schmidt",
+          "z3_formula": "prussian_state_parliament_heinrich_schmidt == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nazi_reichstag_heinrich_schmidt",
+          "z3_formula": "nazi_reichstag_heinrich_schmidt == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "german_or_russian_heinrich_schmidt",
+          "z3_formula": "german_heinrich_schmidt | russian_heinrich_schmidt == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nazi_german_politician(heinrich_schmidt)",
+          "z3_formula": "nazi_german_politician_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "prussian_state_parliament_member(heinrich_schmidt) & nazi_reichstag_member(heinrich_schmidt)",
+          "z3_formula": "And(prussian_state_parliament_member_heinrich_schmidt, nazi_reichstag_member_heinrich_schmidt) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nazi_german_politician(X) -> german(X)",
+          "z3_formula": "Implies(nazi_german_politician_heinrich_schmidt, german_heinrich_schmidt)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "german(heinrich_schmidt)",
+          "z3_formula": "german_heinrich_schmidt == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "german(heinrich_schmidt)",
+          "z3_formula": "german_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nazi_politician(X) -> german(X)",
+          "z3_formula": "Implies(nazi_politician_heinrich_schmidt, german_heinrich_schmidt)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "prussian_state_parliament_member(X) & nazi_reichstag_member(X) -> german(X)",
+          "z3_formula": "Implies(And(prussian_state_parliament_member_heinrich_schmidt, nazi_reichstag_member_heinrich_schmidt), german_heinrich_schmidt)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not russian(heinrich_schmidt)",
+          "z3_formula": "not russian_heinrich_schmidt == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "politician(heinrich_schmidt)",
+          "z3_formula": "politician_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "german(heinrich_schmidt)",
+          "z3_formula": "german_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "member(heinrich_schmidt, prussian_state_parliament)",
+          "z3_formula": "member_heinrich_schmidt_prussian_state_parliament == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "member(heinrich_schmidt, nazi_reichstag)",
+          "z3_formula": "member_heinrich_schmidt_nazi_reichstag == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "german_or_russian(heinrich_schmidt)",
+          "z3_formula": "german_heinrich_schmidt == True | russian_heinrich_schmidt == True",
+          "source_step": 3
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 57,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 29
+    },
+    "maxsat_stats": {
+      "satisfied": 29,
+      "excluded": 0,
+      "total_weight": 53,
+      "solve_time_ms": 0.8364599198102951
+    },
+    "timing": {
+      "trace_gen_s": 3.712,
+      "extraction_s": 13.511,
+      "dedup_s": 0.384,
+      "maxsat_s": 0.003,
+      "total_s": 17.609
+    }
+  }
+}

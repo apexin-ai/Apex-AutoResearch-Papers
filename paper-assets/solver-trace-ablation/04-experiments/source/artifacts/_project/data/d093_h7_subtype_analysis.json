@@ -1,3 +1,0 @@
-Server path: /root/solver-trace-ablation/analysis/d093_h7_subtype_analysis.json
-
-Random s43-r3: H7a=36, H7b=0, H7_total=36/94 (38.3%), genuine=1. Exec-only s43: H7a=90, H7b=0, H7_total=90/90 (100%), genuine=0, d089 verified. Implications: H7b is ISR-specific, H7a is not ISR-specific, D088 needs correction.

@@ -4,7 +4,7 @@ Paper PDFs, LaTeX source, references, figures, and archived versions.
 
 [Back to project guide](../README.md)
 
-[Read the selected manuscript](paper.pdf) · [Version index](../08-index/version-index.csv)
+[Read the selected manuscript](paper.pdf) · [Version index](../07-index/version-index.csv)
 
 ## Example files
 
@@ -13,4 +13,4 @@ Paper PDFs, LaTeX source, references, figures, and archived versions.
 - [docs/paper_icra/main.tex](source/docs/paper_icra/main.tex)
 - [docs/paper/references.bib](source/docs/paper/references.bib)
 
-Use [the complete file manifest](../08-index/asset-manifest.csv) to inspect all files and their original archive paths.
+Use [the complete file manifest](../07-index/asset-manifest.csv) to inspect all files and their original archive paths.

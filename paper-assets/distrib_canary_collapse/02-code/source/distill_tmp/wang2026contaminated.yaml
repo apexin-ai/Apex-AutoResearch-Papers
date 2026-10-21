@@ -1,0 +1,26 @@
+paper_key: "wang2026contaminated"
+title: "Can Generative Artificial Intelligence Survive Data Contamination? Theoretical Guarantees under Contaminated Recursive Training"
+venue: "arXiv 2026"
+full_text_available: false
+
+research:
+  baselines: ["prior Gaussian/discrete model assumptions"]
+  metrics:
+    - {name: "convergence rate", direction: "higher_better"}
+  datasets: []
+  ablation_dimensions:
+    - real_data_fraction
+    - sampling_bias
+    - generative_model_type (universal approximator)
+  training_recipe: {focus: "theoretical, general framework with minimal assumptions"}
+  method_family: "contaminated_recursive_training_theory"
+
+positioning:
+  core_claim: "First positive theoretical result on recursive training without distributional assumptions: convergence rate equals min(baseline model rate, real data fraction). Extends to sampling bias settings."
+  key_results: "Convergence rate = min(baseline rate, real data fraction per iteration)"
+  limitations: ["abstract-only extraction"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

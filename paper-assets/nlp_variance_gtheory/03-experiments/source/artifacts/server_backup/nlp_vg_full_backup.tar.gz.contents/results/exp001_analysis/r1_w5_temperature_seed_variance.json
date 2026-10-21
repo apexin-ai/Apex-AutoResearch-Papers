@@ -1,0 +1,79 @@
+{
+  "analysis": "R1-W5 temperature-stratified seed variance",
+  "data_source": "exp-001 Llama-3.1-8B-Instruct MMLU (bfloat16)",
+  "total_rows_used": 86400,
+  "results_by_temperature": {
+    "0.0": {
+      "n_rows": 28800,
+      "n_seeds": 6,
+      "n_prompts": 6,
+      "n_orderings": 4,
+      "n_items": 200,
+      "accuracy": 0.713125,
+      "seed_means": {
+        "42": 0.713125,
+        "123": 0.713125,
+        "456": 0.713125,
+        "789": 0.713125,
+        "1024": 0.713125,
+        "2048": 0.713125
+      },
+      "seed_range": 0.0,
+      "seed_std": 1.2161883888976234e-16,
+      "seed_ss_pct": 0.0,
+      "avg_within_cell_seed_var": 3.0814879110195774e-33,
+      "avg_within_cell_seed_range": 0.0,
+      "max_within_cell_seed_range": 0.0,
+      "avg_item_agreement": 1.0,
+      "perfect_agreement_pct": 100.0
+    },
+    "0.3": {
+      "n_rows": 28800,
+      "n_seeds": 6,
+      "n_prompts": 6,
+      "n_orderings": 4,
+      "n_items": 200,
+      "accuracy": 0.7147569444444445,
+      "seed_means": {
+        "42": 0.7125,
+        "123": 0.72375,
+        "456": 0.7122916666666667,
+        "789": 0.7141666666666666,
+        "1024": 0.713125,
+        "2048": 0.7127083333333334
+      },
+      "seed_range": 0.011458333333333348,
+      "seed_std": 0.004455444287194742,
+      "seed_ss_pct": 0.008113856549251484,
+      "avg_within_cell_seed_var": 0.00010065972222222236,
+      "avg_within_cell_seed_range": 0.024375000000000018,
+      "max_within_cell_seed_range": 0.039999999999999925,
+      "avg_item_agreement": 0.9486458333333333,
+      "perfect_agreement_pct": 84.35416666666666
+    },
+    "0.7": {
+      "n_rows": 28800,
+      "n_seeds": 6,
+      "n_prompts": 6,
+      "n_orderings": 4,
+      "n_items": 200,
+      "accuracy": 0.7046180555555556,
+      "seed_means": {
+        "42": 0.685,
+        "123": 0.7275,
+        "456": 0.6835416666666667,
+        "789": 0.711875,
+        "1024": 0.7108333333333333,
+        "2048": 0.7089583333333334
+      },
+      "seed_range": 0.04395833333333332,
+      "seed_std": 0.017104365440718028,
+      "seed_ss_pct": 0.11713723676596755,
+      "avg_within_cell_seed_var": 0.00038225694444444375,
+      "avg_within_cell_seed_range": 0.047708333333333304,
+      "max_within_cell_seed_range": 0.07499999999999996,
+      "avg_item_agreement": 0.9084375,
+      "perfect_agreement_pct": 70.41666666666667
+    }
+  }
+}

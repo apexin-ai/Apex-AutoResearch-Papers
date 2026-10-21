@@ -1,1 +1,0 @@
-See results/shap_analysis/shap_importance.json on gpu-6000pro-2. Aggregated SHAP: p90_ppl=0.0894, var_surprisal=0.0792, p75_ppl=0.0429, mean_surprisal=0.0321, mean_ppl=0.0261. PPL/surprisal=88.8%, lexical_diversity=11.2%. SHAP top-5 matches Gini top-5 (same set, slightly different order).

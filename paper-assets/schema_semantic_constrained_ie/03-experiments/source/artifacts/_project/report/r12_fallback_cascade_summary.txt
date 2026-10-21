@@ -1,0 +1,10 @@
+See westd-16980:/root/autodl-tmp/schema_outputs/r12_fallback_cascade_analysis.json for full JSON report.
+
+Key findings:
+- Layer 1 (S1-induced fallback): Qwen 3 entities, Llama 1 entity — negligible
+- Layer 2 (Generic wildcard cascade):
+  - Qwen: 235/1729 (13.6%) rels involve Generic, 109 (6.3%) weakened
+  - Llama: 237/1315 (18.0%) rels involve Generic, 123 (9.4%) weakened
+  - Hyponym-of/Compare: 100% weakened when Generic present
+  - Used-for: 0% weakened (broadest valid-pair set)
+- Generic participates in 38% of valid pairs on average across 7 relation types

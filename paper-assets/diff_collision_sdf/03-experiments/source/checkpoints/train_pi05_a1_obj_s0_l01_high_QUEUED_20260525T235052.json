@@ -1,0 +1,15 @@
+{
+  "exp_id": "train_pi05_a1_obj_s0_l01_high",
+  "project": "diff_collision_sdf",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T23:50:48.245Z",
+    "updated_at": "2026-05-25T23:50:52.031Z",
+    "hypothesis": "Pi0.5+A1 SDF training with high lambda=0.1 (seed0, 30K steps). Tests whether stronger SDF penalty produces faster collision avoidance learning or causes earlier over-avoidance onset compared to lambda=0.005/0.01. Provides error bars with seed1 (GPU 2)."
+  },
+  "timestamp": "2026-05-25T23:50:52.194518+00:00",
+  "trigger": "update_registry"
+}

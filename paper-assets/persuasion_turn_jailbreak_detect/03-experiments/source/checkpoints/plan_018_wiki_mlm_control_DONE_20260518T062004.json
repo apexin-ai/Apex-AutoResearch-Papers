@@ -1,0 +1,53 @@
+{
+  "exp_id": "plan_018_wiki_mlm_control",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T05:56:00.484Z",
+    "updated_at": "2026-05-18T06:20:04.643Z",
+    "hypothesis": "If domain-specific text exposure drives OOD generalization (plan_017 showed jailbreak-domain MLM achieves F1=1.0 on DD OOD), then Wikipedia MLM with matched token count should perform significantly worse, proving domain specificity is necessary rather than any continued pretraining.",
+    "parent": "plan_017_mlm_control",
+    "spec": {
+      "command": "python src/train_deberta_mlm_wiki.py",
+      "server": "westd-33183",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "12612",
+      "log_path": "~/runs/persuasion_turn_jailbreak_detect/plan_018_wiki_mlm_control.log",
+      "submitted_at": "2026-05-18T06:16:43.253Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/plan_018_wiki_mlm/",
+      "data_count": 1266,
+      "model_name": "microsoft/deberta-v3-base",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/plan_018_wiki_mlm/best",
+      "eval_data": "data/generated/deceptive_delight_all.jsonl + data/plan_002_splits/test.jsonl",
+      "wall_clock_seconds": 201.4,
+      "gpu_hours": 0.06
+    },
+    "conclusion": "success",
+    "metrics": {
+      "dd_ood_f1_full": 0.7421,
+      "dd_ood_f1_k1": 0.8219,
+      "dd_ood_f1_k2": 0.815,
+      "dd_ood_f1_k3": 0.8492,
+      "dd_ood_f1_k5": 0.808,
+      "iid_f1_full": 0.9868,
+      "wiki_mlm_val_loss": 8.3354,
+      "plan017_jb_mlm_val_loss": 2.4727,
+      "train_tokens": 169266,
+      "val_tokens": 33837
+    },
+    "checkpoint_path": "checkpoints/plan_018_wiki_mlm/best",
+    "log_path": "~/runs/persuasion_turn_jailbreak_detect/plan_018_wiki_mlm_control.log",
+    "completed_at": "2026-05-18T06:20:04.643Z"
+  },
+  "timestamp": "2026-05-18T06:20:04.721534+00:00",
+  "trigger": "update_registry"
+}

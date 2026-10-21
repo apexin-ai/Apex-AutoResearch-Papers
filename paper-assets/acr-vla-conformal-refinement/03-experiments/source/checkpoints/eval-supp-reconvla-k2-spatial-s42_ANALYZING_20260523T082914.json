@@ -1,0 +1,38 @@
+{
+  "exp_id": "eval-supp-reconvla-k2-spatial-s42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T06:30:30.881Z",
+    "updated_at": "2026-05-23T08:29:13.243Z",
+    "hypothesis": "K=2 argmin baseline (reconvla mode, --K 2) on Spatial seed42. Due to centroid bug (K=2 → d1==d2 → always picks sample 0), K=2 argmin effectively equals K=1 VLA-only (~78.5%). If confirmed, proves 82% improvement comes entirely from CRM correction, not K=2 sampling diversity.",
+    "parent": "eval-supp-adapt-tau025-spatial-s42-r2",
+    "spec": {
+      "command": "bash -c \"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode reconvla --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --K 2 --benchmark spatial --seed 42 --n_rollouts 20 2>&1 | tee logs/eval-supp-reconvla-k2-spatial-s42.log\"",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "742499",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-supp-reconvla-k2-spatial-s42.log",
+      "submitted_at": "2026-05-23T06:33:15.223Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_count": 200,
+      "data_path": "/root/acr-vla-conformal-refinement",
+      "model_name": "smolvla",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt",
+      "eval_data": "LIBERO-Spatial"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T08:29:06.156Z"
+    }
+  },
+  "timestamp": "2026-05-23T08:29:14.404810+00:00",
+  "trigger": "update_registry"
+}

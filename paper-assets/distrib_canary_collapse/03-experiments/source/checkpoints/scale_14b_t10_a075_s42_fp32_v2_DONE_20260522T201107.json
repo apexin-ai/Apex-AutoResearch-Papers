@@ -1,0 +1,49 @@
+{
+  "exp_id": "scale_14b_t10_a075_s42_fp32_v2",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T08:53:33.625Z",
+    "updated_at": "2026-05-22T20:11:07.509Z",
+    "hypothesis": "Scale verification: Pythia-1.4B T=10 α=0.75 (resume from gen 2 after MAUVE=None crash). At 410M, α=0.75 PermG=6/8 (well above α_c). Baseline control for 1.4B — expected 6/8 if detection scales. Confirms 6/8 ceiling is not model-size dependent.",
+    "parent": "scale_14b_t10_a075_s42_fp32",
+    "spec": {
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/scale/14b_t10_a075_s42_fp32",
+      "server": "westd-17855",
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-1.4b-deduped",
+      "seed": 42,
+      "checkpoint_source": "results/phase_diagram/t10_a075_s42_fp32_14b/gen_1/checkpoint",
+      "eval_data": "data/wikitext103_5k",
+      "gpu": "cuda:2",
+      "log_path": "/tmp/14b_t10_a075.log",
+      "checkpoint_path": "results/scale/14b_t10_a075_s42_fp32/",
+      "pid": 679944,
+      "tmux_session": "scale_14b_s42",
+      "start_gen": 5,
+      "note": "Restarted from gen_5 after tmux server kill at ~20:37"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T20:04:10.285Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "completed_at": "2026-05-22T20:04:13.599Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T20:04:24.112389+00:00"
+        }
+      ]
+    },
+    "notes": "Cron 误判 failed — 日志显示实验已完成: gen_9 checkpoint saved, metrics computed (ppl=89.37, mauve=0.0311), sentinel written. Worker 已派发验证完整结果并运行 D102 分析。worker_id: worker_diagnose_scale_14b_t10_a075_s42_fp32_v2_20260522T200658"
+  },
+  "timestamp": "2026-05-22T20:11:07.959083+00:00",
+  "trigger": "update_registry"
+}

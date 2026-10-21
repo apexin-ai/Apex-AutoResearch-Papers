@@ -1,0 +1,33 @@
+{
+  "exp_id": "eval_humaneval_grpo_standard_20_fair_2048_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T06:39:01.302Z",
+    "updated_at": "2026-05-19T06:39:41.612Z",
+    "hypothesis": "HumanEval pass@1 for GRPO Standard 20% (fair model) with max_new_tokens=2048. Retry of v1 which failed due to wrong path (grpo_standard_20_fair vs grpo_stage2_standard_20_fair). Fair comparison with CKA-only/RASP.",
+    "parent": "eval_humaneval_grpo_standard_20_fair_2048",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_standard_20_fair_2048.json",
+      "server": "westd-29022",
+      "gpu": [
+        "cuda:2"
+      ],
+      "log_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_standard_20_fair_2048.log",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "HumanEval",
+      "data_count": 164,
+      "model_name": "grpo_stage2_standard_20_fair",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair",
+      "eval_data": "HumanEval",
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair"
+    }
+  },
+  "timestamp": "2026-05-19T06:39:41.982040+00:00",
+  "trigger": "update_registry"
+}

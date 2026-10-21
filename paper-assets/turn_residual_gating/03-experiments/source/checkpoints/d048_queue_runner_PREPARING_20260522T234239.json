@@ -1,0 +1,28 @@
+{
+  "exp_id": "d048_queue_runner",
+  "project": "turn_residual_gating",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T23:42:35.919Z",
+    "updated_at": "2026-05-22T23:42:39.048Z",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T23:42:38.157928+00:00"
+        }
+      ]
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T23:42:38.522Z"
+    }
+  },
+  "timestamp": "2026-05-22T23:42:39.162784+00:00",
+  "trigger": "update_registry"
+}

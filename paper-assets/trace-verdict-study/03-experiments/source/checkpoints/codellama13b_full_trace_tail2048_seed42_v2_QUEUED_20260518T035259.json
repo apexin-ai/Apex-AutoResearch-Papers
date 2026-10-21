@@ -1,0 +1,16 @@
+{
+  "exp_id": "codellama13b_full_trace_tail2048_seed42_v2",
+  "project": "trace-verdict-study",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T03:52:51.335Z",
+    "updated_at": "2026-05-18T03:52:59.518Z",
+    "hypothesis": "CodeLlama-13B tail-2048 应在 95-98%，head-tail gap ≥15pp，确认 signal positional concentration 跨 4 模型",
+    "parent": "codellama13b_full_trace_head2048_seed42"
+  },
+  "timestamp": "2026-05-18T03:52:59.764813+00:00",
+  "trigger": "update_registry"
+}

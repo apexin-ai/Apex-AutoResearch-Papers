@@ -1,0 +1,176 @@
+{
+  "exp_id": "trajectory_level_cohens_d",
+  "project": "vla-ssd",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T01:31:51.743Z",
+    "updated_at": "2026-05-19T02:37:31.429Z",
+    "parent": "action_trajectory_control",
+    "hypothesis": "Token-level Cohen's d values may misestimate effect size due to within-trajectory autocorrelation; trajectory-level (demo-level) aggregation provides estimates with correct independence assumption by averaging each demo's 50 timestep MSEs into a single value.",
+    "spec": {
+      "command": "python scripts/trajectory_level_cohens_d.py",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero/libero_goal",
+      "data_count": "14 conditions, 30-50 demos each",
+      "model_name": "openvla-7b",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/vla-ssd/checkpoints/openvla-7b",
+      "eval_data": "libero_goal 5 tasks"
+    },
+    "checkpoint_path": "/root/autodl-tmp/vla-ssd/results/trajectory_level_cohens_d.json",
+    "log_path": "/root/autodl-tmp/vla-ssd/results/trajectory_level_cohens_d.log",
+    "metrics": {
+      "head_ablation_top24": {
+        "token_d": 0.651,
+        "traj_d": 2.943,
+        "ci": [
+          2.469,
+          3.707
+        ],
+        "n": 50,
+        "inflation": 0.221
+      },
+      "specificity_bottom24": {
+        "token_d": 0.565,
+        "traj_d": 2.347,
+        "ci": [
+          1.854,
+          3.221
+        ],
+        "n": 30,
+        "inflation": 0.241
+      },
+      "dose_response_top4": {
+        "token_d": 0.482,
+        "traj_d": 2.623,
+        "ci": [
+          2.106,
+          3.575
+        ],
+        "n": 30,
+        "inflation": 0.184
+      },
+      "dose_response_top8": {
+        "token_d": 0.508,
+        "traj_d": 2.186,
+        "ci": [
+          1.764,
+          2.931
+        ],
+        "n": 30,
+        "inflation": 0.232
+      },
+      "dose_response_top12": {
+        "token_d": 0.56,
+        "traj_d": 2.286,
+        "ci": [
+          1.876,
+          3.043
+        ],
+        "n": 30,
+        "inflation": 0.245
+      },
+      "dose_response_top16": {
+        "token_d": 0.592,
+        "traj_d": 2.4,
+        "ci": [
+          1.895,
+          3.327
+        ],
+        "n": 30,
+        "inflation": 0.247
+      },
+      "dose_response_top20": {
+        "token_d": 0.617,
+        "traj_d": 2.529,
+        "ci": [
+          1.96,
+          3.639
+        ],
+        "n": 30,
+        "inflation": 0.244
+      },
+      "dose_response_top24": {
+        "token_d": 0.637,
+        "traj_d": 2.601,
+        "ci": [
+          2.127,
+          3.444
+        ],
+        "n": 30,
+        "inflation": 0.245
+      },
+      "dose_response_top28": {
+        "token_d": 0.654,
+        "traj_d": 2.47,
+        "ci": [
+          2.027,
+          3.268
+        ],
+        "n": 30,
+        "inflation": 0.265
+      },
+      "dose_response_top32": {
+        "token_d": 0.639,
+        "traj_d": 2.695,
+        "ci": [
+          2.226,
+          3.559
+        ],
+        "n": 30,
+        "inflation": 0.237
+      },
+      "counterfactual_shuffled": {
+        "token_d": 0.625,
+        "traj_d": 2.595,
+        "ci": [
+          2.028,
+          3.791
+        ],
+        "n": 30,
+        "inflation": 0.241
+      },
+      "counterfactual_paraphrased": {
+        "token_d": 0.697,
+        "traj_d": 2.131,
+        "ci": [
+          1.74,
+          2.819
+        ],
+        "n": 30,
+        "inflation": 0.327
+      },
+      "counterfactual_wrong": {
+        "token_d": 0.844,
+        "traj_d": 3.798,
+        "ci": [
+          3.194,
+          4.938
+        ],
+        "n": 30,
+        "inflation": 0.222
+      },
+      "counterfactual_empty": {
+        "token_d": 0.968,
+        "traj_d": 3.438,
+        "ci": [
+          2.921,
+          4.448
+        ],
+        "n": 30,
+        "inflation": 0.282
+      },
+      "inflation_factor_mean": 0.245,
+      "inflation_factor_range": [
+        0.184,
+        0.327
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T02:37:31.609867+00:00",
+  "trigger": "update_registry"
+}

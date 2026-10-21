@@ -1,0 +1,6 @@
+k_1.0: 200.06 ± 26.33 ms (n=100)
+k_0.9: 206.66 ± 42.10 ms (n=100)
+k_0.5: 185.95 ± 20.01 ms (n=100)
+speedup_k09: 0.968x
+speedup_k05: 1.076x
+Note: All three have high variance due to GPU contention from concurrent zeromask evals on GPU0-2. Clean median latencies are ~180-185ms across all ratios. Vision token pruning provides negligible latency benefit for π0.5 because vision tokens (768) are a small fraction of total LLM sequence.

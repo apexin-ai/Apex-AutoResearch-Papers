@@ -1,0 +1,54 @@
+{
+  "exp_id": "plan_011_bf16_g8_step_eval",
+  "project": "faith-evidence-ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 2,
+    "created_at": "2026-05-15T19:04:51.538Z",
+    "updated_at": "2026-05-15T19:55:12.540Z",
+    "server": "rtx5090-4x",
+    "gpu": "cuda:0",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && bash /root/autodl-tmp/freige/scripts/eval_plan_011_steps.sh\"",
+      "finished_at": "2026-05-15T19:53:33.310Z"
+    },
+    "failure_reason": "EXIT_CODE=143 (SIGTERM — graceful kill)",
+    "completed_at": "2026-05-15T19:47:17.272Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T19:47:19.581918+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T19:53:37.646506+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "诊断确认：SIGTERM (EXIT_CODE=143)。device_map=\"auto\" 无 CUDA_VISIBLE_DEVICES 限制，模型加载到 GPU 0（plan_001 占用 16.3GB），双进程共 31.4/32.6GB 后被 kill。两次重试均失败（retry_count=2）。修复：CUDA_VISIBLE_DEVICES=1 重提交到空闲 cuda:1。"
+      }
+    },
+    "notes": "诊断确认：SIGTERM (EXIT_CODE=143)。device_map=\"auto\" 无 CUDA_VISIBLE_DEVICES 限制，模型加载到 GPU 0（plan_001 占用 16.3GB），双进程共 31.4/32.6GB 后被 kill。两次重试均失败（retry_count=2）。修复：CUDA_VISIBLE_DEVICES=1 重提交到空闲 cuda:1。",
+    "spec": {
+      "gpu": [
+        "cuda:1"
+      ],
+      "server": "rtx5090-4x",
+      "command": "freige.eval.inference loop over checkpoint-30/50/70",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 985,
+      "model_name": "Qwen3-4B + SFT + QLoRA GRPO (CED g8 bf16)",
+      "seed": 42,
+      "checkpoint_source": "grpo_ced_g8_bf16",
+      "eval_data": "docred dev"
+    }
+  },
+  "timestamp": "2026-05-15T19:55:12.748069+00:00",
+  "trigger": "update_registry"
+}

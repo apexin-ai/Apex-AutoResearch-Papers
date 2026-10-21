@@ -1,0 +1,59 @@
+{
+  "exp_id": "exp_fewnerd_mf4_s42",
+  "project": "struct_self_consist_ie",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T05:08:56.774Z",
+    "updated_at": "2026-05-22T13:01:39.521Z",
+    "hypothesis": "MF4 pipeline fix: FewNERD N=8 T=1.0 seed=42 using run_mvp_pilot.py (greedy_f1/micro-F1). Replaces exp_021 which used incompatible greedy_macro_f1 metric. Required for 3-seed statistical power with unified pipeline.",
+    "conclusion": "success",
+    "server": "autodl-5090-c",
+    "gpu": "cuda:0",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_mf4_seed42/\"",
+      "server": "autodl-5090-c",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "426032",
+      "log_path": "~/runs/struct_self_consist_ie/exp_fewnerd_mf4_s42.log",
+      "submitted_at": "2026-05-22T10:36:09.271Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "426032",
+    "log_path": "~/runs/struct_self_consist_ie/exp_fewnerd_mf4_s42.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd/ --dataset fewnerd --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/fewnerd_mf4_seed42/\"",
+      "finished_at": "2026-05-22T12:43:03.188Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T12:43:16.831060+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "greedy_f1": 0.7885,
+      "oracle_f1": 0.8787,
+      "oracle_headroom_pp": 9.02,
+      "fleiss_kappa_mean": 0.3537,
+      "soft_jaccard_mean": 0.6751,
+      "rho_sj_full": 0.1648,
+      "rho_sj_cond": 0.1989,
+      "logprob_auroc_full": 0.5776,
+      "sample_f1_pct_zero": 23,
+      "verdict": "FAIL",
+      "note": "MV/LP selection metrics not computed by pipeline - need separate recompute"
+    }
+  },
+  "timestamp": "2026-05-22T13:01:40.102875+00:00",
+  "trigger": "update_registry"
+}

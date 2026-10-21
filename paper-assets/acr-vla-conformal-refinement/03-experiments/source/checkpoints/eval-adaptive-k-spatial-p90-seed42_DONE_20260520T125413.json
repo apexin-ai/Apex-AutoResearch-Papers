@@ -1,0 +1,72 @@
+{
+  "exp_id": "eval-adaptive-k-spatial-p90-seed42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:44:45.262Z",
+    "updated_at": "2026-05-20T12:54:12.191Z",
+    "hypothesis": "Adaptive K with τ=P90 (0.125870, Object-calibrated) on LIBERO-Spatial seed42. Most aggressive threshold — on Object P90 gives 93% fast_path but SR drops to 13.3%. Tests whether Spatial follows same pattern: high fast_path with SR penalty.",
+    "spec": {
+      "command": "python src/evaluate.py --mode adaptive_k --adaptive_threshold 0.125870 --k_full 10 --benchmark spatial --seed 42",
+      "server": "bjb2-28827",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "308030",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p90-seed42.log",
+      "submitted_at": "2026-05-20T10:45:11.659Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Spatial",
+      "data_count": 100,
+      "model_name": "SmolVLA+CRM_v3_obs_only",
+      "seed": 42,
+      "checkpoint_path": "logs/eval_adaptive_k_spatial_p90_seed42.json",
+      "wall_clock_seconds": 7740.5,
+      "gpu_hours": 2.15
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T12:51:00.370Z"
+    },
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "conclusion": "success",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T12:51:16.751396+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "overall_success_rate": 0.31,
+      "avg_K": 3.5,
+      "fast_path_pct": 80.6,
+      "mean_l2": 0.0907,
+      "threshold": 0.12587,
+      "total_rollouts": 100,
+      "total_successes": 31,
+      "per_task": {
+        "between_plate_and_ramekin": 0.6,
+        "next_to_ramekin": 1,
+        "from_table_center": 0,
+        "on_cookie_box": 0.3,
+        "in_top_drawer": 0,
+        "on_ramekin": 0,
+        "next_to_cookie_box": 0.9,
+        "on_stove": 0,
+        "next_to_plate": 0.3,
+        "on_wooden_cabinet": 0
+      }
+    },
+    "notes": "Cron false positive: EXIT_CODE=129 (SIGHUP after completion). 日志确认 10/10 tasks × 10 rollouts 全部完成，JSON 已写出。手动修正 conclusion=success。",
+    "completed_at": "2026-05-20T12:54:12.191Z"
+  },
+  "timestamp": "2026-05-20T12:54:13.604486+00:00",
+  "trigger": "update_registry"
+}

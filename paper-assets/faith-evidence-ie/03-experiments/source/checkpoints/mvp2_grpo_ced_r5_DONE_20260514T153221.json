@@ -1,0 +1,57 @@
+{
+  "exp_id": "mvp2_grpo_ced_r5",
+  "project": "faith-evidence-ie",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:31:45.606Z",
+    "updated_at": "2026-05-14T15:32:21.817Z",
+    "spec": {
+      "command": "python -m freige.training.grpo_trainer --stage 3 --kl_coef 0.0 --num_iterations 1 --save_steps 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --lr 5e-5 --gradient_accumulation_steps 16 --num_generations 4",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "53071",
+      "log_path": "~/runs/faith-evidence-ie/mvp2_grpo_ced_r5.log",
+      "submitted_at": "2026-05-14T12:31:45.554Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": {
+        "train": 3027,
+        "dev": 985
+      },
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "hypothesis": "CED reward (format×0.3, f1×3.0, ced×1.0) with kl_coef=0 trains stably and improves Evi-F1 over SFT baseline",
+      "parent": "mvp2_grpo_ced_r4",
+      "checkpoint_source": "/root/autodl-tmp/sft_output",
+      "eval_data": "/root/autodl-tmp/data/docred",
+      "hyperparams": {
+        "learning_rate": "5e-5",
+        "kl_coef": 0,
+        "save_steps": 20,
+        "num_iterations": 1,
+        "format_reward_weight": 0.3,
+        "f1_reward_weight": 3,
+        "ced_reward_weight": 1,
+        "per_device_batch_size": 1,
+        "gradient_accumulation_steps": 16,
+        "num_generations": 4,
+        "quantization": "QLoRA 4-bit NF4"
+      },
+      "wall_clock_seconds": 9887.5,
+      "gpu_hours": 2.75
+    },
+    "notes": "⚠️ Mode collapse confirmed: step 250+ f1_reward=0, completion length collapsed to fixed 34 tokens, frac_reward_zero_std=0.9-1.0. Model learned to produce short fixed-format output maximizing ced_reward (0.99) + format_reward (0.3) while abandoning relation extraction (f1=0). Early checkpoints (pre-collapse) lost due to save_total_limit=5 — only steps 400-480 remain, all post-collapse. Current checkpoints likely unusable for eval.",
+    "conclusion": "negative",
+    "checkpoint_path": "N/A (all checkpoints post-collapse, unusable)",
+    "completed_at": "2026-05-14T15:29:18.460Z"
+  },
+  "timestamp": "2026-05-14T15:32:21.876109+00:00",
+  "trigger": "update_registry"
+}

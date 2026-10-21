@@ -1,0 +1,42 @@
+{
+  "exp_id": "smollm3_3b_wiki_a100_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 1,
+    "created_at": "2026-05-19T19:10:05.988Z",
+    "updated_at": "2026-05-19T23:52:51.832Z",
+    "hypothesis": "SmolLM3-3B 在 iterative self-distillation 下会表现出与 SmolLM2 类似的 distributional collapse 模式（熵递减、diversity 下降），验证 collapse 现象的模型规模泛化性。",
+    "parent": "smollm3_3b_wiki_a100_s42_v3",
+    "server": "westd-19828",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-19828",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-19T19:10:25.279Z",
+      "command": "bash -c \"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name /root/autodl-tmp/models/SmolLM3-3B-Base --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/smollm3_3b_wiki_a100_s43\"",
+      "finished_at": "2026-05-19T23:23:13.896Z",
+      "training_hours": 4.21
+    },
+    "failure_reason": "DISK_FULL: /root/autodl-tmp 250G 100% used. gen_2 training completed 5000/5000 steps but model.save_pretrained() failed with \"No space left on device\" (os error 28). gen_0+gen_1 complete, gen_2 checkpoint corrupted (5G partial).",
+    "completed_at": "2026-05-19T23:23:16.597Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-19T23:23:22.164642+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "note": "19828 磁盘满导致失败。转移到 17855:cuda:3 重跑。"
+  },
+  "timestamp": "2026-05-19T23:52:52.070777+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1012 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1250_Q15",
+    "problem": "Anne is white. Erin is round. Erin is white. Gary is cold. Gary is round. Harry is furry. Harry is green. Furry, white people are green. Nice people are round. All round, furry people are green. All cold people are white. All cold, rough people are round. All white people are cold. If someone is cold then they are furry. All furry, green people are rough. All round, green people are cold.\n\nDetermine whether the following statement is true, false, or unknown:\nHarry is not white.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nWhite($x, bool) ::: Is x white?\nRound($x, bool) ::: Is x round?\nCold($x, bool) ::: Is x cold?\nFurry($x, bool) ::: Is x furry?\nGreen($x, bool) ::: Is x green?\nRough($x, bool) ::: Is x rough?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nWhite(Anne, True) ::: Anne is white.\nRound(Erin, True) ::: Erin is round.\nWhite(Erin, True) ::: Erin is white.\nCold(Gary, True) ::: Gary is cold.\nRound(Gary, True) ::: Gary is round.\nFurry(Harry, True) ::: Harry is furry.\nGreen(Harry, True) ::: Harry is green.\n\nRules:\nFurry($x, True) && White($x, True) >>> Green($x, True) ::: Furry, white people are green.\nNice($x, True) >>> Round($x, True) ::: Nice people are round.\nRound($x, True) && Furry($x, True) >>> Green($x, True) ::: All round, furry people are green.\nCold($x, True) >>> White($x, True) ::: All cold people are white.\nCold($x, True) && Rough($x, True) >>> Round($x, True) ::: All cold, rough people are round.\nWhite($x, True) >>> Cold($x, True) ::: All white people are cold.\nCold($x, True) >>> Furry($x, True) ::: If someone is cold then they are furry.\nFurry($x, True) && Green($x, True) >>> Rough($x, True) ::: All furry, green people are rough.\nRound($x, True) && Green($x, True) >>> Cold($x, True) ::: All round, green people are cold.\n\nQuery:\nWhite(Harry, False) ::: Harry is not white."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 129.5,
+      "True": 79.0,
+      "Unknown": 95.5
+    },
+    "answer_counts": {
+      "False": 5,
+      "Unknown": 2,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply the rules of inference.\n\nGiven statements:\n\n1. Anne is white.\n2. Erin is round.\n3. Erin is white.\n4. Gary is cold.\n5. Gary is round.\n6. Harry is furry.\n7. Harry is green.\n8. Furry, white people are green.\n9. Nice people are round.\n10. All round, furry people are green.\n11. All cold people are white.\n12. If someone is cold then they are furry.\n13. All furry, green people are rough.\n14. All round, green people are cold.\n\nWe are asked to determine whether the statement \"Harry is not white\" is true, false, or unknown.\n\nLet's analyze the given statements:\n\nFrom statement 7, we know Harry is green.\nFrom statement 12, we know that if someone is cold then they are furry. \nHowever, we don't know if Harry is cold. So, we can't conclude that Harry is furry directly from statement 12.\n\nFrom statement 10, we know that all round, furry people are green. However, we don't know if Harry is round or furry. So, we can't conclude that Harry is green directly from statement 10.\n\nHowever, from statement 14, we know that all round, green people are cold. Since Harry is green (statement 7), we can conclude that Harry is round and cold.\n\nNow, from statement 11, we know that all cold people are white. Since Harry is cold (from the previous conclusion), we can conclude that Harry is white.\n\nTherefore, the statement \"Harry is not white\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not white\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. Given information:\n   - Anne is white.\n   - Erin is round.\n   - Erin is white.\n   - Gary is cold.\n   - Gary is round.\n   - Harry is furry.\n   - Harry is green.\n   - Furry, white people are green.\n   - Nice people are round.\n   - All round, furry people are green.\n   - All cold people are white.\n   - All cold, rough people are round.\n   - All white people are cold.\n   - If someone is cold then they are furry.\n   - All furry, green people are rough.\n   - All round, green people are cold.\n\n2. From the given information, we can deduce the following:\n   - Since all white people are cold, and Harry is furry (and thus cold), we can conclude that Harry is white. This is because the information \"If someone is cold then they are furry\" and \"All white people are cold\" implies that a white person is also furry. Then, since Harry is furry and green, the rule \"All furry, green people are rough\" does not directly apply to Harry, but we do know that a furry, green person is rough. The rule \"All furry, green people are rough\" does imply that a green person is furry, and thus if a person is furry then they are also green, which is only true for round, furry people or if the person is furry and green. So we have that Harry is white and also that Harry is furry and green. Since we have that Harry is white, then we can conclude that Harry is also round because Harry is furry and green, and thus \"All round, furry people are green\" implies that Harry is round. However, the information \"Harry is green\" and \"Harry is round\" does not necessarily imply that Harry is cold, but since we know that all white people are cold, then we can conclude that Harry is cold.\n\n3. Since we have deduced that Harry is white, round, furry, green, and cold, we can conclude that the statement \"Harry is not white\" is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we'll break it down into steps using the given premises and logical deductions.\n\n1. Given premises:\n   - Anne is white.\n   - Erin is round.\n   - Erin is white.\n   - Gary is cold.\n   - Gary is round.\n   - Harry is furry.\n   - Harry is green.\n   - Furry, white people are green.\n   - Nice people are round.\n   - All round, furry people are green.\n   - All cold people are white.\n   - All cold, rough people are round.\n   - All white people are cold.\n   - If someone is cold then they are furry.\n   - All furry, green people are rough.\n   - All round, green people are cold.\n\n2. Determine whether Harry is white or not.\n\n   From premise 7, we know 'Furry, white people are green.' We also know from premise 6 that Harry is green. \n\n   We can infer that Harry must be white, as the premise states that 'Furry, white people are green.'\n\n3. Now we need to determine if the statement 'Harry is not white' is true, false, or unknown.\n\n   Based on our inference in step 2, we know Harry must be white, so the statement 'Harry is not white' is false.\n\nTherefore, the answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not white\" is true, false, or unknown, we need to analyze the given premises and apply them to Harry's characteristics.\n\n1. Harry is furry. (Given)\n2. Harry is green. (Given)\n\nFrom the premises:\n- All furry, green people are rough. (Given)\n- All round, green people are cold. (Given)\n- All cold, round people are round. (Given)\n- All round, cold people are white. (Given)\n\nHowever, we do not have information about Harry being round. If Harry is not round, then the premises do not provide sufficient information to determine whether Harry is white or not.\n\nGiven:\n- All round, green people are cold. (Given)\n- All cold people are white. (Given)\n\nIf Harry is green and cold, then he is white. But we do not know if Harry is round or not. If Harry is round, then he is white, but we have no evidence of Harry being round.\n\nTo determine whether Harry is white, we need to find out if he is round or not. However, we cannot determine if Harry is round or not from the given premises. Therefore, the statement \"Harry is not white\" is unknown.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not white\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. Harry is furry.\n2. Harry is green.\n3. Furry, white people are green.\n   From this statement, we cannot directly conclude anything about Harry being white, as we don't have any information about Harry being white.\n\n4. All round, furry people are green.\n   This statement does not provide any information about Harry, as we don't know if Harry is round or not.\n\n5. All furry, green people are rough.\n   This statement does not provide any information about Harry being white or not, as we don't know if Harry is rough or not.\n\n6. Harry is furry and green, but we don't have enough information about Harry being round or rough.\n\nHowever, we can infer some information from other statements:\n7. All round, green people are cold.\n   This statement does not provide any information about Harry being white or not, as we don't know if Harry is round or not.\n\n8. All cold people are white.\n   We can use this statement to make an inference about Harry, but we need more information about Harry being cold or not.\n\n9. All cold, rough people are round.\n   This statement does not provide any information about Harry being white or not, as we don't know if Harry is cold or rough.\n\n10. All white people are cold.\n    We can use this statement to make an inference about Harry, but we need more information about Harry being white or not.\n\n11. If someone is cold then they are furry.\n    We can use this statement to make an inference about Harry, but we need more information about Harry being cold or not.\n\n12. All round, green people are cold.\n    We can use this statement to make an inference about Harry, but we need more information about Harry being round or green.\n\nHowever, let's analyze the information given in the problem:\n- Erin is white and round.\n- Erin is white.\n- Gary is cold and round.\n- Gary is cold.\n- Harry is furry and green.\n\nFrom statement 8, we know that all cold people are white. \nFrom statement 11, we know that if someone is cold, then they are furry. \nFrom statement 7, we know that all round, green people are cold.\n\nNow, let's try to find a connection between Harry and being white:\n- If Harry is round and green, then he is cold (from statement 7).\n- If Harry is cold, then he is furry (from statement 11).\n- If Harry is furry and green, then he is rough (from statement 5).\n- We don't know if Harry is round or not.\n\nHowever, we know that if Harry is cold, then he is furry (from statement 11) and all cold people are white (from statement 8).\nBut we also know that if Harry is furry and green, then he is rough (from statement 5).\n\nNow, let's analyze the statement \"All round, green people are cold.\"\nIf Harry is round, then he is cold, and if he is cold, then he is white.\n\nHowever, the statement \"Furry, white people are green\" (statement 3) gives us a clue.\nIf Harry is white, then he is green (from statement 3), but we already know that Harry is green.\n\nNow, let's analyze the statement \"Harry is not white.\"\nIf Harry is not white, then he is either round or not round.\nIf Harry is round, then he is cold (from statement 7).\nIf Harry is cold, then he is white (from statement 8), which contradicts our assumption that Harry is not white.\n\nHowever, the statement \"All cold, rough people are round\" (statement 9) gives us a clue.\nIf Harry is cold, then he is rough, and if he is rough, then he is round.\n\nNow, let's analyze the statement \"All round, green people are cold.\"\nIf Harry is round, then he is cold.\n\nHowever, we also know that if Harry is cold, then he is white (from statement 8).\n\nNow, let's put everything together:\n- If Harry is round, then he is cold (from statement 7).\n- If Harry is cold, then he is white (from statement 8).\n- If Harry is white, then he is green (from statement 3).\n\nHowever, we already know that Harry is green.\nSo, we can conclude that:\n- If Harry is round, then he is cold, and if he is cold, then he is white, and if he is white, then he is green.\n\nHowever, we know that Harry is green, furry, and cold.\nBut we also know that if Harry is furry and green, then he is rough (from statement 5).\n\nNow, let's analyze the statement \"All cold, rough people are round\" (statement 9).\nIf Harry is cold and rough, then he is round.\n\nHowever, we know that Harry is furry, green, and cold.\nIf Harry is furry and green, then he is rough (from statement 5).\n\nNow, let's analyze the statement \"All cold, rough people are round\" (statement 9).\nIf Harry is cold and rough, then he is round.\n\nSo, we can conclude that:\n- Harry is round, cold, and rough.\n\nHowever, we know that if Harry is round, then he is cold (from statement 7).\nAnd we also know that if Harry is cold, then he is white (from statement 8).\n\nSo, we can conclude that:\n- Harry is white.\n\nTherefore, the statement \"Harry is not white\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we will use a series of logical deductions based on the given premises.\n\n1. Premise: Harry is furry. Harry is green.\n2. From premise 1, we know Harry is furry and green. \n3. From premise 4, we know all furry, green people are rough. \n   Therefore, Harry is rough. \n\n4. From premise 5, we know all round, green people are cold. \n   Since Harry is green, we can conclude that Harry is cold.\n\n5. From premise 7, we know all furry people are cold.\n   Since Harry is furry and we already concluded that Harry is cold, this premise is consistent with our current information.\n\n6. From premise 8, we know all round, green people are cold.\n   Since Harry is green and we already concluded that Harry is cold, this premise is consistent with our current information.\n\n7. From premise 1, we know Harry is furry. \n   From premise 9, we know all furry, green people are rough. \n   Since Harry is furry and green, we can conclude that Harry is rough. \n\n8. From premise 10, we know all round, green people are cold.\n   Since Harry is green, we can conclude that Harry is cold.\n\n9. From premise 2, we know Erin is white. Erin is round.\n10. From premise 6, we know all round people are round.\n    Since Erin is round, this premise is consistent with our current information.\n\n11. From premise 1, we know Harry is furry. \n    From premise 3, we know all round, furry people are green. \n    Since Harry is furry, we can conclude that Harry is green.\n\n12. From premise 7, we know all furry people are cold.\n    Since Harry is furry, we can conclude that Harry is cold.\n\n13. From premise 11, we know Harry is green. \n    From premise 5, we know all round, green people are cold.\n    Since Harry is green, we can conclude that Harry is cold.\n\n14. From premise 1, we know Harry is furry. \n    From premise 4, we know all furry, green people are rough. \n    Since Harry is furry and green, we can conclude that Harry is rough.\n\n15. From premise 13, we know Harry is cold. \n    From premise 6, we know all round, green people are cold.\n    Since Harry is cold, this premise is consistent with our current information.\n\n16. From premise 1, we know Harry is furry. \n    From premise 3, we know all round, furry people are green.\n    Since Harry is furry, we can conclude that Harry is green.\n\n17. From premise 7, we know all furry people are cold.\n    Since Harry is furry, we can conclude that Harry is cold.\n\n18. From premise 1, we know Harry is furry. \n    From premise 4, we know all furry, green people are rough.\n    Since Harry is furry and green, we can conclude that Harry is rough.\n\n19. From premise 6, we know all round, green people are cold.\n    Since Harry is green, we can conclude that Harry is cold.\n\n20. From premise 7, we know all furry people are cold.\n    Since Harry is furry, we can conclude that Harry is cold.\n\n21. From premise 1, we know Harry is furry. \n    From premise 3, we know all round, furry people are green.\n    Since Harry is furry, we can conclude that Harry is green.\n\n22. From premise 6, we know all round, green people are cold.\n    Since Harry is green, we can conclude that Harry is cold.\n\n23. From premise 7, we know all furry people are cold.\n    Since Harry is furry, we can conclude that Harry is cold.\n\n24. From premise 1, we know Harry is furry. \n    From premise 4, we know all furry, green people are rough.\n    Since Harry is furry and green, we can conclude that Harry is rough.\n\n25. From premise 6, we know all round, green people are cold.\n    Since Harry is green, we can conclude that Harry is cold.\n\n26. From premise 7, we know all furry people are cold.\n    Since Harry is furry, we can conclude that Harry is cold.\n\n27. From premise 1, we know Harry is furry. \n    From premise 5, we know all furry, green people are rough.\n    Since Harry is furry and green, we can conclude that Harry is rough.\n\n28. From premise 6, we know all round, green people are cold.\n    Since Harry is green, we can conclude that Harry is cold.\n\n29. From premise 7, we know all furry people are cold.\n    Since Harry is furry, we can conclude that Harry is cold.\n\n30. From premise 1, we know Harry is furry. \n    From premise 3, we know all round, furry people are green.\n    Since Harry is furry, we can conclude that Harry is green.\n\n31. From premise 6, we know all round, green people are cold.\n    Since Harry is green, we can conclude that Harry is cold.\n\n32. From premise 7, we know all furry people are cold.\n    Since Harry is furry, we can conclude that Harry is cold.\n\n33. From premise 1, we know Harry is furry. \n    From premise 4, we know all furry, green people are rough.\n    Since Harry is furry and green, we can conclude that Harry is rough.\n\n34. From premise 6, we know all round, green people are cold.\n    Since Harry is green, we can conclude that Harry is cold.\n\n35. From premise 7, we know all furry people are cold.\n    Since Harry is furry, we can conclude that Harry is cold.\n\n36. From premise 1, we know Harry is furry. \n    From premise 5, we know all furry people are cold.\n    Since Harry is furry, we can conclude that Harry is cold.\n\n37. From premise 1, we know Harry is furry. \n    From premise 4, we know all furry, green people are rough.\n    Since Harry is furry and green, we can conclude that Harry is rough.\n\n38. From premise 6, we know all round, green people are cold.\n    Since Harry is green, we can conclude that Harry is cold.\n\n39. From premise 7, we know all furry people are cold.\n    Since Harry is furry, we can conclude that Harry is cold.\n\n40. From premise 3, we know all round, furry people are green. \n    From premise 1, we know Harry is furry. \n    Since Harry is furry, we can conclude that Harry is green.\n\n41. From premise 6, we know all round, green people are cold.\n    Since Harry is green, we can conclude that Harry is cold.\n\n42. From premise 7, we know all furry people are cold.\n    Since Harry is furry, we can conclude that Harry is cold.\n\n43. From premise 4, we know all furry, green people are rough. \n    From premise 1, we know Harry is furry. \n    Since Harry is furry, we can conclude that Harry is green.\n\n44. From premise 6, we know all round, green people are cold.\n    Since Harry is green, we can conclude that Harry is cold.\n\n45. From premise 7, we know all furry people are cold.\n    Since Harry is furry, we can conclude that Harry is cold.\n\n46. From premise 3, we know all round, furry people are green. \n    From premise 1, we know Harry is furry. \n    Since Harry is furry, we can conclude that Harry is green.\n\n47. From premise 6, we know all round, green people are cold.\n    Since Harry is green, we can conclude that Harry is cold.\n\n48. From premise 7, we know all furry people are cold.\n    Since Harry is furry, we can conclude that Harry is cold.\n\n49. From premise 4, we know all furry, green people are rough. \n    From premise 1, we know Harry is furry. \n    Since Harry is furry, we can conclude that Harry is green.\n\n50. From premise 6, we know all round, green people are cold.\n    Since Harry is green, we can conclude that Harry is cold.\n\n51. From premise 7, we know all furry people are cold.\n    Since Harry is furry, we can conclude that Harry is cold.\n\n52. From premise 6, we know all round, green people are cold. \n    From premise 1, we know Harry is green. \n    Since Harry is green, we can conclude that Harry is cold.\n\n53. From premise 7, we know all furry people are cold. \n    From premise 1, we know Harry is furry. \n    Since Harry is furry, we can conclude that Harry is cold.\n\n54. From premise 5, we know all round, green people are cold. \n    From premise 1, we know Harry is green. \n    Since Harry is green, we can conclude that Harry is cold.\n\n55. From premise 7, we know all furry people are cold. \n    From premise 1, we know Harry is furry. \n    Since Harry is furry, we can conclude that Harry is cold.\n\n56. From premise 6, we know all round, green people are cold. \n    From premise 1, we know Harry is green. \n    Since Harry is green, we can conclude that Harry is cold.\n\n57. From premise 7, we know all furry people are cold. \n    From premise 1, we know Harry is furry. \n    Since Harry is furry",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not white\" is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\nFrom the given information, we know:\n\n1. Harry is furry.\n2. Harry is green.\n\nWe also know:\n\n1. Furry, white people are green.\n2. All round, furry people are green.\n\nHowever, we don't know if Harry is round or not. So, we'll look at the information that relates to Harry being furry and green.\n\nNow, let's consider the information that relates to Harry's color:\n\n1. All round, furry people are green.\n2. All white people are cold.\n3. All cold people are white.\n\nWe can see that the given information doesn't directly state that Harry is white or not. However, we can analyze the information about Harry being furry and green in relation to the information about round, furry people and white people.\n\nFrom statement 2, we know that all round, furry people are green. However, this doesn't necessarily mean that Harry is round. We also know that Harry is furry and green, but we don't have enough information to determine if he's round or not.\n\nNow, let's consider the information about Harry being furry and green in relation to the information about white people:\n\n1. All white people are cold.\n2. All cold people are white.\n3. If someone is cold then they are furry.\n\nWe can see that if Harry is white, then he must be cold, and since all cold people are white, this creates a loop that indicates Harry might be white. However, this is not conclusive, and we still don't know for sure if Harry is white.\n\nNow, let's consider the statement \"Harry is not white.\" If Harry is not white, then he must be round, as all round, furry people are green, and Harry is furry and green. However, if Harry is round, then we don't know if he's white or not, as the information about round people is not conclusive.\n\nIn summary, we have two possible scenarios:\n\nScenario 1: Harry is white. This is a possible scenario, but it's not conclusive.\nScenario 2: Harry is round. This scenario is also possible, but it's not conclusive.\n\nSince we can't determine with certainty whether Harry is white or round, we can't conclude that the statement \"Harry is not white\" is true or false. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not white\" is true, false, or unknown, we need to analyze the given statements and apply logical reasoning.\n\n1.  Harry is furry. (Statement 1)\n2.  Harry is green. (Statement 2)\n3.  Furry, white people are green. (Statement 3)\n4.  All round, furry people are green. (Statement 4)\n5.  All cold people are white. (Statement 5)\n6.  All cold, rough people are round. (Statement 6)\n7.  All white people are cold. (Statement 7)\n8.  If someone is cold then they are furry. (Statement 8)\n9.  All furry, green people are rough. (Statement 9)\n10. All round, green people are cold. (Statement 10)\n\nNow, we will try to find the conclusion by combining the given statements.\n\nFrom Statements 1 and 2, we know Harry is furry and green.\n\nFrom Statement 9, we can conclude that since Harry is furry and green, he must be rough.\n\nNow, from Statement 4, we can conclude that since Harry is furry and rough, he must be round.\n\nFrom Statement 10, we can conclude that since Harry is round and green, he must be cold.\n\nFrom Statement 7, we can conclude that since Harry is white and cold, he must be white.\n\nNow, we have two statements: Harry is white and Harry is not white. \n\nBut Statement 7 says all white people are cold. And we have already concluded that Harry is cold. This means Harry must be white.\n\nTherefore, \"Harry is not white\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether Harry is not white, we need to analyze the given statements and the information we can infer from them.\n\n1. Anne is white. \n2. Erin is round.\n3. Erin is white.\n4. Gary is cold.\n5. Gary is round.\n6. Harry is furry.\n7. Harry is green.\n8. Furry, white people are green.\n9. Nice people are round.\n10. All round, furry people are green.\n11. All cold people are white.\n12. All cold, rough people are round.\n13. All white people are cold.\n14. If someone is cold then they are furry.\n15. All furry, green people are rough.\n16. All round, green people are cold.\n\nFrom statement 13, we can infer that since all white people are cold and Harry is furry, Harry must be white if he is cold (from statement 14).\n\nHowever, statement 8 suggests that furry, white people are green. Since Harry is furry and green (from statement 7), it is possible that Harry is white.\n\nHowever, we also have statement 7, which directly says Harry is green and furry. We can then use statement 10, which says all round, furry people are green. This tells us that since Harry is furry, he must be round, and then green (which we already know). \n\nWe cannot determine if Harry is white or not from the information provided, because we have two possible scenarios:\n- If Harry is cold (which makes him furry from statement 14), then he is white (from statement 11).\n- If Harry is round (which makes him furry and green from statement 10), then we cannot determine if he is white or not.\n\nSo, our analysis is inconclusive, and we cannot definitively say that Harry is not white or that he is white. Therefore, the statement \"Harry is not white\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine the truth value of the statement \"Harry is not white,\" we need to analyze the given information step by step.\n\n1. Harry is furry. (Given information)\n2. Harry is green. (Given information)\n3. Furry, white people are green. (Given information)\n   From this, we can infer that Harry cannot be white because if he were white, he would not be green. So, we can say that Harry is not white.\n\nHowever, before making a conclusion, let's verify if our information is consistent with the given statements.\n\n4. All white people are cold. (Given information)\n   Since we have determined that Harry is not white, we do not need to use this information.\n\n5. If someone is cold then they are furry. (Given information)\n   This information does not contradict our previous conclusion.\n\n6. All furry, green people are rough. (Given information)\n   This information does not contradict our previous conclusion.\n\n7. All round, green people are cold. (Given information)\n   We do not know if Harry is round or not, so we cannot conclude anything from this statement.\n\n8. Nice people are round. (Given information)\n   We do not know if Harry is nice or not, so we cannot conclude anything from this statement.\n\n9. All round, furry people are green. (Given information)\n   We do not know if Harry is round or not, so we cannot conclude anything from this statement.\n\n10. All cold people are white. (Given information)\n    This statement is actually false because we know that Gary is cold and Gary is not white.\n\n11. Gary is cold. (Given information)\n    Gary is not white. (From statement 10)\n\n12. Gary is round. (Given information)\n    This information does not contradict our previous conclusion about Harry.\n\n13. All round, rough people are cold. (Given information)\n    We do not know if Harry is round or rough, so we cannot conclude anything from this statement.\n\n14. Erin is round. (Given information)\n    Erin is white. (Given information)\n    This information does not contradict our previous conclusion about Harry.\n\n15. All white people are cold. (Given information)\n    This statement is actually false because we know that Erin is white and Erin is not cold.\n\n16. Anne is white. (Given information)\n    Anne is not cold. (From statement 15)\n\n17. Erin is round. (Given information)\n    Erin is white. (Given information)\n    Erin is not cold. (From statement 15)\n\n18. Gary is cold. (Given information)\n    Gary is round. (Given information)\n    Gary is not white. (From statement 10)\n\nNow, let's summarize what we know about Harry:\n\n1. Harry is furry.\n2. Harry is green.\n3. Harry is not white.\n\nOur final answer is: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not white\" is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\nFrom the given statements:\n\n1. Anne is white.\n2. Erin is round.\n3. Erin is white.\n4. Gary is cold.\n5. Gary is round.\n6. Harry is furry.\n7. Harry is green.\n8. Furry, white people are green.\n9. Nice people are round.\n10. All round, furry people are green.\n11. All cold people are white.\n12. If someone is cold then they are furry.\n13. All furry, green people are rough.\n14. All round, green people are cold.\n\nLet's analyze the statement \"Harry is not white\". \n\nTo prove this statement, we need to show that Harry is not white. \n\nFrom statement 11, we know that all cold people are white. \n\nFrom statement 12, we know that if someone is cold, then they are furry. \n\nFrom statement 14, we know that all round, green people are cold.\n\nSince Harry is green (statement 7) and round (which is not directly stated, but from statement 14 we can infer that Harry is round because he is green and round green people are cold), we can use the information from statements 12 and 14.\n\nFrom statement 12, since Harry is furry and cold (we can conclude that Harry is cold because he is green and round, and round green people are cold), we know that Harry is white (from statement 12).\n\nHowever, we also know that Harry is furry (statement 6) and green (statement 7), and all furry, green people are rough (statement 13). \n\nBut we don't have any information that links being rough to being white. So, we cannot conclude that Harry is not white from the given statements.\n\nTherefore, the statement \"Harry is not white\" is unknown.",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is furry. (Given information)\n2. Harry is green. (Given information)\n3. All furry, green people are rough. (Given information)\n   - From this, we can conclude that Harry is rough.\n\n4. All round, furry people are green. (Given information)\n   - We cannot conclude that Harry is round from this statement alone because it does not directly relate to Harry.\n\n5. Nice people are round. (Given information)\n   - We cannot conclude that Harry is round from this statement alone because it does not directly relate to Harry.\n\n6. Furry, white people are green. (Given information)\n   - This statement does not provide any information about Harry being white.\n\n7. All white people are cold. (Given information)\n   - We cannot conclude anything about Harry's color from this statement alone.\n\n8. All cold, rough people are round. (Given information)\n   - We cannot conclude anything about Harry's color or shape from this statement alone.\n\n9. All round, green people are cold. (Given information)\n   - We cannot conclude anything about Harry's color or shape from this statement alone.\n\n10. Erin is round. Erin is white. Erin is not Harry. (Given information)\n    - This information does not provide any relation to Harry.\n\n11. Gary is cold. Gary is round. Gary is not Harry. (Given information)\n    - This information does not provide any relation to Harry.\n\n12. Anne is white. Anne is not Harry. (Given information)\n    - This information does not provide any relation to Harry.\n\n13. All white people are cold. (Given information)\n    - From this, we can conclude that if someone is white, they must be cold.\n\n14. All furry people are cold. (Indirectly implied from steps 1, 13, and the fact that all white people are cold)\n    - From this, we can conclude that if someone is furry, they must be cold.\n\n15. Gary is cold. Gary is round. Gary is not Harry. (Given information)\n    - This information does not provide any relation to Harry.\n\n16. All round, cold people are Gary. (Indirectly implied from steps 14 and 15)\n    - This statement cannot be concluded from the given information.\n\n17. If someone is cold then they are furry. (Given information)\n    - From this, we can conclude that if someone is cold, they must be furry.\n\n18. All cold, round people are Gary. (Indirectly implied from steps 14 and 15)\n    - This statement cannot be concluded from the given information.\n\n19. All cold people are white. (Given information)\n    - From this, we can conclude that if someone is cold, they must be white.\n\n20. All cold, furry people are white. (Indirectly implied from steps 1, 19)\n    - From this, we can conclude that if someone is cold and furry, they must be white.\n\n21. All white people are cold. (Given information)\n    - From this, we can conclude that if someone is white, they must be cold.\n\n22. All white people are cold. (Given information)\n    - This statement is already concluded in step 21.\n\n23. Gary is cold. Gary is round. (Given information)\n    - This information does not provide any relation to Harry.\n\n24. All round people are Gary or Erin. (Indirectly implied from steps 5 and 23)\n    - This statement cannot be concluded from the given information.\n\n25. Gary is round. (Given information)\n    - This information does not provide any relation to Harry.\n\n26. Gary is not Harry. (Indirectly implied from step 25)\n    - This statement cannot be concluded from the given information.\n\n27. Erin is round. (Given information)\n    - This information does not provide any relation to Harry.\n\n28. Erin is not Harry. (Indirectly implied from step 27)\n    - This statement cannot be concluded from the given information.\n\n29. All round people are Gary or Erin. (Indirectly implied from steps 5 and 23)\n    - This statement cannot be concluded from the given information.\n\n30. All round, furry people are green. (Given information)\n    - We cannot conclude that Harry is round from this statement alone because it does not directly relate to Harry.\n\n31. All furry, green people are rough. (Given information)\n    - We already concluded in step 3 that Harry is rough.\n\n32. All round, green people are cold. (Given information)\n    - We cannot conclude anything about Harry's color or shape from this statement alone.\n\n33. All white people are cold. (Given information)\n    - From this, we can conclude that if someone is white, they must be cold.\n\n34. All white people are cold. (Given information)\n    - This statement is already concluded in step 21.\n\n35. All white people are cold. (Given information)\n    - This statement is already concluded in step 21.\n\n36. All cold people are white. (Given information)\n    - From this, we can conclude that if someone is cold, they must be white.\n\n37. All furry people are cold. (Indirectly implied from steps 1 and 36)\n    - From this, we can conclude that if someone is furry, they must be cold.\n\n38. All furry people are cold. (Indirectly implied from steps 1 and 36)\n    - This statement is already concluded in step 37.\n\n39. All furry people are cold. (Indirectly implied from steps 1 and 36)\n    - This statement is already concluded in step 37.\n\n40. Harry is furry. (Given information)\n    - This statement does not provide any relation to Harry's color.\n\n41. Harry is furry. (Given information)\n    - We already concluded in step 1 that Harry is furry.\n\n42. If someone is cold then they are furry. (Given information)\n    - From this, we can conclude that if someone is cold, they must be furry.\n\n43. All cold people are white. (Given information)\n    - From this, we can conclude that if someone is cold, they must be white.\n\n44. All furry people are cold. (Indirectly implied from steps 1 and 43)\n    - From this, we can conclude that if someone is furry, they must be cold.\n\n45. All cold people are white. (Given information)\n    - This statement is already concluded in step 21.\n\n46. If someone is cold then they are furry. (Given information)\n    - This statement is already concluded in step 42.\n\n47. Harry is furry. (Given information)\n    - This statement does not provide any relation to Harry's color.\n\n48. All furry, green people are rough. (Given information)\n    - We already concluded in step 3 that Harry is rough.\n\n49. All round, green people are cold. (Given information)\n    - We cannot conclude anything about Harry's color or shape from this statement alone.\n\n50. All white people are cold. (Given information)\n    - From this, we can conclude that if someone is white, they must be cold.\n\n51. All cold people are white. (Given information)\n    - From this, we can conclude that if someone is cold, they must be white.\n\n52. If someone is cold then they are furry. (Given information)\n    - From this, we can conclude that if someone is cold, they must be furry.\n\n53. All cold people are white. (Given information)\n    - From this, we can conclude that if someone is cold, they must be white.\n\n54. All furry, green people are rough. (Given information)\n    - We already concluded in step 3 that Harry is rough.\n\n55. All furry people are cold. (Indirectly implied from steps 1 and 53)\n    - From this, we can conclude that if someone is furry, they must be cold.\n\n56. All furry people are cold. (Indirectly implied from steps 1 and 53)\n    - This statement is already concluded in step 55.\n\n57. All white people are cold. (Given information)\n    - From this, we can conclude that if someone is white, they must be cold.\n\n58. All cold people are white. (Given information)\n    - From this, we can conclude that if someone is cold, they must be white.\n\n59. Harry is furry. (Given information)\n    - This statement does not provide any relation to Harry's color.\n\n60. If someone is cold then they are furry. (Given information)\n    - From this, we can conclude that if someone is cold, they must be furry.\n\n61. All furry people are cold. (Indirectly implied from steps 1 and 60)\n    - From this, we can conclude that if someone is furry, they must be cold.\n\n62. All furry, green people are rough. (Given information)\n    - We already concluded in step 3 that Harry is rough.\n\n63. All white people are cold. (Given information)\n    - From this, we can conclude that if someone is white, they must be cold.\n\n64. All cold people are white. (Given information)\n    - From this, we can conclude that if someone is cold, they must be white.\n\n65. If someone is cold then they are furry. (Given information)\n    - From this, we can conclude that if someone is cold, they must be furry.\n\n66. All furry people are cold. (Indirectly implied from steps 1 and 65)\n    - From this, we can conclude that if someone is furry, they must be cold.\n\n67.",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & white(X) -> green(X)",
+          "z3_formula": "Implies(And(furry_X, white_X), green_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> round(X)",
+          "z3_formula": "Implies(And(round_X, nice_X), round_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(round_X, furry_X), green_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_X, white_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> furry(X)",
+          "z3_formula": "Implies(cold_X, furry_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_X, green_X), rough_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & green(X) -> cold(X)",
+          "z3_formula": "Implies(And(round_X, green_X), cold_X)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & white(X) -> green(X)",
+          "z3_formula": "Implies(And(furry_white_X, white_X), green_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> round(X)",
+          "z3_formula": "Implies(nice_X, round_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(round_X, furry_X), green_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_X, white_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> furry(X)",
+          "z3_formula": "Implies(cold_X, furry_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_X, green_X), rough_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & green(X) -> cold(X)",
+          "z3_formula": "Implies(And(round_X, green_X), cold_X)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & white(X) -> green(X)",
+          "z3_formula": "Implies(And(furry_harry, white_harry), green_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_erin, nice_erin)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(round_gary, furry_gary), green_gary)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_gary, white_gary)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(cold_gary, rough_gary), round_gary)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_gary, cold_gary)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> furry(X)",
+          "z3_formula": "Implies(cold_gary, furry_gary)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_harry, green_harry), rough_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & green(X) -> cold(X)",
+          "z3_formula": "Implies(And(round_gary, green_gary), cold_gary)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not white(harry)",
+          "z3_formula": "Not(white_harry) == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not white(harry)",
+          "z3_formula": "Not(white_harry) == False",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == False",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_harry, green_harry), rough_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & green(X) -> cold(X)",
+          "z3_formula": "Implies(And(round_harry, green_harry), cold_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_harry, white_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(round_harry, cold_harry), white_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == Unknown",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & white(X) -> green(X)",
+          "z3_formula": "Implies(And(furry_harry, white_harry), green_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & green(X) -> cold(X)",
+          "z3_formula": "Implies(And(round_harry, green_harry), cold_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> furry(X)",
+          "z3_formula": "Implies(cold_harry, furry_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_harry, green_harry), rough_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(cold_harry, rough_harry), round_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_harry, cold_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_harry, white_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> green(X)",
+          "z3_formula": "Implies(white_harry, green_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not white(harry)",
+          "z3_formula": "Not(white_harry) == True",
+          "source_step": 14
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & white(X) -> green(X)",
+          "z3_formula": "Implies(And(furry_harry, white_harry), green_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(round_harry, furry_harry), green_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_harry, cold_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_harry, white_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> furry(X)",
+          "z3_formula": "Implies(cold_harry, furry_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry) | round(harry)",
+          "z3_formula": "Or(white_harry, round_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "Not(white(harry))",
+          "z3_formula": "Not(white_harry)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & white(X) -> green(X)",
+          "z3_formula": "Implies(And(furry_harry, white_harry), green_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> green(X)",
+          "z3_formula": "Implies(And(furry_harry, round_harry), green_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_harry, white_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(cold_harry, rough_harry), round_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_harry, cold_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> furry(X)",
+          "z3_formula": "Implies(cold_harry, furry_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_harry, green_harry), rough_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & green(X) -> cold(X)",
+          "z3_formula": "Implies(And(round_harry, green_harry), cold_harry)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(white_harry, furry_harry), green_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_erin, nice_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(round_harry, furry_harry), green_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_harry, white_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> furry(X)",
+          "z3_formula": "Implies(cold_harry, furry_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_harry, green_harry), rough_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & green(X) -> cold(X)",
+          "z3_formula": "Implies(And(round_harry, green_harry), cold_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & white(X) -> green(X)",
+          "z3_formula": "Implies(And(furry_harry, white_harry), green_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not white(harry)",
+          "z3_formula": "Not(white_harry) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_harry, cold_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(harry)",
+          "z3_formula": "Not(cold_harry) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_harry, green_harry), rough_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_harry, cold_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "round(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(round_harry, furry_harry), green_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_gary, white_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not white(gary)",
+          "z3_formula": "Not(white_gary) == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) & rough(X) -> cold(X)",
+          "z3_formula": "Implies(And(round_gary, rough_gary), cold_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(erin)",
+          "z3_formula": "Not(cold_erin) == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_erin, cold_erin)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(anne)",
+          "z3_formula": "Not(cold_anne) == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & white(X) & green(X) -> green(X)",
+          "z3_formula": "Implies(And(furry_X, white_X, green_X), green_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_X, nice_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(round_X, furry_X), green_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_X, white_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> furry(X)",
+          "z3_formula": "Implies(cold_X, furry_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & green(X) -> cold(X)",
+          "z3_formula": "Implies(And(round_X, green_X), cold_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_X, green_X), rough_X)",
+          "source_step": 14
+        }
+      ],
+      []
+    ],
+    "constraints_stats": {
+      "total_extracted": 147,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 48
+    },
+    "maxsat_stats": {
+      "satisfied": 44,
+      "excluded": 4,
+      "total_weight": 139,
+      "solve_time_ms": 2.1421341225504875
+    },
+    "timing": {
+      "trace_gen_s": 24.856,
+      "extraction_s": 47.484,
+      "dedup_s": 1.547,
+      "maxsat_s": 0.005,
+      "total_s": 73.892
+    }
+  }
+}

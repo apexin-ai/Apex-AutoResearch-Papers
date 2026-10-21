@@ -1,0 +1,34 @@
+{
+  "exp_id": "eval_math500_grpo_cka_only_25",
+  "project": "recovery_aware_struct_prune",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T08:39:24.350Z",
+    "updated_at": "2026-05-21T13:38:44.529Z",
+    "hypothesis": "CKA-only 25% GRPO model MATH-500 accuracy provides cross-benchmark validation at 25% sparsity, complementing GSM8K results for the cross-sparsity table",
+    "spec": {
+      "command": "nohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_25 --seed 42'",
+      "server": "westd-29022",
+      "gpu": "cuda:0",
+      "pid": 336961,
+      "data_path": "MATH-500",
+      "data_count": 500,
+      "model_name": "grpo_cka_only_25",
+      "model_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_25",
+      "seed": 42,
+      "checkpoint_source": "grpo_cka_only_25",
+      "eval_data": "MATH-500",
+      "log_path": "/root/runs/recovery_aware_struct_prune/eval_math500_grpo_cka_only_25.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T13:38:39.311Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-21T13:38:45.084590+00:00",
+  "trigger": "update_registry"
+}

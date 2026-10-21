@@ -1,0 +1,25 @@
+paper_key: "vanderweele_li2019"
+title: "Simple Sensitivity Analysis for Differential Measurement Error"
+venue: "American Journal of Epidemiology 2019"
+full_text_available: false
+
+research:
+  baselines: ["standard regression without correction", "complete-case analysis"]
+  metrics:
+    - {name: "bias magnitude under differential misclassification", direction: "lower_better"}
+    - {name: "sensitivity parameter range", direction: "N/A"}
+  datasets:
+    - {name: "illustrative examples from epidemiological studies", size: "N/A"}
+  ablation_dimensions: ["differential vs non-differential error", "sensitivity parameter values"]
+  training_recipe: "N/A (analytical/theoretical)"
+  method_family: "sensitivity analysis for measurement error"
+
+positioning:
+  core_claim: "Provides simple closed-form sensitivity analysis formulas for differential measurement error in exposure and outcome variables"
+  key_results: "Analytical bounds on bias from differential misclassification"
+  limitations: ["assumes binary variables", "requires specification of sensitivity parameters"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

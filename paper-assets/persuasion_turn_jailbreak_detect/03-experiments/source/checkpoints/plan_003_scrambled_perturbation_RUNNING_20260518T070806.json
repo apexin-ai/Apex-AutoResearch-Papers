@@ -1,0 +1,29 @@
+{
+  "exp_id": "plan_003_scrambled_perturbation",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T07:07:32.928Z",
+    "updated_at": "2026-05-18T07:08:06.473Z",
+    "hypothesis": "Scrambled-label classification (random strategy labels on domain text) will show perturbation degradation between binary (0.000) and MLM (-0.026), testing whether correct label content matters for robustness or if any classification structure suffices",
+    "parent": "plan_003_scrambled_ablation",
+    "spec": {
+      "command": "python src/plan_003_scrambled_gru_and_perturbed_eval.py",
+      "server": "westd-33183",
+      "data_path": "data/final_v2/train_scrambled.jsonl",
+      "data_count": 336,
+      "model_name": "microsoft/deberta-v3-base",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/plan_003_scrambled_retrain/deberta_multitask/best",
+      "eval_data": "results/plan_004_perturbed_test.jsonl",
+      "checkpoint_path": "checkpoints/plan_003_scrambled_retrain",
+      "log_path": "runs/persuasion_turn_jailbreak_detect/plan_003_scrambled_retrain.log"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-18T07:08:06.676601+00:00",
+  "trigger": "update_registry"
+}

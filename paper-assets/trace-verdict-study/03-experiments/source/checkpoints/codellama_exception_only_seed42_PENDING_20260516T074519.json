@@ -1,0 +1,20 @@
+{
+  "exp_id": "codellama_exception_only_seed42",
+  "project": "trace-verdict-study",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T07:27:41.475Z",
+    "updated_at": "2026-05-16T07:45:18.933Z",
+    "spec": {
+      "hypothesis": "Multi-family validation: exception_only on CodeLlama-7B-Instruct. Tests if exception dominance generalizes to LLaMA family.",
+      "model_name": "CodeLlama-7b-Instruct-hf",
+      "seed": 42,
+      "condition": "exception_only"
+    }
+  },
+  "timestamp": "2026-05-16T07:45:19.041714+00:00",
+  "trigger": "update_registry"
+}

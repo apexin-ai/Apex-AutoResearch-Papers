@@ -1,0 +1,565 @@
+[
+  {
+    "id": "folio_166",
+    "problem": "Given the following premises:\nOn some Mondays at 8 pm, roses are given out on TV. Every rose given out on TV is on the Bachelor. Everything on the Bachelor portrays the lives of real people. All shows portraying the lives of real people are reality TV shows. Breaking Bad is not a reality TV show.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nIf roses are given out during Breaking Bad, then it is on Monday at 8 pm.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "\u2203x (Mondayat8(x) \u2227 RoseGivenOutOnTv(x))",
+      "\u2200x (RoseGivenOutOnTv(x) \u2192 OnBachelor(x))",
+      "\u2200x (OnBachelor(x) \u2192 PortrayLiveOfRealPeople(x))",
+      "\u2200x (PortrayLiveOfRealPeople(x) \u2192 RealityTVShow(x))",
+      "\u00acRealityTVShow(breakingbad)"
+    ],
+    "conclusion_fol": "RoseGivenOutOnTv(breakingbad) \u2192 Mondayat8(breakingbad)"
+  },
+  {
+    "id": "folio_167",
+    "problem": "Given the following premises:\nHeinrich Scmidt was a Nazi German politician.  Heeinrich Scmidt was also a member of the Prussian State Parliament and the Nazi Reichstag.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nHeinrich Schmidt was either German or Russian.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "From(heinrichScmidt, naziGermany) \u2227 Politician(heinrichScmidt)",
+      "Member(heinrichScmidt, prussianStateParliament) \u2227 Member(heinrichScmidt, naziReichstag)"
+    ],
+    "conclusion_fol": "From(heinrichScmidt, naziGermany) \u2228 From(heinrichScmidt, russia)"
+  },
+  {
+    "id": "folio_168",
+    "problem": "Given the following premises:\nHeinrich Scmidt was a Nazi German politician.  Heeinrich Scmidt was also a member of the Prussian State Parliament and the Nazi Reichstag.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nSome Nazi German politician was part of both the Prussian State Parliament and the Nazi Reichstag.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "From(heinrichScmidt, naziGermany) \u2227 Politician(heinrichScmidt)",
+      "Member(heinrichScmidt, prussianStateParliament) \u2227 Member(heinrichScmidt, naziReichstag)"
+    ],
+    "conclusion_fol": "\u2203x (From(x, naziGermany) \u2227 Politician(x) \u2227 Member(x, prussianStateParliament) \u2227 Member(x, naziReichstag))"
+  },
+  {
+    "id": "folio_169",
+    "problem": "Given the following premises:\nHeinrich Scmidt was a Nazi German politician.  Heeinrich Scmidt was also a member of the Prussian State Parliament and the Nazi Reichstag.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nNo politicans are part of the Nazi Reichstag.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "From(heinrichScmidt, naziGermany) \u2227 Politician(heinrichScmidt)",
+      "Member(heinrichScmidt, prussianStateParliament) \u2227 Member(heinrichScmidt, naziReichstag)"
+    ],
+    "conclusion_fol": "\u2200x (Politician(x) \u2192 \u00acMember(x, naziReichstag))"
+  },
+  {
+    "id": "folio_170",
+    "problem": "Given the following premises:\nIf something is a deadly disease, then its survival rate is low.  All severe cancers are deadly diseases. Bile duct cancer is a severe cancer.  All Cholangiocarcinoma is bile duct cancer. No one with mild flu has a low survival rate. If colorectal cancer is a bile duct cancer and the survival rate is low, then colorectal cancer is not a bile duct cancer.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nColorectal cancer is a severe cancer",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (DeadlyDiseases(x) \u2192 SurvivalRateIsLow(x))",
+      "\u2200x (SevereCancer(x) \u2192 DeadlyDiseases(x))",
+      "\u2200x (BileDuctCancer(x) \u2192 SevereCancer(x))",
+      "\u2200x (Cholangiocarcinoma(x) \u2192 BileDuctCancer(x))",
+      "\u2200x (MildFlu(x) \u2192 \u00acSurvivalRateIsLow(x)) ",
+      "BileDuctCancer(colorectalCancer) \u2228 SurvivalRateIsLow(colorectalCancer) \u2192 \u00acBileDuctCancer(colorectalCancer)"
+    ],
+    "conclusion_fol": "SevereCancer(colorectalCancer)"
+  },
+  {
+    "id": "folio_171",
+    "problem": "Given the following premises:\nIf something is a deadly disease, then its survival rate is low.  All severe cancers are deadly diseases. Bile duct cancer is a severe cancer.  All Cholangiocarcinoma is bile duct cancer. No one with mild flu has a low survival rate. If colorectal cancer is a bile duct cancer and the survival rate is low, then colorectal cancer is not a bile duct cancer.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nIf colorectal cancer is a bile duct cancer or a Cholangiocarcinoma, then colorectal cancer is a bile duct cancer and a mild flu.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (DeadlyDiseases(x) \u2192 SurvivalRateIsLow(x))",
+      "\u2200x (SevereCancer(x) \u2192 DeadlyDiseases(x))",
+      "\u2200x (BileDuctCancer(x) \u2192 SevereCancer(x))",
+      "\u2200x (Cholangiocarcinoma(x) \u2192 BileDuctCancer(x))",
+      "\u2200x (MildFlu(x) \u2192 \u00acSurvivalRateIsLow(x)) ",
+      "BileDuctCancer(colorectalCancer) \u2228 SurvivalRateIsLow(colorectalCancer) \u2192 \u00acBileDuctCancer(colorectalCancer)"
+    ],
+    "conclusion_fol": "BileDuctCancer(colorectalCancer) \u2228 Cholangiocarcinoma(colorectalCancer) \u2192 BileDuctCancer(colorectalCancer) \u2227 MildFlu(colorectalCancer)"
+  },
+  {
+    "id": "folio_172",
+    "problem": "Given the following premises:\nIf something is a deadly disease, then its survival rate is low.  All severe cancers are deadly diseases. Bile duct cancer is a severe cancer.  All Cholangiocarcinoma is bile duct cancer. No one with mild flu has a low survival rate. If colorectal cancer is a bile duct cancer and the survival rate is low, then colorectal cancer is not a bile duct cancer.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nIf colorectal cancer is not a mild flu and a Cholangiocarcinoma, then colorectal cancer is a bile duct cancer or a Cholangiocarcinoma.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (DeadlyDiseases(x) \u2192 SurvivalRateIsLow(x))",
+      "\u2200x (SevereCancer(x) \u2192 DeadlyDiseases(x))",
+      "\u2200x (BileDuctCancer(x) \u2192 SevereCancer(x))",
+      "\u2200x (Cholangiocarcinoma(x) \u2192 BileDuctCancer(x))",
+      "\u2200x (MildFlu(x) \u2192 \u00acSurvivalRateIsLow(x)) ",
+      "BileDuctCancer(colorectalCancer) \u2228 SurvivalRateIsLow(colorectalCancer) \u2192 \u00acBileDuctCancer(colorectalCancer)"
+    ],
+    "conclusion_fol": "\u00acMildFlu(colorectalCancer) \u2228 \u00acCholangiocarcinoma(colorectalCancer) \u2192 BileDuctCancer(colorectalCancer) \u2228 Cholangiocarcinoma(colorectalCancer)"
+  },
+  {
+    "id": "folio_173",
+    "problem": "Given the following premises:\nAll people who eat salads regularly are very conscious about their health and eating habits. All people who grew up in health-conscious childhood homes eat salads regularly. All people who fulfill their nutritional daily intakes grew up in health-conscious childhood homes. If people have good relationships with their parents, then they fulfill their nutritional daily intakes. If people have good relationships with their parents, then they do not eat salads regularly. If people visit the gym at least once a day, then they always fulfill their daily nutritional intakes. It is either both true that Taylor grew up in a health-conscious childhood home and she has a good relationship with her parents, or it is true that Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nTaylor eats salads regularly.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (Salad(x) \u2192 HealthyHabits(x))",
+      "\u2200x (HealthyChildhood(x) \u2192 Salad(x))",
+      "\u2200x (Nutritional(x) \u2192 HealthyChildhood(x))",
+      "\u2200x (GoodRelationship(x) \u2192 \u00acHealthyHabits(x))",
+      "\u2200x (Gym(x) \u2192 Nutritional(x))",
+      "(HealthyChildhood(taylor) \u2227 GoodRelationship(taylor)) \u2228 \u00acHealthyChildhood(taylor) \u2227 \u00acGoodRelationship(marcy)"
+    ],
+    "conclusion_fol": "Salad(taylor)"
+  },
+  {
+    "id": "folio_174",
+    "problem": "Given the following premises:\nAll people who eat salads regularly are very conscious about their health and eating habits. All people who grew up in health-conscious childhood homes eat salads regularly. All people who fulfill their nutritional daily intakes grew up in health-conscious childhood homes. If people have good relationships with their parents, then they fulfill their nutritional daily intakes. If people have good relationships with their parents, then they do not eat salads regularly. If people visit the gym at least once a day, then they always fulfill their daily nutritional intakes. It is either both true that Taylor grew up in a health-conscious childhood home and she has a good relationship with her parents, or it is true that Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nTaylor visits the gym at least once a day.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (Salad(x) \u2192 HealthyHabits(x))",
+      "\u2200x (HealthyChildhood(x) \u2192 Salad(x))",
+      "\u2200x (Nutritional(x) \u2192 HealthyChildhood(x))",
+      "\u2200x (GoodRelationship(x) \u2192 \u00acHealthyHabits(x))",
+      "\u2200x (Gym(x) \u2192 Nutritional(x))",
+      "(HealthyChildhood(taylor) \u2227 GoodRelationship(taylor)) \u2228 \u00acHealthyChildhood(taylor) \u2227 \u00acGoodRelationship(marcy)"
+    ],
+    "conclusion_fol": "Gym(taylor)"
+  },
+  {
+    "id": "folio_175",
+    "problem": "Given the following premises:\nAll people who eat salads regularly are very conscious about their health and eating habits. All people who grew up in health-conscious childhood homes eat salads regularly. All people who fulfill their nutritional daily intakes grew up in health-conscious childhood homes. If people have good relationships with their parents, then they fulfill their nutritional daily intakes. If people have good relationships with their parents, then they do not eat salads regularly. If people visit the gym at least once a day, then they always fulfill their daily nutritional intakes. It is either both true that Taylor grew up in a health-conscious childhood home and she has a good relationship with her parents, or it is true that Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nTaylor neither grew up in a health-conscious childhood home nor does she visit the gym at least once a day.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (Salad(x) \u2192 HealthyHabits(x))",
+      "\u2200x (HealthyChildhood(x) \u2192 Salad(x))",
+      "\u2200x (Nutritional(x) \u2192 HealthyChildhood(x))",
+      "\u2200x (GoodRelationship(x) \u2192 \u00acHealthyHabits(x))",
+      "\u2200x (Gym(x) \u2192 Nutritional(x))",
+      "(HealthyChildhood(taylor) \u2227 GoodRelationship(taylor)) \u2228 \u00acHealthyChildhood(taylor) \u2227 \u00acGoodRelationship(marcy)"
+    ],
+    "conclusion_fol": "\u00ac(HealthyChildhood(taylor) \u2228 Gym(taylor))"
+  },
+  {
+    "id": "folio_176",
+    "problem": "Given the following premises:\n[BG] The Olympic games is a sporting event.  The last Olympic games was in Tokyo. The United States won the most medals in Tokyo.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nThe world championships is a sporting event.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "SportingEvent(olympics)",
+      "LastOlympics(tokyo)",
+      "MostMedals(unitedStates, tokyo)"
+    ],
+    "conclusion_fol": "SportingEvent(champs)"
+  },
+  {
+    "id": "folio_177",
+    "problem": "Given the following premises:\n[BG] The Olympic games is a sporting event.  The last Olympic games was in Tokyo. The United States won the most medals in Tokyo.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nThe last Olympic games were not in Tokyo.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "SportingEvent(olympics)",
+      "LastOlympics(tokyo)",
+      "MostMedals(unitedStates, tokyo)"
+    ],
+    "conclusion_fol": "\u00acLastOlympics(tokyo)"
+  },
+  {
+    "id": "folio_178",
+    "problem": "Given the following premises:\n[BG] The Olympic games is a sporting event.  The last Olympic games was in Tokyo. The United States won the most medals in Tokyo.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nThe United States won the most medals in the last Olympic games.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "SportingEvent(olympics)",
+      "LastOlympics(tokyo)",
+      "MostMedals(unitedStates, tokyo)"
+    ],
+    "conclusion_fol": "\u2203x (LastOlympics(x) \u2227 MostMedals(unitedStates, x))"
+  },
+  {
+    "id": "folio_179",
+    "problem": "Given the following premises:\nAll horses have hooves. No humans have hooves.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nSome humans are horses.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (Horse(x) \u2192 Hooves(x))",
+      "\u2200x (Human(x) \u2192 \u00acHooves(x))"
+    ],
+    "conclusion_fol": "\u2203x (Human(x) \u2227 Horse(x))"
+  },
+  {
+    "id": "folio_180",
+    "problem": "Given the following premises:\nSusan flies to LGA airport. The departure and arrival can not be the same airport. John flies from LGA airport.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nSusan flies from LGA airport.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "FlyTo(susan, lga)",
+      "\u2200x \u2200y (FlyFrom(x, y) \u2295 FlyTo(x, y))",
+      "FlyFrom(john, lga)"
+    ],
+    "conclusion_fol": "FlyFrom(susan, lga)"
+  },
+  {
+    "id": "folio_181",
+    "problem": "Given the following premises:\nSusan flies to LGA airport. The departure and arrival can not be the same airport. John flies from LGA airport.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nJohn flies to LGA airport.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "FlyTo(susan, lga)",
+      "\u2200x \u2200y (FlyFrom(x, y) \u2295 FlyTo(x, y))",
+      "FlyFrom(john, lga)"
+    ],
+    "conclusion_fol": "FlyTo(john, lga)"
+  },
+  {
+    "id": "folio_182",
+    "problem": "Given the following premises:\nNo one nice to animals is mean to animals. Some grumpy people are mean to animals. All animal lovers are nice to animals. If someone owns a pet, then they love animals. Tom is a pet owner.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nTom is a grumpy person.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (Nice(x) \u2192 \u00acMean(x))",
+      "\u2203x (Grumpy(x) \u2227 Mean(x))",
+      "\u2200x (AnimalLover(x) \u2192 Nice(x))",
+      "\u2200x (PetOwner(x) \u2192 AnimalLover(x))",
+      "PetOwner(tom)"
+    ],
+    "conclusion_fol": "Grumpy(tom)"
+  },
+  {
+    "id": "folio_183",
+    "problem": "Given the following premises:\nNo one nice to animals is mean to animals. Some grumpy people are mean to animals. All animal lovers are nice to animals. If someone owns a pet, then they love animals. Tom is a pet owner.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nTom is not a grumpy person and mean to animals.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (Nice(x) \u2192 \u00acMean(x))",
+      "\u2203x (Grumpy(x) \u2227 Mean(x))",
+      "\u2200x (AnimalLover(x) \u2192 Nice(x))",
+      "\u2200x (PetOwner(x) \u2192 AnimalLover(x))",
+      "PetOwner(tom)"
+    ],
+    "conclusion_fol": "\u00ac(Grumpy(tom) \u2227 Mean(tom))"
+  },
+  {
+    "id": "folio_184",
+    "problem": "Given the following premises:\nNo one nice to animals is mean to animals. Some grumpy people are mean to animals. All animal lovers are nice to animals. If someone owns a pet, then they love animals. Tom is a pet owner.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nIf Tom is not a grumpy person and mean to animals, then Tom is neither a grumpy person nor an Animal Lover.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (Nice(x) \u2192 \u00acMean(x))",
+      "\u2203x (Grumpy(x) \u2227 Mean(x))",
+      "\u2200x (AnimalLover(x) \u2192 Nice(x))",
+      "\u2200x (PetOwner(x) \u2192 AnimalLover(x))",
+      "PetOwner(tom)"
+    ],
+    "conclusion_fol": "\u00ac(Grumpy(tom) \u2227 Mean(tom)) \u2192 \u00ac(Grumpy(tom) \u2228 AnimalLover(tom))"
+  },
+  {
+    "id": "folio_185",
+    "problem": "Given the following premises:\nA podcast is not a novel. [BG] If a person is born in American City, the person is American. [BG] If a book is novel and it is written by a person, then the person is a novel writer. Dani Shapiro is an American writer. Family History is written by Dani Shapiro. Family History is a novel written in 2003. Dani Shapiro created a podcast called Family Secrets. [BG] Boston is an American city.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nDani Shapiro is a novel writer.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (IsPodcast(x) \u2192 \u00acIsNovel(x))",
+      "\u2200x \u2203y (BornIn(x, y) \u2227 IsCity(y) \u2227 IsAmerican(y) \u2192 IsAmerican(x))",
+      "\u2200x \u2200y (IsNovel(x) \u2227 WrittenBy(x, y) \u2192 WritesNovel(y))",
+      "IsAmerican(dani_Shapiro) \u2227 IsWriter(dani_Shapiro)",
+      "WrittenBy(family_History, dani_Shapiro)",
+      "IsNovel(family_History) \u2227 WrittenIn(family_History, y2003)",
+      "IsPodcast(family_Secrets) \u2227 CreatedBy(family_Secrets, dani_Shapiro)",
+      "IsCity(boston) \u2227 IsAmerican(boston)"
+    ],
+    "conclusion_fol": "WritesNovel(dani_Shapiro)"
+  },
+  {
+    "id": "folio_186",
+    "problem": "Given the following premises:\nA podcast is not a novel. [BG] If a person is born in American City, the person is American. [BG] If a book is novel and it is written by a person, then the person is a novel writer. Dani Shapiro is an American writer. Family History is written by Dani Shapiro. Family History is a novel written in 2003. Dani Shapiro created a podcast called Family Secrets. [BG] Boston is an American city.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nFamily Secrets is a novel.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (IsPodcast(x) \u2192 \u00acIsNovel(x))",
+      "\u2200x \u2203y (BornIn(x, y) \u2227 IsCity(y) \u2227 IsAmerican(y) \u2192 IsAmerican(x))",
+      "\u2200x \u2200y (IsNovel(x) \u2227 WrittenBy(x, y) \u2192 WritesNovel(y))",
+      "IsAmerican(dani_Shapiro) \u2227 IsWriter(dani_Shapiro)",
+      "WrittenBy(family_History, dani_Shapiro)",
+      "IsNovel(family_History) \u2227 WrittenIn(family_History, y2003)",
+      "IsPodcast(family_Secrets) \u2227 CreatedBy(family_Secrets, dani_Shapiro)",
+      "IsCity(boston) \u2227 IsAmerican(boston)"
+    ],
+    "conclusion_fol": "IsNovel(family_Secrets)"
+  },
+  {
+    "id": "folio_187",
+    "problem": "Given the following premises:\nA podcast is not a novel. [BG] If a person is born in American City, the person is American. [BG] If a book is novel and it is written by a person, then the person is a novel writer. Dani Shapiro is an American writer. Family History is written by Dani Shapiro. Family History is a novel written in 2003. Dani Shapiro created a podcast called Family Secrets. [BG] Boston is an American city.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nDani Shapiro was born in Boston.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (IsPodcast(x) \u2192 \u00acIsNovel(x))",
+      "\u2200x \u2203y (BornIn(x, y) \u2227 IsCity(y) \u2227 IsAmerican(y) \u2192 IsAmerican(x))",
+      "\u2200x \u2200y (IsNovel(x) \u2227 WrittenBy(x, y) \u2192 WritesNovel(y))",
+      "IsAmerican(dani_Shapiro) \u2227 IsWriter(dani_Shapiro)",
+      "WrittenBy(family_History, dani_Shapiro)",
+      "IsNovel(family_History) \u2227 WrittenIn(family_History, y2003)",
+      "IsPodcast(family_Secrets) \u2227 CreatedBy(family_Secrets, dani_Shapiro)",
+      "IsCity(boston) \u2227 IsAmerican(boston)"
+    ],
+    "conclusion_fol": "BornIn(dani_Shapiro, boston)"
+  },
+  {
+    "id": "folio_188",
+    "problem": "Given the following premises:\nSome basketball players are not American. All basketball players are tall. If someone is tall, they wear large shoes. If someone wears large shoes, they wear large-sized clothes. Yuri does not wear large-size clothes.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nYuri is an American.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "\u2203x (BasketballPlayer(x) \u2227 \u00acAmerican(x))",
+      "\u2200x (BasketballPlayer(x) \u2192 Tall(x))",
+      "\u2200x (Tall(x) \u2192 WearLargeShoes(x))",
+      "\u2200x (WearLargeShoes(x) \u2192 WearLargeClothes(x))",
+      "\u00acWearLargeClothes(yuri)"
+    ],
+    "conclusion_fol": "American(yuri)"
+  },
+  {
+    "id": "folio_189",
+    "problem": "Given the following premises:\nSome basketball players are not American. All basketball players are tall. If someone is tall, they wear large shoes. If someone wears large shoes, they wear large-sized clothes. Yuri does not wear large-size clothes.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nYuri is not an American basketball player.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "\u2203x (BasketballPlayer(x) \u2227 \u00acAmerican(x))",
+      "\u2200x (BasketballPlayer(x) \u2192 Tall(x))",
+      "\u2200x (Tall(x) \u2192 WearLargeShoes(x))",
+      "\u2200x (WearLargeShoes(x) \u2192 WearLargeClothes(x))",
+      "\u00acWearLargeClothes(yuri)"
+    ],
+    "conclusion_fol": "\u00ac(American(yuri) \u2227 BasketballPlayer(yuri))"
+  },
+  {
+    "id": "folio_190",
+    "problem": "Given the following premises:\nSome basketball players are not American. All basketball players are tall. If someone is tall, they wear large shoes. If someone wears large shoes, they wear large-sized clothes. Yuri does not wear large-size clothes.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nYuri is an American basketball player.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "\u2203x (BasketballPlayer(x) \u2227 \u00acAmerican(x))",
+      "\u2200x (BasketballPlayer(x) \u2192 Tall(x))",
+      "\u2200x (Tall(x) \u2192 WearLargeShoes(x))",
+      "\u2200x (WearLargeShoes(x) \u2192 WearLargeClothes(x))",
+      "\u00acWearLargeClothes(yuri)"
+    ],
+    "conclusion_fol": "American(yuri) \u2227 BasketballPlayer(yuri)"
+  },
+  {
+    "id": "folio_191",
+    "problem": "Given the following premises:\nSome basketball players are not American. All basketball players are tall. If someone is tall, they wear large shoes. If someone wears large shoes, they wear large-sized clothes. Yuri does not wear large-size clothes.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nIf Yuri does not wear large shoes, then Yuri is an American basketball player.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "\u2203x (BasketballPlayer(x) \u2227 \u00acAmerican(x))",
+      "\u2200x (BasketballPlayer(x) \u2192 Tall(x))",
+      "\u2200x (Tall(x) \u2192 WearLargeShoes(x))",
+      "\u2200x (WearLargeShoes(x) \u2192 WearLargeClothes(x))",
+      "\u00acWearLargeClothes(yuri)"
+    ],
+    "conclusion_fol": "\u00acWearLargeShoes(yuri) \u2192 (American(yuri) \u2227 BasketballPlayer(yuri))"
+  },
+  {
+    "id": "folio_192",
+    "problem": "Given the following premises:\nSome basketball players are not American. All basketball players are tall. If someone is tall, they wear large shoes. If someone wears large shoes, they wear large-sized clothes. Yuri does not wear large-size clothes.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nIf Yuri is not an American basketball player, then Yuri is a basketball player.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "\u2203x (BasketballPlayer(x) \u2227 \u00acAmerican(x))",
+      "\u2200x (BasketballPlayer(x) \u2192 Tall(x))",
+      "\u2200x (Tall(x) \u2192 WearLargeShoes(x))",
+      "\u2200x (WearLargeShoes(x) \u2192 WearLargeClothes(x))",
+      "\u00acWearLargeClothes(yuri)"
+    ],
+    "conclusion_fol": "\u00ac(American(yuri) \u2227 BasketballPlayer(yuri)) \u2192 BasketballPlayer(yuri)"
+  },
+  {
+    "id": "folio_193",
+    "problem": "Given the following premises:\nEvents are either happy or sad. At least one event is happy.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nAll events are sad.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (Event(x) \u2192 Happy(x) \u2295 Sad(x))",
+      "\u2203x (Event(x) \u2227 Happy(x)) "
+    ],
+    "conclusion_fol": "\u2200x (Event(x) \u2192 Sad(x))"
+  },
+  {
+    "id": "folio_194",
+    "problem": "Given the following premises:\nThe winner of the 1992 du Maurier Classic was Steinhauer. Steinhauer participated in the 1992 du Maurier Classic. There was one six-way tie on the leaderboard and one person in the six-way tie was from Belgium. Descampe is from Belgium and is on the leaderboard of the 1992 du Maurier Classic. All people on the leaderboard of the 1992 du Maurier Classic participated in the 1992 du Maurier Classic.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nSteinhauer was not the winner of the 1992 du Maurier Classic.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "Winner(maurier, steinhauer)",
+      "Participate(maurier, steinhauer)",
+      "\u2203x (LeaderBoard(maurier, x) \u2227 SixWayTie(x) \u2227 Belgium(x))",
+      "Belgium(descampe) \u2227 LeaderBoard(maurier, descampe)",
+      "\u2200x (LeaderBoard(maurier, x) \u2192 Participate(maurier, x))"
+    ],
+    "conclusion_fol": "\u00acWinner(maurier, steinhauer)"
+  },
+  {
+    "id": "folio_195",
+    "problem": "Given the following premises:\nThe winner of the 1992 du Maurier Classic was Steinhauer. Steinhauer participated in the 1992 du Maurier Classic. There was one six-way tie on the leaderboard and one person in the six-way tie was from Belgium. Descampe is from Belgium and is on the leaderboard of the 1992 du Maurier Classic. All people on the leaderboard of the 1992 du Maurier Classic participated in the 1992 du Maurier Classic.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nDescampe is in the six-way tie in the leaderboard of the 1992 du Maurier Classic.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "Winner(maurier, steinhauer)",
+      "Participate(maurier, steinhauer)",
+      "\u2203x (LeaderBoard(maurier, x) \u2227 SixWayTie(x) \u2227 Belgium(x))",
+      "Belgium(descampe) \u2227 LeaderBoard(maurier, descampe)",
+      "\u2200x (LeaderBoard(maurier, x) \u2192 Participate(maurier, x))"
+    ],
+    "conclusion_fol": "SixWayTie(descampe)"
+  },
+  {
+    "id": "folio_196",
+    "problem": "Given the following premises:\nIf an animal barks, then Jane does not like it. All dogs are animals that bark. If an animal jumps, then Jane likes it. If an animal has legs, then it jumps. If an animal is terricolous, then it has legs.  If KiKi neither jumps nor has legs, then KiKi is terricolous or has legs.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nKiKi is terricolous.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (Bark(x) \u2192 \u00acLike(jane, x))",
+      "\u2200x (Dog(x) \u2192 Bark(x))",
+      "\u2200x (Jump(x) \u2192 Like(jane, x))",
+      "\u2200x (HaveLegs(x) \u2192 Jump(x))",
+      "\u2200x (Terricolous(x) \u2192 HaveLegs(x))",
+      "(\u00acJump(kiki) \u2227 \u00acHaveLegs(kiki)) \u2192 (Terricolous(kiki) \u2228 HaveLegs(kiki))"
+    ],
+    "conclusion_fol": "Terricolous(kiki)"
+  },
+  {
+    "id": "folio_197",
+    "problem": "Given the following premises:\nIf an animal barks, then Jane does not like it. All dogs are animals that bark. If an animal jumps, then Jane likes it. If an animal has legs, then it jumps. If an animal is terricolous, then it has legs.  If KiKi neither jumps nor has legs, then KiKi is terricolous or has legs.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nKiKi barks and is a dog.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (Bark(x) \u2192 \u00acLike(jane, x))",
+      "\u2200x (Dog(x) \u2192 Bark(x))",
+      "\u2200x (Jump(x) \u2192 Like(jane, x))",
+      "\u2200x (HaveLegs(x) \u2192 Jump(x))",
+      "\u2200x (Terricolous(x) \u2192 HaveLegs(x))",
+      "(\u00acJump(kiki) \u2227 \u00acHaveLegs(kiki)) \u2192 (Terricolous(kiki) \u2228 HaveLegs(kiki))"
+    ],
+    "conclusion_fol": "Bark(kiki) \u2227 Dog(kiki)"
+  },
+  {
+    "id": "folio_198",
+    "problem": "Given the following premises:\nIf an animal barks, then Jane does not like it. All dogs are animals that bark. If an animal jumps, then Jane likes it. If an animal has legs, then it jumps. If an animal is terricolous, then it has legs.  If KiKi neither jumps nor has legs, then KiKi is terricolous or has legs.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nKiKi neither barks nor is a dog.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (Bark(x) \u2192 \u00acLike(jane, x))",
+      "\u2200x (Dog(x) \u2192 Bark(x))",
+      "\u2200x (Jump(x) \u2192 Like(jane, x))",
+      "\u2200x (HaveLegs(x) \u2192 Jump(x))",
+      "\u2200x (Terricolous(x) \u2192 HaveLegs(x))",
+      "(\u00acJump(kiki) \u2227 \u00acHaveLegs(kiki)) \u2192 (Terricolous(kiki) \u2228 HaveLegs(kiki))"
+    ],
+    "conclusion_fol": "\u00acBark(kiki) \u2227 \u00acDog(kiki)"
+  },
+  {
+    "id": "folio_199",
+    "problem": "Given the following premises:\nAilton Silva, born in 1995, is commonly known as Ailton. Ailton is a football player who was loaned out to Braga. Ailton Silva is a Brazillian footballer who plays for Nautico. Nautico is a football club along with Braga. Fluminense is a football club.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nNo one playing for Nautico is Brazilian.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "BornIn(ailtonsilva, y1995) \u2227 CommonlyKnownAs(ailtonsilva, ailton)",
+      "FootballPlayer(ailton) \u2227 LoanedTo(ailton, braga)",
+      "Brazilian(ailtonsilva) \u2227 Footballplayer(ailtonsilva) \u2227 PlaysFor(ailtonsilva, nautico)",
+      "FootballClub(nautico) \u2227 FootballClub(braga)",
+      "FootballClub(fluminense)"
+    ],
+    "conclusion_fol": "\u2200x (PlaysFor(x, nautico) \u2192 \u00acBrazilian(x))"
+  },
+  {
+    "id": "folio_200",
+    "problem": "Given the following premises:\nAilton Silva, born in 1995, is commonly known as Ailton. Ailton is a football player who was loaned out to Braga. Ailton Silva is a Brazillian footballer who plays for Nautico. Nautico is a football club along with Braga. Fluminense is a football club.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nAilton Silva foes not play for a football club.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "BornIn(ailtonsilva, y1995) \u2227 CommonlyKnownAs(ailtonsilva, ailton)",
+      "FootballPlayer(ailton) \u2227 LoanedTo(ailton, braga)",
+      "Brazilian(ailtonsilva) \u2227 Footballplayer(ailtonsilva) \u2227 PlaysFor(ailtonsilva, nautico)",
+      "FootballClub(nautico) \u2227 FootballClub(braga)",
+      "FootballClub(fluminense)"
+    ],
+    "conclusion_fol": "\u2200x (FootballClub(x) \u2192 \u00acPlaysFor(ailtonsilva, x))"
+  },
+  {
+    "id": "folio_201",
+    "problem": "Given the following premises:\nAilton Silva, born in 1995, is commonly known as Ailton. Ailton is a football player who was loaned out to Braga. Ailton Silva is a Brazillian footballer who plays for Nautico. Nautico is a football club along with Braga. Fluminense is a football club.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nAilton was not loaned out to a football club.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "BornIn(ailtonsilva, y1995) \u2227 CommonlyKnownAs(ailtonsilva, ailton)",
+      "FootballPlayer(ailton) \u2227 LoanedTo(ailton, braga)",
+      "Brazilian(ailtonsilva) \u2227 Footballplayer(ailtonsilva) \u2227 PlaysFor(ailtonsilva, nautico)",
+      "FootballClub(nautico) \u2227 FootballClub(braga)",
+      "FootballClub(fluminense)"
+    ],
+    "conclusion_fol": "\u2200x (FootballClub(x) \u2192 \u00acLoanedTo(ailton, x))"
+  },
+  {
+    "id": "folio_202",
+    "problem": "Given the following premises:\nAilton Silva, born in 1995, is commonly known as Ailton. Ailton is a football player who was loaned out to Braga. Ailton Silva is a Brazillian footballer who plays for Nautico. Nautico is a football club along with Braga. Fluminense is a football club.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nAilton Silva played for Fluminense.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "BornIn(ailtonsilva, y1995) \u2227 CommonlyKnownAs(ailtonsilva, ailton)",
+      "FootballPlayer(ailton) \u2227 LoanedTo(ailton, braga)",
+      "Brazilian(ailtonsilva) \u2227 Footballplayer(ailtonsilva) \u2227 PlaysFor(ailtonsilva, nautico)",
+      "FootballClub(nautico) \u2227 FootballClub(braga)",
+      "FootballClub(fluminense)"
+    ],
+    "conclusion_fol": "PlaysFor(ailtonsilva, fluminense)"
+  },
+  {
+    "id": "folio_203",
+    "problem": "Given the following premises:\nAilton Silva, born in 1995, is commonly known as Ailton. Ailton is a football player who was loaned out to Braga. Ailton Silva is a Brazillian footballer who plays for Nautico. Nautico is a football club along with Braga. Fluminense is a football club.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nAilton Silva was loaned out to a football club.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "BornIn(ailtonsilva, y1995) \u2227 CommonlyKnownAs(ailtonsilva, ailton)",
+      "FootballPlayer(ailton) \u2227 LoanedTo(ailton, braga)",
+      "Brazilian(ailtonsilva) \u2227 Footballplayer(ailtonsilva) \u2227 PlaysFor(ailtonsilva, nautico)",
+      "FootballClub(nautico) \u2227 FootballClub(braga)",
+      "FootballClub(fluminense)"
+    ],
+    "conclusion_fol": "\u2203x (FootballClub(x) \u2227 LoanedTo(ailtonsilva, x))"
+  }
+]

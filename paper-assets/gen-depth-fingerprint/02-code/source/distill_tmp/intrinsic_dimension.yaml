@@ -1,0 +1,25 @@
+paper_key: "intrinsic_dimension"
+title: "Intrinsic Dimension Estimation for Robust Detection of AI-Generated Texts"
+venue: "NeurIPS 2023"
+full_text_available: false
+
+research:
+  baselines: ["SOTA detectors (unspecified in abstract)"]
+  metrics:
+    - {name: "intrinsic dimensionality", direction: "descriptive"}
+    - {name: "detection accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "multi-language texts (alphabet-based + Chinese)", size: "unknown"}
+  ablation_dimensions: ["language", "text domain", "generator model", "human writer proficiency level"]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "intrinsic dimension estimation + persistent homology (topological features)"
+
+positioning:
+  core_claim: "Proposes intrinsic dimensionality of text embeddings as a robust detection invariant, finding human texts average ~9 (alphabet-based) vs ~7.5 for AI-generated, with stable cross-domain and cross-model performance outperforming SOTA detectors."
+  key_results: "N/A - abstract only"
+  limitations: ["N/A"]
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

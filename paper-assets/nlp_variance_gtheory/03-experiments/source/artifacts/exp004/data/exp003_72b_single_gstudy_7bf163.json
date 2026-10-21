@@ -1,0 +1,70 @@
+{
+  "model": "Qwen2.5-72B-Instruct",
+  "benchmark": "mmlu",
+  "n_items": 200,
+  "n_conditions": 288,
+  "total_records": 57600,
+  "grand_mean": 0.870347,
+  "total_variance": 0.11334327,
+  "components_pct": {
+    "item_id": 83.2482,
+    "residual": 7.4546,
+    "prompt_template:item_id": 6.8058,
+    "ordering:item_id": 1.0189,
+    "seed:item_id": 0.9252,
+    "temperature:item_id": 0.5124,
+    "temperature:seed": 0.0149,
+    "prompt_template:ordering": 0.014,
+    "temperature:prompt_template": 0.003,
+    "prompt_template:seed": 0.0023,
+    "seed:ordering": 0.0006,
+    "temperature:ordering": 0.0,
+    "temperature": 0.0,
+    "prompt_template": 0.0,
+    "seed": 0.0,
+    "ordering": 0.0
+  },
+  "components_raw": {
+    "item_id": 0.0943562294,
+    "residual": 0.0084493432,
+    "prompt_template:item_id": 0.0077139005,
+    "ordering:item_id": 0.001154872,
+    "seed:item_id": 0.001048621,
+    "temperature:item_id": 0.0005807964,
+    "temperature:seed": 1.69174e-05,
+    "prompt_template:ordering": 1.58679e-05,
+    "temperature:prompt_template": 3.3931e-06,
+    "prompt_template:seed": 2.6115e-06,
+    "seed:ordering": 7.175e-07,
+    "temperature:ordering": 0.0,
+    "temperature": 0.0,
+    "prompt_template": 0.0,
+    "seed": 0.0,
+    "ordering": 0.0
+  },
+  "G_item": 0.978544,
+  "sigma_tau": 0.094356229425824,
+  "sigma_delta": 0.002068874488810904,
+  "delta_breakdown": {
+    "residual": 2.9337997219097656e-05,
+    "temperature:item_id": 0.00029039822245954046,
+    "prompt_template:item_id": 0.0012856500894333166,
+    "seed:item_id": 0.00017477016899779016,
+    "ordering:item_id": 0.0002887180107011591
+  },
+  "d_study": {
+    "25": 0.850767,
+    "50": 0.919367,
+    "100": 0.95799,
+    "200": 0.978544,
+    "500": 0.991306
+  },
+  "comparison": {
+    "3B_item_id_pct": 75.3,
+    "3B_G_item": 0.963,
+    "7B_item_id_pct": 73.4,
+    "7B_G_item": 0.956,
+    "72B_item_id_pct": 83.2482,
+    "72B_G_item": 0.978544
+  }
+}

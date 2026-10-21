@@ -1,0 +1,71 @@
+{
+  "exp_id": "kl_sparsity70_s42_v2",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T20:34:18.823Z",
+    "updated_at": "2026-05-15T21:15:15.421Z",
+    "spec": {
+      "command": "bash -c 'source setup_env.sh && python src/train.py --loss_type kl_normalized --sparsity_target 0.7 --num_steps 1000 --gradient_checkpointing'",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "132988",
+      "log_path": "~/runs/distill_sparse_swiglu/kl_sparsity70_s42_v2.log",
+      "submitted_at": "2026-05-15T20:34:18.724Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "wikitext-103",
+      "data_count": 1000,
+      "model_name": "llama-3.1-8b",
+      "seed": 42,
+      "wall_clock_seconds": 2456.7,
+      "gpu_hours": 0.68
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T21:11:35.632Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T21:11:36.854658+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "final_loss": 0.609375,
+      "final_kl_normalized": 0.609375,
+      "final_kl_raw": 0.609375,
+      "final_constraint_loss": 0,
+      "final_sparsity": 0.688,
+      "sparsity_target": 0.7,
+      "sparsity_range_last200": [
+        0.674,
+        0.707
+      ],
+      "lambda_max": 1000,
+      "lambda_cap_reached_step": 10,
+      "tau_final": 0.1,
+      "training_steps": 1000,
+      "lr_schedule": "cosine",
+      "lr_peak": 0.001,
+      "gradient_checkpointing": true,
+      "wandb_mode": "offline",
+      "wandb_offline_run": "offline-run-20260516_043422-9epth9zr",
+      "eval_ppl_pending": true
+    },
+    "checkpoint_path": "/root/distill_sparse_swiglu/checkpoints/kl_sparsity70_s42/predictor_kl_normalized.pt",
+    "conclusion": "success",
+    "notes": "## Training Analysis (2026-05-16)\n\n### Training Summary\n- 1000/1000 steps completed, EXIT_CODE=0\n- Sparsity converged to ~0.688 (target 0.70, within 0.65-0.75 success range)\n- Sparsity stable in 0.674-0.707 range across last 200 steps\n- Lambda hit cap 1000 by step 10 (fast ramp), stayed at cap\n- Tau annealed 0.999 → 0.100 (Gumbel-sigmoid temperature)\n- KL loss: 1.18 → 0.61 over training\n- Constraint loss near 0 in late stages (sparsity well within margin)\n- gradient_checkpointing enabled (v2 fix for OOM)\n\n### Key Observations\n- lambda_max=1000 was sufficient for 70% sparsity (unlike earlier v1 which was killed)\n- Sparsity converged quickly (~step 40) and remained stable\n- No instability or divergence\n\n### Pending\n- **PPL evaluation not yet run** — training script only logs KL/sparsity, no dense/sparse PPL\n- Need to run evaluate.py with this checkpoint to get true_dense_ppl, predictor_hard_mask_ppl, teal_sparse_ppl\n- Checkpoint: /root/distill_sparse_swiglu/checkpoints/kl_sparsity70_s42/predictor_kl_normalized.pt\n- W&B run was offline (not synced)",
+    "completed_at": "2026-05-15T21:15:15.421Z"
+  },
+  "timestamp": "2026-05-15T21:15:15.575253+00:00",
+  "trigger": "update_registry"
+}

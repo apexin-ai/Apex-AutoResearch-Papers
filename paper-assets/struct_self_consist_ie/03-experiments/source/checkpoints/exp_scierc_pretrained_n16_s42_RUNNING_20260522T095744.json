@@ -1,0 +1,41 @@
+{
+  "exp_id": "exp_scierc_pretrained_n16_s42",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T04:13:18.313Z",
+    "updated_at": "2026-05-22T09:57:43.435Z",
+    "hypothesis": "Pretrained N-scaling: SciERC N=16 with Qwen2.5-7B-Instruct. Fills pretrained N-scaling curve (N=8/16/32) for SciERC. Tests whether pretrained MV gain scales monotonically with N.",
+    "spec": {
+      "command": "bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -u code/run_mvp_pilot.py --model_path /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs --output_dir output/scierc_pretrained_n16_seed42/'",
+      "server": "autodl-5090-c",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "389783",
+      "log_path": "~/runs/struct_self_consist_ie/exp_scierc_pretrained_n16_s42.log",
+      "submitted_at": "2026-05-22T04:49:11.522Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/scierc/processed_data",
+      "data_count": 551,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42
+    },
+    "metrics": {
+      "greedy_f1": 0.2486,
+      "mv_strict_f1": 0.2628,
+      "mv_delta_strict_pp": 1.42,
+      "oracle_f1": 0.4323,
+      "degeneracy_rate": 0.008,
+      "alpha_crit_eff_strict": 0.1524
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T09:57:44.018948+00:00",
+  "trigger": "update_registry"
+}

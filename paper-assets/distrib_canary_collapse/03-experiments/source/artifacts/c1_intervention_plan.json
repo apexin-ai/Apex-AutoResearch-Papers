@@ -1,0 +1,150 @@
+{
+  "task": "C1 N=5 Cross-Architecture Intervention Experiment",
+  "date_created": "2026-05-25",
+  "status": "plan_ready",
+
+  "summary": "Extend canary-based intervention validation from 2 architectures (Pythia-410M, Pythia-1.4B) to 5 by adding GPT-2-medium, OPT-1.3B, and Qwen2.5-0.8B. Each architecture needs predictive (canary-based) and reactive (baseline) intervention runs. No-intervention baselines already exist for GPT-2-medium and OPT-1.3B.",
+
+  "code_readiness": {
+    "iterative_train_supports_intervention": true,
+    "server_path": "/root/autodl-tmp/distrib_canary_collapse/iterative_train.py",
+    "server_lines": 387,
+    "intervention_params": [
+      "--intervention_mode {none|predictive|reactive}",
+      "--intervention_metric {token_entropy|distinct_1}",
+      "--intervention_threshold 0.15 (predictive) / 0.10 (reactive)",
+      "--intervention_alpha 0.0 (switch to pure real data)"
+    ],
+    "code_changes_needed": false,
+    "notes": "Local artifacts/iterative_train.py is outdated (missing intervention params). Server version is authoritative."
+  },
+
+  "model_cache_status": {
+    "gpt2-medium": {"cached": true, "size_gb": 1.5, "hf_id": "gpt2-medium"},
+    "facebook/opt-1.3b": {"cached": true, "size_gb": 5.0, "hf_id": "facebook/opt-1.3b"},
+    "Qwen2.5-0.8B": {
+      "cached": false,
+      "size_gb": null,
+      "hf_id": "Qwen/Qwen2.5-0.8B",
+      "warning": "NOT cached. Only Qwen3.5-0.8B-Base ref exists (4KB, weights not downloaded). Qwen2.5 series has 0.5B and 1.5B, NOT 0.8B. Confirm target: Qwen/Qwen2.5-0.5B, Qwen/Qwen2.5-1.5B, or Qwen/Qwen3.5-0.8B-Base?"
+    }
+  },
+
+  "data_status": {
+    "wikitext103_5k": {"available": true, "path": "data/wikitext103_5k"},
+    "sufficient": true
+  },
+
+  "server_status": {
+    "server": "westd-19828",
+    "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition (98GB VRAM)",
+    "disk_free_gb": 74,
+    "disk_total_gb": 250
+  },
+
+  "existing_baselines": {
+    "gpt2-medium_no_intervention": {
+      "path": "results/generalize/gpt2m_wiki_a100_s42",
+      "generations": 11,
+      "complete": true,
+      "config": {"model_name": "gpt2-medium", "synthetic_ratio": 1.0, "seed": 42, "batch_size": 32}
+    },
+    "opt-1.3b_no_intervention": {
+      "path": "results/generalize/opt1b_wiki_a100_s42",
+      "generations": 11,
+      "complete": true,
+      "config": {"model_name": "facebook/opt-1.3b", "synthetic_ratio": 1.0, "seed": 42, "batch_size": 4}
+    },
+    "pythia-410m_predictive": {
+      "path": "results/intervention/predictive_te_s42",
+      "complete": true,
+      "trigger_gen": 1
+    },
+    "pythia-410m_reactive": {
+      "path": "results/intervention/reactive_d1_s42",
+      "complete": true
+    },
+    "pythia-410m_predictive_a075": {
+      "path": "results/intervention/predictive_te_a075_s42",
+      "complete": false,
+      "note": "Only gen_0 through gen_5, no all_metrics.json"
+    }
+  },
+
+  "experiments_to_run": [
+    {
+      "id": "c1_gpt2m_pred",
+      "description": "GPT-2-medium predictive intervention (canary-based)",
+      "command": "cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --batch_size 32 --intervention_mode predictive --intervention_metric token_entropy --intervention_threshold 0.15 --intervention_alpha 0.0 --output_dir results/intervention/gpt2m_pred_te_s42",
+      "estimated_hours": 1.5,
+      "disk_gb": 2
+    },
+    {
+      "id": "c1_gpt2m_react",
+      "description": "GPT-2-medium reactive intervention (baseline)",
+      "command": "cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --batch_size 32 --intervention_mode reactive --intervention_metric distinct_1 --intervention_threshold 0.10 --intervention_alpha 0.0 --output_dir results/intervention/gpt2m_react_d1_s42",
+      "estimated_hours": 1.5,
+      "disk_gb": 2
+    },
+    {
+      "id": "c1_opt13b_pred",
+      "description": "OPT-1.3B predictive intervention (canary-based)",
+      "command": "cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name facebook/opt-1.3b --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --batch_size 4 --gradient_checkpointing --intervention_mode predictive --intervention_metric token_entropy --intervention_threshold 0.15 --intervention_alpha 0.0 --output_dir results/intervention/opt13b_pred_te_s42",
+      "estimated_hours": 3.5,
+      "disk_gb": 6
+    },
+    {
+      "id": "c1_opt13b_react",
+      "description": "OPT-1.3B reactive intervention (baseline)",
+      "command": "cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name facebook/opt-1.3b --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --batch_size 4 --gradient_checkpointing --intervention_mode reactive --intervention_metric distinct_1 --intervention_threshold 0.10 --intervention_alpha 0.0 --output_dir results/intervention/opt13b_react_d1_s42",
+      "estimated_hours": 3.5,
+      "disk_gb": 6
+    },
+    {
+      "id": "c1_qwen_pred",
+      "description": "Qwen predictive intervention (canary-based) — MODEL TBD",
+      "command": "cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name Qwen/Qwen2.5-0.5B --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --batch_size 8 --intervention_mode predictive --intervention_metric token_entropy --intervention_threshold 0.15 --intervention_alpha 0.0 --output_dir results/intervention/qwen_pred_te_s42",
+      "estimated_hours": 2.0,
+      "disk_gb": 3,
+      "blockers": ["Model not cached — need download (~1GB)", "Confirm model: Qwen2.5-0.5B or Qwen2.5-1.5B or Qwen3.5-0.8B-Base"]
+    },
+    {
+      "id": "c1_qwen_react",
+      "description": "Qwen reactive intervention (baseline) — MODEL TBD",
+      "command": "cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name Qwen/Qwen2.5-0.5B --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --batch_size 8 --intervention_mode reactive --intervention_metric distinct_1 --intervention_threshold 0.10 --intervention_alpha 0.0 --output_dir results/intervention/qwen_react_d1_s42",
+      "estimated_hours": 2.0,
+      "disk_gb": 3,
+      "blockers": ["Model not cached — need download (~1GB)", "Confirm model: Qwen2.5-0.5B or Qwen2.5-1.5B or Qwen3.5-0.8B-Base"]
+    },
+    {
+      "id": "c1_qwen_no_interv",
+      "description": "Qwen no-intervention baseline (α=1.0) — MODEL TBD",
+      "command": "cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name Qwen/Qwen2.5-0.5B --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --batch_size 8 --output_dir results/generalize/qwen_wiki_a100_s42",
+      "estimated_hours": 2.0,
+      "disk_gb": 3,
+      "blockers": ["Model not cached — need download (~1GB)", "Confirm model"]
+    }
+  ],
+
+  "total_estimated": {
+    "experiments": 7,
+    "gpu_hours": 16.0,
+    "disk_gb": 25,
+    "note": "GPT-2-medium and OPT-1.3B can run with HF_HUB_OFFLINE=1 (models cached). Qwen needs download first."
+  },
+
+  "execution_order_recommendation": [
+    "1. Confirm Qwen model variant with user",
+    "2. Download Qwen model (C2 task)",
+    "3. Run GPT-2-medium pred+react in sequence (3h total)",
+    "4. Run OPT-1.3B pred+react in sequence (7h total)",
+    "5. Run Qwen pred+react+no_interv in sequence (6h total)",
+    "6. All experiments sequential on single GPU = ~16h total"
+  ],
+
+  "open_questions": [
+    "Qwen2.5 has no 0.8B variant. Closest: 0.5B (Qwen/Qwen2.5-0.5B) or 1.5B (Qwen/Qwen2.5-1.5B). Or use Qwen3.5-0.8B-Base (ref exists on server). Which one?",
+    "Existing Pythia-410m predictive_a075 run is incomplete (only gen 0-5). Should it be re-run as part of C1?",
+    "Should we also run a second seed (s43) for the new architectures to match the Pythia experiments?"
+  ]
+}

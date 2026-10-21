@@ -1,0 +1,32 @@
+{
+  "pair_id": "HT02_incomp",
+  "domain": "hotel",
+  "constraint": "is_booking_date_within_lead_time_range",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The \"{check_in_date}\" must be **no earlier than** {min_booking_lead_time_days} days after and **no later than** {max_booking_lead_time_days} days after the current interaction date.",
+  "action": "book_room",
+  "task_idx": 14,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "book_room",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 4,
+    "num_constraints_expanded": 8,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "book_room",
+    "[says: The booking for Alice Williams in a single room from 2024-12-05 to 2024-12-06 has been confirmed. The payment of $160.00 covers the total cost of $150.00 for the stay, and a room has been successfully...]"
+  ],
+  "timestamp": "2026-05-22T17:23:44.751783"
+}

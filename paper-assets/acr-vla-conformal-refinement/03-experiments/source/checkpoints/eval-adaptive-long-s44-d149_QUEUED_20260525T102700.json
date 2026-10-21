@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-adaptive-long-s44-d149",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T10:25:31.160Z",
+    "updated_at": "2026-05-25T10:26:58.594Z",
+    "hypothesis": "SmolVLA Adaptive (τ=0.25, K=2) 在 long 上的选择性 gating 效果（Table 1 D149 seed s44 补跑）"
+  },
+  "timestamp": "2026-05-25T10:27:00.135157+00:00",
+  "trigger": "update_registry"
+}

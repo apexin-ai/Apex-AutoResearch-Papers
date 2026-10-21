@@ -1,0 +1,42 @@
+{
+  "exp_id": "exp_schema_intervention",
+  "project": "schema-dag-extraction",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T14:57:35.343Z",
+    "updated_at": "2026-05-17T16:25:52.346Z",
+    "hypothesis": "If type confusability is a causal driver of extraction errors, then renaming high-BCS type pairs to reduce embedding similarity (while preserving semantic equivalence) should improve accuracy on high-BCS batches. This tests the causal direction: SCS → confusion, not merely correlation. If treatment (renamed) accuracy on previously-high-BCS batches improves significantly over control (original names), confusability is actionable via schema design.",
+    "spec": {
+      "command": "python /root/schema-dag-extraction/scripts/run_schema_intervention.py",
+      "server": "cqa1-38874",
+      "data_path": "/root/schema-dag-extraction/data/fewrel/",
+      "data_count": 960,
+      "model_name": "Qwen3-32B-FP8",
+      "seed": 42,
+      "checkpoint_path": "/root/schema-dag-extraction/artifacts/exp_schema_intervention/",
+      "log_path": "/root/schema-dag-extraction/artifacts/exp_schema_intervention/"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "high_bcs_control": 0.693,
+      "high_bcs_treatment": 0.605,
+      "high_bcs_delta": -0.0883,
+      "low_bcs_control": 0.901,
+      "low_bcs_treatment": 0.871,
+      "low_bcs_delta": -0.0296,
+      "interaction_delta": -0.0588,
+      "interaction_p": "<0.001",
+      "interaction_t": -7.23,
+      "rename_count_correlation_r": -0.625,
+      "rename_count_correlation_p": "<0.001",
+      "cohens_d_high": -2.92,
+      "cohens_d_low": -1.09
+    },
+    "completed_at": "2026-05-17T16:25:52.346Z"
+  },
+  "timestamp": "2026-05-17T16:25:52.477335+00:00",
+  "trigger": "update_registry"
+}

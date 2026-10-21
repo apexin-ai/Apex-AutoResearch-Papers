@@ -1,0 +1,1829 @@
+paper:
+  title: ''
+  version: 68
+  generated_at: '2026-05-18T19:26:04.627651+00:00'
+claims:
+- id: C001
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: CLS output space is fixed and minimal, eliminating token-budget exhaustion
+    and string-value mismatch failure modes by construction
+  type: methodological
+  evidence: []
+  decisions: []
+  deprecated: true
+- id: C003
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: CWM suffers from token-budget exhaustion when output length exceeds generation
+    budget, producing spurious FAIL verdicts
+  type: methodological
+  evidence: []
+  decisions: []
+  deprecated: true
+- id: C006
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: CWM suffers from string-value mismatch on complex return types due to exact-match
+    evaluation
+  type: methodological
+  evidence: []
+  decisions: []
+  deprecated: true
+- id: C010
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: When T_f2p = 1, per-test and trajectory-level are informationally equivalent
+  type: analytical
+  evidence:
+  - oracle-f2p-stratified
+  decisions: []
+  deprecated: true
+- id: C015
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Block-correlation model with ICC=rho yields DEFF = 1 + (n_bar - 1)*rho, amplifying
+    per-test advantage
+  type: analytical
+  evidence:
+  - block-corr-empirical
+  decisions: []
+  deprecated: true
+- id: C021
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Empirical ICC = 0.191, DEFF = 3.97 from function-level experiments
+  type: quantitative
+  evidence:
+  - block-corr-empirical
+  decisions: []
+  deprecated: true
+- id: C022
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: All prior execution simulation work uses generation formulation; we reformulate
+    as classification
+  type: positioning
+  evidence:
+  - meta2025cwm
+  - maimon2026selfexecution
+  - liu2024codemind
+  - lee2026solidcoder
+  - abdollahi2025demystifying
+  decisions: []
+  deprecated: true
+- id: C024
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: Per-test classification achieves statistically equivalent patch-level accuracy
+    to trajectory-level scoring (TOST p=0.007)
+  type: quantitative
+  evidence:
+  - exp:5-paired-clustered-bootstrap
+  decisions: []
+  deprecated: true
+- id: C027
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: Per-test classification provides diagnostic signals that trajectory-level
+    verifiers discard
+  type: qualitative
+  evidence:
+  - exp:5-paired-clustered-bootstrap
+  decisions: []
+  deprecated: true
+- id: C031
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: Code complexity is the key moderator for classification vs generation formulation
+    choice
+  type: positioning
+  evidence:
+  - exp:multi-seed-core
+  - exp:model-size-scaling-cls8b
+  - exp:model-size-scaling-cwm8b
+  decisions: []
+  deprecated: true
+- id: C032
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: CLS and CWM achieve near-equivalent accuracy at 4B (88.4% vs 87.2%, gap 1.24pp,
+    5 seeds)
+  type: quantitative
+  evidence:
+  - exp_id: multi-seed-core
+    metric: mean.accuracy
+    value: 88.41
+  - exp_id: cwm-baseline
+    metric: overall_accuracy
+    value: 87.51
+  - exp_id: cwm-seed123
+    metric: overall_accuracy
+    value: 87.2
+  - exp_id: cwm-seed456
+    metric: accuracy
+    value: 86.98
+  - exp_id: cwm-seed789
+    metric: overall_accuracy
+    value: 86.67
+  - exp_id: cwm-seed0
+    metric: overall_accuracy
+    value: 87.57
+  decisions: []
+  deprecated: true
+- id: C034
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: At 8B the gap widens to 2.43pp (p=0.007)
+  type: quantitative
+  evidence:
+  - exp_id: model-size-scaling-cls8b
+    metric: accuracy
+    value: 90.48
+  - exp_id: cls8b-seed123
+    metric: accuracy
+    value: 89.4
+  - exp_id: cls8b-seed456
+    metric: overall_accuracy
+    value: 88.31
+  - exp_id: model-size-scaling-cwm8b
+    metric: accuracy
+    value: 87.67
+  - exp_id: cwm8b-seed123
+    metric: accuracy
+    value: 86.98
+  - exp_id: cwm8b-seed456
+    metric: overall_accuracy
+    value: 86.24
+  decisions: []
+  deprecated: true
+- id: C037
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: CWM fails to benefit from increased capacity (4B to 8B)
+  type: quantitative
+  evidence:
+  - exp_id: model-size-scaling-cwm8b
+    metric: accuracy
+    value: 87.67
+  - exp_id: cwm-baseline
+    metric: overall_accuracy
+    value: 87.51
+  decisions: []
+  deprecated: true
+- id: C041
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Per-test CLS matches trajectory-level accuracy (TOST p=0.007, ±2pp margin)
+  type: quantitative
+  evidence:
+  - exp_id: 5-paired-clustered-bootstrap
+    metric: tost_p_value
+    value: 0.0071
+  decisions: []
+  deprecated: true
+- id: C046
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Per-test advantage concentrates in instances with >=2 failing tests (31% of
+    instances, 55% of total advantage)
+  type: quantitative
+  evidence:
+  - exp_id: oracle-f2p-stratified
+    metric: T2_contribution_pct
+    value: 55.3
+  - exp_id: oracle-f2p-stratified
+    metric: T1_pct
+    value: 68.7
+  decisions: []
+  deprecated: true
+- id: C052
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 'Zero-shot 8B: 64.4%, 32B: 71.7%, far below fine-tuned 4B 88.4%'
+  type: quantitative
+  evidence:
+  - exp_id: llm-judge-8b-zeroshot
+    metric: overall_accuracy
+    value: 64.4
+  - exp_id: llm-judge-32b-zeroshot
+    metric: overall_accuracy
+    value: 71.69
+  - exp_id: multi-seed-core
+    metric: mean.accuracy
+    value: 88.41
+  decisions: []
+  deprecated: true
+- id: C059
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Oracle combination of CLS and CWM reaches 90.6%
+  type: quantitative
+  evidence:
+  - exp_id: matched-seed-8b-predictions
+    metric: oracle_accuracy
+    value: 90.6
+  decisions: []
+  deprecated: true
+- id: C060
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: CLS bypasses CWM failure modes (token-budget exhaustion and string-value prediction
+    errors) by construction, as its single-token output cannot be truncated and requires
+    no string matching.
+  type: mechanistic
+  evidence:
+  - cls-formulation-design
+  decisions:
+  - D007
+  deprecated: true
+- id: C062
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'The asymmetry between CLS (1 token) and CWM (N tokens) produces a complexity-dependent
+    advantage: comparable on simple code, growing on complex code as CWM failure modes
+    trigger.'
+  type: hypothesis
+  evidence:
+  - multi-seed-core
+  - model-size-scaling-cls8b
+  - model-size-scaling-cwm8b
+  decisions:
+  - D007
+  - D008
+  - D015
+  deprecated: true
+- id: C065
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Per-test predictions within a patch are non-independent (block-correlated),
+    captured by ICC, which reduces the effective number of independent tests via the
+    design effect.
+  type: methodological
+  evidence:
+  - block-corr-empirical
+  decisions:
+  - D018
+  deprecated: true
+- id: C069
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Per-test advantage concentrates in multi-F2P-test instances; for k=1 (single
+    F2P test), per-test reduces to trajectory-level with no granularity benefit.
+  type: analytical
+  evidence:
+  - oracle-f2p-stratified
+  - mvp-a-oracle-sim
+  decisions:
+  - D002
+  - D011
+  deprecated: true
+- id: C074
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: P2P regression detection value depends on the true regression rate; when low,
+    per-test P2P signal may be net uninformative.
+  type: analytical
+  evidence:
+  - p2p-regression-rate
+  decisions:
+  - D003
+  - D004
+  deprecated: true
+- id: C075
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: CLS-CWM gap amplifies from 1.24pp (function-level) to 10.32pp (repo-level),
+    8.3x amplification
+  type: quantitative
+  evidence:
+  - exp_id: repo-level-cls-v5
+    metric: accuracy
+    value: 76.92
+  - exp_id: repo-level-cwm-v11
+    metric: accuracy
+    value: 66.6
+  decisions: []
+  deprecated: true
+- id: C076
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: CWM falls below majority baseline at repo-level (66.60% vs 72.96%), indicating
+    negative utility
+  type: quantitative
+  evidence:
+  - exp_id: repo-level-cwm-v11
+    metric: accuracy
+    value: 66.6
+  decisions: []
+  deprecated: true
+- id: C077
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 75.2% of CWM outputs are unparseable at repo-level due to token-budget exhaustion
+    (mean output 3398 tokens vs 1024 budget)
+  type: quantitative
+  evidence:
+  - exp_id: repo-level-cwm-v11
+    metric: unparseable_rate
+    value: 75.2
+  decisions: []
+  deprecated: true
+- id: C078
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: test claim
+  type: quantitative
+  evidence:
+  - exp1
+  decisions: []
+  deprecated: true
+- id: C079
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: CLS 88.43 vs CWM 87.19, gap 1.24pp, 5 seeds
+  type: quantitative
+  evidence:
+  - multi-seed-core
+  - cls-seed789
+  - cls-seed0
+  - cwm-baseline
+  - cwm-seed123
+  - cwm-seed456
+  - cwm-seed789
+  - cwm-seed0
+  decisions: []
+  deprecated: true
+- id: C081
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: ZS 8B 64.40%, ZS 32B 71.69%
+  type: quantitative
+  evidence:
+  - llm-judge-8b-zeroshot
+  - llm-judge-32b-zeroshot
+  decisions: []
+  deprecated: true
+- id: C084
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 8B gap 2.43pp, bootstrap 2.26pp p=0.0066
+  type: quantitative
+  evidence:
+  - model-size-scaling-cls8b
+  - cls8b-seed123
+  - cls8b-seed456
+  - model-size-scaling-cwm8b
+  - cwm8b-seed123
+  - cwm8b-seed456
+  decisions: []
+  deprecated: true
+- id: C088
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: CLS scaling +0.99pp, CWM -0.27pp
+  type: quantitative
+  evidence:
+  - multi-seed-core
+  - model-size-scaling-cls8b
+  - model-size-scaling-cwm8b
+  decisions: []
+  deprecated: true
+- id: C093
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: TOST p=0.007, pooled gap -0.45pp
+  type: quantitative
+  evidence:
+  - 5-paired-clustered-bootstrap
+  decisions: []
+  deprecated: true
+- id: C099
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: ICC=0.191, DEFF=3.97
+  type: quantitative
+  evidence:
+  - block-corr-empirical
+  decisions: []
+  deprecated: true
+- id: C106
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Oracle T=2 block adv 31.69pp, contrib 55.3%
+  type: quantitative
+  evidence:
+  - oracle-f2p-stratified
+  decisions: []
+  deprecated: true
+- id: C114
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Same-size 4B-4B repo gap 25.59pp: CLS 83.63% vs CWM 58.04%'
+  type: quantitative
+  evidence:
+  - cls4b-v5-ckpt4600-test-eval
+  - repo-level-cwm-v12
+  decisions: []
+  deprecated: true
+- id: C123
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: CWM unparseable 53.7% s42, 67.2% s123
+  type: quantitative
+  evidence:
+  - repo-level-cwm-v12
+  - repo-level-cwm-seed123-conda
+  decisions: []
+  deprecated: true
+- id: C133
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: CWM parseable-only 42.88% below random
+  type: quantitative
+  evidence:
+  - repo-level-cwm-v12
+  decisions: []
+  deprecated: true
+- id: C144
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Cross-size gaps 25.48pp s42, 26.51pp s123
+  type: quantitative
+  evidence:
+  - cls8b-s42-ckpt1000-test8192-eval
+  - cls8b-seed123-ckpt3000-test8192-eval
+  - repo-level-cwm-v12
+  - repo-level-cwm-seed123-conda
+  decisions: []
+  deprecated: true
+- id: C156
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Error complementarity: CLS 75.5% FN, CWM 83.1% FP, oracle 90.63%'
+  type: quantitative
+  evidence:
+  - per-test-precision-recall
+  - cwm-baseline
+  decisions: []
+  deprecated: true
+- id: C169
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'CWM error: 76.9% no keywords, 22.9% ambiguous'
+  type: quantitative
+  evidence:
+  - repo-level-cwm-v12
+  decisions: []
+  deprecated: true
+- id: C183
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Per-test fail F1 87.86%
+  type: quantitative
+  evidence:
+  - per-test-precision-recall
+  decisions: []
+  deprecated: true
+- id: C198
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Majority voting -0.68pp
+  type: quantitative
+  evidence:
+  - per-test-majority-voting
+  decisions: []
+  deprecated: true
+- id: C199
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'Three CWM failure modes: token-budget exhaustion, string-value errors, format
+    compliance collapse'
+  type: conceptual
+  evidence:
+  - repo-level-cwm-v12
+  decisions: []
+  deprecated: true
+- id: C201
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: CLS bypasses all three by construction (single token)
+  type: conceptual
+  evidence: []
+  decisions: []
+  deprecated: true
+- id: C204
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'Oracle framework: k_eff = k / (1 + (k-1)*rho)'
+  type: theoretical
+  evidence:
+  - block-corr-empirical
+  decisions: []
+  deprecated: true
+- id: C205
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Same-size 4B-4B gap 25.59pp at repo level (CLS 83.63% vs CWM 58.04%)
+  type: quantitative
+  evidence:
+  - cls4b-v5-ckpt4600-test-eval
+  - repo-level-cwm-v12
+  decisions: []
+  deprecated: true
+- id: C207
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Function-level gap 1.24pp (5 seeds)
+  type: quantitative
+  evidence:
+  - multi-seed-core
+  - cwm-baseline
+  decisions: []
+  deprecated: true
+- id: C210
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 8B gap 2.43pp, bootstrap 2.26pp, p=0.0066
+  type: quantitative
+  evidence:
+  - model-size-scaling-cls8b
+  - model-size-scaling-cwm8b
+  decisions: []
+  deprecated: true
+- id: C214
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: CWM 53.7-67.2% unparseable, parseable-only 42-43%
+  type: quantitative
+  evidence:
+  - repo-level-cwm-v12
+  - repo-level-cwm-seed123-conda
+  decisions: []
+  deprecated: true
+- id: C219
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: CLS +0.96pp scaling, CWM -0.27pp
+  type: quantitative
+  evidence:
+  - multi-seed-core
+  - model-size-scaling-cls8b
+  - model-size-scaling-cwm8b
+  decisions: []
+  deprecated: true
+- id: C225
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: TOST p=0.007, ±2pp margin
+  type: quantitative
+  evidence:
+  - 5-paired-clustered-bootstrap
+  decisions: []
+  deprecated: true
+- id: C232
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'Oracle T≥2: 31% instances, 55% advantage'
+  type: quantitative
+  evidence:
+  - oracle-f2p-stratified
+  decisions: []
+  deprecated: true
+- id: C233
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: format compliance collapse (53-67% unparseable outputs) at repository-level
+    complexity
+  type: quantitative
+  evidence:
+  - 'repo-level-cwm-v12: unparseable_pct=53.7%'
+  - 'repo-level-cwm-seed123-conda: unparseable_pct=67.2%'
+  decisions: []
+  deprecated: true
+- id: C235
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: CLS vs TRAJ statistical equivalence (TOST p=0.007)
+  type: quantitative
+  evidence:
+  - '5-paired-clustered-bootstrap: tost_p=0.007'
+  decisions: []
+  deprecated: true
+- id: C236
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: CLS 88.43% vs CWM 87.19%, gap 1.24pp, 5 seeds (function-level 4B)
+  type: quantitative
+  evidence:
+  - 'multi-seed-core: cls_mean=88.43, cwm_mean=87.19, gap=1.24'
+  decisions: []
+  deprecated: true
+- id: C238
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 8B gap 2.43pp, bootstrap mean 2.26pp, p=0.0066, 3 seeds
+  type: quantitative
+  evidence:
+  - '5-paired-clustered-bootstrap: 8b_raw_gap=2.43, bootstrap_mean=2.26, p=0.0066'
+  decisions: []
+  deprecated: true
+- id: C241
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: CLS +0.96pp vs CWM -0.27pp scaling (4B to 8B)
+  type: quantitative
+  evidence:
+  - 'model-size-scaling-cls8b: delta=+0.96'
+  - 'model-size-scaling-cwm8b: delta=-0.27'
+  decisions: []
+  deprecated: true
+- id: C245
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: TOST equivalence p=0.007, ±2pp margin
+  type: quantitative
+  evidence:
+  - '5-paired-clustered-bootstrap: tost_p=0.007'
+  decisions: []
+  deprecated: true
+- id: C250
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Oracle advantage concentrates at T>=2 (31% instances, 55% advantage), ensemble
+    90.63%
+  type: quantitative
+  evidence:
+  - 'oracle-f2p-stratified: t_ge2_pct=31, t_ge2_contrib=55, oracle_acc=90.63'
+  decisions: []
+  deprecated: true
+- id: C256
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Repo-level gap 25.59pp (CLS 83.63% vs CWM 58.04%, 4B, single seed)
+  type: quantitative
+  evidence:
+  - 'cls4b-v5-ckpt4600-test-eval: accuracy=83.63'
+  - 'repo-level-cwm-v12: accuracy=58.04'
+  decisions: []
+  deprecated: true
+- id: C263
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: CWM ~14pp below majority baseline (72.96%)
+  type: quantitative
+  evidence:
+  - 'repo-level-cwm-v12: accuracy=58.04, majority=72.96'
+  decisions: []
+  deprecated: true
+- id: C271
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: CWM unparseable 53.7-67.2%, parseable-only 42-43%, CLS 0% unparseable
+  type: quantitative
+  evidence:
+  - 'repo-level-cwm-v12: unparseable=53.7, parseable_acc=42.88'
+  - 'repo-level-cwm-seed123-conda: unparseable=67.2, parseable_acc=42.69'
+  decisions: []
+  deprecated: true
+- id: C272
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: CLS-CWM gap 1.24pp at function level, 5 seeds
+  type: quantitative
+  evidence:
+  - 'multi-seed-core: gap=1.24'
+  decisions: []
+  deprecated: true
+- id: C274
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 8B gap 2.43pp, bootstrap 2.26pp, p=0.0066
+  type: quantitative
+  evidence:
+  - '5-paired-clustered-bootstrap: 8b_gap=2.43, bootstrap_mean=2.26, p=0.0066'
+  decisions: []
+  deprecated: true
+- id: C277
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: CLS +0.99pp vs CWM -0.27pp scaling 4B→8B
+  type: quantitative
+  evidence:
+  - 'model-size-scaling-cls8b: 88.41->89.40=+0.99'
+  - 'model-size-scaling-cwm8b: 87.23->86.96=-0.27'
+  decisions: []
+  deprecated: true
+- id: C281
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: TOST p=0.007, ±2pp margin
+  type: quantitative
+  evidence:
+  - '5-paired-clustered-bootstrap: tost_p=0.007'
+  decisions: []
+  deprecated: true
+- id: C286
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 'T≥2 advantage: 31% instances, 55% contribution'
+  type: quantitative
+  evidence:
+  - 'oracle-f2p-stratified: t_ge2_pct=31, contrib=55'
+  decisions: []
+  deprecated: true
+- id: C292
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Repo-level 25.59pp same-size gap (CLS 83.63% vs CWM 58.04%, 4B, single seed)
+  type: quantitative
+  evidence:
+  - 'cls4b-v5-ckpt4600-test-eval: acc=83.63'
+  - 'repo-level-cwm-v12: acc=58.04'
+  decisions: []
+  deprecated: true
+- id: C299
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: CWM ~14pp below majority (72.96%)
+  type: quantitative
+  evidence:
+  - 'repo-level-cwm-v12: acc=58.04, majority=72.96'
+  decisions: []
+  deprecated: true
+- id: C307
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: CWM unparseable 53.7-67.2%, parseable-only 42-43%
+  type: quantitative
+  evidence:
+  - 'repo-level-cwm-v12: unparse=53.7, parse_acc=42.88'
+  - 'repo-level-cwm-seed123-conda: unparse=67.2, parse_acc=42.69'
+  decisions: []
+  deprecated: true
+- id: C308
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: CWM max_seq_length=2048 with max_new_tokens=1024 leaving ~1024 input; CLS
+    max_seq_length=5120 (4B) / 8192 (8B)
+  type: methodological
+  evidence:
+  - 'repo-level-cwm-v12: max_seq_length=2048'
+  - 'cls4b-v5-ckpt4600-test-eval: max_seq_length=5120'
+  - 'cls8b-s42-ckpt1000-test8192-eval: max_seq_length=8192'
+  decisions: []
+  deprecated: true
+- id: C309
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Both CLS and CWM trained with identical max_seq_length=2048; eval-time CLS
+    uses 5120/8192, CWM effective input ~1024
+  type: methodological
+  evidence:
+  - 'repo-level-cwm-v12: train max_seq_length=2048, eval max_new_tokens=1024'
+  - 'cls4b-v5-ckpt4600-test-eval: eval max_seq_length=5120'
+  - 'cls8b-s42-ckpt1000-test8192-eval: eval max_seq_length=8192'
+  decisions: []
+  deprecated: true
+- id: C310
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 'Complexity-dependent advantage: near-equivalent at function level, classification
+    dominates at repo scale'
+  type: qualitative
+  evidence:
+  - 'multi-seed-core: gap=1.24pp'
+  - 'cls4b-v5-ckpt4600-test-eval: acc=83.63 vs repo-level-cwm-v12: acc=58.04'
+  decisions: []
+  deprecated: true
+- id: C312
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 'Generation compounding failure: format non-compliance + unreliable parseable
+    outputs'
+  type: qualitative
+  evidence:
+  - 'repo-level-cwm-v12: unparseable=53.7%, parseable_acc=42.88%'
+  decisions: []
+  deprecated: true
+- id: C315
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Scaling does not resolve generation bottleneck
+  type: qualitative
+  evidence:
+  - 'model-size-scaling-cwm8b: delta=-0.27pp'
+  decisions: []
+  deprecated: true
+- id: C319
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Per-test equivalent to trajectory-level, advantage concentrates at multi-F2P
+  type: qualitative
+  evidence:
+  - '5-paired-clustered-bootstrap: tost_p=0.007'
+  - 'oracle-f2p-stratified: t_ge2_contrib=55%'
+  decisions: []
+  deprecated: true
+- id: C320
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: CLS-CWM gap is 25.59pp at 4B and 19.31pp at 8B at repo-level, both far exceeding
+    function-level gap (1-2pp), confirming complexity-dependent advantage
+  type: quantitative
+  evidence:
+  - cwm4b-s42-mutation-breakdown
+  - cwm8b-ckpt400-test-eval-shard2
+  - cls4b-ckpt4600-test-mutation-pr
+  - cls8b-s42-resume-ckpt3600-test-v2
+  decisions: []
+  deprecated: true
+- id: C321
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'CWM overall accuracy increase from 4B (58.04%) to 8B (65.17%) is an artifact
+    of default assignment: unparseable rate increases (53.7%→73.8%) while parseable-only
+    accuracy decreases (42.88%→38.52%)'
+  type: quantitative
+  evidence:
+  - cwm4b-s42-mutation-breakdown
+  - cwm8b-ckpt400-test-eval-shard2
+  decisions: []
+  deprecated: true
+- id: C322
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Gold mutation parse rate collapses from 43.5% (4B) to 23.9% (8B) with parseable
+    accuracy at 16.5%, indicating generation bottleneck on simplest target
+  type: quantitative
+  evidence:
+  - cwm4b-s42-mutation-breakdown
+  - cwm8b-ckpt400-test-eval-shard2
+  decisions: []
+  deprecated: true
+- id: C323
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Correct scaling signal is function-level gap widening (1.18→2.43pp, p=0.0066);
+    repo-level primary claim is absolute gap magnitude (19-26pp) >> function-level
+    (1-2pp)
+  type: analytical
+  evidence:
+  - exp:5-paired-clustered-bootstrap
+  decisions: []
+  deprecated: true
+- id: C324
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'CWM parseable-only accuracy is 38-43% across model sizes (4B: 42-43%, 8B:
+    38.52%)'
+  type: quantitative
+  evidence:
+  - cwm4b-s42-mutation-breakdown
+  - cwm8b-ckpt400-test-eval-shard2
+  decisions: []
+  deprecated: true
+- id: C325
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'Repo-level CLS-CWM gap is 19-26pp (8B-8B: 19.31pp, 4B-4B: 25.59pp), an order
+    of magnitude larger than function-level (1-2pp)'
+  type: quantitative
+  evidence:
+  - cwm4b-s42-mutation-breakdown
+  - cwm8b-ckpt400-test-eval-shard2
+  - cls4b-ckpt4600-test-mutation-pr
+  - cls8b-s42-resume-ckpt3600-test-v2
+  decisions: []
+  deprecated: true
+- id: C326
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'CWM generation quality degrades with scale: parseable-only 42.9%->38.5%,
+    unparseable 53.7%->73.8%'
+  type: quantitative
+  evidence:
+  - cwm4b-s42-mutation-breakdown
+  - cwm8b-ckpt400-test-eval-shard2
+  decisions: []
+  deprecated: true
+- id: C327
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 'Repo-level CLS-CWM gap is 19-26pp (4B: 25.59pp, 8B: 19.31pp), order of magnitude
+    above function level'
+  type: quantitative
+  evidence:
+  - cwm4b-s42-mutation-breakdown
+  - cwm8b-ckpt400-test-eval-shard2
+  - cls4b-ckpt4600-test-mutation-pr
+  - cls8b-s42-resume-ckpt3600-test-v2
+  decisions: []
+  deprecated: true
+- id: C328
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 'Gap narrowing from 4B to 8B is default-assignment artifact: parseable-only
+    decreases 42.9%->38.5%, unparseable increases 53.7%->73.8%'
+  type: quantitative
+  evidence:
+  - cwm4b-s42-mutation-breakdown
+  - cwm8b-ckpt400-test-eval-shard2
+  decisions: []
+  deprecated: true
+- id: C329
+  location:
+    section: appendix
+    paragraph: 0
+    sentence: 0
+  text: CWM gold mutation parse rate collapses from 43.5% (4B) to 23.9% (8B); parseable-only
+    accuracy 23.5% and 16.5% respectively
+  type: quantitative
+  evidence:
+  - cwm4b-s42-mutation-breakdown
+  - cwm8b-ckpt400-test-eval-shard2
+  decisions: []
+  deprecated: false
+- id: C330
+  location:
+    section: appendix
+    paragraph: 0
+    sentence: 0
+  text: CLS off_by_one accuracy gains +24.58pp mean from 4B (58.47%) to 8B (83.05%
+    mean)
+  type: quantitative
+  evidence:
+  - cls4b-ckpt4600-test-mutation-pr
+  - cls8b-s42-resume-ckpt3600-mutation
+  - cls8b-seed123-ckpt3000-mutation
+  decisions: []
+  deprecated: false
+- id: C331
+  location:
+    section: appendix
+    paragraph: 0
+    sentence: 0
+  text: 'boundary_removal accuracy is scale-invariant: 44.9-46.9% across all CLS seeds/sizes'
+  type: quantitative
+  evidence:
+  - cls4b-ckpt4600-test-mutation-pr
+  - cls8b-s42-resume-ckpt3600-mutation
+  - cls8b-seed123-ckpt3000-mutation
+  decisions: []
+  deprecated: false
+- id: C332
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'off_by_one is CLS largest scaling beneficiary: 58.5% (4B) to 83.0% (8B mean),
+    +24.6pp'
+  type: quantitative
+  evidence:
+  - cls4b-ckpt4600-test-mutation-pr
+  - cls8b-s42-resume-ckpt3600-mutation
+  - cls8b-seed123-ckpt3000-mutation
+  decisions: []
+  deprecated: true
+- id: C333
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: boundary_removal is scale-invariant at ~46% across all CLS seeds and sizes
+  type: quantitative
+  evidence:
+  - cls4b-ckpt4600-test-mutation-pr
+  - cls8b-s42-resume-ckpt3600-mutation
+  - cls8b-seed123-ckpt3000-mutation
+  decisions: []
+  deprecated: true
+- id: C334
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: CWM gold parse rate collapses 43.5% (4B) to 23.9% (8B) despite being simplest
+    target
+  type: quantitative
+  evidence:
+  - cwm4b-s42-mutation-breakdown
+  - cwm8b-ckpt400-test-eval-shard2
+  decisions: []
+  deprecated: true
+- id: C335
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: P2P regression rate is 1.04% mean, 0% median
+  type: quantitative
+  evidence:
+  - oracle-f2p-stratified
+  decisions: []
+  deprecated: true
+- id: C336
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: DeepSeek-Coder-6.7B CLS-CWM gap is 0.10pp at function level (86.93% vs 86.83%),
+    within seed noise, confirming complexity-dependent advantage is not model-specific
+  type: quantitative
+  evidence:
+  - D110
+  decisions: []
+  deprecated: true
+- id: C337
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: CWM produces 0% unparseable at function level for both Qwen3 and DeepSeek
+    architectures
+  type: quantitative
+  evidence:
+  - D110
+  decisions: []
+  deprecated: true
+- id: C338
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: CLS achieves 217x throughput over CWM (853 vs 3.9 inferences/min) because
+    CLS requires 1 output token vs CWM avg 477 tokens
+  type: quantitative
+  evidence:
+  - D112-inference-benchmark
+  decisions: []
+  deprecated: true
+- id: C339
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: CLS median latency 48ms vs CWM 16.3s (Qwen3-4B, RTX 5090, 100 repo-level samples)
+  type: quantitative
+  evidence:
+  - D112-inference-benchmark
+  decisions: []
+  deprecated: true
+- id: C340
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: DeepSeek-Coder-6.7B CLS-CWM gap is 0.02pp at function level (86.85% vs 86.83%,
+    2 seeds each), indistinguishable from zero, confirming complexity-dependent advantage
+    is not model-specific
+  type: quantitative
+  evidence:
+  - D110-deepseek-func-level
+  decisions: []
+  deprecated: true
+- id: C341
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'At function-level, CLS/CWM/TRAJ achieve near-identical accuracy across two
+    model families (Qwen3: 88.4/87.2/86.3%, DeepSeek: 86.9/86.8%)'
+  type: quantitative
+  evidence:
+  - exp:5-paired-clustered-bootstrap
+  - D110-deepseek-func-level
+  decisions: []
+  deprecated: false
+- id: C343
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: At repo-level with Qwen3, CLS achieves 19-26pp higher accuracy than CWM, driven
+    by 54-74% unparseable rate
+  type: quantitative
+  evidence:
+  - cwm4b-s42-mutation-breakdown
+  - cwm8b-ckpt400-test-eval-shard2
+  - cls4b-ckpt4600-test-mutation-pr
+  - cls8b-s42-resume-ckpt3600-test-v2
+  decisions: []
+  deprecated: false
+- id: C346
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: CLS and CWM have opposite error patterns; oracle ensemble achieves 90.63%
+    (+3.12pp)
+  type: quantitative
+  evidence:
+  - exp:5-paired-clustered-bootstrap
+  decisions: []
+  deprecated: false
+- id: C350
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Per-test CLS provides TOST equivalence with TRAJ (p=0.007) at 217x higher
+    throughput than CWM
+  type: quantitative
+  evidence:
+  - exp:5-paired-clustered-bootstrap
+  - D112-inference-benchmark
+  decisions: []
+  deprecated: false
+- id: C351
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'Three formulations defined: CLS (1 token/test), CWM (variable-length generation
+    + exact match), TRAJ (single patch verdict)'
+  type: methodological
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C353
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Each formulation has characteristic failure modes with different complexity
+    sensitivity; generation has three (truncation, string-value, format compliance),
+    classification has majority-class bias, trajectory loses granularity
+  type: methodological
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C356
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'Complexity-dependent interaction predicted: comparable at function-level,
+    potential divergence at repo-level; whether divergence is formulation-inherent
+    or model-contingent is empirical'
+  type: analytical
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C357
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: Per-test classification is structurally analogous to process supervision (Lightman
+    et al. 2023); trajectory-level to outcome supervision
+  type: positioning
+  evidence:
+  - lightman2023letsverify
+  - uesato2022solving
+  decisions: []
+  deprecated: false
+- id: C359
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: No prior work compares classification vs generation formulations at controlled
+    capacity for code verification
+  type: positioning
+  evidence:
+  - meta2025cwm
+  - maimon2026selfexecution
+  - shum2025swerm
+  decisions: []
+  deprecated: false
+- id: C360
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'All three formulations achieve comparable accuracy at function-level on both
+    model families (Qwen3: 88.4/87.2/86.3%, DeepSeek: 86.9/86.8%); 0% unparseable
+    for both'
+  type: quantitative
+  evidence: 'registry: deepseek_cls_variant_level'
+  decisions: []
+  deprecated: false
+- id: C362
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: CLS-CWM gap widens 1.18->2.43pp (4B->8B, Qwen3, p=0.0066); CLS +0.99pp vs
+    CWM -0.27pp
+  type: quantitative
+  evidence:
+  - exp:5-paired-clustered-bootstrap
+  decisions: []
+  deprecated: false
+- id: C365
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Per-test CLS equivalent to TRAJ at variant level (TOST p=0.007, ±2pp margin,
+    ICC=0.191)
+  type: quantitative
+  evidence:
+  - exp:5-paired-clustered-bootstrap
+  decisions: []
+  deprecated: false
+- id: C369
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Repo-level CLS-CWM gap: 25.59pp (4B), 19.31pp (8B) on Qwen3; order of magnitude
+    above function-level'
+  type: quantitative
+  evidence:
+  - cwm4b-s42-mutation-breakdown
+  - cwm8b-ckpt400-test-eval-shard2
+  - cls4b-ckpt4600-test-mutation-pr
+  - cls8b-s42-resume-ckpt3600-test-v2
+  decisions: []
+  deprecated: false
+- id: C374
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: CWM overall accuracy increase 4B->8B is default-assignment artifact; parseable-only
+    decreases 42.88->38.52%
+  type: quantitative
+  evidence:
+  - cwm4b-s42-mutation-breakdown
+  - cwm8b-ckpt400-test-eval-shard2
+  decisions: []
+  deprecated: false
+- id: C380
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: CLS/CWM have opposite error patterns (FN 75.5% vs FP 83.1%); oracle ensemble
+    90.63% (+3.12pp)
+  type: quantitative
+  evidence:
+  - exp:5-paired-clustered-bootstrap
+  decisions: []
+  deprecated: false
+- id: C387
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: CLS 217x throughput over CWM (1 token vs 477); inherent formulation property
+    that generalizes across models
+  type: quantitative
+  evidence:
+  - D112-inference-benchmark
+  decisions: []
+  deprecated: false
+- id: C388
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: No single formulation dominates across all conditions; formulation effectiveness
+    is complexity-dependent and model-contingent
+  type: main_finding
+  evidence: 'registry: cwm_seq_length_sensitivity'
+  decisions:
+  - D116_reframe
+  deprecated: false
+- id: C390
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: CLS and CWM achieve near-equivalent accuracy at function level (gap 1.24pp
+    at 4B, TOST equivalence p=0.007)
+  type: quantitative
+  evidence:
+  - exp_func_cls_4b
+  - exp_func_cwm_4b
+  - tost_equivalence
+  decisions: []
+  deprecated: false
+- id: C393
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 'Repository-level divergence amplifies dramatically (4B: 25.59pp; 8B: 19.31pp)'
+  type: quantitative
+  evidence:
+  - exp_repo_cls_4b
+  - exp_repo_cwm_4b
+  - exp_repo_cls_8b
+  - exp_repo_cwm_8b
+  decisions: []
+  deprecated: false
+- id: C397
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: CWM failures on Qwen3 concentrate in format non-compliance (unparseable rates
+    53.7-73.8%)
+  type: quantitative
+  evidence:
+  - exp_repo_cwm_4b
+  - exp_repo_cwm_8b
+  decisions:
+  - D109_default_assignment
+  deprecated: false
+- id: C402
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Whether this reflects a fundamental generation bottleneck or model-specific
+    tokenizer interaction remains open pending cross-model validation
+  type: qualifier
+  evidence: []
+  decisions:
+  - D116_reframe
+  deprecated: false
+- id: C408
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Per-test classification provides diagnostic granularity at equivalent trajectory-level
+    accuracy
+  type: finding
+  evidence:
+  - tost_equivalence
+  decisions: []
+  deprecated: false
+- id: C415
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Diagnostic advantage concentrates in instances with >=2 F2P tests (31% of
+    instances, 55% of total oracle advantage)
+  type: quantitative
+  evidence:
+  - oracle_analysis
+  decisions: []
+  deprecated: false
+- id: C423
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 217x throughput advantage is inherent property of output-length asymmetry
+  type: quantitative
+  evidence:
+  - inference_efficiency
+  decisions:
+  - D116_reframe
+  deprecated: false
+- id: C432
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Oracle ensemble 90.63%
+  type: quantitative
+  evidence:
+  - oracle_analysis
+  decisions: []
+  deprecated: false
+- id: C442
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Cross-model validation confirms near-equivalent function-level performance
+    (gap 0.02pp, 2 seeds)
+  type: quantitative
+  evidence:
+  - exp_deepseek_func
+  decisions: []
+  deprecated: false
+- id: C453
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: P2P regression rates negligible (1.04% mean, 0% median)
+  type: quantitative
+  evidence:
+  - oracle_analysis
+  decisions: []
+  deprecated: false
+- id: C454
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: No controlled comparison exists across formulations at matched model capacity
+  type: novelty_claim
+  evidence: []
+  decisions:
+  - D116_reframe
+  deprecated: false
+- id: C456
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: CLS 88.43% vs CWM 87.19% at 4B, 5 seeds
+  type: quantitative
+  evidence:
+  - exp_func_cls_4b
+  - exp_func_cwm_4b
+  decisions: []
+  deprecated: false
+- id: C459
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: TOST equivalence with trajectory-level at p=0.007
+  type: quantitative
+  evidence:
+  - tost_equivalence
+  decisions: []
+  deprecated: false
+- id: C463
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 'Repository-level divergence 19-26pp (4B: 25.59pp; 8B: 19.31pp)'
+  type: quantitative
+  evidence:
+  - exp_repo_cls_4b
+  - exp_repo_cwm_4b
+  - exp_repo_cls_8b
+  - exp_repo_cwm_8b
+  decisions: []
+  deprecated: false
+- id: C468
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: CWM below majority baseline at both scales
+  type: quantitative
+  evidence:
+  - exp_repo_cwm_4b
+  - exp_repo_cwm_8b
+  decisions: []
+  deprecated: false
+- id: C474
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: CWM unparseable rate 53.7% to 73.8% from 4B to 8B
+  type: quantitative
+  evidence:
+  - exp_repo_cwm_4b
+  - exp_repo_cwm_8b
+  decisions:
+  - D109_default_assignment
+  deprecated: false
+- id: C481
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Parseable-only accuracy 42.9% to 38.5%
+  type: quantitative
+  evidence:
+  - exp_repo_cwm_4b
+  - exp_repo_cwm_8b
+  decisions:
+  - D109_default_assignment
+  deprecated: false
+- id: C489
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Whether this reflects fundamental generation bottleneck or model-specific
+    behavior remains open
+  type: qualifier
+  evidence: []
+  decisions:
+  - D116_reframe
+  deprecated: false
+- id: C498
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Per-test advantage concentrates in instances with >=2 failing tests (31%,
+    55% of oracle advantage)
+  type: quantitative
+  evidence:
+  - oracle_analysis
+  decisions: []
+  deprecated: false
+- id: C508
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Oracle ensemble reaches 90.63%
+  type: quantitative
+  evidence:
+  - oracle_analysis
+  decisions: []
+  deprecated: false
+tables:
+- id: T001
+  location:
+    section: experiments
+    table_number: 0
+  caption: ''
+  cells:
+  - row: CLS Qwen3-4B
+    col: Accuracy
+    value: 88.43±0.78
+    source: exp:5-paired-clustered-bootstrap
+  deprecated: false
+- id: T002
+  location:
+    section: experiments
+    table_number: 0
+  caption: ''
+  cells:
+  - row: CWM Qwen3-4B
+    col: Accuracy
+    value: 87.19±0.37
+    source: exp:5-paired-clustered-bootstrap
+  deprecated: false
+- id: T003
+  location:
+    section: experiments
+    table_number: 0
+  caption: ''
+  cells:
+  - row: CLS DeepSeek-6.7B
+    col: Accuracy
+    value: 86.85±0.11
+    source: D110-deepseek-func-level
+  deprecated: false
+- id: T004
+  location:
+    section: experiments
+    table_number: 0
+  caption: ''
+  cells:
+  - row: CWM DeepSeek-6.7B
+    col: Accuracy
+    value: 86.83±1.49
+    source: D110-deepseek-func-level
+  deprecated: false
+- id: T005
+  location:
+    section: experiments
+    table_number: 0
+  caption: ''
+  cells:
+  - row: CLS 4B s42
+    col: Acc
+    value: '83.63'
+    source: cls4b-ckpt4600-test-mutation-pr
+  deprecated: false
+- id: T006
+  location:
+    section: experiments
+    table_number: 0
+  caption: ''
+  cells:
+  - row: CWM 4B s42
+    col: Acc
+    value: '58.04'
+    source: cwm4b-s42-mutation-breakdown
+  deprecated: false
+- id: T007
+  location:
+    section: experiments
+    table_number: 0
+  caption: ''
+  cells:
+  - row: CWM 8B s42
+    col: Acc
+    value: '65.17'
+    source: cwm8b-ckpt400-test-eval-shard2
+  deprecated: false
+figures:
+- id: F001
+  location:
+    section: main
+    figure_number: 0
+  caption: ''
+  type: conceptual
+  source: {}
+  output_path: ''
+  deprecated: false
+- id: F002
+  location:
+    section: main
+    figure_number: 0
+  caption: ''
+  type: line_chart
+  source: {}
+  output_path: ''
+  deprecated: false
+- id: F003
+  location:
+    section: main
+    figure_number: 0
+  caption: ''
+  type: bar_chart
+  source: {}
+  output_path: ''
+  deprecated: false
+_completeness:
+  coverage: 34/43
+  claims: 40
+  tables: 7
+  figures: 3
+  tier_counts:
+    tier1: 0
+    tier2: 34
+    tier3: 9
+    tierX: 0
+  last_checked: '2026-05-18T19:26:04.627705+00:00'

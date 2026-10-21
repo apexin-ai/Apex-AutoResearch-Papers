@@ -1,0 +1,78 @@
+{
+  "exp_id": "llama_docred_full_s1",
+  "project": "schema_semantic_constrained_ie",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T10:42:59.855Z",
+    "updated_at": "2026-05-14T20:29:52.304Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_full_s1.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\"",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "194295",
+      "log_path": "~/runs/schema_semantic_constrained_ie/llama_docred_full_s1.log",
+      "submitted_at": "2026-05-14T14:41:22.992Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Llama-3.1-8B-Instruct + Grammar+Semantic 双层约束 (S1) 在 DocRED (96 relations) 上的效果。与 Qwen3-8B DocRED full_s1 (DR 10.19%) 对比，验证约束解码在不同模型+复杂 schema 上的泛化性。",
+    "server": "westd-16980",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-16980",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-14T14:39:33.737Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_full_s1.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\"",
+      "finished_at": "2026-05-14T20:24:03.061Z",
+      "training_hours": 5.74
+    },
+    "pid": "194295",
+    "log_path": "~/runs/schema_semantic_constrained_ie/llama_docred_full_s1.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T20:24:04.262279+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "outputs/llama_docred_full_s1.jsonl",
+    "completed_at": "2026-05-14T20:24:03Z",
+    "metrics": {
+      "checker_version": "fixed_20260514_v2 (strip + alias + unique_et)",
+      "f1_method": "all_set",
+      "violations": {
+        "ET": 0,
+        "RV": 0,
+        "DR": 2.55,
+        "CF": 12.02
+      },
+      "f1": {
+        "entity_f1": 55.01,
+        "entity_precision": 61.41,
+        "entity_recall": 49.82,
+        "relation_f1": 6.27,
+        "relation_precision": 5.49,
+        "relation_recall": 7.32
+      },
+      "counts": {
+        "documents": 998,
+        "documents_checked": 907,
+        "parse_failures": 91,
+        "unique_entities": 11296,
+        "triples": 16368
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T20:29:52.369964+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,26 @@
+{
+  "exp_id": "plan015-linear-s42",
+  "project": "solver-trace-ablation",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T01:05:37.944Z",
+    "updated_at": "2026-05-15T01:05:37.944Z",
+    "spec": {
+      "data_path": "data/train_500_seed42.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "hypothesis": "Curriculum ablation: linear ramp β 0→0.1 over 500 steps. If H7 still appears, curriculum cannot prevent Goodhart.",
+      "plan_id": "plan_015",
+      "reward_formula": "r = r_exec * (1 + beta_t * ISR), beta_t = 0.1 * (step/500)",
+      "num_steps": 500,
+      "beta": 0.1,
+      "beta_schedule": "linear"
+    }
+  },
+  "timestamp": "2026-05-15T01:05:38.698995+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,20 @@
+{
+  "condition_id": "arc_N5",
+  "benchmark": "arc",
+  "n_models": 5,
+  "n_reps_ok": 200,
+  "n_reps_failed": 0,
+  "gamma_true": 0.5,
+  "gamma_mean_avg": 0.4825,
+  "gamma_mean_std": 0.0737,
+  "gamma_bias_avg": -0.0175,
+  "gamma_rmse": 0.0757,
+  "ci95_width_avg": 0.2847,
+  "ci95_width_std": 0.0205,
+  "ci95_width_q025": 0.2506,
+  "ci95_width_q975": 0.3306,
+  "coverage_rate": 0.945,
+  "power_rate": 1.0,
+  "elapsed_sec": 181.1,
+  "sec_per_rep": 0.9
+}

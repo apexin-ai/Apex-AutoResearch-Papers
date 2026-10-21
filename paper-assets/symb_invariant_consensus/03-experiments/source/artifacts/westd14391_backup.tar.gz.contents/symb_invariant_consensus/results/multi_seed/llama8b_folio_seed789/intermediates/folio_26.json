@@ -1,0 +1,718 @@
+{
+  "problem": {
+    "id": "folio_26",
+    "problem": "Given the following premises:\nBeijing is the capital of the People's Republic of China.  Beijing is the world's most populous national capital city. Beijing is located in Northern China. Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games. Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics Many of Beijing's 91 universities consistently rank among the best in the Asia-Pacific and the world.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nBeijing is the second largest Chinese city by urban population.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "CapitalOf(beijing, prx)",
+      "MostPopulousNationalCapitalCity(beijing)",
+      "InNorthernChina(beijing)",
+      "Hosted(beijing, summer2008olympic) \u2227 Hosted(beijing, summer2008paralympicgames)",
+      "Hosted(beijing, summerolympic) \u2227 Hosted(beijing, winterolympic) \u2227 Hosted(beijing, summerparalympicgames)  \u2227 Hosted(beijing, winterparalympicgames)",
+      "\u2203x (BeijingUniversity(x) \u2227 ConsistentlyRankAmongTheBest(x))"
+    ],
+    "conclusion_fol": "SecondLargestChineseCity(beijing)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 32.5,
+      "Unknown": 86.0
+    },
+    "answer_counts": {
+      "False": 2,
+      "Unknown": 10
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises and the conclusion.\n\nPremise 1: Beijing is the capital of the People's Republic of China.\nThis premise doesn't provide any information about the population size of Beijing.\n\nPremise 2: Beijing is the world's most populous national capital city.\nThis premise suggests that Beijing has a large population, but it doesn't give us information about the population size of other Chinese cities.\n\nPremise 3: Beijing is located in Northern China.\nThis premise doesn't provide any information about the population size of Beijing.\n\nPremise 4: Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games.\nThis premise doesn't provide any information about the population size of Beijing.\n\nPremise 5: Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics\nThis premise also doesn't provide any information about the population size of Beijing.\n\nPremise 6: Many of Beijing's 91 universities consistently rank among the best in the Asia-Pacific and the world.\nThis premise doesn't provide any information about the population size of Beijing.\n\nThe given premises don't provide any information about the population size of Beijing, so we cannot determine whether the conclusion is true or false based on the given information.\n\nHowever, we can try to find some external information to determine the conclusion. According to the available data, Shanghai is the most populous city in China, followed by Beijing. Therefore, the conclusion \"Beijing is the second largest Chinese city by urban population\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine the truth value of the conclusion, we need to analyze the premises and see if they provide sufficient evidence to support the conclusion.\n\nPremise 1: Beijing is the capital of the People's Republic of China.\nThis premise does not provide any information about the population of Beijing.\n\nPremise 2: Beijing is the world's most populous national capital city.\nThis premise tells us that Beijing is the most populous capital city in the world, but it does not necessarily mean it is the second largest Chinese city by urban population.\n\nPremise 3: Beijing is located in Northern China.\nThis premise does not provide any information about the population of Beijing.\n\nPremise 4: Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games.\nThis premise does not provide any information about the population of Beijing.\n\nPremise 5: Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics\nThis premise does not provide any information about the population of Beijing.\n\nPremise 6: Many of Beijing's 91 universities consistently rank among the best in the Asia-Pacific and the world.\nThis premise does not provide any information about the population of Beijing.\n\nThe conclusion is: Beijing is the second largest Chinese city by urban population.\n\nBased on the premises provided, there is no information that directly supports or contradicts the conclusion. However, we can make an educated guess that if Beijing is the most populous capital city in the world, it is likely to be one of the largest cities in China. But, there is no information that explicitly states Beijing is the second largest Chinese city by urban population.\n\nTherefore, the conclusion is uncertain, as it cannot be directly inferred from the premises provided.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to evaluate the given premises and see if they provide any information about Beijing's urban population.\n\nPremise 1: Beijing is the capital of the People's Republic of China.\nThis premise does not provide any information about Beijing's urban population.\n\nPremise 2: Beijing is the world's most populous national capital city.\nThis premise suggests that Beijing has a large population, but it does not provide information about the ranking of cities within China. It only compares Beijing to other national capital cities worldwide.\n\nPremise 3: Beijing is located in Northern China.\nThis premise does not provide any information about Beijing's urban population.\n\nPremise 4: Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games.\nThis premise does not provide any information about Beijing's urban population.\n\nPremise 5: Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics\nThis premise does not provide any information about Beijing's urban population.\n\nPremise 6: Many of Beijing's 91 universities consistently rank among the best in the Asia-Pacific and the world.\nThis premise does not provide any information about Beijing's urban population.\n\nHowever, none of the premises explicitly state that Beijing is the second largest Chinese city by urban population. In fact, the only information about Beijing's population is that it is the world's most populous national capital city (Premise 2), but this does not necessarily mean it is the second largest Chinese city by urban population.\n\nTherefore, based on the given premises, the conclusion is uncertain. We cannot determine whether Beijing is the second largest Chinese city by urban population based on the information provided. \n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the given conclusion is true, false, or uncertain, we need to analyze the premises and find a connection between them and the conclusion.\n\nGiven premises:\n\n1. Beijing is the capital of the People's Republic of China.\n2. Beijing is the world's most populous national capital city.\n3. Beijing is located in Northern China.\n4. Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games.\n5. Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics.\n6. Many of Beijing's 91 universities consistently rank among the best in the Asia-Pacific and the world.\n\nThe conclusion we need to evaluate is:\nBeijing is the second largest Chinese city by urban population.\n\nFrom the given premises, we can find a connection between the first premise (Beijing is the capital of the People's Republic of China) and the conclusion (Beijing is the second largest Chinese city by urban population). The fact that Beijing is the capital of China does not provide information about its population ranking within China.\n\nHowever, the second premise (Beijing is the world's most populous national capital city) suggests that Beijing has a large population. This information, combined with the fact that Beijing is the capital of China, does not necessarily imply that it is the second largest Chinese city by urban population.\n\nTo determine the truth value of the conclusion, we need additional information about the population of other Chinese cities. Without this information, we cannot definitively say that Beijing is the second largest Chinese city by urban population.\n\nTherefore, the conclusion is:\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they provide any information that supports or contradicts the conclusion.\n\nPremise 1: Beijing is the capital of the People's Republic of China.\nThis premise does not provide any information about the urban population of Beijing, so it is not relevant to the conclusion.\n\nPremise 2: Beijing is the world's most populous national capital city.\nThis premise is relevant to the conclusion, but it does not provide information about the ranking of Chinese cities by urban population. It only states that Beijing is the most populous national capital city in the world.\n\nPremise 3: Beijing is located in Northern China.\nThis premise does not provide any information about the urban population of Beijing, so it is not relevant to the conclusion.\n\nPremise 4: Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games.\nThis premise does not provide any information about the urban population of Beijing, so it is not relevant to the conclusion.\n\nPremise 5: Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics.\nThis premise does not provide any information about the urban population of Beijing, so it is not relevant to the conclusion.\n\nPremise 6: Many of Beijing's 91 universities consistently rank among the best in the Asia-Pacific and the world.\nThis premise does not provide any information about the urban population of Beijing, so it is not relevant to the conclusion.\n\nHowever, we can find additional information outside of the given premises to help us determine the conclusion. According to the available data, Shanghai is the largest Chinese city by urban population, followed by Beijing.\n\nBased on this information, we can conclude that the statement \"Beijing is the second largest Chinese city by urban population\" is uncertain, because the given premises do not provide enough information to confirm or deny this statement. However, according to the available data, the statement is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and see if they provide any information that can help us conclude whether Beijing is the second largest Chinese city by urban population.\n\nPremise 1: Beijing is the capital of the People's Republic of China.\n- This premise provides information about Beijing's status as the capital of China but does not give us any information about its population size.\n\nPremise 2: Beijing is the world's most populous national capital city.\n- This premise tells us that Beijing has the highest population among all capital cities but does not provide any information about the population of other Chinese cities.\n\nPremise 3: Beijing is located in Northern China.\n- This premise gives us information about Beijing's geographical location but does not provide any information about its population size or ranking.\n\nPremise 4: Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games.\n- This premise provides information about Beijing's hosting of international events but does not give us any information about its population size.\n\nPremise 5: Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics\n- This premise also does not provide any information about Beijing's population size.\n\nPremise 6: Many of Beijing's 91 universities consistently rank among the best in the Asia-Pacific and the world.\n- This premise provides information about Beijing's higher education institutions but does not give us any information about its population size.\n\nFrom the given premises, we cannot conclude whether Beijing is the second largest Chinese city by urban population. The premises do not provide any information about the population size of other Chinese cities, which is necessary to determine whether Beijing is the second largest. Therefore, the conclusion is uncertain based on the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they provide any information about the urban population of Beijing.\n\nPremise 1: Beijing is the capital of the People's Republic of China.\nThis premise tells us about Beijing's status as the capital but doesn't provide any information about its population.\n\nPremise 2: Beijing is the world's most populous national capital city.\nThis premise tells us about Beijing's population in comparison to other national capitals but doesn't provide any information about its ranking among all Chinese cities.\n\nPremise 3: Beijing is located in Northern China.\nThis premise tells us about Beijing's geographical location but doesn't provide any information about its population.\n\nPremise 4: Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games.\nThis premise tells us about Beijing's hosting of international events but doesn't provide any information about its population.\n\nPremise 5: Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics\nThis premise also tells us about Beijing's hosting of international events but doesn't provide any information about its population.\n\nPremise 6: Many of Beijing's 91 universities consistently rank among the best in the Asia-Pacific and the world.\nThis premise tells us about Beijing's education system but doesn't provide any information about its population.\n\nNow, let's look at the conclusion: \nBeijing is the second largest Chinese city by urban population.\n\nThe conclusion is uncertain because the premises do not provide any information about the ranking of cities in China by urban population. We know that Beijing is the world's most populous national capital city (Premise 2), but we don't know if it is the second largest Chinese city by urban population.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they provide any information about Beijing's ranking among Chinese cities by urban population.\n\nPremise 1: Beijing is the capital of the People's Republic of China.\nThis premise does not provide any information about the population of Beijing.\n\nPremise 2: Beijing is the world's most populous national capital city.\nThis premise provides some information about the population of Beijing, but it only compares Beijing to other national capital cities, not to other cities in China.\n\nPremise 3: Beijing is located in Northern China.\nThis premise does not provide any information about the population of Beijing.\n\nPremise 4: Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games.\nThis premise does not provide any information about the population of Beijing.\n\nPremise 5: Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics\nThis premise also does not provide any information about the population of Beijing.\n\nPremise 6: Many of Beijing's 91 universities consistently rank among the best in the Asia-Pacific and the world.\nThis premise provides some information about Beijing, but it is related to education and does not provide any information about the population of Beijing.\n\nHowever, Premise 2 tells us that Beijing is the world's most populous national capital city, but does not tell us whether it is the second largest city in China, or if there are other cities that are larger.\n\nSince the premises do not provide enough information to determine whether Beijing is the second largest Chinese city by urban population, the conclusion is uncertain. \n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises and see if they provide any information about Beijing's population or ranking among Chinese cities.\n\nPremise 1: Beijing is the capital of the People's Republic of China.\nThis premise doesn't provide any information about Beijing's population or ranking.\n\nPremise 2: Beijing is the world's most populous national capital city.\nThis premise provides some information about Beijing's population, but it only talks about national capitals, not about the ranking among all cities in China.\n\nPremise 3: Beijing is located in Northern China.\nThis premise doesn't provide any information about Beijing's population or ranking.\n\nPremise 4: Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games.\nThis premise doesn't provide any information about Beijing's population or ranking.\n\nPremise 5: Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics\nThis premise doesn't provide any information about Beijing's population or ranking.\n\nPremise 6: Many of Beijing's 91 universities consistently rank among the best in the Asia-Pacific and the world.\nThis premise doesn't provide any information about Beijing's population or ranking.\n\nHowever, we can conclude that the premise does not provide any information that directly or indirectly states that Beijing is the second largest Chinese city by urban population.\n\nBased on the given information, we cannot determine whether the conclusion is true or false. Therefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they provide any information related to the size of Beijing's population compared to other Chinese cities.\n\nPremise 1: Beijing is the capital of the People's Republic of China.\nThis premise does not provide any information about the population size of Beijing.\n\nPremise 2: Beijing is the world's most populous national capital city.\nThis premise indicates that Beijing has a large population, but it does not provide a comparison with other Chinese cities.\n\nPremise 3: Beijing is located in Northern China.\nThis premise does not provide any information about the population size of Beijing.\n\nPremise 4: Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games.\nThis premise does not provide any information about the population size of Beijing.\n\nPremise 5: Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics\nThis premise does not provide any information about the population size of Beijing.\n\nPremise 6: Many of Beijing's 91 universities consistently rank among the best in the Asia-Pacific and the world.\nThis premise does not provide any information about the population size of Beijing.\n\nHowever, none of the premises directly or indirectly mention the population size of Beijing compared to other Chinese cities. Therefore, based on the given information, we cannot determine whether Beijing is the second-largest Chinese city by urban population. The conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they provide any information about the population of Beijing compared to other Chinese cities.\n\nPremise 1: Beijing is the capital of the People's Republic of China.\nThis premise does not provide any information about the population of Beijing.\n\nPremise 2: Beijing is the world's most populous national capital city.\nThis premise implies that Beijing has a large population, but it does not provide any information about the population of other Chinese cities. It only compares the population of Beijing to other national capital cities.\n\nPremise 3: Beijing is located in Northern China.\nThis premise does not provide any information about the population of Beijing.\n\nPremise 4: Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games.\nThis premise does not provide any information about the population of Beijing.\n\nPremise 5: Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics\nThis premise does not provide any information about the population of Beijing.\n\nPremise 6: Many of Beijing's 91 universities consistently rank among the best in the Asia-Pacific and the world.\nThis premise does not provide any information about the population of Beijing.\n\nHowever, we can infer some information from the given premises that might be related to the population of Beijing. Premise 2 states that Beijing is the world's most populous national capital city, which implies that it has a large population. \n\nBut to determine if it's the second largest Chinese city by urban population, we would need to know the population of other Chinese cities. Unfortunately, the given premises do not provide this information.\n\nTherefore, the conclusion is uncertain because we do not have enough information to determine whether Beijing is the second largest Chinese city by urban population.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the premises and see if they support the conclusion.\n\nPremise 1: Beijing is the capital of the People's Republic of China.\nThis premise does not provide any information about Beijing's population or ranking among Chinese cities.\n\nPremise 2: Beijing is the world's most populous national capital city.\nThis premise suggests that Beijing has a large population, but it does not compare its population to other cities in China.\n\nPremise 3: Beijing is located in Northern China.\nThis premise provides geographical information about Beijing but does not provide any information about its population.\n\nPremise 4: Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games.\nThis premise provides information about Beijing's hosting of international events but does not provide any information about its population.\n\nPremise 5: Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics\nThis premise also provides information about Beijing's hosting of international events but does not provide any information about its population.\n\nPremise 6: Many of Beijing's 91 universities consistently rank among the best in the Asia-Pacific and the world.\nThis premise provides information about Beijing's educational institutions but does not provide any information about its population.\n\nHowever, the premises do not directly address the conclusion that Beijing is the second largest Chinese city by urban population. To determine the truth of the conclusion, we would need more information about the population of other Chinese cities.\n\nSince the premises do not provide enough information to support or refute the conclusion, the truth of the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "capital_of(People's Republic of China, beijing)",
+          "z3_formula": "capital_of_People_s_Republic_of_China_beijing == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous_national_capital_city(beijing)",
+          "z3_formula": "most_populous_national_capital_city_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in(Northern China, beijing)",
+          "z3_formula": "located_in_Northern_China_beijing == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_2008_Summer_Olympics(beijing)",
+          "z3_formula": "hosted_2008_Summer_Olympics_beijing == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_both_Summer_and_Winter_Olympics(beijing)",
+          "z3_formula": "hosted_both_Summer_and_Winter_Olympics_beijing == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "many_universities_among_best_in_Asia-Pacific_and_world(beijing)",
+          "z3_formula": "many_universities_among_best_in_Asia-Pacific_and_world_beijing == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "second_largest_Chinese_city_by_urban_population(beijing)",
+          "z3_formula": "second_largest_Chinese_city_by_urban_population_beijing == False",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "capital_of(Beijing, People's Republic of China)",
+          "z3_formula": "capital_of_beijing_peoples_republic_of_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous_capital_city(Beijing)",
+          "z3_formula": "most_populous_capital_city_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in(Beijing, Northern China)",
+          "z3_formula": "located_in_beijing_northern_china == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_summer_olympics(Beijing, 2008)",
+          "z3_formula": "hosted_summer_olympics_beijing_2008 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_winter_olympics(Beijing, 2008)",
+          "z3_formula": "hosted_winter_olympics_beijing_2008 == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_summer_paralympics(Beijing, 2008)",
+          "z3_formula": "hosted_summer_paralympics_beijing_2008 == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_winter_paralympics(Beijing, 2008)",
+          "z3_formula": "hosted_winter_paralympics_beijing_2008 == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "many_universities(Beijing, 91)",
+          "z3_formula": "many_universities_beijing_91 == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "second_largest_chinese_city_by_urban_population(Beijing)",
+          "z3_formula": "second_largest_chinese_city_by_urban_population_beijing == Unknown",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "capital(beijing, people_republic_of_china)",
+          "z3_formula": "capital_beijing_people_republic_of_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous_national_capital(beijing)",
+          "z3_formula": "most_populous_national_capital_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in(beijing, northern_china)",
+          "z3_formula": "located_in_beijing_northern_china == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_olympics(beijing, 2008)",
+          "z3_formula": "hosted_olympics_beijing_2008 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_olympics(beijing, 2008, winter)",
+          "z3_formula": "hosted_olympics_beijing_2008_winter == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_paralympics(beijing, 2008)",
+          "z3_formula": "hosted_paralympics_beijing_2008 == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_paralympics(beijing, 2008, winter)",
+          "z3_formula": "hosted_paralympics_beijing_2008_winter == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "university_ranking(beijing, asia_pacific, world)",
+          "z3_formula": "university_ranking_beijing_asia_pacific_world == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "capital_of(Beijing, People's Republic of China)",
+          "z3_formula": "capital_of_beijing_peoples_republic_of_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous_national_capital(Beijing)",
+          "z3_formula": "most_populous_national_capital_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in(Beijing, Northern China)",
+          "z3_formula": "located_in_beijing_northern_china == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_summer_paralympics(Beijing, 2008)",
+          "z3_formula": "hosted_summer_paralympics_beijing_2008 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_both_summer_and_winter_paralympics(Beijing)",
+          "z3_formula": "hosted_both_summer_and_winter_paralympics_beijing == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "top_university(Beijing, Asia-Pacific, world)",
+          "z3_formula": "top_university_beijing_asia_pacific_world == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "second_largest_chinese_city_by_urban_population(Beijing)",
+          "z3_formula": "second_largest_chinese_city_by_urban_population_beijing == Unknown",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "capital(beijing, people_s_republic_of_china)",
+          "z3_formula": "capital_beijing_people_s_republic_of_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous_national_capital(beijing)",
+          "z3_formula": "most_populous_national_capital_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in(beijing, northern_china)",
+          "z3_formula": "located_in_beijing_northern_china == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_olympics(beijing, 2008)",
+          "z3_formula": "hosted_olympics_beijing_2008 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_olympics(beijing, 2008, paralympics)",
+          "z3_formula": "hosted_olympics_beijing_2008_paralympics == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_olympics(beijing, winter, 2008)",
+          "z3_formula": "hosted_olympics_beijing_winter_2008 == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_olympics(beijing, winter, 2008, paralympics)",
+          "z3_formula": "hosted_olympics_beijing_winter_2008_paralympics == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "university_ranking(beijing, 91)",
+          "z3_formula": "university_ranking_beijing_91 == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "most_populous_national_capital(X) -> second_largest(X)",
+          "z3_formula": "Implies(most_populous_national_capital_beijing, second_largest_beijing)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "second_largest(beijing)",
+          "z3_formula": "second_largest_beijing == False",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "capital(beijing, china)",
+          "z3_formula": "capital_beijing_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous_capital(beijing)",
+          "z3_formula": "most_populous_capital_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_north(beijing)",
+          "z3_formula": "located_north_beijing == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_olympics(beijing)",
+          "z3_formula": "hosted_olympics_beijing == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_paralympics(beijing)",
+          "z3_formula": "hosted_paralympics_beijing == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "universities_beijing",
+          "z3_formula": "universities_beijing == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "capital(beijing, china)",
+          "z3_formula": "capital_beijing_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous_national_capital(beijing)",
+          "z3_formula": "most_populous_national_capital_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in_northern_china(beijing)",
+          "z3_formula": "located_in_northern_china_beijing == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_olympics(beijing, 2008)",
+          "z3_formula": "hosted_olympics_beijing_2008 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_paralympics(beijing, 2008)",
+          "z3_formula": "hosted_paralympics_beijing_2008 == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "many_top_universities(beijing)",
+          "z3_formula": "many_top_universities_beijing == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "second_largest_chinese_city_by_urban_population(beijing)",
+          "z3_formula": "second_largest_chinese_city_by_urban_population_beijing == Unknown",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "capital(beijing, china)",
+          "z3_formula": "capital_beijing_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous_national_capital(beijing)",
+          "z3_formula": "most_populous_national_capital_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in_northern_china(beijing)",
+          "z3_formula": "located_in_northern_china_beijing == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_summer_olympics(beijing, 2008)",
+          "z3_formula": "hosted_summer_olympics_beijing_2008 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_winter_olympics(beijing, 2008)",
+          "z3_formula": "hosted_winter_olympics_beijing_2008 == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_summer_paralympics(beijing, 2008)",
+          "z3_formula": "hosted_summer_paralympics_beijing_2008 == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_winter_paralympics(beijing, 2008)",
+          "z3_formula": "hosted_winter_paralympics_beijing_2008 == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "many_universities(beijing, 91)",
+          "z3_formula": "many_universities_beijing_91 == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(beijing)",
+          "z3_formula": "uncertain_beijing == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "capital(beijing, china)",
+          "z3_formula": "capital_beijing_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous_national_capital(beijing)",
+          "z3_formula": "most_populous_national_capital_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in_northern_china(beijing)",
+          "z3_formula": "located_in_northern_china_beijing == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_summer_olympics(beijing, 2008)",
+          "z3_formula": "hosted_summer_olympics_beijing_2008 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_winter_olympics(beijing, 2008)",
+          "z3_formula": "hosted_winter_olympics_beijing_2008 == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_summer_paralympics(beijing, 2008)",
+          "z3_formula": "hosted_summer_paralympics_beijing_2008 == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_winter_paralympics(beijing, 2008)",
+          "z3_formula": "hosted_winter_paralympics_beijing_2008 == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "universities_in_beijing_rank_among_best(beijing)",
+          "z3_formula": "universities_in_beijing_rank_among_best_beijing == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "second_largest_chinese_city_by_population(beijing)",
+          "z3_formula": "second_largest_chinese_city_by_population_beijing == False",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "capital(beijing, china)",
+          "z3_formula": "capital_beijing_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous(beijing)",
+          "z3_formula": "most_populous_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in(beijing, northern_china)",
+          "z3_formula": "located_in_beijing_northern_china == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_olympics(beijing, 2008)",
+          "z3_formula": "hosted_olympics_beijing_2008 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_olympics(beijing, 2008, paralympics)",
+          "z3_formula": "hosted_olympics_beijing_2008_paralympics == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_olympics(beijing, winter, 2008)",
+          "z3_formula": "hosted_olympics_beijing_winter_2008 == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_olympics(beijing, winter, 2008, paralympics)",
+          "z3_formula": "hosted_olympics_beijing_winter_2008_paralympics == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "universities_beijing",
+          "z3_formula": "universities_beijing == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "None -> None",
+          "z3_formula": "Implies(None, None)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "capital(beijing, People's Republic of China)",
+          "z3_formula": "capital_beijing_Peoples_Republic_of_China == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous_national_capital(beijing)",
+          "z3_formula": "most_populous_national_capital_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in(beijing, Northern China)",
+          "z3_formula": "located_in_beijing_Northern_China == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_summer_olympics(beijing, 2008)",
+          "z3_formula": "hosted_summer_olympics_beijing_2008 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_winter_olympics(beijing, 2008)",
+          "z3_formula": "hosted_winter_olympics_beijing_2008 == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "has_universities(beijing, 91)",
+          "z3_formula": "has_universities_beijing_91 == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "most_populous_national_capital(X) -> large_population(X)",
+          "z3_formula": "Implies(most_populous_national_capital_beijing, large_population_beijing)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "large_population(beijing)",
+          "z3_formula": "large_population_beijing == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "capital(beijing, people_s_republic_of_china)",
+          "z3_formula": "capital_beijing_people_s_republic_of_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous_national_capital(beijing)",
+          "z3_formula": "most_populous_national_capital_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in_northern_china(beijing)",
+          "z3_formula": "located_in_northern_china_beijing == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_2008_summer_olympics(beijing)",
+          "z3_formula": "hosted_2008_summer_olympics_beijing == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_2008_summer_paralympics(beijing)",
+          "z3_formula": "hosted_2008_summer_paralympics_beijing == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_both_summer_and_winter_olympics(beijing)",
+          "z3_formula": "hosted_both_summer_and_winter_olympics_beijing == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_both_summer_and_winter_paralympics(beijing)",
+          "z3_formula": "hosted_both_summer_and_winter_paralympics_beijing == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "many_universities_in_beijing_rank_among_best",
+          "z3_formula": "many_universities_in_beijing_rank_among_best == True",
+          "source_step": 8
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 97,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 52
+    },
+    "maxsat_stats": {
+      "satisfied": 51,
+      "excluded": 1,
+      "total_weight": 94,
+      "solve_time_ms": 1.2342669069766998
+    },
+    "timing": {
+      "trace_gen_s": 4.948,
+      "extraction_s": 20.349,
+      "dedup_s": 1.133,
+      "maxsat_s": 0.004,
+      "total_s": 26.434
+    }
+  }
+}

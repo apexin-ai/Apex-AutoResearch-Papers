@@ -1,0 +1,1094 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-877_Q16",
+    "problem": "Anne is cold. Bob is cold. Bob is young. Fiona is big. Fiona is young. Harry is big. Harry is blue. Harry is cold. Harry is furry. Harry is quiet. Harry is red. Harry is young. Cold, young people are red. Furry people are young. Young, big people are blue. Red, big people are quiet. Quiet people are furry. Blue people are red. Young people are big. All quiet, big people are furry. If someone is blue and furry then they are cold.\n\nDetermine whether the following statement is true, false, or unknown:\nAnne is quiet.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nYoung($x, bool) ::: Is x young?\nBig($x, bool) ::: Is x big?\nBlue($x, bool) ::: Is x blue?\nFurry($x, bool) ::: Is x furry?\nQuiet($x, bool) ::: Is x quiet?\nRed($x, bool) ::: Is x red?\n\nFacts:\nCold(Anne, True) ::: Anne is cold.\nCold(Bob, True) ::: Bob is cold.\nYoung(Bob, True) ::: Bob is young.\nBig(Fiona, True) ::: Fiona is big.\nYoung(Fiona, True) ::: Fiona is young.\nBig(Harry, True) ::: Harry is big.\nBlue(Harry, True) ::: Harry is blue.\nCold(Harry, True) ::: Harry is cold.\nFurry(Harry, True) ::: Harry is furry.\nQuiet(Harry, True) ::: Harry is quiet.\nRed(Harry, True) ::: Harry is red.\nYoung(Harry, True) ::: Harry is young.\n\nRules:\nCold($x, True) && Young($x, True) >>> Red($x, True) ::: Cold, young people are red.\nFurry($x, True) >>> Young($x, True) ::: Furry people are young.\nYoung($x, True) && Big($x, True) >>> Blue($x, True) ::: Young, big people are blue.\nRed($x, True) && Big($x, True) >>> Quiet($x, True) ::: Red, big people are quiet.\nQuiet($x, True) >>> Furry($x, True) ::: Quiet people are furry.\nBlue($x, True) >>> Red($x, True) ::: Blue people are red.\nYoung($x, True) >>> Big($x, True) ::: Young people are big.\nQuiet($x, True) && Big($x, True) >>> Furry($x, True) ::: All quiet, big people are furry.\nBlue($x, True) && Furry($x, True) >>> Cold($x, True) ::: If someone is blue and furry then they are cold.\n\nQuery:\nQuiet(Anne, True) ::: Anne is quiet."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 136.0,
+      "Unknown": 153.5
+    },
+    "answer_counts": {
+      "True": 3,
+      "Unknown": 9
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement 'Anne is quiet' is true, false, or unknown, we need to analyze the given information step by step.\n\nGiven information:\n\n1. Anne is cold.\n2. Bob is cold.\n3. Bob is young.\n4. Fiona is big.\n5. Fiona is young.\n6. Harry is big.\n7. Harry is blue.\n8. Harry is cold.\n9. Harry is furry.\n10. Harry is quiet.\n11. Harry is red.\n12. Harry is young.\n13. Cold, young people are red.\n14. Furry people are young.\n15. Young, big people are blue.\n16. Red, big people are quiet.\n17. Quiet people are furry.\n18. Blue people are red.\n19. Young people are big.\n20. All quiet, big people are furry.\n21. If someone is blue and furry then they are cold.\n\nFrom the given information, we can deduce the following:\n\n- From 13 and 1, we can deduce that Anne is red (since Anne is cold and young).\n- From 16, we cannot directly determine whether Anne is quiet or not because we don't know whether Anne is big or not.\n\nHowever, we can also deduce the following:\n\n- From 14, since Harry is furry, we know Harry is young.\n- From 19, since Harry is young, we know Harry is big.\n- From 15, since Harry is big and young, we know Harry is blue.\n- From 18, since Harry is blue, we know Harry is red.\n- From 20, since Harry is quiet and big, we know Harry is furry.\n- From 21, since Harry is blue and furry, we know Harry is cold.\n\nNow, let's determine whether the statement 'Anne is quiet' is true, false, or unknown.\n\nSince we know Anne is red (from step 1), we can use rule 16 (Red, big people are quiet) to determine whether Anne is quiet.\n\nHowever, we do not know whether Anne is big or not.\n\nIf Anne is not big, then we cannot determine whether she is quiet or not using the given rules.\n\nIf Anne is big, then we can use rule 16 to determine whether Anne is quiet.\n\nBut we still do not know whether Anne is big or not. \n\nHowever, we can use the rule 19 to deduce that since Anne is young, then Anne is big.\n\nTherefore, since Anne is big and red, we can use rule 16 to determine that Anne is quiet.\n\nTherefore, the statement 'Anne is quiet' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Anne is cold. (Given statement)\n2. We know that Cold, young people are red. (Given statement)\n3. We don't know Anne's age or color yet. We need more information.\n\n4. We know that Fiona is big. Fiona is young. (Given statements)\n   We also know that Young, big people are blue. (Given statement)\n   This implies that Fiona is blue.\n\n5. We also know that Harry is big, and Harry is blue. (Given statements)\n   Since Harry is blue, we can conclude that Harry is red (because Blue people are red). (Given statement)\n   We also know that Harry is red, but we don't know if he is quiet or not.\n\n6. We know that Quiet people are furry. (Given statement)\n   Since Harry is red and we don't know if he is quiet or not, we cannot conclude that Harry is furry.\n\n7. We also know that Furry people are young. (Given statement)\n   This implies that Harry is young.\n\n8. We know that Young, big people are blue. (Given statement)\n   Since Harry is young and big, we can conclude that Harry is blue.\n\n9. Now we have a contradiction. We already concluded that Harry is blue, but we also concluded that Harry is red. This means that we cannot determine whether the statement \"Anne is quiet\" is true or false based on the given information about Harry.\n\nHowever, we can analyze the statement \"Anne is quiet\" using the information about Anne and the other given statements.\n\n10. We know that Anne is cold. (Given statement)\n    We also know that Cold, young people are red. (Given statement)\n    However, we don't know Anne's age yet.\n\n11. We know that Furry people are young. (Given statement)\n    We don't know if Anne is furry or not.\n\n12. We know that Young, big people are blue. (Given statement)\n    We don't know Anne's size or age yet.\n\n13. We know that Red, big people are quiet. (Given statement)\n    We don't know Anne's size or color yet.\n\n14. We know that Blue people are red. (Given statement)\n    We don't know Anne's color yet.\n\n15. We know that All quiet, big people are furry. (Given statement)\n    We don't know Anne's size or whether she is quiet or not.\n\n16. We know that If someone is blue and furry then they are cold. (Given statement)\n    However, we don't know Anne's color or whether she is furry or not.\n\n17. We know that Quiet people are furry. (Given statement)\n    However, we don't know if Anne is quiet or not.\n\n18. We know that Anne is cold. (Given statement)\n    We also know that Harry is big and blue. (Given statements)\n    However, we don't know Anne's size or age yet.\n\n19. We know that Young people are big. (Given statement)\n    However, we don't know Anne's age yet.\n\n20. We can conclude that Anne is young, because we know that Anne is cold and that Cold, young people are red. (Given statement)\n\n21. We know that Anne is young, but we don't know if Anne is big or not.\n\n22. We know that Young, big people are blue. (Given statement)\n    Since Anne is young, we can conclude that Anne is blue.\n\n23. We know that Blue people are red. (Given statement)\n    Since Anne is blue, we can conclude that Anne is red.\n\n24. We know that Red, big people are quiet. (Given statement)\n    However, we don't know Anne's size yet.\n\n25. We can conclude that Anne is quiet if we know that Anne is big. However, we don't know Anne's size yet.\n\nSince we cannot determine whether Anne is big or not, we cannot determine whether the statement \"Anne is quiet\" is true or false.\n\nThe final answer is \\boxed{unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is quiet\" is true, false, or unknown, we need to use the given information to find out the characteristics of Anne.\n\nGiven information:\n\n1. Anne is cold.\n2. Bob is cold.\n3. Bob is young.\n4. Fiona is big.\n5. Fiona is young.\n6. Harry is big.\n7. Harry is blue.\n8. Harry is cold.\n9. Harry is furry.\n10. Harry is quiet.\n11. Harry is red.\n12. Harry is young.\n13. Cold, young people are red.\n14. Furry people are young.\n15. Young, big people are blue.\n16. Red, big people are quiet.\n17. Quiet people are furry.\n18. Blue people are red.\n19. Young people are big.\n20. All quiet, big people are furry.\n21. If someone is blue and furry then they are cold.\n\nLet's analyze the given information:\n\nFrom statement 13, we know that cold, young people are red. Since Anne is cold (statement 1) and young (we don't know this, but we will come back to this), we can't conclude Anne is red yet.\n\nFrom statement 14, we know that furry people are young. We can't conclude that Anne is furry or young yet.\n\nFrom statement 19, we know that young people are big. This means Anne is big, but we still can't conclude she is young or furry.\n\nFrom statement 15, we know that young, big people are blue. We can't conclude that Anne is blue, young, or big yet.\n\nFrom statement 18, we know that blue people are red. We still can't conclude Anne is blue, young, big, or red yet.\n\nFrom statement 20, we know that all quiet, big people are furry. We still can't conclude Anne is furry, big, or quiet yet.\n\nFrom statement 21, we know that if someone is blue and furry then they are cold. We still can't conclude Anne is cold, blue, or furry yet.\n\nNow, let's go back to statement 1: Anne is cold. Since we know this, we can try to find a connection between Anne and the other characteristics.\n\nFrom statement 13, we know that cold, young people are red. Since Anne is cold, this means Anne is young (because only young people can be red).\n\nNow we know that Anne is cold and young. From statement 13, we can conclude that Anne is red.\n\nFrom statement 19, we know that young people are big. Since Anne is young, this means Anne is big.\n\nNow we know that Anne is cold, young, big, and red. From statement 16, we know that red, big people are quiet. This means Anne is quiet.\n\nTherefore, the statement \"Anne is quiet\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is quiet\" is true, false, or unknown, we need to analyze the given information and the given rules. \n\nFirst, let's break down the given information and rules:\n\nGiven Information:\n- Anne is cold.\n- Bob is cold.\n- Bob is young.\n- Fiona is big.\n- Fiona is young.\n- Harry is big.\n- Harry is blue.\n- Harry is cold.\n- Harry is furry.\n- Harry is quiet.\n- Harry is red.\n- Harry is young.\n- Cold, young people are red.\n- Furry people are young.\n- Young, big people are blue.\n- Red, big people are quiet.\n- Quiet people are furry.\n- Blue people are red.\n- Young people are big.\n- All quiet, big people are furry.\n- If someone is blue and furry then they are cold.\n\nNow, let's analyze the given rules and information to deduce the properties of Anne:\n\nFrom the rule \"Cold, young people are red,\" we know that since Anne is cold and young, she is red.\n\nFrom the rule \"Furry people are young,\" we don't have enough information to determine if Anne is furry or not, but we can't conclude that she is not furry.\n\nFrom the rule \"Blue people are red,\" we know that since blue people are red, Harry being blue and red doesn't contradict this rule.\n\nFrom the rule \"Red, big people are quiet,\" we know that since Anne is red and we don't have enough information to determine if she is big or not, we can't conclude that she is quiet or not.\n\nFrom the rule \"Quiet people are furry,\" we don't have enough information to determine if Anne is quiet or furry, but we can't conclude that she is not quiet.\n\nFrom the rule \"All quiet, big people are furry,\" we don't have enough information to determine if Anne is quiet or big, but we can't conclude that she is not furry.\n\nFrom the rule \"If someone is blue and furry then they are cold,\" we can't apply this rule to Anne since we don't know if she is blue or furry.\n\nSince we don't have enough information to determine if Anne is quiet, we can conclude that the statement \"Anne is quiet\" is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine if the statement \"Anne is quiet\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nGiven Information:\n- Anne is cold.\n- Bob is cold.\n- Bob is young.\n- Fiona is big.\n- Fiona is young.\n- Harry is big.\n- Harry is blue.\n- Harry is cold.\n- Harry is furry.\n- Harry is quiet.\n- Harry is red.\n- Harry is young.\n- Cold, young people are red.\n- Furry people are young.\n- Young, big people are blue.\n- Red, big people are quiet.\n- Quiet people are furry.\n- Blue people are red.\n- Young people are big.\n- All quiet, big people are furry.\n- If someone is blue and furry then they are cold.\n\nWe need to find a connection between Anne and the property \"quiet.\" \n\nFrom the given information, we know:\n- Anne is cold.\n- Cold, young people are red.\n\nBut there is no direct connection between Anne being cold and Anne being quiet. However, there is an indirect connection between Anne being cold and other properties that might lead us to the property \"quiet.\"\n\nTo find a connection to \"quiet,\" let's analyze Anne's known properties:\n- Anne is cold.\n- Cold, young people are red.\n- Furry people are young.\n\nThis implies that Anne could be young and red, but it does not directly connect to \"quiet.\" However, we can also use the rule \"Blue people are red\" to imply that Anne could be blue. \n\nSince Anne is cold, and we know \"If someone is blue and furry then they are cold,\" this implies that Anne must be furry. \n\nNow we have:\n- Anne is cold.\n- Anne is furry.\n- Furry people are young.\n- Young people are big.\n- All quiet, big people are furry.\n\nThis implies that Anne is big and furry. Since Anne is big and furry, and we know \"All quiet, big people are furry,\" this implies that Anne is quiet.\n\nTherefore, the statement \"Anne is quiet\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is quiet\" is true, false, or unknown, we need to analyze the given information.\n\nGiven information:\n1. Anne is cold.\n2. Bob is cold.\n3. Bob is young.\n4. Fiona is big.\n5. Fiona is young.\n6. Harry is big.\n7. Harry is blue.\n8. Harry is cold.\n9. Harry is furry.\n10. Harry is quiet.\n11. Harry is red.\n12. Harry is young.\n13. Cold, young people are red.\n14. Furry people are young.\n15. Young, big people are blue.\n16. Red, big people are quiet.\n17. Quiet people are furry.\n18. Blue people are red.\n19. Young people are big.\n20. All quiet, big people are furry.\n21. If someone is blue and furry then they are cold.\n\nLet's analyze the information step by step:\n\nFrom statement 13, we know that Cold, young people are red. Since Anne is cold (statement 1) and young (can be inferred from statement 3, which is about Bob, but we don't have information about Anne's age directly), we can conclude that Anne is red.\n\nFrom statement 14, we know that Furry people are young. Since we don't have any information that says Anne is furry, we can't conclude anything about Anne's age based on this statement.\n\nFrom statement 16, we know that Red, big people are quiet. Since we know Anne is red (from above), but we don't know whether she is big or not, we can't conclude whether Anne is quiet or not.\n\nFrom statement 17, we know that Quiet people are furry. We know that Harry is quiet (statement 10), so Harry is furry (statement 9). However, we don't have any information that says Anne is furry or quiet.\n\nFrom statement 19, we know that Young people are big. Since we know that Bob is young (statement 3) and big (can be inferred from statement 5, which is about Fiona, but we don't have information about Bob's size directly), we can't conclude anything about Anne's size based on this statement.\n\nFrom statement 20, we know that All quiet, big people are furry. Since we know Harry is quiet (statement 10) and big (statement 6), we can conclude that Harry is furry (statement 9). However, we don't have any information that says Anne is quiet or big.\n\nSince we don't have enough information to conclude whether Anne is quiet or not, the statement \"Anne is quiet\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that Anne is cold. \n   Statement: Anne is cold. \n   Therefore, since Harry is also cold, we cannot directly conclude anything about Anne from this.\n\n2. We are given that Bob is young. \n   Statement: Bob is young. \n   However, we do not have any information about Anne being young or not.\n\n3. We are given that Fiona is big. \n   Statement: Fiona is big. \n   This statement is also irrelevant to Anne.\n\n4. We are given that Harry is big. \n   Statement: Harry is big. \n   We already know that Fiona is big. We still cannot conclude anything about Anne.\n\n5. We are given that Harry is blue. \n   Statement: Harry is blue. \n   From the given information, we cannot conclude anything about Anne being blue or not.\n\n6. We are given that Harry is cold. \n   Statement: Harry is cold. \n   We already know that Anne is cold, but we cannot conclude anything about Anne from this.\n\n7. We are given that Harry is furry. \n   Statement: Harry is furry. \n   From the given information, we cannot conclude anything about Anne being furry or not.\n\n8. We are given that Harry is quiet. \n   Statement: Harry is quiet. \n   From the given information, we cannot conclude anything about Anne being quiet or not.\n\n9. We are given that Harry is red. \n   Statement: Harry is red. \n   We cannot conclude anything about Anne from this.\n\n10. We are given that Harry is young. \n    Statement: Harry is young. \n    We already know that Bob is young. We still cannot conclude anything about Anne being young or not.\n\n11. We are given that Cold, young people are red. \n    Statement: Cold, young people are red. \n    Since we know Anne is cold, and this rule applies to cold, young people, we can conclude that Anne is red.\n\n12. We are given that Furry people are young. \n    Statement: Furry people are young. \n    However, we do not have any information about Anne being furry or not.\n\n13. We are given that Young, big people are blue. \n    Statement: Young, big people are blue. \n    We already know that Fiona is big and young, so she must be blue.\n\n14. We are given that Red, big people are quiet. \n    Statement: Red, big people are quiet. \n    However, we do not have any information about Anne being red or big.\n\n15. We are given that Quiet people are furry. \n    Statement: Quiet people are furry. \n    However, we do not have any information about Anne being quiet or not.\n\n16. We are given that Blue people are red. \n    Statement: Blue people are red. \n    We already know that Fiona is blue, so she must be red.\n\n17. We are given that Young people are big. \n    Statement: Young people are big. \n    This is a relevant rule. Since we know that Anne is cold, and we also know that cold, young people are red (from rule 11), we can conclude that Anne is young.\n\n18. We are given that All quiet, big people are furry. \n    Statement: All quiet, big people are furry. \n    However, we do not have any information about Anne being quiet or big.\n\n19. We are given that If someone is blue and furry then they are cold. \n    Statement: If someone is blue and furry then they are cold. \n    However, we do not have any information about Anne being blue or furry.\n\nNow, let's summarize the information we have about Anne:\n\n* Anne is cold (given)\n* Anne is red (from rule 11, since Anne is cold and young)\n* Anne is young (from rule 17, since Anne is cold)\n\nWe still do not know if Anne is quiet or not.\n\nSince we do not have enough information to conclude whether Anne is quiet, the statement \"Anne is quiet\" is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to use the given information and the rules provided. \n\nLet's break down the information given about each person and the rules:\n\n- Anne: cold\n- Bob: cold, young\n- Fiona: big, young\n- Harry: big, blue, cold, furry, quiet, red, young\n\nNow, let's analyze the rules:\n\n1. Cold, young people are red.\n2. Furry people are young.\n3. Young, big people are blue.\n4. Red, big people are quiet.\n5. Quiet people are furry.\n6. Blue people are red.\n7. Young people are big.\n8. All quiet, big people are furry.\n9. If someone is blue and furry then they are cold.\n\nNow, let's find the relationship between the given information and the rules:\n\nFrom rule 1, we know that cold people and young people are red. However, this does not help us determine Anne's quietness.\n\nFrom rule 2, we know that furry people are young. However, this does not help us determine Anne's quietness.\n\nFrom rule 3, we know that young, big people are blue. However, this does not help us determine Anne's quietness.\n\nFrom rule 4, we know that red, big people are quiet. However, this does not help us determine Anne's quietness.\n\nFrom rule 5, we know that quiet people are furry. However, this does not help us determine Anne's quietness.\n\nFrom rule 6, we know that blue people are red. However, this does not help us determine Anne's quietness.\n\nFrom rule 7, we know that young people are big. However, this does not help us determine Anne's quietness.\n\nFrom rule 8, we know that all quiet, big people are furry. However, this does not help us determine Anne's quietness.\n\nFrom rule 9, we know that if someone is blue and furry then they are cold. However, this does not help us determine Anne's quietness.\n\nNow, let's analyze Anne's information. Anne is cold, but we cannot determine her quietness or any other traits from the given information and the rules.\n\nThe statement \"Anne is quiet\" cannot be determined as true or false based on the given information. Therefore, the answer is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We have the following statements:\n   - Anne is cold.\n   - Bob is cold.\n   - Bob is young.\n   - Fiona is big.\n   - Fiona is young.\n   - Harry is big.\n   - Harry is blue.\n   - Harry is cold.\n   - Harry is furry.\n   - Harry is quiet.\n   - Harry is red.\n   - Harry is young.\n   - Cold, young people are red.\n   - Furry people are young.\n   - Young, big people are blue.\n   - Red, big people are quiet.\n   - Quiet people are furry.\n   - Blue people are red.\n   - Young people are big.\n   - All quiet, big people are furry.\n   - If someone is blue and furry then they are cold.\n\n2. Let's start with the information we have about Anne. We know that Anne is cold.\n\n3. Now, let's look for information that connects being cold with other characteristics. We have:\n   - Cold, young people are red.\n   - If someone is blue and furry then they are cold.\n\n   We cannot connect Anne being cold to any other characteristic using the first statement. However, the second statement implies that if someone is blue and furry, they are cold. Since we do not know if Anne is blue or furry, we cannot determine if Anne is cold using this information.\n\n4. We do not have any direct information about Anne being young, big, blue, red, or furry. However, we know that Anne is cold.\n\n5. Now, let's see if we can connect Anne being cold to being quiet. We have:\n   - Harry is quiet.\n   - Harry is cold.\n   - If someone is blue and furry then they are cold.\n\n   Since Harry is cold, and we have information about cold people, we can conclude that Harry is red because cold, young people are red. However, we do not know if Harry is young or not. We also know that Harry is blue, furry, and young.\n\n6. Now, let's look for information that connects being blue with other characteristics. We have:\n   - Young, big people are blue.\n   - Blue people are red.\n\n   Since Harry is blue, we can conclude that Harry is young and big because young, big people are blue.\n\n7. Now, let's look for information that connects being blue and young with other characteristics. We have:\n   - If someone is blue and furry then they are cold.\n   - Furry people are young.\n   - Young people are big.\n\n   Since Harry is blue, young, and big, we can conclude that Harry is furry because if someone is blue and furry, they are cold, and we already know that Harry is cold.\n\n8. Now, let's look for information that connects being furry with other characteristics. We have:\n   - Quiet people are furry.\n   - Harry is furry.\n\n   Since Harry is furry, we can conclude that Harry is quiet.\n\n9. Now, let's look for information that connects being quiet with other characteristics. We have:\n   - Quiet people are furry.\n   - We already know that Harry is furry and quiet.\n\n10. Since we have connected Harry's characteristics and determined that Harry is quiet, we can now connect Anne's being cold with being quiet. We have:\n   - Harry is cold.\n   - Harry is quiet.\n\n   Since Harry is cold and quiet, we can look for information that connects being cold with being quiet. We have:\n   - If someone is blue and furry then they are cold.\n   - Quiet people are furry.\n\n   However, we do not have any information that directly connects being cold with being quiet.\n\n11. Now, let's see if we can connect Anne being cold with being young. We have:\n   - Cold, young people are red.\n   - We already know that Anne is cold.\n\n   Since we do not know if Anne is young or not, we cannot determine if Anne is red.\n\n12. Now, let's look for information that connects being red with other characteristics. We have:\n   - Red, big people are quiet.\n   - We already know that Harry is red and quiet.\n\n   Since we do not have any information about Anne being big or not, we cannot determine if Anne is quiet.\n\n13. Since we have connected Anne's characteristics and determined that we cannot conclude if Anne is quiet or not, the statement \"Anne is quiet\" is unknown.\n\nTherefore, the final answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to use a combination of logic and deduction based on the given information.\n\nLet's start by breaking down the given information:\n\n1. Anne is cold.\n2. Bob is cold, Bob is young.\n3. Fiona is big, Fiona is young.\n4. Harry is big, Harry is blue, Harry is cold, Harry is furry, Harry is quiet, Harry is red, Harry is young.\n5. Cold, young people are red.\n6. Furry people are young.\n7. Young, big people are blue.\n8. Red, big people are quiet.\n9. Quiet people are furry.\n10. Blue people are red.\n11. Young people are big.\n12. All quiet, big people are furry.\n13. If someone is blue and furry then they are cold.\n\nNow, we need to determine whether Anne is quiet. \n\nFrom statement 1, we know that Anne is cold. \n\nFrom statement 5, since Anne is cold and young (because we don't have any information about Anne's age, we cannot conclude that Anne is young), we cannot conclude that Anne is red.\n\nFrom statement 4, Harry is both blue and furry. From statement 13, if someone is blue and furry, then they are cold. Therefore, Harry is cold, which we already know from statement 4.\n\nFrom statement 7, young people are big. Therefore, Harry is big, which we already know from statement 4.\n\nFrom statement 10, blue people are red. Therefore, Harry is red, which we already know from statement 4.\n\nFrom statement 8, red, big people are quiet. Therefore, Harry is quiet, which we already know from statement 4.\n\nFrom statement 9, quiet people are furry. Therefore, Harry is furry, which we already know from statement 4.\n\nHowever, from statement 11, young people are big. Therefore, Anne is big.\n\nFrom statement 2, Bob is young and big. Since we know from statement 11 that young people are big, we can conclude that Bob is young. But we cannot determine Bob's size based on the information given.\n\nHowever, since we cannot conclude Anne's age and size, we cannot determine whether Anne is quiet. \n\nTherefore, the statement \"Anne is quiet\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is quiet\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nLet's break down the information and rules:\n\n1. Anne is cold.\n2. Bob is cold.\n3. Bob is young.\n4. Fiona is big.\n5. Fiona is young.\n6. Harry is big.\n7. Harry is blue.\n8. Harry is cold.\n9. Harry is furry.\n10. Harry is quiet.\n11. Harry is red.\n12. Harry is young.\n13. Cold, young people are red.\n14. Furry people are young.\n15. Young, big people are blue.\n16. Red, big people are quiet.\n17. Quiet people are furry.\n18. Blue people are red.\n19. Young people are big.\n20. All quiet, big people are furry.\n21. If someone is blue and furry then they are cold.\n\nNow, let's analyze the rules to find any relationships between the attributes:\n\n- From rules 14 and 15, we know that young people are big and blue.\n- From rule 18, we know that blue people are red.\n- From rule 19, we know that young people are big.\n- From rule 15, we know that young, big people are blue.\n- From rule 20, we know that all quiet, big people are furry.\n\nSince we know that young people are big and blue (rule 15), and blue people are red (rule 18), we can conclude that young people are red.\n\nNow, let's apply the rules to Anne:\n- Anne is cold (rule 1).\n- Since Anne is cold, and from rule 13, cold, young people are red, we can conclude that Anne is red.\n\nHowever, we don't have enough information to determine whether Anne is quiet or not. We can only conclude that Anne is red.\n\nSince we don't have enough information to determine whether Anne is quiet, the statement \"Anne is quiet\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is quiet\" is true, false, or unknown, we need to analyze the given information and the provided rules.\n\n1. Anne is cold. (Given)\n2. Bob is cold. (Given)\n3. Bob is young. (Given)\n4. Fiona is big. (Given)\n5. Fiona is young. (Given)\n6. Harry is big. (Given)\n7. Harry is blue. (Given)\n8. Harry is cold. (Given)\n9. Harry is furry. (Given)\n10. Harry is quiet. (Given)\n11. Harry is red. (Given)\n12. Harry is young. (Given)\n13. Cold, young people are red. (Rule)\n14. Furry people are young. (Rule)\n15. Young, big people are blue. (Rule)\n16. Red, big people are quiet. (Rule)\n17. Quiet people are furry. (Rule)\n18. Blue people are red. (Rule)\n19. Young people are big. (Rule)\n20. All quiet, big people are furry. (Rule)\n21. If someone is blue and furry then they are cold. (Rule)\n\nFrom the given information, we know that Anne is cold (1). We need to determine whether Anne is quiet or not.\n\nUsing the rules, we can try to find a relationship between Anne's characteristics and the given rules.\n\nFrom rule 14, we know that furry people are young. However, we don't have any information about Anne being furry or young.\n\nFrom rule 19, we know that young people are big. However, we don't have any information about Anne being young or big.\n\nFrom rule 1, we know that Anne is cold. However, we don't have any information about Anne being quiet.\n\nWe can also analyze the given information about Harry. Since Harry is quiet (10), we can use rule 17 to conclude that Harry is furry. However, we don't have any information about Anne being quiet or furry.\n\nWe can also analyze the given information about Harry. Since Harry is blue (7), we can use rule 18 to conclude that Harry is red. However, we don't have any information about Anne being blue or red.\n\nFrom rule 13, we know that cold, young people are red. However, we don't have any information about Anne being young.\n\nWe can also analyze the given information about Harry. Since Harry is big (6) and blue (7), we can use rule 15 to conclude that Harry is young. However, we don't have any information about Anne being big or young.\n\nFrom rule 20, we know that all quiet, big people are furry. However, we don't have any information about Anne being quiet or big.\n\nWe can also analyze the given information about Harry. Since Harry is cold (8) and furry (9), we can use rule 21 to conclude that Harry is blue. However, we don't have any information about Anne being cold or furry.\n\nFrom rule 16, we know that red, big people are quiet. However, we don't have any information about Anne being red or big.\n\nFrom rule 17, we know that quiet people are furry. However, we don't have any information about Anne being quiet.\n\nFrom rule 18, we know that blue people are red. However, we don't have any information about Anne being blue.\n\nFrom rule 19, we know that young people are big. However, we don't have any information about Anne being young.\n\nWe can also analyze the given information about Harry. Since Harry is big (6) and red (11), we can use rule 16 to conclude that Harry is quiet. However, we don't have any information about Anne being big or red.\n\nSince we don't have enough information to determine whether Anne is quiet or not, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(cold_anne, young_anne), red_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_harry, young_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> big(X)",
+          "z3_formula": "Implies(young_bob, big_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> blue(X)",
+          "z3_formula": "Implies(And(big_fiona, young_fiona), blue_fiona)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_harry, big_harry), quiet_harry)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> furry(X)",
+          "z3_formula": "Implies(quiet_harry, furry_harry)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_harry, red_harry)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> big(X)",
+          "z3_formula": "Implies(young_bob, big_bob)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_harry, big_harry), furry_harry)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & furry(X) -> cold(X)",
+          "z3_formula": "Implies(And(blue_harry, furry_harry), cold_harry)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(cold_anne, young_anne), red_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_anne, young_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(young_anne, big_anne), blue_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_anne, big_anne), quiet_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_anne, red_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & furry(X) -> cold(X)",
+          "z3_formula": "Implies(And(blue_anne, furry_anne), cold_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> furry(X)",
+          "z3_formula": "Implies(quiet_anne, furry_anne)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(young_anne, big_anne), blue_anne)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_anne, red_anne)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_anne, big_anne), quiet_anne)",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> big(X)",
+          "z3_formula": "Implies(young_anne, big_anne)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> big(X)",
+          "z3_formula": "Implies(young_anne, big_anne)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> big(X)",
+          "z3_formula": "Implies(young_anne, big_anne)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & quiet(X) -> furry(X)",
+          "z3_formula": "Implies(And(big_anne, quiet_anne), furry_anne)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == Unknown",
+          "source_step": 26
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> big(X)",
+          "z3_formula": "Implies(young_anne, big_anne)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(cold_anne, young_anne), red_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> big(X)",
+          "z3_formula": "Implies(young_anne, big_anne)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_anne, big_anne), quiet_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(cold_anne, young_anne), red_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_anne, young_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(young_fiona, big_fiona), blue_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_harry, big_harry), quiet_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> furry(X)",
+          "z3_formula": "Implies(quiet_harry, furry_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_harry, big_harry), furry_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & furry(X) -> cold(X)",
+          "z3_formula": "Implies(And(blue_harry, furry_harry), cold_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == Unknown",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == Unknown",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(cold_anne, young_anne), red_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_anne, red_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & furry(X) -> cold(X)",
+          "z3_formula": "Implies(And(blue_anne, furry_anne), cold_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_anne, young_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> big(X)",
+          "z3_formula": "Implies(young_anne, big_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & furry(X) -> furry(X)",
+          "z3_formula": "Implies(And(big_anne, furry_anne), furry_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(big_anne, furry_anne), quiet_anne)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(cold_anne, young_anne), red_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_X, young_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_anne, big_anne), quiet_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> furry(X)",
+          "z3_formula": "Implies(quiet_X, furry_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> big(X)",
+          "z3_formula": "Implies(young_X, big_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_X, big_X), furry_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & furry(X) -> cold(X)",
+          "z3_formula": "Implies(And(blue_X, furry_X), cold_X)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == Unknown",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(cold_anne, young_anne), red_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_anne, young_anne)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(cold_anne, young_anne), red_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_anne, young_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(young_fiona, big_fiona), blue_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_harry, big_harry), quiet_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> furry(X)",
+          "z3_formula": "Implies(quiet_harry, furry_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_harry, red_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> big(X)",
+          "z3_formula": "Implies(young_fiona, big_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_harry, big_harry), furry_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & furry(X) -> cold(X)",
+          "z3_formula": "Implies(And(blue_harry, furry_harry), cold_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(quiet(anne))",
+          "z3_formula": "Not(Or(And(cold_anne, young_anne), And(furry_anne, young_anne), And(young_anne, big_anne), And(red_anne, big_anne), And(quiet_harry, furry_harry), And(blue_harry, furry_harry), And(cold_harry, furry_harry)))",
+          "source_step": 11
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(cold_anne, young_anne), red_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & furry(X) -> cold(X)",
+          "z3_formula": "Implies(And(blue_harry, furry_harry), cold_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> big(X)",
+          "z3_formula": "Implies(young_harry, big_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_harry, red_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_harry, big_harry), quiet_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> furry(X)",
+          "z3_formula": "Implies(quiet_harry, furry_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> big(X)",
+          "z3_formula": "Implies(young_anne, big_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & furry(X) -> cold(X)",
+          "z3_formula": "Implies(And(blue_harry, furry_harry), cold_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(young_fiona, big_fiona), blue_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> big(X)",
+          "z3_formula": "Implies(young_bob, big_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == Unknown",
+          "source_step": 15
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(cold_anne, young_anne), red_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_anne, young_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> big(X)",
+          "z3_formula": "Implies(young_anne, big_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_anne, big_anne), quiet_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> furry(X)",
+          "z3_formula": "Implies(quiet_anne, furry_anne)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_anne, red_anne)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> big(X)",
+          "z3_formula": "Implies(young_anne, big_anne)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_anne, big_anne), furry_anne)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> blue(X)",
+          "z3_formula": "Implies(And(furry_anne, cold_anne), blue_anne)",
+          "source_step": 21
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 161,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 48
+    },
+    "maxsat_stats": {
+      "satisfied": 47,
+      "excluded": 1,
+      "total_weight": 160,
+      "solve_time_ms": 1.8481193110346794
+    },
+    "timing": {
+      "trace_gen_s": 11.525,
+      "extraction_s": 42.585,
+      "dedup_s": 1.663,
+      "maxsat_s": 0.005,
+      "total_s": 55.777
+    }
+  }
+}

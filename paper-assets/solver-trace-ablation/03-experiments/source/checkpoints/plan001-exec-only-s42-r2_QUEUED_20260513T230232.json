@@ -1,0 +1,27 @@
+{
+  "exp_id": "plan001-exec-only-s42-r2",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T22:40:41.773Z",
+    "updated_at": "2026-05-13T23:02:32.135Z",
+    "spec": {
+      "command": "bash -c \"CUDA_VISIBLE_DEVICES=0 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --help 2>&1 | grep -i steps && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --num_steps 500 --seed 42 --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s42 --exec_weight 1.0 --sta_weight 0.0\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "84896",
+      "log_path": "~/runs/solver-trace-ablation/plan001-exec-only-s42-r2.log",
+      "submitted_at": "2026-05-13T22:40:41.727Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-13T23:02:32.167264+00:00",
+  "trigger": "update_registry"
+}

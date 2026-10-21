@@ -1,0 +1,43 @@
+{
+  "exp_id": "exp54_causal_probe_subspace",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T11:11:37.342Z",
+    "updated_at": "2026-05-22T11:44:24.130Z",
+    "hypothesis": "Classification DAPT compresses representations into few discriminative dimensions that are causally necessary for OOD generalization - projecting onto top-k SVD components preserves detection while random/vanilla projections fail",
+    "parent": "exp50_layerwise_representation",
+    "spec": {
+      "command": "python3 scripts/exp54_causal_probe.py",
+      "server": "westd-49690",
+      "data_path": "/root/persuasion_turn_jailbreak_detect/data/",
+      "data_count": 1500,
+      "model_name": "deberta-v3-base (9-class/scrambled/vanilla)",
+      "seed": 42,
+      "checkpoint_source": "plan_002/plan_003_scrambled_fix/pretrained",
+      "eval_data": "plan_002_splits + DD/AA/FITD OOD",
+      "log_path": "/tmp/exp54.log",
+      "checkpoint_path": "N/A (analysis experiment)"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "9class_top3_aa_f1": 1,
+      "9class_top3_dd_f1": 1,
+      "9class_top3_fitd_f1": 1,
+      "9class_rand3_aa_f1": 0.928,
+      "scrambled_top3_aa_f1": 0.962,
+      "scrambled_rand3_aa_f1": 0.766,
+      "mlm_top3_aa_f1": 0.618,
+      "mlm_full_aa_f1": 0.636,
+      "mlm_rand5_dd_f1": 0.685,
+      "mlm_rand5_aa_f1": 0.584,
+      "mlm_rand5_fitd_f1": 0.744
+    },
+    "completed_at": "2026-05-22T11:44:24.130Z"
+  },
+  "timestamp": "2026-05-22T11:44:24.345048+00:00",
+  "trigger": "update_registry"
+}

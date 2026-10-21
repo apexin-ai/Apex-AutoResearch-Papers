@@ -1,0 +1,25 @@
+{
+  "exp_id": "exp_010a_cheetah_baseline_s1",
+  "project": "event-gated-adaptive-horizon",
+  "state": "QUEUED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T07:17:27.101Z",
+    "updated_at": "2026-05-15T08:34:13.898Z",
+    "hypothesis": "Cheetah Run baseline seed 1 — 建立第二环境 dt=1 参考基线，为跨环境验证 C1/C2 做准备（plan_020）",
+    "notes": "Director 排期: cuda:0 上排在 009d 之后。",
+    "spec": {
+      "command": "python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_010a_cheetah_baseline_s1 --steps 512000 --seed 1 --compile False --device cuda:0 --gate_enabled False",
+      "server": "bjb1-45299",
+      "model_name": "dreamerv3",
+      "seed": 1,
+      "data_path": "dmc_cheetah_run",
+      "data_count": 512000,
+      "description": "plan_020: Cheetah Run dt=1 baseline seed 1, 512K steps, v/e calibration reference for cross-env C1/C2"
+    }
+  },
+  "timestamp": "2026-05-15T08:34:14.025730+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,37 @@
+{
+  "exp_id": "exp_016d_sgs_walker_s1",
+  "project": "event-gated-adaptive-horizon",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:29:41.130Z",
+    "updated_at": "2026-05-15T19:35:05.001Z",
+    "hypothesis": "Walker Walk SGS (Stop-Gradient on dt_emb in reward head) + subsample ON + trained dt_emb + H=8 seed 1 — 核心方法实验：reward_dt_emb_detach 阻断 CIVO reward→dt_emb 梯度通路（plan_016）。第四次重试，修复 SummaryWriter.add_video 死锁（try/except patch in tools.py）",
+    "parent": "exp_008d_subsample_on_h8",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_016d_sgs_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --reward_dt_emb_detach True\"",
+      "server": "bjb1-45299",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "526148",
+      "log_path": "~/runs/event-gated-adaptive-horizon/exp_016d_sgs_walker_s1.log",
+      "submitted_at": "2026-05-15T19:29:58.871Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "seed": 1,
+      "model_name": "DreamerV3+FixedDt2_SGS_Subsample_H8 (reward_dt_emb_detach=True)",
+      "data_path": "dmc_walker_walk",
+      "data_count": 105000,
+      "checkpoint_source": "N/A - training from scratch, parent is for genealogy only",
+      "eval_data": "N/A - training experiment, not eval",
+      "note": "Fresh logdir. tools.py patched: try/except around SummaryWriter.add_video() to prevent moviepy 2.x deadlock. GPU 1 verified healthy after cleanup."
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-15T19:35:05.132948+00:00",
+  "trigger": "update_registry"
+}

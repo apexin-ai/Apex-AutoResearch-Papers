@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-947_Q2",
+    "problem": "The bear does not eat the lion. The bear likes the lion. The lion is big. The lion visits the mouse. The lion visits the squirrel. The mouse eats the squirrel. The mouse likes the bear. The mouse likes the lion. The mouse visits the squirrel. The squirrel is not cold. The squirrel is nice. If something eats the squirrel then the squirrel eats the mouse. If something visits the bear and it is green then it is nice. If something is green and blue then it visits the bear. If something likes the lion and it is blue then the lion is nice. If something eats the mouse then it likes the lion. If the bear is not green then the bear likes the lion. If something visits the bear then the bear likes the lion. If something likes the lion and the lion is blue then the lion likes the mouse. If something is nice then it is blue.\n\nDetermine whether the following statement is true, false, or unknown:\nThe squirrel is cold.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nLikes($x, $y, bool) ::: Does x like y?\nBig($x, bool) ::: Is x big?\nVisits($x, $y, bool) ::: Does x visit y?\nCold($x, bool) ::: Is x cold?\nNice($x, bool) ::: Is x nice?\nGreen($x, bool) ::: Is x green?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nEats(Bear, Lion, False) ::: The bear does not eat the lion.\nLikes(Bear, Lion, True) ::: The bear likes the lion.\nBig(Lion, True) ::: The lion is big.\nVisits(Lion, Mouse, True) ::: The lion visits the mouse.\nVisits(Lion, Squirrel, True) ::: The lion visits the squirrel.\nEats(Mouse, Squirrel, True) ::: The mouse eats the squirrel.\nLikes(Mouse, Bear, True) ::: The mouse likes the bear.\nLikes(Mouse, Lion, True) ::: The mouse likes the lion.\nVisits(Mouse, Squirrel, True) ::: The mouse visits the squirrel.\nCold(Squirrel, False) ::: The squirrel is not cold.\nNice(Squirrel, True) ::: The squirrel is nice.\n\nRules:\nEats($x, Squirrel, True) >>> Eats(Squirrel, Mouse, True) ::: If something eats the squirrel then the squirrel eats the mouse.\nVisits($x, Bear, True) && Green($x, True) >>> Nice($x, True) ::: If something visits the bear and it is green then it is nice.\nGreen($x, True) && Blue($x, True) >>> Visits($x, Bear, True) ::: If something is green and blue then it visits the bear.\nLikes($x, Lion, True) && Blue($x, True) >>> Nice(Lion, True) ::: If something likes the lion and it is blue then the lion is nice.\nEats($x, Mouse, True) >>> Likes($x, Lion, True) ::: If something eats the mouse then it likes the lion.\nGreen(Bear, False) >>> Likes(Bear, Lion, True) ::: If the bear is not green then the bear likes the lion.\nVisits($x, Bear, True) >>> Likes(Bear, Lion, True) ::: If something visits the bear then the bear likes the lion.\nLikes($x, Lion, True) && Blue(Lion, True) >>> Likes(Lion, Mouse, True) ::: If something likes the lion and the lion is blue then the lion likes the mouse.\nNice($x, True) >>> Blue($x, True) ::: If something is nice then it is blue.\n\nQuery:\nCold(Squirrel, True) ::: The squirrel is cold."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

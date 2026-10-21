@@ -1,0 +1,173 @@
+dreams:
+  dream_20260514T094226:
+    dream_id: dream_20260514T094226
+    project: schema_semantic_constrained_ie
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: DocRED full_s1 DR=10.19% (vs SciERC 0.93%)，tightness-DR 反相关已验证。论文需要在 "near-complete"
+      claim 和跨数据集泛化叙事之间找到准确定位。Grammar 层跨数据集完美泛化(ET/RV→0%)，semantic 层效果与 ontology constraint
+      tightness 反相关是核心 finding。评估当前 framing 能否支撑 A 类会议。
+    what_if: []
+    pid: 383746
+    chat_id: oc_2216d5b8b87a9472ce204aba11481390
+    card_message_id: om_x100b6f6dde9f8cacc4a0f9e090b90e6
+    started_at: '2026-05-14T09:42:26+00:00'
+    updated_at: '2026-05-14T11:05:05+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 09f9db4702edf1dd5aee0a8f9f2f8dd9147825804d2b6f770096fd25c0da24bf
+  dream_20260514T205155:
+    dream_id: dream_20260514T205155
+    project: schema_semantic_constrained_ie
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: EMNLP 2026
+    focus: 'All 20 experiments complete with 2 models × 2 datasets full matrix. Key
+      narrative updates: D014 dual-factor tightness × RV baseline, D013 post-hoc multi-dimensional
+      framing, D012 bootstrap CI (dataset-dependent F1 impact), cross-model generalization
+      confirmed but with model-specific effects (Llama E-F1 decline, parse failure
+      increase, CF=12.02%). Paper has complete related work (42 refs), discussion
+      paragraphs, and cross-model subsection draft.'
+    what_if: []
+    pid: 453071
+    chat_id: oc_2216d5b8b87a9472ce204aba11481390
+    card_message_id: om_x100b6f571028b4a0c26a2b8a2624f4d
+    started_at: '2026-05-14T20:51:55+00:00'
+    updated_at: '2026-05-14T21:49:59+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 3b7fcf11e56300c39ccf907615e3bc2fbb23ffe6cc4c0585ad871477d8051403
+  dream_20260516T021434:
+    dream_id: dream_20260516T021434
+    project: schema_semantic_constrained_ie
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: '40 experiments complete (vs 21 last dream). Major new data: FT composability
+      2×2 matrices for both Qwen and Llama on SciERC (complete) and DocRED (2/4 unconstrained
+      done, 2 constrained running). Key new findings: (1) LoRA FT dramatically reduces
+      DR (Qwen SciERC 0%, Llama SciERC 0.09%, Llama DocRED 0.49%, Qwen DocRED 0.76%)
+      while boosting R-F1 by 35-40pp; (2) Composability claim strengthened: OntoCoDec
+      on FT models preserves R-F1 within ±0.1pp while eliminating residual DR; (3)
+      Cross-model generalization confirmed on SciERC, DocRED FT constrained results
+      pending. Evaluate whether current evidence supports strong Accept at EMNLP 2026.'
+    what_if: []
+    pid: 645038
+    chat_id: oc_2216d5b8b87a9472ce204aba11481390
+    card_message_id: om_x100b6f497e1e3cacc493b8f110ef858
+    started_at: '2026-05-16T02:14:34+00:00'
+    updated_at: '2026-05-16T02:57:30+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 0c967060e7e98fe59aa5ad7726a910366529f3d69cfd0f068edb6559af2164e2
+  dream_20260516T173022:
+    dream_id: dream_20260516T173022
+    project: schema_semantic_constrained_ie
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: EMNLP 2026
+    focus: 最终评估：54 实验全部完成，FT ablation 8/8 互补性确认，post-hoc defense 成立，latency ≤5.4%。关注：claim
+      强度是否匹配证据、limitations 是否充分、novelty 定位 vs SynCode/IterGen/BoostCD 差异化是否清晰。
+    what_if: []
+    pid: 777222
+    chat_id: oc_2216d5b8b87a9472ce204aba11481390
+    card_message_id: om_x100b6fbed5d5c4a0c32d9bb043379f7
+    started_at: '2026-05-16T17:30:22+00:00'
+    updated_at: '2026-05-16T18:04:43+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 9fda93dfe90f724720897161d98505a9a11114c1eda976c5aa301453c270f649
+  dream_20260518T161806:
+    dream_id: dream_20260518T161806
+    project: schema_semantic_constrained_ie
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 目标 4.0 Conference Accept。当前 3.5 的瓶颈是 "novelty incremental, core conclusion
+      直觉上显然"。请重点审查：(1) 论文 story 是否让审稿人感到 "有我没想到的东西"；(2) 哪些非显然发现（70B 仍有违规、post-hoc
+      EE 99.6% 删除、enabling dependency、non-rectangularity）的呈现是否足够突出；(3) 实验覆盖面是否有盲点（3
+      models × 3 datasets × ablation + 70B + beam + sampling + latency）；(4) 从 3.5
+      到 4.0 的具体可操作建议。
+    what_if: []
+    pid: null
+    chat_id: oc_2216d5b8b87a9472ce204aba11481390
+    card_message_id: om_x100b6f87f2d494a4c45f6b3610da423
+    started_at: '2026-05-18T16:18:06+00:00'
+    updated_at: '2026-05-18T16:27:29+00:00'
+    stages_completed: []
+    error: 'zombie: orchestrator process crashed'
+    context_hash: 4601c40442858fe8b1d62fef404c538011cf825fab728486967350c0f7068d27
+  dream_20260518T162745:
+    dream_id: dream_20260518T162745
+    project: schema_semantic_constrained_ie
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 目标 4.0 Conference Accept。当前 3.5 的瓶颈是 "novelty incremental, core conclusion
+      直觉上显然"。请重点审查：(1) 论文 story 是否让审稿人感到 "有我没想到的东西"；(2) 哪些非显然发现（70B 仍有违规、post-hoc
+      EE 99.6% 删除、enabling dependency、non-rectangularity）的呈现是否足够突出；(3) 实验覆盖面是否有盲点（3
+      models × 3 datasets × ablation + 70B + beam + sampling + latency）；(4) 从 3.5
+      到 4.0 的具体可操作建议。
+    what_if: []
+    pid: 1089945
+    chat_id: oc_2216d5b8b87a9472ce204aba11481390
+    card_message_id: om_x100b6f87aeec7ca0c2dc6fc596285bb
+    started_at: '2026-05-18T16:27:45+00:00'
+    updated_at: '2026-05-18T17:37:16+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 4601c40442858fe8b1d62fef404c538011cf825fab728486967350c0f7068d27
+  dream_20260522T052642:
+    dream_id: dream_20260522T052642
+    project: schema_semantic_constrained_ie
+    status: reviewing
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: 评估当前论文（含 70B ZS 跨两个数据集 + 即将到手的 70B LoRA 结果）能否达到 EMNLP 2026 Overall Assessment
+      4.0（Conference）。重点关注：novelty 感知（semantic constraint layer 是否被视为足够新颖）、evaluation
+      scope（RE 为主 + preliminary EE 是否足够）、与 GCD/BoostCD/XGrammar 的差异化。
+    what_if: []
+    pid: 1614987
+    chat_id: oc_2216d5b8b87a9472ce204aba11481390
+    card_message_id: om_x100b6fcadf96f484c420a27b253e71b
+    started_at: '2026-05-22T05:26:42+00:00'
+    updated_at: '2026-05-22T06:49:11+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 71dcb7f0c26ed4338e4d200ffadcc55150a632939c2579ee26ea2334d3ece3cd
+    review_quality:
+      best: simulated
+      worst: simulated

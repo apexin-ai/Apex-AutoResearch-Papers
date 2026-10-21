@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-004-eval-ckpt500",
+  "project": "contrastive_entrain_calib",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T11:46:33.793Z",
+    "updated_at": "2026-05-21T11:46:59.499Z",
+    "hypothesis": "Eval exp-004 ACT checkpoint-500 with D027 unified preset. Supplement eval to complete ACT trajectory for fig_trajectory. Compare against vanilla SYCONScore=0.134.",
+    "parent": "exp-004"
+  },
+  "timestamp": "2026-05-21T11:46:59.655419+00:00",
+  "trigger": "update_registry"
+}

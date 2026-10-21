@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp012_llama_fewnerd_r2",
+  "project": "schema-dag-extraction",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:20:57.669Z",
+    "updated_at": "2026-05-15T14:21:04.821Z",
+    "spec": {
+      "command": "bash /root/schema-dag-extraction/scripts/run_exp012_llama.sh",
+      "server": "cqa1-38874",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "275856",
+      "log_path": "~/runs/schema-dag-extraction/exp012_llama_fewnerd_r2.log",
+      "submitted_at": "2026-05-15T14:20:57.610Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-15T14:21:04.865422+00:00",
+  "trigger": "update_registry"
+}

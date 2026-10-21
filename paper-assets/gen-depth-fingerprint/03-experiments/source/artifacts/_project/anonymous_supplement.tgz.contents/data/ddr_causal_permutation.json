@@ -1,0 +1,128 @@
+{
+  "permutation": {
+    "hapax_ratio": {
+      "mean_importance": 0.235,
+      "std_importance": 0.0543,
+      "per_fold": {
+        "llama-3.2-3b": 0.2492,
+        "mistral-7b-v0.3": 0.1098,
+        "olmo-2-1b": 0.2573,
+        "pythia-1b": 0.2842,
+        "pythia-2.8b": 0.2545,
+        "qwen3-0.6b": 0.2786,
+        "qwen3-1.7b": 0.2567,
+        "qwen3-8b": 0.19
+      }
+    },
+    "ttr": {
+      "mean_importance": 0.1564,
+      "std_importance": 0.0531,
+      "per_fold": {
+        "llama-3.2-3b": 0.1411,
+        "mistral-7b-v0.3": 0.0396,
+        "olmo-2-1b": 0.1777,
+        "pythia-1b": 0.2162,
+        "pythia-2.8b": 0.1956,
+        "qwen3-0.6b": 0.1812,
+        "qwen3-1.7b": 0.1849,
+        "qwen3-8b": 0.1151
+      }
+    },
+    "entropy_mean": {
+      "mean_importance": 0.1698,
+      "std_importance": 0.0384,
+      "per_fold": {
+        "llama-3.2-3b": 0.165,
+        "mistral-7b-v0.3": 0.0903,
+        "olmo-2-1b": 0.1891,
+        "pythia-1b": 0.224,
+        "pythia-2.8b": 0.194,
+        "qwen3-0.6b": 0.1955,
+        "qwen3-1.7b": 0.1589,
+        "qwen3-8b": 0.1412
+      }
+    },
+    "entropy_std": {
+      "mean_importance": 0.0566,
+      "std_importance": 0.0128,
+      "per_fold": {
+        "llama-3.2-3b": 0.0665,
+        "mistral-7b-v0.3": 0.0441,
+        "olmo-2-1b": 0.047,
+        "pythia-1b": 0.0784,
+        "pythia-2.8b": 0.0728,
+        "qwen3-0.6b": 0.0499,
+        "qwen3-1.7b": 0.0473,
+        "qwen3-8b": 0.0466
+      }
+    },
+    "entropy_min": {
+      "mean_importance": 0.0186,
+      "std_importance": 0.0068,
+      "per_fold": {
+        "llama-3.2-3b": 0.0137,
+        "mistral-7b-v0.3": 0.0061,
+        "olmo-2-1b": 0.0147,
+        "pythia-1b": 0.0244,
+        "pythia-2.8b": 0.022,
+        "qwen3-0.6b": 0.0292,
+        "qwen3-1.7b": 0.0173,
+        "qwen3-8b": 0.0216
+      }
+    },
+    "entropy_max": {
+      "mean_importance": 0.0698,
+      "std_importance": 0.012,
+      "per_fold": {
+        "llama-3.2-3b": 0.0641,
+        "mistral-7b-v0.3": 0.0484,
+        "olmo-2-1b": 0.0758,
+        "pythia-1b": 0.0869,
+        "pythia-2.8b": 0.0844,
+        "qwen3-0.6b": 0.0737,
+        "qwen3-1.7b": 0.0627,
+        "qwen3-8b": 0.0623
+      }
+    },
+    "tail_decay": {
+      "mean_importance": 0.0138,
+      "std_importance": 0.0037,
+      "per_fold": {
+        "llama-3.2-3b": 0.0139,
+        "mistral-7b-v0.3": 0.0057,
+        "olmo-2-1b": 0.015,
+        "pythia-1b": 0.0152,
+        "pythia-2.8b": 0.0163,
+        "qwen3-0.6b": 0.0191,
+        "qwen3-1.7b": 0.0108,
+        "qwen3-8b": 0.0142
+      }
+    },
+    "_baseline_avg_f1": 0.7714,
+    "_ranked": [
+      "hapax_ratio",
+      "entropy_mean",
+      "ttr",
+      "entropy_max",
+      "entropy_std",
+      "entropy_min",
+      "tail_decay"
+    ],
+    "_drifting_features": [
+      "hapax_ratio",
+      "entropy_mean",
+      "ttr",
+      "entropy_max"
+    ],
+    "_stationary_features": [
+      "entropy_std",
+      "entropy_min",
+      "tail_decay"
+    ],
+    "_median_threshold": 0.0698,
+    "_group_summary": {
+      "drifting_avg_importance": 0.1578,
+      "stationary_avg_importance": 0.0297
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "exp_id": "exp_r3_bootstrap_10k",
+  "project": "contrastive_trace_safety",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T18:15:24.536Z",
+    "updated_at": "2026-05-17T18:15:56.696Z",
+    "hypothesis": "Increasing bootstrap resamples from 1000 to 10000 should yield more precise p-values. If R1-8B FPR p-value (currently 0.044 at rank 12) exceeds 0.05 with more resamples, 12/12 Holm-Bonferroni will drop to 11/12. Critical sensitivity test for the paper's central claim.",
+    "spec": {
+      "command": "python exp_r3_bootstrap_10k.py",
+      "server": "autodl-rtx6000",
+      "data_path": "/root/autodl-tmp/contrastive_trace_safety/data/",
+      "data_count": 632,
+      "model_name": "4 models x 3 metrics bootstrap",
+      "seed": 42,
+      "checkpoint_path": "N/A (CPU bootstrap)",
+      "log_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_bootstrap_10k/results.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "n_resamples": 10000,
+      "holm_bonferroni": "12/12 pass",
+      "tests": {
+        "r1_8b_bal_acc": {
+          "delta": 0.1796,
+          "p": 0,
+          "rank": 1
+        },
+        "r1_8b_precision": {
+          "delta": 0.2786,
+          "p": 0,
+          "rank": 2
+        },
+        "r1_8b_fpr": {
+          "delta": -0.1255,
+          "p": 0,
+          "rank": 3
+        },
+        "ot_7b_precision": {
+          "delta": 0.2189,
+          "p": 0,
+          "rank": 4
+        },
+        "ot_7b_fpr": {
+          "delta": -0.1705,
+          "p": 0,
+          "rank": 5
+        },
+        "r1_32b_bal_acc": {
+          "delta": 0.1871,
+          "p": 0,
+          "rank": 6
+        },
+        "r1_32b_precision": {
+          "delta": 0.1544,
+          "p": 0,
+          "rank": 7
+        },
+        "qwq_32b_bal_acc": {
+          "delta": 0.1478,
+          "p": 0,
+          "rank": 8
+        },
+        "qwq_32b_precision": {
+          "delta": 0.2349,
+          "p": 0,
+          "rank": 9
+        },
+        "ot_7b_bal_acc": {
+          "delta": 0.1067,
+          "p": 0.0003,
+          "rank": 10
+        },
+        "qwq_32b_fpr": {
+          "delta": -0.0952,
+          "p": 0.0061,
+          "rank": 11
+        },
+        "r1_32b_fpr": {
+          "delta": -0.1457,
+          "p": 0.0096,
+          "rank": 12
+        }
+      },
+      "marginal_tests": {
+        "r1_32b_fpr": {
+          "p": 0.0096,
+          "threshold": 0.05
+        },
+        "qwq_32b_fpr": {
+          "p": 0.0061,
+          "threshold": 0.025
+        }
+      },
+      "r1_8b_fpr_clarification": "R1-8B FPR at W=3 is p<0.0001 (rank 3), not marginal. The 0.044 was from old W=15 config.",
+      "finding": "All 12/12 Holm-Bonferroni pass with 10000 resamples. R1-8B FPR not marginal at corrected W=3. Actual marginal tests: R1-32B FPR (p=0.0096) and QwQ FPR (p=0.0061), both passing comfortably."
+    },
+    "completed_at": "2026-05-17T18:15:56.696Z"
+  },
+  "timestamp": "2026-05-17T18:15:56.777044+00:00",
+  "trigger": "update_registry"
+}

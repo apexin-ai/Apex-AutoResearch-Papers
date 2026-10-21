@@ -1,0 +1,49 @@
+{
+  "exp_id": "ablation_p2_demo_sensitivity",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T10:17:17.306Z",
+    "updated_at": "2026-05-17T20:06:06.549Z",
+    "spec": {
+      "command": "subsample 25 from 50 demos, reuse existing extracted features",
+      "server": "westd-19183",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "720669",
+      "log_path": "/root/autodl-tmp/vla-ssd/results/demo_sensitivity_25/results.json",
+      "submitted_at": "2026-05-16T10:17:17.128Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/vla-ssd/results/demo_sensitivity_25/",
+      "data_count": "25 demos/task x 10 tasks",
+      "model_name": "openvla-7b (trained)",
+      "seed": 42,
+      "checkpoint_path": "N/A (analysis-only)",
+      "wall_clock_seconds": 121729.4,
+      "gpu_hours": 33.81
+    },
+    "hypothesis": "C3 inverted-U RSA pattern (image_mean, trained) is stable under reduced data (25 demos/task subsample from 50), confirming it is not an artifact of sample size.",
+    "notes": "v1 killed — RSA used wrong method (demo-mean-then-distance). Replaced by ablation_p2_demo_sensitivity_v2 with correct Method B (timestep-wise pdist). Probe was correct, only RSA fixed.",
+    "conclusion": "success",
+    "metrics": {
+      "rsa_peak_layer": "L12",
+      "rsa_peak_rho": 0.6059,
+      "rsa_peak_rho_50demo": 0.6282,
+      "r2_peak_layer": "L11",
+      "r2_peak": 0.6088,
+      "r2_peak_50demo": 0.6587,
+      "rsa_profile_corr": 0.9696,
+      "r2_profile_corr": 0.8189,
+      "pattern": "inverted-U preserved"
+    },
+    "completed_at": "2026-05-17T20:06:06.549Z"
+  },
+  "timestamp": "2026-05-17T20:06:06.688104+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp37_length_matched_benign",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T00:40:14.880Z",
+    "updated_at": "2026-05-21T00:41:31.927Z",
+    "hypothesis": "9-class 模型不依赖 turn count 作为检测 shortcut：截断 benign 对话到 jailbreak 匹配长度 (3-10 turns) 后 FPR 不会显著上升，WildChat 短对话 (3-10 turns) 的 FPR 也不高于长对话，因为 DAPT 训练迫使模型学习说服策略内容特征而非 length 统计量。",
+    "parent": "exp30_length_stratified"
+  },
+  "timestamp": "2026-05-21T00:41:32.356138+00:00",
+  "trigger": "update_registry"
+}

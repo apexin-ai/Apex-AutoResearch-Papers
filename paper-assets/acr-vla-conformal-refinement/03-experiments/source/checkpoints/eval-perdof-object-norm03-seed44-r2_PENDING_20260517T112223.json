@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-perdof-object-norm03-seed44-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T11:22:10.412Z",
+    "updated_at": "2026-05-17T11:22:23.442Z",
+    "hypothesis": "perdof CRM ε=0.3 seed44 re-run on LIBERO-Object. 原 seed44 已完成(conclusion=negative, SR=4%). 重跑验证跨 seed 一致性。"
+  },
+  "timestamp": "2026-05-17T11:22:23.954312+00:00",
+  "trigger": "update_registry"
+}

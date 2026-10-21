@@ -1,0 +1,128 @@
+dreams:
+  dream_20260514T181213:
+    dream_id: dream_20260514T181213
+    project: gen-depth-fingerprint
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: AAAI 2027
+    focus: 'Key uncertainties: (1) whether reference-model features carry independent
+      signal vs surface vocabulary stats (Claim 2 ablation), (2) cross-generator generalization
+      with leave-one-out, (3) gen-1 vs gen-2+ boundary discrimination strength. MVP
+      showed macro-F1=0.84 single-generator but hapax_ratio dominated feature importance.'
+    what_if: []
+    pid: 127856
+    chat_id: oc_dbd68d7879a81efc0c108e9844b15d0b
+    card_message_id: om_x100b6f55491b90acb251719e99be272
+    started_at: '2026-05-14T18:12:13+00:00'
+    updated_at: '2026-05-14T19:04:39+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: b63f545696c3898cc34452248eb79fc6d3dc84b0ec21891ee8be8a2763f9f06e
+  dream_20260514T221538:
+    dream_id: dream_20260514T221538
+    project: gen-depth-fingerprint
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'D006 re-dream after framing repositioning. Key changes: (1) contribution
+      explicitly positioned as empirical/conceptual not methodological — features
+      are standard NLL stats, novelty is in problem formulation + dual dynamics finding
+      + application; (2) OOD detection connection acknowledged (RC8); (3) text length
+      confound controlled (plan_013); (4) downstream utility uses OLMo-1B not Pythia-410M
+      to avoid reference model circularity, multiple seeds + CIs required (RC11);
+      (5) 7B+ generator added as P1 (plan_014, RC9); (6) related work must be 30+
+      references. Verify whether these changes address the structural issues that
+      caused Best=5/Median=5/Worst=4 in previous dream.'
+    what_if: []
+    pid: 161786
+    chat_id: oc_dbd68d7879a81efc0c108e9844b15d0b
+    card_message_id: om_x100b6f50d6657ca0b2e2bafd9626165
+    started_at: '2026-05-14T22:15:38+00:00'
+    updated_at: '2026-05-14T23:14:19+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 0725e5d02f9f59a6e44aac4147d98198b3f6db9592eb56a6fe08dc3b643118bb
+  dream_20260520T100349:
+    dream_id: dream_20260520T100349
+    project: gen-depth-fingerprint
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Paper has been significantly expanded since last dream (May 14). New additions:
+      (1) 9-generator scale evaluation with Gemma-2-2B (Appendix), (2) DDR causality
+      analysis with permutation importance + Granger causality + feature intervention,
+      (3) TOST bootstrap stability validation, (4) cross-model evaluation upgraded
+      from sample-level CV to generator-level LOGO (binary F1=0.830). Total 33 pages,
+      20+ appendix experiments. Assess whether this is 3.0 Findings or 3.5 Borderline
+      Conference level. Identify the single highest-impact improvement that could
+      be made in 5 days before DDL.'
+    what_if: []
+    pid: 1010840
+    chat_id: oc_dbd68d7879a81efc0c108e9844b15d0b
+    card_message_id: om_x100b6fec3eb7d0acb1668bd25ac9288
+    started_at: '2026-05-20T10:03:49+00:00'
+    updated_at: '2026-05-20T11:01:41+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: f7b647894ab902fc96a2b387b5a43ee72a68c363bc42095b4af22f5ce8213d36
+    review_quality:
+      best: simulated
+  dream_20260520T232427:
+    dream_id: dream_20260520T232427
+    project: gen-depth-fingerprint
+    status: done
+    review_mode: simple
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: ''
+    what_if: []
+    pid: 1084660
+    chat_id: oc_dbd68d7879a81efc0c108e9844b15d0b
+    card_message_id: om_x100b6fd064761cacb212be17f673536
+    started_at: '2026-05-20T23:24:27+00:00'
+    updated_at: '2026-05-21T00:12:58+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: be73e235f8501decb726232b36d18a25884a4f4e0950473d338c3d3edbb4bac0
+  dream_20260521T213023:
+    dream_id: dream_20260521T213023
+    project: gen-depth-fingerprint
+    status: reviewing
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: exp_062 decoding strategy 实验已全部完成（16/16），DDR 被确认为 decoding-agnostic。Reviewer
+      建议不做新 GPU 实验，72 小时全投写作修复。评估当前论文在 EMNLP 2026 Findings 的竞争力，重点关注：(1) decoding-agnostic
+      DDR 是否能升级 claim 强度 (2) 写作修复的优先级 (3) 论文整体分数预期
+    what_if: []
+    pid: 1193069
+    chat_id: oc_dbd68d7879a81efc0c108e9844b15d0b
+    card_message_id: om_x100b6fc3d9ea98a8b3e13f9e265f63f
+    started_at: '2026-05-21T21:30:23+00:00'
+    updated_at: '2026-05-21T22:34:18+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 10dd00af21fb0aca5f829d215b00d8aab77fe39c023bf87ef452202b29a99cc5

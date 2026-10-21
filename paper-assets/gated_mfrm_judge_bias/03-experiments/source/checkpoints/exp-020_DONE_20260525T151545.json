@@ -1,0 +1,74 @@
+{
+  "exp_id": "exp-020",
+  "project": "gated_mfrm_judge_bias",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T08:14:09.581Z",
+    "updated_at": "2026-05-25T15:15:45.912Z",
+    "hypothesis": "N=17 target models (vs N=8) with 7 diverse judges provides sufficient statistical power for G-MFRM joint estimation to achieve significant Δτ over baselines, confirming that exp-018 synthetic calibration results translate to real data.",
+    "parent": "exp-018",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gated_mfrm_judge_bias && python -u run_mcmc_n17_exp020_v2.py --warmup 6000 --samples 4000 --chains 4 2>&1 | tee logs/exp020_mcmc_v2.log\"",
+      "server": "autodl-8gpu",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "58562",
+      "log_path": "/root/gated_mfrm_judge_bias/logs/exp020_mcmc_v2.log",
+      "submitted_at": "2026-05-25T13:36:52.241Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "/root/gated_mfrm_judge_bias/output_n17_phase1/",
+      "wall_clock_seconds": 5933.7,
+      "gpu_hours": 1.65
+    },
+    "notes": "MCMC v2 launched with NCP (non-centered b_i + theta_n). PID 58562, GPU 0, autodl-8gpu. Warmup 6000, samples 4000, chains 4. ETA ~90 min. v1 killed due to convergence failure (R̂=2.90). v2 dry-run passed (R̂ max=1.02, ESS min=719).",
+    "conclusion": "negative",
+    "metrics": {
+      "mcmc_version": "v2_ncp",
+      "runtime_minutes": 43.4,
+      "convergence": {
+        "rhat_max": 1.0023,
+        "ess_min": 1240,
+        "divergent_transitions": 0,
+        "chains": 4,
+        "warmup": 6000,
+        "samples": 4000
+      },
+      "ranking": {
+        "joint_gmfrm": {
+          "kendall_tau": 0.794,
+          "spearman_rho": 0.926
+        },
+        "raw_average": {
+          "kendall_tau": 0.838,
+          "spearman_rho": 0.949
+        },
+        "delta_tau": -0.044,
+        "delta_tau_n8": 0.071,
+        "direction_flipped": true
+      },
+      "bootstrap": {
+        "delta_tau_mean": -0.044,
+        "delta_tau_95ci": [
+          -0.141,
+          0
+        ],
+        "p_delta_ge_0": 0.186
+      },
+      "contamination_top": {
+        "gpt-4-turbo": 3.76,
+        "gpt-3.5-turbo": 5.6,
+        "gpt-4-0613": 4.2
+      },
+      "key_finding": "G-MFRM τ=0.794 < Raw Average τ=0.838 at N=17 (Δτ=−0.044). Direction flipped from N=8 (+0.071). G-MFRM over-corrects gpt-4-turbo (c=3.76), dropping it rank 1→4. Bootstrap P(Δτ≥0)=0.186. Core claim (joint estimation improves ranking) falsified on real data at N=17."
+    },
+    "completed_at": "2026-05-25T15:15:45.912Z"
+  },
+  "timestamp": "2026-05-25T15:15:45.981777+00:00",
+  "trigger": "update_registry"
+}

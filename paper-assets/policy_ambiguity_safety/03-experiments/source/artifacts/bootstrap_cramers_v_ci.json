@@ -1,0 +1,14 @@
+{
+  "statistic": "cramers_v",
+  "contingency": "3way",
+  "n_episodes": 614,
+  "n_types": 6,
+  "n_mechanisms": 4,
+  "point_estimate": 0.4458,
+  "bootstrap_B": 10000,
+  "seed": 42,
+  "ci_95_lower": 0.4071,
+  "ci_95_upper": 0.4966,
+  "bootstrap_mean": 0.4516,
+  "bootstrap_std": 0.0227
+}

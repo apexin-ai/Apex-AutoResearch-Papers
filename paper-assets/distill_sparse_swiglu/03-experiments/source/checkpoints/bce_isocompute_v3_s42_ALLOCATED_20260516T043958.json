@@ -1,0 +1,15 @@
+{
+  "exp_id": "bce_isocompute_v3_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T03:56:03.520Z",
+    "updated_at": "2026-05-16T04:39:57.809Z",
+    "hypothesis": "D031: BCE iso-compute 重跑（v1/v2 两次被 tmux 杀死）。2700 步匹配 KL 1000 步总 FLOPs (ratio≈2.71x)，50% sparsity。Reviewer Concern #2 defense: 验证 KL 优势来自 loss 函数本身而非计算量差异。"
+  },
+  "timestamp": "2026-05-16T04:39:58.040256+00:00",
+  "trigger": "update_registry"
+}

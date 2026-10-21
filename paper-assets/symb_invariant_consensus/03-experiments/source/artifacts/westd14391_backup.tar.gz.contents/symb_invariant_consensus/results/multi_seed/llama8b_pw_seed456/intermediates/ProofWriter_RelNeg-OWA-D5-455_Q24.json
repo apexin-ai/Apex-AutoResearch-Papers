@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-455_Q24",
+    "problem": "The bald eagle chases the squirrel. The bald eagle does not eat the lion. The bald eagle eats the squirrel. The bald eagle does not see the rabbit. The lion does not chase the rabbit. The lion is kind. The rabbit chases the bald eagle. The rabbit eats the bald eagle. The rabbit is big. The rabbit is cold. The rabbit sees the squirrel. The squirrel is blue. The squirrel is cold. The squirrel is kind. If something chases the rabbit then it is kind. If something sees the lion then it chases the rabbit. If the rabbit sees the squirrel and the squirrel eats the rabbit then the rabbit is green. If something eats the lion then the lion chases the squirrel. If something eats the rabbit then the rabbit sees the lion. If something is kind then it eats the rabbit. If something sees the lion and it does not eat the lion then it eats the bald eagle. If something eats the squirrel and the squirrel eats the bald eagle then the squirrel is cold.\n\nDetermine whether the following statement is true, false, or unknown:\nThe lion sees the bald eagle.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nEats($x, $y, bool) ::: Does x eat y?\nSees($x, $y, bool) ::: Does x see y?\nKind($x, bool) ::: Is x kind?\nBig($x, bool) ::: Is x big?\nCold($x, bool) ::: Is x cold?\nBlue($x, bool) ::: Is x blue?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nChases(BaldEagle, Squirrel, True) ::: The bald eagle chases the squirrel.\nEats(BaldEagle, Lion, False) ::: The bald eagle does not eat the lion.\nEats(BaldEagle, Squirrel, True) ::: The bald eagle eats the squirrel.\nSees(BaldEagle, Rabbit, False) ::: The bald eagle does not see the rabbit.\nChases(Lion, Rabbit, False) ::: The lion does not chase the rabbit.\nKind(Lion, True) ::: The lion is kind.\nChases(Rabbit, BaldEagle, True) ::: The rabbit chases the bald eagle.\nEats(Rabbit, BaldEagle, True) ::: The rabbit eats the bald eagle.\nBig(Rabbit, True) ::: The rabbit is big.\nCold(Rabbit, True) ::: The rabbit is cold.\nSees(Rabbit, Squirrel, True) ::: The rabbit sees the squirrel.\nBlue(Squirrel, True) ::: The squirrel is blue.\nCold(Squirrel, True) ::: The squirrel is cold.\nKind(Squirrel, True) ::: The squirrel is kind.\n\nRules:\nChases($x, Rabbit, True) >>> Kind($x, True) ::: If something chases the rabbit then it is kind.\nSees($x, Lion, True) >>> Chases($x, Rabbit, True) ::: If something sees the lion then it chases the rabbit.\nSees(Rabbit, Squirrel, True) && Eats(Squirrel, Rabbit, True) >>> Green(Rabbit, True) ::: If the rabbit sees the squirrel and the squirrel eats the rabbit then the rabbit is green.\nEats($x, Lion, True) >>> Chases(Lion, Squirrel, True) ::: If something eats the lion then the lion chases the squirrel.\nEats($x, Rabbit, True) >>> Sees(Rabbit, Lion, True) ::: If something eats the rabbit then the rabbit sees the lion.\nKind($x, True) >>> Eats($x, Rabbit, True) ::: If something is kind then it eats the rabbit.\nSees($x, Lion, True) && Eats($x, Lion, False) >>> Eats($x, BaldEagle, True) ::: If something sees the lion and it does not eat the lion then it eats the bald eagle.\nEats($x, Squirrel, True) && Eats(Squirrel, BaldEagle, True) >>> Cold(Squirrel, True) ::: If something eats the squirrel and the squirrel eats the bald eagle then the squirrel is cold.\n\nQuery:\nSees(Lion, BaldEagle, True) ::: The lion sees the bald eagle."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

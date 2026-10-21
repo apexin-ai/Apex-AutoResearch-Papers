@@ -1,0 +1,46 @@
+{
+  "exp_id": "d030_kl30_uniform",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T03:53:01.230Z",
+    "updated_at": "2026-05-16T04:30:47.204Z",
+    "hypothesis": "D030: KL 30% sparsity with UNIFORM per-layer allocation — 验证 global top-k 的 per-layer 不均匀是否是 downstream 崩溃的根因。对比 global top-k 的 MMLU 28.74%/GSM8K 7.43%。",
+    "spec": {
+      "checkpoint_path": "checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt",
+      "log_path": "~/runs/distill_sparse_swiglu/d030_kl30_uniform.log"
+    },
+    "plan_id": "plan_008",
+    "reproduce": {
+      "finished_at": "2026-05-16T04:27:03.930Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T04:27:05.705355+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "wikitext2_ppl": 8.8157,
+      "arc_challenge_acc_norm": 0.4078,
+      "winogrande_acc": 0.6859,
+      "mmlu_acc": 0.4061,
+      "gsm8k_exact_match": 0.0735,
+      "actual_sparsity": 0.3,
+      "allocation": "uniform",
+      "per_layer_sparsity": "uniform 0.301 across all 32 layers",
+      "mmlu_improvement_vs_global": "+11.87pp (0.2874 → 0.4061)",
+      "gsm8k_change_vs_global": "no change (0.0743 → 0.0735, within noise)"
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-16T04:30:47.204Z"
+  },
+  "timestamp": "2026-05-16T04:30:47.355082+00:00",
+  "trigger": "update_registry"
+}

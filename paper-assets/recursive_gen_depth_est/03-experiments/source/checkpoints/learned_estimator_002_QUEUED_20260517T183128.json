@@ -1,0 +1,29 @@
+{
+  "exp_id": "learned_estimator_002",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T18:31:06.627Z",
+    "updated_at": "2026-05-17T18:31:27.741Z",
+    "hypothesis": "Fixing NaN issues in Prototypical Network (torch.clamp + nan_to_num in distances, safe softmax conversion) and running full data sweep (no max_samples limit) will enable learned estimators (XGBoost, CORAL MLP, Prototypical) to exceed the RF baseline of 66.4% accuracy in cross-model depth estimation.",
+    "parent": "learned_estimator_001",
+    "spec": {
+      "command": "bash -c \"bash /root/autodl-tmp/recursive_gen_depth_est/scripts/run_learned_estimator_002.sh 2>&1 | tee /root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_002/run.log\"",
+      "server": "westd-48862",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "15548",
+      "log_path": "~/runs/recursive_gen_depth_est/learned_estimator_002.log",
+      "submitted_at": "2026-05-17T18:31:18.341Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-17T18:31:28.010656+00:00",
+  "trigger": "update_registry"
+}

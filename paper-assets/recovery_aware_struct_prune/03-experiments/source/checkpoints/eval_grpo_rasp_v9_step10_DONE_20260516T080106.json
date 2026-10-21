@@ -1,0 +1,62 @@
+{
+  "exp_id": "eval_grpo_rasp_v9_step10",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T03:40:46.186Z",
+    "updated_at": "2026-05-16T08:01:06.191Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v9/checkpoint-10 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_rasp_v9_step10.json\"",
+      "server": "westb-23072",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "585618",
+      "log_path": "~/runs/recovery_aware_struct_prune/eval_grpo_rasp_v9_step10.log",
+      "submitted_at": "2026-05-16T04:57:36.867Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_rasp_v9_step10.json",
+      "checkpoint_source": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v9/checkpoint-10",
+      "data_path": "openai/gsm8k",
+      "data_count": 1319,
+      "model_name": "grpo_stage2_rasp_20_v9 checkpoint-10",
+      "seed": 42,
+      "eval_data": "openai/gsm8k test split",
+      "wall_clock_seconds": 11009.3,
+      "gpu_hours": 3.06
+    },
+    "hypothesis": "RASP GRPO v9 step-10 checkpoint GSM8K eval (N=1319, greedy, seed=42). Step 10 = collapse onset (reward=0.015, frac_zero_std=0.875). 对比 step-5 eval 和 Standard step-50 eval (58.91%) 量化 collapse 影响。Parent: grpo_stage2_rasp_20_v9.",
+    "parent": "grpo_stage2_rasp_20_v9",
+    "metrics": {
+      "accuracy": 61.87,
+      "correct": 816,
+      "total": 1319,
+      "stderr": 1.34,
+      "eos_rate": 98.33,
+      "avg_response_length": 213.6,
+      "truncated": 22,
+      "seed": 42
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T07:58:08.513Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T07:58:10.228000+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-16T08:01:06.191Z"
+  },
+  "timestamp": "2026-05-16T08:01:06.419515+00:00",
+  "trigger": "update_registry"
+}

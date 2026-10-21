@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-121_Q6",
+    "problem": "The bald eagle needs the cow. The bald eagle needs the tiger. The bald eagle sees the cow. The cow is big. The cow needs the bald eagle. The cow needs the tiger. The mouse eats the cow. The mouse is blue. The mouse is cold. The mouse needs the bald eagle. The mouse sees the cow. The mouse sees the tiger. The tiger eats the cow. The tiger needs the bald eagle. The tiger needs the cow. The tiger needs the mouse. If someone needs the tiger then they are red. If the mouse needs the bald eagle and the bald eagle needs the cow then the mouse needs the cow. If the cow needs the mouse and the mouse sees the cow then the mouse is big. If someone eats the mouse then they see the cow. If someone sees the mouse and they see the bald eagle then the bald eagle needs the tiger. If someone is big then they see the bald eagle. If someone is big and they see the bald eagle then they need the mouse.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cow does not need the mouse.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNeeds($x, $y, bool) ::: Does x need y?\nSees($x, $y, bool) ::: Does x see y?\nEats($x, $y, bool) ::: Does x eat y?\nBig($x, bool) ::: Is x big?\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nRed($x, bool) ::: Is x red?\n\nFacts:\nNeeds(BaldEagle, Cow, True) ::: The bald eagle needs the cow.\nNeeds(BaldEagle, Tiger, True) ::: The bald eagle needs the tiger.\nSees(BaldEagle, Cow, True) ::: The bald eagle sees the cow.\nBig(Cow, True) ::: The cow is big.\nNeeds(Cow, BaldEagle, True) ::: The cow needs the bald eagle.\nNeeds(Cow, Tiger, True) ::: The cow needs the tiger.\nEats(Mouse, Cow, True) ::: The mouse eats the cow.\nBlue(Mouse, True) ::: The mouse is blue.\nCold(Mouse, True) ::: The mouse is cold.\nNeeds(Mouse, BaldEagle, True) ::: The mouse needs the bald eagle.\nSees(Mouse, Cow, True) ::: The mouse sees the cow.\nSees(Mouse, Tiger, True) ::: The mouse sees the tiger.\nEats(Tiger, Cow, True) ::: The tiger eats the cow.\nNeeds(Tiger, BaldEagle, True) ::: The tiger needs the bald eagle.\nNeeds(Tiger, Cow, True) ::: The tiger needs the cow.\nNeeds(Tiger, Mouse, True) ::: The tiger needs the mouse.\n\nRules:\nNeeds($x, Tiger, True) >>> Red($x, True) ::: If someone needs the tiger then they are red.\nNeeds(Mouse, BaldEagle, True) && Needs(BaldEagle, Cow, True) >>> Needs(Mouse, Cow, True) ::: If the mouse needs the bald eagle and the bald eagle needs the cow then the mouse needs the cow.\nNeeds(Cow, Mouse, True) && Sees(Mouse, Cow, True) >>> Big(Mouse, True) ::: If the cow needs the mouse and the mouse sees the cow then the mouse is big.\nEats($x, Mouse, True) >>> Sees($x, Cow, True) ::: If someone eats the mouse then they see the cow.\nSees($x, Mouse, True) && Sees($x, BaldEagle, True) >>> Needs(BaldEagle, Tiger, True) ::: If someone sees the mouse and they see the bald eagle then the bald eagle needs the tiger.\nBig($x, True) >>> Sees($x, BaldEagle, True) ::: If someone is big then they see the bald eagle.\nBig($x, True) && Sees($x, BaldEagle, True) >>> Needs($x, Mouse, True) ::: If someone is big and they see the bald eagle then they need the mouse.\n\nQuery:\nNeeds(Cow, Mouse, False) ::: The cow does not need the mouse."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

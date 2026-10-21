@@ -1,0 +1,48 @@
+{
+  "exp_id": "comet_qwen_v5",
+  "project": "clkc_mech_interp",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 1,
+    "created_at": "2026-05-21T20:03:10.943Z",
+    "updated_at": "2026-05-22T05:05:56.423Z",
+    "failure_reason": "EXIT_CODE=124 (timeout — exceeded timeout_hours)",
+    "completed_at": "2026-05-22T02:10:06.809Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "killed",
+        "metrics": {
+          "death_cause": "EXIT_CODE=124 timeout kill by submit_training_job (REGISTRY ONLY - actual nohup processes alive)",
+          "restart_pid": 59412,
+          "restart_gpu": "cuda:0",
+          "restart_method": "nohup + TRANSFORMERS_OFFLINE=1",
+          "restart_time": "2026-05-21T23:15:00Z",
+          "no_resume": true,
+          "acceleration": "cuda:1 并行处理 test set (168条) - COMPLETED",
+          "qwen_test_completed": true,
+          "qwen_test_total": 168,
+          "qwen_test_passed": 31,
+          "qwen_test_pass_rate": 0.185,
+          "qwen_test_mean_comet": 0.7016,
+          "qwen_test_passed_mean_comet": 0.8503,
+          "qwen_train_progress": "320/798 (~40%)",
+          "actual_status": "train still running on cuda:0 (PID 59412)",
+          "registry_failed_is_false_alarm": true
+        }
+      }
+    },
+    "spec": {
+      "command": "nohup python -u src/validate_translation.py --model /root/models/Qwen3-8B/ --comet_model Unbabel/wmt22-comet-da --zh_dir data/qwen3/ --en_dir data/qwen3/ --output_dir data/qwen3/ --threshold 0.80",
+      "server": "westd-41302",
+      "data_path": "data/qwen3/",
+      "data_count": 966,
+      "model_name": "Unbabel/wmt22-comet-da",
+      "seed": 0
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-22T05:05:56.483434+00:00",
+  "trigger": "update_registry"
+}

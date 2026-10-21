@@ -1,0 +1,307 @@
+# Review Issue Tracker — Round 8 (fresh review, 2026-05-25)
+
+# ===== CRITICAL ISSUES =====
+
+- id: "R8-N1"
+  summary: "缺少与 logit-based 方法（Min-K%/MIA）的实证对比——Figure 2(a) detection frontier 无数据支撑"
+  category: experiment
+  severity: critical
+  status: open
+  first_raised_round: 4
+  last_seen_round: 8
+  mentions:
+    - round: 4
+      reviewers: [1, 2]
+      note: "首次提出缺少 baseline comparison"
+    - round: 7
+      reviewers: [1, 2]
+      note: "R2-N3 must-fix，R1 降级 should-fix"
+    - round: 8
+      reviewers: [1, 2]
+      note: "R2 列为 CRITICAL N1，R1 列为 W3 但交叉后同意应升级。两人共识：受控实验中有完整模型访问权限，运行 Min-K% 边际成本极低。"
+  action_items:
+    - round: 7
+      action: "GRPO MIA 评估（exp-rebuttal-mia-grpo）"
+      assigned_to: agent
+      status: in_progress
+    - round: 8
+      action: "至少在 Qwen-MMLU-15% 上运行 Min-K% baseline 对比"
+      assigned_to: director
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R8-N2"
+  summary: "Post-RL N=1 pilot 在 Conclusion/Discussion 中获得不匹配的结构权重——证据不足以支撑 claim"
+  category: method
+  severity: critical
+  status: open
+  first_raised_round: 4
+  last_seen_round: 8
+  mentions:
+    - round: 7
+      reviewers: [1, 2]
+      note: "R6-W2 修复后 Introduction 移除，但 Discussion figure + Conclusion 仍存"
+    - round: 8
+      reviewers: [1, 2]
+      note: "R2-N2 CRITICAL。R1 同意 underpowered。N=1 单条件无法支撑 'persist after RL' 的因果推断。"
+  action_items:
+    - round: 8
+      action: "降低 post-RL 在 Conclusion 中的 prominence，或补充多条件/多 seed 证据"
+      assigned_to: director
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R8-N3"
+  summary: "PSN-IRT 校准样本（178 leaderboard models）本身可能包含大量已污染模型——非均匀偏差未分析"
+  category: method
+  severity: critical
+  status: open
+  first_raised_round: 7
+  last_seen_round: 8
+  mentions:
+    - round: 7
+      reviewers: [1, 2]
+      note: "R7-W1 提出 circularity 问题，Discussion 添加段落"
+    - round: 8
+      reviewers: [1, 2]
+      note: "R1-N1 深化：178 models 中污染比例可能很高（5760 cells |ℓ*_z|>1.96）。R2 补充：matched-difference 部分抵消系统性偏差，但偏差非均匀（影响特定 items），抵消不完全。需要 sensitivity analysis（系统性偏差而非随机扰动）。"
+  action_items:
+    - round: 8
+      action: "sensitivity analysis: 模拟 PSN-IRT 参数在已知污染 items 上的系统性偏差对 ℓ*_z 的影响"
+      assigned_to: director
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R8-N4"
+  summary: "Detection vs characterization 定位不一致——Figure 2(a) 'detection frontier' 与 θ-anchoring 循环依赖矛盾"
+  category: framing
+  severity: critical
+  status: open
+  first_raised_round: 4
+  last_seen_round: 8
+  mentions:
+    - round: 7
+      reviewers: [1, 2]
+      note: "R5-W1 framing scope mismatch（已修复 title/abstract）"
+    - round: 8
+      reviewers: [1, 2]
+      note: "R1-N3 形式化：θ-anchoring 需要 clean baseline → 判断是否 clean 是检测目标 → 循环。R2 同意但限定：论文已声明循环性，问题在于 framing 前后不一致（有时 detection，有时 diagnosis）。共识：应重新定位为诊断/分析框架。"
+  action_items:
+    - round: 8
+      action: "统一论文定位：明确 ℓ*_z 在 θ-anchoring 模式下是诊断工具而非独立检测器；Figure 2(a) 需修改或加限定"
+      assigned_to: director
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R8-N5"
+  summary: "实验矩阵不完整 + Abstract/Introduction 措辞暗示完整 3×2 矩阵——framing 与实际不匹配"
+  category: experiment
+  severity: critical
+  status: open
+  first_raised_round: 4
+  last_seen_round: 8
+  mentions:
+    - round: 7
+      reviewers: [1, 2]
+      note: "R5-W6 实验规模不足；R5-W4 ARC-C 仅 Qwen"
+    - round: 8
+      reviewers: [1, 2]
+      note: "R1-N2 从 Abstract 误导性角度升级：Abstract 写'三个模型族...MMLU 和 ARC-C'但实际 ARC-C 仅 Qwen，Mistral MMLU 缺 25%。R2 AGREE 并核实原文。问题不仅是覆盖面窄，而是 framing 误导。"
+  action_items:
+    - round: 8
+      action: "Abstract/Introduction 需明确 ARC-C 仅为 Qwen 的 generalizability probe，不暗示完整矩阵"
+      assigned_to: director
+      status: open
+  resolution: ""
+  resolution_round: null
+
+# ===== SHOULD-FIX ISSUES =====
+
+- id: "R8-W1"
+  summary: "Detection-diagnosis tradeoff 的诊断侧论证不足——ℓ*_z 诊断信息如何改变实际决策未回答"
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 8
+  last_seen_round: 8
+  mentions:
+    - round: 8
+      reviewers: [1, 2]
+      note: "R1-W2 提出三点：(1) seen/unseen 分解不需要 ℓ*_z；(2) mechanistic θ-shift 依赖 clean baseline（循环）；(3) 缺少 actionable decision 展示。R2 完全同意。"
+  action_items:
+    - round: 8
+      action: "回答关键问题：accuracy z-scores 检测到污染后，ℓ*_z 的诊断信息让实践者做出什么不同决定？"
+      assigned_to: director
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R8-W2"
+  summary: "Confirmatory findings (Finding 1&2) 新颖性有限——IRT 理论可预测，首次实证验证的增量贡献需更好论证"
+  category: framing
+  severity: warning
+  status: open
+  first_raised_round: 4
+  last_seen_round: 8
+  mentions:
+    - round: 8
+      reviewers: [1, 2]
+      note: "R2 列为 CRITICAL（新颖性受限），R1 交叉部分 REBUT（首次实证验证有独立价值），建议降为 SHOULD-FIX。折中：SHOULD-FIX 但需更好论证增量贡献。"
+  action_items:
+    - round: 8
+      action: "在 Discussion 中更明确论证：哪些定量发现（magnitude, boundary conditions）不可从 IRT 理论直接推导"
+      assigned_to: director
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R8-W3"
+  summary: "Local dependence 模拟（Appendix G）使用一阶 additive memory factor——无法捕获 LLM positional/attention dependencies"
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 8
+  last_seen_round: 8
+  mentions:
+    - round: 8
+      reviewers: [1, 2]
+      note: "R1-W4 提出，R2 同意但认为严重性较低。matched-difference 对 LD 有鲁棒性（Table 9, r_v=0.5 时 d_effect≈1.0）。建议 Limitations 补充说明。"
+  action_items:
+    - round: 8
+      action: "Limitations 补充模拟简化性质的说明"
+      assigned_to: director
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R8-W4"
+  summary: "Cohen's d 实为 one-sample standardized departure——需脚注说明与传统 0.2/0.5/0.8 基准不直接类比"
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 6
+  last_seen_round: 8
+  mentions:
+    - round: 6
+      reviewers: [1, 2]
+      note: "R6-N1 提出，§3.2 已添加 inline formula"
+    - round: 8
+      reviewers: [1, 2]
+      note: "R1-W5 再次提出。R2 同意但认为影响有限（多数 |d|>2）。建议加脚注。"
+  action_items:
+    - round: 8
+      action: "添加脚注明确 one-sample departure 定义，不引用 Cohen 0.2/0.5/0.8 基准"
+      assigned_to: director
+      status: open
+  resolution: ""
+  resolution_round: null
+
+# ===== MINOR / INFO ISSUES =====
+
+- id: "R8-M1"
+  summary: "Figure 1(c)(d) axis tick labels 和 legend 字号偏小（≤6pt），打印后难辨认"
+  category: format
+  severity: info
+  status: open
+  first_raised_round: 4
+  last_seen_round: 8
+  mentions:
+    - round: 8
+      reviewers: []
+      note: "视觉审查发现"
+  action_items: []
+  resolution: ""
+  resolution_round: null
+
+- id: "R8-M2"
+  summary: "Figure 5 leaderboard heatmap y轴模型名/cell数值字号小，双栏打印可读性勉强"
+  category: format
+  severity: info
+  status: open
+  first_raised_round: 4
+  last_seen_round: 8
+  mentions:
+    - round: 8
+      reviewers: []
+      note: "视觉审查发现（与 R5-M1 同源）"
+  action_items: []
+  resolution: ""
+  resolution_round: null
+
+- id: "R8-M3"
+  summary: "Pages 4-5 约 1.5 页连续纯文本（Experimental Setup），无 display item 穿插"
+  category: format
+  severity: info
+  status: open
+  first_raised_round: 6
+  last_seen_round: 8
+  mentions:
+    - round: 8
+      reviewers: []
+      note: "视觉审查发现（与 R6-M2 同源）"
+  action_items: []
+  resolution: ""
+  resolution_round: null
+
+# ===== RESOLVED (from prior rounds, confirmed still resolved in R8) =====
+
+- id: "R5-N1"
+  summary: "Bootstrap CI 仅捕获 clean-seed variability，系统性低估总不确定性"
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 4
+  last_seen_round: 7
+  mentions:
+    - round: 8
+      reviewers: []
+      note: "Table 1 multi-seed mean±SD 格式未被本轮 reviewer 再次质疑"
+  action_items: []
+  resolution: "Table 1 Qwen 行报告 multi-seed mean ± SD (n=3)"
+  resolution_round: 8
+
+- id: "R7-N1"
+  summary: "Table 1 seed 选择性报告"
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 7
+  last_seen_round: 7
+  mentions: []
+  action_items: []
+  resolution: "Table 1/2 改 multi-seed means"
+  resolution_round: 8
+
+- id: "R5-N3"
+  summary: "Inverted-U 证据被过度呈现"
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 4
+  last_seen_round: 7
+  mentions:
+    - round: 8
+      reviewers: []
+      note: "本轮 abstract 已标注 'exploratory'，未被再次质疑"
+  action_items: []
+  resolution: "§4.4 重写为 θ-estimation artifact"
+  resolution_round: 8
+
+- id: "R5-W1"
+  summary: "Title/framing scope mismatch"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 4
+  last_seen_round: 7
+  mentions:
+    - round: 8
+      reviewers: [1, 2]
+      note: "Title 疑问句已被接受，但 R8-N4 发现更深层的 detection vs diagnosis 不一致（新 issue）"
+  action_items: []
+  resolution: "Title 和 Introduction 已修复"
+  resolution_round: 8

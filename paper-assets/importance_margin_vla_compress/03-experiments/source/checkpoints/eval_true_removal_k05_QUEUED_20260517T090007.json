@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_true_removal_k05",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T08:59:33.996Z",
+    "updated_at": "2026-05-17T09:00:07.633Z",
+    "hypothesis": "Zero-masking（将 pruned token 置零）产生 OOD 输入导致 0% SR；true token removal（真正移除 pruned token，缩短序列）应恢复正常推理能力，因为 SmolVLA 用 RoPE 位置编码且 embed_prefix 动态适配序列长度",
+    "parent": "eval_stage1only_k09"
+  },
+  "timestamp": "2026-05-17T09:00:07.723560+00:00",
+  "trigger": "update_registry"
+}

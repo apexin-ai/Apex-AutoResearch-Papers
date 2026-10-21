@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-406_Q4",
+    "problem": "The bald eagle is big. The bald eagle is rough. The bald eagle sees the lion. The cat chases the lion. The cat is red. The cat is rough. The cat sees the bald eagle. The cow does not eat the bald eagle. The cow is not young. The lion eats the cow. The lion is rough. If something sees the bald eagle and the bald eagle chases the cat then it is red. If something is big and rough then it chases the cat. If something chases the cow and the cow chases the cat then it is rough. If something chases the cow then it eats the bald eagle. If something chases the cat then it sees the bald eagle. If something is red then it chases the cow. If something is round and it chases the lion then it does not eat the lion. If the cow chases the lion then the lion does not chase the bald eagle.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cat does not chase the cow.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nRough($x, bool) ::: Is x rough?\nSees($x, $y, bool) ::: Does x see y?\nChases($x, $y, bool) ::: Does x chase y?\nRed($x, bool) ::: Is x red?\nEats($x, $y, bool) ::: Does x eat y?\nYoung($x, bool) ::: Is x young?\nRound($x, bool) ::: Is x round?\n\nFacts:\nBig(BaldEagle, True) ::: The bald eagle is big.\nRough(BaldEagle, True) ::: The bald eagle is rough.\nSees(BaldEagle, Lion, True) ::: The bald eagle sees the lion.\nChases(Cat, Lion, True) ::: The cat chases the lion.\nRed(Cat, True) ::: The cat is red.\nRough(Cat, True) ::: The cat is rough.\nSees(Cat, BaldEagle, True) ::: The cat sees the bald eagle.\nEats(Cow, BaldEagle, False) ::: The cow does not eat the bald eagle.\nYoung(Cow, False) ::: The cow is not young.\nEats(Lion, Cow, True) ::: The lion eats the cow.\nRough(Lion, True) ::: The lion is rough.\n\nRules:\nSees($x, BaldEagle, True) && Chases(BaldEagle, Cat, True) >>> Red($x, True) ::: If something sees the bald eagle and the bald eagle chases the cat then it is red.\nBig($x, True) && Rough($x, True) >>> Chases($x, Cat, True) ::: If something is big and rough then it chases the cat.\nChases($x, Cow, True) && Chases(Cow, Cat, True) >>> Rough($x, True) ::: If something chases the cow and the cow chases the cat then it is rough.\nChases($x, Cow, True) >>> Eats($x, BaldEagle, True) ::: If something chases the cow then it eats the bald eagle.\nChases($x, Cat, True) >>> Sees($x, BaldEagle, True) ::: If something chases the cat then it sees the bald eagle.\nRed($x, True) >>> Chases($x, Cow, True) ::: If something is red then it chases the cow.\nRound($x, True) && Chases($x, Lion, True) >>> Eats($x, Lion, False) ::: If something is round and it chases the lion then it does not eat the lion.\nChases(Cow, Lion, True) >>> Chases(Lion, BaldEagle, False) ::: If the cow chases the lion then the lion does not chase the bald eagle.\n\nQuery:\nChases(Cat, Cow, False) ::: The cat does not chase the cow."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

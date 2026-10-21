@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval_pi05_random_k0925_goal_seed42_w38",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T15:22:38.940Z",
+    "updated_at": "2026-05-23T19:22:26.464Z",
+    "hypothesis": "π0.5 random pruning at k=0.925 on libero_goal will show minimal performance drop compared to unpruned baseline, establishing random pruning effectiveness at high keep ratios",
+    "spec": {
+      "command": "python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.925 --suite libero_goal --n_episodes 50 --seed 42 --gpu 0",
+      "server": "westd-38929",
+      "model_name": "pi05_libero_finetuned",
+      "seed": 42,
+      "data_path": "libero_goal",
+      "data_count": 50,
+      "checkpoint_source": "pi05_libero_finetuned",
+      "eval_data": "libero_goal",
+      "checkpoint_path": "N/A (killed)"
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-23T19:22:26.464Z"
+  },
+  "timestamp": "2026-05-23T19:22:27.349570+00:00",
+  "trigger": "update_registry"
+}

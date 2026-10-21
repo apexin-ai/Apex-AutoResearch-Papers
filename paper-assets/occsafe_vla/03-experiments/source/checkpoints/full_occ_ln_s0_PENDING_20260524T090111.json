@@ -1,0 +1,23 @@
+{
+  "exp_id": "full_occ_ln_s0",
+  "project": "occsafe_vla",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T09:00:17.273Z",
+    "updated_at": "2026-05-24T09:01:11.508Z",
+    "hypothesis": "Full OCC + LN (gradient flow ON + LayerNorm) completes the 2×2 factorial. If full_occ_ln ≈ Full OCC BN → normalization type irrelevant with gradient flow. If full_occ_ln > Full OCC → LN superior (practical recommendation). Source: D034 dual mechanism decomposition requires interaction effect measurement.",
+    "spec": {
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": 25000,
+      "model_name": "openvla-7b",
+      "seed": 42,
+      "checkpoint_source": "openvla-7b (from scratch)",
+      "eval_data": "N/A (training)"
+    }
+  },
+  "timestamp": "2026-05-24T09:01:11.680298+00:00",
+  "trigger": "update_registry"
+}

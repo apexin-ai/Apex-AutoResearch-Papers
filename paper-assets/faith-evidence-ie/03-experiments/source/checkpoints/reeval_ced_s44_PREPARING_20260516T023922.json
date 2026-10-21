@@ -1,0 +1,28 @@
+{
+  "exp_id": "reeval_ced_s44",
+  "project": "faith-evidence-ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:38:00.052Z",
+    "updated_at": "2026-05-16T02:39:21.945Z",
+    "hypothesis": "Re-eval CED RSFT s44 with unified protocol: batch_size=4 + --no-quantize + --sft_adapter + max_new_tokens=1024 + seed=44. 原 eval 用了 batch_size≈16 且 seed=42（错误）。Paired t-test 关键路径。",
+    "parent": "mvp2_rsft_train_r1_s44",
+    "spec": {
+      "command": "python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_ced_s44/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 44 --output_dir /root/autodl-tmp/eval_results/rsft_ced_s44_reeval --no-quantize",
+      "server": "rtx5090-4x",
+      "data_path": "/root/autodl-tmp/data/docred",
+      "data_count": 12275,
+      "model_name": "Qwen3-4B + SFT + RSFT-CED s44",
+      "seed": 44,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_ced_s44/checkpoint-510",
+      "eval_data": "docred-dev",
+      "parent": "rsft_ced_s44_train",
+      "hypothesis": "CED s44 标准协议重跑：原 eval batch_size≠4/seed=42(应为44) 不一致，修正为标准协议。Paired t-test 关键数据点。"
+    }
+  },
+  "timestamp": "2026-05-16T02:39:22.223903+00:00",
+  "trigger": "update_registry"
+}

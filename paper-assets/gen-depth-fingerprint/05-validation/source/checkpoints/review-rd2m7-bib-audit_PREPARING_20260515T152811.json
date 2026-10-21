@@ -1,0 +1,16 @@
+{
+  "exp_id": "review-rd2m7-bib-audit",
+  "project": "gen-depth-fingerprint",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:20:45.148Z",
+    "updated_at": "2026-05-15T15:28:11.659Z",
+    "hypothesis": "Rd2-M7: bib 年份验证（diveye, strong_model_collapse, aaronson_watermark）",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T15:28:11.759072+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,35 @@
+{
+  "exp_id": "exp-direction-b-deepconf",
+  "project": "symb_invariant_consensus",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T08:52:49.310Z",
+    "updated_at": "2026-05-20T08:55:13.277Z",
+    "hypothesis": "DeepConf: Low-confidence traces (by logprob) produce low-quality constraints; filtering them before SICA will improve accuracy by removing noise from the constraint pool.",
+    "spec": {
+      "command": "python direction_b_deepconf.py",
+      "server": "westd-25068",
+      "data_path": "exp-033 traces (Mistral-7B FOLIO-204)",
+      "data_count": 204,
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": 42
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "filtered_sc_75pct": 52.9,
+      "filtered_sica_75pct": 54.4,
+      "filtered_sc_50pct": 52.9,
+      "logprob_correct": -0.135,
+      "logprob_incorrect": -0.141,
+      "delta_pp": 0
+    },
+    "checkpoint_path": "N/A (analysis experiment)",
+    "log_path": "worker_experiment_direction-b-deepconf_20260520T074306",
+    "completed_at": "2026-05-20T08:55:13.277Z"
+  },
+  "timestamp": "2026-05-20T08:55:13.566574+00:00",
+  "trigger": "update_registry"
+}

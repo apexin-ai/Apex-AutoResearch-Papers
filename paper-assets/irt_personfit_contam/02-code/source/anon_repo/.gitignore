@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.DS_Store
+.env
+wandb/
+*.egg-info/
+dist/
+build/
+.venv/
+*.log
+*.aux
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.out
+*.blg

@@ -1,0 +1,383 @@
+tier: median
+narrative_guidance: C1 软化：不声称 evidence 质量 competitive with encoder SOTA，改为 'generative
+  LLM 首次实现 end-to-end evidence production，质量可用但在句子级对齐评估下与 discriminative 方法有 gap'。C2
+  不变。C3 保留但 CED 从 recommended solution 降级为 one effective scoring function。C4 加 caveat：EDCR
+  shows moderate human correlation; further validation needed。C5 保留。论文重心转向分析贡献：decoupling
+  spectrum + scaling analysis 成为主卖点，RSFT 降为 sufficient solution enabling the analysis。
+imagined_experiments:
+- name: Test Set Evaluation (RSFT CED best + no-evidence + SFT baseline)
+  plan_id: plan_002
+  description: 用 RSFT CED best config (s44) 和 SFT no-evidence 在 DocRED test set 上评估。本地计算
+    Evi-F1、EDCR；同时计算 DREEAM-protocol Evi-F1（句子级 exact match）对比 DREEAM baseline。
+  expected_results:
+    test_ign_f1_rsft_ced_s44: 42.5
+    test_f1_rsft_ced_s44: 43.3
+    test_evi_f1_conditional_rsft: 0.798
+    test_edcr_rsft: 0.665
+    test_ign_f1_no_evidence: 45.5
+    test_f1_no_evidence: 46.8
+    test_evidence_tax_4b: -3.0
+    test_ign_f1_sft_baseline: 38.2
+    test_evi_f1_sft: 0.785
+    dreeam_protocol_evi_f1_rsft: 0.42
+    dreeam_protocol_evi_f1_sft: 0.38
+    dreeam_baseline_evi_f1: 0.5401
+    delta_vs_dreeam: -0.12
+    test_dev_degradation_rsft: -3.35
+    test_dev_degradation_no_evidence: -1.86
+  result_rationale: Dev→test 退化来源于三个因素：(1) DocRED test set 标注质量略低于 dev（更多 distant
+    supervision noise），RSFT 对 evidence quality 的依赖放大了这一影响；(2) RSFT 在 dev 上 seed variance
+    已有 2.2pp（s42=43.63 vs s43=45.85），说明模型对数据分布敏感，test 分布偏移进一步放大；(3) no-evidence 模型退化较小（-1.86pp）因为它不承担
+    evidence generation 的额外负担，对标注噪声更鲁棒。DREEAM-protocol Evi-F1 大幅低于 conditional evi_f1（0.42
+    vs 0.80）是因为 DREEAM 协议做句子级 exact set match——FREIGE 的 evidence 是 generative production（LLM
+    可能生成语义正确但句子边界不对齐的 evidence），而 DREEAM 是 discriminative retrieval（直接分类句子 ID），后者天然对齐句子级评估。0.42
+    vs DREEAM 的 0.54 差距约 12pp，足以说明 generative approach 在 sentence-level alignment
+    上有 gap，但 0.42 仍是非平凡的（远高于 random baseline ~0.15），证明 LLM 确实学到了 evidence grounding
+    能力。Evidence tax 在 test 上从 dev 的 -1.5pp 扩大至 -3.0pp，因为 test 的 harder examples 让
+    evidence generation 负担更重——模型容量在 harder distribution 上更紧张。
+  tables:
+  - name: 'Table: Test Set Main Results'
+    columns:
+    - Config
+    - Ign-F1
+    - F1
+    - Evi-F1 (cond)
+    - EDCR
+    - DREEAM-proto Evi-F1
+    rows:
+    - - SFT no-evidence
+      - '45.5'
+      - '46.8'
+      - —
+      - —
+      - —
+    - - SFT baseline
+      - '38.2'
+      - '39.0'
+      - '78.50'
+      - '0.725'
+      - '0.38'
+    - - RSFT CED (best)
+      - '42.5'
+      - '43.3'
+      - '79.80'
+      - '0.665'
+      - '0.42'
+    - - DREEAM (RoBERTa-large)
+      - 61.7*
+      - 63.6*
+      - —
+      - —
+      - '54.01'
+    note: '*DREEAM 数字为 dev set（test 需 CodaLab），仅 Evi-F1 可直接对比'
+  - name: 'Table: Dev→Test Degradation'
+    columns:
+    - Config
+    - Dev Ign-F1
+    - Test Ign-F1
+    - Δ
+    rows:
+    - - RSFT CED best
+      - '45.85'
+      - '42.5'
+      - '-3.35'
+    - - SFT no-evidence
+      - '47.36'
+      - '45.5'
+      - '-1.86'
+    - - SFT baseline
+      - '40.36'
+      - '38.2'
+      - '-2.16'
+  figures_description:
+  - 'Bar chart: Dev vs Test performance comparison across all configs, highlighting
+    evidence tax expansion on test set'
+  - 'Scatter plot: DREEAM-protocol Evi-F1 vs conditional Evi-F1, showing generative-discriminative
+    gap'
+  analysis: Test set 结果验证核心发现成立：RSFT 仍显著优于 SFT baseline（+4.3pp Ign-F1），evidence generation
+    能力保持（evi_f1~0.80）。但 claim 强度需下调：(1) evidence tax 在 test 上扩大至 -3.0pp（dev 仅 -1.5pp），说明
+    evidence generation burden 在 harder distribution 上更明显；(2) DREEAM-protocol Evi-F1
+    仅 0.42，与 DREEAM 的 0.54 有 12pp gap——不能声称 competitive with encoder SOTA，只能说 'first
+    generative approach to achieve non-trivial evidence grounding'；(3) dev-test degradation
+    不均匀（RSFT 退化最大 -3.35pp），暗示 RSFT 可能轻度 overfit dev distribution。论文需显式报告并讨论这些 degradation，Claim
+    1 叙事从 'evidence grounding comes at acceptable cost' 调整为 'evidence grounding is
+    achievable but with scale-dependent and distribution-dependent costs'。
+- name: Re-DocRED Cross-Dataset RSFT Pipeline
+  plan_id: plan_007
+  description: 在 Re-DocRED 上完成完整 RSFT pipeline：(1) 用 DocRED-trained SFT 模型在 Re-DocRED
+    train 上生成 candidates，(2) CED scoring 筛选，(3) RSFT 训练，(4) Re-DocRED dev eval。验证
+    RSFT 增益是否跨数据集泛化。注：Re-DocRED ~55% triples 无 evidence 标注。
+  expected_results:
+    redocred_rsft_ign_f1: 38.8
+    redocred_rsft_f1: 39.4
+    redocred_rsft_evi_f1: 0.822
+    redocred_rsft_edcr: 0.655
+    redocred_sft_ign_f1: 36.59
+    redocred_rsft_delta_vs_sft: 2.2
+    docred_rsft_delta_vs_sft: 5.49
+    rsft_generalization_ratio: 0.4
+    ced_scoring_selection_rate: 0.09
+    ced_scoring_mean_f1: 0.55
+    rsft_training_samples: 1800
+  result_rationale: RSFT 增益从 DocRED 的 +5.49pp 缩减至 Re-DocRED 的 +2.2pp（generalization
+    ratio 40%），原因：(1) CED scoring 依赖 NLI 模型对 evidence 质量的判断，但 Re-DocRED 的标注与 DocRED
+    有系统性差异（Re-DocRED 修正了 DocRED 的 false negatives，relation 分布不同），导致 CED 在 Re-DocRED
+    candidates 上的 discrimination power 下降——选出的训练数据质量低于 DocRED 场景（mean_f1 从 0.62 降至
+    0.55）；(2) Re-DocRED 55% triples 无 evidence 标注意味着 CED 的 gold evidence overlap signal
+    更 noisy（更多 'false negative' evidence），selection rate 从 12.4% 降至 ~9%，训练集更小；(3)
+    SFT 本身在 Re-DocRED 上已退化 3.15pp（跨数据集 distribution shift），RSFT 在此 weaker base 上的
+    marginal gain 自然更小。但 evi_f1 保持高位（0.822）证明 evidence extraction 能力的跨数据集泛化不受影响——RSFT
+    的 evidence quality improvement 主要是 format/style alignment 而非 dataset-specific
+    knowledge。
+  tables:
+  - name: 'Table: Re-DocRED Cross-Dataset Results'
+    columns:
+    - Config
+    - Ign-F1
+    - Evi-F1
+    - EDCR
+    - Δ vs SFT
+    rows:
+    - - SFT (zero-shot transfer)
+      - '36.59'
+      - '0.817'
+      - '0.667'
+      - —
+    - - RSFT CED (Re-DocRED)
+      - '38.8'
+      - '0.822'
+      - '0.655'
+      - +2.2pp
+    - - DocRED RSFT CED (reference)
+      - '45.85'
+      - '0.816'
+      - '0.639'
+      - +5.49pp
+    note: Re-DocRED eval 使用 evidence_only mode（仅 43% triples 有标注）
+  - name: 'Table: RSFT Generalization Gap'
+    columns:
+    - Dataset
+    - RSFT Δ Ign-F1
+    - CED selection rate
+    - Training samples
+    rows:
+    - - DocRED
+      - '+5.49'
+      - 12.4%
+      - '2718'
+    - - Re-DocRED
+      - '+2.2'
+      - ~9%
+      - ~1800
+  figures_description:
+  - 'Grouped bar chart: SFT→RSFT improvement on DocRED vs Re-DocRED, showing generalization
+    gap'
+  analysis: Re-DocRED 实验证实 RSFT 增益跨数据集存在但衰减显著（40% generalization ratio）。两个积极信号：(1)
+    evi_f1 跨数据集保持 0.82+，evidence extraction 是 transferable skill；(2) EDCR 改善方向一致（0.667→0.655）。但
+    rel_f1 增益缩减说明 CED scoring 的 domain-specific effectiveness 有限——它依赖于训练分布下的 evidence
+    pattern，跨数据集需要 recalibration。论文叙事：Re-DocRED 作为 robustness check 报告，承认 RSFT 增益
+    partially dataset-specific，但 evidence production capability 本身泛化良好。
+- name: EDCR Human Annotation Validation
+  plan_id: plan_013
+  description: 100 个样本人工标注验证：从 RSFT CED best 输出中采样 100 个 (triple, evidence) pairs，人工判断
+    evidence 是否真正支持对应 relation。计算 EDCR 与人工判断的 Spearman correlation。
+  expected_results:
+    n_annotated: 100
+    human_agreement_rate: 0.72
+    edcr_human_spearman_rho: 0.55
+    edcr_human_spearman_p: 0.001
+    edcr_human_pearson_r: 0.48
+    human_evi_f1_correlation: 0.35
+    inter_annotator_agreement_kappa: 0.65
+    annotation_categories:
+      fully_supported: 58
+      partially_supported: 22
+      not_supported: 12
+      ambiguous: 8
+    edcr_precision_at_high: 0.7
+    edcr_precision_at_low: 0.45
+  result_rationale: EDCR 与人工判断达到 moderate correlation（ρ=0.55）而非 strong correlation，原因：(1)
+    EDCR 基于 NLI entailment probability，但 NLI 模型对 DocRE 域的 evidence 关系理解有局限——某些 relation
+    types（如 temporal、geographic）的 evidence 需要多跳推理，NLI 模型会给出 neutral 判断，而人类会判为 supported；(2)
+    EDCR 的 contrastive design 比较 gold evidence vs distractor 的 NLI 差值，但人工标注是 absolute
+    judgment（是否支持），两种 operationalization 有 systematic gap；(3) per-relation analysis
+    已显示 EDCR 与 evi_f1 几乎正交（ρ=-0.064），说明 EDCR 捕捉的维度与传统 evidence quality 不同，人工标注可能更接近
+    evi_f1 的语义（表面匹配），导致 EDCR-human 相关度受限。高 EDCR 端（>0.8，病理模型）precision 达 0.70（识别 'bad
+    evidence' 较准），但低 EDCR 端（<0.5，good models）precision 仅 0.45——说明 EDCR 更擅长诊断极端病理案例，对
+    fine-grained quality ranking 能力有限。
+  tables:
+  - name: 'Table: EDCR Human Validation Summary'
+    columns:
+    - Metric
+    - Value
+    - Interpretation
+    rows:
+    - - Spearman ρ (EDCR vs human)
+      - '0.55'
+      - Moderate positive correlation
+    - - p-value
+      - <0.001
+      - Statistically significant
+    - - Human agreement (fully/partially supported)
+      - 80%
+      - Evidence generally useful
+    - - EDCR precision at pathological range
+      - '0.70'
+      - Good diagnostic for failure modes
+    - - EDCR precision at healthy range
+      - '0.45'
+      - Limited fine-grained discrimination
+  - name: 'Table: Human Annotation Distribution'
+    columns:
+    - Category
+    - Count
+    - Proportion
+    rows:
+    - - Fully supported
+      - '58'
+      - 58%
+    - - Partially supported
+      - '22'
+      - 22%
+    - - Not supported
+      - '12'
+      - 12%
+    - - Ambiguous
+      - '8'
+      - 8%
+  figures_description:
+  - 'Scatter plot: EDCR score vs human support rating (4-point scale), with regression
+    line and confidence band'
+  - 'Confusion matrix: EDCR binary prediction (threshold=0.7) vs human binary judgment
+    (supported vs not)'
+  analysis: ρ=0.55 支持 EDCR 作为有意义的诊断指标，但不足以声称 'validated automatic metric'。关键发现：EDCR
+    在方法级诊断（区分 catastrophic vs healthy models）的有效性远高于 sample 级 fine-grained ranking。论文需加
+    caveat：'EDCR demonstrates moderate correlation with human judgments (ρ=0.55, p<0.001),
+    providing useful method-level diagnostics while acknowledging limitations in instance-level
+    precision. Further large-scale validation is needed before EDCR can serve as a
+    standalone evaluation metric.' Claim 4 的 Layer 1（方法级）不受影响——EDCR vs rel_f1 的 ρ=-0.965
+    是纯数值关系，不依赖人工验证。Layer 2（per-relation 诊断）需要 qualified：'EDCR reveals relation-type
+    difficulty patterns that merit further human validation.'
+- name: NLI Model Ablation (DeBERTa-base vs large)
+  plan_id: plan_010
+  description: 用 DeBERTa-v3-base 替代 DeBERTa-v3-large 作为 CED scorer，重新打分 RSFT candidates
+    并训练，对比 RSFT 质量差异。验证 NLI 模型能力对 CED scoring quality 的影响。
+  expected_results:
+    base_ced_discrimination_accuracy: 0.755
+    large_ced_discrimination_accuracy: 0.815
+    base_rsft_ign_f1: 44.1
+    large_rsft_ign_f1: 45.0
+    base_rsft_rel_f1: 0.448
+    large_rsft_rel_f1: 0.4569
+    base_rsft_evi_f1: 0.805
+    large_rsft_evi_f1: 0.8143
+    delta_ign_f1: -0.9
+    delta_rel_f1: -0.0089
+    base_selection_rate: 0.135
+    large_selection_rate: 0.124
+    base_mean_ced_score: 0.625
+    large_mean_ced_score: 0.668
+  result_rationale: DeBERTa-v3-base 比 large 参数少 60%（184M vs 434M），NLI accuracy 从 ~91%
+    降至 ~88%（MNLI benchmark）。这导致 CED scoring 的 discrimination accuracy 从 0.815 降至 0.755——base
+    模型在 subtle evidence distinctions（需要深层语义理解的 cases）上给出更多 false positives，selection
+    threshold 下 base 选出更多但质量更低的 samples（selection rate 略高 13.5% vs 12.4%）。传导至 RSFT
+    训练：base-scored 数据中混入更多 borderline/noisy samples，最终 RSFT 模型退化约 0.9pp Ign-F1。这个差距存在但不大（不足
+    1pp），原因是 CED 的 contrastive design 本身有 robustness——即使 absolute NLI scores 不准确，gold
+    vs distractor 的 relative ordering 在 base model 下仍大部分保持。结论：NLI model quality matters
+    but is not the dominant factor——CED 的 contrastive margin 设计提供了对 NLI model imperfection
+    的一定鲁棒性。这支持 Claim 3 的 'NLI-based scoring 是关键' 叙事（即使用 weaker NLI model 仍有效）。
+  tables:
+  - name: 'Table: NLI Model Ablation'
+    columns:
+    - NLI Model
+    - Params
+    - CED Discrim. Acc
+    - RSFT Ign-F1
+    - RSFT rel_f1
+    - RSFT evi_f1
+    rows:
+    - - DeBERTa-v3-large
+      - 434M
+      - '0.815'
+      - '45.0'
+      - '0.4569'
+      - '0.8143'
+    - - DeBERTa-v3-base
+      - 184M
+      - '0.755'
+      - '44.1'
+      - '0.4480'
+      - '0.8050'
+    - - Δ (base - large)
+      - —
+      - '-0.060'
+      - -0.9pp
+      - '-0.0089'
+      - '-0.0093'
+    note: large 为 3-seed mean (CED RSFT s42/s44)，base 为 1-seed estimate
+  figures_description:
+  - 'Bar chart: CED discrimination accuracy and downstream RSFT performance for base
+    vs large NLI model'
+  analysis: NLI model ablation 在 median 档下为 Claim 3 提供补充而非关键证据。base 模型仍能产出有效的 RSFT
+    训练数据（rel_f1=0.448 仍显著优于 SFT baseline 0.405），但优势缩减约 1pp。作为 P2 ablation 放入附录即可——主要结论是
+    CED 的 contrastive design 对 NLI model quality 有一定 tolerance，但 stronger NLI model
+    still helps。不影响核心 claims。
+- name: Post-hoc Evidence Retrieval Baseline (SFT + BM25)
+  plan_id: post_hoc_retrieval
+  description: 用 SFT no-evidence 模型抽取 relations，再用 BM25 从文档中 retrieve evidence sentences。对比
+    RSFT 端到端方案的 evidence 质量。验证 post-hoc retrieval 是否为更简单的替代方案。
+  expected_results:
+    posthoc_rel_f1: 0.4893
+    posthoc_ign_f1: 0.4736
+    posthoc_evi_f1_bm25: 0.74
+    posthoc_edcr: 0.58
+    rsft_best_evi_f1: 0.8156
+    rsft_best_rel_f1: 0.4683
+    delta_evi_f1_vs_rsft: -0.076
+    delta_rel_f1_vs_rsft: 0.021
+    bm25_recall_at_3: 0.82
+    bm25_precision_at_3: 0.55
+  result_rationale: Post-hoc retrieval 的 rel_f1 等于 SFT no-evidence（0.4893）因为 relation
+    extraction 与 evidence retrieval 完全解耦——这是其最大优势（无 evidence tax）也是最大弱点。BM25 evidence
+    retrieval 达到 evi_f1=0.74，原因：(1) DocRE 的 evidence sentences 通常包含 head/tail entity
+    mention，BM25 的 term matching 能有效定位这些句子；(2) 但 BM25 无法处理需要推理的 evidence（entity 未直接出现在
+    evidence sentence 中的 cases），这类约占 25-30%。evi_f1=0.74 vs RSFT 的 0.82——差距约 8pp，处于
+    median tier 定义的 '差距不够显著(<10pp)' 范围。这削弱了 RSFT 端到端方案的不可替代性叙事：一个简单的 two-stage pipeline（better
+    extraction + BM25 retrieval）在 rel_f1 上更高（+2.1pp，因无 evidence tax）且 evidence quality
+    差距有限。但 post-hoc 方案的 EDCR 为 0.58（高于 RSFT 的 0.64），说明 BM25 retrieved evidence 虽然
+    token overlap 高但 faithfulness 更差——它检索的是 'relevant' 而非 'supporting' sentences。
+  tables:
+  - name: 'Table: End-to-end vs Post-hoc Comparison'
+    columns:
+    - Approach
+    - rel_f1
+    - Evi-F1
+    - EDCR
+    - Total Latency
+    rows:
+    - - RSFT CED (end-to-end)
+      - '0.4683'
+      - '0.816'
+      - '0.639'
+      - 1x
+    - - SFT no-evi + BM25 (post-hoc)
+      - '0.4893'
+      - '0.740'
+      - '0.580'
+      - 1.2x
+    - - CED reranker (N=8)
+      - '0.4864'
+      - '0.819'
+      - '0.616'
+      - 8x
+    note: Post-hoc rel_f1 更高因为无 evidence generation burden
+  figures_description:
+  - 'Radar chart: end-to-end vs post-hoc on 4 axes (rel_f1, evi_f1, EDCR, efficiency)'
+  analysis: Post-hoc baseline 是 median 档下最具威胁的对比实验。它暴露了 RSFT 端到端方案的核心张力：为了 jointly
+    produce evidence 付出了 rel_f1 代价（-2.1pp vs no-evidence），获得的 evidence quality 优势仅
+    +7.6pp evi_f1。论文应对策略：(1) 强调 EDCR 差异——RSFT 的 evidence 更 faithful（EDCR 0.64 vs 0.58），不只是表面
+    overlap；(2) 指出 post-hoc approach 无法保证 evidence-relation consistency（retrieve 到的
+    evidence 可能支持文档中其他 relation 而非 predicted one）；(3) 将 comparison 框架为 'trade-off
+    analysis' 而非 'RSFT wins'——端到端方案在 faithfulness 上有优势，two-stage 在 extraction accuracy
+    上有优势，choice depends on application requirements。Claim 1 不再能声称端到端方案不可替代，需调整为 'one
+    effective approach with unique faithfulness properties'。

@@ -1,0 +1,51 @@
+\documentclass[11pt]{article}
+\usepackage[review]{acl}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{url}
+
+\title{Death Avoidance Dominates the Routing Signal in Modular LLM Agents}
+\author{Anonymous ACL Submission}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Modular LLM agents that route between neural reasoning and deterministic computation promise improved reliability in rule-governed environments, yet understanding \emph{what} drives effective routing remains unclear. Per-step oracle labeling degenerates in sparse-reward settings---in ScienceWorld, 97.4\% of steps yield tied outcomes, rendering step-level analysis uninformative. We propose episode-level counterfactual analysis: running complete episodes under pure strategies and comparing final outcomes to derive per-episode routing labels. Across 245 episodes with a Qwen2.5-7B-Instruct backbone, death avoidance accounts for approximately 90\% of the routing signal (Death Avoidance Factor), with near-perfect cross-task correlation ($r = 0.97$). These results indicate that deterministic computation's value is concentrated in catastrophic failure prevention rather than positive task guidance.
+\end{abstract}
+
+\section{Introduction}
+
+When a Qwen2.5-7B-Instruct agent attempts to boil water in ScienceWorld \cite{scienceworld-2022}, it must track temperature thresholds, container states, and heat source interactions across dozens of steps. Internal LLM reasoning hallucinates these state transitions---predicting water has boiled when the stove was never activated, or failing to model that metal conducts heat differently than glass---triggering agent death with a $-100$ penalty. Deterministic external computation (environment simulators, code interpreters) eliminates such hallucinations by executing exact state transitions. The natural question: when should an agent route computation externally versus reasoning internally?
+
+Existing routing approaches \cite{toolformer-2024,art-2023,chameleon-2024} frame tool selection as a capability or efficiency decision---matching subtasks to tools that can solve them. This framing ignores a potentially dominant signal: routing to \emph{avoid catastrophic failure}. Understanding what routing actually learns requires counterfactual analysis, but the standard per-step oracle approach degenerates under sparse rewards. On ScienceWorld, where non-zero reward arrives only at episode termination, 97.4\% of steps produce identical scores regardless of modality---no step-level signal exists to train a router (\S\ref{sec:collection}). Keyword-based heuristics (\S\ref{sec:rule}) also fail structurally: ScienceWorld actions use generic verbs (\texttt{pour}, \texttt{move}, \texttt{activate}) rather than science-specific terminology, providing no lexical basis for routing decisions.
+
+We propose \emph{episode-level counterfactual analysis}: run complete episodes under pure-internal (ReAct~\cite{react-2023}) and pure-deterministic strategies, then compare episode outcomes to generate routing labels (\S\ref{sec:collection}). Across 11 ScienceWorld task types (245 episodes), the full deterministic advantage is $\Delta_{\text{full}} = +29.60$ points. Excluding episodes where either strategy causes agent death, this gap collapses to $\Delta_{\text{no\_death}} = +2.84$---a Death Avoidance Factor (DAF; \S\ref{sec:daf}) of 90.41\%. The per-task correlation between death rate differential and performance gap is $r = 0.9698$ ($p = 8.12 \times 10^{-7}$), confirming that death avoidance is the primary mechanism across task types (\S\ref{sec:death-decomp}). Death rates differ sharply: 42.9\% for internal reasoning versus 16.3\% for deterministic computation. Of 245 episodes, 96.2\% of oracle routing decisions match an unconditional always-deterministic strategy (\S\ref{sec:baselines}).
+
+Our contributions:
+\begin{enumerate}
+\item \textbf{Episode-level counterfactual methodology with death avoidance decomposition.} We introduce DAF to quantify how much of the deterministic advantage comes from avoiding catastrophic failure, revealing that death avoidance accounts for $\sim$90\%.
+\item \textbf{Empirical diagnosis of routing degeneracy.} We demonstrate oracle and trained-router degeneracy, showing that routing provides minimal value beyond death avoidance.
+\item \textbf{Practical implications.} When catastrophic failure dominates, simple safety-aware heuristics may suffice in place of learned routers.
+\end{enumerate}
+
+\section{Method}
+
+\subsection{Counterfactual Episode Collection}
+\label{sec:collection}
+
+For each of 245 episodes across 11 ScienceWorld task types, we run two complete trajectories from the same initial state, differing only in computation modality: (1) \textbf{Internal}: ReAct~\cite{react-2023} reasoning with Qwen2.5-7B-Instruct, and (2) \textbf{Deterministic}: template-driven code execution that queries environment state and applies predefined action rules. Each trajectory runs to completion (success, death, or step limit), yielding paired scores $(s_\text{int}, s_\text{det})$ per episode.
+
+The per-step oracle approach---running each step under both modalities and comparing immediate rewards---degenerates under ScienceWorld's sparse reward structure. Of 7,621 total steps, 97.4\% produce identical scores regardless of modality---the oracle cannot distinguish between strategies at step granularity. Episode-level comparison bypasses this degeneracy.
+
+We label each episode based on which strategy achieves higher final score: $\text{internal}$ if $s_\text{int} > s_\text{det}$, $\text{deterministic}$ if $s_\text{det} > s_\text{int}$, and $\text{tied}$ otherwise. The resulting label distribution is 69.8\% deterministic, 22.0\% tied, 8.2\% internal, confirming strong deterministic dominance.
+
+\subsection{Death-Aware Labeling}
+
+To isolate the role of catastrophic failure, we introduce death-aware labels. For each episode, we record whether each strategy triggered agent death (a terminal failure with $-100$ penalty in ScienceWorld). This yields four outcome categories per episode:
+
+\begin{i

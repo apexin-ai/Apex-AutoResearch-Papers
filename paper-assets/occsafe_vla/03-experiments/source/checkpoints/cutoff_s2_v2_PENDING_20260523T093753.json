@@ -1,0 +1,14 @@
+{
+  "exp_id": "cutoff_s2_v2",
+  "project": "occsafe_vla",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T09:37:53.032Z",
+    "updated_at": "2026-05-23T09:37:53.032Z"
+  },
+  "timestamp": "2026-05-23T09:37:53.162892+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,47 @@
+{
+  "exp_id": "mvp_occ_s0",
+  "project": "occsafe_vla",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-20T08:41:51.429Z",
+    "updated_at": "2026-05-21T04:47:52.609Z",
+    "hypothesis": "Adding BEV occupancy auxiliary supervision (with gradient flow to vision encoder via occ_detach=false) during OpenVLA-OFT fine-tuning on LIBERO-Spatial will significantly improve collision avoidance rate (CAR) on SafeLIBERO Level I compared to vanilla baseline, by forcing the vision encoder to develop spatial awareness of 3D object boundaries",
+    "reproduce": {
+      "finished_at": "2026-05-20T16:44:01.989Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-20T16:44:02.078Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T16:44:03.633606+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "失败原因: 进程外部终止，与 mvp_occ_s1/s2 同时死亡，系统级事件。数据问题同 mvp_occ_s1。| 已有成果: 无有效 checkpoint | 建议: 同 mvp_occ_s1"
+      }
+    },
+    "notes": "磁盘满崩溃 @ step 45000 (retry 1)。已清理 284G，从 42500_chkpt resume。",
+    "spec": {
+      "server": "westd-34685",
+      "gpu": "cuda:0",
+      "command": "WANDB_MODE=disabled CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --use_diffusion False --use_film False --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --num_steps_before_decay 100000 --max_steps 50005 --save_freq 2500 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach false --run_root_dir /root/autodl-tmp/checkpoints/occ_s0 --seed 42",
+      "data_path": "/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops",
+      "data_count": "~25000 episodes",
+      "model_name": "openvla-7b (local)",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/occ_s0",
+      "log_path": "/root/autodl-tmp/checkpoints/occ_s0/training.log"
+    },
+    "pid": 27667,
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-21T04:47:52.644004+00:00",
+  "trigger": "update_registry"
+}

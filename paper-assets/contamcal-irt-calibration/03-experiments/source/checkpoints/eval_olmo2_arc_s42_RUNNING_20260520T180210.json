@@ -1,0 +1,24 @@
+{
+  "exp_id": "eval_olmo2_arc_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:02:02.436Z",
+    "updated_at": "2026-05-20T18:02:09.898Z",
+    "spec": {
+      "command": "bash run_arc_eval_olmo2_s42.sh",
+      "server": "westd-29999",
+      "data_path": "/root/contamcal-irt-calibration/results/arc_eval/olmo2/",
+      "data_count": 1172,
+      "model_name": "OLMo-2",
+      "seed": 42,
+      "checkpoint_source": "olmo2 SFT checkpoints d000-d100",
+      "eval_data": "ARC-Challenge 25-shot"
+    }
+  },
+  "timestamp": "2026-05-20T18:02:10.528562+00:00",
+  "trigger": "update_registry"
+}

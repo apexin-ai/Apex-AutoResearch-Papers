@@ -1,0 +1,37 @@
+{
+  "exp_id": "eval-vla-only-goal-seed48-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:08:24.943Z",
+    "updated_at": "2026-05-20T03:02:41.906Z",
+    "hypothesis": "VLA-only baseline on LIBERO-Goal seed48. 补齐 Goal VLA-only 样本量 (n→7)，与 CRM-Goal 配对统计检验。重跑（前次 killed for CRM priority）。",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode acr_vla --benchmark goal --seed 48 --K 1 --n_rollouts 10 --output_file logs/eval_vla_only_goal_seed48_r2.json\"",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "128633",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-vla-only-goal-seed48-r2.log",
+      "submitted_at": "2026-05-19T22:08:35.662Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "LIBERO-Goal",
+      "data_count": "100 (10 tasks x 10 rollouts)",
+      "model_name": "SmolVLA",
+      "seed": 48,
+      "wall_clock_seconds": 17646.2,
+      "gpu_hours": 4.9
+    },
+    "failure_reason": "Traceback → mal-refinement/src/evaluate.py\", line 506, in main evaluate(args) File \"/root/acr-vla-conformal-refinement/src/evaluate.py\", line 348, in evaluate raise ValueError(\"--checkpoint required for CRM modes\") ValueError: --checkpoint required for CRM modes",
+    "conclusion": "failed",
+    "completed_at": "2026-05-20T03:02:41.906Z"
+  },
+  "timestamp": "2026-05-20T03:02:42.558557+00:00",
+  "trigger": "update_registry"
+}

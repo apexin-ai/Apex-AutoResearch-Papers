@@ -1,0 +1,113 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wang2023selfconsistency}
+\citation{pan2023logiclm,olausson2023linc}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{wang2023selfconsistency}
+\citation{chen2023usc}
+\citation{loo2025scaling}
+\citation{li2023diverse}
+\citation{taubenfeld2025weighted}
+\citation{pan2023logiclm}
+\citation{olausson2023linc}
+\citation{condorcet1785}
+\citation{austensmith1996}
+\citation{llmcjt2024}
+\citation{cobbe2021orms}
+\citation{lightman2023prm}
+\citation{snell2025scaling}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Self-Consistency and Extensions.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Neuro-Symbolic Reasoning.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Condorcet Jury Theorem and LLM Ensembles.}{2}{section*.3}\protected@file@percent }
+\citation{fleiss1971}
+\@writefile{toc}{\contentsline {paragraph}{Test-Time Compute and Verification.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}SICA Pipeline}{3}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:sica}{{3.1}{3}{SICA Pipeline}{subsection.3.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Condorcet Framework}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:condorcet}{{3.2}{3}{Condorcet Framework}{subsection.3.2}{}}
+\newlabel{eq:effk}{{1}{3}{Condorcet Framework}{equation.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{4}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{4}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Models.}{4}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Datasets.}{4}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hyperparameters.}{4}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Statistical Testing.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{4}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Main Results}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:main_results}{{5.1}{4}{Main Results}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Oracle Control}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:oracle}{{5.2}{4}{Oracle Control}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Main results across models and domains. SC = self-consistency, SICA = symbolic invariant consensus aggregation. $\Delta $ = SICA $-$ SC in percentage points. Bold indicates the higher accuracy in each row. $^*p < 0.05$; $^\dagger $ suggestive ($n=60$).}}{5}{table.caption.10}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:main}{{1}{5}{Main results across models and domains. SC = self-consistency, SICA = symbolic invariant consensus aggregation. $\Delta $ = SICA $-$ SC in percentage points. Bold indicates the higher accuracy in each row. $^*p < 0.05$; $^\dagger $ suggestive ($n=60$)}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Independence Quantification}{5}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:independence}{{5.3}{5}{Independence Quantification}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Regime Analysis}{5}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:regime}{{5.4}{5}{Regime Analysis}{subsection.5.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Independence quantification across models. $\kappa $ = Fleiss' kappa (inter-trace agreement), $\text  {Eff-K}$ = effective number of independent traces for nominal $K=12$. Higher $\text  {Eff-K}$ means more independent traces. SC = self-consistency accuracy (\%). $\Delta $ = SICA $-$ SC (pp).}}{6}{table.caption.11}\protected@file@percent }
+\newlabel{tab:independence}{{2}{6}{Independence quantification across models. $\kappa $ = Fleiss' kappa (inter-trace agreement), $\effk $ = effective number of independent traces for nominal $K=12$. Higher $\effk $ means more independent traces. SC = self-consistency accuracy (\%). $\Delta $ = SICA $-$ SC (pp)}{table.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces K sensitivity: SICA accuracy and $\Delta $ at varying $K$. Mistral-7B evaluated on FOLIO-204 (seed=42). Qwen-14B evaluated on D012 ($n=60$).}}{6}{table.caption.12}\protected@file@percent }
+\newlabel{tab:ksens}{{3}{6}{K sensitivity: SICA accuracy and $\Delta $ at varying $K$. Mistral-7B evaluated on FOLIO-204 (seed=42). Qwen-14B evaluated on D012 ($n=60$)}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}K Sensitivity}{6}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:ksens}{{5.5}{6}{K Sensitivity}{subsection.5.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Temperature sensitivity for Mistral-7B on FOLIO-204 ($K=12$). CI = 95\% bootstrap confidence interval.}}{7}{table.caption.13}\protected@file@percent }
+\newlabel{tab:tsens}{{4}{7}{Temperature sensitivity for Mistral-7B on FOLIO-204 ($K=12$). CI = 95\% bootstrap confidence interval}{table.caption.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Constraint quality taxonomy from 8 case studies. ``Trivially satisfied'' = constraint satisfied by all candidate answers. ``Semantically meaningful'' = constraint discriminates between answers. ``Confirmation-bias-aligned'' = discrimination direction matches model majority.}}{7}{table.caption.14}\protected@file@percent }
+\newlabel{tab:constraint_quality}{{5}{7}{Constraint quality taxonomy from 8 case studies. ``Trivially satisfied'' = constraint satisfied by all candidate answers. ``Semantically meaningful'' = constraint discriminates between answers. ``Confirmation-bias-aligned'' = discrimination direction matches model majority}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Temperature Sensitivity}{7}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:sensitivity}{{5.6}{7}{Temperature Sensitivity}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Constraint Quality Analysis}{7}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:quality}{{5.7}{7}{Constraint Quality Analysis}{subsection.5.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces C0 diagnostic validation across 12 model-domain conditions. C0 $< 20\%$ perfectly predicts $\Delta \leq 0$ (negative predictive value = 100\%). Eff-K + SC joint prediction achieves 8/12 directional accuracy.}}{8}{table.caption.15}\protected@file@percent }
+\newlabel{tab:diagnostic}{{6}{8}{C0 diagnostic validation across 12 model-domain conditions. C0 $< 20\%$ perfectly predicts $\Delta \leq 0$ (negative predictive value = 100\%). Eff-K + SC joint prediction achieves 8/12 directional accuracy}{table.caption.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Nine remediation strategies and their outcomes. None closes the oracle gap of $+14.22$\,pp.}}{8}{table.caption.16}\protected@file@percent }
+\newlabel{tab:remediation}{{7}{8}{Nine remediation strategies and their outcomes. None closes the oracle gap of $+14.22$\,pp}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Cross-Condition Diagnostic}{8}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:diagnostic}{{5.8}{8}{Cross-Condition Diagnostic}{subsection.5.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{8}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Nine Remediation Failures}{8}{subsection.6.1}\protected@file@percent }
+\newlabel{sec:remediation}{{6.1}{8}{Nine Remediation Failures}{subsection.6.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Baseline Comparisons}{9}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Overhead}{9}{subsection.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Limitations}{9}{subsection.6.4}\protected@file@percent }
+\bibcite{austensmith1996}{{1}{1996}{{Austen-Smith and Banks}}{{}}}
+\bibcite{chen2023usc}{{2}{2023}{{Chen et al.}}{{}}}
+\bibcite{cobbe2021orms}{{3}{2021}{{Cobbe et al.}}{{}}}
+\bibcite{condorcet1785}{{4}{1785}{{Condorcet}}{{}}}
+\bibcite{du2023debate}{{5}{2023}{{Du et al.}}{{}}}
+\bibcite{fleiss1971}{{6}{1971}{{Fleiss}}{{}}}
+\bibcite{li2023diverse}{{7}{2023}{{Li et al.}}{{}}}
+\bibcite{liang2023debate}{{8}{2023}{{Liang et al.}}{{}}}
+\bibcite{lightman2023prm}{{9}{2023}{{Lightman et al.}}{{}}}
+\bibcite{loo2025scaling}{{10}{2025}{{Loo et al.}}{{}}}
+\bibcite{olausson2023linc}{{11}{2023}{{Olausson et al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{10}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{10}{Conclusion}{section.7}{}}
+\bibcite{pan2023logiclm}{{12}{2023}{{Pan et al.}}{{}}}
+\bibcite{snell2025scaling}{{13}{2025}{{Snell et al.}}{{}}}
+\bibcite{taubenfeld2025weighted}{{14}{2025}{{Taubenfeld et al.}}{{}}}
+\bibcite{wang2023selfconsistency}{{15}{2023}{{Wang et al.}}{{}}}
+\bibcite{llmcjt2024}{{16}{2024}{{LLM-CJT}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Additional Results}{12}{appendix.A}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}Overhead Analysis}{12}{subsection.A.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces SICA pipeline overhead analysis ($n=804$ questions).}}{12}{table.caption.17}\protected@file@percent }
+\newlabel{tab:overhead}{{8}{12}{SICA pipeline overhead analysis ($n=804$ questions)}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}Logic-LM and Weighted SC Baselines}{12}{subsection.A.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Baseline comparison: Logic-LM (FOLIO, $n=204$) and weighted SC variants ($n=804$). All differences vs.\ SC are non-significant.}}{12}{table.caption.18}\protected@file@percent }
+\newlabel{tab:baselines}{{9}{12}{Baseline comparison: Logic-LM (FOLIO, $n=204$) and weighted SC variants ($n=804$). All differences vs.\ SC are non-significant}{table.caption.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.3}Multi-Temperature Ensemble}{12}{subsection.A.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.4}QwQ-32B Negative Control}{12}{subsection.A.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Qwen family scaling: larger models produce more correlated traces and lower (or negative) SICA gains.}}{13}{table.caption.19}\protected@file@percent }
+\newlabel{tab:qwen_scaling}{{10}{13}{Qwen family scaling: larger models produce more correlated traces and lower (or negative) SICA gains}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.5}Qwen Family Scaling}{13}{subsection.A.5}\protected@file@percent }
+\gdef \@abspage@last{13}

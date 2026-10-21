@@ -1,0 +1,42 @@
+{
+  "exp_id": "plan003-eval-exec-only-r5",
+  "project": "solver-trace-ablation",
+  "state": "QUEUED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T22:21:48.691Z",
+    "updated_at": "2026-05-13T23:02:30.889Z",
+    "spec": {
+      "command": "bash -c \"CUDA_VISIBLE_DEVICES=1 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/eval_sta.py --model_path /root/autodl-tmp/outputs/grpo_exec_only/ --data_path data/proofwriter_fol_100.jsonl --output_path /root/autodl-tmp/outputs/plan003_eval_exec_only_r5.json\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "83690",
+      "log_path": "~/runs/solver-trace-ablation/plan003-eval-exec-only-r5.log",
+      "submitted_at": "2026-05-13T22:21:48.658Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "metrics": {
+      "prove_rate": 0.32,
+      "mean_isr": 0.2055,
+      "isr_std": 0.3194,
+      "proved_only_isr": 0.6423,
+      "isr_by_type": {
+        "true": 0.3598,
+        "false": 0.1723,
+        "unknown": 0.0979
+      },
+      "total_samples": 100,
+      "proved_count": 32,
+      "runtime_s": 251.7
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-13T23:02:30.922347+00:00",
+  "trigger": "update_registry"
+}

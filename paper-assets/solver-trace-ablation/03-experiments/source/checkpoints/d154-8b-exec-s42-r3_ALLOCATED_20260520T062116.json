@@ -1,0 +1,28 @@
+{
+  "exp_id": "d154-8b-exec-s42-r3",
+  "project": "solver-trace-ablation",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T06:14:47.499Z",
+    "updated_at": "2026-05-20T06:21:16.257Z",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True && cd /root/solver-trace-ablation && /root/miniconda3/bin/python3 scripts/train_grpo.py --config configs/grpo_exec_only_8b.yaml --num_steps 500 --seed 42 --output_dir /root/autodl-tmp/outputs/d154_8b_exec_s42 --no_wandb\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "734900",
+      "log_path": "~/runs/solver-trace-ablation/d154-8b-exec-s42-r3.log",
+      "submitted_at": "2026-05-20T06:14:46.985Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Qwen3-8B trained with exec-only GRPO (K=2, bf16 loading) on 96GB RTX PRO 6000 will show similar reward trajectory to 4B but with higher ceiling due to model capacity"
+  },
+  "timestamp": "2026-05-20T06:21:16.652481+00:00",
+  "trigger": "update_registry"
+}

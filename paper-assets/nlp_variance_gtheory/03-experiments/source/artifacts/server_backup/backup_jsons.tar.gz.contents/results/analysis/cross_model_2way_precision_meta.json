@@ -1,0 +1,59 @@
+{
+  "name": "cross_model_2way_precision",
+  "n_records": 230400,
+  "n_cells": 1152,
+  "items_per_cell": 200,
+  "facets": [
+    "model",
+    "precision",
+    "temperature",
+    "prompt_template",
+    "seed",
+    "ordering"
+  ],
+  "n_levels": {
+    "model": 2,
+    "precision": 2,
+    "temperature": 2,
+    "prompt_template": 6,
+    "seed": 6,
+    "ordering": 4
+  },
+  "factor_levels": {
+    "model": [
+      "gemma-2-9b-it",
+      "llama-3.1-8b-instruct"
+    ],
+    "precision": [
+      "bfloat16",
+      "float32"
+    ],
+    "temperature": [
+      0.3,
+      0.7
+    ],
+    "prompt_template": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "seed": [
+      42,
+      123,
+      456,
+      789,
+      1024,
+      2048
+    ],
+    "ordering": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "fully_crossed": true
+}

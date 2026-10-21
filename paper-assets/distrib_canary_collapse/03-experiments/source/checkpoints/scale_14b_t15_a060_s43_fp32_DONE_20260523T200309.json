@@ -1,0 +1,41 @@
+{
+  "exp_id": "scale_14b_t15_a060_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T03:16:03.546Z",
+    "updated_at": "2026-05-23T20:03:08.708Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python -u iterative_train.py --model_name /root/autodl-tmp/.ms_cache/EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.60 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a060_s43_fp32_14b --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing",
+      "server": "westd-17855",
+      "gpu": "cuda:0",
+      "pid": 749427,
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-1.4b-deduped",
+      "seed": 43,
+      "precision": "fp32",
+      "log_path": "results/phase_diagram/t15_a060_s43_fp32_14b/",
+      "checkpoint_path": "results/phase_diagram/t15_a060_s43_fp32_14b"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "total_generations": 16,
+      "final_perplexity": 68.88,
+      "final_mauve": 0.029,
+      "final_token_entropy": 2.1,
+      "final_effective_rank": 100.88,
+      "final_distinct_3": 0.566,
+      "gen0_perplexity": 19.83,
+      "gen0_mauve": 0.033,
+      "perplexity_ratio": 3.47
+    },
+    "hypothesis": "Scaling model size to 1.4B (pythia-1.4b) at alpha=0.60 with T=15 generations will exhibit similar distributional collapse trajectory as smaller models, with perplexity growth and diversity loss following power-law scaling with sqrt(T)",
+    "completed_at": "2026-05-23T20:03:08.708Z"
+  },
+  "timestamp": "2026-05-23T20:03:09.134959+00:00",
+  "trigger": "update_registry"
+}

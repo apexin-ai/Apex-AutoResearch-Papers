@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-034",
+  "project": "ec_hte_llm_annotation",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T01:39:16.724Z",
+    "updated_at": "2026-05-23T01:41:03.369Z",
+    "hypothesis": "F-L scalar correction (tau_obs/(1-2*pi_bar)) predicts bias direction incorrectly under subgroup heterogeneity because it uses a single global scaling factor that over-corrects low-error subgroups and under-corrects high-error subgroups. EC-HTE's CM inversion handles the sign-reversal correctly."
+  },
+  "timestamp": "2026-05-23T01:41:03.502142+00:00",
+  "trigger": "update_registry"
+}

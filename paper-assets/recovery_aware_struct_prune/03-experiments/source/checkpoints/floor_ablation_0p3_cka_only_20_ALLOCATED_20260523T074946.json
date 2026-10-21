@@ -1,0 +1,19 @@
+{
+  "exp_id": "floor_ablation_0p3_cka_only_20",
+  "project": "recovery_aware_struct_prune",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T07:17:24.674Z",
+    "updated_at": "2026-05-23T07:49:45.734Z",
+    "hypothesis": "Floor ratio ablation: lowering the MLP floor from 0.4 to 0.3 allows more aggressive pruning of unimportant layers while CKA-only criterion preserves critical structure. If floor=0.3 maintains GSM8K accuracy within 2pp of floor=0.4 baseline, it demonstrates robustness of CKA-guided pruning to floor choice.",
+    "spec": {
+      "server": "westd-32935",
+      "gpu": "cuda:0"
+    }
+  },
+  "timestamp": "2026-05-23T07:49:46.366051+00:00",
+  "trigger": "update_registry"
+}

@@ -1,1 +1,0 @@
-exp-030 cross_model_acc=0.7500 original_sica_acc=0.7451 sc_acc=0.7500 discriminative_rate=0.0% recovery_rate=0.0% extraction_rate=98.37% wall_time=62.1min server_path=/root/symb_invariant_consensus/results/cross_model_mistral_folio/cross_model_mistral_results.json

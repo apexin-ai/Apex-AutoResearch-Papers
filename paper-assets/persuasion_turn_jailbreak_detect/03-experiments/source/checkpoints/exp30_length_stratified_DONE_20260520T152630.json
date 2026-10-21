@@ -1,0 +1,37 @@
+{
+  "exp_id": "exp30_length_stratified",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:40:20.867Z",
+    "updated_at": "2026-05-20T15:26:30.354Z",
+    "hypothesis": "9-class DAPT maintains consistent jailbreak detection performance across different conversation lengths (turn counts), with no systematic degradation in shorter or longer conversations.",
+    "spec": {
+      "command": "python scripts/exp30_length_stratified.py",
+      "server": "westd-33183",
+      "data_path": "results/per_sample_predictions/",
+      "data_count": 236,
+      "model_name": "9class/jb_mlm/vanilla",
+      "seed": "42,123,456",
+      "checkpoint_source": "plan_002 checkpoints",
+      "eval_data": "dd_ood_per_sample.json, actorattack_per_sample.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "DD_OOD_9class_recall_4_6": 1,
+      "DD_OOD_9class_recall_7_10": 0.994,
+      "AA_OOD_9class_recall_1_3": 0.933,
+      "AA_OOD_9class_recall_4_6": 0.956,
+      "AA_OOD_9class_recall_7_10": 1,
+      "benign_specificity_both": 1
+    },
+    "checkpoint_path": "N/A (analysis only)",
+    "log_path": "results/exp30_length_stratified.json",
+    "completed_at": "2026-05-20T15:25:21.398Z"
+  },
+  "timestamp": "2026-05-20T15:26:30.514889+00:00",
+  "trigger": "update_registry"
+}

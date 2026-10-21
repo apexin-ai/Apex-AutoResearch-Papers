@@ -1,0 +1,170 @@
+Loading PSN-IRT parameters...
+  PSN-IRT: 14042 items
+Loading item mapping...
+  Mapped items: 12477 / 14042
+
+Downloading v1 responses for 101 models...
+  [1/101] mistralai__Mistral-7B-Instruct-v0.1... OK (11.3s, acc=0.537, n=14042)
+  [2/101] mistralai__Mistral-7B-v0.1... OK (22.3s, acc=0.626, n=14042)
+  [3/101] lmsys__vicuna-7b-v1.3... OK (23.0s, acc=0.472, n=14042)
+  [4/101] lmsys__vicuna-7b-v1.5... OK (23.4s, acc=0.499, n=14042)
+  [5/101] lmsys__vicuna-13b-v1.3... FAIL (0.3s)
+  [6/101] lmsys__vicuna-13b-v1.5... OK (22.9s, acc=0.557, n=14042)
+  [7/101] meta-llama__Llama-2-7b-hf... OK (22.2s, acc=0.428, n=14042)
+  [8/101] meta-llama__Llama-2-7b-chat-hf... FAIL (0.2s)
+  [9/101] meta-llama__Llama-2-13b-hf... OK (11.0s, acc=0.536, n=14042)
+  [10/101] meta-llama__Llama-2-13b-chat-hf... FAIL (0.2s)
+  [11/101] meta-llama__Llama-2-70b-hf... OK (51.0s, acc=0.692, n=14042)
+  [12/101] meta-llama__Llama-2-70b-chat-hf... FAIL (0.2s)
+  [13/101] tiiuae__falcon-7b... OK (22.5s, acc=0.273, n=14042)
+  [14/101] tiiuae__falcon-7b-instruct... OK (47.0s, acc=0.252, n=14042)
+  [15/101] tiiuae__falcon-40b... OK (56.2s, acc=0.559, n=14042)
+  [16/101] tiiuae__falcon-40b-instruct... FAIL (0.2s)
+  [17/101] mosaicml__mpt-7b... OK (28.6s, acc=0.276, n=14042)
+  [18/101] mosaicml__mpt-7b-instruct... OK (82.0s, acc=0.316, n=14042)
+  [19/101] mosaicml__mpt-7b-chat... OK (52.4s, acc=0.370, n=14042)
+  [20/101] mosaicml__mpt-30b... OK (78.6s, acc=0.475, n=14042)
+  [21/101] mosaicml__mpt-30b-instruct... FAIL (21.3s)
+  [22/101] mosaicml__mpt-30b-chat... OK (63.4s, acc=0.502, n=14042)
+  [23/101] EleutherAI__pythia-12b-deduped... OK (46.7s, acc=0.259, n=14042)
+  [24/101] EleutherAI__pythia-6.7b... OK (22.9s, acc=0.247, n=14042)
+  [25/101] EleutherAI__pythia-2.8b-deduped... FAIL (46.2s)
+  [26/101] EleutherAI__pythia-1.4b-deduped... FAIL (22.8s)
+  [27/101] EleutherAI__gpt-neo-1.3B... OK (40.9s, acc=0.245, n=14042)
+  [28/101] EleutherAI__gpt-neo-2.7B... OK (41.9s, acc=0.267, n=14042)
+  [29/101] EleutherAI__gpt-j-6b... OK (43.2s, acc=0.269, n=14042)
+  [30/101] togethercomputer__RedPajama-INCITE-7B-Base... OK (47.5s, acc=0.275, n=14042)
+  [31/101] togethercomputer__RedPajama-INCITE-7B-Instruct... OK (49.9s, acc=0.373, n=14042)
+  [32/101] stabilityai__stablelm-tuned-alpha-7b... OK (59.2s, acc=0.241, n=14042)
+  [33/101] Open-Orca__OpenOrca-Platypus2-13B... OK (45.2s, acc=0.593, n=14042)
+  [34/101] NousResearch__Nous-Hermes-llama-2-7b... FAIL (45.1s)
+  [35/101] NousResearch__Nous-Hermes-13b... OK (68.3s, acc=0.494, n=14042)
+  [36/101] teknium__OpenHermes-13B... OK (81.6s, acc=0.560, n=14042)
+  [37/101] WizardLM__WizardLM-13B-V1.2... OK (45.3s, acc=0.539, n=14042)
+  [38/101] WizardLM__WizardLM-7B-V1.0... FAIL (0.2s)
+  [39/101] garage-bAInd__Platypus2-70B-instruct... OK (45.2s, acc=0.712, n=14042)
+  [40/101] garage-bAInd__Platypus2-13B... OK (46.5s, acc=0.574, n=14042)
+  [41/101] HuggingFaceH4__zephyr-7b-beta... FAIL (3.0s)
+  [42/101] HuggingFaceH4__zephyr-7b-alpha... FAIL (0.2s)
+  [43/101] microsoft__phi-1_5... OK (44.1s, acc=0.424, n=14042)
+  [44/101] microsoft__phi-2... FAIL (2.2s)
+  [45/101] 01-ai__Yi-6B... FAIL (1.5s)
+  [46/101] 01-ai__Yi-34B... FAIL (1.3s)
+  [47/101] Qwen__Qwen-7B... OK (44.8s, acc=0.584, n=14042)
+  [48/101] Qwen__Qwen-14B... OK (46.7s, acc=0.663, n=14042)
+  [49/101] Qwen__Qwen-72B... FAIL (1.0s)
+  [50/101] internlm__internlm-7b... FAIL (0.2s)
+  [51/101] internlm__internlm-20b... FAIL (0.2s)
+  [52/101] THUDM__chatglm3-6b... FAIL (0.2s)
+  [53/101] bigscience__bloom-7b1... OK (44.7s, acc=0.261, n=14042)
+  [54/101] bigscience__bloom-3b... FAIL (0.2s)
+  [55/101] bigscience__bloom-1b7... FAIL (0.3s)
+  [56/101] cerebras__Cerebras-GPT-6.7B... OK (46.3s, acc=0.261, n=14042)
+  [57/101] cerebras__Cerebras-GPT-2.7B... OK (54.0s, acc=0.255, n=14042)
+  [58/101] google__gemma-7b... FAIL (2.3s)
+  [59/101] google__gemma-2b... FAIL (2.1s)
+  [60/101] upstage__SOLAR-10.7B-v1.0... FAIL (1.6s)
+  [61/101] upstage__SOLAR-10.7B-Instruct-v1.0... FAIL (1.7s)
+  [62/101] deepseek-ai__deepseek-llm-7b-base... FAIL (0.2s)
+  [63/101] deepseek-ai__deepseek-llm-7b-chat... FAIL (2.0s)
+  [64/101] deepseek-ai__deepseek-llm-67b-base... FAIL (1.4s)
+  [65/101] deepseek-ai__deepseek-llm-67b-chat... FAIL (2.3s)
+  [66/101] TinyLlama__TinyLlama-1.1B-Chat-v1.0... FAIL (2.1s)
+  [67/101] openlm-research__open_llama_7b... OK (49.4s, acc=0.302, n=14042)
+  [68/101] openlm-research__open_llama_13b... OK (46.7s, acc=0.425, n=14042)
+  [69/101] openlm-research__open_llama_3b... OK (47.3s, acc=0.266, n=14042)
+  [70/101] RWKV__rwkv-5-world-3b... FAIL (0.2s)
+  [71/101] allenai__OLMo-7B... FAIL (0.2s)
+  [72/101] allenai__OLMo-1B... FAIL (0.2s)
+  [73/101] CohereTroika__c4ai-command-r-v01... FAIL (0.2s)
+  [74/101] CohereForAI__c4ai-command-r-plus... FAIL (2.1s)
+  [75/101] databricks__dolly-v2-12b... OK (45.1s, acc=0.259, n=14042)
+  [76/101] databricks__dolly-v2-7b... OK (42.8s, acc=0.251, n=14042)
+  [77/101] databricks__dolly-v2-3b... OK (45.9s, acc=0.252, n=14042)
+  [78/101] Writer__camel-5b-hf... OK (49.5s, acc=0.263, n=14042)
+  [79/101] h2oai__h2ogpt-oig-oasst1-512-6_9b... OK (50.2s, acc=0.250, n=14042)
+  [80/101] OpenAssistant__oasst-sft-4-pythia-12b-epoch-3.5... OK (43.6s, acc=0.268, n=14042)
+  [81/101] huggyllama__llama-7b... OK (47.2s, acc=0.352, n=14042)
+  [82/101] huggyllama__llama-13b... OK (45.4s, acc=0.469, n=14042)
+  [83/101] huggyllama__llama-30b... OK (43.4s, acc=0.583, n=14042)
+  [84/101] huggyllama__llama-65b... OK (48.0s, acc=0.637, n=14042)
+  [85/101] CalderaAI__30B-Lazarus... OK (44.9s, acc=0.555, n=14042)
+  [86/101] psmathur__orca_mini_v3_7b... OK (45.5s, acc=0.516, n=14042)
+  [87/101] psmathur__orca_mini_v3_13b... OK (43.0s, acc=0.559, n=14042)
+  [88/101] ehartford__dolphin-llama-13b... OK (50.4s, acc=0.521, n=14042)
+  [89/101] lmsys__vicuna-33b-v1.3... OK (50.4s, acc=0.593, n=14042)
+  [90/101] TheBloke__guanaco-7B-HF... OK (50.3s, acc=0.351, n=14042)
+  [91/101] TheBloke__guanaco-13B-HF... OK (48.9s, acc=0.478, n=14042)
+  [92/101] TheBloke__guanaco-33B-HF... FAIL (0.2s)
+  [93/101] TheBloke__guanaco-65B-HF... OK (49.3s, acc=0.623, n=14042)
+  [94/101] ehartford__WizardLM-7B-V1.0-Uncensored... FAIL (0.2s)
+  [95/101] ehartford__WizardLM-13B-V1.0-Uncensored... FAIL (0.2s)
+  [96/101] jondurbin__airoboros-l2-7b-2.1... OK (48.4s, acc=0.440, n=14042)
+  [97/101] jondurbin__airoboros-l2-13b-2.1... OK (45.8s, acc=0.499, n=14042)
+  [98/101] jondurbin__airoboros-l2-70b-2.1... OK (44.9s, acc=0.692, n=14042)
+  [99/101] codellama__CodeLlama-7b-hf... OK (52.9s, acc=0.310, n=14042)
+  [100/101] codellama__CodeLlama-13b-hf... OK (51.5s, acc=0.326, n=14042)
+  [101/101] codellama__CodeLlama-34b-hf... OK (47.3s, acc=0.357, n=14042)
+
+Response matrix: 63 models x 14042 items
+  Overall accuracy: 0.4265
+  Item variance range: [0.0000, 0.2499]
+  Zero-variance items (all correct or all wrong): 38
+
+=== Fitting 2PL MML-EM ===
+    Iter 0: max delta(a) = 1.500000
+    Iter 5: max delta(a) = 0.979255
+    Iter 10: max delta(a) = 0.066857
+    Iter 15: max delta(a) = 0.009894
+    Iter 20: max delta(a) = 0.023566
+    Iter 25: max delta(a) = 0.005376
+    Iter 30: max delta(a) = 0.002385
+    Iter 35: max delta(a) = 0.000919
+    Converged at iter 35
+  2PL done in 8.9s
+
+=== Fitting 3PL MML-EM (c=0.25) ===
+    Iter 0: max delta(a) = 1.500000
+    Iter 5: max delta(a) = 1.500000
+    Iter 10: max delta(a) = 1.500000
+    Iter 15: max delta(a) = 1.437031
+    Iter 20: max delta(a) = 1.355017
+    Iter 25: max delta(a) = 1.393076
+    Iter 30: max delta(a) = 0.500009
+    Iter 35: max delta(a) = 0.500332
+    Iter 40: max delta(a) = 0.500000
+    Iter 45: max delta(a) = 0.505915
+  3PL done in 12.1s
+
+=== Parameter Comparison (v1 3PL vs PSN-IRT) ===
+  Comparable items: 12441
+
+  2PL results:
+    a_discrimination: pearson=-0.0836, spearman=-0.0518
+    b_difficulty: pearson=0.5718, spearman=0.6297
+
+  3PL results:
+    a_discrimination: pearson=0.1109, spearman=0.1113
+    b_difficulty: pearson=0.6257, spearman=0.6560
+
+=== Generating Plots ===
+  Saved: /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/artifacts/v1_irt_refit_pilot/parameter_comparison.png
+
+=== Computing Person-fit (lz*) ===
+  20/63 models processed
+  40/63 models processed
+  60/63 models processed
+  lz* range: [-5.875, 23.375]
+  lz* mean: 11.689, std: 6.685
+  Flagged (lz* < -1.96): 1 / 63
+  Saved: /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/artifacts/v1_irt_refit_pilot/lz_star_distribution.png
+
+=== Saving Results ===
+  Saved response matrix: 63x14042
+  Saved pilot_results.json
+
+=== DONE ===
+  Models: 63
+  3PL a correlation with PSN-IRT: 0.1109
+  3PL b correlation with PSN-IRT: 0.6257
+  lz* flagged: 1/63

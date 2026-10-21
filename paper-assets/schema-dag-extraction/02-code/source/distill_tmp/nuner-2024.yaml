@@ -1,0 +1,22 @@
+paper_key: "nuner-2024"
+title: "NuNER: Entity Recognition Encoder Pre-training via LLM-Annotated Data"
+venue: "EMNLP 2024"
+full_text_available: false
+
+research:
+  baselines: ["similar-sized foundation models", "larger LLMs"]
+  metrics: [{name: "F1", direction: "higher_better"}]
+  datasets: [{name: "C4 subset (LLM-annotated)", size: "4.38M annotations, 200k unique concepts"}, {name: "downstream NER benchmarks", size: "not specified"}]
+  ablation_dimensions: ["pre-training dataset size", "entity-type diversity"]
+  training_recipe: {method: "RoBERTa pre-trained on GPT-3.5-annotated C4 subset, then fine-tuned"}
+  method_family: "LLM-annotated data for encoder pre-training"
+
+positioning:
+  core_claim: "LLM-annotated data at scale can create compact NER-specialized encoders that outperform similar-sized models in few-shot and compete with much larger LLMs"
+  key_results: "Outperforms similar-sized foundation models in few-shot NER; competes with much larger LLMs"
+  limitations: ["annotation quality depends on GPT-3.5", "limited to NER task"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

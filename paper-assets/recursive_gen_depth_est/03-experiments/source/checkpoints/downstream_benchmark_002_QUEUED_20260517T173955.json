@@ -1,0 +1,29 @@
+{
+  "exp_id": "downstream_benchmark_002",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T17:39:38.724Z",
+    "updated_at": "2026-05-17T17:39:55.130Z",
+    "hypothesis": "Fine-tuning on depth-0 (original) text produces lower held-out perplexity than fine-tuning on higher-depth (recursive) text, because d0 data has higher quality signal without recursive degradation artifacts.",
+    "parent": "downstream_benchmark_001",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/recursive_gen_depth_est && python3 scripts/downstream_benchmark_v2.py 2>&1 | tee logs/downstream_benchmark_v2.log\"",
+      "server": "westd-48862",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "12148",
+      "log_path": "~/runs/recursive_gen_depth_est/downstream_benchmark_002.log",
+      "submitted_at": "2026-05-17T17:39:45.601Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-17T17:39:55.361333+00:00",
+  "trigger": "update_registry"
+}

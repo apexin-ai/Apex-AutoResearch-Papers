@@ -1,0 +1,2 @@
+2026-05-17 17:22:58,215 INFO    core.tools.feishu  create_chat: name='审稿-persuasion_turn_jailbreak_detect' → chat_id=oc_613965f45d48763f375aa83e9294b24a
+2026-05-17 17:22:58,218 INFO    core.tools.dream  [dream] auto-created Group C for project=persuasion_turn_jailbreak_detect: oc_613965f45d48763f375aa83e9294b24a

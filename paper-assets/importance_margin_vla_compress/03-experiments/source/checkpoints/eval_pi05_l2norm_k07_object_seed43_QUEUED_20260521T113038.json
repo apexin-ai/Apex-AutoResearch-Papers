@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_pi05_l2norm_k07_object_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T11:30:15.371Z",
+    "updated_at": "2026-05-21T11:30:37.954Z",
+    "hypothesis": "π0.5 L2norm k=0.7 seed43 multi-seed验证D141非单调性; seed42的L2norm k=0.7结果即将出炉(GPU0)，seed43提供第二个数据点确认趋势是否系统性",
+    "parent": "eval_pi05_l2norm_k07_object_seed42"
+  },
+  "timestamp": "2026-05-21T11:30:38.402656+00:00",
+  "trigger": "update_registry"
+}

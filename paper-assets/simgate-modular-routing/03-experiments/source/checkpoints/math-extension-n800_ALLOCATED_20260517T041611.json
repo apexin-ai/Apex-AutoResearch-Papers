@@ -1,0 +1,29 @@
+{
+  "exp_id": "math-extension-n800",
+  "project": "simgate-modular-routing",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T04:04:07.884Z",
+    "updated_at": "2026-05-17T04:16:10.901Z",
+    "hypothesis": "MATH Level 4-5 在 N=800 下 internal > code-interpreter 效应达到统计显著（p<0.05），确认无 catastrophic failure 环境中 deterministic modality 无优势",
+    "parent": "math-negative-contrast",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate && bash /root/autodl-tmp/simgate-modular-routing/scripts/run_math_extension.sh\"",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "565371",
+      "log_path": "~/runs/simgate-modular-routing/math-extension-n800.log",
+      "submitted_at": "2026-05-17T04:13:25.173Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-17T04:16:11.146489+00:00",
+  "trigger": "update_registry"
+}

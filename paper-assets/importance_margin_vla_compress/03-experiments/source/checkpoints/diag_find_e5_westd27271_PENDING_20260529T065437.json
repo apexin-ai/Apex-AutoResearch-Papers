@@ -1,0 +1,28 @@
+{
+  "exp_id": "diag_find_e5_westd27271",
+  "project": "importance_margin_vla_compress",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "created_at": "2026-05-23T09:00:21.293Z",
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "command": "bash -c \"ls -la /root/autodl-tmp/importance_margin_vla_compress/eval_xvla_attention_pruning_libero.py /root/project/scripts/eval_xvla_attention_pruning_libero.py 2>/dev/null; find /root -name 'eval_xvla_attention_pruning*' -type f 2>/dev/null; echo '---MODEL---'; ls -d /root/autodl-tmp/X-VLA-Libero /root/X-VLA-Libero 2>/dev/null; echo 'DIAG_DONE'\"",
+      "gpu": [
+        "cuda:1"
+      ],
+      "log_path": "~/runs/importance_margin_vla_compress/diag_find_e5_westd27271.log",
+      "pid": "unknown",
+      "server": "westd-27271",
+      "submitted_at": "2026-05-23T09:00:20.259Z",
+      "submitted_via": "submit_training_job"
+    },
+    "status": "PENDING",
+    "updated_at": "2026-05-29T06:54:36.278Z",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-29T06:54:37.921766+00:00",
+  "trigger": "update_registry"
+}

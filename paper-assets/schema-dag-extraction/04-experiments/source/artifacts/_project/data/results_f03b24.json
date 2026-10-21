@@ -1,3 +1,0 @@
-Saved on server at /root/schema-dag-extraction/artifacts/fewrel_contamination_check/results.json
-
-Summary: n_train=64, n_val=16, train_mean=0.4831, val_mean=0.5885, delta=-0.1055pp, Mann-Whitney p=0.2485, Welch t p=0.2168, Cohen's d=-0.3602. No significant contamination. Val-origin relations slightly higher accuracy, opposite to contamination prediction.

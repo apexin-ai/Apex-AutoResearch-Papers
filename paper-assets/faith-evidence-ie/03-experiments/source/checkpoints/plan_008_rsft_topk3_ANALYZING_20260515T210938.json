@@ -1,0 +1,58 @@
+{
+  "exp_id": "plan_008_rsft_topk3",
+  "project": "faith-evidence-ie",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T18:01:33.773Z",
+    "updated_at": "2026-05-15T21:09:38.449Z",
+    "spec": {
+      "command": "python -m freige.train.rsft_train --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/rsft_filtered_topk3/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_topk3_output",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "234489",
+      "log_path": "/root/runs/faith-evidence-ie/plan_008_rsft_topk3.log",
+      "submitted_at": "2026-05-15T18:03:03.593Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/rsft_filtered_topk3/rsft_train.jsonl",
+      "data_count": 8037,
+      "model_name": "Qwen3-4B + SFT adapter + RSFT top_k=3",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/rsft_topk3_output"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T21:06:30.938Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T21:06:37.059207+00:00"
+        }
+      ]
+    },
+    "hypothesis": "RSFT top_k=3 训练：用 CED-filtered 的 top-3 候选进行 rejection sampling fine-tuning，验证更多候选是否比 top_k=1 (rel_f1≈0.46) 带来更好的证据质量。",
+    "metrics": {
+      "train_loss": 0.5543,
+      "eval_loss": 0.8297,
+      "eval_mean_token_accuracy": 0.8228,
+      "eval_entropy": 0.6001,
+      "train_runtime_sec": 10916,
+      "total_steps": 1509,
+      "epochs": 3,
+      "trainable_params_pct": 3.18,
+      "rsft_samples": 8037,
+      "ced_score_mean": 0.621
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T21:09:38.696969+00:00",
+  "trigger": "update_registry"
+}

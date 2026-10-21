@@ -1,0 +1,33 @@
+{
+  "exp_id": "bs16_uniform_seed123",
+  "project": "provenance_weight_training",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T18:28:09.678Z",
+    "updated_at": "2026-05-21T22:37:57.448Z",
+    "hypothesis": "Uniform baseline at batch_size=16, seed123. Paired with bs16_adaptive_tau07_seed123. If Δ(adaptive−uniform) at bs=16 seed123 is comparable to seed42's −0.063, the batch-size amplification is robust across seeds.",
+    "parent": "bs16_uniform_seed42",
+    "spec": {
+      "data_path": "data/scored_data.jsonl",
+      "data_count": 371499,
+      "model_name": "Qwen3-0.6B",
+      "seed": 123,
+      "checkpoint_source": "from_scratch",
+      "eval_data": "holdout_combined + owt_eval + wiki_eval",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && python -u training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/bs16_uniform_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --contamination_ratio 0.4 --num_train_tokens 200000000 --batch_size 16 --learning_rate 5e-5 --max_length 2048 --seed 123 --save_total_limit 3 --gradient_checkpointing\"",
+      "server": "westd-41312",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "643185"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T22:37:56.489Z"
+    }
+  },
+  "timestamp": "2026-05-21T22:37:57.876463+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,51 @@
+{
+  "exp_id": "exp_002_signals_3B_v5",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:43:59.775Z",
+    "updated_at": "2026-05-15T23:59:48.258Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=4 python run_batch.py --model-size 3B --gpu 0 --only d025 d100",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "623826",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_002_signals_3B_v5.log",
+      "submitted_at": "2026-05-15T19:43:57.707Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/exp002/signals/",
+      "data_count": 0,
+      "model_name": "Qwen2.5-3B",
+      "seed": 0,
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/",
+      "wall_clock_seconds": 13854.8,
+      "gpu_hours": 3.85
+    },
+    "hypothesis": "3B signals v5. Parallel with v4 (cuda:3). Compute embedding/minkpp/selfcritique for d025 and d100 only. Accelerates signal coverage by splitting workload across cuda:3 (v4) and cuda:4 (v5).",
+    "conclusion": "failed",
+    "reproduce": {
+      "finished_at": "2026-05-15T23:34:49.807Z"
+    },
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "completed_at": "2026-05-15T23:34:52.468Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T23:35:40.420301+00:00"
+        }
+      ]
+    },
+    "notes": "失败原因: EXIT_CODE=129 (SIGHUP), 实际是 d100_s42/mmlu selfcritique 在 22% 处被 SIGTERM (D078/D079 orphan 清理). 3/4 batch tasks 完成 (d025_s42/mmlu PASS, d100_s42/gsm8k PASS, d100_s42/arc_challenge PASS). 已有成果: d025_s42 和 d100_s42 的 gsm8k+arc signals 已写盘, 但这些 signals 基于旧 alpha=16 checkpoint, D076 重训 alpha=32 后需全部重算, 无需单独 retry. 建议: 等 cuda:1 d100_s42_v3 + cuda:5 d000_s42 重训完成后, 用新 checkpoint 统一重算 3B s42 signals."
+  },
+  "timestamp": "2026-05-15T23:59:49.872846+00:00",
+  "trigger": "update_registry"
+}

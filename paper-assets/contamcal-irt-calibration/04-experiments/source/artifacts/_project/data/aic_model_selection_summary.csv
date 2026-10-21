@@ -1,6 +1,0 @@
-Family,N_points,Best_Model,Classification_AICc,Classification_Parsimony,Alg1_Class,Match_Strict,Match_Parsimony,Constant_AICc,Constant_dAICc,Constant_weight,Constant_RSS,Constant_BIC,Linear_AICc,Linear_dAICc,Linear_weight,Linear_RSS,Linear_BIC,Quadratic_AICc,Quadratic_dAICc,Quadratic_weight,Quadratic_RSS,Quadratic_BIC,Hill_AICc,Hill_dAICc,Hill_weight,Hill_RSS,Hill_BIC
-Phi-4,10,Hill,Benefit,Benefit,Immune,False,False,-7.71,8.52,0.008,3.6031,-7.91,-14.95,1.27,0.304,1.266,-16.06,-12.96,3.27,0.112,1.0068,-16.05,-16.23,0.0,0.575,1.1146,-17.34
-Qwen-14B,15,Hill,Collapse,Collapse,Collapse,True,True,60.91,18.81,0.0,745.8809,61.31,43.26,1.17,0.307,192.2713,43.68,44.81,2.71,0.142,172.3672,44.75,42.09,0.0,0.551,177.8278,42.51
-Qwen-7B,15,Hill,Collapse,Collapse,V-recovery,False,False,6.53,3.15,0.159,19.883,6.94,9.23,5.84,0.041,19.8823,9.64,9.81,6.42,0.031,16.7182,9.75,3.39,0.0,0.768,13.4731,3.81
-Gemma-2,10,Constant,Immune,Immune,Benefit,False,False,9.77,0.0,0.386,20.6794,9.57,10.19,0.43,0.312,15.6494,9.08,11.22,1.46,0.187,11.299,8.13,12.19,2.42,0.115,19.1069,11.08
-OLMo-2,10,Constant,Immune,Immune,Benefit,False,False,-7.65,0.0,0.62,3.6238,-7.85,-4.46,3.19,0.126,3.6163,-5.57,-0.26,7.39,0.015,3.5851,-3.35,-5.74,1.91,0.239,3.1811,-6.85

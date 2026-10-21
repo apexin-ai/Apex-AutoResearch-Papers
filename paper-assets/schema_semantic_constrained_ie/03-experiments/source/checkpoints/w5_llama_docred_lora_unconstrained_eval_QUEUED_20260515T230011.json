@@ -1,0 +1,29 @@
+{
+  "exp_id": "w5_llama_docred_lora_unconstrained_eval",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:58:07.956Z",
+    "updated_at": "2026-05-15T23:00:10.950Z",
+    "hypothesis": "Fine-tuned Llama-3.1-8B DocRED LoRA unconstrained eval — 获取 fine-tuned baseline DR/R-F1，与 constrained eval 对比计算 composability delta",
+    "parent": "w5_llama_docred_lora_training",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/checkpoints/llama_lora_docred_merged --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/w5_llama_docred_lora_unconstrained_eval.jsonl --batch_size 1 --max_new_tokens 4096\"",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "303525",
+      "log_path": "~/runs/schema_semantic_constrained_ie/w5_llama_docred_lora_unconstrained_eval.log",
+      "submitted_at": "2026-05-15T19:58:23.664Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-15T23:00:11.083836+00:00",
+  "trigger": "update_registry"
+}

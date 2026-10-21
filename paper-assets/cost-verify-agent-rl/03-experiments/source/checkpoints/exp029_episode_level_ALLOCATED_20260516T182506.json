@@ -1,0 +1,47 @@
+{
+  "exp_id": "exp029_episode_level",
+  "project": "cost-verify-agent-rl",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 2,
+    "created_at": "2026-05-16T08:49:53.280Z",
+    "updated_at": "2026-05-16T18:25:05.990Z",
+    "hypothesis": "Episode-level 训练（context_window_mode: full）解决 step_independent h=2 的信用分配缺陷，模型能学到跨步规划策略，val success 不再停滞于 baseline。",
+    "parent": "exp028c_selfguide_recipe",
+    "notes": "第6次启动 (PID 886626)。彻底修复：kill 所有 cleanup loop 进程(878019+885880)，ps aux grep 确认无残留。TMPDIR=/root/autodl-tmp/tmp, WANDB_DIR=/root/autodl-tmp/wandb。/tmp 重建 17G 可用。val env_groups=32。",
+    "server": "bjb1-17606",
+    "gpu": "cuda:0,cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "bjb1-17606",
+      "gpu": "cuda:0,cuda:1",
+      "started_at": "2026-05-16T09:49:15.902Z",
+      "finished_at": "2026-05-16T18:24:43.887Z",
+      "training_hours": 8.59
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-16T16:10:46.393Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T16:10:47.902736+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T18:24:49.059842+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "第6次启动 (PID 886626)。彻底修复：kill 所有 cleanup loop 进程(878019+885880)，ps aux grep 确认无残留。TMPDIR=/root/autodl-tmp/tmp, WANDB_DIR=/root/autodl-tmp/wandb。/tmp 重建 17G 可用。val env_groups=32。"
+      }
+    }
+  },
+  "timestamp": "2026-05-16T18:25:06.099719+00:00",
+  "trigger": "update_registry"
+}

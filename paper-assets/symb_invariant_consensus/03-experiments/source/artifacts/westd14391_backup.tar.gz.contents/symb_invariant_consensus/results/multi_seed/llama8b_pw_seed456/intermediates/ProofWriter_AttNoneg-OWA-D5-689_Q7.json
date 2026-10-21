@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-689_Q7",
+    "problem": "Anne is big. Anne is rough. Anne is young. Bob is young. Charlie is cold. Charlie is green. Charlie is nice. Charlie is young. Gary is green. Gary is young. Big, quiet people are green. If someone is cold and young then they are nice. If Bob is rough and Bob is green then Bob is cold. Green people are nice. All nice people are quiet. Young people are cold. If someone is quiet and nice then they are rough. If someone is rough and young then they are cold. All rough, nice people are big.\n\nDetermine whether the following statement is true, false, or unknown:\nGary is rough.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nRough($x, bool) ::: Is x rough?\nYoung($x, bool) ::: Is x young?\nCold($x, bool) ::: Is x cold?\nGreen($x, bool) ::: Is x green?\nNice($x, bool) ::: Is x nice?\nQuiet($x, bool) ::: Is x quiet?\n\nFacts:\nBig(Anne, True) ::: Anne is big.\nRough(Anne, True) ::: Anne is rough.\nYoung(Anne, True) ::: Anne is young.\nYoung(Bob, True) ::: Bob is young.\nCold(Charlie, True) ::: Charlie is cold.\nGreen(Charlie, True) ::: Charlie is green.\nNice(Charlie, True) ::: Charlie is nice.\nYoung(Charlie, True) ::: Charlie is young.\nGreen(Gary, True) ::: Gary is green.\nYoung(Gary, True) ::: Gary is young.\n\nRules:\nBig($x, True) && Quiet($x, True) >>> Green($x, True) ::: Big, quiet people are green.\nCold($x, True) && Young($x, True) >>> Nice($x, True) ::: If someone is cold and young then they are nice.\nRough(Bob, True) && Green(Bob, True) >>> Cold(Bob, True) ::: If Bob is rough and Bob is green then Bob is cold.\nGreen($x, True) >>> Nice($x, True) ::: Green people are nice.\nNice($x, True) >>> Quiet($x, True) ::: All nice people are quiet.\nYoung($x, True) >>> Cold($x, True) ::: Young people are cold.\nQuiet($x, True) && Nice($x, True) >>> Rough($x, True) ::: If someone is quiet and nice then they are rough.\nRough($x, True) && Young($x, True) >>> Cold($x, True) ::: If someone is rough and young then they are cold.\nRough($x, True) && Nice($x, True) >>> Big($x, True) ::: All rough, nice people are big.\n\nQuery:\nRough(Gary, True) ::: Gary is rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

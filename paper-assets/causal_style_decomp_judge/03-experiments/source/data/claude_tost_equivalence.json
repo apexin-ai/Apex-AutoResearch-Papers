@@ -1,0 +1,60 @@
+{
+  "equivalence_margin": 0.1,
+  "null_proportion": 0.5,
+  "alpha": 0.05,
+  "formality": {
+    "p_hat": 0.562,
+    "n_pairs": 88,
+    "bootstrap_ci_95": [
+      0.489,
+      0.636
+    ],
+    "se_bootstrap": 0.0375,
+    "se_binomial": 0.05289,
+    "upper_test": {
+      "z": -1.0133,
+      "p": 0.155455
+    },
+    "lower_test": {
+      "z": 4.3199,
+      "p": 8e-06
+    },
+    "tost_p": 0.155455,
+    "ci_90": [
+      0.5003,
+      0.6237
+    ],
+    "equivalence_by_tost": false,
+    "equivalence_by_ci": false,
+    "equivalence_confirmed": false,
+    "conclusion": "TOST not significant (p=0.1555 >= 0.05); 90% CI [0.500, 0.624] not fully within [0.40, 0.60]"
+  },
+  "verbosity": {
+    "p_hat": 0.541,
+    "n_pairs": 86,
+    "bootstrap_ci_95": [
+      0.459,
+      0.616
+    ],
+    "se_bootstrap": 0.04005,
+    "se_binomial": 0.05373,
+    "upper_test": {
+      "z": -1.4731,
+      "p": 0.070363
+    },
+    "lower_test": {
+      "z": 3.5204,
+      "p": 0.000215
+    },
+    "tost_p": 0.070363,
+    "ci_90": [
+      0.4751,
+      0.6069
+    ],
+    "equivalence_by_tost": false,
+    "equivalence_by_ci": false,
+    "equivalence_confirmed": false,
+    "conclusion": "TOST not significant (p=0.0704 >= 0.05); 90% CI [0.475, 0.607] not fully within [0.40, 0.60]"
+  },
+  "method": "TOST for proportions (Lakens 2017), SE from pair-level bootstrap CI"
+}

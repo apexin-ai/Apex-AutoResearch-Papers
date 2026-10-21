@@ -1,0 +1,19 @@
+{
+  "exp_id": "exp_002_signals_3B_v8",
+  "project": "contamcal-irt-calibration",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T23:41:07.377Z",
+    "updated_at": "2026-05-15T23:41:07.378Z",
+    "spec": {
+      "hypothesis": "3B signals for d025_s123 and d100_s123 on cuda:4. Replaces failed v5 (EXIT_CODE=129). Uses s123 alpha=16 checkpoints (D051 accepted). Computes all 4 signals (min-k++, embedding, selfcritique, zlib) per benchmark (mmlu, gsm8k, arc_challenge). Reference model: d000_s123.",
+      "model_name": "Qwen2.5-3B",
+      "seed": 123
+    }
+  },
+  "timestamp": "2026-05-15T23:41:08.720772+00:00",
+  "trigger": "update_registry"
+}

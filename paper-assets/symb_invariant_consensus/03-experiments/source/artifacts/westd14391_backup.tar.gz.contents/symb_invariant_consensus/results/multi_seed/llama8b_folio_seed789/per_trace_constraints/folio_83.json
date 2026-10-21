@@ -1,0 +1,564 @@
+{
+  "pid": "folio_83",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not spicy(bakery)",
+          "z3_formula": "not spicy_bakery == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cupcake(X) -> bakery(X)",
+          "z3_formula": "Implies(cupcake_X, bakery_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "hotpot(X) -> spicy(X)",
+          "z3_formula": "Implies(hotpot_X, spicy_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "product_of_baked_by_melissa(X) -> cupcake(X)",
+          "z3_formula": "Implies(product_of_baked_by_melissa_X, cupcake_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "spicy(X) | bakery(X) -> hotpot(X) | spicy(X)",
+          "z3_formula": "Implies(Or(spicy_X, bakery_X), Or(hotpot_X, spicy_X))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cupcake(dried_thai_chilies) & product_of_baked_by_melissa(dried_thai_chilies)",
+          "z3_formula": "And(cupcake_dried_thai_chilies, product_of_baked_by_melissa_dried_thai_chilies)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "spicy(bakery)",
+          "z3_formula": "~spicy_bakery",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cupcake(X) -> bakery(X)",
+          "z3_formula": "Implies(cupcake_dtc, bakery_dtc)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cupcake(bakery)",
+          "z3_formula": "cupcake_bakery == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "hotpot(X) -> spicy(X)",
+          "z3_formula": "Implies(hotpot_dtc, spicy_dtc)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "product_of_baked_by_melissa(dtc)",
+          "z3_formula": "product_of_baked_by_melissa_dtc == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "product_of_baked_by_melissa(X) -> cupcake(X)",
+          "z3_formula": "Implies(product_of_baked_by_melissa_dtc, cupcake_dtc)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "(spicy(X) | bakery(X)) -> (hotpot(X) | spicy(X))",
+          "z3_formula": "Implies(Or(spicy_dtc, bakery_dtc), Or(hotpot_dtc, spicy_dtc))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "cupcake(dtc) & product_of_baked_by_melissa(dtc)",
+          "z3_formula": "And(cupcake_dtc, product_of_baked_by_melissa_dtc)",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not spicy(bakery)",
+          "z3_formula": "Not(spicy_bakery) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "bakery(cupcake)",
+          "z3_formula": "bakery_cupcake == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "spicy(hotpot)",
+          "z3_formula": "spicy_hotpot == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cupcake(product_of_baked_by_melissa)",
+          "z3_formula": "cupcake_product_of_baked_by_melissa == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "spicy(X) | bakery(X) -> hotpot(X) | spicy(X)",
+          "z3_formula": "Implies(Or(spicy_dried_thai_chilies, bakery_dried_thai_chilies), Or(hotpot_dried_thai_chilies, spicy_dried_thai_chilies))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cupcake(dried_thai_chilies) & product_of_baked_by_melissa(dried_thai_chilies)",
+          "z3_formula": "And(cupcake_dried_thai_chilies, product_of_baked_by_melissa_dried_thai_chilies) == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not spicy(bakery)",
+          "z3_formula": "not spicy_bakery == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cupcake(X) -> bakery(X)",
+          "z3_formula": "Implies(cupcake_X, bakery_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "hotpot(X) -> spicy(X)",
+          "z3_formula": "Implies(hotpot_X, spicy_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "product_of_baked_by_melissa(X) -> cupcake(X)",
+          "z3_formula": "Implies(product_of_baked_by_melissa_X, cupcake_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "spicy(X) | bakery(X) -> hotpot(X) | spicy(X)",
+          "z3_formula": "Implies(Or(spicy_X, bakery_X), Or(hotpot_X, spicy_X))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cupcake(dried_thai_chilies) & product_of_baked_by_melissa(dried_thai_chilies)",
+          "z3_formula": "And(cupcake_dried_thai_chilies, product_of_baked_by_melissa_dried_thai_chilies)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not spicy(bakery)",
+          "z3_formula": "not spicy_bakery",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cupcake(bakery)",
+          "z3_formula": "cupcake_bakery == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "spicy(hotpot)",
+          "z3_formula": "spicy_hotpot == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "product(baked_by_melissa, cupcake)",
+          "z3_formula": "product_baked_by_melissa_cupcake == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cupcake(X) -> bakery(X)",
+          "z3_formula": "Implies(cupcake_bakery, bakery_bakery)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "spicy(X) | bakery(X) -> spicy(X) | hotpot(X)",
+          "z3_formula": "Implies(Or(spicy_bakery, bakery_bakery), Or(spicy_bakery, hotpot_bakery))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "product(baked_by_melissa, dried_thai_chilies)",
+          "z3_formula": "product_baked_by_melissa_dried_thai_chilies == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "cupcake(dried_thai_chilies)",
+          "z3_formula": "cupcake_dried_thai_chilies == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "bakery(dried_thai_chilies)",
+          "z3_formula": "bakery_dried_thai_chilies == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "hotpot(dried_thai_chilies)",
+          "z3_formula": "hotpot_dried_thai_chilies == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "spicy(dried_thai_chilies)",
+          "z3_formula": "spicy_dried_thai_chilies == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain",
+          "z3_formula": "Not(And(product_baked_by_melissa_dried_thai_chilies, And(cupcake_dried_thai_chilies, bakery_dried_thai_chilies)))",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "spicy(bakery)",
+          "z3_formula": "spicy_bakery == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cupcake(X) -> bakery(X)",
+          "z3_formula": "Implies(cupcake_X, bakery_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "hotpot(X) -> spicy(X)",
+          "z3_formula": "Implies(hotpot_X, spicy_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "baked_by_melissa(X) -> cupcake(X)",
+          "z3_formula": "Implies(baked_by_melissa_X, cupcake_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "spicy(X) | bakery(X) -> hotpot(X) | spicy(X)",
+          "z3_formula": "Implies(Or(spicy_X, bakery_X), Or(hotpot_X, spicy_X))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cupcake(dried_thai_chilies) & baked_by_melissa(dried_thai_chilies)",
+          "z3_formula": "And(cupcake_dried_thai_chilies, baked_by_melissa_dried_thai_chilies)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not spicy(bakery)",
+          "z3_formula": "not spicy_bakery == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "bakery(cupcake)",
+          "z3_formula": "bakery_cupcake == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "spicy(hotpot)",
+          "z3_formula": "spicy_hotpot == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cupcake(product_of_baked_by_melissa)",
+          "z3_formula": "cupcake_product_of_baked_by_melissa == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "spicy(X) | bakery(X) -> hotpot(X) | spicy(X)",
+          "z3_formula": "Implies(Or(spicy_dried_thai_chilies, bakery_dried_thai_chilies), Or(hotpot_dried_thai_chilies, spicy_dried_thai_chilies))",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "spicy(bakery)",
+          "z3_formula": "spicy_bakery == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "bakery(cupcake)",
+          "z3_formula": "bakery_cupcake == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "spicy(hotpot)",
+          "z3_formula": "spicy_hotpot == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "product_of_baked_by_melissa(cupcake)",
+          "z3_formula": "product_of_baked_by_melissa_cupcake == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "spicy(X) | bakery(X) -> spicy(X) | hotpot(X)",
+          "z3_formula": "Implies(Or(spicy_dried_thai_chilies, bakery_dried_thai_chilies), Or(spicy_dried_thai_chilies, hotpot_dried_thai_chilies))",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not spicy(bakery)",
+          "z3_formula": "not_spicy_bakery == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cupcake(bakery)",
+          "z3_formula": "cupcake_bakery == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "spicy(hotpot)",
+          "z3_formula": "spicy_hotpot == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cupcake(product_of_baked_by_melissa)",
+          "z3_formula": "cupcake_product_of_baked_by_melissa == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "spicy(X) | bakery(X) -> hotpot(X) | spicy(X)",
+          "z3_formula": "Implies(Or(spicy_dried_thai_chilies, bakery_dried_thai_chilies), Or(hotpot_dried_thai_chilies, spicy_dried_thai_chilies))",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "spicy(bakery)",
+          "z3_formula": "spicy_bakery == False",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cupcake(X) -> bakery(X)",
+          "z3_formula": "Implies(cupcake, bakery)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "spicy(hotpot)",
+          "z3_formula": "spicy_hotpot == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cupcake(X) -> product_of_baked_by_melissa(X)",
+          "z3_formula": "Implies(cupcake, product_of_baked_by_melissa)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "(spicy(X) | bakery(X)) -> (hotpot(X) | spicy(X))",
+          "z3_formula": "Implies(Or(spicy, bakery), Or(hotpot, spicy))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cupcake(dried_thai_chilies) & product_of_baked_by_melissa(dried_thai_chilies)",
+          "z3_formula": "And(cupcake_dried_thai_chilies, product_of_baked_by_melissa_dried_thai_chilies)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not spicy(bakery)",
+          "z3_formula": "not spicy_bakery == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cupcake(X) -> bakery(X)",
+          "z3_formula": "Implies(cupcake_X, bakery_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "hotpot(X) -> spicy(X)",
+          "z3_formula": "Implies(hotpot_X, spicy_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "product_of(Baked_by_Melissa, X) -> cupcake(X)",
+          "z3_formula": "Implies(product_of_Baked_by_Melissa_X, cupcake_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "spicy(X) | bakery(X) -> hotpot(X) | spicy(X)",
+          "z3_formula": "Implies(Or(spicy_X, bakery_X), Or(hotpot_X, spicy_X))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cupcake(dried_thai_chilies) & product_of(Baked_by_Melissa, dried_thai_chilies)",
+          "z3_formula": "And(cupcake_dried_thai_chilies, product_of_Baked_by_Melissa_dried_thai_chilies) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cupcake(dried_thai_chilies)",
+          "z3_formula": "cupcake_dried_thai_chilies == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "bakery(dried_thai_chilies)",
+          "z3_formula": "bakery_dried_thai_chilies == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not spicy(dried_thai_chilies)",
+          "z3_formula": "not spicy_dried_thai_chilies == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "spicy(dried_thai_chilies) | hotpot(dried_thai_chilies)",
+          "z3_formula": "Or(spicy_dried_thai_chilies, hotpot_dried_thai_chilies)",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "spicy(bakery)",
+          "z3_formula": "spicy_bakery == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "bakery(cupcake)",
+          "z3_formula": "bakery_cupcake == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "spicy(hotpot)",
+          "z3_formula": "spicy_hotpot == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cupcake(baked_by_melissa)",
+          "z3_formula": "cupcake_baked_by_melissa == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "spicy(X) | bakery(X) -> hotpot(X) | spicy(X)",
+          "z3_formula": "Implies(Or(spicy_dried_thai_chilies, bakery_dried_thai_chilies), Or(hotpot_dried_thai_chilies, spicy_dried_thai_chilies))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cupcake(dried_thai_chilies) & product_of_baked_by_melissa(dried_thai_chilies)",
+          "z3_formula": "And(cupcake_dried_thai_chilies, product_of_baked_by_melissa_dried_thai_chilies) == True",
+          "source_step": 6
+        }
+      ]
+    }
+  ]
+}

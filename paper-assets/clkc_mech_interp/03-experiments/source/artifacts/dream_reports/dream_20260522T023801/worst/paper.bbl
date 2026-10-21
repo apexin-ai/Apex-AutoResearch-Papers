@@ -1,0 +1,121 @@
+\begin{thebibliography}{20}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Belinkov(2022)]{belinkov2022probing}
+Yonatan Belinkov.
+\newblock Probing classifiers: Promises, shortcomings, and advances.
+\newblock \emph{Computational Linguistics}, 48\penalty0 (1):\penalty0 207--219,
+  2022.
+
+\bibitem[Bricken et~al.(2023)]{bricken2023monosemanticity}
+Trenton Bricken et~al.
+\newblock Towards monosemanticity: Decomposing language models with dictionary
+  learning.
+\newblock \emph{Transformer Circuits Thread}, 2023.
+
+\bibitem[Chen et~al.(2022)]{chen2022rich}
+Hung-Ting Chen et~al.
+\newblock Rich knowledge sources bring complex knowledge conflicts:
+  Recalibrating models to reflect conflicting evidence.
+\newblock In \emph{Proceedings of EMNLP}, 2022.
+
+\bibitem[Cunningham et~al.(2023)]{cunningham2023sparse}
+Hoagy Cunningham et~al.
+\newblock Sparse autoencoders find highly interpretable features in language
+  models.
+\newblock In \emph{Proceedings of ICLR}, 2023.
+
+\bibitem[Dubey et~al.(2024)]{dubey2024llama}
+Abhimanyu Dubey et~al.
+\newblock The {Llama 3} herd of models.
+\newblock \emph{arXiv preprint arXiv:2407.21783}, 2024.
+
+\bibitem[Elazar et~al.(2021)]{elazar2021amnesic}
+Yanai Elazar et~al.
+\newblock Amnesic probing: Behavioral explanation with amnesic counterfactuals.
+\newblock In \emph{Transactions of the ACL}, 2021.
+
+\bibitem[Geiger et~al.(2021)]{geiger2021causal}
+Atticus Geiger et~al.
+\newblock Causal abstractions of neural networks.
+\newblock In \emph{Proceedings of NeurIPS}, 2021.
+
+\bibitem[{Gemma Team}(2024)]{team2024gemma2}
+{Gemma Team}.
+\newblock Gemma 2: Improving open language models at a practical size.
+\newblock \emph{arXiv preprint arXiv:2408.00118}, 2024.
+
+\bibitem[Gonen et~al.(2020)]{gonen2020simple}
+Hila Gonen et~al.
+\newblock It's not {G}reek to m{BERT}: Inducing word-level translations from
+  multilingual contextual word representations.
+\newblock In \emph{Proceedings of the Third BlackboxNLP Workshop}, 2020.
+
+\bibitem[Hewitt and Manning(2019)]{hewitt2019structural}
+John Hewitt and Christopher~D. Manning.
+\newblock A structural probe for finding syntax in word representations.
+\newblock In \emph{Proceedings of NAACL}, 2019.
+
+\bibitem[Kornblith et~al.(2019)]{kornblith2019similarity}
+Simon Kornblith et~al.
+\newblock Similarity of neural network representations revisited.
+\newblock In \emph{Proceedings of ICML}, 2019.
+
+\bibitem[Libovick{\'y} et~al.(2020)Libovick{\'y}, Rosa, and
+  Fraser]{libovicky2020language}
+Jind{\v{r}}ich Libovick{\'y}, Rudolf Rosa, and Alexander Fraser.
+\newblock Language through a prism: A spectral approach for multitask language
+  analysis.
+\newblock In \emph{Proceedings of ACL}, 2020.
+
+\bibitem[Longpre et~al.(2021)]{longpre2021entity}
+Shane Longpre et~al.
+\newblock Entity-based knowledge conflicts in question answering.
+\newblock In \emph{Proceedings of EMNLP}, 2021.
+
+\bibitem[M{\"u}ller et~al.(2021)]{muller2021first}
+Benjamin M{\"u}ller et~al.
+\newblock First align, then predict: Understanding the cross-lingual ability of
+  multilingual {BERT}.
+\newblock In \emph{Proceedings of EACL}, 2021.
+
+\bibitem[Pires et~al.(2019)Pires, Schlinger, and
+  Garrette]{pires2019multilingual}
+Telmo Pires, Eva Schlinger, and Dan Garrette.
+\newblock How multilingual is multilingual {BERT}?
+\newblock In \emph{Proceedings of ACL}, 2019.
+
+\bibitem[Wendler et~al.(2024)]{wendler2024llamas}
+Chris Wendler et~al.
+\newblock Do llamas work in {E}nglish? on the latent language of multilingual
+  transformers.
+\newblock In \emph{Proceedings of ACL}, 2024.
+
+\bibitem[Wu and Dredze(2019)]{wu2019beto}
+Shijie Wu and Mark Dredze.
+\newblock Beto, bentz, becas: The surprising cross-lingual effectiveness of
+  {BERT}.
+\newblock In \emph{Proceedings of EMNLP}, 2019.
+
+\bibitem[Xie et~al.(2024)]{xie2024conflictqa}
+Jian Xie et~al.
+\newblock {ConflictQA}: An open-domain benchmark for knowledge conflicts in
+  {LLM}s.
+\newblock In \emph{Proceedings of ACL}, 2024.
+
+\bibitem[Yang et~al.(2025)]{yang2025qwen3}
+An~Yang et~al.
+\newblock Qwen3 technical report.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem[Zhao et~al.(2026)]{zhao2026clear}
+Wei Zhao et~al.
+\newblock {CLEAR}: Cross-lingual entity-aware reasoning in multilingual
+  language models.
+\newblock \emph{arXiv preprint}, 2026.
+
+\end{thebibliography}

@@ -1,0 +1,66 @@
+{
+  "exp_id": "eval_olmo2_s42_rerun",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T14:23:09.365Z",
+    "updated_at": "2026-05-21T16:07:50.616Z",
+    "hypothesis": "OLMo-2 d000 paper值53.79%可能未加载adapter（base model），需全量重跑5 dosage eval确认真实baseline。若d000实际≈58.60%，OLMo-2可能从Benefit重分类为Immune。",
+    "parent": "eval_olmo2_d000_s42",
+    "spec": {
+      "command": "bash /root/contamcal-irt-calibration/scripts/run_olmo2_rerun_eval.sh",
+      "server": "westd-29999",
+      "gpu": "cuda:3",
+      "pid": "531623",
+      "log_path": "~/runs/contamcal-irt-calibration/eval_olmo2_s42_rerun.log",
+      "submitted_at": "2026-05-21T14:26:37.848Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/.hf_cache",
+      "model_name": "OLMo-2-1124-7B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_{d000-d100}_s42/lora_adapter",
+      "eval_data": "mmlu_5shot + arc_challenge_25shot x 5 dosages",
+      "output_dir": "/root/contamcal-irt-calibration/eval_results_rerun/",
+      "reason": "rerun all OLMo-2-7B s42 evals to verify d000 baseline (53.79% vs 58.60% discrepancy)",
+      "data_count": 15214,
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_{d000-d100}_s42/lora_adapter",
+      "wall_clock_seconds": 5956.3,
+      "gpu_hours": 1.65
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T15:43:45.155Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T15:43:58.941677+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "mmlu_d000": 53.79,
+      "mmlu_d005": 56.14,
+      "mmlu_d025": 56.17,
+      "mmlu_d050": 57.25,
+      "mmlu_d100": 57,
+      "arc_d000": 76.11,
+      "arc_d005": 76.62,
+      "arc_d025": 78.16,
+      "arc_d050": 79.61,
+      "arc_d100": 80.03,
+      "d000_verified": true,
+      "d000_matches_paper": true
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-21T16:05:54.105Z"
+  },
+  "timestamp": "2026-05-21T16:07:51.246843+00:00",
+  "trigger": "update_registry"
+}

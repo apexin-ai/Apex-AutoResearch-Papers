@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval-supp-goal-adapt-tau025-s46",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T23:02:43.468Z",
+    "updated_at": "2026-05-23T23:08:24.971Z",
+    "hypothesis": "Adaptive CRM tau=0.25 on Goal suite seed46. Fifth seed extending Goal Adaptive. s42-s45 mean ~84%. Completes 5-seed coverage.",
+    "spec": {
+      "command": "bash -c \"cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode adaptive_conformal_crm --K 2 --benchmark goal --seed 46 --n_rollouts 20 --max_correction_norm 0.2 --conformal_threshold 0.25 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt 2>&1 | tee logs/eval-supp-goal-adapt-s46.log\"",
+      "server": "cqa1-32758",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "unknown",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-supp-goal-adapt-tau025-s46.log",
+      "submitted_at": "2026-05-23T23:03:32.801Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-23T23:08:28.390375+00:00",
+  "trigger": "update_registry"
+}

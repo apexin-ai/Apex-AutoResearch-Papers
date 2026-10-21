@@ -1,0 +1,41 @@
+{
+  "exp_id": "plan_005_formal_bound",
+  "project": "importance_margin_vla_compress",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "conclusion": "killed",
+    "created_at": "2026-05-16T14:31:39.407Z",
+    "extra": {
+      "hook_events": [
+        {
+          "action": "agent",
+          "event": "on_complete",
+          "ts": "2026-05-16T14:49:42.292859+00:00"
+        }
+      ]
+    },
+    "notes": "脚本在加载模型后崩溃: AttributeError: 'IMMSmolVLAWrapper' object has no attribute 'model'。get_tokenizer_from_policy() 访问 policy.model 失败。需要修正属性访问路径。脚本由前一轮 worker 绕过审批直接提交（未走 submit_training_job），无 cron 监控。",
+    "reproduce": {
+      "finished_at": "2026-05-16T14:49:41.303Z"
+    },
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "command": "bash -c \"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export WANDB_MODE=offline && export PYTHONUNBUFFERED=1 && cd /root/autodl-tmp/importance_margin_vla_compress && python3 eval_formal_bound.py --checkpoint checkpoints/imm_anchor_v8b_twostage/final/checkpoint.pt --config configs/imm_anchor_v8b_twostage.yaml --gpu 0 --max_batches 500 --seed 42 --output results/formal_bound_plan005.json 2>&1 | tee logs/plan_005_formal_bound.log\"",
+      "gpu": [
+        "cuda:0"
+      ],
+      "log_path": "~/runs/importance_margin_vla_compress/plan_005_formal_bound.log",
+      "pid": "198138",
+      "server": "westd-27271",
+      "submitted_at": "2026-05-16T14:31:39.359Z",
+      "submitted_via": "submit_training_job"
+    },
+    "status": "PENDING",
+    "updated_at": "2026-05-29T06:59:52.851Z"
+  },
+  "timestamp": "2026-05-29T06:59:56.605742+00:00",
+  "trigger": "update_registry"
+}

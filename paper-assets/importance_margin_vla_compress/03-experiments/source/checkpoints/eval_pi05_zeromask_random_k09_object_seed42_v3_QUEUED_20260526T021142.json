@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_pi05_zeromask_random_k09_object_seed42_v3",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T01:57:57.921Z",
+    "updated_at": "2026-05-26T02:11:41.146Z",
+    "hypothesis": "π0.5 zeromask_random k=0.9 Object v3 — D225 P0 实验（cqa1 丢失后重部署到 westd-41074）。保留 token 位置但置 0，对比 hard-prune random。测试位置扰动 vs 信息丢失在 π0.5 linear connector 上的效应",
+    "parent": "eval_pi05_zeromask_random_k09_object_seed42_v2"
+  },
+  "timestamp": "2026-05-26T02:11:42.326073+00:00",
+  "trigger": "update_registry"
+}

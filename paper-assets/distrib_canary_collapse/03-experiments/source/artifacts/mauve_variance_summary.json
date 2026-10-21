@@ -1,0 +1,39 @@
+{
+  "question": "Why does MAUVE systematically fail Granger detection?",
+  "aggregate_stats": {
+    "mauve": {
+      "mean_cv": 0.0892,
+      "std_cv": 0.0464,
+      "mean_acf1": 0.5479,
+      "mean_snr": 4.684,
+      "mean_near_floor": 1.0,
+      "n_experiments": 43
+    },
+    "distinct_1": {
+      "mean_cv": 0.1394,
+      "std_cv": 0.0276,
+      "mean_acf1": 0.6787,
+      "mean_snr": 6.398,
+      "mean_near_floor": 0.0,
+      "n_experiments": 44
+    },
+    "distinct_2": {
+      "mean_cv": 0.1969,
+      "std_cv": 0.0586,
+      "mean_acf1": 0.7126,
+      "mean_snr": 8.198,
+      "mean_near_floor": 0.0,
+      "n_experiments": 43
+    }
+  },
+  "statistical_tests": {
+    "cv_mannwhitney_p": 1.0,
+    "snr_mannwhitney_p": 0.000221
+  },
+  "floor_effect": {
+    "mean_mauve_score": 0.0286,
+    "pct_near_floor": 1.0
+  },
+  "conclusion": "MAUVE fails Granger detection due to FLOOR EFFECT + LOW SNR, not high variance. All MAUVE values are stuck at ~0.03 (100% below 0.05 threshold). This creates a near-constant series with no exploitable trend. SNR is significantly lower than diversity metrics (p=0.0002). The high-variance hypothesis is rejected (MAUVE actually has LOWER CV than distinct metrics).",
+  "mechanistic_explanation": "MAUVE measures distribution overlap against a reference. Once model collapse begins (gen 1+), the generated distribution is already far from reference, so MAUVE saturates at its floor (~0.03). Unlike distinct_1/distinct_2 which show gradual monotone decay over generations, MAUVE has no temporal gradient for Granger to detect."
+}

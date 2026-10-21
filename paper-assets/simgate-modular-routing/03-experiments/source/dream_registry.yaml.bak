@@ -1,0 +1,26 @@
+dreams:
+  dream_20260513T153257:
+    dream_id: dream_20260513T153257
+    project: simgate-modular-routing
+    status: reviewing
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Short paper (4 pages). Core contribution: safety-aware routing to deterministic
+      computation. MVP showed death avoidance as primary mechanism (+30-40 points).
+      Key risk: novelty perception (SFT small router is simple). Strength: empirical
+      finding + routing pattern analysis + explicit vs implicit ablation. ScienceWorld
+      only in main text.'
+    what_if: []
+    pid: 212877
+    chat_id: oc_f6bffc7e8351600df8091f08a63cd5a0
+    card_message_id: om_x100b6f7dd454d4a0c271a098c23bf6f
+    started_at: '2026-05-13T15:32:57+00:00'
+    updated_at: '2026-05-13T16:24:08+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 83e9fa1b64634e3f4948910ac81f8c015e99a1ffba794519cee48b950fc94b86

@@ -1,0 +1,51 @@
+{
+  "exp_id": "plan-002-eval",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T23:33:25.348Z",
+    "updated_at": "2026-05-14T23:40:47.236Z",
+    "hypothesis": "跨生成器泛化评估：Pythia-410M 深度特征在 leave-one-generator-out 设置下能否泛化到未见过的生成器",
+    "conclusion": "success",
+    "metrics": {
+      "leave_one_out_avg_macro_f1": 0.8037,
+      "best_held_out": {
+        "model": "pythia-1b",
+        "macro_f1": 0.8507
+      },
+      "worst_held_out": {
+        "model": "olmo-2-1b",
+        "macro_f1": 0.7519
+      },
+      "family_out_delta": 0.0107,
+      "ablation_full_f1": 0.8037,
+      "ablation_reference_only_f1": 0.7543,
+      "ablation_surface_only_f1": 0.7471,
+      "mcnemar_p": 0,
+      "top_features": [
+        "hapax_ratio_0.289",
+        "ttr_0.168",
+        "entropy_mean_0.160"
+      ],
+      "entropy_std_drop": 0.0049,
+      "entropy_std_drift": 0.12,
+      "entropy_mean_drift": 1.5
+    },
+    "spec": {
+      "command": "python cross_generator_eval.py",
+      "server": "autodl-5090",
+      "data_path": "/root/gen-depth-fingerprint/data/features_all_models.csv",
+      "data_count": 23032,
+      "model_name": "XGBoost classifier",
+      "seed": 42,
+      "checkpoint_path": "/root/gen-depth-fingerprint/data/cross_generator_results.json",
+      "log_path": "/root/gen-depth-fingerprint/data/cross_generator_report.md"
+    },
+    "completed_at": "2026-05-14T23:40:47.236Z"
+  },
+  "timestamp": "2026-05-14T23:40:47.276939+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,49 @@
+{
+  "exp_id": "exp_001_eval_15B_d100_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T07:39:14.296Z",
+    "updated_at": "2026-05-14T10:21:00.044Z",
+    "spec": {
+      "command": "python evaluate.py --model-path Qwen2.5-1.5B --adapter-path Qwen2.5-1.5B_d100_s42/lora_adapter --benchmarks mmlu gsm8k arc_challenge humaneval",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "325300",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_eval_15B_d100_s42.log",
+      "submitted_at": "2026-05-14T07:39:13.887Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d100_s42/lora_adapter",
+      "data_count": 4,
+      "model_name": "Qwen2.5-1.5B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d100_s42/lora_adapter",
+      "eval_data": "mmlu,gsm8k,arc_challenge,humaneval"
+    },
+    "hypothesis": "100% dosage 1.5B s42 contaminated eval on 4 benchmarks — upper bound contamination score inflation for 1.5B scale",
+    "parent": "exp_001_sft_d100_15B_v2",
+    "notes": "使用 D017 aligned 格式 (--mc-format aligned, 默认)。与 0.5B v5 eval (legacy 格式) 不直接可比。分析时需标注 mc_format。",
+    "reproduce": {
+      "finished_at": "2026-05-14T10:17:43.615Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T10:17:48.927069+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T10:21:00.774806+00:00",
+  "trigger": "update_registry"
+}

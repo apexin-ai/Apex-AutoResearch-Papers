@@ -1,0 +1,149 @@
+{
+  "exp_id": "exp_015",
+  "project": "spectral_collapse_ews",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T09:29:06.944Z",
+    "updated_at": "2026-05-22T06:21:43.591Z",
+    "hypothesis": "r=0.25 with seed 44 reproduces Type II trajectory (transient dip + recovery), providing 3rd seed for r_crit boundary validation. Combined with exp_009 (seed42) and exp_014 (seed43), this completes 3-seed coverage at the critical mixing ratio.",
+    "parent": "exp_009",
+    "server": "rtx6000-diagprobe",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "rtx6000-diagprobe",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-21T09:31:05.177Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && bash scripts/launch_fixed_mix_r025_seed44.sh 0\"",
+      "finished_at": "2026-05-22T06:15:01.685Z",
+      "training_hours": 20.73
+    },
+    "spec": {
+      "command": "bash scripts/launch_fixed_mix_r025_seed44.sh 0",
+      "server": "rtx6000-diagprobe",
+      "gpu": [
+        "cuda:1"
+      ],
+      "model_name": "EleutherAI/pythia-410m-deduped",
+      "seed": 44,
+      "data_path": "/root/spectral_collapse_ews/data/",
+      "data_count": "50K real pool, total_per_gen=50K (12.5K real + 37.5K synthetic per gen)",
+      "generations": 10,
+      "condition": "fixed_mix",
+      "real_ratio": 0.25,
+      "checkpoint_dir": "/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r025_seed44/",
+      "checkpoint_source": "EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)",
+      "eval_data": "/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)",
+      "log_path": "~/runs/spectral_collapse_ews/exp_015.log"
+    },
+    "pid": "516824",
+    "log_path": "~/runs/spectral_collapse_ews/exp_015.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T06:15:03.568198+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "gen0": {
+        "eff_rank": 417.55,
+        "log_det": 2366.68,
+        "ppl": 9.554,
+        "distinct4": 0.7305,
+        "sigma1": 1942.82
+      },
+      "gen1": {
+        "eff_rank": 475.92,
+        "log_det": 2366.13,
+        "ppl": 10.221,
+        "distinct4": 0.6379,
+        "sigma1": 962.97,
+        "train_loss": 1.8
+      },
+      "gen2": {
+        "eff_rank": 484.39,
+        "log_det": 2364.59,
+        "ppl": 10.641,
+        "distinct4": 0.5156,
+        "sigma1": 853.62,
+        "train_loss": 1.689
+      },
+      "gen3": {
+        "eff_rank": 488.62,
+        "log_det": 2378.05,
+        "ppl": 11.002,
+        "distinct4": 0.4518,
+        "sigma1": 803.67,
+        "train_loss": 1.473
+      },
+      "gen4": {
+        "eff_rank": 493.01,
+        "log_det": 2402.71,
+        "ppl": 11.333,
+        "distinct4": 0.4156,
+        "sigma1": 770.46,
+        "train_loss": 1.388
+      },
+      "gen5": {
+        "eff_rank": 494.32,
+        "log_det": 2415.91,
+        "ppl": 11.641,
+        "distinct4": 0.4008,
+        "sigma1": 753.5,
+        "train_loss": 1.319
+      },
+      "gen6": {
+        "eff_rank": 498.74,
+        "log_det": 2437.92,
+        "ppl": 11.973,
+        "distinct4": 0.3994,
+        "sigma1": 738.96,
+        "train_loss": 1.294
+      },
+      "gen7": {
+        "eff_rank": 502.71,
+        "log_det": 2456.77,
+        "ppl": 12.3,
+        "distinct4": 0.3865,
+        "sigma1": 728.24,
+        "train_loss": 1.265
+      },
+      "gen8": {
+        "eff_rank": 504.2,
+        "log_det": 2463.28,
+        "ppl": 12.614,
+        "distinct4": 0.3703,
+        "sigma1": 731.77,
+        "train_loss": 1.239
+      },
+      "gen9": {
+        "eff_rank": 510.29,
+        "log_det": 2482.46,
+        "ppl": 13.005,
+        "distinct4": 0.3621,
+        "sigma1": 698.85,
+        "train_loss": 1.212
+      },
+      "gen10": {
+        "eff_rank": 513.44,
+        "log_det": 2490.74,
+        "ppl": 13.33,
+        "distinct4": 0.3315,
+        "sigma1": 690.91,
+        "train_loss": 1.172
+      }
+    },
+    "checkpoint_path": "/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r025_seed44/",
+    "conclusion": "success",
+    "notes": "Type II trajectory reproduced (seed44). SLV dip at Gen2 (−2.09), recovery by Gen3, monotonic thereafter. Gen10: SLV=2490.74, ppl=13.33, eff_rank=513.44, d4=0.3315. 3-seed r=0.25 summary: Gen10 SLV=2488.11±2.89, ppl=13.409±0.18, eff_rank=513.82±1.59, d4=0.3422±0.013. Total SLV change +5.13% mean. All 3 seeds complete Gen0-10, enabling robust paper statistics.",
+    "completed_at": "2026-05-22T06:21:43.591Z"
+  },
+  "timestamp": "2026-05-22T06:21:43.747681+00:00",
+  "trigger": "update_registry"
+}

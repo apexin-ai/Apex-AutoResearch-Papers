@@ -1,0 +1,34 @@
+{
+  "pair_id": "HC09_coref",
+  "domain": "healthcare",
+  "constraint": "provider_covers_policy",
+  "ambiguity_type": "coreferential",
+  "condition": "ambiguous",
+  "description_used": "The provider's service type must be compatible with the relevant policy type for this action.",
+  "action": "submit_claim",
+  "task_idx": 9,
+  "action_should_succeed": false,
+  "model": "qwen3-235b",
+  "evaluation": {
+    "user_goal": "submit_claim",
+    "action_should_succeed": false,
+    "num_messages": 6,
+    "num_function_calls": 3,
+    "num_constraints": 5,
+    "num_constraints_expanded": 10,
+    "no_tool_call_error": true,
+    "constraint_not_violated": false,
+    "database_match": false,
+    "action_successfully_called": true,
+    "dirgraph_satisfied": false,
+    "action_called_correctly": false,
+    "success": false
+  },
+  "agent_actions": [
+    "login_user",
+    "get_policy_details",
+    "submit_claim",
+    "[says: The claim has been successfully submitted for Henry Smith's healthcare policy. The claim details are as follows:\n\n- **Status**: Submitted\n- **Amount**: $9,000\n- **Description**: Prescription medicatio...]"
+  ],
+  "timestamp": "2026-05-22T19:25:23.369519"
+}

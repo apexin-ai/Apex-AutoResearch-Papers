@@ -1,0 +1,30 @@
+{
+  "exp_id": "cross_scale_llama3_8b_002",
+  "project": "recursive_gen_depth_est",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T05:50:11.643Z",
+    "updated_at": "2026-05-16T05:50:16.759Z",
+    "spec": {
+      "command": "bash scripts/run_llama3_8b_pipeline_002.sh",
+      "server": "gpu-6000pro-2",
+      "data_path": "data/llama3_8b_nucleus",
+      "data_count": 500,
+      "model_name": "Meta-Llama-3.1-8B-Instruct",
+      "seed": 42,
+      "hypothesis": "7B cross-scale probe (Llama-3-8B): 验证 depth signal 在 Llama-3 架构上的可检测性。Nucleus p=0.95, d0-d5, 500 samples/depth。成功标准：4-class acc ≥ 60%, EDD 测定, pairwise AUC 衰减趋势与 1-1.5B 模型方向一致。",
+      "gpu": "cuda:0",
+      "tmux_session": "cross_scale_llama3_8b_002",
+      "log_path": "logs/llama3_8b_pipeline_002.log",
+      "checkpoint_path": "checkpoints/llama3_8b_nucleus",
+      "results_dir": "results/cross_scale_llama3_8b_002",
+      "rerun_of": "cross_scale_llama3_8b_001",
+      "rerun_reason": "服务器重启导致进程被杀"
+    }
+  },
+  "timestamp": "2026-05-16T05:50:16.931336+00:00",
+  "trigger": "update_registry"
+}

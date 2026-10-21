@@ -1,0 +1,42 @@
+{
+  "exp_id": "exp_llama_fewnerd_lora",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T13:20:55.859Z",
+    "updated_at": "2026-05-19T01:08:20.832Z",
+    "hypothesis": "LLaMA-based model with LoRA fine-tuning on Few-NERD can provide a second model family (beyond Qwen) for cross-model generalization evidence of structured self-consistency phenomena in NER",
+    "spec": {
+      "command": "llamafactory-cli train train_config_llama_fewnerd.yaml",
+      "server": "autodl-5090",
+      "gpu": "cuda:1",
+      "pid": 137865,
+      "data_path": "/root/autodl-tmp/struct_self_consist_ie/data/fewnerd",
+      "data_count": -1,
+      "model_name": "LLaMA-Few-NERD-LoRA",
+      "seed": 42,
+      "log_path": "/root/autodl-tmp/struct_self_consist_ie/logs/llama_fewnerd_train.log",
+      "run_script": "run_llama_fewnerd_train_single_gpu.sh",
+      "tmux_session": "llama_fewnerd",
+      "note": "Retroactively registered - data_count unknown, seed assumed 42"
+    },
+    "checkpoint_path": "/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora",
+    "log_path": "/root/autodl-tmp/struct_self_consist_ie/logs/llama_fewnerd_train.log",
+    "conclusion": "success",
+    "metrics": {
+      "epoch": 3,
+      "train_loss": 0.0516,
+      "eval_loss": 0.0323,
+      "train_runtime_hours": 15.35,
+      "total_steps": 24708,
+      "final_checkpoint": "checkpoint-24708",
+      "adapter_size_mb": 320
+    },
+    "completed_at": "2026-05-19T01:08:20.832Z"
+  },
+  "timestamp": "2026-05-19T01:08:21.112288+00:00",
+  "trigger": "update_registry"
+}

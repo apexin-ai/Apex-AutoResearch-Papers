@@ -1,0 +1,28 @@
+{
+  "exp_id": "plan001_step1_full_v2",
+  "project": "cert_manip_resist_eval",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T07:42:18.586Z",
+    "updated_at": "2026-05-23T20:15:10.384Z",
+    "spec": {
+      "command": "bash -c \"source /etc/network_turbo && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_HOME=/root/autodl-tmp/.hf_cache && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cert_manip_resist_eval && python scripts/run_plan001_step1_api_scoring.py 2>&1 | tee artifacts/logs/plan001_step1_api_scoring.log\"",
+      "server": "seetacloud-rtx6000",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "86629",
+      "log_path": "~/runs/cert_manip_resist_eval/plan001_step1_full_v2.log",
+      "submitted_at": "2026-05-22T07:42:18.568Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-23T20:15:10.427832+00:00",
+  "trigger": "update_registry"
+}

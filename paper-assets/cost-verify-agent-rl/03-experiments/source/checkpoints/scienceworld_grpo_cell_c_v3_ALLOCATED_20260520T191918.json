@@ -1,0 +1,30 @@
+{
+  "exp_id": "scienceworld_grpo_cell_c_v3",
+  "project": "cost-verify-agent-rl",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:23:30.854Z",
+    "updated_at": "2026-05-20T19:19:18.273Z",
+    "hypothesis": "ScienceWorld 环境下 episode-level GRPO 能避免 collapse 并学到有效策略，验证 episode-level credit 作为 fix 的跨环境泛化性（v3: 磁盘清理后重启）",
+    "parent": "scienceworld_grpo_cell_c_v2",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _scienceworld_cell_c_grpo\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": "88226",
+      "log_path": "~/runs/cost-verify-agent-rl/scienceworld_grpo_cell_c_v3.log",
+      "submitted_at": "2026-05-20T18:23:38.661Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-20T19:19:18.493359+00:00",
+  "trigger": "update_registry"
+}

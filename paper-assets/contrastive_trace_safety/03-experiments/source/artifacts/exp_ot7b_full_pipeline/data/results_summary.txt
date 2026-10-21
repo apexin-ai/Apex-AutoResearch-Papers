@@ -1,0 +1,17 @@
+OpenThinker-7B Full Pipeline Results Summary
+=============================================
+Model: open-thoughts/OpenThinker-7B
+Traces: 228 (train=136, val=45, test=47)
+
+Layer Sweep: best_layer=0 (depth=0%), score=0.3549
+HS Temporal: best_W=3, bal_acc=0.6721, precision=0.3571, fpr=0.1877, lead=32.9
+Text Baseline: best_W=25, bal_acc=0.6141, precision=0.3291, fpr=0.1605
+
+Bootstrap (HS vs Text):
+  bal_acc: delta=+0.0815, p=0.001, Bonferroni=Yes
+  precision: delta=+0.079, p=0.056, Bonferroni=No
+  pre_cp_fpr: delta=-0.0832, p=0.007, Bonferroni=Yes
+
+Selectivity: 18.5 pp (real=0.6721, random=0.487)
+
+Full JSON: /root/autodl-tmp/contrastive_trace_safety/artifacts/exp_ot7b_full_pipeline/results.json

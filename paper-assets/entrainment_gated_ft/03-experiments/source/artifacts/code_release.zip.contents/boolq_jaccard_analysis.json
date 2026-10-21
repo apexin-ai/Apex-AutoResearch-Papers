@@ -1,0 +1,480 @@
+{
+  "benchmark": "boolq",
+  "n_samples": 3270,
+  "jaccard_similarity": {
+    "h24-1": {
+      "GDN-RetNet": {
+        "helped_jaccard": 0.1206,
+        "hurt_jaccard": 0.1264,
+        "helped_sizes": [
+          406,
+          477
+        ],
+        "hurt_sizes": [
+          720,
+          501
+        ],
+        "helped_intersection": 95,
+        "hurt_intersection": 137
+      },
+      "GDN-HGRN2": {
+        "helped_jaccard": 0.0662,
+        "hurt_jaccard": 0.0759,
+        "helped_sizes": [
+          406,
+          544
+        ],
+        "hurt_sizes": [
+          720,
+          428
+        ],
+        "helped_intersection": 59,
+        "hurt_intersection": 81
+      },
+      "RetNet-HGRN2": {
+        "helped_jaccard": 0.0714,
+        "hurt_jaccard": 0.0865,
+        "helped_sizes": [
+          477,
+          544
+        ],
+        "hurt_sizes": [
+          501,
+          428
+        ],
+        "helped_intersection": 68,
+        "hurt_intersection": 74
+      }
+    },
+    "h12-1": {
+      "GDN-RetNet": {
+        "helped_jaccard": 0.1164,
+        "hurt_jaccard": 0.113,
+        "helped_sizes": [
+          605,
+          536
+        ],
+        "hurt_sizes": [
+          441,
+          554
+        ],
+        "helped_intersection": 119,
+        "hurt_intersection": 101
+      },
+      "GDN-HGRN2": {
+        "helped_jaccard": 0.1275,
+        "hurt_jaccard": 0.1135,
+        "helped_sizes": [
+          605,
+          518
+        ],
+        "hurt_sizes": [
+          441,
+          403
+        ],
+        "helped_intersection": 127,
+        "hurt_intersection": 86
+      },
+      "RetNet-HGRN2": {
+        "helped_jaccard": 0.0777,
+        "hurt_jaccard": 0.0586,
+        "helped_sizes": [
+          536,
+          518
+        ],
+        "hurt_sizes": [
+          554,
+          403
+        ],
+        "helped_intersection": 76,
+        "hurt_intersection": 53
+      }
+    },
+    "h6-1": {
+      "GDN-RetNet": {
+        "helped_jaccard": 0.138,
+        "hurt_jaccard": 0.1198,
+        "helped_sizes": [
+          477,
+          537
+        ],
+        "hurt_sizes": [
+          526,
+          502
+        ],
+        "helped_intersection": 123,
+        "hurt_intersection": 110
+      },
+      "GDN-HGRN2": {
+        "helped_jaccard": 0.0654,
+        "hurt_jaccard": 0.0718,
+        "helped_sizes": [
+          477,
+          647
+        ],
+        "hurt_sizes": [
+          526,
+          504
+        ],
+        "helped_intersection": 69,
+        "hurt_intersection": 69
+      },
+      "RetNet-HGRN2": {
+        "helped_jaccard": 0.1045,
+        "hurt_jaccard": 0.0876,
+        "helped_sizes": [
+          537,
+          647
+        ],
+        "hurt_sizes": [
+          502,
+          504
+        ],
+        "helped_intersection": 112,
+        "hurt_intersection": 81
+      }
+    },
+    "h3-1": {
+      "GDN-RetNet": {
+        "helped_jaccard": 0.1242,
+        "hurt_jaccard": 0.117,
+        "helped_sizes": [
+          554,
+          550
+        ],
+        "hurt_sizes": [
+          431,
+          648
+        ],
+        "helped_intersection": 122,
+        "hurt_intersection": 113
+      },
+      "GDN-HGRN2": {
+        "helped_jaccard": 0.1538,
+        "hurt_jaccard": 0.1416,
+        "helped_sizes": [
+          554,
+          691
+        ],
+        "hurt_sizes": [
+          431,
+          488
+        ],
+        "helped_intersection": 166,
+        "hurt_intersection": 114
+      },
+      "RetNet-HGRN2": {
+        "helped_jaccard": 0.0726,
+        "hurt_jaccard": 0.0627,
+        "helped_sizes": [
+          550,
+          691
+        ],
+        "hurt_sizes": [
+          648,
+          488
+        ],
+        "helped_intersection": 84,
+        "hurt_intersection": 67
+      }
+    }
+  },
+  "jaccard_null_model": {
+    "h24-1": {
+      "GDN-RetNet_helped": {
+        "J_obs": 0.1206,
+        "J_null": 0.0719,
+        "J_max": 0.8512,
+        "normalized_ES": 0.0625,
+        "p_value_permutation": 1.0,
+        "n_permutations": 10000,
+        "sizes": [
+          406,
+          477
+        ]
+      },
+      "GDN-RetNet_hurt": {
+        "J_obs": 0.1264,
+        "J_null": 0.0993,
+        "J_max": 0.6958,
+        "normalized_ES": 0.0454,
+        "p_value_permutation": 1.0,
+        "n_permutations": 10000,
+        "sizes": [
+          720,
+          501
+        ]
+      },
+      "GDN-HGRN2_helped": {
+        "J_obs": 0.0662,
+        "J_null": 0.0765,
+        "J_max": 0.7463,
+        "normalized_ES": -0.0154,
+        "p_value_permutation": 1.0,
+        "n_permutations": 10000,
+        "sizes": [
+          406,
+          544
+        ]
+      },
+      "GDN-HGRN2_hurt": {
+        "J_obs": 0.0759,
+        "J_null": 0.0894,
+        "J_max": 0.5944,
+        "normalized_ES": -0.0268,
+        "p_value_permutation": 1.0,
+        "n_permutations": 10000,
+        "sizes": [
+          720,
+          428
+        ]
+      },
+      "RetNet-HGRN2_helped": {
+        "J_obs": 0.0714,
+        "J_null": 0.0843,
+        "J_max": 0.8768,
+        "normalized_ES": -0.0163,
+        "p_value_permutation": 1.0,
+        "n_permutations": 10000,
+        "sizes": [
+          477,
+          544
+        ]
+      },
+      "RetNet-HGRN2_hurt": {
+        "J_obs": 0.0865,
+        "J_null": 0.0759,
+        "J_max": 0.8543,
+        "normalized_ES": 0.0136,
+        "p_value_permutation": 1.0,
+        "n_permutations": 10000,
+        "sizes": [
+          501,
+          428
+        ]
+      }
+    },
+    "h12-1": {
+      "GDN-RetNet_helped": {
+        "J_obs": 0.1164,
+        "J_null": 0.0952,
+        "J_max": 0.886,
+        "normalized_ES": 0.0269,
+        "p_value_permutation": 1.0,
+        "n_permutations": 10000,
+        "sizes": [
+          605,
+          536
+        ]
+      },
+      "GDN-RetNet_hurt": {
+        "J_obs": 0.113,
+        "J_null": 0.0812,
+        "J_max": 0.796,
+        "normalized_ES": 0.0445,
+        "p_value_permutation": 1.0,
+        "n_permutations": 10000,
+        "sizes": [
+          441,
+          554
+        ]
+      },
+      "GDN-HGRN2_helped": {
+        "J_obs": 0.1275,
+        "J_null": 0.0933,
+        "J_max": 0.8562,
+        "normalized_ES": 0.0448,
+        "p_value_permutation": 1.0,
+        "n_permutations": 10000,
+        "sizes": [
+          605,
+          518
+        ]
+      },
+      "GDN-HGRN2_hurt": {
+        "J_obs": 0.1135,
+        "J_null": 0.0688,
+        "J_max": 0.9138,
+        "normalized_ES": 0.0528,
+        "p_value_permutation": 1.0,
+        "n_permutations": 10000,
+        "sizes": [
+          441,
+          403
+        ]
+      },
+      "RetNet-HGRN2_helped": {
+        "J_obs": 0.0777,
+        "J_null": 0.0876,
+        "J_max": 0.9664,
+        "normalized_ES": -0.0113,
+        "p_value_permutation": 1.0,
+        "n_permutations": 10000,
+        "sizes": [
+          536,
+          518
+        ]
+      },
+      "RetNet-HGRN2_hurt": {
+        "J_obs": 0.0586,
+        "J_null": 0.0768,
+        "J_max": 0.7274,
+        "normalized_ES": -0.028,
+        "p_value_permutation": 1.0,
+        "n_permutations": 10000,
+        "sizes": [
+          554,
+          403
+        ]
+      }
+    },
+    "h6-1": {
+      "GDN-RetNet_helped": {
+        "J_obs": 0.138,
+        "J_null": 0.0837,
+        "J_max": 0.8883,
+        "normalized_ES": 0.0675,
+        "p_value_permutation": 1.0,
+        "n_permutations": 10000,
+        "sizes": [
+          477,
+          537
+        ]
+      },
+      "GDN-RetNet_hurt": {
+        "J_obs": 0.1198,
+        "J_null": 0.0852,
+        "J_max": 0.9544,
+        "normalized_ES": 0.0398,
+        "p_value_permutation": 1.0,
+        "n_permutations": 10000,
+        "sizes": [
+          526,
+          502
+        ]
+      },
+      "GDN-HGRN2_helped": {
+        "J_obs": 0.0654,
+        "J_null": 0.0917,
+        "J_max": 0.7372,
+        "normalized_ES": -0.0407,
+        "p_value_permutation": 1.0,
+        "n_permutations": 10000,
+        "sizes": [
+          477,
+          647
+        ]
+      },
+      "GDN-HGRN2_hurt": {
+        "J_obs": 0.0718,
+        "J_null": 0.0854,
+        "J_max": 0.9582,
+        "normalized_ES": -0.0156,
+        "p_value_permutation": 1.0,
+        "n_permutations": 10000,
+        "sizes": [
+          526,
+          504
+        ]
+      },
+      "RetNet-HGRN2_helped": {
+        "J_obs": 0.1045,
+        "J_null": 0.0986,
+        "J_max": 0.83,
+        "normalized_ES": 0.0081,
+        "p_value_permutation": 1.0,
+        "n_permutations": 10000,
+        "sizes": [
+          537,
+          647
+        ]
+      },
+      "RetNet-HGRN2_hurt": {
+        "J_obs": 0.0876,
+        "J_null": 0.0833,
+        "J_max": 0.996,
+        "normalized_ES": 0.0047,
+        "p_value_permutation": 1.0,
+        "n_permutations": 10000,
+        "sizes": [
+          502,
+          504
+        ]
+      }
+    },
+    "h3-1": {
+      "GDN-RetNet_helped": {
+        "J_obs": 0.1242,
+        "J_null": 0.0922,
+        "J_max": 0.9928,
+        "normalized_ES": 0.0356,
+        "p_value_permutation": 1.0,
+        "n_permutations": 10000,
+        "sizes": [
+          554,
+          550
+        ]
+      },
+      "GDN-RetNet_hurt": {
+        "J_obs": 0.117,
+        "J_null": 0.086,
+        "J_max": 0.6651,
+        "normalized_ES": 0.0536,
+        "p_value_permutation": 1.0,
+        "n_permutations": 10000,
+        "sizes": [
+          431,
+          648
+        ]
+      },
+      "GDN-HGRN2_helped": {
+        "J_obs": 0.1538,
+        "J_null": 0.1038,
+        "J_max": 0.8017,
+        "normalized_ES": 0.0717,
+        "p_value_permutation": 1.0,
+        "n_permutations": 10000,
+        "sizes": [
+          554,
+          691
+        ]
+      },
+      "GDN-HGRN2_hurt": {
+        "J_obs": 0.1416,
+        "J_null": 0.0753,
+        "J_max": 0.8832,
+        "normalized_ES": 0.0821,
+        "p_value_permutation": 1.0,
+        "n_permutations": 10000,
+        "sizes": [
+          431,
+          488
+        ]
+      },
+      "RetNet-HGRN2_helped": {
+        "J_obs": 0.0726,
+        "J_null": 0.1033,
+        "J_max": 0.7959,
+        "normalized_ES": -0.0444,
+        "p_value_permutation": 1.0,
+        "n_permutations": 10000,
+        "sizes": [
+          550,
+          691
+        ]
+      },
+      "RetNet-HGRN2_hurt": {
+        "J_obs": 0.0627,
+        "J_null": 0.093,
+        "J_max": 0.7531,
+        "normalized_ES": -0.046,
+        "p_value_permutation": 1.0,
+        "n_permutations": 10000,
+        "sizes": [
+          648,
+          488
+        ]
+      }
+    }
+  }
+}

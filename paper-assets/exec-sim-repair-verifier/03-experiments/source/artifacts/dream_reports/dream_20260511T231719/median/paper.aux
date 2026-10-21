@@ -1,0 +1,82 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{sweagentreward2025}
+\citation{coderm2024}
+\citation{self_execution2024}
+\citation{testoutcome2025}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Execution-free verification.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Code World Models.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Per-test prediction.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Per-test classification (ExecCLS{}).}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Per-test generation (CWM{}).}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Trajectory-level classification.}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Model and Training}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Evaluation Protocol}{2}{subsection.3.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Multi-seed function-level results (HumanEval/MBPP). The two formulations are statistically indistinguishable ($p{=}0.72$).}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:multiseed}{{1}{3}{Multi-seed function-level results (HumanEval/MBPP). The two formulations are statistically indistinguishable ($p{=}0.72$)}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Trace-then-judge ablation. Explicit reasoning traces do not meaningfully change function-level accuracy.}}{3}{table.2}\protected@file@percent }
+\newlabel{tab:ttj}{{2}{3}{Trace-then-judge ablation. Explicit reasoning traces do not meaningfully change function-level accuracy}{table.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Function-Level Experiments}{3}{section.4}\protected@file@percent }
+\newlabel{sec:func_level}{{4}{3}{Function-Level Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Multi-Seed Core Validation}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Trace-then-Judge Ablation}{3}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Model Scale Analysis}{3}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Granularity Comparison}{3}{subsection.4.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Model scale comparison. Both formulations benefit equally from scaling; the null result persists at 8B.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:scale}{{3}{4}{Model scale comparison. Both formulations benefit equally from scaling; the null result persists at 8B}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Granularity comparison. Per-test prediction outperforms trajectory-level by $4.2$pp.}}{4}{table.4}\protected@file@percent }
+\newlabel{tab:granularity}{{4}{4}{Granularity comparison. Per-test prediction outperforms trajectory-level by $4.2$pp}{table.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Repo-Level Experiments}{4}{section.5}\protected@file@percent }
+\newlabel{sec:repo_level}{{5}{4}{Repo-Level Experiments}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}SWE-bench-PerTest Dataset}{4}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Repo-Level Classification vs.\ Generation}{4}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Complexity-dependent advantage.}{4}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Zero-Shot LLM-as-Judge Baselines}{4}{subsection.5.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Repo-level results on SWE-bench-PerTest. Classification gains a $2.5$pp advantage, driven by CWM failure modes.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:repo}{{5}{5}{Repo-level results on SWE-bench-PerTest. Classification gains a $2.5$pp advantage, driven by CWM failure modes}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Function-level vs.\ repo-level gap. The classification advantage emerges only at repo-level complexity.}}{5}{table.6}\protected@file@percent }
+\newlabel{tab:complexity}{{6}{5}{Function-level vs.\ repo-level gap. The classification advantage emerges only at repo-level complexity}{table.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Oracle Frontier Analysis}{5}{section.6}\protected@file@percent }
+\newlabel{sec:oracle}{{6}{5}{Oracle Frontier Analysis}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}F2P-Stratified Per-Test Advantage}{5}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Empirical Error Correlation}{5}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Diagnostic Re-Repair}{5}{section.7}\protected@file@percent }
+\newlabel{sec:diagnostic}{{7}{5}{Diagnostic Re-Repair}{section.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces LLM-as-judge baselines on repo-level data. Fine-tuned 4B CLS dominates 32B zero-shot on both accuracy and cost.}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:judge}{{7}{6}{LLM-as-judge baselines on repo-level data. Fine-tuned 4B CLS dominates 32B zero-shot on both accuracy and cost}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Oracle per-test advantage stratified by F2P count. Advantage concentrates in $T{\geq }2$ instances.}}{6}{table.8}\protected@file@percent }
+\newlabel{tab:f2p}{{8}{6}{Oracle per-test advantage stratified by F2P count. Advantage concentrates in $T{\geq }2$ instances}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Per-Test Prediction Quality}{6}{subsection.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Discussion}{6}{section.8}\protected@file@percent }
+\newlabel{sec:discussion}{{8}{6}{Discussion}{section.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{The complexity threshold.}{6}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Efficiency argument.}{6}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{When to deploy per-test verification.}{6}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{6}{section*.11}\protected@file@percent }
+\bibcite{sweagentreward2025}{{1}{}{{}}{{}}}
+\bibcite{coderm2024}{{2}{}{{}}{{}}}
+\bibcite{self_execution2024}{{3}{}{{}}{{}}}
+\bibcite{testoutcome2025}{{4}{}{{}}{{}}}
+\providecommand\NAT@force@numbers{}\NAT@force@numbers
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Empirical error correlation structure. Measured $\rho {=}0.21$ places realistic advantage between i.i.d.\ and block extremes.}}{7}{table.9}\protected@file@percent }
+\newlabel{tab:corr}{{9}{7}{Empirical error correlation structure. Measured $\rho {=}0.21$ places realistic advantage between i.i.d.\ and block extremes}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Diagnostic re-repair results. Directional improvement ($+1.5$pp) does not reach significance ($p{=}0.18$).}}{7}{table.10}\protected@file@percent }
+\newlabel{tab:rerepair}{{10}{7}{Diagnostic re-repair results. Directional improvement ($+1.5$pp) does not reach significance ($p{=}0.18$)}{table.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Conclusion}{7}{section.9}\protected@file@percent }
+\newlabel{sec:conclusion}{{9}{7}{Conclusion}{section.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Majority Voting}{7}{appendix.A}\protected@file@percent }
+\newlabel{app:voting}{{A}{7}{Majority Voting}{appendix.A}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Per-test prediction quality by difficulty. Hard cases show lower precision, limiting diagnostic utility.}}{8}{table.11}\protected@file@percent }
+\newlabel{tab:pertest_quality}{{11}{8}{Per-test prediction quality by difficulty. Hard cases show lower precision, limiting diagnostic utility}{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Majority voting ($K{=}3$) on function-level classification.}}{8}{table.12}\protected@file@percent }
+\newlabel{tab:voting}{{12}{8}{Majority voting ($K{=}3$) on function-level classification}{table.12}{}}
+\gdef \@abspage@last{8}

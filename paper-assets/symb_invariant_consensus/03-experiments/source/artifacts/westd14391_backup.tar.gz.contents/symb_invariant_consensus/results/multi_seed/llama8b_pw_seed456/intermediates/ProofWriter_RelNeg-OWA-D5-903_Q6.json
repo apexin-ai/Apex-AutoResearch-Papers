@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-903_Q6",
+    "problem": "The bear is nice. The bear visits the tiger. The dog does not chase the bear. The dog sees the mouse. The mouse does not chase the bear. The mouse is nice. The mouse is round. The mouse is young. The mouse visits the bear. The tiger chases the bear. The tiger sees the mouse. If someone chases the mouse and they see the tiger then the tiger is round. If the dog sees the mouse then the dog visits the tiger. If someone chases the mouse then they see the bear. If someone is nice and cold then they chase the mouse. If someone visits the mouse and they see the mouse then the mouse visits the dog. If the mouse visits the dog then the dog does not visit the bear. If someone sees the bear then they visit the dog. All nice people are cold.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse does not chase the mouse.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNice($x, bool) ::: Is x nice?\nVisits($x, $y, bool) ::: Does x visit y?\nChases($x, $y, bool) ::: Does x chase y?\nSees($x, $y, bool) ::: Does x see y?\nRound($x, bool) ::: Is x round?\nYoung($x, bool) ::: Is x young?\nCold($x, bool) ::: Is x cold?\n\nFacts:\nNice(Bear, True) ::: The bear is nice.\nVisits(Bear, Tiger, True) ::: The bear visits the tiger.\nChases(Dog, Bear, False) ::: The dog does not chase the bear.\nSees(Dog, Mouse, True) ::: The dog sees the mouse.\nChases(Mouse, Bear, False) ::: The mouse does not chase the bear.\nNice(Mouse, True) ::: The mouse is nice.\nRound(Mouse, True) ::: The mouse is round.\nYoung(Mouse, True) ::: The mouse is young.\nVisits(Mouse, Bear, True) ::: The mouse visits the bear.\nChases(Tiger, Bear, True) ::: The tiger chases the bear.\nSees(Tiger, Mouse, True) ::: The tiger sees the mouse.\n\nRules:\nChases($x, Mouse, True) && Sees($x, Tiger, True) >>> Round(Tiger, True) ::: If someone chases the mouse and they see the tiger then the tiger is round.\nSees(Dog, Mouse, True) >>> Visits(Dog, Tiger, True) ::: If the dog sees the mouse then the dog visits the tiger.\nChases($x, Mouse, True) >>> Sees($x, Bear, True) ::: If someone chases the mouse then they see the bear.\nNice($x, True) && Cold($x, True) >>> Chases($x, Mouse, True) ::: If someone is nice and cold then they chase the mouse.\nVisits($x, Mouse, True) && Sees($x, Mouse, True) >>> Visits(Mouse, Dog, True) ::: If someone visits the mouse and they see the mouse then the mouse visits the dog.\nVisits(Mouse, Dog, True) >>> Visits(Dog, Bear, False) ::: If the mouse visits the dog then the dog does not visit the bear.\nSees($x, Bear, True) >>> Visits($x, Dog, True) ::: If someone sees the bear then they visit the dog.\nNice($x, True) >>> Cold($x, True) ::: All nice people are cold.\n\nQuery:\nChases(Mouse, Mouse, False) ::: The mouse does not chase the mouse."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

@@ -1,0 +1,634 @@
+{
+  "problem": {
+    "id": "folio_24",
+    "problem": "Given the following premises:\nBeijing is the capital of the People's Republic of China.  Beijing is the world's most populous national capital city. Beijing is located in Northern China. Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games. Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics Many of Beijing's 91 universities consistently rank among the best in the Asia-Pacific and the world.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nBeijing has hosted both the 2008 Summer Olympics and a winter olympics.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "CapitalOf(beijing, prx)",
+      "MostPopulousNationalCapitalCity(beijing)",
+      "InNorthernChina(beijing)",
+      "Hosted(beijing, summer2008olympic) \u2227 Hosted(beijing, summer2008paralympicgames)",
+      "Hosted(beijing, summerolympic) \u2227 Hosted(beijing, winterolympic) \u2227 Hosted(beijing, summerparalympicgames)  \u2227 Hosted(beijing, winterparalympicgames)",
+      "\u2203x (BeijingUniversity(x) \u2227 ConsistentlyRankAmongTheBest(x))"
+    ],
+    "conclusion_fol": "Hosted(beijing, summer2008olympic) \u2227 Hosted(beijing, winterolympic)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 78.0,
+      "Unknown": 25.0
+    },
+    "answer_counts": {
+      "True": 11,
+      "Unknown": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they provide enough information to support the conclusion.\n\nPremise 1: Beijing is the capital of the People's Republic of China.\nPremise 2: Beijing is the world's most populous national capital city.\nPremise 3: Beijing is located in Northern China.\nPremise 4: Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games.\nPremise 5: Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics.\nPremise 6: Many of Beijing's 91 universities consistently rank among the best in the Asia-Pacific and the world.\n\nNow, let's examine the conclusion:\nConclusion: Beijing has hosted both the 2008 Summer Olympics and a winter Olympics.\n\nWe can see that Premise 5 directly supports the conclusion by stating that Beijing has hosted both the Summer and Winter Olympics. However, it also states that Beijing has hosted both the Summer and Winter Paralympics, which is additional information that is not necessary for the conclusion.\n\nThe 2008 Summer Olympics is already mentioned in Premise 4, which is a separate piece of information. However, the key information that supports the conclusion is the fact that Beijing has hosted a Winter Olympics, which is mentioned in Premise 5.\n\nTherefore, based on the given premises, we can conclude that the statement is TRUE.\n\n\\boxed{TRUE}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine the truth value of the conclusion, we need to analyze the premises and see if they support the conclusion.\n\nPremise 1: Beijing is the capital of the People's Republic of China.\nThis premise does not provide any information about Beijing hosting the Olympics.\n\nPremise 2: Beijing is the world's most populous national capital city.\nThis premise also does not provide any information about Beijing hosting the Olympics.\n\nPremise 3: Beijing is located in Northern China.\nThis premise does not provide any information about Beijing hosting the Olympics.\n\nPremise 4: Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games.\nThis premise tells us that Beijing hosted the 2008 Summer Olympics, but it does not provide any information about Beijing hosting a Winter Olympics.\n\nPremise 5: Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics.\nThis premise directly supports the conclusion that Beijing has hosted both the Summer and Winter Olympics.\n\nWe do not need to consider the last premise about universities, as it is not relevant to the conclusion.\n\nBased on the analysis, the conclusion \"Beijing has hosted both the 2008 Summer Olympics and a Winter Olympics\" is true because Premise 5 explicitly states that Beijing has hosted both the Summer and Winter Olympics.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Beijing is the capital of the People's Republic of China.\nThis premise is irrelevant to the conclusion.\n\nPremise 2: Beijing is the world's most populous national capital city.\nThis premise is also irrelevant to the conclusion.\n\nPremise 3: Beijing is located in Northern China.\nThis premise is irrelevant to the conclusion.\n\nPremise 4: Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games.\nThis premise is relevant to the conclusion. However, it only mentions the 2008 Summer Olympics.\n\nPremise 5: Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics.\nThis premise is directly relevant to the conclusion. It states that Beijing has hosted both the Summer and Winter Olympics, which means it has hosted at least one Winter Olympics.\n\nSince Premise 4 only mentions the 2008 Summer Olympics, we cannot directly conclude from it that Beijing has hosted a Winter Olympics. However, Premise 5 explicitly states that Beijing has hosted both the Summer and Winter Olympics, making the conclusion true.\n\nTherefore, the conclusion \"Beijing has hosted both the 2008 Summer Olympics and a winter olympics\" is uncertain without Premise 5, but with Premise 5, it is true.\n\nBut the answer is true because Premise 5 clearly states that Beijing has hosted both the Summer and Winter Olympics.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they provide any information about Beijing hosting a Winter Olympics.\n\nPremise 1: Beijing is the capital of the People's Republic of China.\nThis premise does not provide any information about Beijing hosting a Winter Olympics.\n\nPremise 2: Beijing is the world's most populous national capital city.\nThis premise does not provide any information about Beijing hosting a Winter Olympics.\n\nPremise 3: Beijing is located in Northern China.\nThis premise does not provide any information about Beijing hosting a Winter Olympics.\n\nPremise 4: Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games.\nThis premise provides information about Beijing hosting a Summer Olympics, but not a Winter Olympics.\n\nPremise 5: Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics.\nThis premise directly states that Beijing has hosted both the Summer and Winter Olympics, which is relevant to the conclusion.\n\nHowever, we need to consider the consistency of the premises. Premise 4 and Premise 5 seem to be contradictory, as Premise 4 only mentions the 2008 Summer Olympics, while Premise 5 mentions that Beijing has hosted both the Summer and Winter Olympics.\n\nGiven the apparent contradiction, we cannot rely solely on Premise 5 to conclude that Beijing has hosted a Winter Olympics. Therefore, the conclusion is uncertain.\n\nBut, since Premise 5 clearly states that Beijing has hosted both the Summer and Winter Olympics, it is actually a strong indication that the conclusion is true. \n\nGiven the strong indication from Premise 5 and the fact that the other premises don't contradict this, we can conclude that the statement is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises and the conclusion step by step.\n\n1. The premises state that Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games.\n   From this, we know that Beijing hosted the 2008 Summer Olympics.\n\n2. The conclusion states that Beijing has hosted both the 2008 Summer Olympics and a winter Olympics.\n   Since we already know that Beijing hosted the 2008 Summer Olympics, we need to check if Beijing has hosted a winter Olympics.\n\n3. Let's look for any information about Beijing hosting a winter Olympics in the premises.\n   The premises state that Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games, and also that Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics.\n   This clearly indicates that Beijing has indeed hosted a winter Olympics, in addition to the 2008 Summer Olympics.\n\n4. We have enough information to determine the conclusion's truth value.\n   Given the premises, we can confidently conclude that Beijing has hosted both the 2008 Summer Olympics and a winter Olympics.\n\nTherefore, the conclusion is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they provide enough information to support the conclusion.\n\nPremise 1: Beijing is the capital of the People's Republic of China.\nThis premise does not provide any information about Beijing hosting the Olympics.\n\nPremise 2: Beijing is the world's most populous national capital city.\nThis premise also does not provide any information about Beijing hosting the Olympics.\n\nPremise 3: Beijing is located in Northern China.\nThis premise does not provide any information about Beijing hosting the Olympics.\n\nPremise 4: Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games.\nThis premise provides information about Beijing hosting the 2008 Summer Olympics, which is part of the conclusion.\n\nPremise 5: Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics.\nThis premise directly supports the conclusion, stating that Beijing has hosted both the Summer and Winter Olympics.\n\nBased on the analysis, we have two premises that support the conclusion: Premise 4 and Premise 5. However, we can use the process of elimination to confirm the conclusion.\n\nFrom Premise 4, we know that Beijing hosted the 2008 Summer Olympics. From Premise 5, we know that Beijing has hosted both the Summer and Winter Olympics. Therefore, since Beijing hosted the 2008 Summer Olympics and has hosted both the Summer and Winter Olympics, it is reasonable to conclude that Beijing has hosted a Winter Olympics.\n\nConclusion: True\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine the truth value of the conclusion, let's analyze the premises step by step:\n\n1. Given premise: Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games. \n   This premise confirms that Beijing has hosted a Summer Olympics event, but it doesn't provide information about a Winter Olympics event.\n\n2. Given premise: Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics \n   This premise directly states that Beijing has hosted both Summer and Winter Olympics events.\n\nWe can conclude that the information from premise 2 is more specific and reliable regarding Beijing hosting Winter Olympics, compared to premise 1, which only mentions a specific year's Summer Olympics.\n\nSince premise 2 is more specific and reliable, we can rely on this information to answer the conclusion. Therefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they support the conclusion.\n\nPremise 1: Beijing is the capital of the People's Republic of China.\nThis premise does not provide any information about Beijing hosting the Olympics.\n\nPremise 2: Beijing is the world's most populous national capital city.\nThis premise does not provide any information about Beijing hosting the Olympics.\n\nPremise 3: Beijing is located in Northern China.\nThis premise does not provide any information about Beijing hosting the Olympics.\n\nPremise 4: Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games.\nThis premise provides information about Beijing hosting the Summer Olympics.\n\nPremise 5: Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics.\nThis premise directly supports the conclusion that Beijing has hosted both the 2008 Summer Olympics and a Winter Olympics.\n\nBased on the analysis, the conclusion that Beijing has hosted both the 2008 Summer Olympics and a Winter Olympics is supported by Premise 5. \n\nSince Premise 5 directly states that Beijing has hosted both the Summer and Winter Olympics, we can conclude that the statement is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and see if they provide enough information to support the conclusion.\n\nPremise 1: Beijing is the capital of the People's Republic of China.\nThis premise does not provide any information about Beijing hosting Olympics.\n\nPremise 2: Beijing is the world's most populous national capital city.\nThis premise also does not provide any information about Beijing hosting Olympics.\n\nPremise 3: Beijing is located in Northern China.\nThis premise is also irrelevant to the conclusion.\n\nPremise 4: Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games.\nThis premise directly supports the conclusion that Beijing has hosted the 2008 Summer Olympics. However, it does not provide any information about Beijing hosting a Winter Olympics.\n\nPremise 5: Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics.\nThis premise directly supports the conclusion that Beijing has hosted both the Summer and Winter Olympics.\n\nFrom the premises, we can see that Premise 5 directly supports the conclusion, and Premise 4 indirectly supports the conclusion. However, the question asks about hosting both the 2008 Summer Olympics and a Winter Olympics. Premise 5 is the key information that supports the conclusion, but it is not specific to the 2008 Summer Olympics.\n\nBased on the information provided, we can conclude that Beijing has hosted the Summer Olympics, but we cannot determine if it has hosted a Winter Olympics that is not part of the Winter Olympics mentioned in Premise 5. Therefore, the conclusion is uncertain.\n\nHowever, if we consider the information from Premise 5, it seems that Beijing has indeed hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics. Therefore, it is likely that the conclusion is true.\n\nBut we should rely on the information provided and the premises that support the conclusion directly or indirectly.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\n1. Beijing is the capital of the People's Republic of China. \n   - This premise does not provide any information about Beijing hosting the Olympics.\n\n2. Beijing is the world's most populous national capital city. \n   - This premise also does not provide any information about Beijing hosting the Olympics.\n\n3. Beijing is located in Northern China. \n   - This premise is irrelevant to the topic of Beijing hosting the Olympics.\n\n4. Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games. \n   - This premise supports the conclusion that Beijing hosted the 2008 Summer Olympics, but it does not provide any information about Beijing hosting a Winter Olympics.\n\n5. Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics. \n   - This premise directly supports the conclusion that Beijing has hosted both the Summer and Winter Olympics.\n\nBased on the premises, we can conclude that premise 4 and premise 5 are the relevant information for this conclusion. However, we can only be certain about the information in premise 5.\n\nTherefore, the conclusion is true, as premise 5 directly supports it.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the given premises and see if they provide any information about Beijing hosting a winter Olympics.\n\nPremise 1: Beijing is the capital of the People's Republic of China.\nThis premise does not provide any information about Beijing hosting a winter Olympics.\n\nPremise 2: Beijing is the world's most populous national capital city.\nThis premise does not provide any information about Beijing hosting a winter Olympics.\n\nPremise 3: Beijing is located in Northern China.\nThis premise does not provide any information about Beijing hosting a winter Olympics.\n\nPremise 4: Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games.\nThis premise provides information about Beijing hosting a specific event, but it does not mention a winter Olympics.\n\nPremise 5: Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics.\nThis premise directly states that Beijing has hosted both the Summer and Winter Olympics.\n\nNow, we can analyze the conclusion:\n\"Beijing has hosted both the 2008 Summer Olympics and a winter olympics.\"\n\nFrom the given premises, we know that Beijing hosted the 2008 Summer Olympics (Premise 4), and we also know that Beijing has hosted both the Summer and Winter Olympics (Premise 5). The fact that Beijing hosted the 2008 Summer Olympics does not contradict the information that Beijing has hosted a winter Olympics. Therefore, based on Premise 5, we can conclude that the statement is true.\n\nHowever, since we also have the more specific statement that Beijing hosted the 2008 Summer Olympics (Premise 4), we can say that we are certain that Beijing hosted a winter Olympics, and the specific year of the winter Olympics is not known.\n\nTherefore, the conclusion is uncertain about the year of the winter Olympics, but we can say that the statement is true.\n\nBut given the context of the question, the answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true or false, we need to analyze the given premises and see if they lead to the conclusion.\n\nPremise 1: Beijing is the capital of the People's Republic of China.\nThis premise does not directly relate to the conclusion, so we can ignore it for now.\n\nPremise 2: Beijing is the world's most populous national capital city.\nThis premise also does not directly relate to the conclusion, so we can ignore it for now.\n\nPremise 3: Beijing is located in Northern China.\nThis premise does not directly relate to the conclusion, so we can ignore it for now.\n\nPremise 4: Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games.\nThis premise directly supports the first part of the conclusion, which is that Beijing hosted the 2008 Summer Olympics.\n\nPremise 5: Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics.\nThis premise directly supports the second part of the conclusion, which is that Beijing hosted a Winter Olympics.\n\nHowever, we need to be careful because the premise says \"both the Summer and Winter Olympics\" and \"both the Summer and Winter Paralympics\", which implies that Beijing hosted both the Summer and Winter Olympics in the same year or in different years, but it doesn't specify which.\n\nSince we know that Beijing hosted the 2008 Summer Olympics from premise 4, we can infer that premise 5 implies that Beijing hosted a Winter Olympics, but it doesn't specify which year.\n\nTo determine the truth of the conclusion, we need to look at the statement \"Beijing hosted the 2008 Summer Olympics and a Winter Olympics\". \n\nFrom premise 4, we know that Beijing hosted the 2008 Summer Olympics.\n\nWe also know from premise 5 that Beijing hosted a Winter Olympics.\n\nHowever, premise 5 does not specify which Winter Olympics Beijing hosted.\n\nSo, the conclusion is uncertain because we don't know if the Winter Olympics that Beijing hosted was the same year as the 2008 Summer Olympics or a different year.\n\nTherefore, the final answer is:\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "capital(beijing, people's republic of china)",
+          "z3_formula": "capital_beijing_peoples_republic_of_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most populous national capital city(beijing)",
+          "z3_formula": "most_populous_national_capital_city_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located(beijing, northern china)",
+          "z3_formula": "located_beijing_northern_china == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted(beijing, 2008 summer olympics)",
+          "z3_formula": "hosted_beijing_2008_summer_olympics == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted(beijing, 2008 summer paralympics)",
+          "z3_formula": "hosted_beijing_2008_summer_paralympics == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "hosted(beijing, 2008 summer olympics) & hosted(beijing, 2008 summer paralympics) -> hosted(beijing, 2008 winter olympics) & hosted(beijing, 2008 winter paralympics)",
+          "z3_formula": "Implies(And(hosted_beijing_2008_summer_olympics, hosted_beijing_2008_summer_paralympics), And(hosted_beijing_2008_winter_olympics, hosted_beijing_2008_winter_paralympics))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "91 universities(beijing)",
+          "z3_formula": "91_universities_beijing == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "hosted(beijing, 2008 winter olympics)",
+          "z3_formula": "hosted_beijing_2008_winter_olympics == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "capital_of(Beijing, People's Republic of China)",
+          "z3_formula": "capital_of_beijing_peoples_republic_of_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous_national_capital(Beijing)",
+          "z3_formula": "most_populous_national_capital_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in(Beijing, Northern China)",
+          "z3_formula": "located_in_beijing_northern_china == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_2008_summer_olympics(Beijing)",
+          "z3_formula": "hosted_2008_summer_olympics_beijing == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_both_summer_and_winter_olympics(Beijing)",
+          "z3_formula": "hosted_both_summer_and_winter_olympics_beijing == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "capital(beijing, people_s_republic_of_china)",
+          "z3_formula": "capital_beijing_people_s_republic_of_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous_national_capital_city(beijing)",
+          "z3_formula": "most_populous_national_capital_city_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in_northern_china(beijing)",
+          "z3_formula": "located_in_northern_china_beijing == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_2008_summer_olympics(beijing)",
+          "z3_formula": "hosted_2008_summer_olympics_beijing == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_2008_summer_paralympics(beijing)",
+          "z3_formula": "hosted_2008_summer_paralympics_beijing == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_both_summer_and_winter_olympics(beijing)",
+          "z3_formula": "hosted_both_summer_and_winter_olympics_beijing == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "hosted_both_2008_summer_and_winter_olympics(beijing)",
+          "z3_formula": "hosted_both_2008_summer_and_winter_olympics_beijing == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "capital(beijing, china)",
+          "z3_formula": "capital_beijing_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous(beijing)",
+          "z3_formula": "most_populous_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_north(beijing)",
+          "z3_formula": "located_north_beijing == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_summer_2008(beijing)",
+          "z3_formula": "hosted_summer_2008_beijing == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_both(beijing)",
+          "z3_formula": "hosted_both_beijing == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "capital(X, china) -> None",
+          "z3_formula": "Implies(capital_beijing_china, None)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "most_populous(X) -> None",
+          "z3_formula": "Implies(most_populous_beijing, None)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "located_north(X) -> None",
+          "z3_formula": "Implies(located_north_beijing, None)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "hosted_summer_2008(X) -> None",
+          "z3_formula": "Implies(hosted_summer_2008_beijing, None)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "hosted_both(X) -> hosted_winter(X)",
+          "z3_formula": "Implies(hosted_both_beijing, hosted_winter_beijing)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "hosted_winter(beijing)",
+          "z3_formula": "hosted_winter_beijing == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "hosted_beijing_summer_2008",
+          "z3_formula": "hosted_beijing_summer_2008 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_beijing_summer_paralympics_2008",
+          "z3_formula": "hosted_beijing_summer_paralympics_2008 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_beijing_both_summer_and_winter_olympics",
+          "z3_formula": "hosted_beijing_both_summer_and_winter_olympics == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_beijing_both_summer_and_winter_paralympics",
+          "z3_formula": "hosted_beijing_both_summer_and_winter_paralympics == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "hosted_beijing_winter_olympics",
+          "z3_formula": "hosted_beijing_winter_olympics == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "capital(beijing, people_s_republic_of_china)",
+          "z3_formula": "capital_beijing_people_s_republic_of_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous_national_capital(beijing)",
+          "z3_formula": "most_populous_national_capital_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in_northern_china(beijing)",
+          "z3_formula": "located_in_northern_china_beijing == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_2008_summer_olympics(beijing)",
+          "z3_formula": "hosted_2008_summer_olympics_beijing == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_both_summer_and_winter_olympics(beijing)",
+          "z3_formula": "hosted_both_summer_and_winter_olympics_beijing == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "hosted_winter_olympics(beijing)",
+          "z3_formula": "hosted_winter_olympics_beijing == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "hosted_summer_olympics(beijing)",
+          "z3_formula": "hosted_summer_olympics_beijing == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_summer_paralympics(beijing)",
+          "z3_formula": "hosted_summer_paralympics_beijing == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_winter_olympics(beijing)",
+          "z3_formula": "hosted_winter_olympics_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_winter_paralympics(beijing)",
+          "z3_formula": "hosted_winter_paralympics_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "hosted_winter_olympics(beijing)",
+          "z3_formula": "hosted_winter_olympics_beijing == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "capital(Beijing, People's Republic of China)",
+          "z3_formula": "capital_beijing_peoples_republic_of_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous_national_capital(Beijing)",
+          "z3_formula": "most_populous_national_capital_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in_northern_china(Beijing)",
+          "z3_formula": "located_in_northern_china_beijing == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_summer_olympics(Beijing, 2008)",
+          "z3_formula": "hosted_summer_olympics_beijing_2008 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_winter_olympics(Beijing, 2008)",
+          "z3_formula": "hosted_winter_olympics_beijing_2008 == False",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "hosted_summer_olympics(X, Y) & hosted_winter_olympics(X, Y) -> hosted_both_summer_and_winter_olympics(X, Y)",
+          "z3_formula": "Implies(And(hosted_summer_olympics_beijing_2008, hosted_winter_olympics_beijing_2008), hosted_both_summer_and_winter_olympics_beijing_2008)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_both_summer_and_winter_olympics(Beijing, 2008)",
+          "z3_formula": "hosted_both_summer_and_winter_olympics_beijing_2008 == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "hosted_both_summer_and_winter_olympics(Beijing, 2008)",
+          "z3_formula": "hosted_both_summer_and_winter_olympics_beijing_2008 == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "capital(beijing, china)",
+          "z3_formula": "capital_beijing_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous(beijing)",
+          "z3_formula": "most_populous_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located(beijing, northern_china)",
+          "z3_formula": "located_beijing_northern_china == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_2008_summer_olympics(beijing)",
+          "z3_formula": "hosted_2008_summer_olympics_beijing == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_both_summer_and_winter_olympics(beijing)",
+          "z3_formula": "hosted_both_summer_and_winter_olympics_beijing == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "capital(X, china) -> no_information_about_hosting_olympics(X)",
+          "z3_formula": "Implies(capital_beijing_china, no_information_about_hosting_olympics_beijing)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "most_populous(X) -> no_information_about_hosting_olympics(X)",
+          "z3_formula": "Implies(most_populous_beijing, no_information_about_hosting_olympics_beijing)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "located(X, northern_china) -> no_information_about_hosting_olympics(X)",
+          "z3_formula": "Implies(located_beijing_northern_china, no_information_about_hosting_olympics_beijing)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "hosted_2008_summer_olympics(X) -> no_information_about_hosting_winter_olympics(X)",
+          "z3_formula": "Implies(hosted_2008_summer_olympics_beijing, no_information_about_hosting_winter_olympics_beijing)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "hosted_both_summer_and_winter_olympics(X) -> hosted_both_summer_and_winter_olympics(X)",
+          "z3_formula": "Implies(hosted_both_summer_and_winter_olympics_beijing, hosted_both_summer_and_winter_olympics_beijing)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "hosted_both_summer_and_winter_olympics(beijing)",
+          "z3_formula": "hosted_both_summer_and_winter_olympics_beijing == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "capital(Beijing, People's Republic of China)",
+          "z3_formula": "capital_beijing_peoples_republic_of_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous(Beijing, world)",
+          "z3_formula": "most_populous_beijing_world == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located(Beijing, Northern China)",
+          "z3_formula": "located_beijing_northern_china == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_2008_summer_olympics(Beijing)",
+          "z3_formula": "hosted_2008_summer_olympics_beijing == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_both_summer_and_winter_olympics(Beijing)",
+          "z3_formula": "hosted_both_summer_and_winter_olympics_beijing == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "capital(beijing, china)",
+          "z3_formula": "capital_beijing_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous(beijing)",
+          "z3_formula": "most_populous_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_north(beijing)",
+          "z3_formula": "located_north_beijing == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_summer_2008(beijing)",
+          "z3_formula": "hosted_summer_2008_beijing == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_both_summer_winter(beijing)",
+          "z3_formula": "hosted_both_summer_winter_beijing == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "hosted_winter(beijing)",
+          "z3_formula": "hosted_winter_beijing == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "capital_of(Beijing, People's Republic of China)",
+          "z3_formula": "capital_of_beijing_peoples_republic_of_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous_national_capital(Beijing)",
+          "z3_formula": "most_populous_national_capital_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in(Beijing, Northern China)",
+          "z3_formula": "located_in_beijing_northern_china == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_2008_summer_olympics(Beijing)",
+          "z3_formula": "hosted_2008_summer_olympics_beijing == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_both_summer_and_winter_olympics(Beijing)",
+          "z3_formula": "hosted_both_summer_and_winter_olympics_beijing == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "hosted_winter_olympics(Beijing)",
+          "z3_formula": "hosted_winter_olympics_beijing == True",
+          "source_step": 6
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 83,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 43
+    },
+    "maxsat_stats": {
+      "satisfied": 43,
+      "excluded": 0,
+      "total_weight": 78,
+      "solve_time_ms": 0.9578457102179527
+    },
+    "timing": {
+      "trace_gen_s": 5.444,
+      "extraction_s": 18.538,
+      "dedup_s": 0.778,
+      "maxsat_s": 0.003,
+      "total_s": 24.764
+    }
+  }
+}

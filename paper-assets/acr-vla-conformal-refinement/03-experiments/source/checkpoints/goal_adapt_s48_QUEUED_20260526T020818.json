@@ -1,0 +1,14 @@
+{
+  "exp_id": "goal_adapt_s48",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T02:08:15.451Z",
+    "updated_at": "2026-05-26T02:08:15.451Z"
+  },
+  "timestamp": "2026-05-26T02:08:18.606967+00:00",
+  "trigger": "update_registry"
+}

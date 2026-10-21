@@ -1,0 +1,25 @@
+{
+  "exp_id": "exp_r3_qwq_l60_bootstrap",
+  "project": "contrastive_trace_safety",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T15:35:56.616Z",
+    "updated_at": "2026-05-17T15:36:36.788Z",
+    "hypothesis": "QwQ-32B at corrected Layer 60 (95% depth) should show significant HS vs text advantage with proper null-centered p-values, confirming that original p~0.5 was a computation bug (missing null-centering) not a genuine non-significance.",
+    "spec": {
+      "command": "python exp_r3_qwq_layer60_bootstrap_bugfix.py",
+      "server": "autodl-rtx6000",
+      "data_path": "/root/autodl-tmp/contrastive_trace_safety/data/qwq_32b/",
+      "data_count": 95,
+      "model_name": "QwQ-32B Layer 60",
+      "seed": 42,
+      "checkpoint_path": "N/A (CPU bootstrap)",
+      "log_path": "/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_r3_qwq_l60_bootstrap/results.json"
+    }
+  },
+  "timestamp": "2026-05-17T15:36:36.853759+00:00",
+  "trigger": "update_registry"
+}

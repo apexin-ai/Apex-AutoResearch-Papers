@@ -1,0 +1,37 @@
+{
+  "exp_id": "eval_openvla_random_k095_long_seed42_backup",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T06:19:18.176Z",
+    "updated_at": "2026-05-27T12:33:03.418Z",
+    "spec": {
+      "command": "python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.95 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10",
+      "server": "westd-38929",
+      "gpu": "cuda:0",
+      "pid": 112587,
+      "log_path": "/root/runs/importance_margin_vla_compress/eval_openvla_random_k095_long_seed42_v2.log",
+      "submitted_at": "2026-05-27T06:19:14.443Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_10",
+      "data_count": 500,
+      "model_name": "openvla-7b-finetuned-libero-10",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/models/openvla-7b-finetuned-libero-10",
+      "eval_data": "libero_10",
+      "wall_clock_seconds": 22429.0,
+      "gpu_hours": 6.23
+    },
+    "hypothesis": "OV Random k=0.95 backup on westd-38929 — ensures result availability before C002 deadline in case westd-41074 primary fails or times out",
+    "parent": "eval_openvla_random_k095_long_seed42",
+    "conclusion": "failed",
+    "completed_at": "2026-05-27T12:33:03.418Z"
+  },
+  "timestamp": "2026-05-27T12:33:06.548673+00:00",
+  "trigger": "update_registry"
+}

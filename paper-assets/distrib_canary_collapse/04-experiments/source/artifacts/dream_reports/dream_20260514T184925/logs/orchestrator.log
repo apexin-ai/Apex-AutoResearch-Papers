@@ -1,3 +1,0 @@
-2026-05-14 19:15:08,842 INFO    core.tools.feishu  create_chat: name='审稿-distrib_canary_collapse' → chat_id=oc_21bf8254f3677799a62db5ed920cc0b3
-2026-05-14 19:15:08,845 INFO    core.tools.dream  [dream] auto-created Group C for project=distrib_canary_collapse: oc_21bf8254f3677799a62db5ed920cc0b3
-2026-05-14 19:15:08,941 INFO    core.session_server  [session_server] wrote /home/ubuntu/.agent-ml-research-idea_gen_0514_4/config/mcp_config_dream_review_director.json

@@ -1,0 +1,39 @@
+{
+  "exp_id": "eval-supp-goal-reconvla-s47",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T09:52:02.749Z",
+    "updated_at": "2026-05-25T18:42:19.629Z",
+    "hypothesis": "Goal s47 Reconvla baseline for seed extension. Sixth seed to tighten CI for Goal suite Reconvla method.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python -u src/evaluate.py --benchmark goal --mode reconvla --seed 47 --n_rollouts 20 --K 2",
+      "server": "bjb2-28827",
+      "data_path": "LIBERO-Goal",
+      "data_count": 200,
+      "model_name": "smolvla",
+      "seed": 47,
+      "checkpoint_source": "n/a-reconvla",
+      "eval_data": "LIBERO-Goal 10 tasks x 20 rollouts",
+      "tmux_session": "goal-reconvla-s47",
+      "log_path": "/tmp/eval_goal_reconvla_s47.log",
+      "gpu": 3,
+      "pid": 200418
+    },
+    "conclusion": "killed",
+    "metrics": {
+      "overall_success_rate": 0.835,
+      "successes": 167,
+      "total": 200,
+      "n_tasks": 10,
+      "n_rollouts_per_task": 20
+    },
+    "checkpoint_path": "n/a-eval-only",
+    "completed_at": "2026-05-24T12:02:42.999Z"
+  },
+  "timestamp": "2026-05-25T18:42:21.168214+00:00",
+  "trigger": "update_registry"
+}

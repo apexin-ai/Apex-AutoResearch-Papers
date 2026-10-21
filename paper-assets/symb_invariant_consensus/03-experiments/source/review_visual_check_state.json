@@ -1,0 +1,137 @@
+{
+  "status": "done",
+  "started_at": "2026-05-25T21:15:14.453549+00:00",
+  "completed_at": "2026-05-25T21:18:47.601737+00:00",
+  "findings": [
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "首页为纯文本（Title/Abstract/Introduction），无视觉锚点。Figure 1 出现在 page 2 顶部，在前 3 页内，符合预期。Figure 1（SICA pipeline 流程图）清晰传达核心方法，颜色编码（绿/蓝/红虚线）区分组件和 oracle 变体，caption 自包含。Title-Abstract-Figure 1 讲同一个故事，一致性好。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "Abstract 长度合理，排版整洁，Anonymous ACL submission 标注正确。脚注中有代码/数据链接（匿名化 URL）。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 1-8",
+      "message": "主文 8 页，display items 分布：p2(Fig1), p4(Tab1), p5(Fig2+Fig3), p6(Tab2+Fig4), p7(Tab3), p8(Fig5+Fig6)。共 6 figures + 3 tables = 9 个 display items / 8 页 ≈ 1.1/页。实证为主论文，密度优秀。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 1,3",
+      "message": "Page 1（intro）和 page 3（related work + method 开头）为纯文本页，但被 page 2（Figure 1）隔开，不构成连续纯文本问题。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "末页（主文）包含 Discussion & Conclusion + Limitations + References 开头，页面利用率 ~95%，无明显空白浪费。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 2",
+      "message": "Figure 1：流程图设计专业，LLM→Extract FOL→Z3→MAX-SAT 管线一目了然。红色虚线标注 oracle 变体清晰。颜色区分度好。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4",
+      "message": "Table 1：使用 booktabs 风格（水平线，无竖线），最优值加粗，显著性用 * 标注，小数位数一致。表格宽度适配双栏。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "Figure 2：散点图标注模型家族用颜色区分，轴标签清晰，灰色带标注 ±2pp 等价区。Figure 3：因果 DAG 图简洁明了，箭头和变量标注清晰。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Table 2：booktabs 风格，布局紧凑。Figure 4：散点图含回归线和 p 值标注，可读性好。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Table 3：booktabs 风格，Combo 列有 Δ(pp) 标注，格式统一。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Figure 5 + Figure 6 并排放置，尺寸合理。Figure 5 用颜色+星号标注显著性。Figure 6 用虚线标注 baseline，图例清晰。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 1-8",
+      "message": "所有 float 出现在首次引用附近，无 float 漂移到远处的问题。双栏论文中全宽图 (figure*) 仅用于确实需要的 Figure 7（page 17，appendix 中 27 策略对比图），使用合理。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 30",
+      "message": "最后一页（Appendix Z: Use of AI Assistants）内容仅占页面约 1/4，约 3/4 为空白。虽然是 appendix 末页，但视觉上不够理想。建议将前面 appendix 内容适当重排以减少末页空白，或将 AI Assistants 声明合并到前一页。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 1-29",
+      "message": "其余所有页面空白分布正常，无异常大面积空白。双栏间距均匀，margin 无溢出。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 1-8",
+      "message": "所有公式渲染正确，无 LaTeX 错误残留。行内公式未导致行距异常。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 1-8",
+      "message": "Section heading 均未出现孤悬页底的情况。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 4,6,7",
+      "message": "所有表格使用 booktabs 风格（\\toprule/\\midrule/\\bottomrule），无竖线，最优结果加粗标注。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 12",
+      "message": "Appendix A 的 prompt template 使用等宽字体双栏展示。字号偏小但在可读范围内。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 13",
+      "message": "Algorithm 1 和 Algorithm 2 格式规范，伪代码清晰。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 9-11",
+      "message": "参考文献排版正常，无 [?] 未解析引用，编号连续，格式统一。无 overfull 或截断。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 11-30",
+      "message": "Appendix 共 20 页，包含大量表格（Tables 4-44）、3 个 figure（Fig 7/8/9）、2 个 algorithm、详细 case studies 和统计分析。材料极其充分。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 17",
+      "message": "Figure 7（27 种训练无关策略对比条形图）信息密度极高，图内文字较小（策略名称、数值标注）。在打印版本中可能接近可读性下限。建议确认策略名称字号 ≥ 7pt。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 14",
+      "message": "单页包含 Tables 4/5/6/7 共 4 个表格，密度高但 appendix 中可接受。"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "颜色方案基本一致——Figure 2/5 中模型家族使用相同颜色编码。Figure 1 中蓝/绿/红配色区分度好。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "Figure 2 的散点图中不同颜色标记在灰度打印下可能需要依赖 marker shape 区分（当前主要靠颜色）。但作为 PDF 提交可接受。"
+    }
+  ],
+  "counts": {
+    "critical": 0,
+    "warning": 2,
+    "info": 23
+  }
+}

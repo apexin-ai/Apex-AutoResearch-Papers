@@ -1,0 +1,33 @@
+{
+  "exp_id": "eval_pi05_l2norm_k03_long_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "completed_at": "2026-05-23T01:37:42.350Z",
+    "conclusion": "killed",
+    "created_at": "2026-05-22T21:54:32.755Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "success",
+        "metrics": {
+          "sr": 0.352,
+          "total_episodes": 500,
+          "total_successes": 176
+        }
+      }
+    },
+    "hypothesis": "π0.5 L2norm k=0.3 Long seed43: extreme 70% L2norm token removal on 520-step horizon with seed43 for cross-seed validation. L2norm k=0.3 Object=12.2%. Testing if L2norm maintains advantage over Random (k=0.3 Object Random=8.2%) on Long tasks at extreme pruning.",
+    "metrics": {
+      "source": "westd-41074 pi05_l2norm_k0.30_libero_10_seed43.json",
+      "success_rate": 35.2,
+      "total_episodes": 500,
+      "total_successes": 176
+    },
+    "retry_count": 1,
+    "status": "DONE",
+    "updated_at": "2026-05-29T07:10:47.244Z"
+  },
+  "timestamp": "2026-05-29T07:10:50.645717+00:00",
+  "trigger": "update_registry"
+}

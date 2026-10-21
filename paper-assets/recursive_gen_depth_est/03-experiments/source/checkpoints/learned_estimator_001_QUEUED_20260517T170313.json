@@ -1,0 +1,29 @@
+{
+  "exp_id": "learned_estimator_001",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T16:27:28.913Z",
+    "updated_at": "2026-05-17T17:03:13.610Z",
+    "hypothesis": "Statistical features (19-dimensional: perplexity stats, surprisal, n-gram entropy, repetition ratios) can predict generation depth (0-3) with over 70% accuracy using learned classifiers (ordinal MLP, prototypical networks, XGBoost), and this generalizes across models in leave-one-out evaluation, because recursive generation progressively degrades text quality in statistically measurable ways.",
+    "notes": "plan_025. XGBoost/Ordinal MLP/Prototypical on 19-feature space, leave-one-model-out CV. All 3 beat RF baseline (66.4%). XGBoost best: 67.2%. Confirms feature bottleneck (aligns with plan_019 MLP result). CPU-only run on gpu-6000pro-2. Scripts: learned_estimator_train.py, learned_estimator_sweep.py, learned_estimator_utils.py.",
+    "spec": {
+      "command": "bash -c \"bash /root/autodl-tmp/recursive_gen_depth_est/scripts/run_learned_estimator.sh\"",
+      "server": "westd-48862",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "7428",
+      "log_path": "~/runs/recursive_gen_depth_est/learned_estimator_001.log",
+      "submitted_at": "2026-05-17T17:02:39.989Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-17T17:03:13.863656+00:00",
+  "trigger": "update_registry"
+}

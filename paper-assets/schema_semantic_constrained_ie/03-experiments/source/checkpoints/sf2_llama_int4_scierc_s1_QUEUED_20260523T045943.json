@@ -1,0 +1,16 @@
+{
+  "exp_id": "sf2_llama_int4_scierc_s1",
+  "project": "schema_semantic_constrained_ie",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T04:58:33.950Z",
+    "updated_at": "2026-05-23T04:59:43.570Z",
+    "hypothesis": "AWQ INT4 quantization of fine-tuned Llama-3.1-8B does not significantly affect constraint enforcement (DR/CF) on SciERC S1, validating that OntoCoDec is robust to quantization. Expect DR and violation rates comparable to FP16 (DR=0.09%, CF=0.46%), and R-F1 within 1-2pp of FP16 (45.47%).",
+    "parent": "w5_llama_lora_scierc_constrained_eval"
+  },
+  "timestamp": "2026-05-23T04:59:43.933905+00:00",
+  "trigger": "update_registry"
+}

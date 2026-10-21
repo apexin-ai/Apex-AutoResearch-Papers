@@ -1,0 +1,108 @@
+{
+  "exp_id": "exp002_confusability_controlled",
+  "project": "schema-dag-extraction",
+  "state": "ANALYZING",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T16:13:42.626Z",
+    "updated_at": "2026-05-15T02:37:15.205Z",
+    "spec": {
+      "hypothesis": "固定 type count 时，高 BCS batch 的 recall 显著低于低 BCS batch（confusability 独立驱动质量下降）",
+      "dataset": "Few-NERD",
+      "model": "Qwen3-32B-FP8",
+      "design": "count=6,12 × 25 random + 1 low-BCS + 1 high-BCS = 54 batches",
+      "pass_criteria": {
+        "primary": "within-count |r(recall, BCS)| >= 0.3, p < 0.05",
+        "secondary": "within-count |r(F1, BCS)|",
+        "mechanistic": "confusion_rate(high-BCS pairs) > confusion_rate(low-BCS pairs)"
+      },
+      "command": "nohup python3 run_experiment.py --mode exp2 --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/",
+      "server": "cqa1-38874",
+      "data_path": "/root/schema-dag-extraction/data/parquet/test.parquet",
+      "data_count": 1000,
+      "model_name": "Qwen3-32B-FP8",
+      "seed": 42,
+      "gpu": "cuda:0",
+      "pid": 197321
+    },
+    "log_path": "/root/schema-dag-extraction/logs/exp2.log",
+    "metrics": {
+      "text_match_reeval": {
+        "count_6": {
+          "f1": 0.2,
+          "precision": 0.119,
+          "recall": 0.629,
+          "pred_gold_ratio": 5.29,
+          "hallucinated": 1417,
+          "wrong_type": 426,
+          "spurious": 34273
+        },
+        "count_12": {
+          "f1": 0.23,
+          "precision": 0.147,
+          "recall": 0.525,
+          "pred_gold_ratio": 3.57,
+          "hallucinated": 5771,
+          "wrong_type": 1216,
+          "spurious": 35639
+        }
+      },
+      "primary_recall_vs_bcs": {
+        "count_6": {
+          "r": 0.2754,
+          "p": 0.1644,
+          "n": 27,
+          "verdict": "FAIL"
+        },
+        "count_12": {
+          "r": 0.2219,
+          "p": 0.266,
+          "n": 27,
+          "verdict": "FAIL"
+        },
+        "partial": {
+          "r": 0.2522,
+          "p": 0.0658,
+          "n": 54,
+          "verdict": "FAIL"
+        }
+      },
+      "secondary_f1_vs_bcs": {
+        "count_6": {
+          "r": 0.1754,
+          "p": 0.3814,
+          "n": 27,
+          "verdict": "FAIL"
+        },
+        "count_12": {
+          "r": 0.5012,
+          "p": 0.0077,
+          "n": 27,
+          "verdict": "PASS"
+        },
+        "partial": {
+          "r": 0.3025,
+          "p": 0.0262,
+          "n": 54,
+          "verdict": "PASS"
+        }
+      },
+      "mechanistic_confusion_rate": {
+        "count_6_high_bcs": 0.0551,
+        "count_6_low_bcs": 0.0013,
+        "count_12_high_bcs": 0.0406,
+        "count_12_low_bcs": 0.0055,
+        "ratio_high_vs_low": "30-40x",
+        "count_12_ttest_p": 0.043,
+        "count_6_ttest_p": 0.989,
+        "verdict": "PASS"
+      },
+      "overall_verdict": "PRIMARY FAIL, SECONDARY PARTIAL PASS, MECHANISTIC PASS"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T02:37:15.221674+00:00",
+  "trigger": "update_registry"
+}

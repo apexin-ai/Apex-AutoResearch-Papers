@@ -1,0 +1,888 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-120_Q9",
+    "problem": "Dave is nice. Dave is red. Erin is red. Fiona is rough. Fiona is round. Gary is cold. Gary is green. Gary is red. Gary is rough. Gary is not smart. Smart, round things are nice. Red things are nice. Rough, nice things are round. Cold things are rough. If something is red and nice then it is cold. All round things are green. If something is nice and not cold then it is green.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is round.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNice($x, bool) ::: Is x nice?\nRed($x, bool) ::: Is x red?\nRough($x, bool) ::: Is x rough?\nRound($x, bool) ::: Is x round?\nCold($x, bool) ::: Is x cold?\nGreen($x, bool) ::: Is x green?\nSmart($x, bool) ::: Is x smart?\n\nFacts:\nNice(Dave, True) ::: Dave is nice.\nRed(Dave, True) ::: Dave is red.\nRed(Erin, True) ::: Erin is red.\nRough(Fiona, True) ::: Fiona is rough.\nRound(Fiona, True) ::: Fiona is round.\nCold(Gary, True) ::: Gary is cold.\nGreen(Gary, True) ::: Gary is green.\nRed(Gary, True) ::: Gary is red.\nRough(Gary, True) ::: Gary is rough.\nSmart(Gary, False) ::: Gary is not smart.\n\nRules:\nSmart($x, True) && Round($x, True) >>> Nice($x, True) ::: Smart, round things are nice.\nRed($x, True) >>> Nice($x, True) ::: Red things are nice.\nRough($x, True) && Nice($x, True) >>> Round($x, True) ::: Rough, nice things are round.\nCold($x, True) >>> Rough($x, True) ::: Cold things are rough.\nRed($x, True) && Nice($x, True) >>> Cold($x, True) ::: If something is red and nice then it is cold.\nRound($x, True) >>> Green($x, True) ::: All round things are green.\nNice($x, True) && Cold($x, False) >>> Green($x, True) ::: If something is nice and not cold then it is green.\n\nQuery:\nRound(Erin, True) ::: Erin is round."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 62.0,
+      "True": 84.5,
+      "Unknown": 117.0
+    },
+    "answer_counts": {
+      "False": 1,
+      "Unknown": 8,
+      "True": 3
+    },
+    "traces": [
+      {
+        "trace": "To determine whether Erin is round, we need to analyze the given information and the conditions that Erin satisfies.\n\n1. Erin is red.\n   - From the statement: \"Red things are nice,\" we can conclude that Erin is nice.\n\n2. Erin is red and nice.\n   - From the statement: \"If something is red and nice then it is cold,\" we can conclude that Erin is cold.\n\n3. Erin is cold.\n   - From the statement: \"Cold things are rough,\" we can conclude that Erin is rough.\n\nNow, let's combine this information with the conditions that Erin satisfies:\n\n- Erin is red.\n- Erin is nice.\n- Erin is cold.\n- Erin is rough.\n\nWe can use these conditions to make conclusions about whether Erin is round or not. However, there is a condition that says: \"All round things are green.\"\n\nFrom the given information, we know that Erin is red and cold, and from the statement: \"Red things are nice,\" we can conclude that Erin is nice. However, since Erin is cold, it follows that Erin is rough. Then, from the statement: \"All round things are green,\" we can conclude that Erin is not round.\n\nTherefore, the final answer is: \n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and find the relationship between Erin and being round.\n\n1. Erin is red. (Direct statement)\n2. Erin is round. (Statement to be determined)\n\nFrom the statements:\n- Smart, round things are nice. (Statement 1)\n- Red things are nice. (Statement 2)\n- Rough, nice things are round. (Statement 3)\n- Cold things are rough. (Statement 4)\n- If something is red and nice then it is cold. (Statement 5)\n- All round things are green. (Statement 6)\n- If something is nice and not cold then it is green. (Statement 7)\n\nFirst, let's analyze the statements related to Erin:\n- Erin is red. (Statement 1)\n- Erin is not mentioned in any statement related to being round, smart, or cold.\n\nFrom Statement 5, if something is red and nice then it is cold. However, we don't have enough information about Erin being nice or not. If Erin is not nice, then we can't determine if it is cold.\n\nFrom Statement 6, all round things are green. This doesn't directly relate to Erin, but it gives us a condition.\n\nFrom Statement 7, if something is nice and not cold then it is green. Again, we don't have enough information about Erin being nice or not.\n\nSince we don't have enough information about Erin being round, the statement \"Erin is round\" is unknown. We can't determine whether it is true or false based on the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is round\" is true, false, or unknown, we need to analyze the given information and apply it to the statement.\n\n1. Dave is nice. Dave is red. \n   - From this, we can conclude that red things are nice.\n\n2. Erin is red.\n   - Since Erin is red, and we already concluded that red things are nice, Erin is nice.\n\n3. Fiona is rough. Fiona is round. \n   - From this, we can conclude that rough, nice things are round. However, we don't know if Fiona is nice or not.\n\n4. Gary is cold. Gary is green. Gary is red. Gary is rough. Gary is not smart. \n   - From this, we can conclude that cold things are rough and that red things are nice.\n\n5. If something is red and nice then it is cold.\n   - This statement directly contradicts our previous conclusion that red things are nice. However, we will still use the information to see if we can determine anything about Erin.\n\n6. All round things are green.\n   - This statement is a general rule that might be useful later.\n\n7. If something is nice and not cold then it is green.\n   - This statement is also a general rule that might be useful later.\n\nNow, let's analyze the statement \"Erin is round\" using the given information.\n\nFrom statement 2, we know that Erin is red. We also know that Erin is nice from statement 2 (since Erin is red and red things are nice). \n\nNow, let's look at statement 5, which says that if something is red and nice then it is cold. However, we also know that Erin is nice and not cold (because we don't have any information that says Erin is cold). \n\nFrom statement 7, we know that if something is nice and not cold then it is green. So, we can conclude that Erin is green.\n\nHowever, statement 6 says that all round things are green. This statement is not directly applicable to Erin because we don't know if Erin is round or not. We only know that Erin is green.\n\nTherefore, the statement \"Erin is round\" is unknown because we don't have enough information to conclude whether Erin is round or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and apply the rules step by step.\n\nGiven statements:\n1. Dave is nice.\n2. Dave is red.\n3. Erin is red.\n4. Fiona is rough.\n5. Fiona is round.\n6. Gary is cold.\n7. Gary is green.\n8. Gary is red.\n9. Gary is rough.\n10. Gary is not smart.\n11. Smart, round things are nice.\n12. Red things are nice.\n13. Rough, nice things are round.\n14. Cold things are rough.\n15. If something is red and nice then it is cold.\n16. All round things are green.\n17. If something is nice and not cold then it is green.\n\nWe need to determine whether the statement \"Erin is round\" is true, false, or unknown.\n\nFrom statement 3, we know Erin is red. \n\nFrom statement 12, we know red things are nice. So, Erin is nice.\n\nNow, we need to find a relation between Erin being red and nice, and the color or shape of Erin.\n\nFrom statement 15, we know that if something is red and nice then it is cold.\n\nSo, Erin is cold (since Erin is red and nice).\n\nHowever, we cannot determine the shape of Erin (round or not) using the given information. \n\nBut, we can use the given information to find out if Erin can be round or not. If Erin is round, then from statement 13, we know that rough, nice things are round. But Erin is not mentioned to be rough, so it's not necessary that Erin is round.\n\nHowever, we can check if Erin can be round using statement 16 which says \"All round things are green\". If Erin is round then Erin is green. But we know Erin is red (from statement 3). \n\nSo, if Erin is round, then Erin is both green and red. This would lead to a contradiction since we cannot have two contradictory properties for Erin.\n\nHowever, we cannot conclude that Erin is not round just because of this. We can say that this is a possible contradiction, but we cannot conclude it as a fact.\n\nSince we cannot conclude that Erin is round or not using the given information, we cannot determine the truth value of the statement \"Erin is round\".\n\nHence, the answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether Erin is round, we need to analyze the given information and the rules provided.\n\n1. Erin is red. \n2. Red things are nice. (Rule 2)\n3. Nice things are red. (From 1 and Rule 2)\n4. All round things are green. (Rule 11)\n5. If something is nice and not cold then it is green. (Rule 12)\n6. If something is round then it is green. (From 4)\n7. All green things are round. (From 6)\n\nNow, we need to analyze the rules to see if we can conclude whether Erin is round or not. We have information that Erin is red (1), and red things are nice (2).\n\nFrom the rules, we can also see that if something is round then it is green (6), which means all round things are green. However, Erin is red, and red things are nice (2), but there is no direct rule that connects red things to round things.\n\nLet's see if we can derive any information from the other rules.\n\nGary is red (7), and Gary is round (8). But we know that all round things are green (6), so Gary is green, not round. This contradicts the information that Gary is round.\n\nHowever, we can also conclude that Gary is not round. Gary is red (7), and red things are nice (2). Since Gary is not smart (9), it cannot be round because smart, round things are nice (3).\n\nGary is also cold (5), and Gary is red (7), which means Gary is cold and red. This means that Gary is a red thing that is cold, but we know that if something is red and nice then it is cold (10). So, Gary is a red thing that is cold.\n\nNow, let's go back to Erin. Erin is red (1), and red things are nice (2). We know that if something is red and nice then it is cold (10). So, Erin is a red thing that is nice and cold.\n\nHowever, Erin is red (1), and Erin is nice (2), which means Erin is not cold. This contradicts the information that Erin is cold.\n\nHowever, we can conclude that Erin is not round because all green things are round (7), and Erin is red (1), which means Erin is not green. But we also know that all round things are green (6), so Erin is not round.\n\nBut there is another rule that states that all round things are green (6), and if something is nice and not cold then it is green (12). However, we know that Erin is red (1), and red things are nice (2), which means Erin is nice and not cold.\n\nThis means that Erin is a nice thing that is not cold, which means Erin is green (12). Since all green things are round (7), we can conclude that Erin is round.\n\nHowever, this contradicts the information that all round things are green (6). This means that we cannot conclude whether Erin is round or not. The statement \"Erin is round\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether Erin is round, we need to analyze the given statements and find any relevant information about Erin.\n\nFrom the given statements:\n1. Erin is red. \n2. Erin is round.\n\nSince we are given that Erin is round, we need to find a contradiction or any information that can help us determine if the statement \"Erin is round\" is true or false.\n\nWe can analyze the statements related to colors:\n- Red things are nice.\n- Red things are nice. (Repeated, but it confirms the previous statement)\n- If something is red and nice then it is cold.\n\nSince Erin is red, and red things are nice, Erin must be nice. However, since Erin is red and nice, it must also be cold.\n\nNow, let's analyze the statements related to round things:\n- All round things are green.\n- If something is nice and not cold then it is green.\n\nSince Erin is round and we've already concluded that Erin is cold, we can't use the second statement to determine if Erin is green. However, we can use the first statement, which says all round things are green. \n\nSince Erin is round, it must be green.\n\nThe statement \"Erin is round\" is true, as we've concluded that Erin is indeed round and also green.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use them to deduce information about Erin.\n\n1. All round things are green. \n   We can use this statement to check if Erin is green. If Erin is green, then we can say Erin is round.\n\n2. Erin is red. \n   We can use this statement to check if Erin is cold. According to the statement, \"If something is red and nice then it is cold.\" However, we don't know if Erin is nice yet.\n\n3. Erin is red. \n   We can use this statement with the statement \"Red things are nice.\" to check if Erin is nice.\n\n4. Red things are nice. \n   If Erin is red, then Erin is nice.\n\n5. If something is red and nice then it is cold. \n   We already know that Erin is red and Erin is nice. Therefore, Erin is cold.\n\n6. Cold things are rough. \n   We already know that Erin is cold. Therefore, Erin is rough.\n\n7. Fiona is rough. Fiona is round. \n   We can use this statement to check if rough, nice things are round. However, we don't know if Fiona is nice yet.\n\n8. Fiona is rough. Fiona is round. \n   We can use this statement with the statement \"Rough, nice things are round.\" to check if Fiona is nice.\n\n9. Rough, nice things are round. \n   If Fiona is rough, then Fiona is nice.\n\n10. Gary is cold. Gary is green. Gary is red. Gary is rough. Gary is not smart. \n    We can use this statement to check if cold things are rough. We already know that Gary is cold and Gary is rough.\n\nNow, let's go back to Erin. We know that Erin is red and Erin is cold. We also know that cold things are rough. Therefore, Erin is rough. Now we know that Erin is red and Erin is rough.\n\nLet's go back to the statement \"Rough, nice things are round.\" If Erin is rough, then Erin is nice. \n\nNow we know that Erin is nice, red, and rough. According to the statement \"Red things are nice,\" Erin is nice. According to the statement \"Rough, nice things are round,\" Erin is round.\n\nSince we can deduce that Erin is round using the given statements, the statement \"Erin is round\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether Erin is round, we need to analyze the given statements and the properties associated with each person.\n\nGiven statements:\n1. Erin is red.\n2. Erin is not mentioned in any other statements that would affect its roundness or color directly.\n\nProperties:\n1. Red things are nice.\n2. Round things are green (this is a direct property, but it's a contradiction because it states that round things are green, but we also know that Erin is red, and red things are nice, which might contradict this property).\n3. Erin is red, which means Erin is nice (from property 1).\n4. If something is nice and not cold then it is green (this property is contradictory to property 2).\n5. Round things are nice and rough (this is a direct property, but it doesn't affect Erin directly).\n\nFrom the given properties, we can conclude that Erin is nice because Erin is red. However, the statement \"All round things are green\" creates a contradiction with the statement \"Red things are nice\" and the statement \"If something is nice and not cold then it is green.\" This is because Erin is red, which means Erin is nice, and if Erin is round, it would be green according to the property \"All round things are green.\"\n\nHowever, Erin is also red, which means Erin is nice, and it is not cold (because it is red and nice). So, according to the property \"If something is nice and not cold then it is green,\" Erin should be green.\n\nSince the statement \"All round things are green\" is contradictory to the properties of Erin being red and nice, we cannot directly conclude whether Erin is round or not. However, we can conclude that Erin is green because Erin is nice and not cold.\n\nTherefore, we can say that if Erin is round, then Erin is green. But we cannot conclude whether Erin is round or not based on the given information. So, the answer to the statement \"Erin is round\" is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we will use the given statements and apply them step by step to determine if Erin is round.\n\nGiven statements:\n1. Dave is nice. \n2. Dave is red. \n3. Erin is red. \n4. Fiona is rough. \n5. Fiona is round. \n6. Gary is cold. \n7. Gary is green. \n8. Gary is red. \n9. Gary is rough. \n10. Gary is not smart. \n11. Smart, round things are nice. \n12. Red things are nice. \n13. Rough, nice things are round. \n14. Cold things are rough. \n15. If something is red and nice then it is cold. \n16. All round things are green. \n17. If something is nice and not cold then it is green.\n\nWe are asked to determine if the statement \"Erin is round\" is true, false, or unknown.\n\nLet's start by analyzing the given statements to see if we can find any information about Erin:\n\n- Statement 3 says \"Erin is red.\" We can use this information in conjunction with statement 12, \"Red things are nice,\" to conclude that Erin is nice.\n\nNow, we have two statements about Erin:\n- Erin is red.\n- Erin is nice.\n\nWe can use the information from statement 15, \"If something is red and nice then it is cold,\" to conclude that Erin is cold.\n\nNow we have three statements about Erin:\n- Erin is red.\n- Erin is nice.\n- Erin is cold.\n\nUsing this information, we can analyze the given statements to determine if we can conclude anything about Erin being round.\n\nHowever, we cannot directly apply any given statements to conclude that Erin is round. But we can use the information from statement 16, \"All round things are green,\" and statement 17, \"If something is nice and not cold then it is green,\" to determine the relationship between round, nice, and green.\n\nFrom the statements, we know that Erin is nice and cold. We cannot conclude that Erin is not cold because it is not given in the statements. Therefore, we cannot use statement 17 to conclude that Erin is green.\n\nWe also know that Erin is not round from the statement 16 because all round things are green and Erin is not green.\n\nHowever, we cannot conclude that Erin is not round because Erin is cold. Statement 14 says \"Cold things are rough\" but it doesn't imply that round things are not cold.\n\nWe cannot conclude that Erin is round based on the information given.\n\nTherefore, the answer is:\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether Erin is round, we need to break down the given information and apply it step by step.\n\n1. Erin is red. \n2. Red things are nice. (From the given statements)\n3. Since Erin is red, Erin is nice. (From statement 2)\n4. All round things are green. (From the given statements)\n5. If something is nice and not cold then it is green. (From the given statements)\n6. From statements 3 and 5, we can infer that Erin is not cold because Erin is nice.\n7. Since Erin is not cold, Erin is green. (From statement 5)\n8. But from statement 4, we know that all round things are green. This is a universal statement that applies to all round things, including Erin.\n9. Therefore, Erin is green. (From statement 7 and 8)\n\nNow we need to find out if Erin is round or not. We already know that Erin is green, which means Erin is round according to statement 4: \"All round things are green.\"\n\nHowever, let's re-examine the statement \"Rough, nice things are round.\" Since we know Erin is nice, we can't directly conclude that Erin is round from this statement. But we can see that Erin is not described as rough, so this statement doesn't apply to Erin.\n\nSince we have two different conclusions about Erin being round from statements 4 and 8, and statement 8 directly applies to Erin, we can confidently conclude that Erin is round.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is round\" is true, false, or unknown, we need to analyze the given information.\n\nFrom the given statements:\n1. Dave is red. (This statement does not provide any information about Erin, so we can ignore it.)\n2. Erin is red. (This directly tells us that Erin is red, but does not provide any information about whether she is round.)\n3. Fiona is rough. (This statement does not provide any information about Erin, so we can ignore it.)\n4. Fiona is round. (This statement does not provide any information about Erin, so we can ignore it.)\n5. Gary is cold. (This statement does not provide any information about Erin, so we can ignore it.)\n6. Gary is green. (This statement does not provide any information about Erin, so we can ignore it.)\n7. Gary is red. (This statement does not provide any information about Erin, so we can ignore it.)\n8. Gary is rough. (This statement does not provide any information about Erin, so we can ignore it.)\n9. Gary is not smart. (This statement does not provide any information about Erin, so we can ignore it.)\n10. Smart, round things are nice. (This statement does not provide any information about Erin, so we can ignore it.)\n11. Red things are nice. (This statement does not provide any information about Erin, so we can ignore it.)\n12. Rough, nice things are round. (This statement does not provide any information about Erin, so we can ignore it.)\n13. Cold things are rough. (This statement does not provide any information about Erin, so we can ignore it.)\n14. If something is red and nice then it is cold. (This statement does not provide any information about Erin, so we can ignore it.)\n15. All round things are green. (This statement provides a useful rule, but we do not have enough information to determine whether Erin is round or not.)\n16. If something is nice and not cold then it is green. (This statement provides a useful rule, but we do not have enough information to determine whether Erin is round or not.)\n\nNow, let's analyze the rules we have:\n\nFrom rules 2 and 15, we cannot determine whether Erin is round or not, because rule 15 contradicts rule 2.\n\nTherefore, we cannot determine whether Erin is round or not.\n\nThe final answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether Erin is round, we need to analyze the given statements and their implications. \n\n1. Dave is nice.\n   - This statement does not provide any information about Erin, so it is irrelevant to the question.\n\n2. Dave is red.\n   - This statement does not provide any information about Erin, so it is irrelevant to the question.\n\n3. Erin is red.\n   - This statement does not provide any information about Erin being round, but it does make Erin a red thing.\n\n4. Fiona is rough.\n   - This statement does not provide any information about Erin, so it is irrelevant to the question.\n\n5. Fiona is round.\n   - This statement does not provide any information about Erin, so it is irrelevant to the question.\n\n6. Gary is cold.\n   - This statement does not provide any information about Erin, so it is irrelevant to the question.\n\n7. Gary is green.\n   - This statement does not provide any information about Erin, so it is irrelevant to the question.\n\n8. Gary is red.\n   - This statement does not provide any information about Erin, so it is irrelevant to the question.\n\n9. Gary is rough.\n   - This statement does not provide any information about Erin, so it is irrelevant to the question.\n\n10. Gary is not smart.\n    - This statement does not provide any information about Erin, so it is irrelevant to the question.\n\n11. Smart, round things are nice.\n    - This statement does not provide any information about Erin, so it is irrelevant to the question.\n\n12. Red things are nice.\n    - This statement does not provide any information about Erin being round, but it does make Erin a nice thing.\n\n13. Rough, nice things are round.\n    - This statement does not provide any information about Erin, so it is irrelevant to the question.\n\n14. Cold things are rough.\n    - This statement does not provide any information about Erin, so it is irrelevant to the question.\n\n15. If something is red and nice then it is cold.\n    - This statement implies that Erin being red and nice makes Erin cold.\n\n16. All round things are green.\n    - This statement implies that Erin cannot be round, as it would contradict this rule.\n\nNow, let's analyze the given statement: Erin is red and Erin is nice. From statement 16, we know that Erin cannot be round, because all round things are green. However, we have two different statements that imply Erin is round (statement 3) and Erin is not round (statement 16). Since statement 16 is more specific and contradicts statement 3, we must conclude that Erin is not round.\n\nHowever, we are asked to determine whether Erin is round, not whether Erin is not round. Since the statement \"Erin is round\" is not supported by any rule and is contradicted by another rule, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_erin, nice_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_erin, nice_erin), cold_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_erin, rough_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_erin, green_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not round(erin)",
+          "z3_formula": "Not(round_erin) == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & round(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_erin, round_erin), nice_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_erin, nice_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_erin, nice_erin), round_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_erin, rough_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_erin, nice_erin), cold_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_erin, green_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & Not(cold(X)) -> green(X)",
+          "z3_formula": "Implies(And(nice_erin, Not(cold_erin)), green_erin)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_dave, nice_dave), cold_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_erin, nice_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_fiona, nice_fiona), round_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not smart(gary)",
+          "z3_formula": "Not(smart_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_gary, rough_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_gary, nice_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_gary, nice_gary), cold_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & not cold(X) -> green(X)",
+          "z3_formula": "Implies(And(nice_erin, Not(cold_erin)), green_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_erin, green_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == Unknown",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not(smart(gary))",
+          "z3_formula": "Not(smart_gary) == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & round(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_X, round_X), nice_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_X, nice_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_X, nice_X), round_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_X, rough_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_X, nice_X), cold_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_X, green_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & not(cold(X)) -> green(X)",
+          "z3_formula": "Implies(And(nice_X, Not(cold_X)), green_X)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_erin, nice_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_erin, cold_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & Not(cold(X)) -> green(X)",
+          "z3_formula": "Implies(And(nice_erin, Not(cold_erin)), green_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_erin, round_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_erin, green_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(erin))",
+          "z3_formula": "Not(round_erin)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_erin, nice_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_erin, nice_erin), cold_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_erin, green_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & Not(cold(X)) -> green(X)",
+          "z3_formula": "Implies(And(nice_erin, Not(cold_erin)), green_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_erin, green_erin)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_erin, nice_erin), cold_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_erin, nice_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_erin, nice_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_erin, nice_erin), cold_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_erin, rough_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_erin, nice_erin), round_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_erin, nice_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_erin, nice_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_erin, nice_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & Not(cold(X)) -> green(X)",
+          "z3_formula": "Implies(And(nice_erin, Not(cold_erin)), green_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_erin, green_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X) & rough(X)",
+          "z3_formula": "Implies(round_erin, And(nice_erin, rough_erin))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_erin, green_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin) -> green(erin)",
+          "z3_formula": "Implies(round_erin, green_erin)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_erin, nice_erin), cold_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_erin, green_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & not cold(X) -> green(X)",
+          "z3_formula": "Implies(And(nice_erin, Not(cold_erin)), green_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not round(erin)",
+          "z3_formula": "Not(round_erin) == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_erin, nice_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_erin, green_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & Not(cold(X)) -> green(X)",
+          "z3_formula": "Implies(And(nice_erin, Not(cold_erin)), green_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "Not(cold(erin))",
+          "z3_formula": "Not(cold_erin) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_erin, green_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_erin, green_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & Not(cold(X)) -> green(X)",
+          "z3_formula": "Implies(And(nice_erin, Not(cold_erin)), green_erin)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_erin, nice_erin), cold_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == Unknown",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_erin, green_erin)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_erin, nice_erin), cold_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == False",
+          "source_step": 17
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 126,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 40
+    },
+    "maxsat_stats": {
+      "satisfied": 38,
+      "excluded": 2,
+      "total_weight": 121,
+      "solve_time_ms": 1.3129357248544693
+    },
+    "timing": {
+      "trace_gen_s": 7.863,
+      "extraction_s": 18.832,
+      "dedup_s": 0.89,
+      "maxsat_s": 0.004,
+      "total_s": 27.589
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "exp_id": "pi05-adaptive-long-s43-cqa1-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-26T09:44:54.814Z",
+    "updated_at": "2026-05-26T10:30:37.809Z",
+    "hypothesis": "π0.5 Adaptive Conformal CRM (K=2, τ=0.25) on Long s43. Table 2 long-horizon cross-architecture analysis. Re-run after cqa1 node-level tmux cleanup.",
+    "parent": "pi05-adaptive-long-s43-cqa1",
+    "spec": {
+      "command": "python -u src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --benchmark long --seed 43",
+      "server": "cqa1-32758",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "287129",
+      "log_path": "~/runs/acr-vla-conformal-refinement/pi05-adaptive-long-s43-cqa1-r2.log",
+      "submitted_at": "2026-05-26T09:46:53.328Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_long",
+      "data_count": 20,
+      "model_name": "pi05_libero_finetuned",
+      "seed": 43,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt",
+      "eval_data": "libero_long",
+      "wall_clock_seconds": 2624.5,
+      "gpu_hours": 0.73
+    },
+    "reproduce": {
+      "finished_at": "2026-05-26T10:12:08.445Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-26T10:12:29.352897+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "success_rate": 0,
+      "trigger_rate": null,
+      "benchmark": "long",
+      "mode": "adaptive_conformal_crm",
+      "seed": 43,
+      "model": "pi05",
+      "n_rollouts": 20,
+      "n_tasks": 10,
+      "error": "CUDA OOM at step 0 of every rollout",
+      "successes": 0,
+      "total": 200
+    },
+    "checkpoint_path": "N/A (eval only)",
+    "log_path": "~/runs/acr-vla-conformal-refinement/pi05-adaptive-long-s43-cqa1-r2.log",
+    "conclusion": "failed",
+    "completed_at": "2026-05-26T10:30:37.809Z"
+  },
+  "timestamp": "2026-05-26T10:30:41.063676+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,32 @@
+{
+  "exp_id": "exp029_seed2_ood_reeval_v4",
+  "project": "cost-verify-agent-rl",
+  "state": "ALLOCATED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T07:39:29.323Z",
+    "updated_at": "2026-05-19T08:07:52.233Z",
+    "hypothesis": "Evaluate exp029_seed2 step 30 checkpoint (val peak 31.25%) on 134 OOD tasks (valid_unseen) for cross-seed OOD comparison. Paper table requires seed2 OOD number (seed1=23.88%). Previous v1/v2/v3 all crashed due to root partition overflow (M017), now fixed with TMPDIR redirect.",
+    "parent": "exp029_seed2_westd_resume",
+    "spec": {
+      "command": "bash -c \"export TMPDIR=/root/autodl-tmp/tmp && mkdir -p $TMPDIR && export RAY_TMPDIR=/root/autodl-tmp/ray_tmp && mkdir -p $RAY_TMPDIR && export TMUX_TMPDIR=/root/autodl-tmp/tmux && mkdir -p $TMUX_TMPDIR && export WANDB_DIR=/root/autodl-tmp/wandb && export WANDB_TMPDIR=/root/autodl-tmp/tmp && export WANDB_PROJECT=cost-verify-agent-rl && export CUDA_VISIBLE_DEVICES=0,1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && python -m verl.trainer.main_ppo --config-path /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config --config-name _alfworld_exp029_seed2_reeval_ood_v4\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "828607",
+      "log_path": "~/runs/cost-verify-agent-rl/exp029_seed2_ood_reeval_v4.log",
+      "submitted_at": "2026-05-19T07:46:33.081Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "notes": "D083: Worker 取消，OOD eval 延迟到 bjb1（h=20 完成后）。westd 4 GPU 优先给 7B Cell A RL。",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-19T08:07:52.427953+00:00",
+  "trigger": "update_registry"
+}

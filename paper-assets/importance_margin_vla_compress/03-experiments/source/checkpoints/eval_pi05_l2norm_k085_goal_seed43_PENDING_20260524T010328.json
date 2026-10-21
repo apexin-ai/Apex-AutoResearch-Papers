@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_pi05_l2norm_k085_goal_seed43",
+  "project": "importance_margin_vla_compress",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T01:03:13.142Z",
+    "updated_at": "2026-05-24T01:03:27.021Z",
+    "hypothesis": "π0.5 L2norm k=0.85 Goal seed43 — 与 Random k=0.85 Goal seed43 (53.4%) 配对计算 cross-seed importance margin"
+  },
+  "timestamp": "2026-05-24T01:03:28.078891+00:00",
+  "trigger": "update_registry"
+}

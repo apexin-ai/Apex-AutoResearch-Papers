@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_openvla_attn_k075_goal_seed42",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T22:13:30.315Z",
+    "updated_at": "2026-05-26T22:14:00.683Z",
+    "hypothesis": "Attention-based pruning at k=0.75 on OpenVLA Goal suite will retain task performance by preserving the most important attention heads for goal-conditioned manipulation tasks."
+  },
+  "timestamp": "2026-05-26T22:14:01.965882+00:00",
+  "trigger": "update_registry"
+}

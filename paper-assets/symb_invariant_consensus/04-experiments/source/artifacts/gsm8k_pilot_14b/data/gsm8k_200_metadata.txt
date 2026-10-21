@@ -1,6 +1,0 @@
-Data: /root/symb_invariant_consensus/data/gsm8k_200.json (200 problems, seed=42, from GSM8K test 1319)
-Eval: /root/symb_invariant_consensus/scripts/eval_gsm8k.py (aligned with eval_math500.py interface)
-Prep: /root/symb_invariant_consensus/scripts/prepare_gsm8k.py (reproducible sampling)
-Fields: id, problem, solution, answer, level, dataset
-Answer type: integer (extracted from #### N format)
-Supports: --mode, --k, --n-problems, --temperature, --resume, --save-intermediates

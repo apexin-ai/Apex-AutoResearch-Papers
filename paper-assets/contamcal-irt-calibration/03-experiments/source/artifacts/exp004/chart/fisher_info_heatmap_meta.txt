@@ -1,0 +1,11 @@
+Remote path: /root/autodl-tmp/exp006/figures/fisher_info_heatmap.pdf (and .png)
+Server: cqa1-21977
+Script: /root/contamcal-irt-calibration/exp004_sim_sweep/plot_fisher_heatmap.py
+
+Data: exp004_sim_sweep/results/sweep_summary.json (16 conditions)
+CI Width Matrix (95% CI width of γ):
+        N=8     N=20    N=50    N=100
+AUC=0.55  0.197   0.133   0.087   0.065
+AUC=0.65  0.228   0.156   0.102   0.076
+AUC=0.80  0.416   0.258   0.163   0.116
+AUC=0.90  0.540   0.330   0.206   0.148

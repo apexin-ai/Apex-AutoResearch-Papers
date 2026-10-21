@@ -1,0 +1,36 @@
+{
+  "exp_id": "dev_eval_4b_rsft_ced_s42_v2",
+  "project": "faith-evidence-ie",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T02:58:09.687Z",
+    "updated_at": "2026-05-22T03:32:50.932Z",
+    "hypothesis": "验证 retrain 4B RSFT CED s42 v2 checkpoint 质量：dev set eval 应与原 4B RSFT s42 dev 水平一致（~0.4517 ign_f1）。偏差 >2pp 需要报告。",
+    "parent": "retrain_4b_rsft_ced_s42_v2",
+    "spec": {
+      "command": "python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_ced_s42_v2 --base_model /root/autodl-tmp/models/Qwen/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/dev_eval_4b_rsft_ced_s42_v2 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42",
+      "server": "rtx5090-4x",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "157071",
+      "log_path": "~/runs/faith-evidence-ie/dev_eval_4b_rsft_ced_s42_v2.log",
+      "submitted_at": "2026-05-22T02:58:37.386Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/re-docred-repo/data",
+      "data_count": 985,
+      "model_name": "Qwen3-4B + SFT adapter + RSFT CED s42 v2",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/rsft_output_ced_s42_v2",
+      "eval_data": "re-docred dev"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-22T03:32:51.676249+00:00",
+  "trigger": "update_registry"
+}

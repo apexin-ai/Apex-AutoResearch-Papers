@@ -1,0 +1,16 @@
+{
+  "exp_id": "bce_isocompute_v3_s123_eval",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T21:38:39.052Z",
+    "updated_at": "2026-05-17T21:38:45.593Z",
+    "hypothesis": "BCE predictor seed 123 at 50% sparsity eval metrics (PPL, MMLU, ARC, WG, GSM8K) align with seeds 42/456, completing 3-seed mean±std for Table 2 BCE row",
+    "parent": "bce_isocompute_v3_s123"
+  },
+  "timestamp": "2026-05-17T21:38:45.861556+00:00",
+  "trigger": "update_registry"
+}

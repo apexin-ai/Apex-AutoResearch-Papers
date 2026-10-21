@@ -1,0 +1,191 @@
+{
+  "generated_at": "2026-05-20",
+  "method": "meta-analysis of existing experiments, zero GPU cost",
+  "step1_sigmoid_verification": {
+    "data_source": "dose_response_d120_compiled.csv (FDR-corrected PermG)",
+    "model": "Pythia-410M, WikiText, fp32, T=10",
+    "n_alpha_points": 12,
+    "sync_dip_excluded": [
+      0.55,
+      0.6
+    ],
+    "existing_params": {
+      "k": 200.0,
+      "alpha_c": 0.4755,
+      "y_max": 0.7518
+    },
+    "refit_params": {
+      "k": 635.3049880425866,
+      "alpha_c": 0.4665278863067497,
+      "y_max": 0.640624999634993
+    },
+    "refit_std_errors": {
+      "k": 21305049097.937653,
+      "alpha_c": 554267.7582850913,
+      "y_max": 0.08103221741852788
+    },
+    "ssr_existing": 0.12131704413670183,
+    "ssr_refit": 0.09231228340526582,
+    "selected": "refit",
+    "conclusion": "FDR-corrected data consistent with existing fit"
+  },
+  "step2_signal_strength": {
+    "threshold_model": {
+      "formula": "z(α,T,N) = S_θ(N)·α·√T − θ",
+      "theta": 0.5898495336824331,
+      "S_theta0_base": 0.3998191872282314
+    },
+    "simple_model": {
+      "formula": "S(N) = Φ⁻¹(rate) / √T"
+    },
+    "models": {
+      "GPT-2-M": {
+        "N_params": 355000000.0,
+        "N_display": "0.35B",
+        "family": "gpt2",
+        "permg_rate_alpha1": 0.75,
+        "S_simple": 0.2133,
+        "S_theta": 0.3998,
+        "alpha_c_T10_predicted": 0.4665
+      },
+      "Pythia-410M": {
+        "N_params": 410000000.0,
+        "N_display": "0.41B",
+        "family": "pythia",
+        "permg_rate_alpha1": 0.75,
+        "S_simple": 0.2133,
+        "S_theta": 0.3998,
+        "alpha_c_T10_predicted": 0.4665
+      },
+      "Qwen2.5-0.8B": {
+        "N_params": 800000000.0,
+        "N_display": "0.80B",
+        "family": "qwen",
+        "permg_rate_alpha1": 0.875,
+        "S_simple": 0.3638,
+        "S_theta": 0.5503,
+        "alpha_c_T10_predicted": 0.339
+      },
+      "OPT-1.3B": {
+        "N_params": 1300000000.0,
+        "N_display": "1.30B",
+        "family": "opt",
+        "permg_rate_alpha1": 0.75,
+        "S_simple": 0.2133,
+        "S_theta": 0.3998,
+        "alpha_c_T10_predicted": 0.4665
+      },
+      "Pythia-1.4B": {
+        "N_params": 1400000000.0,
+        "N_display": "1.40B",
+        "family": "pythia",
+        "permg_rate_alpha1": 0.5,
+        "S_simple": 0.0,
+        "S_theta": 0.1865,
+        "alpha_c_T10_predicted": 1.0
+      },
+      "SmolLM3-3B": {
+        "N_params": 3000000000.0,
+        "N_display": "3.00B",
+        "family": "smollm",
+        "permg_rate_alpha1": 0.1875,
+        "S_simple": -0.2805,
+        "S_theta": -0.094,
+        "alpha_c_T10_predicted": null
+      },
+      "Pythia-6.9B": {
+        "N_params": 6900000000.0,
+        "N_display": "6.90B",
+        "family": "pythia",
+        "permg_rate_alpha1": 0.8125,
+        "S_simple": 0.2805,
+        "S_theta": 0.4671,
+        "alpha_c_T10_predicted": 0.3994
+      }
+    },
+    "notes": [
+      "SmolLM3-3B has S_theta < 0 (detection rate below model baseline)",
+      "Pythia-1.4B shows high seed variance (2/8 vs 6/8)",
+      "Most models cluster at rate=0.75 → similar S values"
+    ]
+  },
+  "step3_power_law": {
+    "formula": "S_θ(N) = s₀ · N^β",
+    "all_models": {
+      "s0": 0.3940670854656815,
+      "beta": -0.0016082444115385257,
+      "R2": 0.0,
+      "n": 6,
+      "excluded": [
+        "SmolLM3-3B (S_θ < 0)"
+      ]
+    },
+    "pythia_only": {
+      "s0": 0.059474905038371,
+      "beta": 0.08040445557511354,
+      "R2": 0.0537,
+      "n": 3
+    },
+    "interpretation": "Weak or no power-law scaling: cross-architecture variation dominates size effect"
+  },
+  "step4_scaling_law": {
+    "model_A_probit_sqrt_T": {
+      "formula": "α_c = const (T-independent)",
+      "alpha_c": 0.4645,
+      "rationale": "Probit z-scores scale as √T; α_c is the rate=0.5 crossing which stays fixed"
+    },
+    "model_B_linear_threshold": {
+      "formula": "α_c(T, N) = θ / (S_θ(N) · √T)",
+      "theta": 0.5898495336824331,
+      "combined_formula": "α_c(T, N) = 0.5898 / (3.9407e-01 · N^{-0.0016} · √T)",
+      "predictions_pythia410m": {
+        "T=5": 0.6598,
+        "T=10": 0.4665,
+        "T=15": 0.3809,
+        "T=20": 0.3299,
+        "T=25": 0.2951,
+        "T=30": 0.2694
+      },
+      "predictions_pythia410m_CI95": {
+        "T=5": [
+          0.601,
+          0.7891
+        ],
+        "T=10": [
+          0.425,
+          0.558
+        ],
+        "T=15": [
+          0.347,
+          0.4556
+        ],
+        "T=20": [
+          0.3005,
+          0.3946
+        ],
+        "T=25": [
+          0.2688,
+          0.3529
+        ],
+        "T=30": [
+          0.2454,
+          0.3222
+        ]
+      }
+    },
+    "t20_comparison": {
+      "model_A_alpha_c": 0.4645,
+      "model_B_alpha_c": 0.3299,
+      "locked_predictions_use": "Model A (Probit-√T)",
+      "discriminating_test": "α=0.40-0.45 at T=20: Model B predicts detection, Model A predicts none"
+    }
+  },
+  "step5_figures": [
+    "fig_s_vs_n.pdf",
+    "fig_s_vs_n.png",
+    "fig_alpha_c_vs_t.pdf",
+    "fig_alpha_c_vs_t.png",
+    "fig_alpha_c_heatmap.pdf",
+    "fig_alpha_c_heatmap.png"
+  ]
+}

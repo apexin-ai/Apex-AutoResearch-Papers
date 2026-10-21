@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval-k2-tau015-spatial-s42-r2",
+  "project": "acr-vla-conformal-refinement",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T00:52:41.760Z",
+    "updated_at": "2026-05-25T00:53:16.092Z",
+    "hypothesis": "K=2 τ-sweep: τ=0.15 Adaptive Conformal on Spatial s42. Retry on bjb2-28827 with 14400s timeout after first attempt timed out on bjb2-40593 (7200s, completed only 4/10 tasks)."
+  },
+  "timestamp": "2026-05-25T00:53:18.293900+00:00",
+  "trigger": "update_registry"
+}

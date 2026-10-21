@@ -1,0 +1,40 @@
+{
+  "exp_id": "libero_fullft_seed1",
+  "project": "importance_margin_vla_compress",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 1,
+    "created_at": "2026-05-16T21:52:18.096Z",
+    "updated_at": "2026-05-17T01:51:28.494Z",
+    "hypothesis": "SmolVLA full expert FT on LIBERO seed=1, 第三 seed 用于论文统计完整性 (已有 seed=42, seed=0)",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-17T01:27:49.728Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "python train.py --config configs/libero_full_ft_seed1.yaml --gpu 0 --seed 1",
+      "server": "cqa1-33015",
+      "gpu": [
+        "cuda:0"
+      ],
+      "data_path": "HuggingFaceVLA/libero",
+      "data_count": 273465,
+      "model_name": "smolvla_base_full_ft",
+      "seed": 1,
+      "checkpoint_source": "N/A (from scratch)",
+      "eval_data": "N/A (training)"
+    },
+    "notes": "2026-05-17 09:38 check: training STILL RUNNING (Cron report was incorrect). Step 60,950/100K (61%), sps=4.2, loss~0.05-0.10. Last checkpoint at step_060000 with eval/action_loss=0.0657. Process started 05:34 today. ETA ~2.6h to 100K. Log path: /root/runs/importance_margin_vla_compress/libero_fullft_seed1.log",
+    "reproduce": {
+      "finished_at": "2026-05-17T01:51:28.197Z"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-17T01:51:28.559122+00:00",
+  "trigger": "update_registry"
+}

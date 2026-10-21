@@ -1,0 +1,58 @@
+{
+  "exp_id": "mvp_kl_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 2,
+    "created_at": "2026-05-15T11:50:59.003Z",
+    "updated_at": "2026-05-15T13:14:04.521Z",
+    "server": "westd-34887",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "command": "bash -c \"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && WANDB_MODE=disabled python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/mvp_kl_s42 --wandb_run_name mvp_kl_s42 --dataset wikitext-103\"",
+      "finished_at": "2026-05-15T13:14:04.493Z"
+    },
+    "failure_reason": "CUDA OOM: CUDA out of memory. Tried to allocate 1.96 GiB. GPU 0 has a total capacity of 94.97 GiB of which 1.88 GiB is free. Including non-PyTorch memory, this process has 93.08 GiB memory in use. Of the allocated memory 88.41 GiB is allocated by PyTorch, and ",
+    "completed_at": "2026-05-15T11:58:28.834Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T11:58:29.490811+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T12:10:37.036636+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "诊断中 | fix_worker_id: worker_diagnose_mvp_kl_s42_20260515T115944 | 两个 seed-42 实验同时 ~15s 崩溃，疑似同一根因"
+      }
+    },
+    "notes": "retry 3 | gradient checkpointing 已启用（KL 模式自动开启），显存 88GB→~50GB（bs=4）。gradient_accumulation 实现也已修复。batch_size=4, seq_len=2048, 1000 steps。",
+    "conclusion": "failed",
+    "spec": {
+      "command": "bash -c \"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && WANDB_MODE=disabled python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/mvp_kl_s42 --wandb_run_name mvp_kl_s42 --dataset wikitext-103\"",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "53754",
+      "log_path": "~/runs/distill_sparse_swiglu/mvp_kl_s42.log",
+      "submitted_at": "2026-05-15T12:37:15.045Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "53754",
+    "log_path": "~/runs/distill_sparse_swiglu/mvp_kl_s42.log"
+  },
+  "timestamp": "2026-05-15T13:14:04.535841+00:00",
+  "trigger": "update_registry"
+}

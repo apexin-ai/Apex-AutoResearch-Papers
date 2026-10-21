@@ -1,0 +1,31 @@
+{
+  "exp_id": "exp_002_merge_conll2003",
+  "project": "struct_self_consist_ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:25:56.211Z",
+    "updated_at": "2026-05-15T12:41:12.824Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 llamafactory-cli export export_config_conll2003.yaml > /tmp/merge_conll2003.log 2>&1 && echo 'MERGE_DONE' >> /tmp/merge_conll2003.log\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "57524",
+      "log_path": "~/runs/struct_self_consist_ie/exp_002_merge_conll2003.log",
+      "submitted_at": "2026-05-14T12:25:56.139Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "failure_reason": "Superseded by exp_002_ner_conll2003 (completed on autodl-5090)"
+    },
+    "conclusion": "killed",
+    "failure_reason": "superseded by exp_002_ner_conll2003 (DONE)",
+    "notes": "Completed as exp_002_conll_n16 on autodl-5090. Registry status corrected."
+  },
+  "timestamp": "2026-05-15T12:41:12.982332+00:00",
+  "trigger": "update_registry"
+}

@@ -1,5 +1,0 @@
-GPT-5.5 Parse Failure Bias: True PF=1.2% (19/1600), not 10.1%.
-142/161 "zero-entity" samples are gold-empty (correct predictions).
-MV Δ shift: 0.26pp, ρ shift: ~0.02, selection gap shift: 0.17pp.
-Direction: conservative (inclusion slightly inflates positive claims).
-Conclusion: Exclusion does NOT materially affect estimates.

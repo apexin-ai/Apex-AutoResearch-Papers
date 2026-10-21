@@ -1,0 +1,762 @@
+{
+  "pid": "folio_99",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(man)",
+          "z3_formula": "kind_man == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "evil(man)",
+          "z3_formula": "evil_man == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "Not ugly(X) -> handsome(X)",
+          "z3_formula": "Implies(Not(ugly_man), handsome_man)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "evil(X) -> ugly(X)",
+          "z3_formula": "Implies(evil_man, ugly_man)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "gentleman(X) -> handsome(X)",
+          "z3_formula": "Implies(gentleman_harry, handsome_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "CEO(X) -> gentleman(X)",
+          "z3_formula": "Implies(CEO_harry, gentleman_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(harry)",
+          "z3_formula": "gentleman_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "handsome(harry)",
+          "z3_formula": "handsome_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "gentleman(harry)",
+          "z3_formula": "gentleman_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "If CEO(harry) then gentleman(harry)",
+          "z3_formula": "Implies(CEO_harry, gentleman_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "If gentleman(harry) then Not CEO(harry)",
+          "z3_formula": "Implies(gentleman_harry, Not(CEO_harry))",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "man(X) -> kind(X) | evil(X)",
+          "z3_formula": "Implies(Or(kind_harry, evil_harry), True)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "ugly(X) -> Not(handsome(X))",
+          "z3_formula": "Implies(ugly_harry, Not(handsome_harry))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "evil(X) -> ugly(X)",
+          "z3_formula": "Implies(evil_harry, ugly_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "gentleman(X) -> handsome(X)",
+          "z3_formula": "Implies(gentleman_harry, handsome_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "gentleman(X) -> handsome(X)",
+          "z3_formula": "Implies(gentleman_harry, handsome_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "CEO(X) -> gentleman(X)",
+          "z3_formula": "Implies(CEO_harry, gentleman_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(harry)",
+          "z3_formula": "gentleman_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "handsome(harry)",
+          "z3_formula": "handsome_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(ugly(harry))",
+          "z3_formula": "Not(ugly_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "Not(evil(harry))",
+          "z3_formula": "Not(evil_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "handsome(CEO(X))",
+          "z3_formula": "handsome_harry",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "kind(CEO(X))",
+          "z3_formula": "kind_harry",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "man(X)",
+          "z3_formula": "man_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "man(X) -> kind(X) | evil(X)",
+          "z3_formula": "Implies(man_harry, Or(kind_harry, evil_harry))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not handsome(X) -> not ugly(X)",
+          "z3_formula": "Not(handsome_X) -> Not(ugly_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "evil(X) -> ugly(X)",
+          "z3_formula": "Implies(evil_harry, ugly_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "gentleman(X) -> handsome(X)",
+          "z3_formula": "Implies(gentleman_harry, handsome_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(harry)",
+          "z3_formula": "gentleman_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "gentleman(X) -> CEO(X)",
+          "z3_formula": "Implies(gentleman_harry, CEO_harry)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "man(X) & (kind(X) | evil(X))",
+          "z3_formula": "And(man_X, Or(kind_X, evil_X))",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "not ugly(X) -> handsome(X)",
+          "z3_formula": "Implies(Not(ugly_X), handsome_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "evil(X) -> ugly(X)",
+          "z3_formula": "Implies(evil_X, ugly_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "gentleman(X) -> handsome(X)",
+          "z3_formula": "Implies(gentleman_X, handsome_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "gentleman(X) -> handsome(X)",
+          "z3_formula": "Implies(gentleman_X, handsome_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "CEO(X) -> gentleman(X)",
+          "z3_formula": "Implies(CEO_X, gentleman_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(harry)",
+          "z3_formula": "gentleman_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "gentleman(harry) & handsome(harry) & not evil(harry) & not ugly(harry)",
+          "z3_formula": "And(gentleman_harry, And(handsome_harry, And(Not(evil_harry), Not(ugly_harry))))",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(man)",
+          "z3_formula": "kind_man == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "evil(man)",
+          "z3_formula": "evil_man == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(man) | evil(man)",
+          "z3_formula": "Or(kind_man, evil_man)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not handsome(ugly)",
+          "z3_formula": "Not(handsome_ugly) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "evil(man) -> ugly(man)",
+          "z3_formula": "Implies(evil_man, ugly_man)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "ugly(man) -> not handsome(man)",
+          "z3_formula": "Implies(ugly_man, Not(handsome_man))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(man) -> handsome(man)",
+          "z3_formula": "Implies(gentleman_man, handsome_man)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "ceo(man) -> gentleman(man)",
+          "z3_formula": "Implies(ceo_man, gentleman_man)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(harry)",
+          "z3_formula": "gentleman_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "gentleman(man) -> ceo(man)",
+          "z3_formula": "Implies(gentleman_man, ceo_man)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "ceo(harry)",
+          "z3_formula": "ceo_harry == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "man(harry)",
+          "z3_formula": "man_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "man(X) -> kind(X) | evil(X)",
+          "z3_formula": "Implies(Or(kind_harry, evil_harry), man_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not ugly(X) -> not handsome(X)",
+          "z3_formula": "Not(Implies(Not(ugly_harry), handsome_harry))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "evil(X) -> ugly(X)",
+          "z3_formula": "Implies(evil_harry, ugly_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(X) -> handsome(X)",
+          "z3_formula": "Implies(gentleman_harry, handsome_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(X) -> handsome(X)",
+          "z3_formula": "Implies(gentleman_harry, handsome_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "CEO(X) -> gentleman(X)",
+          "z3_formula": "Implies(CEO_harry, gentleman_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(harry)",
+          "z3_formula": "gentleman_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "gentleman(harry) -> CEO(harry)",
+          "z3_formula": "Implies(gentleman_harry, CEO_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "CEO(harry)",
+          "z3_formula": "CEO_harry == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind_or_evil(man)",
+          "z3_formula": "kind_or_evil_man == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not ugly_and_handsome",
+          "z3_formula": "Not(And(ugly_person, handsome_person)) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "evil(X) -> ugly(X)",
+          "z3_formula": "Implies(evil_man, ugly_man)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "gentleman(X) -> handsome(X)",
+          "z3_formula": "Implies(gentleman_man, handsome_man)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(harry)",
+          "z3_formula": "gentleman_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "gentleman(X) -> CEO(X)",
+          "z3_formula": "Implies(gentleman_man, CEO_man)",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(X) | evil(X)",
+          "z3_formula": "Or(kind_harry, evil_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "Not(handsome(X)) | ugly(X)",
+          "z3_formula": "Not(handsome_harry) | ugly_harry",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "evil(X) -> ugly(X)",
+          "z3_formula": "Implies(evil_harry, ugly_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(X) -> handsome(X)",
+          "z3_formula": "Implies(gentleman_harry, handsome_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(X) -> handsome(X)",
+          "z3_formula": "Implies(gentleman_harry, handsome_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(X) -> handsome(X)",
+          "z3_formula": "Implies(gentleman_harry, handsome_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(X)",
+          "z3_formula": "gentleman_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "handsome(X)",
+          "z3_formula": "handsome_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "Not(handsome(X)) | ugly(X)",
+          "z3_formula": "Not(handsome_harry) | ugly_harry",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "Not(evil(X))",
+          "z3_formula": "Not(evil_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "kind(X) | evil(X)",
+          "z3_formula": "Or(kind_harry, evil_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "kind(X)",
+          "z3_formula": "kind_harry",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(X) -> CEO(X)",
+          "z3_formula": "Implies(gentleman_harry, ceo_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(X)",
+          "z3_formula": "gentleman_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "CEO(X)",
+          "z3_formula": "ceo_harry == Unknown",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(X) | evil(X)",
+          "z3_formula": "Or(kind_harry, evil_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "Not(handsome(X)) | Not(ugly(X))",
+          "z3_formula": "Not(handsome_harry) | Not(ugly_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "evil(X) -> ugly(X)",
+          "z3_formula": "Implies(evil_harry, ugly_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "ugly(X) -> Not(handsome(X))",
+          "z3_formula": "Implies(ugly_harry, Not(handsome_harry))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "gentleman(X) -> handsome(X)",
+          "z3_formula": "Implies(gentleman_harry, handsome_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "CEO(X) -> gentleman(X)",
+          "z3_formula": "Implies(CEO_harry, gentleman_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(harry)",
+          "z3_formula": "gentleman_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "gentleman(harry) & CEO(X) -> CEO(harry)",
+          "z3_formula": "And(gentleman_harry, CEO_harry) -> CEO_harry",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "man(X) -> kind(X) | evil(X)",
+          "z3_formula": "Or(Not(kind_harry), evil_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "Not(ugly(X) & handsome(X))",
+          "z3_formula": "Not(And(ugly_harry, handsome_harry))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "evil(X) -> ugly(X)",
+          "z3_formula": "Implies(evil_harry, ugly_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(X) -> handsome(X)",
+          "z3_formula": "Implies(gentleman_harry, handsome_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "CEO(X) -> gentleman(X)",
+          "z3_formula": "Implies(CEO_harry, gentleman_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(harry)",
+          "z3_formula": "gentleman_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(man)",
+          "z3_formula": "kind_man == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "evil(man) == False",
+          "z3_formula": "Not(kind_man) == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "ugly(X) -> Not(handsome(X))",
+          "z3_formula": "Implies(ugly_man, Not(handsome_man))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "evil(X) -> ugly(X)",
+          "z3_formula": "Implies(evil_man, ugly_man)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "gentleman(X) -> handsome(X)",
+          "z3_formula": "Implies(gentleman_harry, handsome_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "CEO(X) -> gentleman(X)",
+          "z3_formula": "Implies(CEO_harry, gentleman_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(harry)",
+          "z3_formula": "gentleman_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "handsome(harry)",
+          "z3_formula": "handsome_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(ugly(harry))",
+          "z3_formula": "Not(ugly_harry) == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "Not(evil(harry))",
+          "z3_formula": "Not(evil_harry) == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "CEO(harry)",
+          "z3_formula": "CEO_harry == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind_or_evil(man)",
+          "z3_formula": "kind_or_evil_man == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not ugly_and_handsome(person)",
+          "z3_formula": "Not(And(ugly_person, handsome_person)) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "evil_person_implies_ugly",
+          "z3_formula": "Implies(evil_person, ugly_person)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman_implies_handsome",
+          "z3_formula": "Implies(gentleman, handsome_person)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman_implies_ceo",
+          "z3_formula": "Implies(gentleman, ceo)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "gentleman(harry)",
+          "z3_formula": "gentleman_harry == True",
+          "source_step": 6
+        }
+      ]
+    }
+  ]
+}

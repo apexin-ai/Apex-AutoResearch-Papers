@@ -1,0 +1,25 @@
+{
+  "exp_id": "seed_llama_rsft_k1_s43",
+  "project": "faith-evidence-ie",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T12:47:48.554Z",
+    "updated_at": "2026-05-18T13:00:39.901Z",
+    "failure_reason": "假阳性：实验仅注册 PREPARING 未提交运行，cron 误判为进程死亡。实际训练由 rsft_llama_k1_s43_train 完成（success）。",
+    "conclusion": "failed",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-18T12:47:53.490071+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-18T13:00:40.367339+00:00",
+  "trigger": "update_registry"
+}

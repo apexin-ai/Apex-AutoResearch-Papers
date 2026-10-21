@@ -1,0 +1,46 @@
+{
+  "exp_id": "grpo_random_20_seed456",
+  "project": "recovery_aware_struct_prune",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T12:00:38.940Z",
+    "updated_at": "2026-05-22T16:25:59.671Z",
+    "hypothesis": "MF2 multi-seed validation: Random pruning 20% GRPO with seed456. Third seed for C1 decoupling robustness check. seed42: Δ=-0.68pp, seed123: pending eval. If all seeds show |Δ(GRPO-SFT)| ≤ 2pp, C1 claim is robust across random seeds.",
+    "spec": {
+      "server": "westb-23072",
+      "gpu": "cuda:0",
+      "command": "CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 nohup python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_random_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20_seed456 --max_steps 100 --save_steps 100 --seed 456",
+      "pid": "209508",
+      "data_path": "openai/gsm8k (train split)",
+      "data_count": 7473,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B (sft_random_20)",
+      "seed": 456,
+      "checkpoint_source": "sft_random_20",
+      "eval_data": "N/A - GRPO training",
+      "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20_seed456/checkpoint-100",
+      "log_path": "/tmp/grpo_random_20_seed456.log",
+      "note": "100/100 steps completed in 3h02m. Final save_model failed (disk full) but checkpoint-100/model.safetensors (12GB) intact. optimizer.pt (15GB) + corrupted root model.safetensors (6.2GB) cleaned up, freed 21GB."
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T16:22:39.316Z"
+    },
+    "failure_reason": "磁盘满: GRPO训练100/100完成但save_pretrained失败 (No space left on device)。westb-23072:/root/autodl-tmp 空间不足。",
+    "conclusion": "success",
+    "completed_at": "2026-05-22T16:22:44.289Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T16:22:54.301751+00:00"
+        }
+      ]
+    },
+    "notes": "失败原因: GRPO 训练 100/100 步已完成 (3h02min)，但 save_pretrained 时磁盘满 (No space left on device, os error 28)。保存路径: /root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20_seed456。W&B run auv9riek 有完整训练 metrics。save_steps=100=max_steps，无中间 checkpoint，需重跑。 | 已有成果: W&B metrics 完整 | 建议: 清理 westb-23072 磁盘后重提交"
+  },
+  "timestamp": "2026-05-22T16:26:00.417544+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,91 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{(1) Pairwise confusability as a cross-task signal.}{1}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(2) Multi-channel degradation model with error taxonomy.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(3) Centrality confound and embedding ablation guidance.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Training-free LLM IE.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Schema decomposition.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Context effects in LLMs.}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Problem Setup and Definitions}{2}{section.3}\protected@file@percent }
+\newlabel{sec:setup}{{3}{2}{Problem Setup and Definitions}{section.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Training-free IE.}{2}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Schema Cosine Similarity (SCS).}{2}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Batch Confusability Score (BCS).}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mean BCS (per-type aggregation).}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Confusability graph.}{3}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Method: Schema DAG-Guided Decomposition}{3}{section.4}\protected@file@percent }
+\newlabel{sec:method}{{4}{3}{Method: Schema DAG-Guided Decomposition}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{\textsc  {Sdgd-zero}{} (embedding-based).}{3}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\textsc  {Sdgd-cal}{} (calibration-based).}{3}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments}{3}{section.5}\protected@file@percent }
+\newlabel{sec:experiments}{{5}{3}{Experiments}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Experimental Setup}{3}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:setup-exp}{{5.1}{3}{Experimental Setup}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Datasets.}{3}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Embeddings.}{3}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation.}{3}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Pairwise Confusability Across Tasks}{3}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:pairwise}{{5.2}{3}{Pairwise Confusability Across Tasks}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces MAVEN confusability analysis ($2{\times }2$ embedding matrix). Pairwise MiniLM confirms the confusability signal cross-task. Per-type correlations are \emph  {positive} for both embeddings---a centrality confound (see \S  \ref {sec:centrality}). $^{*}p{<}0.05$.}}{4}{table.caption.20}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:maven-pairwise}{{1}{4}{MAVEN confusability analysis ($2{\times }2$ embedding matrix). Pairwise MiniLM confirms the confusability signal cross-task. Per-type correlations are \emph {positive} for both embeddings---a centrality confound (see \S \ref {sec:centrality}). $^{*}p{<}0.05$}{table.caption.20}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces MAVEN count curve (Relaxed F1). Performance increases up to 44 types then plateaus, unlike the monotonic decline seen in Few-NERD's cross-domain schema.}}{4}{table.caption.21}\protected@file@percent }
+\newlabel{tab:maven-count}{{2}{4}{MAVEN count curve (Relaxed F1). Performance increases up to 44 types then plateaus, unlike the monotonic decline seen in Few-NERD's cross-domain schema}{table.caption.21}{}}
+\@writefile{toc}{\contentsline {paragraph}{Few-NERD (NER, 66 types).}{4}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{MAVEN (ED, 168 types).}{4}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{DocRED (RE, 96 types).}{4}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Count $\times $ Confusability Interaction}{4}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:interaction}{{5.3}{4}{Count $\times $ Confusability Interaction}{subsection.5.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces DocRED count curve. Peak at 12 types with decline at larger counts, consistent with count-driven degradation in document-level RE.}}{5}{table.caption.23}\protected@file@percent }
+\newlabel{tab:docred-count}{{3}{5}{DocRED count curve. Peak at 12 types with decline at larger counts, consistent with count-driven degradation in document-level RE}{table.caption.23}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces $2{\times }2$ factorial: F1 by count and confusability level on Few-NERD. Both main effects are significant; interaction is not.}}{5}{table.caption.24}\protected@file@percent }
+\newlabel{tab:factorial}{{4}{5}{$2{\times }2$ factorial: F1 by count and confusability level on Few-NERD. Both main effects are significant; interaction is not}{table.caption.24}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Systematic Error Taxonomy}{5}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:taxonomy}{{5.4}{5}{Systematic Error Taxonomy}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Cross-Model Validation}{5}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:cross-model}{{5.5}{5}{Cross-Model Validation}{subsection.5.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Error distribution by BCS bin. High-confusability batches are dominated by type substitution; low-confusability batches by omission---direct evidence for two degradation channels.}}{6}{table.caption.25}\protected@file@percent }
+\newlabel{tab:error-taxonomy}{{5}{6}{Error distribution by BCS bin. High-confusability batches are dominated by type substitution; low-confusability batches by omission---direct evidence for two degradation channels}{table.caption.25}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Error rates by type count (all BCS levels). Both increase with count, but confusability selectively amplifies substitution.}}{6}{table.caption.26}\protected@file@percent }
+\newlabel{tab:error-by-count}{{6}{6}{Error rates by type count (all BCS levels). Both increase with count, but confusability selectively amplifies substitution}{table.caption.26}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Centrality Confound in Per-type Aggregation}{6}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:centrality}{{5.6}{6}{Centrality Confound in Per-type Aggregation}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}\textsc  {Sdgd}{} Evaluation}{6}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:sdgd-eval}{{5.7}{6}{\sdgd {} Evaluation}{subsection.5.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Few-NERD results.}{6}{section*.29}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Cross-model comparison on Few-NERD pairwise confusability. Both models show significant pairwise signal; LLaMA's attenuated effect size suggests larger models may be partially more robust to confusability. $^{*}p{<}0.05$.}}{7}{table.caption.27}\protected@file@percent }
+\newlabel{tab:cross-model}{{7}{7}{Cross-model comparison on Few-NERD pairwise confusability. Both models show significant pairwise signal; LLaMA's attenuated effect size suggests larger models may be partially more robust to confusability. $^{*}p{<}0.05$}{table.caption.27}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces LLaMA-3.3-70B count curve on Few-NERD.}}{7}{table.caption.28}\protected@file@percent }
+\newlabel{tab:llama-count}{{8}{7}{LLaMA-3.3-70B count curve on Few-NERD}{table.caption.28}{}}
+\@writefile{toc}{\contentsline {paragraph}{MAVEN results.}{7}{section*.31}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Per-type decomposition is counterproductive.}{7}{section*.33}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces \textsc  {Sdgd}{} variants on Few-NERD (66 types). Conf.\ = type confusion errors, Omis.\ = omission errors. \textsc  {Sdgd-zero}{} reduces confusion by 24\%; per-type eliminates it but at severe omission cost.}}{8}{table.caption.30}\protected@file@percent }
+\newlabel{tab:sdgd-fewnerd}{{9}{8}{\sdgd {} variants on Few-NERD (66 types). Conf.\ = type confusion errors, Omis.\ = omission errors. \sdgdzero {} reduces confusion by 24\%; per-type eliminates it but at severe omission cost}{table.caption.30}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces \textsc  {Sdgd}{} variants on MAVEN (168 types). \textsc  {Sdgd-cal}{} shows the largest gain, consistent with embedding proxy weakness on this homogeneous schema.}}{8}{table.caption.32}\protected@file@percent }
+\newlabel{tab:sdgd-maven}{{10}{8}{\sdgd {} variants on MAVEN (168 types). \sdgdcal {} shows the largest gain, consistent with embedding proxy weakness on this homogeneous schema}{table.caption.32}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Ablation Studies}{8}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:ablations}{{5.8}{8}{Ablation Studies}{subsection.5.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Random batching ablation.}{8}{section*.34}\protected@file@percent }
+\newlabel{sec:scs-validation}{{5.8}{8}{SCS vs.\ empirical confusion}{section*.35}{}}
+\@writefile{toc}{\contentsline {paragraph}{SCS vs.\ empirical confusion.}{8}{section*.35}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Embedding ablation ($2{\times }3$ matrix).}{8}{section*.37}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{8}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Relation to ``Lost in the Middle.''}{8}{section*.39}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces SCS vs.\ empirical confusion correlation. Qwen3 (extraction-aligned) provides better proxy quality; neither is a near-perfect predictor, explaining the SDGD-zero to SDGD-cal gap.}}{9}{table.caption.36}\protected@file@percent }
+\newlabel{tab:scs-confusion}{{11}{9}{SCS vs.\ empirical confusion correlation. Qwen3 (extraction-aligned) provides better proxy quality; neither is a near-perfect predictor, explaining the SDGD-zero to SDGD-cal gap}{table.caption.36}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces $2{\times }3$ embedding ablation. No single embedding dominates: extraction-aligned (Qwen3) works for cross-domain per-type, generic (MiniLM) works for same-domain pairwise. $^{*}p{<}0.05$, $^{***}p{<}0.001$.}}{9}{table.caption.38}\protected@file@percent }
+\newlabel{tab:embedding-ablation}{{12}{9}{$2{\times }3$ embedding ablation. No single embedding dominates: extraction-aligned (Qwen3) works for cross-domain per-type, generic (MiniLM) works for same-domain pairwise. $^{*}p{<}0.05$, $^{***}p{<}0.001$}{table.caption.38}{}}
+\@writefile{toc}{\contentsline {paragraph}{Why \textsc  {Sdgd}{} gains are not (yet) significant.}{9}{section*.40}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practitioner implications.}{9}{section*.41}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{9}{section*.42}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{9}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{9}{Conclusion}{section.7}{}}
+\gdef \@abspage@last{10}

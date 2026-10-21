@@ -1,0 +1,33 @@
+{
+  "exp_id": "exp003a_prompt_v2_rerun",
+  "project": "schema-dag-extraction",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T02:35:23.425Z",
+    "updated_at": "2026-05-15T02:41:15.894Z",
+    "spec": {
+      "hypothesis": "Prompt v2（去 offset + 抑制 over-prediction）消除 spurious FP confound 后，recall vs BCS 信号浮现，F1 vs BCS 更强",
+      "dataset": "Few-NERD",
+      "model": "Qwen3-32B-FP8",
+      "design": "exp1 重跑: count=[1,2,6,12,22,44,64] × 5 random + exp2 重跑: count=6,12 × 25 random + low/high BCS = ~148 batches",
+      "pass_criteria": {
+        "primary": "within-count |r(recall, BCS)| >= 0.3, p < 0.05",
+        "secondary": "r(F1, BCS) stronger than v1 results",
+        "mechanistic": "confusion_rate ratio maintained"
+      },
+      "command": "python3 run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match && python3 run_experiment.py --mode exp2 --prompt_version v2 --eval_mode text_match",
+      "server": "cqa1-38874",
+      "data_path": "/root/schema-dag-extraction/data/parquet/test.parquet",
+      "data_count": 1000,
+      "model_name": "Qwen3-32B-FP8",
+      "seed": 42,
+      "gpu": "cuda:0",
+      "parent": "exp002_confusability_controlled"
+    }
+  },
+  "timestamp": "2026-05-15T02:41:15.908331+00:00",
+  "trigger": "update_registry"
+}

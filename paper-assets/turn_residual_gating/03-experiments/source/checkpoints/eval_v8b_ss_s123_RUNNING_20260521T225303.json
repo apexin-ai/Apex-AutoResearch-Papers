@@ -1,0 +1,38 @@
+{
+  "exp_id": "eval_v8b_ss_s123",
+  "project": "turn_residual_gating",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T21:15:52.880Z",
+    "updated_at": "2026-05-21T22:53:03.607Z",
+    "spec": {
+      "command": "bash scripts/eval_v8b_ss_s123.sh",
+      "server": "westd-20861",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": 259767,
+      "log_path": "~/runs/turn_residual_gating/eval_v8b_ss_s123.log",
+      "submitted_at": "2026-05-21T21:15:52.785Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/ultrachat_eval_heldout.json",
+      "data_count": 0,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 123,
+      "gpu_index": 0,
+      "checkpoint_source": "checkpoints/tg_v8b_ss_s123/epoch_2",
+      "eval_data": "ultrachat_eval_heldout.json"
+    },
+    "hypothesis": "v8b SS model trained with s123 seed should reproduce s42 GAR metrics within acceptable gap_ratio [1.2x-2.5x] and no PPL degradation, confirming seed robustness of the scheduled sampling approach",
+    "parent": "v7_tg_s123",
+    "log_path": "~/runs/turn_residual_gating/eval_v8b_ss_s123.log",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T22:53:03.701900+00:00",
+  "trigger": "update_registry"
+}

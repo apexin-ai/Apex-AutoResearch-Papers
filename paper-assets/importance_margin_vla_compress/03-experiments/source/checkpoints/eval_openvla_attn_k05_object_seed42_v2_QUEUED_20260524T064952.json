@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_openvla_attn_k05_object_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T06:46:54.765Z",
+    "updated_at": "2026-05-24T06:49:51.434Z",
+    "hypothesis": "OpenVLA Attention k=0.5 Object seed42 v2 — 修复 rotary_emb bug 后重跑。2×2 crossover table 最后一个 TBD 格。MLP connector 下 attention-based scoring 的有效性验证。Random k=0.5 Object=70.0%, L2norm k=0.5 Object=39.2%",
+    "parent": "eval_openvla_attn_k05_object_seed42"
+  },
+  "timestamp": "2026-05-24T06:49:52.371248+00:00",
+  "trigger": "update_registry"
+}

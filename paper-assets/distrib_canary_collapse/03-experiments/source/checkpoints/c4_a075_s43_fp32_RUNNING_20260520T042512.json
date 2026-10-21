@@ -1,0 +1,62 @@
+{
+  "exp_id": "c4_a075_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T00:14:59.039Z",
+    "updated_at": "2026-05-20T04:25:12.246Z",
+    "hypothesis": "C4 α=0.75 cross-seed validation: s42 showed PermG=8/8, K≥3=6/8 (fp32, detection regime). s43 tests seed robustness. If PermG≥6/8 → C4 detection regime is seed-robust at α=0.75; combined with c4_a050_s43 → C4 dose-response has multi-seed coverage at both onset and detection α.",
+    "parent": "c4_a075_s42_fp32",
+    "spec": {
+      "command": "python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/c4_a075_s43_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "484093",
+      "log_path": "~/runs/distrib_canary_collapse/c4_a075_s43_fp32.log",
+      "submitted_at": "2026-05-20T00:15:54.585Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/c4_5k",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 43,
+      "precision": "fp32",
+      "padding_side_fix": "D093 applied"
+    },
+    "checkpoint_path": "results/alpha_sweep/c4_a075_s43_fp32/gen_10/checkpoint",
+    "log_path": "~/runs/distrib_canary_collapse/c4_a075_s43_fp32.log",
+    "metrics": {
+      "PermG_fwd": "8/8",
+      "PermG_rev": "0/8",
+      "K_ge_3_3sigma": "8/8",
+      "K_ge_4_3sigma": "1/8",
+      "threshold_onset_3sigma": "0/8",
+      "naive_xcorr": "8/8",
+      "diff_xcorr": "8/8",
+      "TY_granger": "1/8",
+      "drift_token_entropy": -34.12,
+      "drift_ece": 2781.6,
+      "drift_perplexity": 2149.2,
+      "drift_distinct_1": -12.6,
+      "drift_distinct_2": -16.2,
+      "drift_distinct_3": -15.7,
+      "drift_mauve": -52.8,
+      "drift_effective_rank": 111,
+      "gen0_token_entropy": 3.1094,
+      "D111_direction_check": "applied: naive_xcorr peak_lag<0, diff_xcorr peak_lag<0",
+      "D102_8pair": "canary=[token_entropy,ece] x downstream=[d1,d2,d3,mauve]",
+      "D105_3sigma": "true 3sigma (std of full series)",
+      "analysis_script": "run_5method_analysis_d102.py + D105 inline recompute",
+      "n_perm": 5000
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T04:25:12.539778+00:00",
+  "trigger": "update_registry"
+}

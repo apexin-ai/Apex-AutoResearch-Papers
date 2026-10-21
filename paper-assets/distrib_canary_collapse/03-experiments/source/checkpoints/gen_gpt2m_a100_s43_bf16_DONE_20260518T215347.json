@@ -1,0 +1,86 @@
+{
+  "exp_id": "gen_gpt2m_a100_s43_bf16",
+  "project": "distrib_canary_collapse",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T17:25:55.336Z",
+    "updated_at": "2026-05-18T21:53:47.526Z",
+    "spec": {
+      "command": "python -u iterative_train.py --model_name openai-community/gpt2-medium --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --bf16 --output_dir results/generalize/gpt2m_wiki_a100_s43_bf16",
+      "server": "westd-17855",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "16116",
+      "log_path": "~/runs/distrib_canary_collapse/gen_gpt2m_a100_s43_bf16.log",
+      "submitted_at": "2026-05-18T17:25:55.193Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "openai-community/gpt2-medium",
+      "seed": 43,
+      "data_path": "data/wikitext103_5k",
+      "data_count": 5000,
+      "wall_clock_seconds": 12444.6,
+      "gpu_hours": 3.46,
+      "checkpoint_path": "results/generalize/gpt2m_wiki_a100_s43_bf16"
+    },
+    "hypothesis": "GPT-2-medium multi-seed s43: GPT-2-medium × WikiText-103 × α=1.0 × seed=43. Validates s42 cross-architecture results (K≥4=6/8) are reproducible.",
+    "reproduce": {
+      "finished_at": "2026-05-18T20:53:18.007Z"
+    },
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "conclusion": "success",
+    "completed_at": "2026-05-18T20:53:19.746Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-18T20:53:22.622800+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "token_entropy_gen0": 3.6021,
+      "token_entropy_gen10": 3.0035,
+      "token_entropy_delta_pct": -16.6,
+      "distinct_1_gen0": 0.1092,
+      "distinct_1_gen10": 0.0724,
+      "distinct_1_delta_pct": -33.7,
+      "distinct_2_gen0": 0.5665,
+      "distinct_2_gen10": 0.3422,
+      "distinct_2_delta_pct": -39.6,
+      "distinct_3_gen0": 0.8652,
+      "distinct_3_gen10": 0.5756,
+      "distinct_3_delta_pct": -33.5,
+      "ece_gen0": 0.0111,
+      "ece_gen10": 0.0716,
+      "ece_delta_pct": 547.9,
+      "perplexity_gen0": 32.91,
+      "perplexity_gen10": 55.49,
+      "perplexity_delta_pct": 68.6,
+      "mauve_gen0": 0.0318,
+      "mauve_gen10": 0.0227,
+      "mauve_delta_pct": -28.7,
+      "naive": "8/8",
+      "diff": "7/8",
+      "thresh": "8/8",
+      "pg_fwd": "1/8",
+      "pg_rev": "0/8",
+      "ty": "0/8",
+      "k_gte4": "1/8",
+      "mmct_weighted_fwd": "6/8",
+      "n_perm": 5000,
+      "xcorr_lag": 5,
+      "granger_lag": 1,
+      "cross_seed_note": "CAUTION: s42 was fp32 (entropy drift -86.6%), s43 is bf16 (entropy drift -16.6%). NOT a fair cross-seed comparison. bf16 dramatically reduces collapse severity, causing PG/TY to lose power (PG_fwd 1/8 vs 6/8, TY 0/8 vs 5/8). MMCT partially recovers signal (6/8) via FPR-inverse weighting of naive+diff+thresh consensus. K>=4 drops to 1/8 (ece->ppl only, a spurious channel).",
+      "precision_note": "bf16 mixed precision; collapse trajectory is qualitatively similar but quantitatively much milder than fp32 s42"
+    }
+  },
+  "timestamp": "2026-05-18T21:53:47.658072+00:00",
+  "trigger": "update_registry"
+}

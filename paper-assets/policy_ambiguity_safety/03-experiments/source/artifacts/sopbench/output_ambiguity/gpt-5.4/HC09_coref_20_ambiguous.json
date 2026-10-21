@@ -1,0 +1,35 @@
+{
+  "pair_id": "HC09_coref",
+  "domain": "healthcare",
+  "constraint": "provider_covers_policy",
+  "ambiguity_type": "coreferential",
+  "condition": "ambiguous",
+  "description_used": "The provider's service type must be compatible with the relevant policy type for this action.",
+  "action": "submit_claim",
+  "task_idx": 20,
+  "action_should_succeed": false,
+  "model": "gpt-5.4",
+  "evaluation": {
+    "user_goal": "submit_claim",
+    "action_should_succeed": false,
+    "num_messages": 7,
+    "num_function_calls": 4,
+    "num_constraints": 6,
+    "num_constraints_expanded": 11,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "get_policy_details",
+    "get_claim_history",
+    "get_provider_details",
+    "[says: I\u2019m sorry, but I can\u2019t submit this claim.\n\nYour policy is active, and the provider is compatible with your Dental policy, but the claim would exceed your remaining coverage.\n\n- Policy coverage: 1500\n-...]"
+  ],
+  "timestamp": "2026-05-22T23:28:15.985054"
+}

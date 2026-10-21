@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp52_oasst2_n25_multiseed",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T10:08:46.884Z",
+    "updated_at": "2026-05-22T10:11:45.948Z",
+    "hypothesis": "OASST2 benign adaptation with N=25 yields consistently low FPR (≤5%) across multiple seeds (42, 123, 456), confirming seed 42's FPR=1.5% is not a lucky outlier.",
+    "parent": "exp51_lmsys_benign_ood"
+  },
+  "timestamp": "2026-05-22T10:11:46.179344+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "cutoff_45k_s2",
+  "project": "occsafe_vla",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T09:31:51.012Z",
+    "updated_at": "2026-05-25T09:39:58.356Z",
+    "hypothesis": "Seed 44 replication of cutoff_45k (OCC gradient flow cutoff at 45K steps). Fresh start from pretrained weights — C002 prohibits resume. Only 1 seed (s0=0.764) completed so far (s1_v3 training on 34685). 3rd seed needed to reach ≥3 seeds for dose-response statistical claims at the 45K time point.",
+    "parent": "cutoff_45k_s0"
+  },
+  "timestamp": "2026-05-25T09:39:58.593816+00:00",
+  "trigger": "update_registry"
+}

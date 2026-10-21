@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_math500_sft_random_20_fixed_v3",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T23:17:29.791Z",
+    "updated_at": "2026-05-23T23:17:39.796Z",
+    "hypothesis": "SFT Random 20% MATH-500 with fixed eval script. v1/v2 killed by contention/SIGTERM. v3 with max_new_tokens=2048, timeout=72000s. Slow SFT ~10h (model degradation, hits token limit)."
+  },
+  "timestamp": "2026-05-23T23:17:40.548787+00:00",
+  "trigger": "update_registry"
+}

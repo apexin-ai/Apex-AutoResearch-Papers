@@ -1,0 +1,65 @@
+{
+  "exp_id": "eval_arc_s123_batch",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T16:07:36.529Z",
+    "updated_at": "2026-05-20T17:21:21.781Z",
+    "hypothesis": "ARC 25-shot s123 eval across 4 families (Qwen-14B > Phi-4 > Qwen-7B > OLMo-2) × 5 dosages. Cross-benchmark cross-seed validation: does Collapse persist on ARC? Is Immune stable? Parent: respective s123 SFT sweeps.",
+    "spec": {
+      "command": "bash scripts/eval_arc_s123_batch.sh",
+      "server": "westd-29999",
+      "gpu": "cuda:2",
+      "data_path": "allenai/ai2_arc ARC-Challenge (cached)",
+      "data_count": 1172,
+      "model_name": "Qwen2.5-14B, phi-4, Qwen2.5-7B, OLMo-2-1124-7B",
+      "seed": 123,
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/{model}_{dosage}_s123/lora_adapter",
+      "eval_data": "ARC-Challenge test (1172 items, 25-shot)"
+    },
+    "notes": "10/20 runs done. Qwen-14B ARC s123: d000=90.44% d005=91.47% d025=89.76% d050=88.74% d100=87.29% Δ=-3.15pp (monotonic decline, Collapse persists). Phi-4 ARC s123: d000=91.89% d005=91.89% d025=92.24% d050=92.58% d100=92.75% Δ=+0.86pp (Immune stable). Qwen-7B running, OLMo-2 pending. ETA ~35min.",
+    "metrics": {
+      "qwen14b_arc_s123": {
+        "d000": 90.44,
+        "d005": 91.47,
+        "d025": 89.76,
+        "d050": 88.74,
+        "d100": 87.29,
+        "delta_d100": -3.15
+      },
+      "phi4_arc_s123": {
+        "d000": 91.89,
+        "d005": 91.89,
+        "d025": 92.24,
+        "d050": 92.58,
+        "d100": 92.75,
+        "delta_d100": 0.86
+      },
+      "qwen7b_arc_s123": {
+        "d000": 87.12,
+        "d005": 82.42,
+        "d025": 85.15,
+        "d050": 85.07,
+        "d100": 84.73,
+        "delta_d100": -2.39
+      },
+      "olmo2_arc_s123": {
+        "d000": 76.88,
+        "d005": 77.22,
+        "d025": 76.62,
+        "d050": 79.18,
+        "d100": 79.78,
+        "delta_d100": 2.9
+      }
+    },
+    "checkpoint_path": "/root/contamcal-irt-calibration/results/arc_eval/",
+    "log_path": "/root/contamcal-irt-calibration/logs/eval_arc_s123_batch.log",
+    "conclusion": "success",
+    "completed_at": "2026-05-20T17:21:21.781Z"
+  },
+  "timestamp": "2026-05-20T17:21:22.378201+00:00",
+  "trigger": "update_registry"
+}

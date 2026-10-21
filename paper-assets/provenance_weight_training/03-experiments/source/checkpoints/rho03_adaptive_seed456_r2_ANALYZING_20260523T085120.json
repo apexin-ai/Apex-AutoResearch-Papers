@@ -1,0 +1,52 @@
+{
+  "exp_id": "rho03_adaptive_seed456_r2",
+  "project": "provenance_weight_training",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T03:23:15.525Z",
+    "updated_at": "2026-05-23T08:51:19.878Z",
+    "spec": {
+      "command": "python -u training/pretrain_weighted.py --data_path data/scored_data_rho03.jsonl --output_dir .../rho03_adaptive_seed456_r2 --model_name Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.3 --tau 0.7 --batch_size 4 --gradient_accumulation_steps 4 --lr 5e-5 --seed 456 --bf16 --save_total_limit 2",
+      "server": "westd-41312",
+      "gpu": "cuda:0",
+      "pid": 834745,
+      "log_path": "~/runs/provenance_weight_training/rho03_adaptive_seed456_r2.log",
+      "submitted_at": "2026-05-23T03:23:46.396Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/scored_data_rho03.jsonl",
+      "data_count": 235555,
+      "model_name": "Qwen3-0.6B",
+      "seed": 456,
+      "hyperparams": {
+        "weighting_method": "adaptive",
+        "contamination_ratio": 0.3,
+        "tau": 0.7,
+        "batch_size": 4,
+        "gradient_accumulation_steps": 4,
+        "effective_batch_size": 16,
+        "n_min": 2,
+        "lr": "5e-5",
+        "scheduler": "linear",
+        "max_length": 2048,
+        "num_train_tokens": 200000000,
+        "max_steps": 6103,
+        "save_total_limit": 2
+      }
+    },
+    "hypothesis": "Third seed (456) for ρ=0.3 boundary check (retry, from scratch after disk-full crash). With seed42 Δ=0.000 and seed123 Δ=+0.002 on holdout, seed456 should confirm ρ=0.3 as neutral transition zone.",
+    "metrics": {
+      "eval_ppl_holdout": 17.424,
+      "eval_ppl_owt": 18.115,
+      "eval_ppl_wiki": 15.161
+    },
+    "checkpoint_path": "/root/autodl-tmp/provenance_weight_training/output/models/rho03_adaptive_seed456_r2/final",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T08:51:20.377958+00:00",
+  "trigger": "update_registry"
+}

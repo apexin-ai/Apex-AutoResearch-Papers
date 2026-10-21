@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp28_data_efficiency",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:40:19.137Z",
+    "updated_at": "2026-05-20T15:26:38.916Z",
+    "hypothesis": "9-class DAPT maintains strong OOD generalization even at 25% training data (n=50-125), outperforming vanilla baseline at 100% data (n=350), demonstrating high sample efficiency of persuasion-grounded representations."
+  },
+  "timestamp": "2026-05-20T15:26:39.111084+00:00",
+  "trigger": "update_registry"
+}

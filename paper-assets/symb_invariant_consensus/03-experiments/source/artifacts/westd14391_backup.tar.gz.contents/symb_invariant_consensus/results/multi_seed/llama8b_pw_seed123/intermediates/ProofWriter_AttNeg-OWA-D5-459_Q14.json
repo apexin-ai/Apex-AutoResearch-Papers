@@ -1,0 +1,1414 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-459_Q14",
+    "problem": "Bob is not cold. Bob is furry. Bob is round. Charlie is big. Charlie is furry. Charlie is quiet. Charlie is red. Charlie is not white. Erin is big. Gary is big. Gary is quiet. If someone is red and cold then they are furry. All furry people are round. If Charlie is furry then Charlie is round. Big people are red. Round people are quiet. If someone is red then they are cold.\n\nDetermine whether the following statement is true, false, or unknown:\nGary is white.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nFurry($x, bool) ::: Is x furry?\nRound($x, bool) ::: Is x round?\nBig($x, bool) ::: Is x big?\nQuiet($x, bool) ::: Is x quiet?\nRed($x, bool) ::: Is x red?\nWhite($x, bool) ::: Is x white?\n\nFacts:\nCold(Bob, False) ::: Bob is not cold.\nFurry(Bob, True) ::: Bob is furry.\nRound(Bob, True) ::: Bob is round.\nBig(Charlie, True) ::: Charlie is big.\nFurry(Charlie, True) ::: Charlie is furry.\nQuiet(Charlie, True) ::: Charlie is quiet.\nRed(Charlie, True) ::: Charlie is red.\nWhite(Charlie, False) ::: Charlie is not white.\nBig(Erin, True) ::: Erin is big.\nBig(Gary, True) ::: Gary is big.\nQuiet(Gary, True) ::: Gary is quiet.\n\nRules:\nRed($x, True) && Cold($x, True) >>> Furry($x, True) ::: If someone is red and cold then they are furry.\nFurry($x, True) >>> Round($x, True) ::: All furry people are round.\nFurry(Charlie, True) >>> Round(Charlie, True) ::: If Charlie is furry then Charlie is round.\nBig($x, True) >>> Red($x, True) ::: Big people are red.\nRound($x, True) >>> Quiet($x, True) ::: Round people are quiet.\nRed($x, True) >>> Cold($x, True) ::: If someone is red then they are cold.\n\nQuery:\nWhite(Gary, True) ::: Gary is white."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 169.0,
+      "Unknown": 209.5
+    },
+    "answer_counts": {
+      "Unknown": 10,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Gary is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Gary is big. (Given)\n2. Big people are red. (From the given information)\n   So, Gary is red. (Conclusion from step 1 and step 2)\n\n3. If someone is red and cold then they are furry. (From the given information)\n   But we don't have any information that Gary is cold. We only know that he is red. \n   So, we cannot conclude that Gary is furry from this statement alone. \n\n4. Gary is quiet. (Given)\n   We don't have any information that links being quiet with being white, red, or furry. \n   So, being quiet doesn't provide any information about Gary's color.\n\n5. All furry people are round. (From the given information)\n   But we don't know if Gary is furry. We only know that he is red. \n   So, we cannot conclude that Gary is round from this statement alone.\n\n6. Charlie is furry, Charlie is round. (From the given information)\n   But Charlie is not Gary. So, information about Charlie doesn't apply to Gary.\n\n7. Charlie is not white. (From the given information)\n   But we don't have any information about Gary's color. \n   So, information about Charlie's color doesn't apply to Gary.\n\n8. If Charlie is furry then Charlie is round. (From the given information)\n   But we already know that Charlie is furry and round. This statement is redundant.\n\n9. Charlie is red. (From the given information)\n   But we already know that Charlie is furry and round. This statement is redundant.\n\n10. Erin is big. (Given)\n    We don't have any information about Erin's color. \n    So, information about Erin doesn't apply to Gary.\n\n11. Gary is big. (Given)\n    We already concluded that Gary is red. We don't have any information about Gary's color being white.\n\nSince we don't have any information that directly contradicts \"Gary is white\" and we don't have any information that directly supports \"Gary is white,\" we cannot conclude whether Gary is white or not.\n\nTherefore, the statement \"Gary is white\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is white\" is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\nFrom the information given:\n\n1. Charlie is not white.\n2. If someone is red and cold then they are furry.\n3. All furry people are round.\n4. If Charlie is furry then Charlie is round.\n5. Big people are red.\n6. Round people are quiet.\n7. If someone is red then they are cold.\n\nWe can infer the following:\n\n- Charlie is furry (from Charlie is furry and Charlie is not white, we can rule out Charlie being white because it says Charlie is not white and Charlie being white is not mentioned in any rule about the statement).\n- Charlie is big (from Charlie is big, no other information is given).\n- Charlie is round (from Charlie is furry, which means Charlie is round).\n- Charlie is red (from Big people are red, which means Charlie is red).\n- Charlie is quiet (from Round people are quiet, which means Charlie is quiet).\n\nHowever, we are looking for information about Gary, not Charlie. The only information we have about Gary is:\n\n1. Gary is big.\n2. Gary is quiet.\n\nFrom the given information, we can infer that since Gary is big, Gary is red. But since Gary is red, then Gary is cold. However, we are looking for information about whether Gary is white or not. There is no information given in the problem about Gary being white or not white.\n\nSo, we cannot determine whether the statement \"Gary is white\" is true or false based on the given information.\n\nTherefore, the final answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether Gary is white, we need to analyze the given statements and apply logical reasoning.\n\nFrom the given statements:\n1. Gary is big. \n2. Big people are red. \n3. If someone is red then they are cold. \n4. If someone is red and cold then they are furry. \n5. All furry people are round. \n6. Round people are quiet. \n7. Gary is quiet.\n\nFrom statement 1, we know Gary is big.\nFrom statement 2, we can conclude that Gary is red.\nFrom statement 3, we can conclude that Gary is cold.\nFrom statement 4, we can conclude that Gary is furry.\nFrom statement 5, we can conclude that Gary is round.\nFrom statement 6, we can conclude that Gary is quiet.\nWe already knew that Gary is quiet from statement 7.\n\nNow, we need to determine whether Gary is white or not.\nWe know that Charlie is not white (statement 8). However, we do not have any information about Gary's color being white or not. There is no statement that directly relates Gary's color to being white.\n\nSince we cannot conclude whether Gary is white or not based on the given statements, the statement \"Gary is white\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply logical deductions.\n\n1. Bob is not cold.\n2. Bob is furry.\n3. Bob is round.\n4. Charlie is big.\n5. Charlie is furry.\n6. Charlie is quiet.\n7. Charlie is red.\n8. Charlie is not white.\n9. Erin is big.\n10. Gary is big.\n11. Gary is quiet.\n12. If someone is red and cold then they are furry.\n13. All furry people are round.\n14. If Charlie is furry then Charlie is round.\n15. Big people are red.\n16. Round people are quiet.\n17. If someone is red then they are cold.\n\nWe are asked to determine whether the statement \"Gary is white\" is true, false, or unknown.\n\nLet's analyze the given statements:\n\nFrom statement 8, we know Charlie is not white.\nFrom statement 15, we know big people are red.\nSince Charlie is big (statement 4), Charlie must be red (statement 15).\nFrom statement 17, we know if someone is red then they are cold.\nSo, Charlie is cold.\n\nNow, let's use the information about Charlie to deduce something about Gary.\nFrom statement 12, we know if someone is red and cold then they are furry.\nSince Charlie is red and cold, Charlie must be furry (statement 5).\nFrom statement 14, we know if Charlie is furry then Charlie is round.\nSo, Charlie is round.\n\nFrom statement 11, we know Gary is quiet.\nFrom statement 16, we know round people are quiet.\nWe don't know if Gary is round or not, but we can't conclude that Gary is white based on this information alone.\n\nHowever, let's analyze the remaining statements:\nFrom statement 10, we know Gary is big.\nFrom statement 15, we know big people are red.\nSo, Gary is red.\n\nFrom statement 17, we know if someone is red then they are cold.\nSo, Gary is cold.\n\nNow, we have a problem: we know Gary is red and cold, but we don't know if Gary is furry or not.\nHowever, from statement 13, we know all furry people are round.\nIf Gary were furry, then Gary would be round (statement 13).\nBut we don't know if Gary is round or not.\n\nSince we don't know if Gary is round or not, we can't conclude if Gary is white or not.\n\nTherefore, the final answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given information and the statements into a series of logical deductions.\n\nGiven information:\n1. Bob is not cold.\n2. Bob is furry.\n3. Bob is round.\n4. Charlie is big.\n5. Charlie is furry.\n6. Charlie is quiet.\n7. Charlie is red.\n8. Charlie is not white.\n9. Erin is big.\n10. Gary is big.\n11. Gary is quiet.\n12. If someone is red and cold then they are furry.\n13. All furry people are round.\n14. If Charlie is furry then Charlie is round.\n15. Big people are red.\n16. Round people are quiet.\n17. If someone is red then they are cold.\n\nStatement to determine: Gary is white.\n\nStep 1: Determine if Charlie is white.\n\nFrom statements 4 and 8, we know Charlie is big and Charlie is not white.\n\nStep 2: Determine if Charlie is round.\n\nFrom statements 5 and 14, we know Charlie is furry and if Charlie is furry then Charlie is round.\n\nFrom statements 6 and 16, we know Charlie is quiet and round people are quiet.\n\nFrom statement 13, we know all furry people are round.\n\nSince Charlie is furry (statement 5), Charlie must be round.\n\nStep 3: Determine if Gary is red.\n\nFrom statement 10 and 15, we know Gary is big and big people are red.\n\nTherefore, Gary is red.\n\nStep 4: Determine if Gary is cold.\n\nFrom statement 17, we know if someone is red then they are cold.\n\nTherefore, Gary is cold.\n\nStep 5: Determine if Gary is furry.\n\nFrom statement 12, we know if someone is red and cold then they are furry.\n\nSince Gary is red (step 3) and cold (step 4), Gary must be furry.\n\nStep 6: Determine if Gary is round.\n\nFrom statement 13, we know all furry people are round.\n\nSince Gary is furry (step 5), Gary must be round.\n\nStep 7: Determine if Gary is white.\n\nFrom statement 6 and 16, we know Charlie is quiet and round people are quiet. Since Charlie is round (step 2) and Charlie is quiet, it confirms the statement that round people are quiet.\n\nSince Gary is round (step 6) and Gary is quiet, it confirms the statement that round people are quiet.\n\nHowever, there is no statement that directly states \"if someone is quiet then they are white\" or \"if someone is round then they are white.\" Therefore, we cannot directly conclude that Gary is white based on the given information.\n\nFinal answer: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is white\" is true, false, or unknown, we need to analyze the given information and apply it to the properties of Gary.\n\nGiven information:\n\n1. Bob is not cold.\n2. Bob is furry.\n3. Bob is round.\n4. Charlie is big.\n5. Charlie is furry.\n6. Charlie is quiet.\n7. Charlie is red.\n8. Charlie is not white.\n9. Erin is big.\n10. Gary is big.\n11. Gary is quiet.\n12. If someone is red and cold then they are furry.\n13. All furry people are round.\n14. If Charlie is furry then Charlie is round.\n15. Big people are red.\n16. Round people are quiet.\n17. If someone is red then they are cold.\n\nNow, let's analyze the properties of Gary:\n\nGary is big (10).\nGary is quiet (11).\n\nFrom the given information, we know that big people are red (15) and round people are quiet (16). However, we also know that if someone is red then they are cold (17).\n\nSince Gary is big, we can conclude that Gary is red (15). But since Gary is red, we can conclude that Gary is cold (17).\n\nNow, let's see if we can conclude whether Gary is white or not. We don't have any direct information about Gary being white or not, and we cannot derive this conclusion from the given information.\n\nTherefore, the statement \"Gary is white\" is unknown, as we cannot determine whether it is true or false based on the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use logical reasoning.\n\nGiven statements:\n1. Bob is not cold.\n2. Bob is furry.\n3. Bob is round.\n4. Charlie is big.\n5. Charlie is furry.\n6. Charlie is quiet.\n7. Charlie is red.\n8. Charlie is not white.\n9. Erin is big.\n10. Gary is big.\n11. Gary is quiet.\n12. If someone is red and cold then they are furry.\n13. All furry people are round.\n14. If Charlie is furry then Charlie is round.\n15. Big people are red.\n16. Round people are quiet.\n17. If someone is red then they are cold.\n\nWe need to determine whether the statement \"Gary is white\" is true, false, or unknown.\n\nLet's analyze the statements:\n- From statement 10, we know Gary is big.\n- From statement 15, we know that big people are red.\n- From statement 17, we know that if someone is red then they are cold.\n\nNow, let's connect the information:\n- Gary is big (statement 10).\n- Big people are red (statement 15).\n- If someone is red then they are cold (statement 17).\nSo, Gary is red and cold.\n\nFrom statement 12, if someone is red and cold, then they are furry. Therefore, Gary is furry.\n\nFrom statement 13, all furry people are round. Therefore, Gary is round.\n\nFrom statement 16, round people are quiet. Therefore, Gary is quiet.\n\nHowever, we cannot determine if Gary is white or not, because there is no information provided about Gary being white or not. \n\nTherefore, the statement \"Gary is white\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is white\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\nGiven statements:\n1. Bob is not cold.\n2. Bob is furry.\n3. Bob is round.\n4. Charlie is big.\n5. Charlie is furry.\n6. Charlie is quiet.\n7. Charlie is red.\n8. Charlie is not white.\n9. Erin is big.\n10. Gary is big.\n11. Gary is quiet.\n12. If someone is red and cold then they are furry.\n13. All furry people are round.\n14. If Charlie is furry then Charlie is round.\n15. Big people are red.\n16. Round people are quiet.\n17. If someone is red then they are cold.\n\nWe are asked to determine the truth value of statement 18: Gary is white.\n\nFrom statement 17, we know that if someone is red, then they are cold. \nFrom statement 15, we know that big people are red.\nFrom statement 10, we know that Gary is big.\nTherefore, from statements 15 and 10, we can conclude that Gary is red.\n\nFrom statement 17, we know that if someone is red, then they are cold. \nSince Gary is red, we can conclude that Gary is cold.\n\nNow, let's analyze statement 13: All furry people are round.\nFrom statement 12, we know that if someone is red and cold, then they are furry. \nWe know that Gary is red (from statement 15 and 10) and Gary is cold (from statement 17 and 10).\nTherefore, from statement 12, we can conclude that Gary is furry.\n\nFrom statement 13, we know that all furry people are round.\nSince Gary is furry (from statement 12, 15, 10, and 17), we can conclude that Gary is round.\n\nFrom statement 16, we know that round people are quiet.\nSince Gary is round (from statement 13, 12, 15, 10, and 17), we can conclude that Gary is quiet.\n\nHowever, we still need to determine whether Gary is white or not.\n\nFrom statement 8, we know that Charlie is not white.\nFrom statement 14, we know that if Charlie is furry, then Charlie is round.\nFrom statement 5, we know that Charlie is furry.\nTherefore, from statements 14 and 5, we can conclude that Charlie is round.\n\nFrom statement 6, we know that Charlie is quiet.\nFrom statement 16, we know that round people are quiet.\nSince Charlie is round (from statement 14 and 5), we can conclude that Charlie is quiet.\n\nWe have a problem here. The statements 11, 6, and 16 seem to contradict each other. Statement 11 says Gary is quiet, and statements 6 and 16 say Charlie is quiet, which makes it seem like only Charlie is quiet, not Gary.\n\nHowever, from the given statements, we can't conclude that Gary is white or not. The statements do not provide enough information to determine the truth value of the statement \"Gary is white.\" Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is white\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. From the given information, we know the following statements are true:\n   - Bob is not cold.\n   - Bob is furry.\n   - Bob is round.\n   - Charlie is big.\n   - Charlie is furry.\n   - Charlie is quiet.\n   - Charlie is red.\n   - Charlie is not white.\n   - Erin is big.\n   - Gary is big.\n   - Gary is quiet.\n\n2. We also know the following statements are true due to the given rules:\n   - If someone is red and cold, then they are furry.\n   - All furry people are round.\n   - If Charlie is furry, then Charlie is round.\n   - Big people are red.\n   - Round people are quiet.\n   - If someone is red, then they are cold.\n\n3. Now, let's evaluate the statement \"Gary is white\".\n   - The rule \"If someone is red, then they are cold\" implies that Gary, being big, must be red.\n   - The rule \"If someone is red and cold, then they are furry\" does not apply here because we do not know that Gary is cold.\n   - The rule \"All furry people are round\" does not apply here because we do not know that Gary is furry.\n   - However, the rule \"Big people are red\" tells us that Gary, being big, is red.\n   - The rule \"If someone is red, then they are cold\" tells us that Gary, being red, is cold.\n   - The rule \"If someone is red and cold, then they are furry\" now applies because we know that Gary is red and cold. Therefore, Gary is furry.\n   - The rule \"All furry people are round\" now applies because we know that Gary is furry. Therefore, Gary is round.\n   - The rule \"Round people are quiet\" now applies because we know that Gary is round. Therefore, Gary is quiet.\n\nHowever, we still cannot determine whether Gary is white or not because there is no information that directly relates to Gary's color.\n\nSince we do not have enough information to determine whether Gary is white or not, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use the rules to determine the properties of each person. \n\n1. If someone is red and cold then they are furry.\n2. All furry people are round.\n3. If Charlie is furry then Charlie is round.\n4. Big people are red.\n5. Round people are quiet.\n6. If someone is red then they are cold.\n7. Charlie is big.\n8. Charlie is furry.\n9. Charlie is quiet.\n10. Charlie is red.\n11. Charlie is not white.\n12. Erin is big.\n13. Gary is big.\n14. Gary is quiet.\n\nNow, let's analyze the given statements to determine the properties of each person.\n\n- Charlie: \n  - Big (from 7)\n  - Furry (from 8)\n  - Quiet (from 9)\n  - Red (from 10)\n  - Not white (from 11)\n\n  Since Charlie is big, he is red (from 4). \n  Since Charlie is red, he is cold (from 6).\n  Since Charlie is furry and cold, he is furry (from 1).\n  Since Charlie is furry, he is round (from 2 or 3).\n\n- Gary:\n  - Big (from 13)\n  - Quiet (from 14)\n\n  Since Gary is big, he is red (from 4).\n  Since Gary is red, he is cold (from 6).\n  Since Gary is furry, he is round (from 2).\n\n- Erin:\n  We don't have any information about Erin being big or not, so we can't determine if Erin is red or not.\n\n- Bob:\n  - Not cold (from 1)\n  - Furry (from 2)\n  - Round (from 3)\n\nNow, let's analyze the statement \"Gary is white.\"\n\nSince we know that Gary is red (from 4), we can conclude that Gary is not white (from 6).\n\nTherefore, the statement \"Gary is white\" is false.",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is white\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. We are given the following statements:\n   - Bob is not cold.\n   - Bob is furry.\n   - Bob is round.\n   - Charlie is big.\n   - Charlie is furry.\n   - Charlie is quiet.\n   - Charlie is red.\n   - Charlie is not white.\n   - Erin is big.\n   - Gary is big.\n   - Gary is quiet.\n   - If someone is red and cold then they are furry.\n   - All furry people are round.\n   - If Charlie is furry then Charlie is round.\n   - Big people are red.\n   - Round people are quiet.\n   - If someone is red then they are cold.\n\n2. We need to determine the truth value of the statement \"Gary is white.\"\n\n   To do this, we can start by looking for any statements that directly contradict or support the statement.\n\n   There is no direct statement that says Gary is white or Gary is not white.\n\n   However, we can use the given statements to try to deduce the answer.\n\n   From the statement \"Big people are red,\" we can conclude that Gary is red because Gary is big.\n\n   Now we have a new piece of information: Gary is red.\n\n   From the statement \"If someone is red then they are cold,\" we can conclude that Gary is cold.\n\n   Now we have a new piece of information: Gary is cold.\n\n   From the statement \"If someone is red and cold then they are furry,\" we can conclude that Gary is furry.\n\n   Now we have a new piece of information: Gary is furry.\n\n   From the statement \"All furry people are round,\" we can conclude that Gary is round.\n\n   Now we have a new piece of information: Gary is round.\n\n   From the statement \"Round people are quiet,\" we can conclude that Gary is quiet. This is consistent with the given information that Gary is quiet.\n\n   Now we have a new piece of information: Gary is white is not directly supported by any of the statements.\n\n   However, we can use the statement \"Charlie is not white\" to infer that Gary is not white because there is no other information that links Gary's color to white.\n\n   Therefore, we can conclude that the statement \"Gary is white\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is white\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nGiven information:\n\n1. Bob is not cold.\n2. Bob is furry.\n3. Bob is round.\n4. Charlie is big.\n5. Charlie is furry.\n6. Charlie is quiet.\n7. Charlie is red.\n8. Charlie is not white.\n9. Erin is big.\n10. Gary is big.\n11. Gary is quiet.\n12. If someone is red and cold then they are furry.\n13. All furry people are round.\n14. If Charlie is furry then Charlie is round.\n15. Big people are red.\n16. Round people are quiet.\n17. If someone is red then they are cold.\n\nStatement to evaluate: Gary is white.\n\nTo evaluate this statement, let's first try to find any information related to Gary's color or characteristics.\n\nFrom the given information, we know that:\n\n- Gary is big (10).\n- Gary is quiet (11).\n\nWe can use this information to make deductions.\n\nFrom (15), we know that big people are red. Therefore, Gary is red.\n\nNow, we can use the information that Gary is red to make further deductions.\n\nFrom (17), we know that if someone is red, then they are cold.\n\nTherefore, Gary is cold.\n\nFrom (12), we know that if someone is red and cold, then they are furry.\n\nTherefore, Gary is furry.\n\nFrom (13), we know that all furry people are round. Therefore, Gary is round.\n\nSince we know that Gary is round and quiet, we can use (16) which states that round people are quiet. However, we cannot use this information to determine whether Gary is white or not.\n\nTo determine whether Gary is white, we need to find a direct statement or a combination of statements that directly relate to Gary's whiteness.\n\nFrom the given information, we have:\n\n- Charlie is not white (8).\n- Charlie is red (7).\n- If Charlie is furry then Charlie is round (14).\n- All furry people are round (13).\n- Charlie is furry (5).\n\nSince Charlie is furry, we can use (14) to deduce that Charlie is round.\n\nWe can also use (13) to deduce that all furry people are round, which includes Gary (since Gary is furry).\n\nHowever, we have no direct information that links Gary's whiteness to any of the given statements.\n\nSince we cannot find any information that directly relates to Gary's whiteness, we have to conclude that the statement \"Gary is white\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> red(X)",
+          "z3_formula": "Implies(big_gary, red_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(red_gary, cold_gary), furry_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_gary, cold_gary), white_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "furry(X)",
+          "z3_formula": "furry_gary == Unknown",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> round(X)",
+          "z3_formula": "Implies(furry_gary, round_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "round(X)",
+          "z3_formula": "round_gary == Unknown",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> round(X)",
+          "z3_formula": "Implies(furry_charlie, round_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "white(X)",
+          "z3_formula": "white_gary == Unknown",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not white(charlie)",
+          "z3_formula": "not white_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(red_charlie, cold_charlie), furry_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> round(X)",
+          "z3_formula": "Implies(furry_charlie, round_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(charlie) -> furry(gary)",
+          "z3_formula": "Implies(furry_charlie, furry_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> red(X)",
+          "z3_formula": "Implies(big_gary, red_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_gary, quiet_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> cold(X)",
+          "z3_formula": "Implies(red_gary, cold_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == Unknown",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> red(X)",
+          "z3_formula": "Implies(big_gary, red_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> cold(X)",
+          "z3_formula": "Implies(red_gary, cold_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(red_gary, cold_gary), furry_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> round(X)",
+          "z3_formula": "Implies(furry_gary, round_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_gary, quiet_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not white(charlie)",
+          "z3_formula": "Not(white_charlie) == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == Unknown",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not(cold(bob))",
+          "z3_formula": "Not(cold_bob) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not(white(charlie))",
+          "z3_formula": "Not(white_charlie) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(red_charlie, cold_charlie), furry_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> round(X)",
+          "z3_formula": "Implies(furry_charlie, round_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> red(X)",
+          "z3_formula": "Implies(big_charlie, red_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_charlie, quiet_charlie)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> cold(X)",
+          "z3_formula": "Implies(red_charlie, cold_charlie)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == Unknown",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == Unknown",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not(cold(bob))",
+          "z3_formula": "Not(cold_bob) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not(white(charlie))",
+          "z3_formula": "Not(white_charlie) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(red_X, cold_X), furry_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> round(X)",
+          "z3_formula": "Implies(furry_X, round_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(charlie) -> round(charlie)",
+          "z3_formula": "Implies(furry_charlie, round_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> red(X)",
+          "z3_formula": "Implies(big_X, red_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_X, quiet_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> cold(X)",
+          "z3_formula": "Implies(red_X, cold_X)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> red(X)",
+          "z3_formula": "Implies(big_gary, red_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> cold(X)",
+          "z3_formula": "Implies(red_gary, cold_gary)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(red_gary, cold_gary), furry_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> round(X)",
+          "z3_formula": "Implies(furry_gary, round_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(Charlie) -> round(Charlie)",
+          "z3_formula": "Implies(furry_charlie, round_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_gary, quiet_gary)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(bob))",
+          "z3_formula": "Not(cold_bob) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not(white(charlie))",
+          "z3_formula": "Not(white_charlie) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == Unknown",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not(cold(bob))",
+          "z3_formula": "Not(cold_bob) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not(white(charlie))",
+          "z3_formula": "Not(white_charlie) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(red_X, cold_X), furry_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> round(X)",
+          "z3_formula": "Implies(furry_X, round_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(charlie) -> round(charlie)",
+          "z3_formula": "Implies(furry_charlie, round_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> red(X)",
+          "z3_formula": "Implies(big_X, red_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_X, quiet_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> cold(X)",
+          "z3_formula": "Implies(red_X, cold_X)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not(cold(bob))",
+          "z3_formula": "Not(cold_bob) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not(white(charlie))",
+          "z3_formula": "Not(white_charlie) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(red_X, cold_X), furry_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> round(X)",
+          "z3_formula": "Implies(furry_X, round_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> red(X)",
+          "z3_formula": "Implies(big_X, red_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_X, quiet_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> cold(X)",
+          "z3_formula": "Implies(red_X, cold_X)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not(cold(bob))",
+          "z3_formula": "Not(cold_bob) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(white(charlie))",
+          "z3_formula": "Not(white_charlie) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(red_X, cold_X), furry_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> round(X)",
+          "z3_formula": "Implies(furry_X, round_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(charlie) -> round(charlie)",
+          "z3_formula": "Implies(furry_charlie, round_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> red(X)",
+          "z3_formula": "Implies(big_X, red_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_X, quiet_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> cold(X)",
+          "z3_formula": "Implies(red_X, cold_X)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == Unknown",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not white(charlie)",
+          "z3_formula": "Not(white_charlie) == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> cold(X)",
+          "z3_formula": "Implies(red_charlie, cold_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(furry_charlie, cold_charlie), furry_charlie)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> round(X)",
+          "z3_formula": "Implies(furry_charlie, round_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> red(X)",
+          "z3_formula": "Implies(big_charlie, red_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_charlie, quiet_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not white(gary)",
+          "z3_formula": "Not(white_gary) == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not white(gary)",
+          "z3_formula": "Not(white_gary) == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not(cold(bob))",
+          "z3_formula": "Not(cold_bob) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not(white(charlie))",
+          "z3_formula": "Not(white_charlie) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(red_X, cold_X), furry_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> round(X)",
+          "z3_formula": "Implies(furry_X, round_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(charlie) -> round(charlie)",
+          "z3_formula": "Implies(furry_charlie, round_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> red(X)",
+          "z3_formula": "Implies(big_X, red_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_X, quiet_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> cold(X)",
+          "z3_formula": "Implies(red_X, cold_X)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == Unknown",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "not(white(gary))",
+          "z3_formula": "Not(white_gary) == True",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> red(X)",
+          "z3_formula": "Implies(big_gary, red_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> cold(X)",
+          "z3_formula": "Implies(red_gary, cold_gary)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(red_gary, cold_gary), furry_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> round(X)",
+          "z3_formula": "Implies(furry_gary, round_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_gary, quiet_gary)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == Unknown",
+          "source_step": 22
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 214,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 40
+    },
+    "maxsat_stats": {
+      "satisfied": 39,
+      "excluded": 1,
+      "total_weight": 213,
+      "solve_time_ms": 1.4043813571333885
+    },
+    "timing": {
+      "trace_gen_s": 8.015,
+      "extraction_s": 29.668,
+      "dedup_s": 2.292,
+      "maxsat_s": 0.004,
+      "total_s": 39.979
+    }
+  }
+}

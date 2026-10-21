@@ -1,0 +1,11 @@
+paper_key: "hape_2026"
+title: "HAP-E: Hessian-Aware Structured Pruning of LLMs for Efficient Inference"
+venue: "ICLR 2026 (desk rejected)"
+full_text_available: false
+research:
+  baselines: [FLAP, SliceGPT, LLM-Pruner, SlimGPT, SoBP, ASVD]
+  metrics: [{name: "perplexity", direction: "lower_better"}, {name: "zero-shot accuracy", direction: "higher_better"}, {name: "wall-clock latency", direction: "lower_better"}]
+  datasets: [{name: "WikiText2", size: "standard"}, {name: "zero-shot benchmarks", size: "standard"}]
+  ablation_dimensions: [cross-layer sensitivity, batch pruning, latency predictor]
+  training_recipe: {}
+  method_family: "Hessian-aware structured pruning"

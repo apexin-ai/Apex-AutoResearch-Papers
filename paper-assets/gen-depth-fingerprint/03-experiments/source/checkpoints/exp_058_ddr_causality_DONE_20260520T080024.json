@@ -1,0 +1,65 @@
+{
+  "exp_id": "exp_058_ddr_causality",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T07:05:46.902Z",
+    "updated_at": "2026-05-20T08:00:24.254Z",
+    "hypothesis": "DDR features have causal predictive power for depth beyond correlation: permutation importance confirms each feature group (drifting/stationary) contributes independently, and Granger causality tests show depth-t features predict depth-(t+1) features beyond autoregressive baseline, establishing temporal causal direction in the generation chain",
+    "notes": "脚本 444 行，3 模块（permutation/granger/intervention）已实现并 dry-run 验证。全部 CPU-bound，不需要 GPU。数据: features_8gen.csv 37058 行。预估: Granger ~2min, Permutation ~15min, Intervention ~45min，可并行。",
+    "server": "bjb2-18868",
+    "gpu": "cuda:1",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-fingerprint && python3 scripts/ddr_causal_analysis.py --module permutation --n-repeats 50 --output results/ddr_causal_permutation.json && python3 scripts/ddr_causal_analysis.py --module granger --output results/ddr_causal_granger.json && python3 scripts/ddr_causal_analysis.py --module intervention --n-repeats 30 --output results/ddr_causal_intervention.json\"",
+      "server": "bjb2-18868",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "179978",
+      "log_path": "~/runs/gen-depth-fingerprint/exp_058_ddr_causality.log",
+      "submitted_at": "2026-05-20T07:33:06.935Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 1636.7,
+      "gpu_hours": 0.45
+    },
+    "pid": "179978",
+    "log_path": "~/runs/gen-depth-fingerprint/exp_058_ddr_causality.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-fingerprint && python3 scripts/ddr_causal_analysis.py --module permutation --n-repeats 50 --output results/ddr_causal_permutation.json && python3 scripts/ddr_causal_analysis.py --module granger --output results/ddr_causal_granger.json && python3 scripts/ddr_causal_analysis.py --module intervention --n-repeats 30 --output results/ddr_causal_intervention.json\"",
+      "finished_at": "2026-05-20T07:50:02.678Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T07:50:04.916046+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "permutation_baseline_f1": 0.7714,
+      "drifting_avg_importance": 0.1578,
+      "stationary_avg_importance": 0.0297,
+      "drifting_stationary_ratio": 5.31,
+      "granger_significant_features": "6/7",
+      "granger_max_delta_r2": 0.031,
+      "granger_max_delta_r2_feature": "entropy_std",
+      "granger_nonsig_feature": "entropy_min",
+      "granger_panel_n": 29095,
+      "intervention_max_f1_drop": 0.0203,
+      "intervention_max_feature": "entropy_max",
+      "intervention_min_f1_drop": 0.0061
+    },
+    "checkpoint_path": "results/ddr_causal_permutation.json, results/ddr_causal_granger.json, results/ddr_causal_intervention.json",
+    "completed_at": "2026-05-20T08:00:23.605Z"
+  },
+  "timestamp": "2026-05-20T08:00:24.366808+00:00",
+  "trigger": "update_registry"
+}

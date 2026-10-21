@@ -1,0 +1,70 @@
+{
+  "roberta_probing": {
+    "linear_probing": {
+      "turn_position": {
+        "vanilla": {"accuracy": 0.7665, "std": 0.1081, "cv_folds": 5},
+        "mlm": {"accuracy": 0.7526, "std": 0.1078, "cv_folds": 5},
+        "9class": {"accuracy": 0.8294, "std": 0.1034, "cv_folds": 5}
+      },
+      "escalation_level": {
+        "vanilla": {"accuracy": 0.7272, "std": 0.0336, "cv_folds": 5},
+        "mlm": {"accuracy": 0.7243, "std": 0.0268, "cv_folds": 5},
+        "9class": {"accuracy": 0.7448, "std": 0.0284, "cv_folds": 5}
+      },
+      "persuasion_presence": {
+        "vanilla": {"accuracy": 0.942, "std": 0.0891, "cv_folds": 5},
+        "mlm": {"accuracy": 0.9411, "std": 0.0893, "cv_folds": 5},
+        "9class": {"accuracy": 0.9509, "std": 0.0905, "cv_folds": 5}
+      }
+    },
+    "cka": {
+      "iid": {
+        "vanilla_vs_mlm": 0.9991,
+        "vanilla_vs_9class": 0.5564,
+        "mlm_vs_9class": 0.5529
+      },
+      "dd_ood": {
+        "vanilla_vs_mlm": 0.9985,
+        "vanilla_vs_9class": 0.9599,
+        "mlm_vs_9class": 0.9598
+      }
+    }
+  },
+  "deberta_cka_audit": {
+    "cls_extraction_method": "last_hidden_state[:, 0, :] (CLS token, last layer)",
+    "checkpoint_verification": {
+      "vanilla_path": "microsoft/deberta-v3-base",
+      "mlm_path": "/root/persuasion_turn_jailbreak_detect/checkpoints/plan_017_mlm/best",
+      "both_configs_match": true,
+      "weights_identical": false
+    },
+    "weight_comparison": {
+      "total_param_tensors": 198,
+      "sum_l2_diff": 28.59253665,
+      "max_elementwise_diff": 0.00347063,
+      "top5_diff_layers": {
+        "encoder.layer.11.intermediate.dense.weight": {"l2_diff": 0.76022649, "max_diff": 0.00325125},
+        "encoder.layer.10.intermediate.dense.weight": {"l2_diff": 0.70705849, "max_diff": 0.0033798},
+        "embeddings.word_embeddings.weight": {"l2_diff": 0.70125544, "max_diff": 0.00145848},
+        "encoder.layer.9.intermediate.dense.weight": {"l2_diff": 0.66824436, "max_diff": 0.00281118},
+        "encoder.layer.8.intermediate.dense.weight": {"l2_diff": 0.63327914, "max_diff": 0.00247759}
+      }
+    },
+    "numerical_check": {
+      "n_samples": 10,
+      "mean_l2_diff": 1.0977,
+      "max_l2_diff": 1.25023448,
+      "mean_cosine_sim": 0.99838275,
+      "min_cosine_sim": 0.99793005,
+      "embeddings_identical_atol_1e7": false
+    },
+    "cka_recomputed": 0.9999869,
+    "iid_embedding_diff": {
+      "mean_l2_diff": 1.41103349,
+      "max_l2_diff": 1.97526374,
+      "mean_cosine_sim": 0.99730044,
+      "min_cosine_sim": 0.99479996
+    },
+    "conclusion": "CKA=1.0 (rounded to 4dp) is CORRECT. Weights are NOT identical (sum_L2_diff=28.59, max_element_diff=0.00347). MLM continued pretraining caused small but real weight changes across all 198 param tensors (biggest diffs in layers 8-11 intermediate.dense). However, these changes are so small that CLS embeddings remain highly similar (mean cosine_sim=0.997, mean L2_diff=1.41). Linear CKA recomputed = 0.9999869, which rounds to 1.0 at 4 decimal places. The MLM objective primarily updates masked token predictions; the CLS token is never masked, so its representation changes minimally through indirect gradient flow."
+  }
+}

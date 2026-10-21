@@ -1,0 +1,34 @@
+{
+  "exp_id": "review-p2f-cross-ref-bias",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T13:47:00.408Z",
+    "updated_at": "2026-05-15T16:29:29.410Z",
+    "conclusion": "success",
+    "metrics": {
+      "pythia1b_f1_pythia410m_ref": 0.856,
+      "pythia1b_f1_olmo_ref": 0.845,
+      "pythia1b_f1_qwen_ref": 0.848,
+      "same_to_cross_drop": 0.009,
+      "pythia1b_rank_all_refs": 1,
+      "same_family_bias": false
+    },
+    "spec": {
+      "command": "python run_cross_ref_bias.py",
+      "server": "autodl-5090",
+      "data_path": "data/",
+      "data_count": 18000,
+      "model_name": "Pythia-1B (3 ref models)",
+      "seed": 42
+    },
+    "checkpoint_path": "/root/gen-depth-fingerprint/results/cross_ref_bias.json",
+    "log_path": "/root/gen-depth-fingerprint/results/cross_ref_bias.json",
+    "completed_at": "2026-05-15T16:29:29.410Z"
+  },
+  "timestamp": "2026-05-15T16:29:29.490880+00:00",
+  "trigger": "update_registry"
+}

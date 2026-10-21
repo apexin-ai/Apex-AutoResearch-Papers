@@ -1,0 +1,65 @@
+{
+  "exp_id": "sta-phase1-exec-only-r4",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T20:28:18.040Z",
+    "updated_at": "2026-05-13T20:51:56.183Z",
+    "spec": {
+      "command": "bash -c \"CUDA_VISIBLE_DEVICES=0 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "70716",
+      "log_path": "~/runs/solver-trace-ablation/sta-phase1-exec-only-r4.log",
+      "submitted_at": "2026-05-13T20:28:30.420Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 1405.8,
+      "gpu_hours": 0.39
+    },
+    "server": "westd-39279",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-39279",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-13T20:28:28.733Z",
+      "command": "bash -c \"CUDA_VISIBLE_DEVICES=0 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml\"",
+      "finished_at": "2026-05-13T20:45:53.506Z",
+      "training_hours": 0.29
+    },
+    "pid": "70716",
+    "log_path": "~/runs/solver-trace-ablation/sta-phase1-exec-only-r4.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-13T20:45:54.294365+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "parse_rate": 1,
+      "prove_rate": 0.15125,
+      "mean_isr": 0.1475,
+      "last20_prove_rate": 0.2,
+      "last20_isr": 0.2,
+      "first20_prove_rate": 0.119,
+      "first20_isr": 0.119,
+      "total_steps": 100,
+      "runtime_s": 918
+    },
+    "checkpoint_path": "/root/autodl-tmp/outputs/grpo_exec_only/",
+    "conclusion": "negative",
+    "completed_at": "2026-05-13T20:51:56.183Z"
+  },
+  "timestamp": "2026-05-13T20:51:56.208058+00:00",
+  "trigger": "update_registry"
+}

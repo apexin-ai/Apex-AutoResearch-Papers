@@ -1,0 +1,32 @@
+{
+  "exp_id": "exp_011_llm_zeroshot",
+  "project": "gen-depth-contamination",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T08:59:07.954Z",
+    "updated_at": "2026-05-13T11:32:27.910Z",
+    "hypothesis": "Frontier LLMs (GPT-5.5, Claude Opus 4.6) cannot reliably estimate generational depth via zero-shot prompting, motivating the need for specialized statistical methods",
+    "spec": {
+      "command": "python3 scripts/exp011_llm_zeroshot.py --model gpt-5.5 && python3 scripts/exp011_llm_zeroshot.py --model claude-opus-4-6 && python3 scripts/exp011_analyze.py",
+      "server": "autodl-4090d",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data_exp001_pythia/",
+      "data_count": 500,
+      "model_name": "GPT-5.5 + Claude Opus 4.6 (zero-shot via OpenRouter)",
+      "seed": 42,
+      "sampling": "100 texts × 5 depths (0-4) from Pythia continuation",
+      "scripts": [
+        "scripts/exp011_sample_data.py",
+        "scripts/exp011_llm_zeroshot.py",
+        "scripts/exp011_analyze.py"
+      ],
+      "samples_path": "artifacts/exp011_samples.jsonl",
+      "api_base_url": "http://47.94.22.126/v1"
+    },
+    "notes": "脚本就绪，sampling dry-run 通过 (500条)。openai/anthropic 包已装。等 API keys 后可立即运行。"
+  },
+  "timestamp": "2026-05-13T11:32:27.969617+00:00",
+  "trigger": "update_registry"
+}

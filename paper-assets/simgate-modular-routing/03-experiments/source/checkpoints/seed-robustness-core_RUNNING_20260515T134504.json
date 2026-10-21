@@ -1,0 +1,112 @@
+{
+  "exp_id": "seed-robustness-core",
+  "project": "simgate-modular-routing",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T13:17:38.963Z",
+    "updated_at": "2026-05-15T13:45:04.169Z",
+    "hypothesis": "核心数字 seed robustness：用 3 个额外 seed（不同 train/val split）重训 router 并报告 balanced acc/internal recall cross-seed 稳定性。同时用 bootstrap 验证 decomposition 指标（Δ_full, Δ_nd, DAF, r）的稳定性。目标：从单点估计升级为 mean ± std。",
+    "spec": {
+      "command": "python scripts/seed_robustness.py",
+      "server": "westb-13313",
+      "data_path": "data/plan-004-implicit/ + results/plan_c/",
+      "data_count": 2040,
+      "model_name": "Qwen3-1.7B",
+      "seed": "43,44,45",
+      "description": "Part A: Router multi-seed (43,44,45) train+eval on GPU1. Part B: Decomposition bootstrap 1000 resamples + jackknife (DONE). PID=474403",
+      "gpu": "cuda:1 (RTX 5090 32GB)",
+      "checkpoint_path": "checkpoints/seed-robustness-seed{43,44,45}/",
+      "log_path": "results/seed-robustness/run.log"
+    },
+    "metrics": {
+      "decomposition_bootstrap": {
+        "n_bootstrap": 1000,
+        "delta_full": {
+          "point": 29.6,
+          "mean": 29.61,
+          "std": 3.18,
+          "ci95": [
+            23.76,
+            35.82
+          ]
+        },
+        "delta_nd": {
+          "point": 2.84,
+          "mean": 2.78,
+          "std": 1.27,
+          "ci95": [
+            0.34,
+            5.57
+          ]
+        },
+        "daf": {
+          "point": 0.9041,
+          "mean": 0.9058,
+          "std": 0.0425,
+          "ci95": [
+            0.816,
+            0.9876
+          ]
+        },
+        "pearson_r": {
+          "point": 0.9698,
+          "mean": 0.9752,
+          "std": 0.0108,
+          "ci95": [
+            0.952,
+            0.995
+          ]
+        }
+      },
+      "jackknife": {
+        "daf_range": [
+          0.89,
+          1
+        ],
+        "pearson_r_range": [
+          0.963,
+          0.98
+        ],
+        "no_single_task_dominates": true
+      },
+      "router_metrics": {
+        "seeds": [
+          42,
+          43,
+          44,
+          45
+        ],
+        "balanced_acc": [
+          0.5761,
+          0.4852,
+          0.6074,
+          0.5467
+        ],
+        "internal_recall": [
+          0.5152,
+          0.3667,
+          0.6,
+          0.6
+        ],
+        "eval_loss": [
+          0.24,
+          0.4363,
+          0.3996,
+          0.3562
+        ],
+        "mean_balanced_acc": 0.5538,
+        "std_balanced_acc": 0.052,
+        "mean_internal_recall": 0.5205,
+        "std_internal_recall": 0.11,
+        "mean_eval_loss": 0.358,
+        "std_eval_loss": 0.0852
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T13:45:04.297431+00:00",
+  "trigger": "update_registry"
+}

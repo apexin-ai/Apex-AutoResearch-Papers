@@ -1,0 +1,9 @@
+_next_id: 2
+constraints:
+- id: C001
+  added: 2026-05-16 03:03 UTC
+  summary: 论文 tex 文件只能修改 docs/paper/sections/ 下的编译版本，禁止直接修改 artifacts/_project/paper/
+    下的 tex 文件
+  scope: worker
+  reason: 两次出现 Worker 修改 artifacts/ 旧版本而非 docs/ 编译版本的系统性错误（patch-narrative worker
+    + patch-experiments worker）。artifacts/_project/paper/ 是旧版残留，不参与编译。

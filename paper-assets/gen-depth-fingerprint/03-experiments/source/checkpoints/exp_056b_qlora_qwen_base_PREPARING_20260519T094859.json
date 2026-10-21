@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp_056b_qlora_qwen_base",
+  "project": "gen-depth-fingerprint",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T07:53:19.069Z",
+    "updated_at": "2026-05-19T09:48:59.301Z",
+    "hypothesis": "Within-model QLoRA on Qwen3-1.7B base data establishes per-model baseline for instruct comparison; expected 3-class F1 comparable to pooled base QLoRA (0.905) with potential variance from smaller per-model dataset",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate && python /root/gen-depth-fingerprint/qlora_instruct.py --generator qwen3-1.7b --data_path /root/gen-depth-fingerprint/data/qwen3-1.7b/generations_shard0.jsonl --backbone /root/autodl-tmp/models/qwen3-0.6b/Qwen/Qwen3-0___6B-Base/ --device cuda:0 --output /root/gen-depth-fingerprint/results/qlora_qwen3-1.7b.json 2>&1 | tee /root/gen-depth-fingerprint/results/qlora_qwen_base.log\"",
+      "server": "bjb2-18868",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "72489",
+      "log_path": "~/runs/gen-depth-fingerprint/exp_056b_qlora_qwen_base.log",
+      "submitted_at": "2026-05-19T09:02:41.726Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-19T09:48:59.395185+00:00",
+  "trigger": "update_registry"
+}

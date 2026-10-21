@@ -1,0 +1,42 @@
+{
+  "exp_id": "kl_comp_30pct_s42_eval",
+  "project": "distill_sparse_swiglu",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T09:00:31.189Z",
+    "updated_at": "2026-05-18T10:00:36.553Z",
+    "hypothesis": "KL+compensation at 30% sparsity (s42) improves downstream benchmark quality over KL-only predictor, validating that compensation heads recover quality lost to sparse activation.",
+    "parent": "kl_comp_30pct_s42",
+    "spec": {
+      "command": "nohup bash -c '... CUDA_VISIBLE_DEVICES=0 python -u src/benchmark_eval.py --exp_id kl_comp_30pct_s42_eval ...' > ~/runs/distill_sparse_swiglu/kl_comp_30pct_s42_eval.log 2>&1 &",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "15055",
+      "log_path": "~/runs/distill_sparse_swiglu/kl_comp_30pct_s42_eval.log",
+      "submitted_at": "2026-05-18T17:06:00Z",
+      "backend": "nohup",
+      "account": "root",
+      "data_path": "wikitext2,arc_challenge,winogrande,mmlu,gsm8k",
+      "data_count": 0,
+      "model_name": "llama-3.1-8b",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/kl_comp_30pct_s42/predictor_with_comp.pt",
+      "eval_data": "wikitext2,arc_challenge,winogrande,mmlu,gsm8k"
+    },
+    "metrics": {
+      "wikitext2_ppl": 8.9788,
+      "arc_challenge_acc_norm": 0.3993,
+      "winogrande_acc": 0.6898,
+      "mmlu_acc": 0.2531,
+      "gsm8k_exact_match": 0.0842
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T10:00:36.859172+00:00",
+  "trigger": "update_registry"
+}

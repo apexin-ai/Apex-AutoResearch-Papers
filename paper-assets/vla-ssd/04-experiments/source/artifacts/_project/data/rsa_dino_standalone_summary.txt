@@ -1,8 +1,0 @@
-DINO RSA Standalone Provenance (Method B, 50 demos/task)
-
-cls_token:  mean_rsa=0.6915, CI95=[0.6409, 0.7401]
-patch_mean: mean_rsa=0.6307, CI95=[0.5331, 0.7040]
-
-Script: /root/vla-ssd/scripts/rsa_dino_standalone.py
-Result: /root/autodl-tmp/vla-ssd/results/rsa/rsa_dino_standalone.json
-Runtime: 7s, CPU-only, 10 tasks × 50 demos

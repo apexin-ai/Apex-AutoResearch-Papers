@@ -1,0 +1,53 @@
+{
+  "exp_id": "plan006-prolog-exec-s42",
+  "project": "solver-trace-ablation",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 1,
+    "created_at": "2026-05-14T07:13:34.169Z",
+    "updated_at": "2026-05-14T09:49:39.031Z",
+    "hypothesis": "Prolog exec-only GRPO seed=42: STA/ISR hacking patterns generalize across logic types? Prolog uses rule ablation (vs FOL axiom ablation). If same degeneration modes appear → STA is logic-agnostic diagnostic.",
+    "server": "westd-39279",
+    "gpu": "cuda:0",
+    "reproduce": {
+      "server": "westd-39279",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-14T09:49:36.534Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_prolog_exec_only.yaml --num_steps 500 --seed 42 --output_dir /root/autodl-tmp/outputs/plan006_prolog_exec_s42\""
+    },
+    "failure_reason": "Traceback → (args.data_path) ^^^^^^^^^^^^^^^^^^^^^^^^^^ File \"/root/solver-trace-ablation/scripts/train_grpo.py\", line 91, in load_jsonl with open(path) as f: ^^^^^^^^^^ FileNotFoundError: [Errno 2] No such file or directory: 'data/prolog/train_500_seed42.jsonl'",
+    "completed_at": "2026-05-14T09:47:36.390Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T09:47:38.546001+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "account": "root",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_prolog_exec_only.yaml --num_steps 500 --seed 42 --output_dir /root/autodl-tmp/outputs/plan006_prolog_exec_s42\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "506015",
+      "log_path": "~/runs/solver-trace-ablation/plan006-prolog-exec-s42.log",
+      "submitted_at": "2026-05-14T09:49:38.478Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "506015",
+    "log_path": "~/runs/solver-trace-ablation/plan006-prolog-exec-s42.log"
+  },
+  "timestamp": "2026-05-14T09:49:39.567807+00:00",
+  "trigger": "update_registry"
+}

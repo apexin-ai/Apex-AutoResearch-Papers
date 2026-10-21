@@ -1,0 +1,18 @@
+{
+  "test": "Permutation test for clause-level R\u00b2",
+  "method": "Shuffle violation_rate within (type, condition, model) strata",
+  "n_permutations": 1000,
+  "observed_r2": 0.2236,
+  "observed_r2_pct": 22.4,
+  "null_distribution": {
+    "mean": 0.0831,
+    "mean_pct": 8.3,
+    "std": 0.0062,
+    "percentile_95": 0.0938,
+    "percentile_95_pct": 9.4,
+    "percentile_99": 0.0985,
+    "max": 0.1019
+  },
+  "p_value": "< 0.001",
+  "conclusion": "Observed clause R\u00b2 (22.4%) significantly exceeds the null expectation (mean null = 8.3%, 95th = 9.4%). p < 0.001 (1000 permutations, 0 exceeded observed)."
+}

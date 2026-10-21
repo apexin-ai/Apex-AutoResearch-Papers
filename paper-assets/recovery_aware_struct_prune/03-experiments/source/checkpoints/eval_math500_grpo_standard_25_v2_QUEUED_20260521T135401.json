@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_math500_grpo_standard_25_v2",
+  "project": "recovery_aware_struct_prune",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T13:53:43.695Z",
+    "updated_at": "2026-05-21T13:54:00.362Z",
+    "hypothesis": "Standard 25% GRPO model MATH-500 @2048 accuracy, expected near-zero due to reward collapse. Re-run with correct max_new_tokens=2048 for consistency with 20% data.",
+    "parent": "eval_math500_grpo_standard_25"
+  },
+  "timestamp": "2026-05-21T13:54:01.216944+00:00",
+  "trigger": "update_registry"
+}

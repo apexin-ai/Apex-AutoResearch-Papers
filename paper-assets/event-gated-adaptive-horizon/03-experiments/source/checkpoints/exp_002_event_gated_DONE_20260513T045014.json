@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp_002_event_gated",
+  "project": "event-gated-adaptive-horizon",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T02:09:54.240Z",
+    "updated_at": "2026-05-13T04:50:14.987Z",
+    "spec": {
+      "command": "python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/event_gated_s1 --steps 500000 --seed 1 --compile False --device cuda:1 --gate_enabled True",
+      "server": "autodl-rtx6000",
+      "gpu_id": 1,
+      "pid": 9769,
+      "data_path": "DMC Walker Walk (dm_control built-in)",
+      "data_count": 500000,
+      "model_name": "DreamerV3 + Event-Gated Variable-Rate RSSM (K=8, τ=5→0.5, λ_H=0.1→0.01)",
+      "seed": 1,
+      "hypothesis": "Event-gated variable-rate RSSM produces meaningful Δt patterns (entropy>0.3, H_eff>1.2×H_nominal) without breaking training stability (return≥80% baseline)",
+      "log_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_s1"
+    },
+    "hypothesis": "Event-gated variable-rate RSSM produces meaningful Δt patterns (entropy>0.3, H_eff>1.2×H_nominal) without breaking training stability (return≥80% baseline)",
+    "conclusion": "killed",
+    "completed_at": "2026-05-13T04:50:14.987Z"
+  },
+  "timestamp": "2026-05-13T04:50:14.997273+00:00",
+  "trigger": "update_registry"
+}

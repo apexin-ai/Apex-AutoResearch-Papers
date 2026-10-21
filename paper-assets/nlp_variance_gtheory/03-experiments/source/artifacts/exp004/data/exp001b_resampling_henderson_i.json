@@ -1,0 +1,90 @@
+{
+  "method": "Henderson Method I",
+  "facets": 5,
+  "facet_levels": {
+    "temperature": 3,
+    "prompt_template": 6,
+    "seed": 6,
+    "ordering": 4,
+    "item_id": 200
+  },
+  "model": "Llama-3.1-8B-Instruct",
+  "note": "exp-001b has single precision (bfloat16) so only 5 facets available. For balanced fully-crossed designs, Henderson I and eta-squared give identical variance component proportions. The ~13pp gap vs the 6-facet reference (58.39%) is due to the missing precision facet, not the estimation method.",
+  "samples": [
+    {
+      "name": "sample1",
+      "item_id_pct": 73.1821,
+      "total_variance": 0.20214893,
+      "n_items": 200,
+      "all_components_pct": {
+        "item_id": 73.1821,
+        "residual": 12.6248,
+        "seed:item_id": 6.3228,
+        "prompt_template:item_id": 5.1323,
+        "temperature:item_id": 2.0558,
+        "ordering:item_id": 0.5418,
+        "temperature": 0.0446,
+        "prompt_template": 0.041,
+        "temperature:seed": 0.0356,
+        "prompt_template:seed": 0.0094,
+        "prompt_template:ordering": 0.0052,
+        "temperature:prompt_template": 0.0039,
+        "temperature:ordering": 0.0007,
+        "seed:ordering": 0.0,
+        "seed": 0.0,
+        "ordering": 0.0
+      }
+    },
+    {
+      "name": "sample2",
+      "item_id_pct": 72.5747,
+      "total_variance": 0.2363242,
+      "n_items": 200,
+      "all_components_pct": {
+        "item_id": 72.5747,
+        "residual": 13.092,
+        "seed:item_id": 5.6707,
+        "prompt_template:item_id": 5.0363,
+        "temperature:item_id": 2.0735,
+        "ordering:item_id": 1.4549,
+        "temperature": 0.0381,
+        "temperature:seed": 0.0338,
+        "ordering": 0.0106,
+        "temperature:ordering": 0.0057,
+        "temperature:prompt_template": 0.0044,
+        "prompt_template:ordering": 0.0038,
+        "prompt_template:seed": 0.0014,
+        "seed:ordering": 0.0,
+        "prompt_template": 0.0,
+        "seed": 0.0
+      }
+    },
+    {
+      "name": "sample3",
+      "item_id_pct": 69.0042,
+      "total_variance": 0.21628966,
+      "n_items": 200,
+      "all_components_pct": {
+        "item_id": 69.0042,
+        "residual": 14.6077,
+        "prompt_template:item_id": 6.2603,
+        "seed:item_id": 6.1871,
+        "temperature:item_id": 2.394,
+        "ordering:item_id": 1.4269,
+        "temperature:seed": 0.0617,
+        "prompt_template": 0.0334,
+        "prompt_template:seed": 0.0098,
+        "temperature:prompt_template": 0.0053,
+        "prompt_template:ordering": 0.0051,
+        "seed": 0.0035,
+        "ordering": 0.0009,
+        "temperature:ordering": 0.0,
+        "seed:ordering": 0.0,
+        "temperature": 0.0
+      }
+    }
+  ],
+  "mean_item_id_pct": 71.587,
+  "cv_pct": 3.1532,
+  "reference_full_mmlu_item_id_pct": 58.39
+}

@@ -1,0 +1,51 @@
+{
+  "exp_id": "cwm8b-seed123",
+  "project": "exec-sim-repair-verifier",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-12T09:23:40.894Z",
+    "updated_at": "2026-05-12T11:02:50.926Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 train_cwm_baseline.py --data_dir data/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --output_dir checkpoints_cwm8b_seed123/ --batch_size 2 --grad_accumulation 16 --lr 2e-4 --epochs 3 --seed 123 --no_wandb && python3 eval_cwm_baseline.py --data_dir data/ --checkpoint_dir checkpoints_cwm8b_seed123/best --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --output eval_cwm8b_seed123.json\"",
+      "server": "seetacloud-westd-4x5090",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "22516",
+      "log_path": "~/runs/exec-sim-repair-verifier/cwm8b-seed123.log",
+      "submitted_at": "2026-05-12T09:23:51.749Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/train.jsonl",
+      "data_count": 15290,
+      "model_name": "Qwen/Qwen3-8B",
+      "seed": 123
+    },
+    "hypothesis": "验证 8B CWM 87.67% accuracy 在不同 seed 下稳定，确认 cls vs cwm 2.81pp gap 的可复现性",
+    "reproduce": {
+      "finished_at": "2026-05-12T10:59:44.440Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-12T10:59:46.008298+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "accuracy": 86.98,
+      "pass_f1": 86.83,
+      "fail_f1": 87.13,
+      "exact_match_rate": 84.13
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-12T11:02:50.977101+00:00",
+  "trigger": "update_registry"
+}

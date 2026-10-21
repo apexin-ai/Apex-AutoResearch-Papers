@@ -1,0 +1,28 @@
+{
+  "exp_id": "qwen_nlp_control",
+  "project": "vla-ssd",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T02:54:21.223Z",
+    "updated_at": "2026-05-24T03:19:52.617Z",
+    "hypothesis": "NLP instruction-tuning of Qwen2.5-3B backbone (Qwen2.5-3B-Instruct) produces flat R² action-probe profile with ΔR²≈0, confirming exit collapse is specific to VLA action training — extending NLP controls to the third backbone family (Qwen, shared with NORA), closing the stated limitation in discussion.tex:23",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/vla-ssd && CUDA_VISIBLE_DEVICES=0 python scripts/qwen_nlp_control_probe.py --gpu 0 2>&1 | tee results/qwen_nlp_control/run.log\"",
+      "server": "westd-19183",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "786833",
+      "log_path": "~/runs/vla-ssd/qwen_nlp_control.log",
+      "submitted_at": "2026-05-24T03:17:06.281Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-24T03:19:52.929742+00:00",
+  "trigger": "update_registry"
+}

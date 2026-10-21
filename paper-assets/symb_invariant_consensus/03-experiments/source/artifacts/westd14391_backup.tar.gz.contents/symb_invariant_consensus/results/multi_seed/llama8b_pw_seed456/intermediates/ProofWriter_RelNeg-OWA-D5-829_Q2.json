@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-829_Q2",
+    "problem": "The dog does not eat the rabbit. The mouse eats the tiger. The mouse is green. The rabbit does not chase the tiger. The rabbit eats the dog. The rabbit is young. The tiger is green. If something visits the mouse then the mouse is big. If something eats the tiger then the tiger visits the mouse. If the dog is young and the dog does not visit the mouse then the mouse does not visit the rabbit. If something is green and it chases the rabbit then the rabbit does not eat the mouse. If something is green then it visits the dog. If something visits the rabbit and the rabbit is young then it is round. If something is round and it visits the dog then it chases the tiger. If something is big then it visits the rabbit.\n\nDetermine whether the following statement is true, false, or unknown:\nThe tiger is not green.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nChases($x, $y, bool) ::: Does x chase y?\nGreen($x, bool) ::: Is x green?\nYoung($x, bool) ::: Is x young?\nVisits($x, $y, bool) ::: Does x visit y?\nBig($x, bool) ::: Is x big?\nRound($x, bool) ::: Is x round?\n\nFacts:\nEats(Dog, Rabbit, False) ::: The dog does not eat the rabbit.\nEats(Mouse, Tiger, True) ::: The mouse eats the tiger.\nGreen(Mouse, True) ::: The mouse is green.\nChases(Rabbit, Tiger, False) ::: The rabbit does not chase the tiger.\nEats(Rabbit, Dog, True) ::: The rabbit eats the dog.\nYoung(Rabbit, True) ::: The rabbit is young.\nGreen(Tiger, True) ::: The tiger is green.\n\nRules:\nVisits($x, Mouse, True) >>> Big(Mouse, True) ::: If something visits the mouse then the mouse is big.\nEats($x, Tiger, True) >>> Visits(Tiger, Mouse, True) ::: If something eats the tiger then the tiger visits the mouse.\nYoung(Dog, True) && Visits(Dog, Mouse, False) >>> Visits(Mouse, Rabbit, False) ::: If the dog is young and the dog does not visit the mouse then the mouse does not visit the rabbit.\nGreen($x, True) && Chases($x, Rabbit, True) >>> Eats(Rabbit, Mouse, False) ::: If something is green and it chases the rabbit then the rabbit does not eat the mouse.\nGreen($x, True) >>> Visits($x, Dog, True) ::: If something is green then it visits the dog.\nVisits($x, Rabbit, True) && Young(Rabbit, True) >>> Round($x, True) ::: If something visits the rabbit and the rabbit is young then it is round.\nRound($x, True) && Visits($x, Dog, True) >>> Chases($x, Tiger, True) ::: If something is round and it visits the dog then it chases the tiger.\nBig($x, True) >>> Visits($x, Rabbit, True) ::: If something is big then it visits the rabbit.\n\nQuery:\nGreen(Tiger, False) ::: The tiger is not green."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "",
+    "traces": [],
+    "scores": {},
+    "constraints_stats": {
+      "total_extracted": 0,
+      "traces_with_constraints": 0,
+      "unique_after_dedup": 0
+    },
+    "maxsat_stats": {
+      "satisfied": 0,
+      "excluded": 0,
+      "total_weight": 0,
+      "solve_time_ms": 0
+    },
+    "timing": {}
+  }
+}

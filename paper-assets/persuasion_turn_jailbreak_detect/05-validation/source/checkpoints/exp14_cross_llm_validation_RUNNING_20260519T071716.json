@@ -1,0 +1,24 @@
+{
+  "exp_id": "exp14_cross_llm_validation",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T05:37:11.541Z",
+    "updated_at": "2026-05-19T07:17:15.917Z",
+    "hypothesis": "DAPT advantage (9-class/jb_mlm >> vanilla) is not specific to Qwen3-8B-generated data. If the persuasion-grounded fine-tuning captures generalizable jailbreak patterns rather than Qwen-specific artifacts, the performance gap should persist on Llama-3.1-8B-Instruct-generated multi-turn conversations.",
+    "spec": {
+      "command": "python scripts/generate_dd_llama.py --count 50 --gpu 0 & python scripts/generate_aa_llama.py --gpu 1 --num_per_goal 5 & python scripts/generate_benign_llama.py --count 50 --gpu 2",
+      "server": "westd-33183",
+      "data_path": "/root/persuasion_turn_jailbreak_detect/data/cross_llm/",
+      "data_count": "target: DD 50 + AA 50 + Benign 50",
+      "model_name": "meta-llama/Llama-3.1-8B-Instruct (target LLM) + existing DeBERTa checkpoints (eval)",
+      "seed": "N/A (generation)"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-19T07:17:16.049762+00:00",
+  "trigger": "update_registry"
+}

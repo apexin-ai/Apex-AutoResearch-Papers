@@ -1,0 +1,107 @@
+{
+  "experiment": "nondiff_stress_test",
+  "topology": "exposure",
+  "K": 3,
+  "diag_threshold": 0.7,
+  "n_confusion_matrices": 10000,
+  "n_mc_per_trial": 50000,
+  "P_A": [
+    0.4,
+    0.35,
+    0.25
+  ],
+  "beta": [
+    0.0,
+    1.0,
+    -0.5
+  ],
+  "mechanism": "Y-dependent: C_high=perturb(C\u2080,\u03b5) for Y>median, C_low=C\u2080 for Y\u2264median",
+  "perturbation": "Off-diagonal entries += Uniform(-\u03b5,\u03b5), then clip & renormalize",
+  "seed": 42,
+  "results": {
+    "0.0": {
+      "epsilon": 0.0,
+      "n_valid": 10000,
+      "n_sign_flip": 197,
+      "sign_flip_rate": 0.0197,
+      "n_amplification": 1147,
+      "amplification_rate": 0.1147,
+      "n_violation": 1333,
+      "violation_rate": 0.1333,
+      "elapsed_s": 0.2,
+      "method": "analytical_plim"
+    },
+    "0.01": {
+      "epsilon": 0.01,
+      "n_valid": 10000,
+      "n_sign_flip": 239,
+      "sign_flip_rate": 0.0239,
+      "n_amplification": 1241,
+      "amplification_rate": 0.1241,
+      "n_violation": 1470,
+      "violation_rate": 0.147,
+      "elapsed_s": 100.1,
+      "method": "mc_differential"
+    },
+    "0.05": {
+      "epsilon": 0.05,
+      "n_valid": 10000,
+      "n_sign_flip": 280,
+      "sign_flip_rate": 0.028,
+      "n_amplification": 1297,
+      "amplification_rate": 0.1297,
+      "n_violation": 1566,
+      "violation_rate": 0.1566,
+      "elapsed_s": 105.6,
+      "method": "mc_differential"
+    },
+    "0.1": {
+      "epsilon": 0.1,
+      "n_valid": 10000,
+      "n_sign_flip": 453,
+      "sign_flip_rate": 0.0453,
+      "n_amplification": 1667,
+      "amplification_rate": 0.1667,
+      "n_violation": 2091,
+      "violation_rate": 0.2091,
+      "elapsed_s": 97.2,
+      "method": "mc_differential"
+    },
+    "0.2": {
+      "epsilon": 0.2,
+      "n_valid": 10000,
+      "n_sign_flip": 967,
+      "sign_flip_rate": 0.0967,
+      "n_amplification": 2369,
+      "amplification_rate": 0.2369,
+      "n_violation": 3256,
+      "violation_rate": 0.3256,
+      "elapsed_s": 99.3,
+      "method": "mc_differential"
+    },
+    "0.3": {
+      "epsilon": 0.3,
+      "n_valid": 10000,
+      "n_sign_flip": 1548,
+      "sign_flip_rate": 0.1548,
+      "n_amplification": 2867,
+      "amplification_rate": 0.2867,
+      "n_violation": 4283,
+      "violation_rate": 0.4283,
+      "elapsed_s": 98.4,
+      "method": "mc_differential"
+    },
+    "0.5": {
+      "epsilon": 0.5,
+      "n_valid": 10000,
+      "n_sign_flip": 2292,
+      "sign_flip_rate": 0.2292,
+      "n_amplification": 3486,
+      "amplification_rate": 0.3486,
+      "n_violation": 5458,
+      "violation_rate": 0.5458,
+      "elapsed_s": 98.1,
+      "method": "mc_differential"
+    }
+  }
+}

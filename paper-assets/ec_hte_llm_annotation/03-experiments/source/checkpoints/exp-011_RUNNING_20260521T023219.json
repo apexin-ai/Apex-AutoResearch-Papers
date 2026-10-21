@@ -1,0 +1,25 @@
+{
+  "exp_id": "exp-011",
+  "project": "ec_hte_llm_annotation",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T01:32:16.664Z",
+    "updated_at": "2026-05-21T02:32:19.564Z",
+    "hypothesis": "EC-HTE correction 在 CausalForestDML 上复现与 diff-in-means 一致的改善模式：global correction 在低误分类子群加偏（debiasing hurts），stratified correction 修复偏差同时保持 CATE 估计精度",
+    "spec": {
+      "command": "python exp011_causal_forest.py --n-mc 100 2>&1 | tee results/exp011_run.log",
+      "server": "local-cpu",
+      "data_path": "synthetic DGP (N=5000, K=2/4, symmetric misclass)",
+      "data_count": "144 aggregated rows (100 MC × 8 configs × 3 methods × 2 subgroups × 2 z_levels)",
+      "model_name": "CausalForestDML (econml) with EC-HTE correction",
+      "seed": "0-99",
+      "checkpoint_path": "results/exp011_causal_forest.csv",
+      "log_path": "results/exp011_run.log"
+    }
+  },
+  "timestamp": "2026-05-21T02:32:19.634564+00:00",
+  "trigger": "update_registry"
+}

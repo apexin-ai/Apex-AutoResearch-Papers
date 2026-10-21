@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan_015_bifactor_irt",
+  "project": "irt_equated_bench_regen",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T22:23:51.598Z",
+    "updated_at": "2026-05-20T22:23:51.599Z"
+  },
+  "timestamp": "2026-05-20T22:23:51.650853+00:00",
+  "trigger": "update_registry"
+}

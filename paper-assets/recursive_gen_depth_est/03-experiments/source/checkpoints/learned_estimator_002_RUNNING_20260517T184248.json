@@ -1,0 +1,36 @@
+{
+  "exp_id": "learned_estimator_002",
+  "project": "recursive_gen_depth_est",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T18:31:06.627Z",
+    "updated_at": "2026-05-17T18:42:48.377Z",
+    "hypothesis": "Fixing NaN issues in Prototypical Network (torch.clamp + nan_to_num in distances, safe softmax conversion) and running full data sweep (no max_samples limit) will enable learned estimators (XGBoost, CORAL MLP, Prototypical) to exceed the RF baseline of 66.4% accuracy in cross-model depth estimation.",
+    "parent": "learned_estimator_001",
+    "spec": {
+      "command": "bash run_learned_estimator_002.sh",
+      "server": "westd-48862",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "15548",
+      "log_path": "~/runs/recursive_gen_depth_est/learned_estimator_002.log",
+      "submitted_at": "2026-05-17T18:31:18.341Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/",
+      "data_count": "9 feature files (3 models x 3 strategies)",
+      "model_name": "xgboost+ordinal_mlp+prototypical",
+      "seed": 42,
+      "checkpoint_source": "trained_from_scratch",
+      "eval_data": "leave-one-model-out cross-validation (pythia/olmo/gpt2xl)"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T18:42:48.602862+00:00",
+  "trigger": "update_registry"
+}

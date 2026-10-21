@@ -1,0 +1,184 @@
+{
+  "ground_truth": {
+    "fpr_ground_truth": "differenced_xcorr (seed level)",
+    "fnr_ground_truth": "consensus (\u22654/5 methods, \u22653/4 seeds)",
+    "n_negatives_seed": 11,
+    "n_positives_seed": 24
+  },
+  "per_method_fpr": {
+    "naive_pearson": {
+      "fp": 11,
+      "total_negatives": 11,
+      "fpr": 1.0
+    },
+    "differenced_xcorr": {
+      "fp": 0,
+      "total_negatives": 11,
+      "fpr": 0.0
+    },
+    "threshold_onset": {
+      "fp": 1,
+      "total_negatives": 11,
+      "fpr": 0.0909
+    },
+    "toda_yamamoto": {
+      "fp": 0,
+      "total_negatives": 11,
+      "fpr": 0.0
+    },
+    "permutation_granger": {
+      "fp": 0,
+      "total_negatives": 11,
+      "fpr": 0.0
+    }
+  },
+  "per_method_fnr": {
+    "naive_pearson": {
+      "fn": 0,
+      "total_positives": 24,
+      "fnr": 0.0
+    },
+    "differenced_xcorr": {
+      "fn": 0,
+      "total_positives": 24,
+      "fnr": 0.0
+    },
+    "threshold_onset": {
+      "fn": 0,
+      "total_positives": 24,
+      "fnr": 0.0
+    },
+    "toda_yamamoto": {
+      "fn": 6,
+      "total_positives": 24,
+      "fnr": 0.25
+    },
+    "permutation_granger": {
+      "fn": 1,
+      "total_positives": 24,
+      "fnr": 0.0417
+    }
+  },
+  "consensus": {
+    "fpr_pair_level": {
+      "fp": 0,
+      "total_negatives": 4,
+      "fpr": 0.0
+    },
+    "fpr_seed_level": {
+      "fp": 0,
+      "total_negatives": 11,
+      "fpr": 0.0
+    },
+    "fnr": 0.0,
+    "fnr_note": "0 by construction (consensus IS the FNR ground truth)",
+    "n_robust_pairs": 6,
+    "robust_pairs": [
+      "token_entropy\u2192distinct_1",
+      "token_entropy\u2192distinct_2",
+      "token_entropy\u2192distinct_3",
+      "ece\u2192distinct_1",
+      "ece\u2192distinct_2",
+      "ece\u2192distinct_3"
+    ]
+  },
+  "table": [
+    {
+      "method": "naive_pearson",
+      "fpr": 1.0,
+      "fpr_detail": {
+        "fp": 11,
+        "total_negatives": 11,
+        "fpr": 1.0
+      },
+      "fnr": 0.0,
+      "fnr_detail": {
+        "fn": 0,
+        "total_positives": 24,
+        "fnr": 0.0
+      },
+      "sig_count_pair": 16,
+      "sig_count_seed": 63
+    },
+    {
+      "method": "differenced_xcorr",
+      "fpr": 0.0,
+      "fpr_detail": {
+        "fp": 0,
+        "total_negatives": 11,
+        "fpr": 0.0
+      },
+      "fnr": 0.0,
+      "fnr_detail": {
+        "fn": 0,
+        "total_positives": 24,
+        "fnr": 0.0
+      },
+      "sig_count_pair": 12,
+      "sig_count_seed": 53
+    },
+    {
+      "method": "threshold_onset",
+      "fpr": 0.0909,
+      "fpr_detail": {
+        "fp": 1,
+        "total_negatives": 11,
+        "fpr": 0.0909
+      },
+      "fnr": 0.0,
+      "fnr_detail": {
+        "fn": 0,
+        "total_positives": 24,
+        "fnr": 0.0
+      },
+      "sig_count_pair": 9,
+      "sig_count_seed": 35
+    },
+    {
+      "method": "toda_yamamoto",
+      "fpr": 0.0,
+      "fpr_detail": {
+        "fp": 0,
+        "total_negatives": 11,
+        "fpr": 0.0
+      },
+      "fnr": 0.25,
+      "fnr_detail": {
+        "fn": 6,
+        "total_positives": 24,
+        "fnr": 0.25
+      },
+      "sig_count_pair": 3,
+      "sig_count_seed": 24
+    },
+    {
+      "method": "permutation_granger",
+      "fpr": 0.0,
+      "fpr_detail": {
+        "fp": 0,
+        "total_negatives": 11,
+        "fpr": 0.0
+      },
+      "fnr": 0.0417,
+      "fnr_detail": {
+        "fn": 1,
+        "total_positives": 24,
+        "fnr": 0.0417
+      },
+      "sig_count_pair": 6,
+      "sig_count_seed": 27
+    },
+    {
+      "method": "consensus",
+      "fpr": 0.0,
+      "fpr_detail": {
+        "fp": 0,
+        "total_negatives": 11,
+        "fpr": 0.0
+      },
+      "fnr": 0.0,
+      "fnr_note": "0 by construction",
+      "n_robust": 6
+    }
+  ]
+}

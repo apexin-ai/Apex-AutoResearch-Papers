@@ -1,0 +1,27 @@
+{
+  "exp_id": "bce_comp_staged_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:27:26.983Z",
+    "updated_at": "2026-05-15T17:59:06.186Z",
+    "spec": {
+      "hypothesis": "BCE predictor + ErrorCompensation (staged: 冻结predictor只训练comp) 在 50% sparsity 下优于 BCE-only, 验证 compensation 对 BCE 的修复能力",
+      "model_name": "llama-3.1-8b",
+      "server": "westd-34887",
+      "seed": 42,
+      "loss_type": "bce_comp",
+      "comp_mode": "staged (Phase 1: BCE warmup 200 steps, Phase 2: joint)",
+      "predictor_checkpoint": "/root/distill_sparse_swiglu/checkpoints/mvp_bce_s42/predictor_bce.pt",
+      "parent": "mvp_bce_s42",
+      "comp_params": "67.2M (bottleneck=256)",
+      "command": "bash -c \"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python src/train_bce_comp.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --num_steps 1000 --batch_size 4 --seq_len 2048 --predictor_lr 1e-3 --comp_lr 1e-3 --seed 42 --sparsity_target 0.5 --comp_warmup_steps 200 --comp_bottleneck 256 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/bce_comp_staged_s42 --wandb_run_name bce_comp_staged_s42 --dataset wikitext-103\"",
+      "data_path": "wikitext-103 (HF cached)"
+    }
+  },
+  "timestamp": "2026-05-15T17:59:06.280307+00:00",
+  "trigger": "update_registry"
+}

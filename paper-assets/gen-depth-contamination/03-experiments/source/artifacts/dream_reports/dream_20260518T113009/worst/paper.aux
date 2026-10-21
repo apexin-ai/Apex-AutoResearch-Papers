@@ -1,0 +1,86 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{shumailov2024model,alemohammad2024selfconsuming,dohmatob2024tale}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model Collapse and Recursive Generation.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Machine-Generated Text Detection.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data Selection and Curation.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data Processing Inequality (DPI) Guarantee.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Operational Definition.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Feature Engineering}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Classifier}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Generation Protocol}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Continuation Mode (Canonical).}{3}{section*.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces $K^*$ determination on C4 web text. All models use continuation mode except where noted. CI: 95\% bootstrap confidence interval. The $K^*=2$ determination requires 1v2 CI lower $> \theta = 0.60$.}}{4}{table.caption.12}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:c4_kstar}{{1}{4}{$K^*$ determination on C4 web text. All models use continuation mode except where noted. CI: 95\% bootstrap confidence interval. The $K^*=2$ determination requires 1v2 CI lower $> \theta = 0.60$}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {paragraph}{Rewrite Mode.}{4}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Domains.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Generation Chain.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Decoding Strategies.}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}C1': $K^*$ Characterization}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:kstar}{{4.2}{4}{C1': $K^*$ Characterization}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}Web Text: $K^*=2$ as Dominant Mode}{4}{subsubsection.4.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Decoding Strategy Invariance.}{4}{section*.13}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Decoding strategy invariance for $K^*$ determination (Qwen-1.5B-Instruct, rewrite mode, C4).}}{5}{table.caption.14}\protected@file@percent }
+\newlabel{tab:decoding}{{2}{5}{Decoding strategy invariance for $K^*$ determination (Qwen-1.5B-Instruct, rewrite mode, C4)}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.2}Domain Dependence: A Three-Level Hierarchy}{5}{subsubsection.4.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{arXiv: $K^*=3$.}{5}{section*.15}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces $K^*$ determination on arXiv ($n=2{,}200$ per model). $K^*=3$ requires 2v3 CI lower $> \theta = 0.60$. OLMo-1B excluded due to domain capacity failure.}}{5}{table.caption.16}\protected@file@percent }
+\newlabel{tab:arxiv_kstar}{{3}{5}{$K^*$ determination on arXiv ($n=2{,}200$ per model). $K^*=3$ requires 2v3 CI lower $> \theta = 0.60$. OLMo-1B excluded due to domain capacity failure}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {paragraph}{Wikipedia: $K^*=1$ (Scorer-Controlled).}{5}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Domain Hierarchy Summary.}{5}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.3}Cross-Model Transfer and Scorer Invariance}{5}{subsubsection.4.2.3}\protected@file@percent }
+\newlabel{sec:cross_model}{{4.2.3}{5}{Cross-Model Transfer and Scorer Invariance}{subsubsection.4.2.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.4}Neural Probe: Representation Dependence of $K^*$}{6}{subsubsection.4.2.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Neural probe $K^*$ (frozen embeddings + MLP) vs model-free 15D features.}}{6}{table.caption.19}\protected@file@percent }
+\newlabel{tab:neural_probe}{{4}{6}{Neural probe $K^*$ (frozen embeddings + MLP) vs model-free 15D features}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.5}Generation Mode Analysis}{6}{subsubsection.4.2.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.6}Retrain Chain Comparison}{6}{subsubsection.4.2.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}C3: $K^*$-Aware Data Curation}{6}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:curation}{{4.3}{6}{C3: $K^*$-Aware Data Curation}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Setup.}{6}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Results.}{7}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Naturalistic Validation on Common Crawl}{7}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:naturalistic}{{4.4}{7}{Naturalistic Validation on Common Crawl}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Predicted Depth Distribution.}{7}{section*.22}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Predicted depth distribution on Common Crawl 2025/2026 ($n \approx 50$K).}}{7}{table.caption.23}\protected@file@percent }
+\newlabel{tab:cc_depth}{{5}{7}{Predicted depth distribution on Common Crawl 2025/2026 ($n \approx 50$K)}{table.caption.23}{}}
+\@writefile{toc}{\contentsline {paragraph}{Correlation with Quality Proxies.}{7}{section*.24}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Naturalistic validation: Spearman correlation between predicted depth and quality proxies on Common Crawl ($n \approx 50$K).}}{7}{table.caption.25}\protected@file@percent }
+\newlabel{tab:cc_correlation}{{6}{7}{Naturalistic validation: Spearman correlation between predicted depth and quality proxies on Common Crawl ($n \approx 50$K)}{table.caption.25}{}}
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Subsampling Power Analysis for $K^*=2$ Determination}{8}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:power_analysis}{{4.5}{8}{Subsampling Power Analysis for $K^*=2$ Determination}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Protocol.}{8}{section*.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Results.}{8}{section*.28}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Power to detect $K^*=2$ (1v2 CI lower $> \theta = 0.60$) by sample size and model. Margin: true 1v2 AUC minus $\theta $.}}{8}{table.caption.29}\protected@file@percent }
+\newlabel{tab:power}{{7}{8}{Power to detect $K^*=2$ (1v2 CI lower $> \theta = 0.60$) by sample size and model. Margin: true 1v2 AUC minus $\theta $}{table.caption.29}{}}
+\@writefile{toc}{\contentsline {paragraph}{CI Width Scaling.}{8}{section*.30}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces CI width scaling with sample size (averaged across 4 continuation-mode models).}}{8}{table.caption.31}\protected@file@percent }
+\newlabel{tab:ci_width}{{8}{8}{CI width scaling with sample size (averaged across 4 continuation-mode models)}{table.caption.31}{}}
+\@writefile{toc}{\contentsline {paragraph}{Implications.}{8}{section*.32}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{9}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The Bounded Nature of $K^*$.}{9}{section*.33}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Domain Dependence.}{9}{section*.34}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The $\theta $ Sensitivity Question.}{9}{section*.35}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Naturalistic Validation Gap.}{9}{section*.36}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Statistical Power Considerations.}{9}{section*.37}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{9}{section.6}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{shumailov2024model}{{1}{2024}{{Shumailov et~al.}}{{}}}
+\bibcite{alemohammad2024selfconsuming}{{2}{2024}{{Alemohammad et~al.}}{{}}}
+\bibcite{dohmatob2024tale}{{3}{2024}{{Dohmatob et~al.}}{{}}}
+\bibcite{drayson2025contamination}{{4}{2025}{{Drayson et~al.}}{{}}}
+\bibcite{mitchell2023detectgpt}{{5}{2023}{{Mitchell et~al.}}{{}}}
+\bibcite{xie2023dsir}{{6}{2023}{{Xie et~al.}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{10}{section*.38}\protected@file@percent }
+\gdef \@abspage@last{10}

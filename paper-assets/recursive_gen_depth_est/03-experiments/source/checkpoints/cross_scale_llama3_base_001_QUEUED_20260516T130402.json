@@ -1,0 +1,14 @@
+{
+  "exp_id": "cross_scale_llama3_base_001",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T13:04:02.196Z",
+    "updated_at": "2026-05-16T13:04:02.197Z"
+  },
+  "timestamp": "2026-05-16T13:04:02.375737+00:00",
+  "trigger": "update_registry"
+}

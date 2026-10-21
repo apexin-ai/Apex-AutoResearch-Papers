@@ -1,0 +1,26 @@
+{
+  "exp_id": "phi3v_attention_profile",
+  "project": "vla-ssd",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T17:51:12.780Z",
+    "updated_at": "2026-05-19T17:51:48.418Z",
+    "hypothesis": "TracVLA-Phi3V exhibits a distinct attention profile compared to OpenVLA, with text vs image attention distribution across 32 layers reflecting architectural differences in how instruction information is processed.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python /root/vla-ssd/scripts/phi3v_attention_profile.py",
+      "server": "westd-19183",
+      "data_path": "/root/autodl-tmp/vla-ssd/data/libero/libero_goal/",
+      "data_count": 5,
+      "model_name": "tracevla-phi3v",
+      "seed": 0,
+      "checkpoint_source": "/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/",
+      "log_path": "/root/autodl-tmp/vla-ssd/results/attention/phi3v_attention_profile.json",
+      "checkpoint_path": "/root/autodl-tmp/vla-ssd/checkpoints/tracevla-phi3v/"
+    }
+  },
+  "timestamp": "2026-05-19T17:51:48.638475+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,70 @@
+{
+  "exp_id": "plan006-prolog-sta-s43",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T09:19:39.141Z",
+    "updated_at": "2026-05-14T18:19:20.203Z",
+    "hypothesis": "Prolog exec+STA GRPO seed=43: 跨 seed 稳定性检查。与 exec-only s43 对照。",
+    "notes": "EVAL DONE. PR=0.38 (down from train 0.77), mean_ISR=0.07, proved_only_ISR=0.185. H7=0% by strict classifier BUT model generates degenerate uppercase pseudo-Prolog (e.g. MARY_IS_AN_AVADEOTE.) — not valid Prolog syntax. All 38 proved samples have n_necessary=1 (only the query-matching fact matters), ISR=1/n_clauses pattern. Functionally H7-like (conclusion duplication) but classifier misses it due to non-standard syntax. 1 sample had ISR=1.0 (single-clause). Different Goodhart pathway than s42 (which had 100% strict H7): s43 produces more clauses but they're all vacuous uppercase tokens. Confirms Claim 3 (Goodhart across logic types) but via degenerate syntax rather than clean conclusion duplication. DISK: 240G/250G (96%), only 11GB free — needs cleanup.",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_prolog_exec_sta.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 43 --output_dir /root/autodl-tmp/outputs/plan006_prolog_sta_s43\"",
+      "server": "westd-39279",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "901135",
+      "log_path": "~/runs/solver-trace-ablation/plan006-prolog-sta-s43.log",
+      "submitted_at": "2026-05-14T16:36:41.878Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "/root/autodl-tmp/outputs/plan006_prolog_sta_s43",
+      "wall_clock_seconds": 6158.3,
+      "gpu_hours": 1.71
+    },
+    "server": "westd-39279",
+    "gpu": "cuda:1",
+    "account": "root",
+    "pid": "901135",
+    "log_path": "~/runs/solver-trace-ablation/plan006-prolog-sta-s43.log",
+    "reproduce": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_prolog_exec_sta.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 43 --output_dir /root/autodl-tmp/outputs/plan006_prolog_sta_s43\"",
+      "finished_at": "2026-05-14T18:03:44.715Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T18:03:46.512937+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "eval_prove_rate": 0.38,
+      "eval_mean_isr": 0.0704,
+      "eval_isr_std": 0.1263,
+      "eval_proved_only_isr": 0.1853,
+      "eval_n_proved": 38,
+      "eval_n_problems": 100,
+      "eval_max_isr": 1,
+      "eval_isr_pr_ratio": 0.1853,
+      "h7_rate": 0,
+      "h7_count": 0,
+      "h1_rate": 0,
+      "h1_count": 0,
+      "genuine_rate": 1,
+      "genuine_count": 38,
+      "solver": "PrologSolver",
+      "logic_type": "prolog"
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-14T18:19:20.203Z"
+  },
+  "timestamp": "2026-05-14T18:19:20.457611+00:00",
+  "trigger": "update_registry"
+}

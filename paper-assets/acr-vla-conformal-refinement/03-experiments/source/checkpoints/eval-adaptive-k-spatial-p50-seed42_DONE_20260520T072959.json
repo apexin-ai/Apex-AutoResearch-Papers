@@ -1,0 +1,35 @@
+{
+  "exp_id": "eval-adaptive-k-spatial-p50-seed42",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T06:01:50.026Z",
+    "updated_at": "2026-05-20T07:29:59.173Z",
+    "hypothesis": "Adaptive K with τ=P50 (0.074855, Object-calibrated) on LIBERO-Spatial seed42. 验证 Adaptive K 方法在第二个 benchmark 上的泛化：使用 Object 上校准的阈值直接应用到 Spatial（无 per-benchmark tuning）。如果 SR 接近 CRM K=10 (34.3%) 且 fast_path >50%，则证明方法跨 benchmark 通用。",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py --mode adaptive_k --adaptive_threshold 0.074855 --k_full 10 --benchmark spatial --seed 42 --n_rollouts 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_adaptive_k_spatial_p50_seed42.json\"",
+      "server": "bjb2-40593",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "681823",
+      "data_path": "LIBERO-Spatial",
+      "data_count": "100",
+      "model_name": "SmolVLA+Adaptive_K_P50",
+      "seed": 42,
+      "notes": "PID 675831 was killed by deploy worker, restarted as PID 681823"
+    },
+    "notes": "旧PID 675831被kill后，新PID 681823已于cuda:0重新启动，运行正常(11min+)。旧cron检测到675831死亡触发误报回调。已完成3/10 tasks，SR: 70%/100%/0%，第4个task进行中。",
+    "reproduce": {
+      "finished_at": "2026-05-20T07:29:54.160Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-20T07:29:59.173Z"
+  },
+  "timestamp": "2026-05-20T07:29:59.852561+00:00",
+  "trigger": "update_registry"
+}

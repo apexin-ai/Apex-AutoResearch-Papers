@@ -1,0 +1,1 @@
+gold: 96.24% (4459/4633)\nmutation_operator_swap: 81.38% (2732/3357)\nmutation_off_by_one: 86.89% (159/183)\nmutation_return_value: 75.44% (424/562)\nmutation_boundary_removal: 46.90% (492/1049)\nOVERALL: 84.48% (8266/9784)

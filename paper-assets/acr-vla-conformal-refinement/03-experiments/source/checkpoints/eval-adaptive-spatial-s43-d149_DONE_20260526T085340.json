@@ -1,0 +1,38 @@
+{
+  "exp_id": "eval-adaptive-spatial-s43-d149",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DONE",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-26T08:48:18.913Z",
+    "updated_at": "2026-05-26T08:53:39.086Z",
+    "metrics": {
+      "overall_success_rate": 0.795,
+      "trigger_rate": 0.203,
+      "successes": 159,
+      "total_rollouts": 200,
+      "n_tasks": 10,
+      "n_rollouts_per_task": 20,
+      "source": "eval_spatial_adaptive_k2_tau025_seed43_paired_r2.json"
+    },
+    "hypothesis": "Adaptive Conformal CRM (K=2, τ=0.25, norm=0.2) on Spatial benchmark seed43. Paired with s42 (SR=0.795) and s44 for 3-seed mean±std of Adaptive method on Spatial.",
+    "log_path": "/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive_k2_tau025_seed43_paired_r2.json",
+    "checkpoint_path": "N/A (eval only)",
+    "conclusion": "success",
+    "spec": {
+      "command": "python -u src/evaluate.py --mode adaptive_conformal_crm --K 2 --conformal_threshold 0.25 --benchmark spatial --seed 43 --n_rollouts 20 --max_correction_norm 0.2",
+      "server": "bjb1-32546",
+      "data_path": "SimplerEnv-spatial",
+      "data_count": 200,
+      "model_name": "SmolVLA+AdaptiveCRM",
+      "seed": 43,
+      "checkpoint_source": "crm_smolvla_3suite_v1/crm_best.pt",
+      "eval_data": "LIBERO-Spatial"
+    },
+    "completed_at": "2026-05-26T08:53:39.086Z"
+  },
+  "timestamp": "2026-05-26T08:53:40.685576+00:00",
+  "trigger": "update_registry"
+}

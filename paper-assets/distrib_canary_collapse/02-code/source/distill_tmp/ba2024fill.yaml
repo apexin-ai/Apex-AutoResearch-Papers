@@ -1,0 +1,98 @@
+paper_key: "ba2024fill"
+title: "Fill In The Gaps: Model Calibration and Generalization with Synthetic Data"
+venue: "EMNLP 2024"
+full_text_available: true
+
+research:
+  baselines:
+    - "BERTbase (standard)"
+    - "Isotonic Regression"
+    - "Platt Scaling"
+    - "Monte Carlo Dropout"
+    - "Temperature Scaling"
+  metrics:
+    - {name: "Accuracy (ACC)", direction: "higher_better"}
+    - {name: "Expected Calibration Error (ECE)", direction: "lower_better"}
+  datasets:
+    - {name: "TC (Complaints)", size: "3449", task: "text classification"}
+    - {name: "SUBJ (Subjectivity)", size: "10K", task: "text classification"}
+    - {name: "B77 (Banking77)", size: "257", task: "text classification"}
+    - {name: "SE (SentEval)", size: "3762", task: "text classification"}
+    - {name: "Arxiv-10", size: "6K", task: "text classification (OOD)"}
+    - {name: "Medical", size: "3722", task: "text classification (OOD)"}
+  ablation_dimensions:
+    - num_bins (10, 15, 20)
+    - synthetic_strategy (Synthesis vs Synthesis+)
+    - LLM_accuracy_vs_calibration_correlation
+  training_recipe:
+    optimizer: "Adam"
+    lr: "1e-6"
+    epochs: 5
+    batch_size: 32
+    dropout: 0.5
+    hardware: "NVIDIA P100 GPUs"
+    base_model: "BERTbase"
+    synthetic_generator: "Llama-2-7b-chat-hf (T=0.1)"
+  method_family: "synthetic_data_for_calibration"
+
+positioning:
+  core_claim: "LLM-generated synthetic data targeted at poorly-calibrated reliability diagram bins can simultaneously improve accuracy (up to 34%) and reduce ECE (up to 33%), with PAC-learning theoretical backing."
+  key_results: "Avg up to 34% ACC increase, 33% ECE decrease; Synthesis+ (add synthetic) generally outperforms Synthesis (replace); LLM prediction accuracy matters more than LLM calibration for downstream improvement"
+  limitations:
+    - "Excessive synthetic data can cause overfitting"
+    - "Only binary text classification tested"
+    - "Single LLM (Llama-2-7b) used; no LLM comparison"
+  relation_to_us: "orthogonal"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "Model calibration is critical for trustworthy AI, but existing calibration methods hurt accuracy."
+  tension: "Post-hoc calibration (Platt, isotonic, temperature scaling) adjusts probabilities but can degrade accuracy. No method addresses both simultaneously."
+  key_insight: "Section 3.1 — PAC framework proves ECE bound can be reduced by adding synthetic data that fills gaps in reliability diagram. The insight is geometric: target specific miscalibrated confidence bins."
+  argument_chain: "calibration-accuracy tradeoff → PAC-derived ECE bound → LLM-generated synthetic data fills reliability gaps → simultaneous improvement → validated on 6 NLP datasets"
+  contribution_framing: "3 contributions: (1) ECE bound derivation via PAC, (2) gap-filling calibration strategy, (3) empirical validation of LLM synthetic data for calibration"
+  intro_structure: "5 paragraphs: P1=NLP model success, P2=beyond accuracy (calibration importance), P3=modern NNs are miscalibrated, P4=synthetic data motivation, P5=approach + contributions"
+  notable_technique: "Using reliability diagram 'gaps' as a visual + mathematical target for synthetic data generation — makes abstract calibration theory actionable"
+
+figures:
+  figure_count: 3
+  figure1:
+    type: "method_overview"
+    description: "Framework: train model → identify miscalibrated bins in reliability diagram → generate synthetic data via LLM with target probabilities → retrain"
+    narrative_role: "End-to-end pipeline visualization that makes the method immediately comprehensible"
+    design_elements: ["pipeline flow", "reliability diagram inset", "LLM generation step"]
+    visual_style: "Left-to-right flow with color-coded steps"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "bar_chart"
+      what_compared: "Reliability diagram before/after showing target bin identification and synthetic data placement"
+      how_gain_highlighted: "Gap between confidence and accuracy visually shrinks"
+      design_note: "Two-panel before/after comparison of reliability diagram — intuitive"
+  ablation_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      dimensions_varied: ["iteration of calibration process on toy 1D example"]
+      design_note: "Toy example makes abstract PAC theory concrete — shows logistic curve convergence"
+  figure_narrative_role: "Fig1(method overview) → Fig2(bin targeting concept) → Fig3(toy validation)"
+
+tables:
+  table_count: 5
+  main_result_table:
+    table_id: "Table 4"
+    row_axis: "methods"
+    col_axis: "datasets × (ACC, ECE)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "highlighted values considering both ACC and ECE, weighing more on ECE"
+    statistical_reporting: "mean (std) across runs"
+    num_baselines: 5
+    design_note: "Dual-metric per dataset; explicit note about weighting ECE more in highlighting — transparent evaluation criteria"
+  ablation_tables:
+    - table_id: "Table 5"
+      what_varied: ["LLM_ACC vs LLM_ECE correlation with downstream improvement"]
+      variation_style: "full_numbers"
+      design_note: "Pearson correlation matrix reveals LLM accuracy matters more than LLM calibration — counter-intuitive finding"
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 6 (model params), Table 7 (system prompts for generation), Table 8 (generation examples)"
+    reason: "Reproducibility details (prompts, hyperparams) in appendix; main text focuses on results"

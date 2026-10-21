@@ -1,0 +1,26 @@
+{
+  "exp_id": "kl_sparsity30_s42",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T20:24:03.207Z",
+    "updated_at": "2026-05-15T20:34:51.063Z",
+    "spec": {
+      "hypothesis": "KL distillation @ 30% sparsity (mild pruning). Part of plan_008 3-level sparsity sweep (30/50/70%). Expect small PPL increase vs dense. Paired with kl_sparsity70_s42 and existing 50% data.",
+      "plan_id": "plan_008",
+      "command": "python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 --sparsity_target 0.3 --gpu 1 --output_dir /root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s42 --wandb_run_name kl_sparsity30_s42 --dataset wikitext-103 --gradient_checkpointing",
+      "server": "westd-34887",
+      "data_path": "wikitext-103",
+      "data_count": 1000,
+      "model_name": "llama-3.1-8b",
+      "seed": 42
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-15T20:34:51.064Z"
+  },
+  "timestamp": "2026-05-15T20:34:51.168834+00:00",
+  "trigger": "update_registry"
+}

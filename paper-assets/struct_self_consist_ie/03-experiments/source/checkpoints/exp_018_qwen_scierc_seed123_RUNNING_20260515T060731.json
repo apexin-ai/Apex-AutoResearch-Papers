@@ -1,0 +1,26 @@
+{
+  "exp_id": "exp_018_qwen_scierc_seed123",
+  "project": "struct_self_consist_ie",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T06:07:12.747Z",
+    "updated_at": "2026-05-15T06:07:31.113Z",
+    "spec": {
+      "hypothesis": "Multi-seed robustness: Qwen SciERC N=8 seed=123, max_tokens=1024. Verify signal stability across seeds.",
+      "command": "python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --seed 123 --n_samples 8 --temperature 1.0 --max_tokens 1024 --output_dir output/exp_018_qwen_scierc_seed123",
+      "server": "autodl-5090",
+      "seed": 123,
+      "model_name": "Qwen3-8B-SciERC-merged-v2",
+      "data_path": "data/scierc/processed_data",
+      "data_count": 551,
+      "checkpoint_path": "output/exp_018_qwen_scierc_seed123/",
+      "log_path": "output/exp_018_qwen_scierc_seed123.log",
+      "samples_md5": "866a59581dea56f4633149f0b18a31ae"
+    }
+  },
+  "timestamp": "2026-05-15T06:07:31.251610+00:00",
+  "trigger": "update_registry"
+}

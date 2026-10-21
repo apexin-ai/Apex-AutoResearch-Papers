@@ -1,0 +1,245 @@
+paper_key: "ShadowLLM: Predictor-based Contextual Sparsity for Large Language Models"
+title: "ShadowLLM: Predictor-based Contextual Sparsity for Large Language Models"
+venue: "EMNLP 2024"
+authors: "Yash Akhauri, Ahmed F AbouElhamayed, Jordan Dotzel, Zhiru Zhang, Alexander M Rush, Safeen Huda, Mohamed S Abdelfattah"
+full_text_available: true
+
+research:
+  baselines:
+    - DejaVu (layerwise predictor, L2Norm criterion)
+    - Static pruning (permanent head/neuron removal)
+    - Dense (unpruned baseline)
+    - Magnitude-based pruning (L2Norm)
+    - GradNorm
+    - Fisher
+    - Grasp
+    - SNIP
+    - NASWOT (nwot)
+  metrics:
+    - {name: "Average zero-shot accuracy (7 tasks)", direction: "higher_better"}
+    - {name: "WikiText-2 perplexity", direction: "lower_better"}
+    - {name: "End-to-end latency (ms)", direction: "lower_better"}
+    - {name: "Predictor FLOPs", direction: "lower_better"}
+    - {name: "Spearman-rho rank correlation", direction: "higher_better"}
+  datasets:
+    - {name: "PIQA", size: "zero-shot eval"}
+    - {name: "COPA", size: "zero-shot eval"}
+    - {name: "OpenBookQA", size: "zero-shot eval"}
+    - {name: "Winogrande", size: "zero-shot eval"}
+    - {name: "RTE", size: "zero-shot eval"}
+    - {name: "HellaSwag", size: "zero-shot eval"}
+    - {name: "ARC-Easy", size: "zero-shot eval"}
+    - {name: "WikiText-2", size: "perplexity eval"}
+    - {name: "Calibration set", size: "2720 input-output examples from 7 tasks, 5-shot"}
+  ablation_dimensions:
+    - Pruning criterion (L2Norm vs GradNorm vs plainact vs fisher vs grasp vs SNIP vs NASWOT)
+    - Predictor architecture (layerwise vs unified single-layer)
+    - Pruning scope (global vs per-layer/local)
+    - Sparsity level (sweeps from ~30% to ~70%)
+    - Few-shot setting for criterion computation (0-shot vs 3-shot vs 5-shot)
+    - Static vs contextual pruning
+  training_recipe:
+    predictor_architecture: "1-hidden-layer MLP (2048 neurons, ReLU)"
+    predictor_input: "First transformer layer attention output (embedding dimension)"
+    predictor_output: "Importance scores for all heads and neurons across all layers"
+    optimizer: "AdamW"
+    lr: "0.001"
+    scheduler: "CosineAnnealingLR"
+    loss: "MSELoss"
+    epochs: 100
+    batch_size: 32
+    calibration_data: "2720 examples from 7 downstream tasks (5-shot)"
+    hardware: "Not explicitly stated; experiments on OPT-1.3B to OPT-30B and Llama-2-7B"
+  method_family: "Predictor-based contextual sparsity (learned dynamic pruning)"
+
+positioning:
+  core_claim: >
+    Gradient-informed pruning criteria (plainact) combined with a single unified predictor
+    at the first transformer layer achieves superior accuracy-latency tradeoffs over
+    layerwise predictor approaches (DejaVu), reducing predictor overhead by ~20% while
+    improving end-to-end accuracy by 15%.
+  key_results: >
+    OPT-13B 50% sparsity: 61.19% avg accuracy vs DejaVu 59.28% (+1.91pp);
+    latency 2562ms vs DejaVu 2981ms (-14%); predictor FLOPs reduced 19-20%;
+    decode speed-up 21.25% over DejaVu; up to 21.3% improvement across 1.3B-66B.
+  limitations:
+    - "Study limited to models up to 30B parameters, primarily OPT-style models"
+    - "Criteria like NASWOT designed for ReLU activation, not directly applicable to attention maps"
+    - "Predictors trained on fewer than 10,000 input-output examples; more data may improve quality"
+    - "Perplexity evaluated with per-document calculation (inflated vs standard concatenation)"
+    - "Limited to OPT and Llama-2 architectures; no evaluation on newer models with SwiGLU/GQA"
+  relation_to_us: "competitor"
+  # Note: ShadowLLM predicts contextual sparsity patterns via a learned MLP predictor.
+  # Our approach distills sparse SwiGLU activation patterns directly. Both target input-dependent
+  # sparsity in FFN layers, but with fundamentally different mechanisms: ShadowLLM adds an
+  # auxiliary predictor network, while we leverage the inherent sparsity structure of SwiGLU.
+  # ShadowLLM is tested only on OPT (ReLU-based) and Llama-2; no SwiGLU-specific analysis.
+
+narrative:
+  story_type: "化繁为简型"
+  # DejaVu's layerwise predictors are complex and add latency overhead;
+  # ShadowLLM simplifies to a single predictor + better criterion = better results.
+  hook: >
+    Opens with LLM deployment criticality (fundamental components in contemporary computing),
+    then immediately surfaces the size-vs-latency tension. Contextual sparsity is positioned
+    as the key solution, but existing approaches (DejaVu) have predictor overhead problems.
+  tension: >
+    Contextual sparsity is necessary (static pruning degrades in-context learning), but
+    per-layer predictors add latency overhead that partially negates sparsity gains. DejaVu
+    is actually slower than dense inference in some settings (2981ms vs 2609ms dense on OPT-13B).
+    The tension: how to get contextual sparsity benefits without predictor overhead.
+  key_insight: >
+    Two orthogonal improvements: (1) gradient-informed criteria (plainact = activation *
+    gradient) produce more learnable and accurate importance scores than activation magnitude
+    alone (Spearman-rho > 0.8); (2) a single predictor at the first layer can predict
+    sparsity patterns for ALL subsequent layers, because the first layer's output already
+    encodes sufficient contextual information. This eliminates N-1 predictor invocations.
+  argument_chain: >
+    LLMs need efficiency → sparsity is key approach → contextual > static (preserves ICL)
+    → DejaVu pioneered contextual sparsity but has overhead → two improvements:
+    (a) better pruning criteria via gradient information → plainact criterion →
+    (b) unified first-layer predictor eliminates per-layer overhead →
+    validated on OPT/Llama-2 up to 30B → 15% accuracy gain + 20% speed-up
+  contribution_framing: >
+    Two quantified contributions: (1) "evaluating pruning approaches yielding 15% improvement
+    in end-to-end accuracy" and (2) "single predictor at first layer providing 20.6%
+    performance improvement." Clean separation of accuracy contribution vs efficiency contribution.
+  intro_structure: >
+    ~5 paragraphs: P1 = LLM importance + deployment challenge (hook); P2 = sparsification
+    as solution, static vs contextual distinction; P3 = critical challenge identification
+    (criteria matter, reference to Figure 1); P4 = ShadowLLM approach description
+    (single predictor + gradient criteria); P5 = contribution list with quantified claims.
+  notable_technique: >
+    Uses Figure 1 in the introduction itself to visually demonstrate the accuracy-sparsity
+    tradeoff improvement before diving into method details. Also strategically reveals that
+    DejaVu is slower than dense (Table 2: 2981ms vs 2609ms), undermining the baseline's
+    practical value and creating strong motivation for the predictor redesign.
+
+figures:
+  figure_count: 21
+  figure1:
+    type: "teaser_result"
+    description: >
+      Accuracy-sparsity tradeoff comparison between ShadowLLM and DejaVu, showing
+      ShadowLLM's unified predictor + plainact criterion achieves better accuracy
+      at every sparsity level.
+    narrative_role: >
+      Placed in the introduction to immediately demonstrate the main result before
+      technical details. Serves as both motivation and preview of the key finding.
+    design_elements:
+      - "Direct comparison curves (ShadowLLM vs DejaVu)"
+      - "Accuracy vs sparsity axes"
+      - "Clear visual separation between methods"
+    visual_style: "Line plot with two methods compared across sparsity levels, clean academic style"
+  result_figures:
+    - figure_id: "Figure 8"
+      viz_type: "grouped_bar"
+      what_compared: "ShadowLLM vs DejaVu across 7 zero-shot tasks individually"
+      how_gain_highlighted: "Consistent improvement visible across all 7 tasks"
+      design_note: "Per-task breakdown avoids averaging artifacts; shows robustness"
+    - figure_id: "Figure 10"
+      viz_type: "bar_chart"
+      what_compared: "Latency comparison across model sizes (1.3B to 66B) at ~50% sparsity"
+      how_gain_highlighted: "Side-by-side bars showing ShadowLLM consistently faster"
+      design_note: "Scaling across model sizes demonstrates generality of speed-up"
+    - figure_id: "Figure 11"
+      viz_type: "line_plot"
+      what_compared: "Generation time on OPT-30B as generation length increases"
+      how_gain_highlighted: "Gap between methods widens with longer generation"
+      design_note: "Shows advantage grows in practical long-generation scenarios"
+    - figure_id: "Figure 12"
+      viz_type: "line_plot"
+      what_compared: "Per-token latency of OPT-30B as sparsity increases"
+      how_gain_highlighted: "ShadowLLM latency decreases with sparsity; DejaVu does not benefit as much"
+      design_note: "Demonstrates predictor overhead is the bottleneck in DejaVu"
+  ablation_figures:
+    - figure_id: "Figure 6"
+      viz_type: "line_plot"
+      dimensions_varied: ["global vs per-layer pruning scope"]
+      design_note: "Clean comparison showing global pruning consistently better; validates design choice"
+    - figure_id: "Figure 7"
+      viz_type: "line_plot"
+      dimensions_varied: ["criterion (L2Norm vs plainact)", "pruning scope (local vs global)"]
+      design_note: "2x2 design: criterion x scope, showing plainact+global is best combination"
+    - figure_id: "Figure 13"
+      viz_type: "bar_chart"
+      dimensions_varied: ["few-shot setting for criterion computation (0/3/5-shot)"]
+      design_note: "Shows 5-shot criterion computation improves predictor quality"
+    - figure_id: "Figure 14"
+      viz_type: "scatter"
+      dimensions_varied: ["criterion learnability (plainact vs grasp outlier analysis)"]
+      design_note: "Grasp has ~4x more outliers, visually demonstrating why plainact is more learnable"
+    - figure_id: "Figure 3"
+      viz_type: "heatmap"
+      dimensions_varied: ["rank variance across layers and heads"]
+      design_note: "Motivational figure showing importance varies significantly by input, justifying contextual approach"
+    - figure_id: "Figures 15-16"
+      viz_type: "bar_chart"
+      dimensions_varied: ["static pruning criteria comparison"]
+      design_note: "Static pruning ablation showing plainact/fisher preserve quality best even without predictor"
+  figure_narrative_role: >
+    Figure 1 (teaser in intro: accuracy-sparsity tradeoff) → Figure 2 (conceptual: what is contextual sparsity)
+    → Figure 3 (motivation: empirical evidence for input-dependent importance) → Figure 4 (method overview:
+    single predictor architecture) → Figure 5 (validation: predictor ranking ability) → Figures 6-7
+    (ablation: global vs local, criterion comparison) → Figure 8 (main result: per-task accuracy)
+    → Figures 9-12 (scaling: perplexity, latency across sizes/lengths) → Figures 13-21 (deep ablations
+    and analysis). Classic escalation from motivation → method → main results → scaling → analysis.
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Table 2"
+    caption: "Latency and accuracy at 50% sparsity on OPT-13B (avg zero-shot accuracy across 7 tasks)"
+    row_axis: "methods"
+    col_axis: "latency and accuracy"
+    row_organization: "by_category"
+    # Rows: Static, Dense, DejaVu, ShadowLLM
+    col_organization: "flat"
+    # Columns: Latency (ms), Accuracy (%)
+    highlight_strategy: "Implicit (ShadowLLM best on both metrics)"
+    statistical_reporting: "Single numbers, no variance reported"
+    num_baselines: 3
+    data:
+      Static: {latency_ms: 2014, accuracy_pct: 55.34}
+      Dense: {latency_ms: 2609, accuracy_pct: 58.32}
+      DejaVu: {latency_ms: 2981, accuracy_pct: 59.28}
+      ShadowLLM: {latency_ms: 2562, accuracy_pct: 61.19}
+    design_note: >
+      Compact table with only 4 rows. Key insight: DejaVu is SLOWER than dense (2981 > 2609ms)
+      despite pruning, while ShadowLLM is faster than dense. This is a devastating comparison
+      that undermines DejaVu's practical value. Table is deliberately minimal to make this
+      point maximally clear.
+  ablation_tables:
+    - table_id: "Table 1"
+      caption: "Predictor FLOPs comparison between DejaVu and ShadowLLM"
+      what_varied: ["model size (OPT-1.3B, OPT-30B, OPT-175B)"]
+      variation_style: "full_numbers"
+      data:
+        OPT-1.3B: {flops_reduction_pct: 19.11}
+        OPT-30B: {flops_reduction_pct: 19.55}
+        OPT-175B: {flops_reduction_pct: 19.76}
+      design_note: >
+        Shows FLOPs savings are consistent (~19-20%) regardless of model scale,
+        with analytical formula provided. Clean mathematical justification.
+    - table_id: "Table 3"
+      caption: "Predictor hyperparameters"
+      what_varied: ["predictor training configuration"]
+      variation_style: "full_numbers"
+      design_note: "Reproducibility table listing all predictor training hyperparameters"
+    - table_id: "Table 4"
+      caption: "Perplexity comparison: per-document vs standard calculation"
+      what_varied: ["evaluation methodology"]
+      variation_style: "full_numbers"
+      data:
+        Llama2-7B: {ours: 8.82, reported: 5.47}
+        OPT-1.3B: {ours: 16.4, reported: 14.6}
+        OPT-13B: {ours: 11.5, reported: 10.1}
+        OPT-30B: {ours: 10.7, reported: 9.56}
+      design_note: >
+        Transparency table explaining evaluation methodology difference. Shows
+        their per-document perplexity calculation inflates numbers vs standard
+        concatenation. Important for fair comparison with other papers.
+  supplementary_tables:
+    in_appendix: false
+    content: "All tables are in main paper body"
+    reason: "Only 4 compact tables; no need for appendix tables"

@@ -1,0 +1,58 @@
+{
+  "exp_id": "cls8b-s42-resume-ckpt3600-mutation",
+  "project": "exec-sim-repair-verifier",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T23:34:55.660Z",
+    "updated_at": "2026-05-16T01:13:58.492Z",
+    "failure_reason": "CLEARED: was false positive from cron. Experiment still in PREPARING, awaiting GPU allocation.",
+    "conclusion": "failed",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T23:35:02.463599+00:00"
+        }
+      ]
+    },
+    "spec": {
+      "command": "python3 mutation_breakdown.py (analysis of existing ckpt-3600 test predictions)",
+      "server": "seetacloud-westd-4x5090",
+      "data_path": "/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_test.jsonl",
+      "data_count": 9784,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-3600/",
+      "eval_data": "swebench_test (full, n=9784)"
+    },
+    "metrics": {
+      "overall_accuracy": 84.4849,
+      "overall_correct": 8266,
+      "overall_total": 9784,
+      "gold_accuracy": 96.2443,
+      "gold_correct": 4459,
+      "gold_total": 4633,
+      "mutation_operator_swap_accuracy": 81.3822,
+      "mutation_operator_swap_correct": 2732,
+      "mutation_operator_swap_total": 3357,
+      "mutation_off_by_one_accuracy": 86.8852,
+      "mutation_off_by_one_correct": 159,
+      "mutation_off_by_one_total": 183,
+      "mutation_return_value_accuracy": 75.4448,
+      "mutation_return_value_correct": 424,
+      "mutation_return_value_total": 562,
+      "mutation_boundary_removal_accuracy": 46.9018,
+      "mutation_boundary_removal_correct": 492,
+      "mutation_boundary_removal_total": 1049
+    },
+    "checkpoint_path": "/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-3600/",
+    "log_path": "/root/autodl-tmp/eval_results/cls8b_s42_resume_test_ckpt3600_mutation/",
+    "completed_at": "2026-05-16T01:13:58.493Z"
+  },
+  "timestamp": "2026-05-16T01:13:59.214382+00:00",
+  "trigger": "update_registry"
+}

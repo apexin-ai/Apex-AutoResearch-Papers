@@ -1,0 +1,3 @@
+Results at: /root/persuasion_turn_jailbreak_detect/results/plan_003_scrambled_perturbation.json
+IID test F1=1.0 (full turns). Perturbation clean F1=0.3333, perturbed F1=0.3333, delta=0.0.
+Model predicts all-benign on OOD perturbed test set (76 samples, 38 jailbreak + 38 benign).

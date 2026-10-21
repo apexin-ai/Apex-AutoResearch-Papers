@@ -1,0 +1,28 @@
+{
+  "exp_id": "reflexion-internal-baseline",
+  "project": "simgate-modular-routing",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T08:43:12.035Z",
+    "updated_at": "2026-05-17T14:00:43.763Z",
+    "hypothesis": "Reflexion 通过自我纠错降低 internal modality 的 death rate；如果 death rate 降至 <20%（接近 det 的 16.3%），则 death dominance 不再成立",
+    "parent": "plan-012-full",
+    "spec": {
+      "command": "/root/miniconda3/bin/python src/reflexion_baseline.py --mode reflexion --tasks chemistry-mix,find-animal,find-non-living-thing,freeze,grow-fruit,identify-life-stages-1 --api-base http://localhost:8000/v1 --model /root/autodl-tmp/models/Qwen2.5-7B-Instruct --output-dir results/reflexion_baseline_part1/ --episodes-per-task 20 --max-trials 3",
+      "server": "westb-14838",
+      "gpu": "cuda:2",
+      "model_name": "Qwen2.5-7B-Instruct",
+      "data_path": "ScienceWorld environment (6 tasks)",
+      "data_count": 120,
+      "seed": "not set",
+      "pid": 20371,
+      "checkpoint_source": "N/A (episode collection, not checkpoint eval)",
+      "eval_data": "ScienceWorld environment interactive episodes"
+    }
+  },
+  "timestamp": "2026-05-17T14:00:43.998925+00:00",
+  "trigger": "update_registry"
+}

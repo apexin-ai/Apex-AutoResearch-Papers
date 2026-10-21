@@ -1,1 +1,0 @@
-Overall entropy ratio: 0.9436 +/- 0.0204. Per layer: L0=0.979, L1=0.948, L2=0.951, L3=0.932, L4=0.927, L5=0.929, L6=0.941, L7=0.958, L8=0.953, L9=0.950, L10=0.934, L11=0.947, L12=0.940, L13=0.917, L14=0.938, L15=0.953. Full JSON at cqa1-33015:/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_attention_entropy_perlayer.json

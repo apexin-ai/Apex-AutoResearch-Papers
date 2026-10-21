@@ -1,8 +1,0 @@
-Full results in server: analysis_round8/tost_external_delta.json
-
-External deltas: SEM (0.43-1.33pp), practical (0.5pp), literature (1.0pp)
-
-LLaMA-CoNLL (F1=0.924): ALL 4 signals equivalent at ALL 3 external deltas (p less than 0.001)
-Qwen-CoNLL (F1=0.908): NO signal passes any external delta (selection degrades 0.9-1.5pp)
-SciERC Qwen (F1=0.644): Only SJ passes at delta_SEM (p=0.043)
-SciERC LLaMA (F1=0.646): Only SJ passes at delta_SEM (p=0.030)

@@ -1,0 +1,27 @@
+{
+  "model": "olmo-2-1b",
+  "temp": 0.5,
+  "binary_f1": 0.7826,
+  "binary_ci_95": [
+    0.7675,
+    0.7981
+  ],
+  "binary_n_test": 3863,
+  "three_class_f1": 0.8425,
+  "three_class_ci_95": [
+    0.8321,
+    0.8526
+  ],
+  "three_class_n_test": 4858,
+  "entropy_mean_spearman_rho": -0.7189,
+  "entropy_mean_spearman_p": 0.0,
+  "per_feature_spearman": {
+    "entropy_mean": -0.7189,
+    "entropy_std": -0.4098,
+    "entropy_min": -0.4489,
+    "entropy_max": 0.0818,
+    "tail_decay": -0.1224,
+    "ttr": -0.7115,
+    "hapax_ratio": -0.7413
+  }
+}

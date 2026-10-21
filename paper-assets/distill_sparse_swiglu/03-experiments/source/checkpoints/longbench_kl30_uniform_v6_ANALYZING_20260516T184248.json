@@ -1,0 +1,36 @@
+{
+  "exp_id": "longbench_kl30_uniform_v6",
+  "project": "distill_sparse_swiglu",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T16:56:19.111Z",
+    "updated_at": "2026-05-16T18:42:48.019Z",
+    "spec": {
+      "command": "python -u src/benchmark_eval.py --exp_id longbench_kl30_uniform_v6 --checkpoint checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --multi_gpu --batch_size 1 --tasks longbench_narrativeqa,longbench_qasper,longbench_gov_report,longbench_multi_news --gpu 0",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "251051",
+      "log_path": "~/runs/distill_sparse_swiglu/longbench_kl30_uniform_v6.log",
+      "submitted_at": "2026-05-16T16:58:48.412Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "llama-3.1-8b",
+      "data_path": "Xnhyacinth/LongBench",
+      "data_count": 800,
+      "seed": 42,
+      "checkpoint_source": "kl_sparsity30_s42_v3"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T18:42:47.635Z"
+    }
+  },
+  "timestamp": "2026-05-16T18:42:48.185994+00:00",
+  "trigger": "update_registry"
+}

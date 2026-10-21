@@ -1,0 +1,67 @@
+{
+  "exp_id": "eval_pi05_attention_k085_long_seed42_v2",
+  "project": "importance_margin_vla_compress",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-26T12:03:20.348Z",
+    "updated_at": "2026-05-26T16:31:18.486Z",
+    "spec": {
+      "command": "HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python -u /root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.85 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0",
+      "server": "cqa1-33015",
+      "gpu": "cuda:3",
+      "pid": 337364,
+      "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_attention_k085_long_seed42_v2.log",
+      "submitted_at": "2026-05-26T12:03:18.408Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "libero_10",
+      "data_count": 50,
+      "model_name": "pi0.5",
+      "seed": 42,
+      "checkpoint_path": "N/A (eval only)",
+      "checkpoint_source": "/root/autodl-tmp/pi05_libero_finetuned",
+      "eval_data": "libero_10",
+      "wall_clock_seconds": 16080.1,
+      "gpu_hours": 4.47
+    },
+    "hypothesis": "π0.5 Attention k=0.85 Long seed42 — Attn Long cliff curve 中间点。Attn k=0.9=63.8%, k=0.75=51.8%。k=0.85 填补两者之间数据缺口（v1 进程静默死亡，v2 改用绝对路径 python 重试）",
+    "parent": "eval_pi05_attention_k09_long_seed42",
+    "reproduce": {
+      "finished_at": "2026-05-26T16:27:34.539Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-26T16:27:49.989596+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "overall_sr": 51.6,
+      "total_episodes": 500,
+      "per_task": {
+        "T0_alphabet_soup_tomato": 20,
+        "T1_cream_cheese_butter": 54,
+        "T2_stove_moka_pot": 32,
+        "T3_black_bowl_drawer": 60,
+        "T4_white_mug_left_plate": 48,
+        "T5_book_back_shelf": 90,
+        "T6_white_mug_plate": 68,
+        "T7_alphabet_soup_cream": 46,
+        "T8_moka_pots_stove": 6,
+        "T9_yellow_white_mug_microwave": 92
+      }
+    },
+    "conclusion": "success",
+    "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_attention_k085_long_seed42_v2.log",
+    "completed_at": "2026-05-26T16:31:18.486Z"
+  },
+  "timestamp": "2026-05-26T16:31:22.990010+00:00",
+  "trigger": "update_registry"
+}

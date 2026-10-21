@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval-supp-adapt-tau025-obj-s44",
+  "project": "acr-vla-conformal-refinement",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T11:38:07.365Z",
+    "updated_at": "2026-05-23T12:02:47.803Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode adaptive_conformal_crm --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --conformal_threshold 0.25 --benchmark object --seed 44 --n_rollouts 20 --max_correction_norm 0.2 --K 2\"",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "910020",
+      "log_path": "~/runs/acr-vla-conformal-refinement/eval-supp-adapt-tau025-obj-s44.log",
+      "submitted_at": "2026-05-23T11:39:03.637Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Adaptive CRM tau=0.25 on Object seed44. s42=81.0% (+2pp), s43=77.5% (-1.5pp). Third seed to resolve variance. Object VLA-only = 79.0%."
+  },
+  "timestamp": "2026-05-23T12:02:48.971970+00:00",
+  "trigger": "update_registry"
+}

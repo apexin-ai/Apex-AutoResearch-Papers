@@ -1,0 +1,39 @@
+{
+  "exp_id": "p0_batchsize_16",
+  "project": "provenance_weight_training",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T15:56:36.323Z",
+    "updated_at": "2026-05-24T16:22:23.171Z",
+    "hypothesis": "Batch size amplification at B=16: adaptive τ=0.7 with n_min=8 (auto-compute: 16//2=8). Validates n_min coupling rule at B=16 and completes batch-size amplification series (B=4→8→16). Expected Δ≈-0.068 based on monotonic amplification trend from B=4 (Δ=-0.020) and B=8 (Δ=-0.052).",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python -u training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/p0_batchsize_16 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --tau 0.7 --n_min 8 --num_train_tokens 200000000 --contamination_ratio 0.4 --batch_size 16 --gradient_accumulation_steps 1 --learning_rate 5e-5 --seed 42 --bf16 --save_total_limit 2 --logging_steps 10",
+      "server": "westd-41312",
+      "gpu": "cuda:1",
+      "data_path": "data/scored_data.jsonl",
+      "data_count": 371499,
+      "model_name": "Qwen3-0.6B",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "N/A",
+      "hyperparams": {
+        "weighting_method": "adaptive",
+        "tau": 0.7,
+        "n_min": 8,
+        "batch_size": 16,
+        "gradient_accumulation_steps": 1,
+        "effective_batch_size": 16,
+        "lr": 5e-05,
+        "contamination_ratio": 0.4
+      },
+      "failure_reason": "OOM: 18.55 GiB logits tensor, B=16 grad_accum=1 exceeds GPU memory"
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-24T16:22:23.171Z"
+  },
+  "timestamp": "2026-05-24T16:22:24.088889+00:00",
+  "trigger": "update_registry"
+}

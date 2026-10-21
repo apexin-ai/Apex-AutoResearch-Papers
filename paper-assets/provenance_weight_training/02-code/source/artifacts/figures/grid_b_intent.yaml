@@ -1,0 +1,3 @@
+narrative_intent: "Show the U-shaped relationship between fixed b* values and holdout perplexity, with the optimal region around b*=0.2-0.3"
+design_notes: "Line plot with markers, x-axis is b* value (log scale), y-axis is holdout PPL, highlight the optimal region. Clean academic style suitable for ML venue."
+data_file: "grid_b_data.csv"

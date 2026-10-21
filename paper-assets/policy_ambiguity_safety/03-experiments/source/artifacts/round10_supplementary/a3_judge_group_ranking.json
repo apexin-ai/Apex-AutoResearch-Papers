@@ -1,0 +1,117 @@
+{
+  "analysis": "within_judge_group_c2_ranking",
+  "group_1": {
+    "judge": "gpt-4.1",
+    "agents": [
+      "deepseek-v3",
+      "gpt-5.4"
+    ],
+    "n_judgments": 1200,
+    "type_ranking": {
+      "authorization_scope": {
+        "rank": 1,
+        "violation_rate": 0.345
+      },
+      "incompleteness": {
+        "rank": 2,
+        "violation_rate": 0.275
+      },
+      "lexical": {
+        "rank": 3,
+        "violation_rate": 0.26
+      },
+      "scopal": {
+        "rank": 4,
+        "violation_rate": 0.255
+      },
+      "coreferential": {
+        "rank": 5,
+        "violation_rate": 0.22
+      },
+      "conditional_precedence": {
+        "rank": 6,
+        "violation_rate": 0.205
+      }
+    },
+    "violation_rates": {
+      "authorization_scope": 0.345,
+      "conditional_precedence": 0.205,
+      "coreferential": 0.22,
+      "incompleteness": 0.275,
+      "lexical": 0.26,
+      "scopal": 0.255
+    }
+  },
+  "group_2": {
+    "judge": "gpt-5.4",
+    "agents": [
+      "claude-sonnet-4-6",
+      "gpt-4.1",
+      "qwen3-235b"
+    ],
+    "n_judgments": 1797,
+    "type_ranking": {
+      "incompleteness": {
+        "rank": 1,
+        "violation_rate": 0.3
+      },
+      "lexical": {
+        "rank": 2,
+        "violation_rate": 0.2467
+      },
+      "coreferential": {
+        "rank": 3,
+        "violation_rate": 0.2248
+      },
+      "conditional_precedence": {
+        "rank": 4,
+        "violation_rate": 0.22
+      },
+      "scopal": {
+        "rank": 5,
+        "violation_rate": 0.2007
+      },
+      "authorization_scope": {
+        "rank": 6,
+        "violation_rate": 0.1633
+      }
+    },
+    "violation_rates": {
+      "authorization_scope": 0.1633,
+      "conditional_precedence": 0.22,
+      "coreferential": 0.2248,
+      "incompleteness": 0.3,
+      "lexical": 0.2467,
+      "scopal": 0.2007
+    }
+  },
+  "spearman_rho": -0.0286,
+  "spearman_p": 0.9572,
+  "rank_comparison": {
+    "authorization_scope": {
+      "group_1_rank": 1,
+      "group_2_rank": 6
+    },
+    "conditional_precedence": {
+      "group_1_rank": 6,
+      "group_2_rank": 4
+    },
+    "coreferential": {
+      "group_1_rank": 5,
+      "group_2_rank": 3
+    },
+    "incompleteness": {
+      "group_1_rank": 2,
+      "group_2_rank": 1
+    },
+    "lexical": {
+      "group_1_rank": 3,
+      "group_2_rank": 2
+    },
+    "scopal": {
+      "group_1_rank": 4,
+      "group_2_rank": 5
+    }
+  },
+  "conclusion": "The two judge groups do not show statistically significant rank correlation (Spearman rho=-0.0286, p=0.9572), indicating that the relative difficulty of ambiguity types may vary across judge groups or the sample is too small for significance."
+}

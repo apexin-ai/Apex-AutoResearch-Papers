@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp_003_dryrun",
+  "project": "cost-verify-agent-rl",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T21:07:02.905Z",
+    "updated_at": "2026-05-13T21:44:30.297Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name=_alfworld_exp003_dryrun 2>&1 | tee /root/autodl-tmp/exp003_dryrun.log\"",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "132166",
+      "log_path": "~/runs/cost-verify-agent-rl/exp_003_dryrun.log",
+      "submitted_at": "2026-05-13T21:09:26.351Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-13T21:44:30.313847+00:00",
+  "trigger": "update_registry"
+}

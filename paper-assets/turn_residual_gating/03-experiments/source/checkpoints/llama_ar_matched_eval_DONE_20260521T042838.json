@@ -1,0 +1,59 @@
+{
+  "exp_id": "llama_ar_matched_eval",
+  "project": "turn_residual_gating",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T03:59:40.918Z",
+    "updated_at": "2026-05-21T04:28:38.504Z",
+    "hypothesis": "用 matched 设置 (N=50/T=4) 重跑 Llama AR eval，消除 TF/AR 设置差异。与 TF 结果对比得到可直接写入论文的 gap ratio，验证 TG 在 AR 模式下仍能提升 GAR。",
+    "parent": "llama_eval_s42",
+    "spec": {
+      "command": "bash scripts/eval_llama_ar_matched.sh",
+      "server": "westd-20861",
+      "data_path": "data/ultrachat_eval_sample.json",
+      "data_count": 50,
+      "model_name": "Meta-Llama-3.1-8B-Instruct + TG LoRA",
+      "seed": 42,
+      "checkpoint_source": "phase2_llama_tg_s42",
+      "eval_data": "50 UltraChat convs, T=4, AR generation, 4 conditions (base/TG x ours/Dongre)",
+      "checkpoint_path": "N/A (eval)",
+      "log_path": "runs/eval_llama_ar_matched.log"
+    },
+    "log_path": "/root/turn_residual_gating/runs/eval_llama_ar_matched.log",
+    "conclusion": "success",
+    "metrics": {
+      "ar_base_ours": {
+        "mid_gar": 0.0082,
+        "ngar": 0.1,
+        "ppl": 1.267
+      },
+      "ar_tg_ours": {
+        "mid_gar": 0.0388,
+        "ngar": 0.493,
+        "ppl": 1.413,
+        "turn1_gar": 0.0612
+      },
+      "ar_base_dongre": {
+        "mid_gar": 0.0051,
+        "ngar": 0.12,
+        "ppl": 1.267
+      },
+      "ar_tg_dongre": {
+        "mid_gar": 0.018,
+        "ngar": 0.431,
+        "ppl": 1.413
+      },
+      "matched_gap_analysis": {
+        "gar_ours_tg_ar_vs_tf": "AR 0.0388 vs TF 0.4836 (raw 12.5x gap, but nGAR aligned: 0.493 vs ~0.48)",
+        "gar_dongre_tg_ar_vs_tf": "AR 0.0180 vs TF 0.0180 (identical — no gap)",
+        "conclusion": "TF-AR raw GAR gap is normalization artifact. Dongre metric shows zero gap; ours metric nGAR aligns. TG effect robust under AR."
+      }
+    },
+    "completed_at": "2026-05-21T04:28:38.504Z"
+  },
+  "timestamp": "2026-05-21T04:28:38.576537+00:00",
+  "trigger": "update_registry"
+}

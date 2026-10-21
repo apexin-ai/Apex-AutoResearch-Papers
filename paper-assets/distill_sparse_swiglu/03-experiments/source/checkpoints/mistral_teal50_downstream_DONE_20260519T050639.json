@@ -1,0 +1,46 @@
+{
+  "exp_id": "mistral_teal50_downstream",
+  "project": "distill_sparse_swiglu",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T03:15:46.635Z",
+    "updated_at": "2026-05-19T05:06:39.140Z",
+    "hypothesis": "Training-free TEAL 50% uniform allocation baseline on Mistral-7B for downstream tasks (PPL + ARC + WG + MMLU + GSM8K + HellaSwag + PIQA). Completes cross-architecture sparsity regime comparison alongside KL 50% results. Required for W2 cross-architecture claim.",
+    "spec": {
+      "command": "benchmark_eval.py Mistral TEAL",
+      "server": "westd-34887",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "74915",
+      "log_path": "~/runs/distill_sparse_swiglu/mistral_teal50_downstream.log",
+      "submitted_at": "2026-05-19T03:16:11.426Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "downstream tasks",
+      "data_count": 7,
+      "model_name": "Mistral-7B-v0.1",
+      "seed": 42,
+      "checkpoint_path": "N/A (training-free)",
+      "wall_clock_seconds": 6627.7,
+      "gpu_hours": 1.84
+    },
+    "metrics": {
+      "wikitext2_ppl": 18.3061,
+      "arc_challenge_acc_norm": 0.2457,
+      "winogrande_acc": 0.5091,
+      "mmlu_acc": 0.2635,
+      "gsm8k_exact_match": 0.0341,
+      "hellaswag_acc_norm": 0.3603,
+      "piqa_acc_norm": 0.6045
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-19T05:06:39.140Z"
+  },
+  "timestamp": "2026-05-19T05:06:39.649978+00:00",
+  "trigger": "update_registry"
+}

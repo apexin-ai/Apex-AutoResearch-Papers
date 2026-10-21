@@ -1,0 +1,14 @@
+{
+  "exp_id": "leave-one-tasktype-out",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T03:08:05.850Z",
+    "updated_at": "2026-05-16T03:08:05.850Z"
+  },
+  "timestamp": "2026-05-16T03:08:06.063089+00:00",
+  "trigger": "update_registry"
+}

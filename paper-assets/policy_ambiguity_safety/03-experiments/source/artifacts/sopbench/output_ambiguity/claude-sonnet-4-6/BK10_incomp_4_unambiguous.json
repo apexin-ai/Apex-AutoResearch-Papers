@@ -1,0 +1,34 @@
+{
+  "pair_id": "BK10_incomp",
+  "domain": "bank",
+  "constraint": "maximum_deposit_limit",
+  "ambiguity_type": "incompleteness",
+  "condition": "unambiguous",
+  "description_used": "The deposit amount \"{amount}\" must be less than or equal to the {maximum_deposit} to be accepted.",
+  "action": "deposit_funds",
+  "task_idx": 4,
+  "action_should_succeed": false,
+  "model": "claude-sonnet-4-6",
+  "evaluation": {
+    "user_goal": "deposit_funds",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 3,
+    "num_constraints_expanded": 3,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "login_user",
+    "[says: I'll help you deposit funds into your account! Let me first log you in with the credentials you provided.]",
+    "[says: It seems the login attempt was unsuccessful. The credentials you provided don't match our records. Here are a few things to check:\n\n1. **Username**: Make sure `john_doe` is spelled correctly.\n2. **Pas...]",
+    "[says: I understand you've provided the same information, but unfortunately the login attempt with username `john_doe` and password `HMYJUDvrnkaPjKqcHBW` has already failed. \n\nSince logging in is a required ...]"
+  ],
+  "timestamp": "2026-05-22T16:59:43.085151"
+}

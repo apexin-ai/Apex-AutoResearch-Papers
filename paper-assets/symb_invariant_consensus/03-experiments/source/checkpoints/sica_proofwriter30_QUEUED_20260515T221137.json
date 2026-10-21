@@ -1,0 +1,16 @@
+{
+  "exp_id": "sica_proofwriter30",
+  "project": "symb_invariant_consensus",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T22:08:42.831Z",
+    "updated_at": "2026-05-15T22:11:37.326Z",
+    "hypothesis": "逻辑域（ProofWriter D5）上 SICA 能否检测跨路径 FOL 约束矛盾并超越 SC@K=12——验证 SICA 在逻辑推理域的有效性",
+    "parent": "sica_aime30_v3"
+  },
+  "timestamp": "2026-05-15T22:11:37.378202+00:00",
+  "trigger": "update_registry"
+}

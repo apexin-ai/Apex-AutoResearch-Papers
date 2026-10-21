@@ -1,0 +1,38 @@
+{
+  "exp_id": "eval-obs-only-object-norm005-seed45",
+  "project": "acr-vla-conformal-refinement",
+  "state": "DEPLOYED",
+  "previous_state": "DEPLOYING",
+  "experiment_data": {
+    "status": "DEPLOYED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T10:33:08.510Z",
+    "updated_at": "2026-05-20T19:45:39.649Z",
+    "hypothesis": "obs_only CRM (ε=0.05) seed45 on LIBERO-Object. Supplements magnitude curve low-norm data. seed42=13%, seed43=14%.",
+    "spec": {
+      "command": "crm_obs_only --seed 45 --K 10 --max_correction_norm 0.05",
+      "server": "bjb1-32546",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "565173",
+      "data_path": "LIBERO-Object",
+      "data_count": 100,
+      "model_name": "SmolVLA+CRM_obs_only",
+      "seed": 45,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt",
+      "eval_data": "LIBERO-Object"
+    },
+    "failure_reason": "startup recovery: process dead, no active cron monitor",
+    "conclusion": "success",
+    "completed_at": "2026-05-18T16:26:11.822Z",
+    "metrics": {
+      "success_rate": 0.14,
+      "n_tasks": 10,
+      "n_rollouts": 10,
+      "total_rollouts": 100
+    }
+  },
+  "timestamp": "2026-05-20T19:45:40.542851+00:00",
+  "trigger": "update_registry"
+}

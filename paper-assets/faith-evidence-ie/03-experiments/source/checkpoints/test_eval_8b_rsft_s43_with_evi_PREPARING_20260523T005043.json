@@ -1,0 +1,14 @@
+{
+  "exp_id": "test_eval_8b_rsft_s43_with_evi",
+  "project": "faith-evidence-ie",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T00:50:42.882Z",
+    "updated_at": "2026-05-23T00:50:42.882Z"
+  },
+  "timestamp": "2026-05-23T00:50:43.507343+00:00",
+  "trigger": "update_registry"
+}

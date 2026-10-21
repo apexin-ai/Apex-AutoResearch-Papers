@@ -1,0 +1,124 @@
+{
+  "project": "faith-evidence-ie",
+  "code_count": 782,
+  "data_count": 2688,
+  "env_count": 1,
+  "tex_count": 61,
+  "bib_count": 5,
+  "review_count": 4,
+  "validation_count": 23,
+  "chat_count": 892,
+  "worker_count": 2733,
+  "trace_count": 3870,
+  "trace_bytes": 414854483,
+  "maintenance_count": 175,
+  "provenance_count": 0,
+  "submission_count": 0,
+  "license_count": 0,
+  "paper_pdf": "paper.pdf",
+  "paper_sha256": "ae232f505245c999aeef8c62ccc26e3bbefc132e7d07fd4f0bc34b2ab9826fac",
+  "title": "Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction",
+  "pages": 18,
+  "status_marker": "Anonymous ACL submission",
+  "version_count": 32,
+  "version_paths": [
+    "figures/paper/fig_variance_compression.pdf",
+    "figures/paper/fig_grpo_dynamics.pdf",
+    "figures/paper/fig_overview.pdf",
+    "figures/paper/fig_evidence_tax.pdf",
+    "figures/paper/fig_scaling.pdf",
+    "figures/paper/fig_error_decomposition.pdf",
+    "figures/paper/fig_ced_scoring.pdf",
+    "figures/paper/fig_rsft_ablation.pdf",
+    "figures/paper/fig_edcr_relations.pdf",
+    "figures/paper/fig_inference_time.pdf",
+    "figures/paper/fig_spectrum.pdf",
+    "figures/paper/fig_task_example.pdf",
+    "figures/paper/fig_paradigms.pdf",
+    "docs/paper/main_v0525_font_layout_fix.pdf",
+    "docs/paper/main_v0525_14B_3seed.pdf",
+    "docs/paper/main.pdf",
+    "docs/paper/main_v0525_template_aligned.pdf",
+    "artifacts/dream_reports/dream_20260516T105318/median/paper.pdf",
+    "artifacts/dream_reports/dream_20260516T105318/worst/paper.pdf",
+    "artifacts/dream_reports/dream_20260516T105318/best/paper.pdf",
+    "artifacts/dream_reports/dream_20260515T120227/median/paper.pdf",
+    "artifacts/dream_reports/dream_20260515T120227/worst/paper.pdf",
+    "artifacts/dream_reports/dream_20260515T120227/best/paper.pdf",
+    "artifacts/dream_reports/dream_20260516T155803/median/paper.pdf",
+    "artifacts/dream_reports/dream_20260516T155803/worst/paper.pdf",
+    "artifacts/dream_reports/dream_20260516T155803/best/paper.pdf",
+    "artifacts/dream_reports/dream_20260515T132059/median/paper.pdf",
+    "artifacts/dream_reports/dream_20260515T132059/worst/paper.pdf",
+    "artifacts/dream_reports/dream_20260515T132059/best/paper.pdf",
+    "artifacts/review_round_2/submitted.pdf",
+    "artifacts/review_round_3/submitted.pdf",
+    "artifacts/review_round_4/submitted.pdf"
+  ],
+  "archive_rel": "faith-evidence-ie/workspace.tar.gz",
+  "archive_note": "Archive scan completed",
+  "archive_error": null,
+  "source_s3": {
+    "bucket": "agent-ml-research-project-backups-20260531",
+    "key": "faith-evidence-ie/workspace.tar.gz",
+    "sha256": "8dae11ed8afaab393f0d82a2964a993fde3b2e3937a0befe355f4f15b90d006c",
+    "bytes": 375063013,
+    "etag": "\"fa90d9920cd60f5eaa19b87dae350452-45\"",
+    "modified": "2026-05-31T17:31:38+00:00"
+  },
+  "academic_record": {
+    "date": "2026-05-31",
+    "record": "Project status documents are included as source evidence; formal submission, acceptance, or publication status is unverified."
+  },
+  "criteria": [
+    {
+      "name": "Manuscript and versions",
+      "status": "Available",
+      "evidence": "61 source files; 32 PDF candidates",
+      "gap": "Candidate filenames do not establish official submission or publication.",
+      "path": "01-manuscript/"
+    },
+    {
+      "name": "Academic status",
+      "status": "Unverified",
+      "evidence": "Project status documents are included as source evidence; formal submission, acceptance, or publication status is unverified.",
+      "gap": "Official submission, acceptance, and publication were not independently checked.",
+      "path": "06-maintenance/"
+    },
+    {
+      "name": "Generation trace",
+      "status": "Organized",
+      "evidence": "892 conversations; 2733 worker logs/results; 3870 source files",
+      "gap": "Overlapping snapshots are retained; credentials and binary attachments are redacted.",
+      "path": "04-generation-trace/"
+    },
+    {
+      "name": "Reproduction code",
+      "status": "Available",
+      "evidence": "782 code/configuration files; 1 environment manifests",
+      "gap": "The code is archived; experiments were not rerun for this release.",
+      "path": "02-code/"
+    },
+    {
+      "name": "Experiments and environment",
+      "status": "Partial",
+      "evidence": "2688 data/result files",
+      "gap": "Original data permissions and completeness require project-specific review.",
+      "path": "03-experiments/"
+    },
+    {
+      "name": "Validation evidence",
+      "status": "Partial",
+      "evidence": "4 internal review records; 23 other audit records",
+      "gap": "Internal reviews are project evidence, not independently verified external reviews.",
+      "path": "05-validation/"
+    },
+    {
+      "name": "Maintenance",
+      "status": "Partial",
+      "evidence": "175 project documentation files; 0 license files",
+      "gap": "A project license file applies only within its stated scope.",
+      "path": "06-maintenance/"
+    }
+  ]
+}

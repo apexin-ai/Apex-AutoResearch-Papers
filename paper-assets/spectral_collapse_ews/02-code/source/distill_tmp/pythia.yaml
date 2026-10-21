@@ -1,0 +1,32 @@
+paper_key: "pythia"
+title: "Pythia: A Suite for Analyzing Large Language Models Across Training and Scaling"
+venue: "ICML 2023"
+full_text_available: false
+
+research:
+  baselines:
+    - 16 Pythia models (70M to 12B parameters)
+  metrics:
+    - {name: "memorization rate", direction: "lower_better"}
+    - {name: "few-shot accuracy", direction: "higher_better"}
+    - {name: "gender bias metrics", direction: "lower_better"}
+  datasets:
+    - {name: "The Pile (deduplicated and standard)", size: "N/A"}
+  ablation_dimensions:
+    - model scale (70M to 12B)
+    - training stage (154 checkpoints per model)
+    - data deduplication
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "model suite / training dynamics analysis"
+
+positioning:
+  core_claim: "A controlled suite of 16 LLMs (70M-12B) trained on identical public data in the same order, with 154 checkpoints each, enabling reproducible research on training dynamics, memorization, and bias across scales."
+  key_results: "154 checkpoints per model across 16 scales; case studies on memorization, term frequency effects on few-shot learning, and gender bias reduction."
+  limitations:
+    - "Single data ordering (same sequence for all models)"
+    - "English-only training data"
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

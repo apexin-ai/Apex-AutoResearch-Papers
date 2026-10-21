@@ -1,0 +1,36 @@
+{
+  "exp_id": "eval_stepwise_s1_l1_22k",
+  "project": "diff_collision_sdf",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T02:26:19.063Z",
+    "updated_at": "2026-05-27T03:17:44.478Z",
+    "hypothesis": "Cross-validation of s0 22K CAR=60.5% anomaly. If s1 22K CAR also shows significant elevation above null (54.5%±2.83), the 22K signal is real (not single-seed noise). If s1 stays within null range, s0 jump is likely noise.",
+    "parent": "eval_stepwise_s0_l1_22k",
+    "spec": {
+      "command": "python scripts/eval_safelibero.py --checkpoint /root/autodl-tmp/checkpoints/a1_sdf_pi05_object_pudding/a1_sdf_pi05_object_pudding_seed1_l1/22000 --config_name pi05_libero --suite safelibero_object --model_type lora_baseline --safety_level II --n_episodes 50 --max_steps 300 --pi05 --seed 7 --gpu 0 --output_path /root/autodl-tmp/eval_results/eval_s1_l1_22k_seed7.json",
+      "server": "westd-35807",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "549068",
+      "log_path": "~/runs/diff_collision_sdf/eval_stepwise_s1_l1_22k.log",
+      "submitted_at": "2026-05-27T02:27:09.145Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "safelibero_object",
+      "data_count": 200,
+      "model_name": "pi05_a1_sdf_lambda0.1_s1_22k",
+      "seed": 7,
+      "checkpoint_source": "train_pi05_a1_obj_s1_l01_high",
+      "eval_data": "safelibero_object Level II, 200 episodes, seed=7"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-27T03:17:44.678593+00:00",
+  "trigger": "update_registry"
+}

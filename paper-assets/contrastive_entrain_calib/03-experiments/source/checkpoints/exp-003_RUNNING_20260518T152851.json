@@ -1,0 +1,35 @@
+{
+  "exp_id": "exp-003",
+  "project": "contrastive_entrain_calib",
+  "state": "RUNNING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T14:42:11.934Z",
+    "updated_at": "2026-05-18T15:28:51.454Z",
+    "hypothesis": "R3-only GRPO (NLI behavioral reward without direction-contrastive R1/R2) will reduce sycophantic capitulation but less effectively than full DC-GRPO, establishing the behavioral-only baseline for Claim 2 (DC-GRPO effectiveness)",
+    "spec": {
+      "command": "python3 run_exp003_r3only.py",
+      "server": "westd-29046",
+      "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+      "data_count": 362,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "gpu": "cuda:1",
+      "pid": 55546,
+      "hyperparams": {
+        "r1_weight": 0,
+        "r2_weight": 0,
+        "r3_weight": 1,
+        "max_steps": 8000,
+        "lora_rank": 64,
+        "lr": "5e-5",
+        "batch_size": 1,
+        "grad_accum": 16
+      }
+    }
+  },
+  "timestamp": "2026-05-18T15:28:51.466567+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,13 @@
+Generative Depth Estimation Pipeline
+
+This paper proposes a method to estimate the "generative depth" of text — how many recursive LLM generation steps a document has undergone. The pipeline has 5 stages:
+
+1. Seed Corpus (X, depth 0): We start with original human-written documents from standard corpora (C4, WikiText). These serve as the depth-0 baseline.
+
+2. Recursive Generation: An LLM generation operator G_δ is applied recursively. Starting from depth-0 text, the LLM rewrites/generates new text, producing depth-1 output. This depth-1 output is then fed back into the same LLM to produce depth-2, and so on up to depth K. This creates a chain: d=0 → d=1 → d=2 → ... → d=K. The outputs at each depth are Y_1, Y_2, ..., Y_K.
+
+3. Feature Extraction: For each document (regardless of depth), we compute a 15-dimensional statistical feature vector. The features are grouped into 4 categories: (a) Surprisal moments — mean, variance, skewness, kurtosis of token-level surprisal; (b) Surprisal derivatives — rate of change in surprisal across the document; (c) Vocabulary diversity — type-token ratio, hapax legomena ratio, entropy of word distribution; (d) Frequency tail statistics — proportion of rare words, zipf coefficient, tail heaviness.
+
+4. OBD Classifier: We use Ordinal Binary Decomposition (OBD) with LightGBM. Instead of a single multi-class classifier, we train K binary classifiers: "is depth > 0?", "is depth > 1?", ..., "is depth > K-1?". Each classifier outputs a pairwise AUC score indicating how well it can distinguish documents at or below depth k from those above.
+
+5. K* Estimation: The final output is K* — the empirical discrimination boundary. K* = max{k : AUC_k > θ}, where θ is a threshold (default 0.60). This tells us the maximum depth at which the classifier can still reliably distinguish synthetic from earlier-generation text. Depths beyond K* are statistically indistinguishable from each other.

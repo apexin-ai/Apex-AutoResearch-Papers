@@ -1,0 +1,56 @@
+{
+  "exp_id": "p0_functional_action_probe",
+  "project": "vla-ssd",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T23:21:52.011Z",
+    "updated_at": "2026-05-15T23:43:02.159Z",
+    "hypothesis": "P0 BLOCKING Functional Validation: Action prediction probe on SigLIP+projector output features. If projector R² ≥ LLM best layer (0.683) → smoking gun functional validation. If < LLM but > DINO (0.676) → partial. If ≤ DINO → degradation claim needs reeval. Also tests image_mean aggregation from LLM hidden states.",
+    "metrics": {
+      "projector": {
+        "mean_R2": 0.7063,
+        "overall_R2": 0.7169,
+        "grip_acc": 0.9221
+      },
+      "image_mean_trained_L19": {
+        "mean_R2": 0.6832,
+        "overall_R2": 0.6961,
+        "grip_acc": 0.9182
+      },
+      "image_mean_trained_L23": {
+        "mean_R2": 0.5736,
+        "overall_R2": 0.59,
+        "grip_acc": 0.8924
+      },
+      "llm_last_preaction_L19": {
+        "mean_R2": 0.7309,
+        "overall_R2": 0.7397,
+        "grip_acc": 0.9184
+      },
+      "untrained_image_mean_L0": {
+        "mean_R2": 0.7136,
+        "overall_R2": 0.7234,
+        "grip_acc": 0.9218
+      },
+      "bootstrap_ci_proj_vs_llm_last_preaction": {
+        "delta": -0.0246,
+        "ci_95": [
+          -0.04,
+          -0.009
+        ],
+        "p_value": 0.0014
+      },
+      "gate_judgment": "PASS — projector 0.706 ≥ 0.683 threshold. But LLM last_preaction (0.731) > projector (0.706), p=0.001.",
+      "result_path": "/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_projector.json"
+    },
+    "conclusion": "success",
+    "checkpoint_path": "N/A (probe evaluation)",
+    "log_path": "/root/autodl-tmp/vla-ssd/results/functional_validation/action_probe_projector.json",
+    "completed_at": "2026-05-15T23:43:02.159Z"
+  },
+  "timestamp": "2026-05-15T23:43:02.263688+00:00",
+  "trigger": "update_registry"
+}

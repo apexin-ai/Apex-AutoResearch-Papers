@@ -1,0 +1,48 @@
+{
+  "exp_id": "review-p1c-qwen06b-instruct",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:20:44.483Z",
+    "updated_at": "2026-05-15T16:29:26.332Z",
+    "hypothesis": "P1-C Qwen3-0.6B Instruct: instruct prompt template 生成的 chains 与 raw continuation 的 depth response 差异",
+    "conclusion": "negative",
+    "metrics": {
+      "instruct_logo_3class_f1": 0.667,
+      "base_logo_3class_f1": 0.816,
+      "delta_3class": -0.148,
+      "binary_gen1_vs_gen2plus_f1": 0.552,
+      "length_depth_spearman": -0.583,
+      "length_confound_dominates": true,
+      "depth_signal_after_control": "negligible",
+      "length_per_depth_tokens": {
+        "0": 252,
+        "1": 35,
+        "2": 27,
+        "3": 24,
+        "4": 23
+      },
+      "length_matched_rho": {
+        "ttr": -0.007,
+        "hapax": -0.003,
+        "entropy_mean": -0.012
+      }
+    },
+    "spec": {
+      "command": "python run_p1c_instruct_analysis.py --model qwen3-0.6b-instruct",
+      "server": "autodl-5090",
+      "data_path": "data/qwen3-0.6b-instruct/",
+      "data_count": 4963,
+      "model_name": "Qwen3-0.6B-Instruct",
+      "seed": 42
+    },
+    "checkpoint_path": "/root/gen-depth-fingerprint/results/review_p1c_qwen06b_instruct.json",
+    "log_path": "/root/gen-depth-fingerprint/results/review_p1c_qwen06b_instruct.json",
+    "completed_at": "2026-05-15T16:29:26.332Z"
+  },
+  "timestamp": "2026-05-15T16:29:26.414838+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,34 @@
+{
+  "pair_id": "BK08_coref",
+  "domain": "bank",
+  "constraint": "no_credit_card_balance_on_card",
+  "ambiguity_type": "coreferential",
+  "condition": "unambiguous",
+  "description_used": "The user \"{username}\" **must not have** outstanding balance on credit card of \"{card_number}\" to proceed.",
+  "action": "cancel_credit_card",
+  "task_idx": 11,
+  "action_should_succeed": false,
+  "model": "deepseek-v3",
+  "evaluation": {
+    "user_goal": "cancel_credit_card",
+    "action_should_succeed": false,
+    "num_messages": 4,
+    "num_function_calls": 1,
+    "num_constraints": 3,
+    "num_constraints_expanded": 4,
+    "no_tool_call_error": true,
+    "constraint_not_violated": true,
+    "database_match": true,
+    "action_successfully_called": false,
+    "dirgraph_satisfied": true,
+    "action_called_correctly": true,
+    "success": true
+  },
+  "agent_actions": [
+    "internal_check_username_exist",
+    "[says: Before proceeding with the cancellation of your credit card, I need to verify a few things:\n\n1. **Check if the username exists** in our database.\n2. **Authenticate your login** using the correct crede...]",
+    "[says: Great! Your username exists in our system. Next, I need to authenticate your login. You provided an incorrect password, so I'll need the correct password or driver's license details to proceed. Could ...]",
+    "[says: Since you've provided an incorrect password and no additional correct identification details, I'm unable to authenticate your login or proceed with the credit card cancellation. \n\nFor security reasons...]"
+  ],
+  "timestamp": "2026-05-23T01:10:18.035994"
+}

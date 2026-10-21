@@ -1,0 +1,42 @@
+{
+  "exp_id": "scienceworld_grpo_cell_c_v3",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:23:30.854Z",
+    "updated_at": "2026-05-21T02:44:56.368Z",
+    "hypothesis": "ScienceWorld 环境下 episode-level GRPO 能避免 collapse 并学到有效策略，验证 episode-level credit 作为 fix 的跨环境泛化性（v3: 磁盘清理后重启）",
+    "parent": "scienceworld_grpo_cell_c_v2",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _scienceworld_cell_c_grpo\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": "88226",
+      "log_path": "~/runs/cost-verify-agent-rl/scienceworld_grpo_cell_c_v3.log",
+      "submitted_at": "2026-05-20T18:23:38.661Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "ScienceWorldSG (30 task types)",
+      "data_count": 128,
+      "model_name": "Qwen3-1.7B (ScienceWorld SFT checkpoint)",
+      "seed": 10000,
+      "checkpoint_source": "qwen3_scienceworld_sft",
+      "eval_data": "ScienceWorldSG 30 task types (dev split)",
+      "checkpoint_path": "N/A (negative, no useful checkpoint)",
+      "wall_clock_seconds": 30077.7,
+      "gpu_hours": 16.71
+    },
+    "conclusion": "negative",
+    "notes": "D109 止损：step 3 success=0%, action_is_valid=9.4%(<20% 阈值), score 从 2.71 降至 0.96, reward 从 0.5 降至 0.153。趋势恶化，释放 GPU。",
+    "completed_at": "2026-05-21T02:44:56.370Z"
+  },
+  "timestamp": "2026-05-21T02:44:56.823322+00:00",
+  "trigger": "update_registry"
+}

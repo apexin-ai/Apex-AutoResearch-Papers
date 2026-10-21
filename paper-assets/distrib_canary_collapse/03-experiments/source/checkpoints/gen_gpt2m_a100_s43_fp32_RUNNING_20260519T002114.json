@@ -1,0 +1,40 @@
+{
+  "exp_id": "gen_gpt2m_a100_s43_fp32",
+  "project": "distrib_canary_collapse",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T23:45:29.110Z",
+    "updated_at": "2026-05-19T00:21:14.091Z",
+    "hypothesis": "GPT-2-medium multi-seed s43 fp32: Table 7 gap fill. GPT-2-medium × WikiText-103 × α=1.0 × seed=43 × fp32. Validates s42 cross-architecture canary lead-lag. D079 requires fp32 for main axis comparability.",
+    "parent": "gen_wiki_gpt2m_a100_s42_v4",
+    "server": "westd-19828",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-19828",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-18T23:50:22.092Z",
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 43 --output_dir results/gen_wiki_gpt2m_a100_s43\""
+    },
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 43 --output_dir results/gen_wiki_gpt2m_a100_s43\"",
+      "server": "westd-19828",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "407859",
+      "log_path": "~/runs/distrib_canary_collapse/gen_gpt2m_a100_s43_fp32.log",
+      "submitted_at": "2026-05-19T00:21:13.371Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "407859",
+    "log_path": "~/runs/distrib_canary_collapse/gen_gpt2m_a100_s43_fp32.log"
+  },
+  "timestamp": "2026-05-19T00:21:14.668948+00:00",
+  "trigger": "update_registry"
+}

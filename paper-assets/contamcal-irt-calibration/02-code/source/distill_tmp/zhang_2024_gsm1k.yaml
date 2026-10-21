@@ -1,0 +1,16 @@
+paper_key: "zhang_2024_gsm1k"
+title: "A Careful Examination of Large Language Model Performance on Grade School Arithmetic"
+venue: "arXiv 2024"
+full_text_available: false
+
+research:
+  baselines: [GSM8k performance as baseline]
+  metrics:
+    - {name: "accuracy drop (GSM8k→GSM1k)", direction: "descriptive"}
+    - {name: "Spearman r² (generation prob vs gap)", direction: "higher_better"}
+  datasets:
+    - {name: "GSM8K", size: "standard"}
+    - {name: "GSM1K", size: "matched mirror benchmark"}
+  ablation_dimensions: [model family, model scale, solution length]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "mirror benchmark contamination detection"

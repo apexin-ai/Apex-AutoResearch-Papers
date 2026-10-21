@@ -1,0 +1,65 @@
+{
+  "exp_id": "plan-005-rewrite",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T03:28:47.421Z",
+    "updated_at": "2026-05-15T06:00:25.058Z",
+    "spec": {
+      "command": "python generate_chain_prompt.py --model-name pythia-2.8b --prompt-type inspired_rewriting --input data/wiki_seed_1000.jsonl --shard-id 0 --num-shards 1 --device cuda:0",
+      "server": "autodl-5090",
+      "gpu": "cuda:3",
+      "pid": 164881,
+      "log_path": "~/runs/gen-depth-fingerprint/plan-005-rewrite.log",
+      "submitted_at": "2026-05-15T03:28:47.322Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/wiki_seed_1000.jsonl",
+      "data_count": 1000,
+      "model_name": "pythia-2.8b",
+      "seed": "all",
+      "prompt_type": "inspired_rewriting",
+      "checkpoint_path": "/root/gen-depth-fingerprint/data/pythia-2.8b-inspired_rewriting/generations_shard0.jsonl",
+      "wall_clock_seconds": 8584,
+      "gpu_hours": 2.38
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T05:53:16.289Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T05:53:17.523804+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "total_records": 4827,
+      "unique_seeds": 995,
+      "skipped": 61,
+      "depth_distribution": {
+        "0": 995,
+        "1": 995,
+        "2": 959,
+        "3": 944,
+        "4": 934
+      },
+      "output_file": "/root/gen-depth-fingerprint/data/pythia-2.8b-inspired_rewriting/generations_shard0.jsonl",
+      "file_size_mb": 5.41,
+      "runtime_seconds": 8584,
+      "speed_seeds_per_sec": 0.12,
+      "depth_retention_d4_d0": 0.939,
+      "vs_continuation": "retention 93.9% vs 83.1%, rewriting produces significantly more stable depth chains"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-15T06:00:25.058Z"
+  },
+  "timestamp": "2026-05-15T06:00:25.145305+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1035 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-1170_Q10",
+    "problem": "Bob is kind. Charlie is quiet. Charlie is rough. Fiona is kind. Fiona is rough. Fiona is white. Gary is nice. If Gary is red and Gary is white then Gary is quiet. All white things are rough. If something is rough then it is red. If something is nice then it is white. All smart things are white. Rough, quiet things are not kind. If something is quiet and not smart then it is kind. Smart things are quiet. If something is smart and not rough then it is quiet.\n\nDetermine whether the following statement is true, false, or unknown:\nGary is not quiet.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nQuiet($x, bool) ::: Is x quiet?\nRough($x, bool) ::: Is x rough?\nWhite($x, bool) ::: Is x white?\nRed($x, bool) ::: Is x red?\nNice($x, bool) ::: Is x nice?\nSmart($x, bool) ::: Is x smart?\n\nFacts:\nKind(Bob, True) ::: Bob is kind.\nQuiet(Charlie, True) ::: Charlie is quiet.\nRough(Charlie, True) ::: Charlie is rough.\nKind(Fiona, True) ::: Fiona is kind.\nRough(Fiona, True) ::: Fiona is rough.\nWhite(Fiona, True) ::: Fiona is white.\nNice(Gary, True) ::: Gary is nice.\n\nRules:\nRed(Gary, True) && White(Gary, True) >>> Quiet(Gary, True) ::: If Gary is red and Gary is white then Gary is quiet.\nWhite($x, True) >>> Rough($x, True) ::: All white things are rough.\nRough($x, True) >>> Red($x, True) ::: If something is rough then it is red.\nNice($x, True) >>> White($x, True) ::: If something is nice then it is white.\nSmart($x, True) >>> White($x, True) ::: All smart things are white.\nRough($x, True) && Quiet($x, True) >>> Kind($x, False) ::: Rough, quiet things are not kind.\nQuiet($x, True) && Smart($x, False) >>> Kind($x, True) ::: If something is quiet and not smart then it is kind.\nSmart($x, True) >>> Quiet($x, True) ::: Smart things are quiet.\nSmart($x, True) && Rough($x, False) >>> Quiet($x, True) ::: If something is smart and not rough then it is quiet.\n\nQuery:\nQuiet(Gary, False) ::: Gary is not quiet."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 124.5,
+      "Unknown": 112.5
+    },
+    "answer_counts": {
+      "False": 9,
+      "Unknown": 2
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to use a series of logical deductions based on the given information.\n\n1. Given statements:\n- Bob is kind.\n- Charlie is quiet.\n- Charlie is rough.\n- Fiona is kind.\n- Fiona is rough.\n- Fiona is white.\n- Gary is nice.\n- If Gary is red and Gary is white then Gary is quiet.\n- All white things are rough.\n- If something is rough then it is red.\n- If something is nice then it is white.\n- All smart things are white.\n- Rough, quiet things are not kind.\n- If something is quiet and not smart then it is kind.\n- Smart things are quiet.\n- If something is smart and not rough then it is quiet.\n\n2. Let's start with the statement: Gary is not quiet.\nWe need to determine whether this statement is true, false, or unknown.\n\n3. From the given statements, we know:\n- Gary is nice (given statement).\n- If something is nice then it is white (given statement).\nSo, Gary is white.\n\n4. From the given statements, we know:\n- Gary is white (deduced in step 3).\n- All white things are rough (given statement).\nSo, Gary is rough.\n\n5. From the given statements, we know:\n- Gary is rough (deduced in step 4).\n- If something is rough then it is red (given statement).\nSo, Gary is red.\n\n6. From the given statements, we know:\n- Gary is red (deduced in step 5).\n- Gary is white (deduced in step 3).\n- If Gary is red and Gary is white then Gary is quiet (given statement).\nSo, Gary is quiet.\n\n7. Now, we have a contradiction: \n- Gary is quiet (deduced in step 6).\n- Gary is not quiet (the statement we are trying to evaluate).\nThis means that the statement \"Gary is not quiet\" is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is not quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following premises:\n   - Gary is red and Gary is white\n   - If Gary is red and Gary is white, then Gary is quiet\n   - All white things are rough\n   - If something is rough, then it is red\n   - If something is nice, then it is white\n   - All smart things are white\n   - Rough, quiet things are not kind\n   - If something is quiet and not smart, then it is kind\n   - Smart things are quiet\n   - If something is smart and not rough, then it is quiet\n\n2. We know that Gary is white, and all white things are rough. Therefore, Gary is rough.\n\n3. Since Gary is rough, then Gary is red. This is because if something is rough, then it is red.\n\n4. From the premises, we have the following statements:\n   - Gary is red and Gary is white\n   - If Gary is red and Gary is white, then Gary is quiet\n\n5. Therefore, we can conclude that Gary is quiet.\n\n6. Now, we need to determine if Gary is not quiet. Since we have already concluded that Gary is quiet, the statement \"Gary is not quiet\" is false.\n\nSo, the final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is not quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Gary is nice. (Given)\n2. If something is nice then it is white. (Given)\n   - From 1 and 2, Gary is white.\n\n3. If Gary is red and Gary is white then Gary is quiet. (Given)\n   - Since we don't know if Gary is red or not, we cannot conclude that Gary is quiet.\n\n4. All white things are rough. (Given)\n   - From 2, Gary is white.\n   - From 4, Gary is rough.\n\n5. If something is rough then it is red. (Given)\n   - From 4, Gary is rough.\n   - From 5, Gary is red.\n\n6. Gary is white and Gary is red. (From steps 2 and 5)\n   - From 3, Gary is quiet.\n\nNow, we need to determine whether Gary is quiet or not. From steps 6, we can conclude that Gary is quiet. However, we are asked to determine if the statement \"Gary is not quiet\" is true, false, or unknown. \n\nSince Gary is quiet, the statement \"Gary is not quiet\" is false.",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is not quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Gary is red.\n   - Gary is white.\n   - If Gary is red and Gary is white then Gary is quiet.\n   - All white things are rough.\n   - If something is rough then it is red.\n   - If something is nice then it is white.\n   - All smart things are white.\n   - Rough, quiet things are not kind.\n   - If something is quiet and not smart then it is kind.\n   - Smart things are quiet.\n   - If something is smart and not rough then it is quiet.\n\n2. Analyzing Gary's properties:\n   - Since Gary is white, we can conclude that Gary is rough (from the statement \"All white things are rough\").\n   - We also know that Gary is red. However, we cannot directly conclude if Gary is quiet or not based on this information.\n\n3. Let's consider the relationship between being white, red, and quiet:\n   - We have two conflicting statements regarding Gary's color:\n     - Gary is red (and white).\n     - If Gary is red and Gary is white then Gary is quiet.\n   - We also have a statement that says \"All white things are rough.\" We've already established that Gary is rough. However, we cannot determine if being white is the cause of Gary being rough or if being rough is the cause of Gary being red.\n\n4. Analyzing the properties of quiet and rough:\n   - We've established that Gary is rough and white. We know that rough things are red, but we cannot determine if this is the cause of Gary being red or if being red is the cause of Gary being quiet.\n\n5. Now let's analyze the statements about quiet and kind:\n   - We know that Gary is white and that all white things are rough.\n   - We also know that if something is quiet and not smart then it is kind, but we cannot determine if Gary is smart or not based on the given information.\n   - If Gary is smart, then he is quiet (from the statement \"Smart things are quiet\"), but we cannot determine if Gary is smart or not.\n\n6. Determining if Gary is quiet:\n   - Since we know that Gary is white and all white things are rough, and we also know that Gary is red, we can conclude that Gary is quiet based on the statement \"If Gary is red and Gary is white then Gary is quiet.\"\n   - However, this conclusion is based on the assumption that Gary being red and white is the cause of Gary being quiet. We cannot determine if this is the case or not.\n\n7. Conclusion:\n   - We cannot determine if Gary is quiet or not based on the given information. The statement \"Gary is not quiet\" cannot be proven true or false based on the information provided. Therefore, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is not quiet\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nGiven information:\n\n1. Gary is nice. (Premise)\n2. If Gary is red and Gary is white then Gary is quiet. (Premise)\n3. Gary is white. (Premise)\n4. Gary is red. (Premise)\n5. If something is nice then it is white. (Premise)\n6. All white things are rough. (Premise)\n7. If something is rough then it is red. (Premise)\n8. Rough, quiet things are not kind. (Premise)\n9. If something is quiet and not smart then it is kind. (Premise)\n10. Smart things are quiet. (Premise)\n11. If something is smart and not rough then it is quiet. (Premise)\n\nFrom (1), we know Gary is nice.\nFrom (5), since Gary is nice, we can conclude that Gary is white.\n\nFrom (2), (3), and (4), we can deduce that Gary is quiet, because it satisfies the condition of being both red and white.\n\nNow, we need to determine whether Gary is quiet. If Gary is quiet, then the statement \"Gary is not quiet\" would be false.\n\nHowever, let's examine the possibilities:\n\n- If Gary is quiet, then (8) Rough, quiet things are not kind. would imply that Gary is not rough, because it's quiet.\n- If Gary is not rough, then (11) If something is smart and not rough then it is quiet. would imply that Gary is smart, because it's not rough.\n- If Gary is smart, then (10) Smart things are quiet. would imply that Gary is quiet, because smart things are quiet.\n\nHowever, the above reasoning creates an infinite loop where Gary is quiet, not rough, smart, and quiet. Therefore, we can conclude that Gary is quiet.\n\nHowever, we also have the following statement: \"If something is quiet and not smart then it is kind.\" If Gary is quiet and not smart, then it would be kind.\n\nBut we also have the statement: \"If something is smart and not rough then it is quiet.\" However, we already know Gary is white and rough, which implies that Gary is not smart, because smart things are not rough.\n\nSo, Gary is quiet, not smart, and rough. But we also know that Gary is not kind, because Rough, quiet things are not kind.\n\nHowever, if Gary is not smart, then it would be kind, because \"If something is quiet and not smart then it is kind.\" \n\nWe have a contradiction. If Gary is not smart, then it would be kind, but we also know that Gary is not kind.\n\nHowever, we have a statement \"If something is quiet and not smart then it is kind.\" But what if Gary is smart? We have already concluded that Gary is quiet. If Gary is quiet, then it would be smart, because smart things are quiet.\n\nHowever, if Gary is smart, then Gary would be quiet, and it would satisfy the condition of being smart and quiet.\n\nHowever, we also have the statement: \"All smart things are white.\" Since Gary is smart, then Gary is white.\n\nHowever, we also have the statement: \"If something is nice then it is white.\" Since Gary is nice, then Gary is white.\n\nSince Gary is both white and smart, we can conclude that Gary is quiet, because smart things are quiet.\n\nNow, we have the statement: \"If something is quiet and not smart then it is kind.\" However, we know that Gary is not smart, because all smart things are white, and Gary is not white.\n\nHowever, this is a contradiction, because we also know that Gary is not kind, because Rough, quiet things are not kind.\n\nHowever, if Gary is not smart, then it would be kind, because \"If something is quiet and not smart then it is kind.\" \n\nBut we also know that Gary is not kind, because Rough, quiet things are not kind.\n\nWe have a contradiction. If Gary is not smart, then it would be kind, but we also know that Gary is not kind.\n\nThe final statement \"Gary is not quiet\" would be false, because we concluded that Gary is quiet.\n\nSo, the answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine the relationship between the characteristics of each person.\n\nGiven statements:\n\n1. Bob is kind.\n2. Charlie is quiet.\n3. Charlie is rough.\n4. Fiona is kind.\n5. Fiona is rough.\n6. Fiona is white.\n7. Gary is nice.\n8. If Gary is red and Gary is white then Gary is quiet.\n9. All white things are rough.\n10. If something is rough then it is red.\n11. If something is nice then it is white.\n12. All smart things are white.\n13. Rough, quiet things are not kind.\n14. If something is quiet and not smart then it is kind.\n15. Smart things are quiet.\n16. If something is smart and not rough then it is quiet.\n\nWe need to determine whether Gary is quiet or not. To do this, let's first determine the characteristics of Gary.\n\nFrom statement 7, we know that Gary is nice. From statement 11, we know that if something is nice, then it is white.\n\nFrom statement 6, we know that Fiona is white. And from statement 9, we know that all white things are rough. So, Fiona being white implies that she is rough.\n\nHowever, from statement 5, we know that Fiona is also rough. From statement 10, we know that if something is rough, then it is red. So, Fiona being rough implies that she is red.\n\nWe know that Gary is white and Fiona is red. From statement 8, we know that if Gary is red and Gary is white, then Gary is quiet.\n\nHowever, we also know that if something is nice, then it is white. And if something is white, then it is rough (from statement 9). And if something is rough, then it is red (from statement 10). \n\nThis creates a contradiction with Fiona's characteristics: Fiona is white (and therefore rough and red), but Gary is white (and therefore rough and red) and is nice (and therefore white).\n\nHowever, we also know that all smart things are white (from statement 12). From statement 6, we know that Fiona is white, and Fiona is rough (from statement 5). However, statement 16 says that if something is smart and not rough then it is quiet. \n\nSince all white things are rough (from statement 9), then Gary must be white (from statement 11) but not necessarily smart or rough. And from statement 12, we know that all smart things are white. However, we also know that if something is quiet and not smart then it is kind (from statement 14).\n\nFrom statement 2, we know that Charlie is quiet, and from statement 15, we know that smart things are quiet. This implies that Charlie is not smart. \n\nHowever, from statement 14, we know that if something is quiet and not smart then it is kind. So Charlie is kind.\n\nFrom statement 4, we know that Fiona is kind. And from statement 1, we know that Bob is kind. However, from statement 13, we know that rough, quiet things are not kind.\n\nSince Charlie is quiet and rough, then Charlie is not kind, which is a contradiction with the statement that Charlie is kind.\n\nThis shows that the given statements are inconsistent.\n\nTherefore, we cannot determine whether the statement \"Gary is not quiet\" is true or false, and our answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is not quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Gary is red and Gary is white. (Given)\n2. If Gary is red and Gary is white then Gary is quiet. (Given)\n   From this, we can deduce that Gary is quiet.\n\nHowever, we are asked to determine whether the statement \"Gary is not quiet\" is true, false, or unknown. Since we have already found that Gary is quiet, the statement \"Gary is not quiet\" is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is not quiet\" is true, false, or unknown, we need to analyze the given information and the conditions that affect Gary's characteristics.\n\n1. Gary is nice. (Given)\n   We know that if something is nice, then it is white. (From the information)\n   So, Gary is white. (From the given information and the condition that if something is nice, then it is white)\n\n2. Gary is white. (From the previous step)\n   We know that all white things are rough. (From the information)\n   So, Gary is rough. (From the given information and the condition that all white things are rough)\n\n3. Gary is white. (From the previous step)\n   We know that Gary is red and Gary is white. (From the given information)\n   We also know that if Gary is red and Gary is white, then Gary is quiet. (From the given information)\n   So, Gary is quiet. (From the given information and the condition that if Gary is red and Gary is white, then Gary is quiet)\n\nNow, let's compare this result with the statement \"Gary is not quiet.\"\nSince we found out that Gary is quiet, the statement \"Gary is not quiet\" is false.\n\nTherefore, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is not quiet\" is true, false, or unknown, we need to analyze the given information and apply the rules of logic.\n\nStep 1: Analyze the given information about Gary.\n- Gary is nice.\n- Gary is red and Gary is white.\n\nStep 2: Apply the given rules to the information about Gary.\n- If Gary is red and Gary is white, then Gary is quiet. (This rule is given directly in the problem statement.)\n\nStep 3: Determine the relationship between being quiet and being smart.\n- Smart things are quiet.\n- If something is smart and not rough, then it is quiet.\n- Since Gary is white (from Step 1) and all white things are rough (from the problem statement), Gary is rough.\n\nStep 4: Determine the relationship between being quiet and being kind.\n- Rough, quiet things are not kind.\n- Since Gary is quiet (from Step 2) and rough (from Step 3), Gary is not kind.\n\nStep 5: Determine the relationship between being nice and being white.\n- If something is nice, then it is white. (This rule is given directly in the problem statement.)\n\nStep 6: Analyze the relationship between being white, being rough, and being red.\n- All white things are rough.\n- Gary is white (from Step 1) and rough (from Step 3), which matches the rule.\n- Gary is also red (from the problem statement).\n\nStep 7: Determine the relationship between being quiet and being not smart.\n- If something is quiet and not smart, then it is kind.\n- Since Gary is quiet (from Step 2) and not smart (because being smart would imply Gary is white, but also imply Gary is not rough, which contradicts the fact that Gary is rough), Gary is kind.\n\nStep 8: Analyze the relationship between being kind and the initial statement \"Gary is not quiet.\"\n- Gary is quiet (from Step 2).\n- Gary is not kind (from Step 4).\n- But we have already established that Gary is kind (from Step 7). \n  This means that the initial assumption that Gary is not kind is incorrect. Therefore, we should reevaluate the conclusion in Step 7.\n\nStep 7 (revised): \n- If something is quiet and not smart, then it is kind.\n- Since Gary is quiet (from Step 2), Gary must be either smart or not smart.\n- Gary is not smart (because being smart would imply Gary is white, but also imply Gary is not rough, which contradicts the fact that Gary is rough).\n- Gary is kind because it meets the condition of being quiet and not smart.\n\nStep 8 (revised):\n- Since Gary is quiet, it contradicts the conclusion that Gary is not quiet. This means that the statement \"Gary is not quiet\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is not quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Gary is red and Gary is white: \n   - From the given information, if Gary is red and Gary is white, then Gary is quiet. \n   - This statement is already given, so we can consider it as a fact.\n\n2. All white things are rough:\n   - Since Gary is white, it implies that Gary is rough.\n\n3. If something is rough then it is red:\n   - Given that Gary is rough, it implies that Gary is red, which is consistent with the given information.\n\n4. If Gary is red and Gary is white then Gary is quiet:\n   - Since we already established that Gary is red and white, it implies that Gary is quiet.\n\nNow, let's analyze the information about the characteristics of Gary:\n\n- Gary is nice.\n- If something is nice then it is white (from the given information).\n- Since Gary is white, we have already established that Gary is quiet, rough, and red.\n\nConsidering the information about the characteristics of quiet and rough things:\n\n- Rough, quiet things are not kind.\n- Since Gary is quiet and rough, it implies that Gary is not kind.\n\nConsidering the information about quiet and non-smart things:\n\n- If something is quiet and not smart then it is kind.\n- However, we have already established that Gary is not kind.\n- Therefore, Gary must be smart.\n\nNow, let's analyze the information about smart things:\n\n- Smart things are quiet.\n- Smart things are white.\n- We have already established that Gary is quiet and white.\n\nConsidering the information about Gary's characteristics:\n\n- Gary is nice.\n- If something is nice then it is white.\n- Since Gary is white, we have already established that Gary is quiet, rough, and red.\n\nWe have established that Gary is quiet. However, to determine whether the statement \"Gary is not quiet\" is true or false, we need to analyze the given information one more time.\n\nSince Gary is quiet, it implies that the statement \"Gary is not quiet\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use logical reasoning. We'll break down the problem into smaller steps.\n\n1. Gary is red and Gary is white.\n   From this, we can conclude that Gary is white (because he is both red and white).\n\n2. If Gary is white, then we can conclude that Gary is rough (since all white things are rough).\n\n3. Gary is white and rough. Using the fact that rough, quiet things are not kind, we can't immediately conclude anything, but we can say that Gary being quiet is possible but not guaranteed.\n\n4. Gary is rough. From this, we can conclude that Gary is red (since if something is rough, then it is red).\n\n5. Since Gary is red and rough, we can use the fact that rough, quiet things are not kind to say that Gary is not quiet (because if he were quiet, he would be kind, which contradicts this statement).\n\nHowever, this conclusion contradicts the information that Gary is red and white, which implies that Gary is quiet.\n\n6. We also know that Gary is nice and that all nice things are white. Since Gary is white, we can conclude that he is kind.\n\n7. Gary is quiet because he is white and not smart (because smart things are quiet, but also because smart things are white and all white things are rough).\n\n8. Gary being quiet and not smart means that Gary is kind (because if something is quiet and not smart, then it is kind).\n\n9. We can see that Gary being quiet and kind contradicts the conclusion from step 5. However, the conclusion from step 5 is based on the fact that rough, quiet things are not kind, but we also know that Gary is nice, which makes him white and thus rough. This contradiction arises from the fact that Gary can be both quiet and rough, which we already know.\n\n10. Given this information, we can say that Gary is not quiet because if he were quiet, he would be kind, which would contradict the fact that he is rough. However, we cannot conclude this from the statement that rough, quiet things are not kind alone because Gary can be both quiet and rough.\n\n11. Since we have a contradiction in our previous conclusions, we need to look at the statements about Gary again.\n\n12. We know that Gary is red and white. We also know that Gary is rough.\n\n13. The fact that Gary is red and white means that Gary is quiet (because if Gary is red and white, then he is quiet).\n\nNow that we have analyzed the problem, we can conclude that the statement \"Gary is not quiet\" is false because Gary is quiet.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information step by step and determine the properties of each person.\n\n1. Gary is nice. (Given)\n2. If Gary is nice, then Gary is white. (Given, from the fact that all smart things are white and nice things are white)\n3. Gary is white. (From 1 and 2)\n\nNow, we need to analyze the properties of white things.\n\n4. All white things are rough. (Given)\n5. Gary is white. (From 3)\n6. Gary is rough. (From 4 and 5)\n\nNext, we need to analyze the properties of rough things.\n\n7. If something is rough, then it is red. (Given)\n8. Gary is rough. (From 6)\n9. Gary is red. (From 7 and 8)\n\nNow, we need to analyze the properties of red things.\n\n10. If Gary is red and Gary is white, then Gary is quiet. (Given)\n11. Gary is red. (From 9)\n12. Gary is white. (From 3)\n13. Gary is quiet. (From 10, 11, and 12)\n\nNow, we need to determine whether Gary is not quiet.\n\n14. We have determined that Gary is quiet. (From 13)\n15. Therefore, the statement \"Gary is not quiet\" is false.\n\nThe final answer is \\boxed{False}.",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_gary, white_gary), quiet_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_X, rough_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_X, red_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> white(X)",
+          "z3_formula": "Implies(nice_X, white_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> smart(X)",
+          "z3_formula": "Implies(white_X, smart_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & quiet(X) -> Not(kind(X))",
+          "z3_formula": "Implies(And(rough_X, quiet_X), Not(kind_X))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & Not(smart(X)) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_X, Not(smart_X)), kind_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_X, quiet_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & Not(rough(X)) -> quiet(X)",
+          "z3_formula": "Implies(And(smart_X, Not(rough_X)), quiet_X)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "Not(quiet(gary))",
+          "z3_formula": "Not(quiet_gary)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_gary, white_gary), quiet_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_gary, rough_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_gary, red_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> red(X)",
+          "z3_formula": "Implies(white_gary, red_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_gary, rough_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & quiet(X) -> Not(kind(X))",
+          "z3_formula": "Implies(And(rough_gary, quiet_gary), Not(kind_gary))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & Not(smart(X)) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_gary, Not(smart_gary)), kind_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_gary, quiet_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & Not(rough(X)) -> quiet(X)",
+          "z3_formula": "Implies(And(smart_gary, Not(rough_gary)), quiet_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "Not(kind(gary))",
+          "z3_formula": "Not(kind_gary) == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> white(X)",
+          "z3_formula": "Implies(nice_gary, white_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_gary, white_gary), quiet_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_gary, red_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary) & red(gary)",
+          "z3_formula": "And(white_gary, red_gary) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_gary, white_gary), quiet_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_gary, rough_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_gary, red_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> white(X)",
+          "z3_formula": "Implies(nice_gary, white_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> white(X)",
+          "z3_formula": "Implies(smart_gary, white_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & quiet(X) -> Not(kind(X))",
+          "z3_formula": "Implies(And(rough_gary, quiet_gary), Not(kind_gary))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & Not(smart(X)) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_gary, Not(smart_gary)), kind_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_gary, quiet_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & Not(rough(X)) -> quiet(X)",
+          "z3_formula": "Implies(And(smart_gary, Not(rough_gary)), quiet_gary)",
+          "source_step": 11
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_gary, white_gary), quiet_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_fiona, rough_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_fiona, red_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_gary, white_gary), quiet_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_fiona, rough_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_fiona, red_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> white(X)",
+          "z3_formula": "Implies(nice_gary, white_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_fiona, rough_fiona)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_fiona, red_fiona)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_fiona, rough_fiona)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_fiona, red_fiona)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> white(X)",
+          "z3_formula": "Implies(smart_gary, white_gary)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_fiona, rough_fiona)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_fiona, red_fiona)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not smart(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_charlie, Not(smart_charlie)), kind_charlie)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & quiet(X) -> not kind(X)",
+          "z3_formula": "Implies(And(rough_charlie, quiet_charlie), Not(kind_charlie))",
+          "source_step": 26
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not smart(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_charlie, Not(smart_charlie)), kind_charlie)",
+          "source_step": 27
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_charlie, quiet_charlie)",
+          "source_step": 28
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & not rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(smart_charlie, Not(rough_charlie)), quiet_charlie)",
+          "source_step": 29
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == Unknown",
+          "source_step": 30
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_gary, white_gary), quiet_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(gary)",
+          "z3_formula": "Not(quiet_gary)",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> white(X)",
+          "z3_formula": "Implies(nice_gary, white_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_gary, rough_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_gary, white_gary), quiet_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary) & white(gary)",
+          "z3_formula": "And(red_gary, white_gary) == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_gary, white_gary), quiet_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_gary, quiet_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & not(rough(X)) -> quiet(X)",
+          "z3_formula": "Implies(And(smart_gary, Not(rough_gary)), quiet_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary) -> rough(gary)",
+          "z3_formula": "Implies(white_gary, rough_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> not(kind(X))",
+          "z3_formula": "Implies(rough_gary, Not(kind_gary))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> white(X)",
+          "z3_formula": "Implies(nice_gary, white_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not(smart(X)) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_gary, Not(smart_gary)), kind_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(quiet(gary))",
+          "z3_formula": "Not(quiet_gary)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_gary, white_gary), quiet_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_gary, rough_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_gary, red_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_gary, white_gary), quiet_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> white(X)",
+          "z3_formula": "Implies(nice_gary, white_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & rough(X) -> not kind(X)",
+          "z3_formula": "Implies(And(quiet_gary, rough_gary), Not(kind_gary))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not smart(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_gary, Not(smart_gary)), kind_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(gary)",
+          "z3_formula": "Not(quiet_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(gary) == False",
+          "z3_formula": "Not(quiet_gary) == False",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_gary, rough_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & quiet(X) -> Not(kind(X))",
+          "z3_formula": "Implies(And(rough_gary, quiet_gary), Not(kind_gary))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_gary, red_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & quiet(X) -> Not(kind(X))",
+          "z3_formula": "Implies(And(rough_gary, quiet_gary), Not(kind_gary))",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "Not(quiet(gary))",
+          "z3_formula": "Not(quiet_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_gary, quiet_gary)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> white(X)",
+          "z3_formula": "Implies(nice_gary, white_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_gary, rough_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_gary, red_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_gary, white_gary), quiet_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(gary)",
+          "z3_formula": "Not(quiet_gary) == False",
+          "source_step": 10
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 151,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 42
+    },
+    "maxsat_stats": {
+      "satisfied": 40,
+      "excluded": 2,
+      "total_weight": 145,
+      "solve_time_ms": 1.6173860058188438
+    },
+    "timing": {
+      "trace_gen_s": 10.82,
+      "extraction_s": 30.09,
+      "dedup_s": 1.719,
+      "maxsat_s": 0.004,
+      "total_s": 42.633
+    }
+  }
+}
