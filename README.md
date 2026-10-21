@@ -1,49 +1,44 @@
 **English** | [简体中文](README.zh-CN.md)
 
-# Apex Research
+# Apex Research · Autonomous AI Research by Apex Intelligence
 
-**Autonomous AI research, from a research question to inspectable results.**
+**Let AI autonomously advance the entire research process, from a research question to results that can be checked.**
 
-Apex Research is Apex Intelligence's autonomous research system. With limited human intervention, it works across literature review, method design, code implementation, experiments, analysis, paper writing, and iterative checks. This repository presents **36 research projects** produced with the system, pairing manuscripts with available process materials so researchers can inspect and discuss the work.
+**Apex Research**, built by Apex Intelligence, is an autonomous AI research system exploring how to connect literature review, method design, code implementation, experimental analysis, paper writing, and iterative checks with as little human intervention as possible. This repository presents **36 research projects** produced by the system, bringing manuscripts and available process materials together for researchers to read, check, and discuss.
 
 **36 research projects** · **AI research and robotics / embodied AI** · **7 material categories**
 
-[Explore the full catalogue](CONTENTS.md) · [Browse projects and papers](#projects-and-papers) · [Join the discussion](https://github.com/Zxy-MLlab/Release_examples/issues)
+[Search all projects by title](CONTENTS.md) · [Browse projects and papers](#projects-and-papers) · [Join the discussion](https://github.com/Zxy-MLlab/Release_examples/issues)
 
-## From Results Back to the Research Process
+## From Research Results Back to the Research Process
 
-We want readers to see how the work developed, not just the final manuscripts:
+We want to show how the research took shape, alongside the final manuscripts:
 
-> Research task and literature → Methods and implementation → Experiments and analysis → Manuscripts and figures → Review and iteration
+> Research task and literature → Methods and implementation → Experiments and analysis → Manuscripts and figures → Checks and iteration
 
-The release spans **33 AI research projects** and **3 robotics and embodied AI projects** across six areas:
+These projects cover model evaluation, information extraction, causal inference, agents, LLM safety, model mechanisms and efficiency, robotics, and vision-language-action models. The figure below gives an overview of the research areas represented in this release.
 
-| Research area | Projects |
-|---|---:|
-| Model evaluation, benchmarks, and data quality | 11 |
-| Information extraction, causal inference, and symbolic reasoning | 8 |
-| Agents, reinforcement learning, and code repair | 4 |
-| LLM safety and alignment | 5 |
-| Model mechanisms, training, and inference efficiency | 5 |
-| Robotics, embodied AI, and vision-language-action models | 3 |
+<p align="center">
+  <img src="assets/research-overview.jpg" alt="Research areas across 36 projects: 33 in AI research and 3 in robotics and embodied AI" width="560" />
+</p>
 
 ## What Each Project Contains
 
-Open a [project page](paper-assets/) to move from its manuscript to code, experiments, and records of the research process. Every project uses the same seven-category layout; each project guide and index describes which materials are available.
+Open any [project page](paper-assets/) to explore the manuscript, code, experiments, and research process. Projects use the same seven-category directory layout; each project's guide and index describe the availability and coverage of its materials.
 
-| Directory | Materials |
+| Directory | Available materials |
 |---|---|
 | `01-manuscript/` | Manuscript PDF, LaTeX source, figures, and version materials |
 | `02-code/` | Research code, scripts, configurations, and dependency records |
-| `03-experiments/` | Experiment configurations, data, results, and analyses |
-| `04-generation-trace/` | Readable generation records and structured sessions, or an availability note |
+| `03-experiments/` | Experiment configurations, data, run results, and analysis outputs |
+| `04-generation-trace/` | Readable generation records and structured sessions; an explanatory note when unavailable |
 | `05-validation/` | Archived internal reviews, audits, and validation records |
 | `06-maintenance/` | Research plans, revisions, maintenance notes, and project documents |
 | `07-index/` | File manifests, original paths, checksums, and exclusion records |
 
 ## Projects and Papers
 
-The [full catalogue](CONTENTS.md) lists paper titles, PDFs, and indexes for code, experiments, and trace materials. Expand the list below to open an individual project directly.
+The [full catalogue](CONTENTS.md) provides paper titles, PDFs, and indexes for code, experiments, and trace materials. You can also expand the project list below to open an individual project directly.
 
 <details>
 <summary><strong>Show all 36 projects</strong></summary>
@@ -91,4 +86,4 @@ The [full catalogue](CONTENTS.md) lists paper titles, PDFs, and indexes for code
 
 ## Review and Discuss
 
-We welcome researchers to run the code, check experiments, examine methods and conclusions, and report questions or suggestions through [Issues](https://github.com/Zxy-MLlab/Release_examples/issues). Independent review and criticism help improve the work.
+We welcome researchers to run the code, check experiments, examine methods and conclusions, and submit questions or revision suggestions through [Issues](https://github.com/Zxy-MLlab/Release_examples/issues). Independent review and criticism also help these research projects continue to improve.
