@@ -1,5 +1,0 @@
-s3_key,source_bytes,etag,source_modified,output_path,output_bytes,sha256,status
-rebuttal-share/rebuttal_R1_FCVy.md,1745,"""96ed66c294fcaaae99cb82f519afbd99""",2026-07-12T08:07:19+00:00,source/rebuttal_R1_FCVy.md,1745,18cf6c78b28b886b1a9e36282b2a202801391567e1f268c887ce1f7d040d88fe,Sanitized copy
-rebuttal-share/rebuttal_R2_Sshp.md,2957,"""099747670539cd1b7714f9359183d125""",2026-07-12T08:07:20+00:00,source/rebuttal_R2_Sshp.md,2957,0a150bae8a81e9a31bf6438af8d277159681814a34d5cc6c13e9baab33d0e937,Sanitized copy
-rebuttal-share/rebuttal_R3_ppmy.md,1098,"""87adb890da18e910afe6e106a564635c""",2026-07-12T08:07:21+00:00,source/rebuttal_R3_ppmy.md,1098,0191bb425d2d07738b33a859508b68b80692fc857c43bf17b503141842ac3186,Sanitized copy
-rebuttal-share/rebuttal_full.md,8582,"""d571241bfde1eeda358616165357584b""",2026-07-12T08:07:22+00:00,source/rebuttal_full.md,8582,ffaeddb110d42a0df910e89535b4314ec049f7fed6f18faffabb7129153fef87,Sanitized copy

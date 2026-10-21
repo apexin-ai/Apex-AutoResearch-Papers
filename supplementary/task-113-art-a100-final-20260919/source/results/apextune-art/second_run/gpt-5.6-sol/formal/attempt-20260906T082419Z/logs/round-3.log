@@ -1,6 +1,0 @@
-apextune-fml: CampaignInfrastructureError: HTTPStatusError: Client error '401 Unauthorized' for url 'https://api.apexin.ai/v1/chat/completions'
-For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
-ERROR conda.cli.main_run:execute(148): `conda run python -m core.research.llmloop.fml.cli --task art --fml-root /workspace/task-113/fml --output-root /workspace/task-113/results/apextune-art/second_run/gpt-5.6-sol/formal/attempt-20260906T082419Z --run-id art-r3 --round 3 --seed 2 --project apextune-art-second-run-gpt-5.6-sol-attempt-20260906T082419Z --timeout 2400 --mutation-timeout 600 --infrastructure-retry-attempts 3 --infrastructure-retry-backoff-seconds 5 --max-mutation-attempts 500 --allow-reconstructed --allow-noncomparable` failed. (See above for error)
-[2026-09-11T20:08:37Z] command_exit=1
-/workspace/task-113/results/apextune-art/second_run/gpt-5.6-sol/formal/attempt-20260906T082419Z/apextune-fml/Robustness_and_Reliability_art/art-r3/summary.json
-[2026-09-12T06:21:02Z] command_exit=0

@@ -1,4 +1,0 @@
-{"call":1,"event":"started","model":"gpt-5.6-sol","prompt_chars":16196,"reasoning_effort":"high","timestamp":1789317991.5271735}
-{"call":1,"duration_seconds":227.57295948499814,"event":"completed","finish_reason":"stop","response_chars":1517,"timestamp":1789318219.100133}
-{"call":2,"event":"started","model":"gpt-5.6-sol","prompt_chars":16471,"reasoning_effort":"high","timestamp":1789318219.1006348}
-{"call":2,"duration_seconds":113.45176652295049,"event":"completed","finish_reason":"stop","response_chars":538,"timestamp":1789318332.552403}

@@ -1,4 +1,0 @@
-interface:
-  display_name: "Validate Generated Artifacts"
-  short_description: "Gate generated code before costly or official runs"
-  default_prompt: "Use $validate-generated-artifacts to validate generated code before running an experiment."

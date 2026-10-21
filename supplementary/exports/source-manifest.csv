@@ -1,8 +1,0 @@
-s3_key,source_bytes,etag,source_modified,output_path,output_bytes,sha256,status
-exports/irt_submitted_paper.pdf,1072318,"""b9df26ee430b0312733114bbb7a81baf""",2026-07-14T12:50:20+00:00,source/irt_submitted_paper.pdf,1072318,4d7521dd29c9d9c2a1e1e27ad0bbecf6d29f10241f276d7857bdc04b2ee19f78,Sanitized copy
-exports/rebuttal_canary_submit_FINAL.md,7639,"""1c44ab99950238ae4b639561a793b25a""",2026-07-14T10:30:46+00:00,source/rebuttal_canary_submit_FINAL.md,7639,901ed78a4277a2f0573bae3c711434be4ad6d041302f7dfc67330bba853ff6f4,Sanitized copy
-exports/rebuttal_canary_submit_factchecked.md,6834,"""bd12028be87f201d747ee4d139bab63c""",2026-07-14T09:33:14+00:00,source/rebuttal_canary_submit_factchecked.md,6834,ff1754ebded401f947eb8ae3ad3d3c468c4736cddae7903cf88324e07c14599e,Sanitized copy
-exports/rebuttal_final_20260713.tar.gz,4479,"""74e1f2464660992c58795aa2fe70fc18""",2026-07-13T11:54:25+00:00,source/rebuttal_final_20260713.tar.gz.contents,14625,b46c84261c9931275e48086264185c5260f7d4b40edef5c1ad84555bddc0c218,sanitized-archive-contents
-exports/rebuttal_sde_20260713.tar.gz,847771,"""50a82bc00930aebbbac08653ac354d51""",2026-07-14T03:03:53+00:00,source/rebuttal_sde_20260713.tar.gz.contents,918843,ee8979381f8fd006300d8059e48d0e0325f12c31dc5bb8d328f5a9fffbdcb963,sanitized-archive-contents
-exports/rebuttal_verified_20260714.tar.gz,10486,"""9fb00619e87f7848c090f6a9e5375a92""",2026-07-14T13:30:04+00:00,source/rebuttal_verified_20260714.tar.gz.contents,28955,8997b78f082edd5ceddba2c876bd82965d3e92c80b1570cb7796b866f7e0cf13,sanitized-archive-contents
-exports/sde_main_revised.pdf,902094,"""113173e1b5dc058ee2278bf519f24d9b""",2026-07-14T03:03:54+00:00,source/sde_main_revised.pdf,902094,66225dc277591863ce9e775cc384c73f499e445fc8df46f59b7fd57a8ea4a123,Sanitized copy

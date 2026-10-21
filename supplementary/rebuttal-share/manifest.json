@@ -1,8 +1,0 @@
-{
-  "collection": "rebuttal-share",
-  "s3_prefix": "rebuttal-share/",
-  "source_objects": 4,
-  "included_files": 4,
-  "excluded_files": 0,
-  "sanitized_bytes": 14382
-}

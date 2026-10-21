@@ -1,8 +1,0 @@
-{
-  "collection": "apextune-fml-benchmarks",
-  "s3_prefix": "apextune-fml-benchmarks/",
-  "source_objects": 3893,
-  "included_files": 3886,
-  "excluded_files": 7,
-  "sanitized_bytes": 130282442
-}

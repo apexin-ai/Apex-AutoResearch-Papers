@@ -1,1 +1,0 @@
-The harness is specialized for spec-driven hidden-test construction by extracting the full docstring/signature as the primary specification, running the visible test only as interface calibration, then prompting the model to enumerate and self-audit edge cases from the docstring before finalizing — iterating up to a budget with targeted feedback on failures.

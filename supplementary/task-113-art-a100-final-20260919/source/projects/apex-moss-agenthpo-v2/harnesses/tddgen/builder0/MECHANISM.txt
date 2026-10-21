@@ -1,1 +1,0 @@
-The harness first reads both files to build a complete test-driven specification, sends the full test file + skeleton to the model asking it to infer all behavior from assertions, then iteratively reruns tests on failure showing the exact pytest output so the model can fix misunderstood edge cases — exploiting the card's "tests are the only reliable spec" principle.

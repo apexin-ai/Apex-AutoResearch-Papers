@@ -1,4 +1,0 @@
-apextune-fml: CampaignInfrastructureError: HTTPStatusError: Server error '503 Service Unavailable' for url 'https://api.apexin.ai/v1/chat/completions'
-For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503
-ERROR conda.cli.main_run:execute(148): `conda run python -m core.research.llmloop.fml.cli --task art --fml-root /workspace/task-113/fml --output-root /workspace/task-113/results/apextune-art/smoke/attempt-20260905T174347Z --run-id art-smoke-r1 --round 1 --seed 0 --project apextune-art-smoke-attempt-20260905T174347Z --timeout 2400 --mutation-timeout 600 --infrastructure-retry-attempts 3 --infrastructure-retry-backoff-seconds 5 --max-new-steps 6 --max-mutation-attempts 100 --no-final-test --allow-reconstructed --allow-noncomparable` failed. (See above for error)
-[2026-09-05T17:55:44Z] command_exit=1

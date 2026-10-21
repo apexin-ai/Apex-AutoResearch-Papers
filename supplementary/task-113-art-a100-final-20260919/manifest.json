@@ -1,8 +1,0 @@
-{
-  "collection": "task-113-art-a100-final-20260919",
-  "s3_prefix": "task-113-art-a100-final-20260919/",
-  "source_objects": 3077,
-  "included_files": 3015,
-  "excluded_files": 62,
-  "sanitized_bytes": 52050993
-}

@@ -1,9 +1,0 @@
-{
-  "run_id": 51,
-  "phase": "val",
-  "timestamp": "20260919_060113",
-  "error": {
-    "returncode": 1,
-    "stderr": "/usr/bin/bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)\nWARNING: overwriting environment variables set in the machine\noverwriting variable ['LD_LIBRARY_PATH']\nbash: /root/miniconda/envs/aif360/lib/libtinfo.so.6: no version information available (required by bash)\nbash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)\nTraceback (most recent call last):\n  File \"/root/fml-bench/workspace/Fairness_and_Bias_aif360__aide-gpt56sol-aif360-r3_20260919_024454_45b287ff/AIF360/train_eval_baseline.py\", line 197, in <module>\n    main()\n  File \"/root/fml-bench/workspace/Fairness_and_Bias_aif360__aide-gpt56sol-aif360-r3_20260919_024454_45b287ff/AIF360/train_eval_baseline.py\", line 189, in main\n    raise ValueError(f\"Invalid results: cls_acc ({cls_acc}) < baseline_cls_acc ({baseline_cls_acc})\")\nValueError: Invalid results: cls_acc (0.5284210526315789) < baseline_cls_acc (0.63510101010101)\nERROR conda.cli.main_run:execute(148): `conda run bash -c cp ../../../ml_tasks/Fairness_and_Bias_aif360/original_file_backup/classification_metric.py ./aif360/metrics/ && cp ../../../ml_tasks/Fairness_and_Bias_aif360/original_file_backup/data_preproc_functions.py ./aif360/algorithms/preprocessing/optim_preproc_helpers/ && cp ../../../ml_tasks/Fairness_and_Bias_aif360/train_eval_baseline.py ./ && python train_eval_baseline.py --split val` failed. (See above for error)\n"
-  }
-}

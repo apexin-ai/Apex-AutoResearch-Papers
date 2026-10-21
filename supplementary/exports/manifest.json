@@ -1,8 +1,0 @@
-{
-  "collection": "exports",
-  "s3_prefix": "exports/",
-  "source_objects": 7,
-  "included_files": 7,
-  "excluded_files": 0,
-  "sanitized_bytes": 2951308
-}

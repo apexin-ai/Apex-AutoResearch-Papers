@@ -1,3 +1,0 @@
-def check(*args):
-    """Write a python function to check if a given number is one less than twice its reverse."""
-    pass

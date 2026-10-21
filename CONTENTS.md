@@ -1,6 +1,6 @@
-# Contents
+# Project catalogue
 
-This catalogue covers the **40 original task projects**, each with a manuscript PDF. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
+The 40 original task projects are listed below. Search this page for a project name or title, then open its README for all eight material categories.
 
 | Project | Manuscript | Code/config files | Data/result files | Trace sources | Recorded events |
 |---|---|---:|---:|---:|---:|
@@ -45,14 +45,4 @@ This catalogue covers the **40 original task projects**, each with a manuscript 
 | [turn_residual_gating](paper-assets/turn_residual_gating/README.md) | [PDF](paper-assets/turn_residual_gating/01-manuscript/paper.pdf) | 288 | 625 | 1,054 | 91,580 |
 | [vla-ssd](paper-assets/vla-ssd/README.md) | [PDF](paper-assets/vla-ssd/01-manuscript/paper.pdf) | 348 | 1,167 | 1,850 | 182,262 |
 
-[Interactive asset catalogue](paper-assets/index.html) · [Full asset matrix](paper-assets/asset-matrix.csv) · [Readable trace guides](traces/README.md)
-
-Counts describe archived files and recorded events, including overlapping snapshots. Code presence does not establish reproduction. Internal reviews and manuscript labels do not establish external acceptance. Source documents preserve their original language.
-
-[Additional dated research snapshots](research-snapshots/README.md) retain later exports and conversations alongside the initial releases.
-
-[Supplementary research materials](supplementary/README.md) include benchmark code, results, revisions, and rebuttals.
-
-[Manuscript exports and revisions](MANUSCRIPT_EXPORTS.md) groups duplicate PDF files and links matching primary project assets.
-
-[Original workspace snapshots](SOURCE_SNAPSHOTS.md) retain fixed links to every archive release.
+Counts describe archived files and recorded events, including overlapping source snapshots. They do not establish independent reproduction, external acceptance, or publication.

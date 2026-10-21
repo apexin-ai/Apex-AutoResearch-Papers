@@ -1,33 +1,52 @@
-# Release_examples
+# Research results
 
-This repository is a release-ready collection of manuscripts and supporting artifacts produced by an automated research system. It is organized for external review of what the system generated: papers, source files, code, experiment outputs, generation traces, validation notes, and maintenance records. The layout is inspired by the catalogue-and-manuscript organization of [openai/math](https://github.com/openai/math).
+This branch presents 40 research projects. Each project contains a manuscript and the supporting materials in the same eight-part layout.
 
-The repository currently contains the 40 original task projects, each with a manuscript PDF and supporting assets. Start with:
+Browse the [searchable project catalogue](CONTENTS.md), or open a project directly:
 
-- [`traces/README.md`](traces/README.md) — browse the research process through conversations, tool calls, and per-round JSON.
-- [`traces/demo.html`](traces/demo.html) — an offline preview containing one recorded conversation round per paper; download the repository and open the file.
-- [`CONTENTS.md`](CONTENTS.md) — manuscript map and project-level counts.
-- [`paper-assets/index.html`](paper-assets/index.html) — interactive project asset matrix.
-- [`paper-assets/asset-matrix.csv`](paper-assets/asset-matrix.csv) — one row per project and requirement.
-- [`RELEASE_NOTES.md`](RELEASE_NOTES.md) — scope, verification limits, and privacy handling.
+| Project | Manuscript |
+|---|---|
+| [acr-vla-conformal-refinement](paper-assets/acr-vla-conformal-refinement/README.md) | [PDF](paper-assets/acr-vla-conformal-refinement/01-manuscript/paper.pdf) |
+| [causal_annot_error_attrib](paper-assets/causal_annot_error_attrib/README.md) | [PDF](paper-assets/causal_annot_error_attrib/01-manuscript/paper.pdf) |
+| [causal_style_decomp_judge](paper-assets/causal_style_decomp_judge/README.md) | [PDF](paper-assets/causal_style_decomp_judge/01-manuscript/paper.pdf) |
+| [cert_manip_resist_eval](paper-assets/cert_manip_resist_eval/README.md) | [PDF](paper-assets/cert_manip_resist_eval/01-manuscript/paper.pdf) |
+| [clkc_mech_interp](paper-assets/clkc_mech_interp/README.md) | [PDF](paper-assets/clkc_mech_interp/01-manuscript/paper.pdf) |
+| [contamcal-irt-calibration](paper-assets/contamcal-irt-calibration/README.md) | [PDF](paper-assets/contamcal-irt-calibration/01-manuscript/paper.pdf) |
+| [contrastive_entrain_calib](paper-assets/contrastive_entrain_calib/README.md) | [PDF](paper-assets/contrastive_entrain_calib/01-manuscript/paper.pdf) |
+| [contrastive_trace_safety](paper-assets/contrastive_trace_safety/README.md) | [PDF](paper-assets/contrastive_trace_safety/01-manuscript/paper.pdf) |
+| [cost-verify-agent-rl](paper-assets/cost-verify-agent-rl/README.md) | [PDF](paper-assets/cost-verify-agent-rl/01-manuscript/paper.pdf) |
+| [diff_collision_sdf](paper-assets/diff_collision_sdf/README.md) | [PDF](paper-assets/diff_collision_sdf/01-manuscript/paper.pdf) |
+| [distill_sparse_swiglu](paper-assets/distill_sparse_swiglu/README.md) | [PDF](paper-assets/distill_sparse_swiglu/01-manuscript/paper.pdf) |
+| [distrib_canary_collapse](paper-assets/distrib_canary_collapse/README.md) | [PDF](paper-assets/distrib_canary_collapse/01-manuscript/paper.pdf) |
+| [ec_hte_llm_annotation](paper-assets/ec_hte_llm_annotation/README.md) | [PDF](paper-assets/ec_hte_llm_annotation/01-manuscript/paper.pdf) |
+| [entrainment_gated_ft](paper-assets/entrainment_gated_ft/README.md) | [PDF](paper-assets/entrainment_gated_ft/01-manuscript/paper.pdf) |
+| [event-gated-adaptive-horizon](paper-assets/event-gated-adaptive-horizon/README.md) | [PDF](paper-assets/event-gated-adaptive-horizon/01-manuscript/paper.pdf) |
+| [exec-sim-repair-verifier](paper-assets/exec-sim-repair-verifier/README.md) | [PDF](paper-assets/exec-sim-repair-verifier/01-manuscript/paper.pdf) |
+| [faith-evidence-ie](paper-assets/faith-evidence-ie/README.md) | [PDF](paper-assets/faith-evidence-ie/01-manuscript/paper.pdf) |
+| [gated_mfrm_judge_bias](paper-assets/gated_mfrm_judge_bias/README.md) | [PDF](paper-assets/gated_mfrm_judge_bias/01-manuscript/paper.pdf) |
+| [gen-depth-contamination](paper-assets/gen-depth-contamination/README.md) | [PDF](paper-assets/gen-depth-contamination/01-manuscript/paper.pdf) |
+| [gen-depth-fingerprint](paper-assets/gen-depth-fingerprint/README.md) | [PDF](paper-assets/gen-depth-fingerprint/01-manuscript/paper.pdf) |
+| [importance_margin_vla_compress](paper-assets/importance_margin_vla_compress/README.md) | [PDF](paper-assets/importance_margin_vla_compress/01-manuscript/paper.pdf) |
+| [irt_equated_bench_regen](paper-assets/irt_equated_bench_regen/README.md) | [PDF](paper-assets/irt_equated_bench_regen/01-manuscript/paper.pdf) |
+| [irt_personfit_contam](paper-assets/irt_personfit_contam/README.md) | [PDF](paper-assets/irt_personfit_contam/01-manuscript/paper.pdf) |
+| [nlp_variance_gtheory](paper-assets/nlp_variance_gtheory/README.md) | [PDF](paper-assets/nlp_variance_gtheory/01-manuscript/paper.pdf) |
+| [occsafe_vla](paper-assets/occsafe_vla/README.md) | [PDF](paper-assets/occsafe_vla/01-manuscript/paper.pdf) |
+| [persuasion_turn_jailbreak_detect](paper-assets/persuasion_turn_jailbreak_detect/README.md) | [PDF](paper-assets/persuasion_turn_jailbreak_detect/01-manuscript/paper.pdf) |
+| [policy_ambiguity_safety](paper-assets/policy_ambiguity_safety/README.md) | [PDF](paper-assets/policy_ambiguity_safety/01-manuscript/paper.pdf) |
+| [provenance_weight_training](paper-assets/provenance_weight_training/README.md) | [PDF](paper-assets/provenance_weight_training/01-manuscript/paper.pdf) |
+| [recovery_aware_struct_prune](paper-assets/recovery_aware_struct_prune/README.md) | [PDF](paper-assets/recovery_aware_struct_prune/01-manuscript/paper.pdf) |
+| [recursive_gen_depth_est](paper-assets/recursive_gen_depth_est/README.md) | [PDF](paper-assets/recursive_gen_depth_est/01-manuscript/paper.pdf) |
+| [schema-dag-extraction](paper-assets/schema-dag-extraction/README.md) | [PDF](paper-assets/schema-dag-extraction/01-manuscript/paper.pdf) |
+| [schema_semantic_constrained_ie](paper-assets/schema_semantic_constrained_ie/README.md) | [PDF](paper-assets/schema_semantic_constrained_ie/01-manuscript/paper.pdf) |
+| [simgate-modular-routing](paper-assets/simgate-modular-routing/README.md) | [PDF](paper-assets/simgate-modular-routing/01-manuscript/paper.pdf) |
+| [solver-trace-ablation](paper-assets/solver-trace-ablation/README.md) | [PDF](paper-assets/solver-trace-ablation/01-manuscript/paper.pdf) |
+| [spectral_collapse_ews](paper-assets/spectral_collapse_ews/README.md) | [PDF](paper-assets/spectral_collapse_ews/01-manuscript/paper.pdf) |
+| [struct_self_consist_ie](paper-assets/struct_self_consist_ie/README.md) | [PDF](paper-assets/struct_self_consist_ie/01-manuscript/paper.pdf) |
+| [symb_invariant_consensus](paper-assets/symb_invariant_consensus/README.md) | [PDF](paper-assets/symb_invariant_consensus/01-manuscript/paper.pdf) |
+| [trace-verdict-study](paper-assets/trace-verdict-study/README.md) | [PDF](paper-assets/trace-verdict-study/01-manuscript/paper.pdf) |
+| [turn_residual_gating](paper-assets/turn_residual_gating/README.md) | [PDF](paper-assets/turn_residual_gating/01-manuscript/paper.pdf) |
+| [vla-ssd](paper-assets/vla-ssd/README.md) | [PDF](paper-assets/vla-ssd/01-manuscript/paper.pdf) |
 
-Each paper directory has the same structure:
+Each project README links its manuscript, contribution records, research code, experiments, generation trace, validation records, maintenance files, and provenance index. Source text retains its recorded language.
 
-- `01-manuscript/`: PDF, LaTeX source, references, figures, and version candidates.
-- `02-contributions/`: agent roles and contribution records.
-- `03-code/`: project code, scripts, and environment files.
-- `04-experiments/`: datasets, configurations, result tables, and analysis artifacts.
-- `05-generation-trace/`: visual trace entry, GitHub-friendly Markdown transcripts, readable session JSON, per-round messages, and the sanitized source archives.
-- `06-validation/`: internal reviews and audit/verification artifacts.
-- `07-maintenance/`: roadmap, provenance, submission checklists, plans, and licenses.
-- `08-index/`: manifests and version indexes.
-
-The collection is intended to make the system's research process inspectable. The files themselves are evidence of generation and project workflow; they do not by themselves establish independent reproduction, human authorship, external peer review, acceptance, or publication.
-
-To use the complete interactive trace browser, clone the repository and run:
-
-```bash
-python3 scripts/serve_traces.py --open
-```
-
-The viewer runs locally without additional packages or API keys. On GitHub, each paper's `05-generation-trace/README.md` starts with human-readable Markdown transcripts; the JSON links beside them provide the complete structured records. See the [format guide](traces/FORMAT.md) for source provenance, round boundaries, chunked records, and reference projects.
+These archived materials document the work available at release time. Code and experiments were not independently rerun for this collection; internal reviews and recorded role labels do not establish external peer review or human authorship.
