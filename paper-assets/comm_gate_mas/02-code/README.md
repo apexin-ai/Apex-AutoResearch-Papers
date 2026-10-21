@@ -7,8 +7,8 @@ Research scripts, implementation files, analysis code, configurations, and depen
 ## Example files
 
 - [.gitignore](source/.gitignore)
-- [artifacts/code_release/configs/experiment_config.yaml](source/artifacts/code_release/configs/experiment_config.yaml)
-- [artifacts/code_release/pipeline/functional_annotation.py](source/artifacts/code_release/pipeline/functional_annotation.py)
-- [artifacts/code_release/pipeline/pruning_validation.py](source/artifacts/code_release/pipeline/pruning_validation.py)
+- [configs/arc_gemma_rr.yaml](source/configs/arc_gemma_rr.yaml)
+- [configs/arc_llama_rr.yaml](source/configs/arc_llama_rr.yaml)
+- [configs/arc_qwen_rr.yaml](source/configs/arc_qwen_rr.yaml)
 
 Use [the complete file manifest](../07-index/asset-manifest.csv) to inspect released files and their original archive paths.

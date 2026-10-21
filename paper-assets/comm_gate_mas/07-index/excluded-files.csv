@@ -212,3 +212,38 @@ comm_gate_mas/artifacts/paper/_pdf_images/main_p8.png,316559,"Dependency, cache,
 comm_gate_mas/artifacts/paper/_pdf_images/main_p9.png,427677,"Dependency, cache, runtime account directory, or Git internals"
 comm_gate_mas/artifacts/paper/figures/_pdf_images/fig_crossover_p1.png,26455,"Dependency, cache, runtime account directory, or Git internals"
 comm_gate_mas/artifacts/paper/figures/_pdf_images/fig_distribution_p1.png,16323,"Dependency, cache, runtime account directory, or Git internals"
+comm_gate_mas/artifacts/code_release/configs/experiment_config.yaml,1777,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/code_release/pipeline/functional_annotation.py,13715,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/code_release/pipeline/pruning_validation.py,28331,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/code_release/statistics/statistical_tests.py,11719,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/paper/figures/gen_fig_combined_panel.py,4859,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/paper/figures/gen_fig_pipeline.py,2896,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/paper/figures/gen_fig_forest.py,9116,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/paper/figures/paper_style.py,824,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/paper/paper_provenance.yaml,644,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/paper/figures/gen_fig_combined_panel.py,4859,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/paper/figures/gen_fig_pipeline.py,2896,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/paper/figures/gen_fig_forest.py,9116,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/paper/figures/paper_style.py,824,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/paper/paper_provenance.yaml,644,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/code_release/configs/experiment_config.yaml,1777,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/code_release/pipeline/functional_annotation.py,13715,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/code_release/pipeline/pruning_validation.py,28331,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/code_release/statistics/statistical_tests.py,11719,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/code_release/configs/experiment_config.yaml,1777,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/code_release/pipeline/functional_annotation.py,13715,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/code_release/pipeline/pruning_validation.py,28331,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/code_release/statistics/statistical_tests.py,11719,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/paper/figures/gen_fig_combined_panel.py,4859,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/paper/figures/gen_fig_forest.py,9116,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/paper/figures/gen_fig_pipeline.py,2896,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/paper/figures/paper_style.py,824,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/paper/paper_provenance.yaml,644,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/code_release/configs/experiment_config.yaml,1777,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/code_release/pipeline/functional_annotation.py,13715,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/code_release/pipeline/pruning_validation.py,28331,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/code_release/statistics/statistical_tests.py,11719,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/paper/figures/gen_fig_combined_panel.py,4859,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/paper/figures/gen_fig_forest.py,9116,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/paper/figures/gen_fig_pipeline.py,2896,Listed in the main-branch manifest but absent from its Git tree
+comm_gate_mas/artifacts/paper/figures/paper_style.py,649,Listed in the main-branch manifest but absent from its Git tree

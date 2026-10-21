@@ -1,6 +1,6 @@
 {
   "project": "comm_gate_mas",
-  "code_count": 725,
+  "code_count": 690,
   "data_count": 1308,
   "env_count": 4,
   "tex_count": 111,
@@ -95,7 +95,7 @@
     {
       "name": "Reproduction code",
       "status": "Available",
-      "evidence": "725 code/configuration files; 4 environment manifests",
+      "evidence": "690 code/configuration files; 4 environment manifests",
       "gap": "The code is archived; experiments were not rerun for this release.",
       "path": "02-code/"
     },
